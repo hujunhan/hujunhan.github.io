@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/23/PF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/ADS-Analysis/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junhan Hu">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/PF/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/24/ADS-Analysis/" itemprop="url">PADS-Analysis</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-23T22:36:51+08:00">
-                2018-12-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T00:05:28+08:00">
+                2018-12-24
               </time>
             
 
@@ -300,94 +300,64 @@
       
         
           
-            <h1 id="粒子滤波算法"><a href="#粒子滤波算法" class="headerlink" title="粒子滤波算法"></a>粒子滤波算法</h1><h2 id="1-粒子滤波算法过程解析"><a href="#1-粒子滤波算法过程解析" class="headerlink" title="1 粒子滤波算法过程解析"></a>1 粒子滤波算法过程解析</h2><p>粒子滤波定位算法的思想也是贝叶斯规则：</p>
-<p><img src="C:\Users\hu\AppData\Roaming\Typora\typora-user-images\1543413090455.png" alt="1543413090455"></p>
-<p>以下的解析是结合Matlab代码所作的说明</p>
-<ol>
-<li>初始化<ol>
-<li>初始化一堆粒子，在MatLab中的代码显示NP=50，也就是总共有50个<strong>采样粒子</strong>。Estimated State [x y yaw]，可见每个状态有3个数据。px=repmat(xEst,1,NP);，</li>
-<li>计算初始权重pw=zeros(1,NP)+<strong>1/NP</strong>; 可见初始权重是均匀的</li>
-<li>初始化路标，landMarks=[10 0; 10 10; 0 15; -5 20]; 可见一共有<strong>4个路标</strong></li>
-</ol>
+            <h2 id="1-Big-Picture"><a href="#1-Big-Picture" class="headerlink" title="1. Big Picture"></a>1. Big Picture</h2><ul>
+<li>What makes a program better？many valid criteria, which are often in conflict.</li>
+<li>omputer scientists <em>love</em> <ul>
+<li>Time</li>
+<li>Memory</li>
+<li>trade off</li>
+</ul>
 </li>
-<li>预测：根据motion model与物体的控制信息u预测下个时刻粒子群中粒子的位置<ol>
-<li>doControl()函数，输入参数time，得到<strong>控制指令u</strong></li>
-<li>doMotion()函数，输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态</li>
-<li>doObservation()函数，输入参数<strong>xGnd（没有噪声</strong>的里程计位置估计）, <strong>xOdom（有噪声</strong>的里程计位置估计）, u（控制指令）, landMarks, MAX_RANGE，输出参数是z,xGnd,xOdom,u</li>
-</ol>
+<li>sum of 1-n：<ul>
+<li>simple add</li>
+<li>gauss formula</li>
+</ul>
 </li>
-<li>更新：根据物体的<strong>观测值</strong>z与<strong>地图值</strong>zl计算出每个粒子的权重ww。更新粒子权重的依据是粒子的观测值与地图标志物<strong>相似度的高低</strong>，越高的话该粒子的权重越大<ol>
-<li>对每个粒子循环操作</li>
-<li>doMotion()函数，对每个采样粒子输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态，并加入干扰</li>
-<li>计算权重，用各个路标距离的<strong>高斯概率相乘</strong>得到总概率</li>
-</ol>
-</li>
-<li>重采样：根据粒子的权重w重新采样粒子</li>
-</ol>
-<h2 id="2-重要代码（Tasks）"><a href="#2-重要代码（Tasks）" class="headerlink" title="2 重要代码（Tasks）"></a>2 重要代码（Tasks）</h2><h3 id="2-1-观测模型"><a href="#2-1-观测模型" class="headerlink" title="2.1 观测模型"></a>2.1 观测模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Observation model </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[z, xGnd, xOdom, u]</span> = <span class="title">doObservation</span><span class="params">(xGnd, xOdom, u, landMarks, MAX_RANGE)</span></span></span><br><span class="line">    <span class="keyword">global</span> Qsigma;</span><br><span class="line">    <span class="keyword">global</span> Rsigma;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% Gnd Truth and Odometry</span></span><br><span class="line">    xGnd=doMotion(xGnd, u);<span class="comment">% Ground Truth 理想状态</span></span><br><span class="line">    u=u+<span class="built_in">sqrt</span>(Qsigma)*<span class="built_in">randn</span>(<span class="number">2</span>,<span class="number">1</span>); <span class="comment">% add noise randomly</span></span><br><span class="line">    xOdom=doMotion(xOdom, u); <span class="comment">% odometry only</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">%Simulate Observation</span></span><br><span class="line">    z=[];</span><br><span class="line">    <span class="keyword">for</span> iz=<span class="number">1</span>:<span class="built_in">length</span>(landMarks(:,<span class="number">1</span>))</span><br><span class="line">        dx = xGnd(<span class="number">1</span>)-landMarks(iz,<span class="number">1</span>);</span><br><span class="line">        dy = xGnd(<span class="number">2</span>)-landMarks(iz,<span class="number">2</span>);</span><br><span class="line">        d=<span class="built_in">sqrt</span>(dx^<span class="number">2</span>+dy^<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span> d&lt;MAX_RANGE </span><br><span class="line">            z=[z;[d+<span class="built_in">sqrt</span>(Rsigma)*<span class="built_in">randn</span>(<span class="number">1</span>,<span class="number">1</span>) landMarks(iz,:)]];   <span class="comment">% add observation noise randomly</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-2-运动模型"><a href="#2-2-运动模型" class="headerlink" title="2.2 运动模型"></a>2.2 运动模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Motion Model</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ x ]</span> = <span class="title">doMotion</span><span class="params">( x, u)</span></span></span><br><span class="line">    <span class="keyword">global</span> dt;</span><br><span class="line">    Delta = [ [dt*<span class="built_in">cos</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">              [dt*<span class="built_in">sin</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">              [<span class="number">0</span>,dt]];</span><br><span class="line"></span><br><span class="line">    x = x+Delta*u;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-高斯函数"><a href="#2-3-高斯函数" class="headerlink" title="2.3 高斯函数"></a>2.3 高斯函数</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Gauss function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span> = <span class="title">Gaussian</span><span class="params">(x,u,sigma)</span></span></span><br><span class="line">    g=<span class="built_in">exp</span>(-((u-x)^<span class="number">2</span>)/(sigma^<span class="number">2</span>)/<span class="number">2.0</span>)/<span class="built_in">sqrt</span>(<span class="number">2.0</span>*<span class="built_in">pi</span>*(sigma^<span class="number">2</span>));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-4-粒子归一化"><a href="#2-4-粒子归一化" class="headerlink" title="2.4 粒子归一化"></a>2.4 粒子归一化</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Normalization </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pw</span>=<span class="title">Normalization</span><span class="params">(pw,NP)</span></span></span><br><span class="line">    pw=pw/sum(pw);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-5-重采样"><a href="#2-5-重采样" class="headerlink" title="2.5 重采样"></a>2.5 重采样</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[px,pw]</span>=<span class="title">ResamplingStep</span><span class="params">(px,pw,NTh,NP)</span></span></span><br><span class="line">    ww=pw(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> iw=<span class="number">2</span>:NP</span><br><span class="line">        ww=[ww,ww(<span class="keyword">end</span>)+pw(iw)];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    pw1=[]</span><br><span class="line">    pp=[];</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:NP</span><br><span class="line">        r=<span class="built_in">rand</span>();</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:NP</span><br><span class="line">            <span class="keyword">if</span> ww(<span class="built_in">j</span>)&gt;r</span><br><span class="line">                pp=[pp,px(:,<span class="built_in">j</span>)]; </span><br><span class="line">                pw1=[pw1,pw(:,<span class="built_in">j</span>)]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    px=pp;</span><br><span class="line">    pw=pw1;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-参数对比实验"><a href="#3-参数对比实验" class="headerlink" title="3 参数对比实验"></a>3 参数对比实验</h2><h3 id="3-1-NP数效果实验"><a href="#3-1-NP数效果实验" class="headerlink" title="3.1 NP数效果实验"></a>3.1 NP数效果实验</h3><table>
+</ul>
+<h2 id="2-Big-O-Notation"><a href="#2-Big-O-Notation" class="headerlink" title="2. Big O Notation"></a>2. Big O Notation</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">NP</th>
-<th style="text-align:center">效果</th>
-<th style="text-align:center">运行时间</th>
+<th>f(n)</th>
+<th>Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543418697497.png" alt="1543418697497"></td>
-<td style="text-align:center">0.220</td>
+<td>1</td>
+<td>Constant</td>
 </tr>
 <tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543418731869.png" alt="1543418731869"></td>
-<td style="text-align:center">0.286</td>
+<td>$log n$</td>
+<td>Logarithmic</td>
 </tr>
 <tr>
-<td style="text-align:center">10</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543418780232.png" alt="1543418780232"></td>
-<td style="text-align:center">0.387</td>
+<td>$n$</td>
+<td>Linear</td>
 </tr>
 <tr>
-<td style="text-align:center">25</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543418921968.png" alt="1543418921968"></td>
-<td style="text-align:center">0.640</td>
+<td>$nlogn$</td>
+<td>Log Linear</td>
 </tr>
 <tr>
-<td style="text-align:center">50</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543419010101.png" alt="1543419010101"></td>
-<td style="text-align:center">1.131</td>
+<td>$n^2$</td>
+<td>Quadratic</td>
 </tr>
 <tr>
-<td style="text-align:center">100</td>
-<td style="text-align:center"><img src="C:\Users\hu\Documents\PF.assets\1543419158421.png" alt="1543419158421"></td>
-<td style="text-align:center">2.159</td>
+<td>$n^3$</td>
+<td>Cubic</td>
+</tr>
+<tr>
+<td>$2^n$</td>
+<td>Exponential</td>
 </tr>
 </tbody>
 </table>
-<h3 id="3-2-NP数对时间的影响"><a href="#3-2-NP数对时间的影响" class="headerlink" title="3.2 NP数对时间的影响"></a>3.2 NP数对时间的影响</h3><p><img src="C:\Users\hu\Documents\PF.assets\1543421431975.png" alt="1543421431975"></p>
-<p>可见运行时间与NP数成正比关系</p>
-<h3 id="3-3-NP数对误差的影响"><a href="#3-3-NP数对误差的影响" class="headerlink" title="3.3 NP数对误差的影响"></a>3.3 NP数对误差的影响</h3><p><img src="C:\Users\hu\Documents\PF.assets\1543422396619.png" alt="1543422396619"></p>
-<p>可见误差趋向于0.5，这主要时由高斯噪声造成的</p>
-<h2 id="4-结论与展望"><a href="#4-结论与展望" class="headerlink" title="4 结论与展望"></a>4 结论与展望</h2><p>粒子滤波算法是基于概率的定位算法，主要有以下优点：</p>
-<ul>
-<li>理解简单，一句话就是越相似，存活概率越大</li>
-<li>计算量不大（计算量与粒子数线性相关）</li>
-</ul>
-<p>但也存在以下问题：</p>
-<ul>
-<li>严重依赖于对初始状态的估计，选择不当可能发散</li>
-<li>需要有固定的路标</li>
-</ul>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Particle_filter" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Particle_filter</a></p>
-<p>[“Probabilistic Robotics”][Sebastian Thrun]</p>
-</blockquote>
+<h2 id="3-Example-Anagram-Detection"><a href="#3-Example-Anagram-Detection" class="headerlink" title="3. Example :Anagram Detection"></a>3. Example :Anagram Detection</h2><ol>
+<li>Checking off: check one by one ,$O(n^2)$.</li>
+<li>Sort and Compare: $O(nlogn)$</li>
+<li>Brute Force , try all possibilities: $O(n!)$</li>
+<li>Count and Compare: $O(n)$</li>
+</ol>
 
           
         
@@ -854,6 +824,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
