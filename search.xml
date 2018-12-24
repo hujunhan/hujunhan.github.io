@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2018%2F12%2F24%2Ftest-pdf%2F</url>
-    <content type="text"><![CDATA[aaa]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[PADS-Analysis]]></title>
     <url>%2F2018%2F12%2F24%2FADS-Analysis%2F</url>
-    <content type="text"><![CDATA[1. Big Picture What makes a program better？many valid criteria, which are often in conflict. omputer scientists love Time Memory trade off sum of 1-n： simple add gauss formula 2. Big O Notation f(n) Name 1 Constant $log n$ Logarithmic $n$ Linear $nlogn$ Log Linear $n^2$ Quadratic $n^3$ Cubic $2^n$ Exponential 3. Example :Anagram Detection Checking off: check one by one ,$O(n^2)$. Sort and Compare: $O(nlogn)$ Brute Force , try all possibilities: $O(n!)$ Count and Compare: $O(n)$]]></content>
+    <content type="text"><![CDATA[1. Big Picture What makes a program better？many valid criteria, which are often in conflict. omputer scientists love Time Memory trade off sum of 1-n： simple add gauss formula 2. Big O Notation f(n) Name 1 Constant $log n$ Logarithmic $n$ Linear $nlogn$ Log Linear $n^2$ Quadratic $n^3$ Cubic $2^n$ Exponential 3. Example :Anagram Detection Checking off: check one by one ,$O(n^2)$. Sort and Compare: $O(nlogn)$ Brute Force , try all possibilities: $O(n!)$ Count and Compare: $O(n)$ 4. Performance of Python Types Lists Indexing &amp; Assigning &amp; Appending $O(1)$ Poping, Shifting &amp; Deleting, normally $O(n)$ ,beacuse has to shift changed element Reversing $O(n)$ Dictionaries “getting” and “setting” : $O(1)$ Iterating &amp; Copying: $O(n)$]]></content>
+      <categories>
+        <category>CS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Stacks]]></title>
+    <url>%2F2018%2F12%2F24%2FADS-Stacks%2F</url>
+    <content type="text"><![CDATA[1. Introduction to StacksStacks is a kind of linear data structures. What distinguishes one linear structure from another is where additions and removals may occur 1.1 Stacks A stack is an ordered collection of items where the addition of new items and the removal of existing items always takes place at the same end. Example: stack of books\plates, URL back button Usage: reverse the order 1.2 ADT ADT data represents DS physical implementation of an ADT Stack operation Stack contents Return value s.is_empty() [] True s.push(4) [4] s.push(‘dog’) [4, ‘dog’] s.peek() [4, ‘dog’] ‘dog’ s.push(True) [4, ‘dog’, True] s.size() [4, ‘dog’, True] 3 s.is_empty() [4, ‘dog’, True] False s.push(8.4) [4, ‘dog’, True, 8.4] s.pop() [4, ‘dog’, True] 8.4 s.pop() [4, ‘dog’] True s.size() [4, ‘dog’] 2 2. A Stack ImplementationIn practice , “use a Python list as a stack” even though the implementations are logically equivalent, they would have very different timings when performing benchmark testing. Here, just use python list with limit function. 3. Example:Balanced Parenthesesparentheses are used to order the performance of operations $$(5+6)×(7+8)/(4+3)$$ or lisp function 12(defun square(n) (* n n)) So,it’s important to differentiate between parentheses that are correctly balanced and those that are unbalanced in strucures. Why Stack ? open match close\ close match open, reverse order So a stack, push if open, pop if close. Finally, if len(stack)==0, balance. 123456789101112131415161718192021222324252627PAIRINGS = &#123; '(': ')', '&#123;': '&#125;', '[': ']'&#125;def is_balanced(symbols): stack = [] for s in symbols: if s in PAIRINGS.keys(): stack.append(s) continue try: expected_opening_symbol = stack.pop() except IndexError: # too many closing symbols return False if s != PAIRINGS[expected_opening_symbol]: # mismatch return False return len(stack) == 0 # false if too many opening symbolsis_balanced('&#123;&#123;([][])&#125;()&#125;') # =&gt; Trueis_balanced('&#123;[])') # =&gt; Falseis_balanced('((()))') # =&gt; Trueis_balanced('(()') # =&gt; Falseis_balanced('())') # =&gt; False 4. Example: Converting Number Bases$$233_{10}=11101001_{2}$$ Why stack？ Divide by Base algorithm So, Push fisrt, Pop at the end 1234567891011121314151617181920DIGITS = '0123456789abcdef'def convert_to_base(decimal_number, base): remainder_stack = [] while decimal_number &gt; 0: remainder = decimal_number % base remainder_stack.append(remainder) decimal_number = decimal_number // base new_digits = [] while remainder_stack: new_digits.append(DIGITS[remainder_stack.pop()]) return ''.join(new_digits)convert_to_base(25, 2) # =&gt; '11001'convert_to_base(25, 16) # =&gt; '19']]></content>
       <categories>
         <category>CS</category>
       </categories>
@@ -17,11 +20,5 @@
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F12%2F18%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>钧涵</category>
-      </categories>
-      <tags>
-        <tag>环境</tag>
-      </tags>
   </entry>
 </search>
