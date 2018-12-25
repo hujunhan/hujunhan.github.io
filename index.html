@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,7 +80,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -235,6 +235,40 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -261,9 +295,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -306,6 +337,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -371,12 +405,24 @@
                 
               
 
-              <time title="Created: 2018-12-25 00:00:00 / Modified: 22:48:38" itemprop="dateCreated datePublished" datetime="2018-12-25T00:00:00+08:00">2018-12-25</time>
+              <time title="Created: 2018-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-25T00:00:00+08:00">2018-12-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-26 00:21:14" itemprop="dateModified" datetime="2018-12-26T00:21:14+08:00">2018-12-26</time>
               
             
           </span>
@@ -394,6 +440,13 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
 
                 
                 
@@ -428,8 +481,7 @@
 
       
         
-          
-            <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><blockquote>
+          <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><blockquote>
 <p>trajectory refers to a time history of <strong>position, velocity, and acceleration</strong> for each degree of freedom.</p>
 </blockquote>
 <p>Concern:</p>
@@ -437,70 +489,15 @@
 <li>Easy description：just desired goal position and orientation</li>
 <li>How to generating and representing in computer</li>
 </ul>
-<h2 id="2-General-consideration"><a href="#2-General-consideration" class="headerlink" title="2 General consideration"></a>2 General consideration</h2><ul>
-<li>Huamn-interface. Consider <strong>tool frame</strong> ${T}$ , in which a user would think and design path.</li>
-<li>Path include many <strong>intermediate <em>points</em></strong> (position and orientation)</li>
-<li>Want a <strong><em>smooth</em></strong> path, first derivative even second derivative. <em>jerky motions tend to cause increased wear on the mechanism andcause vibrations by exciting resonances in the manipulator</em></li>
-</ul>
-<h2 id="3-Joint-Space-Schemes"><a href="#3-Joint-Space-Schemes" class="headerlink" title="3 Joint-Space Schemes"></a>3 Joint-Space Schemes</h2><p>First <strong>get the via points</strong> and then convert it to a set of joint angle by <strong>inverse kinematics</strong></p>
-<p>Joint space schemes is the easiest to compute.</p>
-<h3 id="3-1-Cubic-Polynomials"><a href="#3-1-Cubic-Polynomials" class="headerlink" title="3.1 Cubic Polynomials"></a>3.1 Cubic Polynomials</h3><p>Some constrains:</p>
-<ul>
-<li>$θ(0) = θ_0$ initial</li>
-<li>$θ(t_f ) = θ_f$ final</li>
-<li>$\dotθ(0) = 0$ continuous in velocity</li>
-<li>$\dotθ(t_f ) = 0$ continuous in velocity </li>
-</ul>
-<p>apply<br>$$<br>θ(t) = a_0 + a_1t + a_2t^2 + a_3t^3solve the problem<br>$$<br>to solve the problem <strong>(between two points)</strong></p>
-<h3 id="3-2-Cubic-polynomials-for-a-path-with-via-points"><a href="#3-2-Cubic-polynomials-for-a-path-with-via-points" class="headerlink" title="3.2  Cubic polynomials for a path with via points"></a>3.2  Cubic polynomials for a path with via points</h3><p>What if we wish to specfify the intermediate via points? <strong>(between many points)</strong></p>
-<p>constrains becoms</p>
-<ul>
-<li>$θ(0) = θ_0$ initial</li>
-<li>$θ(t_f ) = θ_f$ final</li>
-<li>$\dotθ(0) = \dot\theta_0$ continuous in velocity</li>
-<li>$\dotθ(t_f ) = \dot\theta_f$ continuous in velocity </li>
-</ul>
-<p>But how we choose the intermediate velocity? There are some method:</p>
-<ol>
-<li><p>Specified by user</p>
-</li>
-<li><p>Choose by computer</p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545739505404.png" alt="1545739505404"></p>
-<ul>
-<li><p>If the slope of lines change sign at via point $\to$zero velocity</p>
-</li>
-<li><p>if the slope of lines does not change sign$\to$average velocity</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="3-3-Linear-function-with-parabolic-blends"><a href="#3-3-Linear-function-with-parabolic-blends" class="headerlink" title="3.3 Linear function with parabolic blends"></a>3.3 Linear function with parabolic blends</h3><p><img src="/2018/12/25/Robotics-Trajectory/1545741027528.png" alt="1545741027528"></p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545743546118.png" alt="1545743546118"><br>$$<br>\ddotθ\times t_b =\frac{θ_h − θ_b}{t_h − t_b}<br>$$</p>
-<p>$$<br>θ_b = θ_0 + \frac12\ddotθ\times t_b^2<br>$$</p>
-<p>There are 2 equations and 6 variabels</p>
-<p>So, given $\theta_f ,\theta_0, t_h$, choose $\ddot\theta\to$we can calculate $t_b$</p>
-<h3 id="3-4-Linear-function-with-parabolic-blends-for-a-path-with-via-points"><a href="#3-4-Linear-function-with-parabolic-blends-for-a-path-with-via-points" class="headerlink" title="3.4  Linear function with parabolic blends for a path with via points"></a>3.4  Linear function with parabolic blends for a path with via points</h3><p>Consider there an arbitrary number of via points</p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545744520459.png" alt="1545744520459"></p>
-<h2 id="4-Cartesian-Space-Schemes"><a href="#4-Cartesian-Space-Schemes" class="headerlink" title="4 Cartesian-Space Schemes"></a>4 Cartesian-Space Schemes</h2><ul>
-<li><p>In Joint-Space, the spatial shape of path taken by the end-effector will be <strong>complicated</strong></p>
-</li>
-<li><p>In Cartesian-Space, we can also specify <strong>shape</strong> of the path. Line\Circular\Sinusoidal</p>
-</li>
-<li>However, Cartesian schemes are more <strong>computationally expensive</strong> because inverse kinematics must be <strong>solved at real time</strong> </li>
-</ul>
-<h2 id="5-Geometric-Problems-with-Cartesian-Paths"><a href="#5-Geometric-Problems-with-Cartesian-Paths" class="headerlink" title="5 Geometric Problems with Cartesian Paths"></a>5 Geometric Problems with Cartesian Paths</h2><ol>
-<li><p>Intermediate points unreachable</p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545745680365.png" alt="1545745680365"></p>
-</li>
-<li><p>High joint rates near singularity</p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545745696711.png" alt="1545745696711"></p>
-</li>
-<li><p>Start and goal reachable in different solutions</p>
-<p><img src="/2018/12/25/Robotics-Trajectory/1545745805058.png" alt="1545745805058"></p>
-</li>
-</ol>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/25/Robotics-Trajectory/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
@@ -600,12 +597,24 @@
                 
               
 
-              <time title="Created: 2018-12-24 00:05:00 / Modified: 13:11:02" itemprop="dateCreated datePublished" datetime="2018-12-24T00:05:00+08:00">2018-12-24</time>
+              <time title="Created: 2018-12-24 00:05:00" itemprop="dateCreated datePublished" datetime="2018-12-24T00:05:00+08:00">2018-12-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-26 00:19:14" itemprop="dateModified" datetime="2018-12-26T00:19:14+08:00">2018-12-26</time>
               
             
           </span>
@@ -623,6 +632,13 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS & Algorithm</span></a></span>
 
                 
                 
@@ -793,7 +809,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-25 00:57:10" itemprop="dateModified" datetime="2018-12-25T00:57:10+08:00">2018-12-25</time>
+                <time title="Modified: 2018-12-26 00:20:34" itemprop="dateModified" datetime="2018-12-26T00:20:34+08:00">2018-12-26</time>
               
             
           </span>
@@ -811,6 +827,13 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS & Algorithm</span></a></span>
 
                 
                 
@@ -1118,16 +1141,20 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
-                  
+                  </a>
                 </div>
               
 
@@ -1135,14 +1162,20 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">tags</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -1199,7 +1232,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
 
 
 
@@ -1291,6 +1324,13 @@
 
   
   
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
 
   
 
