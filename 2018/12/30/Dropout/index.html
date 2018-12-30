@@ -104,20 +104,28 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Whatever">
-<meta property="og:url" content="http://yoursite.com/tags/STM32/index.html">
+  <meta name="description" content="Abstract深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。">
+<meta name="keywords" content="paper,notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes about Dropout">
+<meta property="og:url" content="http://yoursite.com/2018/12/30/Dropout/index.html">
 <meta property="og:site_name" content="Whatever">
+<meta property="og:description" content="Abstract深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/Dropout/dropout_compare.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/Dropout/1546165049612.png">
+<meta property="og:updated_time" content="2018-12-30T11:00:24.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Whatever">
+<meta name="twitter:title" content="Notes about Dropout">
+<meta name="twitter:description" content="Abstract深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/30/Dropout/dropout_compare.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/STM32/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/30/Dropout/">
 
 
 
@@ -127,7 +135,7 @@
   };
 </script>
 
-  <title>Tag: STM32 | Whatever</title>
+  <title>Notes about Dropout | Whatever</title>
   
 
 
@@ -175,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -234,7 +242,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -339,79 +347,221 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>STM32<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/Dropout/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/27/STM32-ADC/" itemprop="url">
-              
-                <span itemprop="name">STM32-ADC</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Notes about Dropout
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-27T00:00:00+08:00" content="2018-12-27">
-          12-27
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-30 00:00:00 / Modified: 19:00:24" itemprop="dateCreated datePublished" datetime="2018-12-30T00:00:00+08:00">2018-12-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/paper/" itemprop="url" rel="index"><span itemprop="name">paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。</p>
+<a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>深度神经网络包含了许多非线性隐藏层，这使得深度神经网络变得有很强的表达性，也就是说其可以学习输入和输出之间的复杂的关系。 </p>
+<p>但是当训练数据有限的时候，可能部分关系是从采样噪声学到的，这些关系在训练集中存在但在实际的测试数据中不存在。这就导致了过拟合。</p>
+<p>减少过拟合的方法包括，验证集上的性能开始下降时尽快停止训练，为权重引入L1/L2正则惩罚项。</p>
+<p>如果计算量上不受限制，按照bayesian的黄金准则，regularize 一个固定规模的模型的最好的方式是，在参数的所有可能的取值上做预测，再根据每种取值的后验概率对这些预测加权取平均。实际中希望用更少的计算量近似到达bayesian的性能。 </p>
+<p>本文提出dropout，<strong>学习指数个共享参数的模型，做预测，求几何平均</strong>。近似地有效地组合了指数多个神经网络体系结构。 </p>
+<p>Dropout做法，暂时地随机地移除网络中的单元（及其输入和输出连接）。比如，每个单元都以固定的概率$p$（比如=0.5）保留。（但是输入单元的保留概率应该接近1），相当于从原网络中采样一个thinned稀疏的网络。 原网络有$n$个单元，则有$2^n$种可能（每个节点有移除/保留2种可能,各节点独立）的稀疏网络。</p>
+<p><img src="/2018/12/30/Dropout/dropout_compare.jpg" alt="dropout_compare"></p>
+<p>在测试的时候，直接地先对每个网络做预测再平均 计算量大不可行。采用近似平均方法，将$2^n$个网络组合成一个神经网络（所有单元都保留，但单元的输出权重都乘以该单元在训练时候的保留概率），基于这个神经网络做预测。</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Dropout的动机来自于关于性别在进化中的作用的理论。有性生殖包括从一个亲本和另一个亲本中提取一半的基因，加入非常少量的随机突变，并将它们结合产生受精卵。无性繁殖是通过父母基因的拷贝中加入微小突变来创造后代。无性繁殖应该是一种更好的方法来优化个体的健康，这似乎是合理的，因为一组良好的基因组合在一起可以直接传递给后代。另一方面，有性生殖很可能会破坏这些共同适应的基因，特别是如果这些基因的数量很大，而且直觉上，这应该会降低已经进化出复杂的共同适应的生物体的适应性。然而，有性繁殖是最先进的生物进化的方式。</p>
+<p>对有性生殖优势的一种可能解释是，从长期来看，自然选择的标准可能不是个体特性，而是基因的混合能力。就是说那些能够和更多随机的基因协作的基因才是更加健壮的。因此一些基因必须要自己学会做一些事而不只是跟很多其他基因合作，这种合作会减少个体适应性。类似地，随机的选择dropout可以增加隐层神经元的健壮性。</p>
+<p>有个密切相关但却略有不同的例子，十个阴谋，每个五人参与和一个大阴谋五十人参与相比，显然前者获得一次成功概率较大。一个复杂的共同协作的网络在训练集表现会很出色，但到测试集中，出现了很多新的数据，他就不如很多个更为简单的协作神经元工作的效果好。</p>
+<h2 id="Model-Description"><a href="#Model-Description" class="headerlink" title="Model Description"></a>Model Description</h2><p>考虑一个有着$L$层隐藏层的神经网络，让$l \in {1,….,L }$ 表示隐藏层的层数，让$z^{(l)}$ 表示输入到第$l$c层神经网络的向量，$y^{(l)}$ 表示第$l$层神经网络的输出，$W^{(l)}$表示第$l$层神经网络的权重，$b^{(l)}$表示第$l$层神经网络的bias<br>$$<br>\begin{aligned} z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \mathbf { y } ^ { l } + b _ { i } ^ { ( l + 1 ) } \ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}<br>$$<br><img src="/2018/12/30/Dropout/1546165049612.png" alt="1546165049612"></p>
+<blockquote>
+<p>左图：普通神经网络。右图：dropout之后的神经网络</p>
+</blockquote>
+<p>$$<br>\begin{aligned} r _ { j } ^ { ( l ) } &amp; \sim \text { Bernoulli } ( p ) \ \widetilde { \mathbf { y } } ^ { ( l ) } &amp; = \mathbf { r } ^ { ( l ) } * \mathbf { y } ^ { ( l ) } , \ z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \widetilde { \mathbf { y } } ^ { l } + b _ { i } ^ { ( l + 1 ) } \ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}<br>$$</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/paper/" rel="tag"># paper</a>
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/Robotics-Linear Control/" rel="next" title="Robotics-Linear Control">
+                <i class="fa fa-chevron-left"></i> Robotics-Linear Control
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -432,8 +582,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -531,6 +690,22 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Description"><span class="nav-text">Model Description</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -666,6 +841,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
@@ -1030,6 +1209,36 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
