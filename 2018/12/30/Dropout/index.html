@@ -114,7 +114,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Dropout/dropout_compare.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Dropout/1546165049612.png">
-<meta property="og:updated_time" content="2018-12-30T11:00:24.364Z">
+<meta property="og:updated_time" content="2018-12-30T13:43:51.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Notes about Dropout">
 <meta name="twitter:description" content="Abstract深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。">
@@ -410,7 +410,7 @@
                 
               
 
-              <time title="Created: 2018-12-30 00:00:00 / Modified: 19:00:24" itemprop="dateCreated datePublished" datetime="2018-12-30T00:00:00+08:00">2018-12-30</time>
+              <time title="Created: 2018-12-30 00:00:00 / Modified: 21:43:51" itemprop="dateCreated datePublished" datetime="2018-12-30T00:00:00+08:00">2018-12-30</time>
             
 
             
@@ -491,6 +491,8 @@
 <p>左图：普通神经网络。右图：dropout之后的神经网络</p>
 </blockquote>
 <p>$$<br>\begin{aligned} r _ { j } ^ { ( l ) } &amp; \sim \text { Bernoulli } ( p ) \ \widetilde { \mathbf { y } } ^ { ( l ) } &amp; = \mathbf { r } ^ { ( l ) } * \mathbf { y } ^ { ( l ) } , \ z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \widetilde { \mathbf { y } } ^ { l } + b _ { i } ^ { ( l + 1 ) } \ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}<br>$$</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Dropout是一种可以在神经网络中减小过拟合程度的一种方法。普通的反向传播算法只能在学习到训练集中的知识但是泛化性能不够。而随机的Dropout使得每一个隐藏层的单元都不一定会在输出中起到作用，因此能够提升神经网络在各个领域内的使用性能。</p>
+<p>Dropout的一个缺点是它使得训练的时间延长了，通常来说，一个使用Dropout来训练的神经网络会比拥有相同结构的普通神经网络耗费2-3倍的时间，这主要是因为变量的更新较为缓慢，每一次更新都是几乎不相同的结构。当然有得必有失，在机器学习的领域中，要想获得一方面的进步，就要在其他方面做出让步。Dropout方法增加了算法的训练时间，降低了模型的过拟合风险。</p>
 
       
     </div>
@@ -538,6 +540,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/01/Robotics-Nonlinear/" rel="prev" title="Robotics-Nonlinear Control">
+                Robotics-Nonlinear Control <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -607,7 +613,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -700,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Description"><span class="nav-text">Model Description</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Description"><span class="nav-text">Model Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
@@ -720,7 +726,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
