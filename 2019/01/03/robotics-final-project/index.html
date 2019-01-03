@@ -104,25 +104,31 @@
 
 
 
-  <meta name="description" content="1 IntroductionMere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one forma">
-<meta name="keywords" content="control,robotics">
+  <meta name="description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
+<meta name="keywords" content="robotics,homework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Robotics-Force Control">
-<meta property="og:url" content="http://yoursite.com/2019/01/01/Robotics-Force/index.html">
+<meta property="og:title" content="Robotics-Final Project">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/robotics-final-project/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 IntroductionMere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one forma">
+<meta property="og:description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-01T16:27:11.830Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/robotics-final-project/1546485639528.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/robotics-final-project/1546488579861.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/robotics-final-project/image15464900932100.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/robotics-final-project/image15464899220980.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/robotics-final-project/1546502844634.png">
+<meta property="og:updated_time" content="2019-01-03T10:05:18.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robotics-Force Control">
-<meta name="twitter:description" content="1 IntroductionMere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one forma">
+<meta name="twitter:title" content="Robotics-Final Project">
+<meta name="twitter:description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/03/robotics-final-project/1546485639528.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/01/Robotics-Force/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/03/robotics-final-project/">
 
 
 
@@ -132,7 +138,7 @@
   };
 </script>
 
-  <title>Robotics-Force Control | Whatever</title>
+  <title>Robotics-Final Project | Whatever</title>
   
 
 
@@ -364,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Force/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/robotics-final-project/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junhan Hu">
@@ -381,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Robotics-Force Control
+          <h1 class="post-title" itemprop="name headline">Robotics-Final Project
 
               
             
@@ -407,24 +413,12 @@
                 
               
 
-              <time title="Created: 2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
+              <time title="Created: 2019-01-03 00:00:00 / Modified: 18:05:18" itemprop="dateCreated datePublished" datetime="2019-01-03T00:00:00+08:00">2019-01-03</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-02 00:27:11" itemprop="dateModified" datetime="2019-01-02T00:27:11+08:00">2019-01-02</time>
               
             
           </span>
@@ -442,13 +436,6 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
 
                 
                 
@@ -482,27 +469,101 @@
       
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>Mere position control is not suffice is contact is made between end-effector and environment.</p>
-<p>So introduce <strong>hybrid position/force controller</strong> to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control.</p>
+        <h2 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h2><h3 id="1-1-题目要求"><a href="#1-1-题目要求" class="headerlink" title="1.1 题目要求"></a>1.1 题目要求</h3><p><img src="/2019/01/03/robotics-final-project/1546485639528.png" alt="1546485639528"></p>
+<p>要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其<strong>末端定点转动</strong>，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行<strong>验证和演示</strong>。</p>
 <a id="more"></a>
-<h2 id="2-Application-of-Robots-to-Assembly-Tasks"><a href="#2-Application-of-Robots-to-Assembly-Tasks" class="headerlink" title="2 Application of Robots to Assembly Tasks"></a>2 Application of Robots to Assembly Tasks</h2><ul>
-<li><p>Spot welding</p>
-</li>
-<li><p>Spray painting</p>
-</li>
-<li><p>Pick and place operations</p>
-</li>
-<li><p>Future: assembly-line tasks, force is extremely important.</p>
-<p>Currently, the dexterity of manipulators remains <strong>quite low</strong> and limit their appplication in the automated assembly area.</p>
-</li>
-</ul>
-<p>If we can <strong>measure and control contact forces</strong> generated at the hand, we  can <strong>imporove the performance without</strong> using bigger, heavier, and more expensive manipulator.</p>
-<h2 id="Basic-Idea"><a href="#Basic-Idea" class="headerlink" title="Basic Idea"></a>Basic Idea</h2><p>Every manipulation task can be broken down into <strong>subtasks</strong> that are defined by a particular <strong>contact situation</strong> occurring between the manipulator end-effector (or tool) and the work environment. </p>
-<p>With each subtask, we can associate a set of <strong>constrains</strong></p>
+<h3 id="1-2-任务分解"><a href="#1-2-任务分解" class="headerlink" title="1.2 任务分解"></a>1.2 任务分解</h3><p>可以将以上任务分解为多个小任务</p>
+<ol>
+<li>对机械臂进行坐标系建立</li>
+<li>选取合适的<em>Denavit-Hartenberg</em>参数</li>
+<li>正运动学分析</li>
+<li>逆运动学分析</li>
+<li>轨迹规划</li>
+<li>利用<em>robotics toolbox</em>仿真演示</li>
+</ol>
+<h3 id="1-3-基本思路"><a href="#1-3-基本思路" class="headerlink" title="1.3 基本思路"></a>1.3 基本思路</h3><p>首先求取<em>Denavit-Hartenberg</em>参数，然后利用正运动学求出末端端点的位姿表达式（ <em>SE3</em> ），然后对末端端点施加微小旋转作用，得到新的位姿表达式，然后利用逆运动学求解出此时机械臂所应该具有的<em>joint angle</em>，然后利用<em>robotics toolbox</em>的plot函数仿真表示出实际效果</p>
+<h2 id="2-各部分任务求解"><a href="#2-各部分任务求解" class="headerlink" title="2 各部分任务求解"></a>2 各部分任务求解</h2><h3 id="2-1-机械臂的坐标系建立"><a href="#2-1-机械臂的坐标系建立" class="headerlink" title="2.1 机械臂的坐标系建立"></a>2.1 机械臂的坐标系建立</h3><p><img src="/2019/01/03/robotics-final-project/1546488579861.png" alt="1546488579861"></p>
+<h3 id="2-2-D-H参数选取"><a href="#2-2-D-H参数选取" class="headerlink" title="2.2 D-H参数选取"></a>2.2 D-H参数选取</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">D-H参数表</th>
+<th style="text-align:center">$a_{i-1}$</th>
+<th style="text-align:center">$\alpha_{i-1} $</th>
+<th style="text-align:center">$d_i$</th>
+<th style="text-align:center">$\theta_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$q_1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$\frac{\pi}{2}$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$q_2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$\frac{\pi}{2}$</td>
+<td style="text-align:center">$\frac{\pi}{2} $</td>
+<td style="text-align:center">$d_3$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$4$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\frac{\pi}{2} $</td>
+<td style="text-align:center">$0.5$</td>
+<td style="text-align:center">$q_3$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-正运动学分析"><a href="#2-3-正运动学分析" class="headerlink" title="2.3 正运动学分析"></a>2.3 正运动学分析</h3><p>因为机械臂的最后还有一个tool，不作为关节，但是最后是要以它作为末端端点，因此除了普通的正向运动学计算，最后还要加上一个tool的坐标系，在上图我的坐标系建立中可以看到只需要在最后一个坐标系${x_4,y_4,z_4}$的$y_4$上增加一个偏移就可以实现。</p>
 <ul>
-<li>mechanical</li>
-<li>geometric</li>
+<li>代码实现</li>
 </ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%Single transform</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Trans</span>=<span class="title">Transform</span><span class="params">(a,alpha,d,theta)</span></span></span><br><span class="line">    Trans=[[<span class="built_in">cos</span>(theta),-<span class="built_in">sin</span>(theta),<span class="number">0</span>,a];</span><br><span class="line">           [<span class="built_in">sin</span>(theta)*ca,<span class="built_in">cos</span>(theta)*ca,-sa,-sa*d];</span><br><span class="line">           [<span class="built_in">sin</span>(theta)*sa,<span class="built_in">cos</span>(theta)*sa,ca,ca*d];</span><br><span class="line">           [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]];</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%Overall transform</span></span><br><span class="line">syms q1 q2 d3 q4;</span><br><span class="line">T10=Transform(<span class="number">0</span>,<span class="number">0</span>,<span class="number">2</span>,q1);</span><br><span class="line">    T21=Transform(<span class="number">2</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="number">0</span>,q2);</span><br><span class="line">    T32=Transform(<span class="number">0</span>,<span class="built_in">pi</span>/<span class="number">2</span>,d3,<span class="number">0</span>);</span><br><span class="line">    T43=Transform(<span class="number">0</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="number">0.5</span>,q4);</span><br><span class="line">    tool=[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>;<span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">2</span>;  <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>; <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>];</span><br><span class="line">    T=T10*T21*T32*T43*tool;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>数学表达</p>
+<ul>
+<li><p>Single transform</p>
+<p><img src="/2019/01/03/robotics-final-project/image15464900932100.png" alt="img1"></p>
+</li>
+<li><p>Overall transform</p>
+<p><img src="/2019/01/03/robotics-final-project/image15464899220980.png" alt="img1"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-逆运动学分析"><a href="#2-4-逆运动学分析" class="headerlink" title="2.4 逆运动学分析"></a>2.4 逆运动学分析</h3><h4 id="2-4-1-初始位置"><a href="#2-4-1-初始位置" class="headerlink" title="2.4.1 初始位置"></a>2.4.1 初始位置</h4><h4 id="2-4-2-位姿旋转"><a href="#2-4-2-位姿旋转" class="headerlink" title="2.4.2 位姿旋转"></a>2.4.2 位姿旋转</h4><h4 id="2-4-3-解析求解"><a href="#2-4-3-解析求解" class="headerlink" title="2.4.3 解析求解"></a>2.4.3 解析求解</h4><h2 id="3-仿真及结果分析"><a href="#3-仿真及结果分析" class="headerlink" title="3 仿真及结果分析"></a>3 仿真及结果分析</h2><h3 id="3-1-机械臂模型建立"><a href="#3-1-机械臂模型建立" class="headerlink" title="3.1 机械臂模型建立"></a>3.1 机械臂模型建立</h3><p>首先根据之前的D-H参数，利用<em>robotics toolbox</em>进行建模，为了让模型更加适用于模块，所以除了4个确定的关节，在增加两个固定的<em>“关节”</em>，使机械臂成为<em>6-DOF</em>机械臂</p>
+<p>代码如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">L0=Revolute(<span class="string">'qlim'</span>,[<span class="number">0</span>,<span class="number">0</span>],<span class="string">'modified'</span>)</span><br><span class="line">L1=Revolute(<span class="string">'d'</span>,<span class="number">2</span>,<span class="string">'modified'</span>);</span><br><span class="line">L2=Revolute(<span class="string">'a'</span>,<span class="number">2</span>,<span class="string">'alpha'</span>,<span class="number">1.5708</span>,<span class="string">'modified'</span>);</span><br><span class="line">L3=Prismatic(<span class="string">'theta'</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="string">'alpha'</span>,<span class="number">1.5708</span>,<span class="string">'qlim'</span>,[<span class="number">0.2</span>,<span class="number">5</span>],<span class="string">'modified'</span>);</span><br><span class="line">L4=Revolute(<span class="string">'alpha'</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="string">'d'</span>,<span class="number">0.5</span>,<span class="string">'modified'</span>);</span><br><span class="line">L5 = Prismatic(<span class="string">'alpha'</span>,-<span class="built_in">pi</span>/<span class="number">2</span> ,<span class="string">'qlim'</span>,[<span class="number">2</span>,<span class="number">2</span>],<span class="string">'modified'</span>);</span><br><span class="line">L=[L0,L1,L2,L3,L4,L5];</span><br><span class="line">arm=SerialLink(L);</span><br><span class="line">arm.name=<span class="string">'ZJU Robotics Final Arm'</span>;</span><br><span class="line">arm.manufacturer=<span class="string">'CSE Hu'</span>;</span><br><span class="line"><span class="comment">%设定初始值</span></span><br><span class="line">qz=[<span class="number">0</span>,<span class="number">0</span>,<span class="built_in">pi</span>/<span class="number">3</span>,<span class="number">4</span>,-<span class="built_in">pi</span>/<span class="number">6</span>,<span class="number">2</span>];</span><br><span class="line">arm.<span class="built_in">plot</span>(qz)</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/2019/01/03/robotics-final-project/1546502844634.png" alt="1546502844634"></p>
+<h3 id="3-2-正向运动学计算"><a href="#3-2-正向运动学计算" class="headerlink" title="3.2 正向运动学计算"></a>3.2 正向运动学计算</h3><ul>
+<li><p>通过<em>robotics toolbox</em>函数<em>fkine(qz)</em>计算得到的末端位姿为<br>$$<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{cccc}   %该矩阵一共3列，每一列都居中放置</p>
+<pre><code>-0.4330 &amp;  -0.5000&amp;    0.7500  &amp;   7.964\\
+</code></pre><p>   -0.8660   &amp; 0.0000  &amp; -0.5000    &amp;    -1\</p>
+<pre><code>0.2500   &amp;-0.8660  &amp; -0.4330    &amp; 0.866\\
+     0  &amp;       0        &amp; 0      &amp;   1
+</code></pre><p>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>$$</p>
+</li>
+<li><p>通过自己编写函数计算得到的末端位姿为<br>$$<br>\begin{equation}       %开始数学环境<br>\left(                 %左括号<br>  \begin{array}{cccc}   %该矩阵一共3列，每一列都居中放置</p>
+<pre><code>-0.4330 &amp;  -0.5000&amp;    0.7500  &amp;   7.9641\\
+</code></pre><p>   -0.8660   &amp; 0.0000  &amp; -0.5000    &amp;    -1\</p>
+<pre><code>0.2500   &amp;-0.8660  &amp; -0.4330    &amp; 0.866\\
+     0  &amp;       0        &amp; 0      &amp;   1
+</code></pre><p>  \end{array}<br>\right)                 %右括号<br>\end{equation}<br>$$</p>
+</li>
+</ul>
+<p>对比可以发现是一样的。因此仿真确实可以达到实际的效果。</p>
 
       
     </div>
@@ -526,9 +587,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/control/" rel="tag"># control</a>
-          
             <a href="/tags/robotics/" rel="tag"># robotics</a>
+          
+            <a href="/tags/homework/" rel="tag"># homework</a>
           
         </div>
       
@@ -541,8 +602,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/Robotics-Nonlinear/" rel="next" title="Robotics-Nonlinear Control">
-                <i class="fa fa-chevron-left"></i> Robotics-Nonlinear Control
+              <a href="/2019/01/03/ADS-Queues/" rel="next" title="PADS-Queues">
+                <i class="fa fa-chevron-left"></i> PADS-Queues
               </a>
             
           </div>
@@ -550,10 +611,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/03/ADS-Queues/" rel="prev" title="PADS-Queues">
-                PADS-Queues <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Application-of-Robots-to-Assembly-Tasks"><span class="nav-text">2 Application of Robots to Assembly Tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Idea"><span class="nav-text">Basic Idea</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-问题分析"><span class="nav-text">1 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-题目要求"><span class="nav-text">1.1 题目要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-任务分解"><span class="nav-text">1.2 任务分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-基本思路"><span class="nav-text">1.3 基本思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-各部分任务求解"><span class="nav-text">2 各部分任务求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-机械臂的坐标系建立"><span class="nav-text">2.1 机械臂的坐标系建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-D-H参数选取"><span class="nav-text">2.2 D-H参数选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-正运动学分析"><span class="nav-text">2.3 正运动学分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-逆运动学分析"><span class="nav-text">2.4 逆运动学分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-初始位置"><span class="nav-text">2.4.1 初始位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-位姿旋转"><span class="nav-text">2.4.2 位姿旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-解析求解"><span class="nav-text">2.4.3 解析求解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-仿真及结果分析"><span class="nav-text">3 仿真及结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-机械臂模型建立"><span class="nav-text">3.1 机械臂模型建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-正向运动学计算"><span class="nav-text">3.2 正向运动学计算</span></a></li></ol></li></ol></div>
             
 
           </div>
