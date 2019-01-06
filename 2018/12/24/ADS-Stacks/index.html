@@ -500,7 +500,8 @@
 <a id="more"></a>
 </li>
 </ul>
-<h3 id="1-2-ADT"><a href="#1-2-ADT" class="headerlink" title="1.2 ADT"></a>1.2 ADT</h3><table>
+<h3 id="1-2-ADT"><a href="#1-2-ADT" class="headerlink" title="1.2 ADT"></a>1.2 ADT</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:center">ADT</th>
@@ -514,6 +515,8 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -580,12 +583,13 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="2-A-Stack-Implementation"><a href="#2-A-Stack-Implementation" class="headerlink" title="2. A Stack Implementation"></a>2. A Stack Implementation</h2><p>In practice , “use a Python list as a stack”</p>
 <p>even though the implementations are logically equivalent, they would have very different timings when performing benchmark testing.</p>
 <p>Here, just use <strong>python list</strong>  with limit function.</p>
 <h2 id="3-Example-Balanced-Parentheses"><a href="#3-Example-Balanced-Parentheses" class="headerlink" title="3. Example:Balanced Parentheses"></a>3. Example:Balanced Parentheses</h2><p>parentheses are used to order the performance of operations</p>
-<p>$$<br>(5+6)×(7+8)/(4+3)<br>$$</p>
-<p>or lisp function</p>
+<script type="math/tex; mode=display">
+(5+6)×(7+8)/(4+3)</script><p>or lisp function</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> square(<span class="name">n</span>)</span><br><span class="line">     (<span class="name">*</span> n n))</span><br></pre></td></tr></table></figure>
 <p>So,it’s important to differentiate between parentheses that are correctly balanced and those that are unbalanced in <strong>strucures</strong>.</p>
 <ul>
@@ -594,8 +598,8 @@
 <li>So a stack, push if open, pop if close. Finally, if len(stack)==0, balance.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">PAIRINGS = &#123;</span><br><span class="line">    <span class="string">'('</span>: <span class="string">')'</span>,</span><br><span class="line">    <span class="string">'&#123;'</span>: <span class="string">'&#125;'</span>,</span><br><span class="line">    <span class="string">'['</span>: <span class="string">']'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_balanced</span><span class="params">(symbols)</span>:</span></span><br><span class="line">    stack = []</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> symbols:</span><br><span class="line">        <span class="keyword">if</span> s <span class="keyword">in</span> PAIRINGS.keys():</span><br><span class="line">            stack.append(s)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            expected_opening_symbol = stack.pop()</span><br><span class="line">        <span class="keyword">except</span> IndexError:  <span class="comment"># too many closing symbols</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> s != PAIRINGS[expected_opening_symbol]:  <span class="comment"># mismatch</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> len(stack) == <span class="number">0</span>  <span class="comment"># false if too many opening symbols</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">is_balanced(<span class="string">'&#123;&#123;([][])&#125;()&#125;'</span>)  <span class="comment"># =&gt; True</span></span><br><span class="line">is_balanced(<span class="string">'&#123;[])'</span>)  <span class="comment"># =&gt; False</span></span><br><span class="line">is_balanced(<span class="string">'((()))'</span>)  <span class="comment"># =&gt; True</span></span><br><span class="line">is_balanced(<span class="string">'(()'</span>)  <span class="comment"># =&gt; False</span></span><br><span class="line">is_balanced(<span class="string">'())'</span>)  <span class="comment"># =&gt; False</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-Example-Converting-Number-Bases"><a href="#4-Example-Converting-Number-Bases" class="headerlink" title="4. Example: Converting Number Bases"></a>4. Example: Converting Number Bases</h2><p>$$<br>233_{10}=11101001_{2}<br>$$</p>
-<ul>
+<h2 id="4-Example-Converting-Number-Bases"><a href="#4-Example-Converting-Number-Bases" class="headerlink" title="4. Example: Converting Number Bases"></a>4. Example: Converting Number Bases</h2><script type="math/tex; mode=display">
+233_{10}=11101001_{2}</script><ul>
 <li><p>Why stack？ <code>Divide by Base</code> algorithm</p>
 <p><img src="/2018/12/24/ADS-Stacks/1545635703548.png" alt="1545635703548"></p>
 </li>
@@ -603,7 +607,8 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">DIGITS = <span class="string">'0123456789abcdef'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_to_base</span><span class="params">(decimal_number, base)</span>:</span></span><br><span class="line">    remainder_stack = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> decimal_number &gt; <span class="number">0</span>:</span><br><span class="line">        remainder = decimal_number % base</span><br><span class="line">        remainder_stack.append(remainder)</span><br><span class="line">        decimal_number = decimal_number // base</span><br><span class="line"></span><br><span class="line">    new_digits = []</span><br><span class="line">    <span class="keyword">while</span> remainder_stack:</span><br><span class="line">        new_digits.append(DIGITS[remainder_stack.pop()])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(new_digits)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">convert_to_base(<span class="number">25</span>, <span class="number">2</span>)  <span class="comment"># =&gt; '11001'</span></span><br><span class="line">convert_to_base(<span class="number">25</span>, <span class="number">16</span>)  <span class="comment"># =&gt; '19'</span></span><br></pre></td></tr></table></figure>
-<h2 id="5-Example-Infix-Prefix-and-Postfix-Expressions"><a href="#5-Example-Infix-Prefix-and-Postfix-Expressions" class="headerlink" title="5. Example: Infix, Prefix and Postfix Expressions"></a>5. Example: Infix, Prefix and Postfix Expressions</h2><table>
+<h2 id="5-Example-Infix-Prefix-and-Postfix-Expressions"><a href="#5-Example-Infix-Prefix-and-Postfix-Expressions" class="headerlink" title="5. Example: Infix, Prefix and Postfix Expressions"></a>5. Example: Infix, Prefix and Postfix Expressions</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Infix expression</th>
@@ -624,6 +629,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>Infix expression need parenthese to force the performance of addition before multiplication.</li>
 <li>Prefix &amp; Postfixexpression <strong>DON’T</strong> need it  </li>

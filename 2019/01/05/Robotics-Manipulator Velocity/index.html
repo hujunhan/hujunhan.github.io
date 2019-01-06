@@ -113,7 +113,7 @@
 <meta property="og:description" content="1 IntroductionEnd-effector moves with a spatial velocity, and it’s a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector‘s vel">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/05/Robotics-Manipulator%20Velocity/1546688571736.png">
-<meta property="og:updated_time" content="2019-01-06T10:24:13.560Z">
+<meta property="og:updated_time" content="2019-01-06T18:06:25.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotics-Manipulator Velocity">
 <meta name="twitter:description" content="1 IntroductionEnd-effector moves with a spatial velocity, and it’s a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector‘s vel">
@@ -426,7 +426,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-06 18:24:13" itemprop="dateModified" datetime="2019-01-06T18:24:13+08:00">2019-01-06</time>
+                <time title="Modified: 2019-01-07 02:06:25" itemprop="dateModified" datetime="2019-01-07T02:06:25+08:00">2019-01-07</time>
               
             
           </span>
@@ -488,13 +488,20 @@
 <p>Here, we introduce the relationship between <strong>joint</strong> <strong>velocities</strong> and <strong>end-effector</strong>‘s <strong>velocity</strong></p>
 <p><strong>In kinematics, we care about the pose, now we care about velocity</strong></p>
 <a id="more"></a>
-<h2 id="2-Manipulator-Jacobian"><a href="#2-Manipulator-Jacobian" class="headerlink" title="2 Manipulator Jacobian"></a>2 Manipulator Jacobian</h2><h3 id="2-1-Overview"><a href="#2-1-Overview" class="headerlink" title="2.1 Overview"></a>2.1 Overview</h3><p>Jocabian:<br>$$<br>J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \ { \vdots } &amp; { \ddots } &amp; { \vdots } \ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right)<br>$$<br>In manipulator, $f$ (end-effector pose) and $x$ (joint variables) are all vector:<br>$$<br>\frac { \mathrm { d } p } { \mathrm { d } q } = \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } = \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q }<br>$$<br>and divide through by $dt$<br>$$<br>\begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } &amp; = J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p }  = J ( q ) \dot { q } \end{aligned}<br>$$<br>Jocabian is a $J \in R^{6\times N} $ ($6$ for enviroment, $N$ for n joints) matrix </p>
+<h2 id="2-Manipulator-Jacobian"><a href="#2-Manipulator-Jacobian" class="headerlink" title="2 Manipulator Jacobian"></a>2 Manipulator Jacobian</h2><h3 id="2-1-Overview"><a href="#2-1-Overview" class="headerlink" title="2.1 Overview"></a>2.1 Overview</h3><p>Jocabian:</p>
+<script type="math/tex; mode=display">
+J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } & { \cdots } & { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \\ { \vdots } & { \ddots } & { \vdots } \\ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } & { \cdots } & { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right)</script><p>In manipulator, $f$ (end-effector pose) and $x$ (joint variables) are all vector: </p>
+<script type="math/tex; mode=display">
+\frac { \mathrm { d } p } { \mathrm { d } q } = \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } = \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q }</script><p>and divide through by $dt$</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } & = J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p }  = J ( q ) \dot { q } \end{aligned}</script><p>Jocabian is a $J \in R^{6\times N} $ ($6$ for enviroment, $N$ for n joints) matrix </p>
 <h3 id="2-2-Under-and-Over-Actuated-Manipulators"><a href="#2-2-Under-and-Over-Actuated-Manipulators" class="headerlink" title="2.2 Under- and Over-Actuated Manipulators"></a>2.2 Under- and Over-Actuated Manipulators</h3><ul>
 <li>Under-Actuated: accepting that some Cartesian degrees of freedom are <strong>not controllable</strong></li>
 <li>Over-Actuated:  multiple solution, so find a <strong>least-squares</strong> solution</li>
 </ul>
-<h2 id="3-Jocabian-Numerical-Properties"><a href="#3-Jocabian-Numerical-Properties" class="headerlink" title="3 Jocabian: Numerical Properties"></a>3 Jocabian: Numerical Properties</h2><p>$$<br>\dot{p}=J ( q ) \dot { q }\<br>\dot { q } = J ( q ) ^ { - 1 } \nu<br>$$</p>
-<h3 id="3-1-Singularities"><a href="#3-1-Singularities" class="headerlink" title="3.1 Singularities"></a>3.1 Singularities</h3><p>Singularities occur when the robot is at maximum reach or when one or more axes become<br>aligned resulting in the loss of degrees of freedom. aka $det(J(q))=0$</p>
+<h2 id="3-Jocabian-Numerical-Properties"><a href="#3-Jocabian-Numerical-Properties" class="headerlink" title="3 Jocabian: Numerical Properties"></a>3 Jocabian: Numerical Properties</h2><script type="math/tex; mode=display">
+\dot{p}=J ( q ) \dot { q }\\
+\dot { q } = J ( q ) ^ { - 1 } \nu</script><h3 id="3-1-Singularities"><a href="#3-1-Singularities" class="headerlink" title="3.1 Singularities"></a>3.1 Singularities</h3><p>Singularities occur when the robot is at maximum reach or when one or more axes become<br>aligned resulting in the loss of degrees of freedom. aka $det(J(q))=0$</p>
 <p>If robot is close to a singularity, some end-effector velocities require very high joint rates</p>
 <h3 id="3-2-Manipulability"><a href="#3-2-Manipulability" class="headerlink" title="3.2 Manipulability"></a>3.2 Manipulability</h3><h2 id="4-Inverse-Jocabian-generate-paths"><a href="#4-Inverse-Jocabian-generate-paths" class="headerlink" title="4 Inverse Jocabian: generate paths"></a>4 Inverse Jocabian: generate paths</h2><h3 id="4-1-Resolved-Rate-Motion-Control"><a href="#4-1-Resolved-Rate-Motion-Control" class="headerlink" title="4.1 Resolved-Rate Motion Control"></a>4.1 Resolved-Rate Motion Control</h3><blockquote>
 <p>Resolved-rate motion control is a simple and elegant algorithm to generate straight<br>line motion</p>
@@ -502,8 +509,8 @@
 <p>It make use of $\dot { \boldsymbol { q } } = J ( \boldsymbol { q } ) ^ { - 1 } \boldsymbol { \nu }$ to map <em>resovle</em> desired Cartesian velocity to joint velocity</p>
 <p>Control scheme:</p>
 <ul>
-<li>$\dot { \boldsymbol { q } } ^ { <em> } \langle k \rangle = J ( \boldsymbol { q } \langle k \rangle ) ^ { - 1 } \nu ^ { </em> }$  computes the required <strong>joint velocity</strong> as a function of the manipulator and disired end-effector velocity $\nu ^ { * }$</li>
-<li>$q ^ { <em> } \langle k + 1 \rangle \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { t } \dot { \boldsymbol { q } } ^ { </em> } \langle k \rangle$  perform intergration to give desired joint angle for next step.</li>
+<li>first $\dot { \boldsymbol { q } } ^ { <em> } \langle k \rangle = J ( \boldsymbol { q } \langle k \rangle ) ^ { - 1 } \nu ^ { </em> }$ computes the required <strong>joint velocity</strong> as a function of the manipulator and disired end-effector velocity $\nu ^ { * }$</li>
+<li>then $q ^ { <em> } \langle k + 1 \rangle \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { t } \dot { \boldsymbol { q } } ^ { </em> } \langle k \rangle$ perform intergration to give desired joint angle for next step.</li>
 </ul>
 <h2 id="5-Jocabian-Transform-Force-from-End-to-Joint"><a href="#5-Jocabian-Transform-Force-from-End-to-Joint" class="headerlink" title="5 Jocabian: Transform Force from End to Joint"></a>5 Jocabian: Transform Force from End to Joint</h2><h2 id="6-Jocabian-Inverse-Kinematics"><a href="#6-Jocabian-Inverse-Kinematics" class="headerlink" title="6 Jocabian: Inverse Kinematics"></a>6 Jocabian: Inverse Kinematics</h2><p>If a robot <strong>don’t meet</strong> some specification:</p>
 <ul>
@@ -517,7 +524,9 @@
 </ul>
 <p>Idea: compute by error</p>
 <p>Notation: actual pose $\xi _ { E } = \mathcal { X } ( q )$ , desired pose $\xi _ { E } ^ { * }$ , error between them:$\xi _ { \Delta }$ (also can be described by a spatial displacement)</p>
-<p><img src="/2019/01/05/Robotics-Manipulator Velocity/1546688571736.png" alt="1546688571736"><br>$$<br>^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 }<br>$$<br>How to compute?</p>
+<p><img src="/2019/01/05/Robotics-Manipulator Velocity/1546688571736.png" alt="1546688571736"></p>
+<script type="math/tex; mode=display">
+^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 }</script><p>How to compute?</p>
 <ol>
 <li><p>imagine a <em>spring</em> between two pose, which is pulling and twisting (wrench) the end-effector <strong>proportional</strong> to the spatial displacement $\to ^ { E } \boldsymbol { W } = \gamma ^ { E } \boldsymbol { \Delta }$ </p>
 </li>
@@ -527,10 +536,12 @@
 </li>
 <li><p>wrap up:  $ \dot { \boldsymbol { q } } = \frac { 1 } { B } \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } ) , \xi _ { E } ^ { * } \right)$</p>
 </li>
-<li><p>we can solve it interatively by:<br>$$<br>\begin{aligned} \delta _ { q } \langle k \rangle = \alpha J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right )\<br>\boldsymbol { q } \langle k + 1 \rangle  \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned}<br>$$</p>
-</li>
+<li><p>we can solve it interatively by:</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \delta _ { q } \langle k \rangle = \alpha J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right )\\
+\boldsymbol { q } \langle k + 1 \rangle  \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned}</script></li>
 </ol>
-<ol start="6">
+<ol>
 <li>until the norm of the update $\left| \delta _ { q } \langle k \rangle \right|$ is sufficiently</li>
 </ol>
 <p>pratically above algorithm is slow and sensitive to $\alpha$ ,so we imporve it by:</p>
@@ -543,8 +554,9 @@
 </li>
 <li><p>update becomes :$\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) \right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)$</p>
 </li>
-<li><p>impove above performance near singularities by introducing a damping constant λ:<br>$$<br>$\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)$<br>$$</p>
-</li>
+<li><p>impove above performance near singularities by introducing a damping constant λ:</p>
+<script type="math/tex; mode=display">
+$\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)$</script></li>
 </ul>
 <p>An effective way to choose $\lambda$ is to test whether or not an iteration reduces the error</p>
 

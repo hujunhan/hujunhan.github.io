@@ -486,12 +486,14 @@
 <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Dropout的动机来自于关于性别在进化中的作用的理论。有性生殖包括从一个亲本和另一个亲本中提取一半的基因，加入非常少量的随机突变，并将它们结合产生受精卵。无性繁殖是通过父母基因的拷贝中加入微小突变来创造后代。无性繁殖应该是一种更好的方法来优化个体的健康，这似乎是合理的，因为一组良好的基因组合在一起可以直接传递给后代。另一方面，有性生殖很可能会破坏这些共同适应的基因，特别是如果这些基因的数量很大，而且直觉上，这应该会降低已经进化出复杂的共同适应的生物体的适应性。然而，有性繁殖是最先进的生物进化的方式。</p>
 <p>对有性生殖优势的一种可能解释是，从长期来看，自然选择的标准可能不是个体特性，而是基因的混合能力。就是说那些能够和更多随机的基因协作的基因才是更加健壮的。因此一些基因必须要自己学会做一些事而不只是跟很多其他基因合作，这种合作会减少个体适应性。类似地，随机的选择dropout可以增加隐层神经元的健壮性。</p>
 <p>有个密切相关但却略有不同的例子，十个阴谋，每个五人参与和一个大阴谋五十人参与相比，显然前者获得一次成功概率较大。一个复杂的共同协作的网络在训练集表现会很出色，但到测试集中，出现了很多新的数据，他就不如很多个更为简单的协作神经元工作的效果好。</p>
-<h2 id="Model-Description"><a href="#Model-Description" class="headerlink" title="Model Description"></a>Model Description</h2><p>考虑一个有着$L$层隐藏层的神经网络，让$l \in {1,….,L }$ 表示隐藏层的层数，让$z^{(l)}$ 表示输入到第$l$c层神经网络的向量，$y^{(l)}$ 表示第$l$层神经网络的输出，$W^{(l)}$表示第$l$层神经网络的权重，$b^{(l)}$表示第$l$层神经网络的bias<br>$$<br>\begin{aligned} z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \mathbf { y } ^ { l } + b _ { i } ^ { ( l + 1 ) } \ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}<br>$$<br><img src="/2018/12/30/Dropout/1546165049612.png" alt="1546165049612"></p>
+<h2 id="Model-Description"><a href="#Model-Description" class="headerlink" title="Model Description"></a>Model Description</h2><p>考虑一个有着$L$层隐藏层的神经网络，让$l \in \{1,….,L \}$ 表示隐藏层的层数，让$z^{(l)}$ 表示输入到第$l$c层神经网络的向量，$y^{(l)}$ 表示第$l$层神经网络的输出，$W^{(l)}$表示第$l$层神经网络的权重，$b^{(l)}$表示第$l$层神经网络的bias</p>
+<script type="math/tex; mode=display">
+\begin{aligned} z _ { i } ^ { ( l + 1 ) } & = \mathbf { w } _ { i } ^ { ( l + 1 ) } \mathbf { y } ^ { l } + b _ { i } ^ { ( l + 1 ) } \\ y _ { i } ^ { ( l + 1 ) } & = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}</script><p><img src="/2018/12/30/Dropout/1546165049612.png" alt="1546165049612"></p>
 <blockquote>
 <p>左图：普通神经网络。右图：dropout之后的神经网络</p>
 </blockquote>
-<p>$$<br>\begin{aligned} r _ { j } ^ { ( l ) } &amp; \sim \text { Bernoulli } ( p ) \ \widetilde { \mathbf { y } } ^ { ( l ) } &amp; = \mathbf { r } ^ { ( l ) } * \mathbf { y } ^ { ( l ) } , \ z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \widetilde { \mathbf { y } } ^ { l } + b _ { i } ^ { ( l + 1 ) } \ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}<br>$$</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Dropout是一种可以在神经网络中减小过拟合程度的一种方法。普通的反向传播算法只能在学习到训练集中的知识但是泛化性能不够。而随机的Dropout使得每一个隐藏层的单元都不一定会在输出中起到作用，因此能够提升神经网络在各个领域内的使用性能。</p>
+<script type="math/tex; mode=display">
+\begin{aligned} r _ { j } ^ { ( l ) } & \sim \text { Bernoulli } ( p ) \\ \widetilde { \mathbf { y } } ^ { ( l ) } & = \mathbf { r } ^ { ( l ) } * \mathbf { y } ^ { ( l ) } , \\ z _ { i } ^ { ( l + 1 ) } & = \mathbf { w } _ { i } ^ { ( l + 1 ) } \widetilde { \mathbf { y } } ^ { l } + b _ { i } ^ { ( l + 1 ) } \\ y _ { i } ^ { ( l + 1 ) } & = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned}</script><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Dropout是一种可以在神经网络中减小过拟合程度的一种方法。普通的反向传播算法只能在学习到训练集中的知识但是泛化性能不够。而随机的Dropout使得每一个隐藏层的单元都不一定会在输出中起到作用，因此能够提升神经网络在各个领域内的使用性能。</p>
 <p>Dropout的一个缺点是它使得训练的时间延长了，通常来说，一个使用Dropout来训练的神经网络会比拥有相同结构的普通神经网络耗费2-3倍的时间，这主要是因为变量的更新较为缓慢，每一次更新都是几乎不相同的结构。当然有得必有失，在机器学习的领域中，要想获得一方面的进步，就要在其他方面做出让步。Dropout方法增加了算法的训练时间，降低了模型的过拟合风险。</p>
 
       
@@ -531,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/27/STM32-ADC/" rel="next" title="STM32-ADC">
-                <i class="fa fa-chevron-left"></i> STM32-ADC
+              <a href="/2018/12/27/Evaluatehypothesis/" rel="next" title="Evaluate Hypothesis">
+                <i class="fa fa-chevron-left"></i> Evaluate Hypothesis
               </a>
             
           </div>
@@ -541,8 +543,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/01/Robotics-Nonlinear/" rel="prev" title="Robotics-Nonlinear Control">
-                Robotics-Nonlinear Control <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/01/Robotics-Force/" rel="prev" title="Robotics-Force Control">
+                Robotics-Force Control <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

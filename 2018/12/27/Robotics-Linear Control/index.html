@@ -487,14 +487,21 @@
 <li>model-based portion: make use of supposed knowledge of <strong><em>m,b,k</em></strong>, to make the system appear as a unit mass$\to$ servo portion simple.</li>
 <li>servo portion: make use of <strong><em>feedback</em></strong> to modify the behavior of the system</li>
 </ul>
-<p>A open-loop equation of motion for the system:<br>$$<br>m \ddot { x } + b \dot { x } + k x = f<br>$$<br>The model-based portion of the control:<br>$$<br>f = \alpha f ^ { \prime } + \beta<br>$$<br>and we choose(because we want to make the )<br>$$<br>\begin{array} { l } { \alpha = m } \ { \beta = b \dot { x } + k x } \end{array}<br>$$<br>finally we get   $\ddot { x } = f ^ { \prime }$</p>
+<p>A open-loop equation of motion for the system:</p>
+<script type="math/tex; mode=display">
+m \ddot { x } + b \dot { x } + k x = f</script><p>The model-based portion of the control:</p>
+<script type="math/tex; mode=display">
+f = \alpha f ^ { \prime } + \beta</script><p>and we choose(because we want to make the )</p>
+<script type="math/tex; mode=display">
+\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array}</script><p>finally we get   $\ddot { x } = f ^ { \prime }$</p>
 <p>Graphiclly,we transform a system like this </p>
 <p><img src="/2018/12/27/Robotics-Linear Control/1545907095978.png" alt="1545907095978"></p>
 <p>into a system easier</p>
 <p><img src="/2018/12/27/Robotics-Linear Control/1545907198498.png" alt="1545907198498"></p>
 <p>What we need to do is design a  control law to compute $f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x$</p>
-<p>so it yields<br>$$<br>\ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0<br>$$</p>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><ol>
+<p>so it yields</p>
+<script type="math/tex; mode=display">
+\ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0</script><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><ol>
 <li>get the system‘s parameters</li>
 <li>find $\alpha ,\beta$</li>
 <li>calculate $k_v,k_p$ depend on the requirement</li>
@@ -542,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/25/Robotics-Trajectory/" rel="next" title="Robotics-Trajectory">
-                <i class="fa fa-chevron-left"></i> Robotics-Trajectory
+              <a href="/2018/12/27/STM32-ADC/" rel="next" title="STM32-ADC">
+                <i class="fa fa-chevron-left"></i> STM32-ADC
               </a>
             
           </div>
