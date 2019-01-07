@@ -104,13 +104,13 @@
 
 
 
-  <meta name="description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
+  <meta name="description" content="1 问题分析 1.1 题目要求  1546485639528  要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
 <meta name="keywords" content="robotics,homework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robotics-Final Project">
 <meta property="og:url" content="http://yoursite.com/2019/01/05/robotics-final-project/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
+<meta property="og:description" content="1 问题分析 1.1 题目要求  1546485639528  要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/05/robotics-final-project/1546485639528.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/05/robotics-final-project/1546488579861.png">
@@ -124,7 +124,7 @@
 <meta property="og:updated_time" content="2019-01-06T17:50:54.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotics-Final Project">
-<meta name="twitter:description" content="1 问题分析1.1 题目要求 要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
+<meta name="twitter:description" content="1 问题分析 1.1 题目要求  1546485639528  要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其末端定点转动，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行验证和演示。">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/05/robotics-final-project/1546485639528.png">
 
 
@@ -485,11 +485,16 @@
       
 
       
-        <h2 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h2><h3 id="1-1-题目要求"><a href="#1-1-题目要求" class="headerlink" title="1.1 题目要求"></a>1.1 题目要求</h3><p><img src="/2019/01/05/robotics-final-project/1546485639528.png" alt="1546485639528"></p>
+        <h2 id="问题分析">1 问题分析</h2>
+<h3 id="题目要求">1.1 题目要求</h3>
+<figure>
+<img src="/2019/01/05/robotics-final-project/1546485639528.png" alt="1546485639528"><figcaption>1546485639528</figcaption>
+</figure>
 <p>要求：如图所示操作臂，请规划机械臂各关节的轨迹，使其<strong>末端定点转动</strong>，即机械臂末端位置不变，姿态变化，并利用matlab robotics toolbox 进行<strong>验证和演示</strong>。</p>
 <a id="more"></a>
-<h3 id="1-2-任务分解"><a href="#1-2-任务分解" class="headerlink" title="1.2 任务分解"></a>1.2 任务分解</h3><p>可以将以上任务分解为多个小任务</p>
-<ol>
+<h3 id="任务分解">1.2 任务分解</h3>
+<p>可以将以上任务分解为多个小任务</p>
+<ol type="1">
 <li>对机械臂进行坐标系建立</li>
 <li>选取合适的<em>Denavit-Hartenberg</em>参数</li>
 <li>正运动学分析</li>
@@ -497,52 +502,57 @@
 <li>轨迹规划</li>
 <li>利用<em>robotics toolbox</em>仿真演示</li>
 </ol>
-<h3 id="1-3-基本思路"><a href="#1-3-基本思路" class="headerlink" title="1.3 基本思路"></a>1.3 基本思路</h3><p>首先求取<em>Denavit-Hartenberg</em>参数，然后利用正运动学求出末端端点的位姿表达式（ <em>SE3</em> ），然后对末端端点施加微小旋转作用，得到新的位姿表达式，然后利用逆运动学求解出此时机械臂所应该具有的<em>joint angle</em>，然后利用<em>robotics toolbox</em>的plot函数仿真表示出实际效果</p>
-<h2 id="2-各部分任务求解"><a href="#2-各部分任务求解" class="headerlink" title="2 各部分任务求解"></a>2 各部分任务求解</h2><h3 id="2-1-机械臂的坐标系建立"><a href="#2-1-机械臂的坐标系建立" class="headerlink" title="2.1 机械臂的坐标系建立"></a>2.1 机械臂的坐标系建立</h3><p><img src="/2019/01/05/robotics-final-project/1546488579861.png" alt="1546488579861"></p>
-<h3 id="2-2-D-H参数选取"><a href="#2-2-D-H参数选取" class="headerlink" title="2.2 D-H参数选取"></a>2.2 D-H参数选取</h3><div class="table-container">
+<h3 id="基本思路">1.3 基本思路</h3>
+<p>首先求取<em>Denavit-Hartenberg</em>参数，然后利用正运动学求出末端端点的位姿表达式（ <em>SE3</em> ），然后对末端端点施加微小旋转作用，得到新的位姿表达式，然后利用逆运动学求解出此时机械臂所应该具有的<em>joint angle</em>，然后利用<em>robotics toolbox</em>的plot函数仿真表示出实际效果</p>
+<h2 id="各部分任务求解">2 各部分任务求解</h2>
+<h3 id="机械臂的坐标系建立">2.1 机械臂的坐标系建立</h3>
+<figure>
+<img src="/2019/01/05/robotics-final-project/1546488579861.png" alt="1546488579861"><figcaption>1546488579861</figcaption>
+</figure>
+<h3 id="d-h参数选取">2.2 D-H参数选取</h3>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">D-H参数表</th>
-<th style="text-align:center">$a_{i-1}$</th>
-<th style="text-align:center">$\alpha_{i-1} $</th>
-<th style="text-align:center">$d_i$</th>
-<th style="text-align:center">$\theta_i$</th>
+<tr class="header">
+<th style="text-align: center;">D-H参数表</th>
+<th style="text-align: center;"><span class="math inline">\(a_{i-1}\)</span></th>
+<th style="text-align: center;">$_{i-1} $</th>
+<th style="text-align: center;"><span class="math inline">\(d_i\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\theta_i\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$q_1$</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$\frac{\pi}{2}$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$q_2$</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\pi}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$\frac{\pi}{2}$</td>
-<td style="text-align:center">$\frac{\pi}{2} $</td>
-<td style="text-align:center">$d_3$</td>
-<td style="text-align:center">$0$</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\pi}{2}\)</span></td>
+<td style="text-align: center;">$ $</td>
+<td style="text-align: center;"><span class="math inline">\(d_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$\frac{\pi}{2} $</td>
-<td style="text-align:center">$0.5$</td>
-<td style="text-align:center">$q_3$</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;">$ $</td>
+<td style="text-align: center;"><span class="math inline">\(0.5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="2-3-正运动学分析"><a href="#2-3-正运动学分析" class="headerlink" title="2.3 正运动学分析"></a>2.3 正运动学分析</h3><p>因为机械臂的最后还有一个tool，不作为关节，但是最后是要以它作为末端端点，因此除了普通的正向运动学计算，最后还要加上一个tool的坐标系，在上图我的坐标系建立中可以看到只需要在最后一个坐标系$\{x_4,y_4,z_4\}$的$y_4$上增加一个偏移就可以实现。</p>
+<h3 id="正运动学分析">2.3 正运动学分析</h3>
+<p>因为机械臂的最后还有一个tool，不作为关节，但是最后是要以它作为末端端点，因此除了普通的正向运动学计算，最后还要加上一个tool的坐标系，在上图我的坐标系建立中可以看到只需要在最后一个坐标系<span class="math inline">\(\{x_4,y_4,z_4\}\)</span>的<span class="math inline">\(y_4\)</span>上增加一个偏移就可以实现。</p>
 <ul>
 <li>代码实现</li>
 </ul>
@@ -552,96 +562,106 @@
 <li><p>数学表达</p>
 <ul>
 <li><p>Single transform</p>
-<p><img src="/2019/01/05/robotics-final-project/image15464900932100.png" alt="img1"></p>
-</li>
+<figure>
+<img src="/2019/01/05/robotics-final-project/image15464900932100.png" alt="img1"><figcaption>img1</figcaption>
+</figure></li>
 <li><p>Overall transform</p>
-<p><img src="/2019/01/05/robotics-final-project/image15464899220980.png" alt="img1"></p>
-</li>
+<figure>
+<img src="/2019/01/05/robotics-final-project/image15464899220980.png" alt="img1"><figcaption>img1</figcaption>
+</figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="2-4-逆运动学分析"><a href="#2-4-逆运动学分析" class="headerlink" title="2.4 逆运动学分析"></a>2.4 逆运动学分析</h3><p>显然这是一个<code>RRPR</code>机械臂，也就是说这是一个欠驱动机械臂，它所拥有的自由度小于$6$，因此限制了<code>end-effector</code>所能到达的位姿。</p>
+<h3 id="逆运动学分析">2.4 逆运动学分析</h3>
+<p>显然这是一个<code>RRPR</code>机械臂，也就是说这是一个欠驱动机械臂，它所拥有的自由度小于<span class="math inline">\(6\)</span>，因此限制了<code>end-effector</code>所能到达的位姿。</p>
 <p>因为本机械臂的闭式解逆运动学分析较为复杂，所以我使用了迭代式计算，又因为：</p>
 <ul>
 <li>机械臂末端端点要保持固定</li>
 <li>机械臂为欠驱动机械臂，自由度为4</li>
 </ul>
 <p>所以，我在迭代计算时可以忽略<strong>方向</strong>上的误差，从而保证位置上的精度</p>
-<h4 id="2-4-1-初始位置"><a href="#2-4-1-初始位置" class="headerlink" title="2.4.1 初始位置"></a>2.4.1 初始位置</h4><p>因为迭代计算时如果有初始位置可以让计算结果更加接近真实情况，所以先分析初始位置的情况。</p>
+<h4 id="初始位置">2.4.1 初始位置</h4>
+<p>因为迭代计算时如果有初始位置可以让计算结果更加接近真实情况，所以先分析初始位置的情况。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%初始位置设置为各个关节角的初始位置，</span></span><br><span class="line"><span class="comment">%为了方便比较，我们还可以将此时末端端点的位置打印出来</span></span><br><span class="line">qz=[<span class="number">0</span>,<span class="built_in">pi</span>/<span class="number">3</span>,<span class="number">4</span>,-<span class="built_in">pi</span>/<span class="number">6</span>];</span><br><span class="line">T0=arm.fkine(qz)</span><br><span class="line"><span class="comment">%&gt;&gt; arm.fkine(qz)</span></span><br><span class="line"><span class="comment">%ans = </span></span><br><span class="line"><span class="comment">%   -0.4330   -0.5000    0.7500     7.964</span></span><br><span class="line"><span class="comment">%   -0.8660    0.0000   -0.5000        -1</span></span><br><span class="line"><span class="comment">%    0.2500   -0.8660   -0.4330     0.866</span></span><br><span class="line"><span class="comment">%         0         0         0         1</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-4-2-位姿旋转"><a href="#2-4-2-位姿旋转" class="headerlink" title="2.4.2 位姿旋转"></a>2.4.2 位姿旋转</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%在robotics toolbox中，</span></span><br><span class="line"><span class="comment">%SE3空间中的旋转可以用SE3类来达成</span></span><br><span class="line"><span class="comment">%这里展示一个绕y轴旋转pi/3的例子</span></span><br><span class="line">SE3.Ry(<span class="built_in">pi</span>/<span class="number">3</span>)</span><br><span class="line"><span class="comment">%&gt;&gt; SE3.Ry(pi/3)</span></span><br><span class="line"><span class="comment">%ans = </span></span><br><span class="line"><span class="comment">%    0.5000         0    0.8660         0</span></span><br><span class="line"><span class="comment">%         0         1         0         0</span></span><br><span class="line"><span class="comment">%   -0.8660         0    0.5000         0</span></span><br><span class="line"><span class="comment">%         0         0         0         1</span></span><br></pre></td></tr></table></figure>
+<h4 id="位姿旋转">2.4.2 位姿旋转</h4>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%在robotics toolbox中，</span></span><br><span class="line"><span class="comment">%SE3空间中的旋转可以用SE3类来达成</span></span><br><span class="line"><span class="comment">%这里展示一个绕y轴旋转pi/3的例子</span></span><br><span class="line">SE3.Ry(<span class="built_in">pi</span>/<span class="number">3</span>)</span><br><span class="line"><span class="comment">%&gt;&gt; SE3.Ry(pi/3)</span></span><br><span class="line"><span class="comment">%ans = </span></span><br><span class="line"><span class="comment">%    0.5000         0    0.8660         0</span></span><br><span class="line"><span class="comment">%         0         1         0         0</span></span><br><span class="line"><span class="comment">%   -0.8660         0    0.5000         0</span></span><br><span class="line"><span class="comment">%         0         0         0         1</span></span><br></pre></td></tr></table></figure>
 <p>可以看到与理论相同</p>
-<h4 id="2-4-3-迭代求解"><a href="#2-4-3-迭代求解" class="headerlink" title="2.4.3 迭代求解"></a>2.4.3 迭代求解</h4><p>迭代计算算法依赖于两部分知识</p>
+<h4 id="迭代求解">2.4.3 迭代求解</h4>
+<p>迭代计算算法依赖于两部分知识</p>
 <ul>
 <li>正向运动学</li>
 <li>雅可比矩阵</li>
 </ul>
 <p>主要思想: 通过当前姿态和目标姿态之间的误差来计算所施加的运动</p>
-<p>符号规定: 当前位姿 $\xi _ { E } = \mathcal { X } ( q )$ , 目标位姿 $\xi _ { E } ^ { * }$ , 当前与目标之间的误差:$\xi _ { \Delta }$ (也可以由一个移动来表示)</p>
-<p><img src="/2019/01/05/robotics-final-project/1546688571736.png" alt="1546688571736"></p>
-<script type="math/tex; mode=display">
-^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 }</script><p>基础算法过程</p>
-<ol>
-<li><p>想象两个姿态之间有一个弹簧, 可以根据两个姿态之间的差别来施加旋转和方向移动 $\to ^ { E } \boldsymbol { W } = \gamma ^ { E } \boldsymbol { \Delta }$ </p>
-</li>
-<li><p>弹簧给各个关节所施加的力 $\to\boldsymbol { Q } = ^ { E } \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \boldsymbol { W } $</p>
-</li>
-<li><p>假设各个关节的速度和所加的力成<strong>正比</strong> $\to \dot { q } = Q / B (a  \ coefficient)$</p>
-</li>
-<li><p>合起来:  $ \dot { \boldsymbol { q } } = \frac { 1 } { B } \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } ) , \xi _ { E } ^ { * } \right)$</p>
-</li>
-<li><p>然后我们就可以通过迭代计算来求解:</p>
-<script type="math/tex; mode=display">
+<p>符号规定: 当前位姿 <span class="math inline">\(\xi _ { E } = \mathcal { X } ( q )\)</span> , 目标位姿 <span class="math inline">\(\xi _ { E } ^ { * }\)</span> , 当前与目标之间的误差:<span class="math inline">\(\xi _ { \Delta }\)</span> (也可以由一个移动来表示)</p>
+<p><img src="/2019/01/05/robotics-final-project/1546688571736.png" alt="1546688571736"> <span class="math display">\[
+^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 }
+\]</span> 基础算法过程</p>
+<ol type="1">
+<li><p>想象两个姿态之间有一个弹簧, 可以根据两个姿态之间的差别来施加旋转和方向移动 <span class="math inline">\(\to ^ { E } \boldsymbol { W } = \gamma ^ { E } \boldsymbol { \Delta }\)</span></p></li>
+<li><p>弹簧给各个关节所施加的力 $ = ^ { E }  (  ) ^ { T }  $</p></li>
+<li><p>假设各个关节的速度和所加的力成<strong>正比</strong> <span class="math inline">\(\to \dot { q } = Q / B (a \ coefficient)\)</span></p></li>
+<li><p>合起来: $  =   (  ) ^ { T } (  (  ) , _ { E } ^ { * } )$</p></li>
+<li><p>然后我们就可以通过迭代计算来求解: <span class="math display">\[
 \begin{aligned} \delta _ { q } \langle k \rangle = \alpha J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right )\\
-\boldsymbol { q } \langle k + 1 \rangle  \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned}</script></li>
-</ol>
-<ol>
-<li>直到误差 $\left| \delta _ { q } \langle k \rangle \right|$ 满足设定的要求但实际上这种算法算起来很慢，而且对 $\alpha$ 的选择很敏感,因此我们可以改进这个算法:</li>
+\boldsymbol { q } \langle k + 1 \rangle  \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned}
+\]</span></p></li>
+<li><p>直到误差 <span class="math inline">\(\left\| \delta _ { q } \langle k \rangle \right\|\)</span> 满足设定的要求但实际上这种算法算起来很慢，而且对 <span class="math inline">\(\alpha\)</span> 的选择很敏感,因此我们可以改进这个算法:</p></li>
 </ol>
 <ul>
-<li><p>将这个问题转化为最小二乘法的问题: $\to E = \boldsymbol { \Delta } ^ { T } M \Delta$</p>
+<li><p>将这个问题转化为最小二乘法的问题: <span class="math inline">\(\to E = \boldsymbol { \Delta } ^ { T } M \Delta\)</span></p>
 <ul>
-<li>所以我们的迭代就是要最小化$E$</li>
-<li>其中 $M = \operatorname { diag } ( m ) \in \mathbb { R } ^ { 6 \times 6 }$ ， $m$ 是一个向量来判断哪些自由度的误差要被统计</li>
+<li>所以我们的迭代就是要最小化<span class="math inline">\(E\)</span></li>
+<li>其中 <span class="math inline">\(M = \operatorname { diag } ( m ) \in \mathbb { R } ^ { 6 \times 6 }\)</span> ， <span class="math inline">\(m\)</span> 是一个向量来判断哪些自由度的误差要被统计</li>
+</ul></li>
+<li><p>所以更新过程变为 :<span class="math inline">\(\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) \right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)\)</span></p></li>
+<li><p>为了提高上述更新过程在奇异点处的性能，我们引入damping常数 λ，最终的更新过程如下: <span class="math display">\[
+\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)
+\]</span></p></li>
 </ul>
-</li>
-<li><p>所以更新过程变为 :$\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) \right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)$</p>
-</li>
-<li><p>为了提高上述更新过程在奇异点处的性能，我们引入damping常数 λ，最终的更新过程如下:</p>
-<script type="math/tex; mode=display">
-\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)</script></li>
-</ul>
-<h2 id="3-仿真及结果分析"><a href="#3-仿真及结果分析" class="headerlink" title="3 仿真及结果分析"></a>3 仿真及结果分析</h2><h3 id="3-1-机械臂模型建立"><a href="#3-1-机械臂模型建立" class="headerlink" title="3.1 机械臂模型建立"></a>3.1 机械臂模型建立</h3><p>首先根据之前的D-H参数，利用<em>robotics toolbox</em>进行建模，为了让模型更加适用于模块，所以除了4个确定的关节，在增加两个固定的<em>“关节”</em>，使机械臂成为<em>6-DOF</em>机械臂</p>
+<h2 id="仿真及结果分析">3 仿真及结果分析</h2>
+<h3 id="机械臂模型建立">3.1 机械臂模型建立</h3>
+<p>首先根据之前的D-H参数，利用<em>robotics toolbox</em>进行建模，为了让模型更加适用于模块，所以除了4个确定的关节，在增加两个固定的<em>“关节”</em>，使机械臂成为<em>6-DOF</em>机械臂</p>
 <p>代码如下：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">L0=Revolute(<span class="string">'qlim'</span>,[<span class="number">0</span>,<span class="number">0</span>],<span class="string">'modified'</span>)</span><br><span class="line">L1=Revolute(<span class="string">'d'</span>,<span class="number">2</span>,<span class="string">'modified'</span>);</span><br><span class="line">L2=Revolute(<span class="string">'a'</span>,<span class="number">2</span>,<span class="string">'alpha'</span>,<span class="number">1.5708</span>,<span class="string">'modified'</span>);</span><br><span class="line">L3=Prismatic(<span class="string">'theta'</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="string">'alpha'</span>,<span class="number">1.5708</span>,<span class="string">'qlim'</span>,[<span class="number">0.2</span>,<span class="number">5</span>],<span class="string">'modified'</span>);</span><br><span class="line">L4=Revolute(<span class="string">'alpha'</span>,<span class="built_in">pi</span>/<span class="number">2</span>,<span class="string">'d'</span>,<span class="number">0.5</span>,<span class="string">'modified'</span>);</span><br><span class="line">L5 = Prismatic(<span class="string">'alpha'</span>,-<span class="built_in">pi</span>/<span class="number">2</span> ,<span class="string">'qlim'</span>,[<span class="number">2</span>,<span class="number">2</span>],<span class="string">'modified'</span>);</span><br><span class="line">L=[L0,L1,L2,L3,L4,L5];</span><br><span class="line">arm=SerialLink(L);</span><br><span class="line">arm.name=<span class="string">'ZJU Robotics Final Arm'</span>;</span><br><span class="line">arm.manufacturer=<span class="string">'CSE Hu'</span>;</span><br><span class="line"><span class="comment">%设定初始值</span></span><br><span class="line">qz=[<span class="number">0</span>,<span class="number">0</span>,<span class="built_in">pi</span>/<span class="number">3</span>,<span class="number">4</span>,-<span class="built_in">pi</span>/<span class="number">6</span>,<span class="number">2</span>];</span><br><span class="line">arm.<span class="built_in">plot</span>(qz)</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="/2019/01/05/robotics-final-project/1546502844634.png" alt="1546502844634"></p>
-<h3 id="3-2-正向运动学计算"><a href="#3-2-正向运动学计算" class="headerlink" title="3.2 正向运动学计算"></a>3.2 正向运动学计算</h3><ul>
+<figure>
+<img src="/2019/01/05/robotics-final-project/1546502844634.png" alt="1546502844634"><figcaption>1546502844634</figcaption>
+</figure>
+<h3 id="正向运动学计算">3.2 正向运动学计算</h3>
+<ul>
 <li>通过<em>robotics toolbox</em>函数<em>fkine(qz)</em>计算得到的末端位姿为</li>
 </ul>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{pmatrix}       %开始数学环境
-       -0.4330 &  -0.5000&    0.7500  &   7.964 \\
-     -0.8660   & 0.0000  & -0.5000    &    -1 \\
-      0.2500   &-0.8660  & -0.4330    & 0.866 \\
-           0  &       0        & 0      &   1 \\
- \end{pmatrix}</script><ul>
+       -0.4330 &amp;  -0.5000&amp;    0.7500  &amp;   7.964 \\
+     -0.8660   &amp; 0.0000  &amp; -0.5000    &amp;    -1 \\
+      0.2500   &amp;-0.8660  &amp; -0.4330    &amp; 0.866 \\
+           0  &amp;       0        &amp; 0      &amp;   1 \\
+ \end{pmatrix}
+\]</span></p>
+<ul>
 <li>通过自己编写函数计算得到的末端位姿为</li>
 </ul>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{pmatrix}       
-       -0.4330 &  -0.5000&    0.7500  &   7.9641 \\
-     -0.8660   & 0.0000  & -0.5000    &    -1 \\
-      0.2500   &-0.8660  & -0.4330    & 0.866 \\
-           0  &       0        & 0      &   1 \\    
- \end{pmatrix}</script><p>对比可以发现是一样的。因此仿真确实可以达到实际的效果。</p>
-<h3 id="3-3-逆向运动学计算"><a href="#3-3-逆向运动学计算" class="headerlink" title="3.3 逆向运动学计算"></a>3.3 逆向运动学计算</h3><p>具体的函数计算略去，可参考附带文件中的代码</p>
+       -0.4330 &amp;  -0.5000&amp;    0.7500  &amp;   7.9641 \\
+     -0.8660   &amp; 0.0000  &amp; -0.5000    &amp;    -1 \\
+      0.2500   &amp;-0.8660  &amp; -0.4330    &amp; 0.866 \\
+           0  &amp;       0        &amp; 0      &amp;   1 \\    
+ \end{pmatrix}
+\]</span></p>
+<p>对比可以发现是一样的。因此仿真确实可以达到实际的效果。</p>
+<h3 id="逆向运动学计算">3.3 逆向运动学计算</h3>
+<p>具体的函数计算略去，可参考附带文件中的代码</p>
 <p>但如果不进行轨迹规划，效果很差，如下</p>
-<p><img src="/2019/01/05/robotics-final-project/bad_behave.gif" alt=""></p>
+<p><img src="/2019/01/05/robotics-final-project/bad_behave.gif"></p>
 <p>如果在进行逆运动学分析之前进行轨迹规划，则能够使轨迹更加平滑，效果如下</p>
-<p><img src="/2019/01/05/robotics-final-project/good_behave.gif" alt=""></p>
-<p><img src="/2019/01/05/robotics-final-project/1546706130460.png" alt="1546706130460"></p>
-<h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4 参考文献"></a>4 参考文献</h2>
+<p><img src="/2019/01/05/robotics-final-project/good_behave.gif"></p>
+<figure>
+<img src="/2019/01/05/robotics-final-project/1546706130460.png" alt="1546706130460"><figcaption>1546706130460</figcaption>
+</figure>
+<h2 id="参考文献">4 参考文献</h2>
+
       
     </div>
 
@@ -866,7 +886,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-问题分析"><span class="nav-text">1 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-题目要求"><span class="nav-text">1.1 题目要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-任务分解"><span class="nav-text">1.2 任务分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-基本思路"><span class="nav-text">1.3 基本思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-各部分任务求解"><span class="nav-text">2 各部分任务求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-机械臂的坐标系建立"><span class="nav-text">2.1 机械臂的坐标系建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-D-H参数选取"><span class="nav-text">2.2 D-H参数选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-正运动学分析"><span class="nav-text">2.3 正运动学分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-逆运动学分析"><span class="nav-text">2.4 逆运动学分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-初始位置"><span class="nav-text">2.4.1 初始位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-位姿旋转"><span class="nav-text">2.4.2 位姿旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-迭代求解"><span class="nav-text">2.4.3 迭代求解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-仿真及结果分析"><span class="nav-text">3 仿真及结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-机械臂模型建立"><span class="nav-text">3.1 机械臂模型建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-正向运动学计算"><span class="nav-text">3.2 正向运动学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-逆向运动学计算"><span class="nav-text">3.3 逆向运动学计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-参考文献"><span class="nav-text">4 参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-text">1 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目要求"><span class="nav-text">1.1 题目要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务分解"><span class="nav-text">1.2 任务分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思路"><span class="nav-text">1.3 基本思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各部分任务求解"><span class="nav-text">2 各部分任务求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机械臂的坐标系建立"><span class="nav-text">2.1 机械臂的坐标系建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-h参数选取"><span class="nav-text">2.2 D-H参数选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正运动学分析"><span class="nav-text">2.3 正运动学分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆运动学分析"><span class="nav-text">2.4 逆运动学分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始位置"><span class="nav-text">2.4.1 初始位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位姿旋转"><span class="nav-text">2.4.2 位姿旋转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代求解"><span class="nav-text">2.4.3 迭代求解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仿真及结果分析"><span class="nav-text">3 仿真及结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机械臂模型建立"><span class="nav-text">3.1 机械臂模型建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向运动学计算"><span class="nav-text">3.2 正向运动学计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆向运动学计算"><span class="nav-text">3.3 逆向运动学计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-text">4 参考文献</span></a></li></ol></div>
             
 
           </div>

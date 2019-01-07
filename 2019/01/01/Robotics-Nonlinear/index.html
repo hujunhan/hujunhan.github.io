@@ -104,18 +104,18 @@
 
 
 
-  <meta name="description" content="1 IntroductionIn linear control, we modeled the manipulator by $n$ independent second-order differential equations. In this chapter, we will base our controller design on the $n \times 1$ vector diffe">
+  <meta name="description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 <meta name="keywords" content="control,robotics">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robotics-Nonlinear Control">
 <meta property="og:url" content="http://yoursite.com/2019/01/01/Robotics-Nonlinear/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 IntroductionIn linear control, we modeled the manipulator by $n$ independent second-order differential equations. In this chapter, we will base our controller design on the $n \times 1$ vector diffe">
+<meta property="og:description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-01-01T07:58:40.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotics-Nonlinear Control">
-<meta name="twitter:description" content="1 IntroductionIn linear control, we modeled the manipulator by $n$ independent second-order differential equations. In this chapter, we will base our controller design on the $n \times 1$ vector diffe">
+<meta name="twitter:description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 
 
 
@@ -470,53 +470,53 @@
       
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>In linear control, we modeled the manipulator by $n$ independent second-order differential equations.</p>
-<p>In this chapter, we will base our controller design on the $n \times 1$ vector differential equation</p>
+        <h2 id="introduction">1 Introduction</h2>
+<p>In linear control, we modeled the manipulator by <span class="math inline">\(n\)</span> independent second-order differential equations.</p>
+<p>In this chapter, we will base our controller design on the <span class="math inline">\(n \times 1\)</span> vector differential equation</p>
 <a id="more"></a>
-<h2 id="2-Nonlinear"><a href="#2-Nonlinear" class="headerlink" title="2 Nonlinear"></a>2 Nonlinear</h2><ol>
+<h2 id="nonlinear">2 Nonlinear</h2>
+<ol type="1">
 <li><p>local linearization</p>
-<p>When nonlinearities are not severe, <strong>local linearization</strong> can be used in the <strong>neighborhood</strong> of an operating point. </p>
-<p>But, manipulator move among regions so <strong>widely separated</strong> that no linearization valid for all regions can be found.</p>
-</li>
+<p>When nonlinearities are not severe, <strong>local linearization</strong> can be used in the <strong>neighborhood</strong> of an operating point.</p>
+<p>But, manipulator move among regions so <strong>widely separated</strong> that no linearization valid for all regions can be found.</p></li>
 <li><p>moving linearization</p>
-<p>move the operating point with the manipulator as it<br>moves, always linearizing about the desired position of the manipulator</p>
-</li>
+<p>move the operating point with the manipulator as it moves, always linearizing about the desired position of the manipulator</p></li>
 <li><p>deal with the nonlinear directly</p>
-<p>the poles of the system will “move”, so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped</p>
-</li>
+<p>the poles of the system will &quot;move&quot;, so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped</p></li>
 <li><p>Example: nonlinear spring</p>
-<p>open loop equation: $m \ddot { x } + b \dot { x } + q x ^ { 3 } = f$</p>
-<p>servo portion:  $f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e$</p>
+<p>open loop equation: <span class="math inline">\(m \ddot { x } + b \dot { x } + q x ^ { 3 } = f\)</span></p>
+<p>servo portion: <span class="math inline">\(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\)</span></p>
 <p>model-based portion: <strong>changed</strong></p>
-<p>​    $\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}$</p>
-</li>
+<p>​ <span class="math inline">\(\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}\)</span></p></li>
 </ol>
-<h2 id="3-Control-problem-for-Manipulators"><a href="#3-Control-problem-for-Manipulators" class="headerlink" title="3 Control problem  for Manipulators"></a>3 Control problem  for Manipulators</h2><p>For manipulator, the model is complicated</p>
-<script type="math/tex; mode=display">
-\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta )</script><p>where $\Theta $ is the position of all the joints.</p>
-<p>If we add friction to the model, we get </p>
-<script type="math/tex; mode=display">
-\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } )</script><p>where we can use our partitioned controller again:</p>
-<script type="math/tex; mode=display">
-\tau = \alpha \tau ^ { \prime } + \beta</script><p>and we choose </p>
-<script type="math/tex; mode=display">
-\begin{aligned} \alpha & = M ( \Theta ) \\ \beta & = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned}</script><p>servo law: $\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E$ where $E = \Theta _ { d } - \Theta$</p>
-<p>finally we get </p>
-<script type="math/tex; mode=display">
-\ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0</script><p>This solve the problem in theory, but not in practice because</p>
-<ol>
+<p>##3 Control problem for Manipulators</p>
+<p>For manipulator, the model is complicated <span class="math display">\[
+\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta )
+\]</span> where $$ is the position of all the joints.</p>
+<p>If we add friction to the model, we get <span class="math display">\[
+\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } )
+\]</span> where we can use our partitioned controller again: <span class="math display">\[
+\tau = \alpha \tau ^ { \prime } + \beta
+\]</span> and we choose <span class="math display">\[
+\begin{aligned} \alpha &amp; = M ( \Theta ) \\ \beta &amp; = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned}
+\]</span> servo law: <span class="math inline">\(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E\)</span> where <span class="math inline">\(E = \Theta _ { d } - \Theta\)</span></p>
+<p>finally we get <span class="math display">\[
+\ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0
+\]</span> This solve the problem in theory, but not in practice because</p>
+<ol type="1">
 <li>computer do it by <strong>discrete</strong> nature</li>
 <li><strong>inaccuracy</strong> in manipulator model</li>
 </ol>
-<h2 id="4-Current-industrial-robot-Control-System"><a href="#4-Current-industrial-robot-Control-System" class="headerlink" title="4 Current industrial-robot Control System"></a>4 Current industrial-robot Control System</h2><p>Parameters may be inaccurate. So model-based control law maybe <strong>doesn’t make sense</strong></p>
+<h2 id="current-industrial-robot-control-system">4 Current industrial-robot Control System</h2>
+<p>Parameters may be inaccurate. So model-based control law maybe <strong>doesn't make sense</strong></p>
 <p>For economic reasons, error driven is more usual.</p>
 <ul>
 <li><p>individual-joint PID control</p>
 <p><em>average</em> gain are chosen</p>
-<p>$\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt$</p>
-</li>
+<p><span class="math inline">\(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt\)</span></p></li>
 </ul>
-<h2 id="5-Lyapunov-Stability-Analysis"><a href="#5-Lyapunov-Stability-Analysis" class="headerlink" title="5 Lyapunov Stability Analysis"></a>5 Lyapunov Stability Analysis</h2><p>A analytically way to evluate stability but <strong>not</strong> the performance.</p>
+<h2 id="lyapunov-stability-analysis">5 Lyapunov Stability Analysis</h2>
+<p>A analytically way to evluate stability but <strong>not</strong> the performance.</p>
 
       
     </div>
@@ -555,8 +555,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/Robotics-Force/" rel="next" title="Robotics-Force Control">
-                <i class="fa fa-chevron-left"></i> Robotics-Force Control
+              <a href="/2018/12/30/Dropout/" rel="next" title="Notes about Dropout">
+                <i class="fa fa-chevron-left"></i> Notes about Dropout
               </a>
             
           </div>
@@ -565,8 +565,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/03/ADS-Queues/" rel="prev" title="PADS-Queues">
-                PADS-Queues <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/01/Robotics-Force/" rel="prev" title="Robotics-Force Control">
+                Robotics-Force Control <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -742,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Nonlinear"><span class="nav-text">2 Nonlinear</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Control-problem-for-Manipulators"><span class="nav-text">3 Control problem  for Manipulators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Current-industrial-robot-Control-System"><span class="nav-text">4 Current industrial-robot Control System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Lyapunov-Stability-Analysis"><span class="nav-text">5 Lyapunov Stability Analysis</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nonlinear"><span class="nav-text">2 Nonlinear</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#current-industrial-robot-control-system"><span class="nav-text">4 Current industrial-robot Control System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-stability-analysis"><span class="nav-text">5 Lyapunov Stability Analysis</span></a></li></ol></div>
             
 
           </div>

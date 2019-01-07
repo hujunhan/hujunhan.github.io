@@ -104,20 +104,20 @@
 
 
 
-  <meta name="description" content="1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Solution">
+  <meta name="description" content="1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Soluti">
 <meta name="keywords" content="control,robotics">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robotics-Linear Control">
 <meta property="og:url" content="http://yoursite.com/2018/12/27/Robotics-Linear Control/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Solution">
+<meta property="og:description" content="1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Soluti">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/12/27/Robotics-Linear%20Control/1545907095978.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/27/Robotics-Linear%20Control/1545907198498.png">
 <meta property="og:updated_time" content="2018-12-27T11:31:48.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotics-Linear Control">
-<meta name="twitter:description" content="1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Solution">
+<meta name="twitter:description" content="1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Soluti">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/27/Robotics-Linear%20Control/1545907095978.png">
 
 
@@ -473,43 +473,52 @@
       
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p><strong>Premise</strong>:  Know the means to calculate joint-position correspond to desired end-effector motions.</p>
+        <h2 id="introduction">1 Introduction</h2>
+<p><strong>Premise</strong>: Know the means to calculate joint-position correspond to desired end-effector motions.</p>
 <p><strong>Problem</strong>: Howto casuse the manipulator acually to perform these desired motions.</p>
 <p><strong>Solution 1</strong>: Linear control system.</p>
 <ul>
 <li>In fact, non-linear is more usual, linear control is just a <strong>approximate</strong> methods</li>
-<li>It’s resonable to make such approximation, so lineat control methods are the ones <strong>most often used in industrial practice.</strong></li>
+<li>It's resonable to make such approximation, so lineat control methods are the ones <strong>most often used in industrial practice.</strong></li>
 <li>Learn linear first is good for later study</li>
 </ul>
 <a id="more"></a>
-<h2 id="2-Control-Law-Partitioning"><a href="#2-Control-Law-Partitioning" class="headerlink" title="2 Control-Law Partitioning"></a>2 Control-Law Partitioning</h2><p>Partitioning Method (2 parts):</p>
+<h2 id="control-law-partitioning">2 Control-Law Partitioning</h2>
+<p>Partitioning Method (2 parts):</p>
 <ul>
-<li>model-based portion: make use of supposed knowledge of <strong><em>m,b,k</em></strong>, to make the system appear as a unit mass$\to$ servo portion simple.</li>
+<li>model-based portion: make use of supposed knowledge of <strong><em>m,b,k</em></strong>, to make the system appear as a unit mass<span class="math inline">\(\to\)</span> servo portion simple.</li>
 <li>servo portion: make use of <strong><em>feedback</em></strong> to modify the behavior of the system</li>
 </ul>
-<p>A open-loop equation of motion for the system:</p>
-<script type="math/tex; mode=display">
-m \ddot { x } + b \dot { x } + k x = f</script><p>The model-based portion of the control:</p>
-<script type="math/tex; mode=display">
-f = \alpha f ^ { \prime } + \beta</script><p>and we choose(because we want to make the )</p>
-<script type="math/tex; mode=display">
-\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array}</script><p>finally we get   $\ddot { x } = f ^ { \prime }$</p>
-<p>Graphiclly,we transform a system like this </p>
-<p><img src="/2018/12/27/Robotics-Linear Control/1545907095978.png" alt="1545907095978"></p>
+<p>A open-loop equation of motion for the system: <span class="math display">\[
+m \ddot { x } + b \dot { x } + k x = f
+\]</span> The model-based portion of the control: <span class="math display">\[
+f = \alpha f ^ { \prime } + \beta
+\]</span> and we choose(because we want to make the ) <span class="math display">\[
+\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array}
+\]</span> finally we get <span class="math inline">\(\ddot { x } = f ^ { \prime }\)</span></p>
+<p>Graphiclly,we transform a system like this</p>
+<figure>
+<img src="/2018/12/27/Robotics-Linear Control/1545907095978.png" alt="1545907095978"><figcaption>1545907095978</figcaption>
+</figure>
 <p>into a system easier</p>
-<p><img src="/2018/12/27/Robotics-Linear Control/1545907198498.png" alt="1545907198498"></p>
-<p>What we need to do is design a  control law to compute $f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x$</p>
-<p>so it yields</p>
-<script type="math/tex; mode=display">
-\ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0</script><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><ol>
+<figure>
+<img src="/2018/12/27/Robotics-Linear Control/1545907198498.png" alt="1545907198498"><figcaption>1545907198498</figcaption>
+</figure>
+<p>What we need to do is design a control law to compute <span class="math inline">\(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\)</span></p>
+<p>so it yields <span class="math display">\[
+\ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0
+\]</span></p>
+<h3 id="conclusion">Conclusion</h3>
+<ol type="1">
 <li>get the system‘s parameters</li>
-<li>find $\alpha ,\beta$</li>
-<li>calculate $k_v,k_p$ depend on the requirement</li>
+<li>find <span class="math inline">\(\alpha ,\beta\)</span></li>
+<li>calculate <span class="math inline">\(k_v,k_p\)</span> depend on the requirement</li>
 </ol>
-<h3 id="3-Trajectory-Following-Control"><a href="#3-Trajectory-Following-Control" class="headerlink" title="3. Trajectory-Following Control"></a>3. Trajectory-Following Control</h3><p>Know: trajectory, a funciton of time $x_d(t)$ and we can get $\dot x_d, \ddot x_d $as well</p>
-<p>Define: $e=x_d-x$</p>
-<p>Design $f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e$</p>
-<p>Get: $\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e$</p>
+<h3 id="trajectory-following-control">3. Trajectory-Following Control</h3>
+<p>Know: trajectory, a funciton of time <span class="math inline">\(x_d(t)\)</span> and we can get $x_d, x_d $as well</p>
+<p>Define: <span class="math inline">\(e=x_d-x\)</span></p>
+<p>Design <span class="math inline">\(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\)</span></p>
+<p>Get: <span class="math inline">\(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\)</span></p>
 <p>So, we can choose coefficients and design any response we want</p>
 
       
@@ -736,7 +745,7 @@ f = \alpha f ^ { \prime } + \beta</script><p>and we choose(because we want to ma
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Control-Law-Partitioning"><span class="nav-text">2 Control-Law Partitioning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Trajectory-Following-Control"><span class="nav-text">3. Trajectory-Following Control</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#control-law-partitioning"><span class="nav-text">2 Control-Law Partitioning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trajectory-following-control"><span class="nav-text">3. Trajectory-Following Control</span></a></li></ol></li></ol></div>
             
 
           </div>

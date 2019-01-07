@@ -1,50 +1,56 @@
-<h1 align="center"><a href="https://github.com/mozilla/pdf.js">PDF.js</a> for <a href="https://github.com/theme-next">NexT</a></h1>
-
-<h2 align="center">Introduce</h2>
-
+<h1 align="center">
+<a href="https://github.com/mozilla/pdf.js">PDF.js</a> for <a href="https://github.com/theme-next">NexT</a>
+</h1>
+<h2 align="center">
+Introduce
+</h2>
 <p>This is a plugin that allows to preview PDF files in the blog pages.</p>
-<p>It’s based on PDFObject and PDF.js. If the browser supports embedded PDFs natively, PDFObject will create a <code>&lt;embed&gt;</code> tag and include the PDF file on your website. Otherwise it will create a <code>&lt;iframe&gt;</code> tag and uses PDF.js to render the pdf file.</p>
+<p>It's based on PDFObject and PDF.js. If the browser supports embedded PDFs natively, PDFObject will create a <code>&lt;embed&gt;</code> tag and include the PDF file on your website. Otherwise it will create a <code>&lt;iframe&gt;</code> tag and uses PDF.js to render the pdf file.</p>
 <p>Follow the guide below to install dependencies, then edit <code>_config.yml</code>:</p>
 <pre><code>pdf:
-  enable: true
-</code></pre><p></p><h3 align="center">Usage</h3><br>You just need to create an inline link point to your local pdf file, e.g.<p></p>
-<pre><code>[](/path/to/your/file.pdf)
-</code></pre><p>Notice: Do not use cross-origin pdf files, it might be blocked by the CORS policy.</p>
+  enable: true</code></pre>
+<h3 align="center">
+Usage
+</h3>
+<p>You just need to create an inline link point to your local pdf file, e.g.</p>
+<pre><code>[](/path/to/your/file.pdf)</code></pre>
+<p>Notice: Do not use cross-origin pdf files, it might be blocked by the CORS policy.</p>
 <p>Enjoy it!</p>
-<h1 align="center">Installation</h1>
-
-<h2 align="center">Step 1 &rarr; Go to NexT dir</h2>
-
+<h1 align="center">
+Installation
+</h1>
+<h2 align="center">
+Step 1 → Go to NexT dir
+</h2>
 <p>Change dir to <strong>NexT</strong> directory. There must be <code>layout</code>, <code>source</code>, <code>languages</code> and other directories:</p>
-<pre><code class="lang-sh">$ cd themes/next
-$ ls
-bower.json  _config.yml  docs  gulpfile.coffee  languages  layout  LICENSE.md  package.json  README.md  scripts  source  test
-</code></pre>
-<h2 align="center">Step 2 &rarr; Get module</h2>
-
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">$ <span class="bu">cd</span> themes/next</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="ex">bower.json</span>  _config.yml  docs  gulpfile.coffee  languages  layout  LICENSE.md  package.json  README.md  scripts  source  test</a></code></pre></div>
+<h2 align="center">
+Step 2 → Get module
+</h2>
 <p>Install module to <code>source/lib</code> directory:</p>
-<pre><code class="lang-sh">$ git clone https://github.com/theme-next/theme-next-pdf source/lib/pdf
-</code></pre>
-<h2 align="center">Step 3 &rarr; Set it up</h2>
-
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="fu">git</span> clone https://github.com/theme-next/theme-next-pdf source/lib/pdf</a></code></pre></div>
+<h2 align="center">
+Step 3 → Set it up
+</h2>
 <p>Enable module in <strong>NexT</strong> <code>_config.yml</code> file:</p>
-<pre><code class="lang-yml"># PDF Support
-pdf:
-  enable: true
-
-  # Default(true) will load PDFObject/PDF.js script on demand
-  # That is it only render those page who has &#39;pdf: true&#39; in Front Matter.
-  # If you set it to false, it will load PDFObject/PDF.js srcipt EVERY PAGE.
-  per_page: true
-
-  height: 500px
-
-  pdfobject:
-    # Use 2.1.1 as default, cloudflare as default CDN
-    cdn: //cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js
-</code></pre>
-<h1 align="center">Update</h1>
-
-<pre><code class="lang-sh">$ cd themes/next/source/lib/pdf
-$ git pull
-</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># PDF Support</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="fu">pdf:</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="fu">enable:</span><span class="at"> true</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="co"># Default(true) will load PDFObject/PDF.js script on demand</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="co"># That is it only render those page who has &#39;pdf: true&#39; in Front Matter.</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="co"># If you set it to false, it will load PDFObject/PDF.js srcipt EVERY PAGE.</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="fu">per_page:</span><span class="at"> true</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">  <span class="fu">height:</span><span class="at"> 500px</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">  <span class="fu">pdfobject:</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">    <span class="co"># Use 2.1.1 as default, cloudflare as default CDN</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="fu">cdn:</span><span class="at"> //cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js</span></a></code></pre></div>
+<h1 align="center">
+Update
+</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="bu">cd</span> themes/next/source/lib/pdf</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">$ <span class="fu">git</span> pull</a></code></pre></div>

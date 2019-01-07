@@ -104,19 +104,19 @@
 
 
 
-  <meta name="description" content="1 Introduction1.1 Queues A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, com">
+  <meta name="description" content="1 Introduction 1.1 Queues  A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end">
 <meta name="keywords" content="DS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PADS-Queues">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/ADS-Queues/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Introduction1.1 Queues A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, com">
+<meta property="og:description" content="1 Introduction 1.1 Queues  A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/ADS-Queues/1546447640606.png">
 <meta property="og:updated_time" content="2019-01-02T16:54:13.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PADS-Queues">
-<meta name="twitter:description" content="1 Introduction1.1 Queues A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, com">
+<meta name="twitter:description" content="1 Introduction 1.1 Queues  A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/03/ADS-Queues/1546447640606.png">
 
 
@@ -472,80 +472,82 @@
       
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><h3 id="1-1-Queues"><a href="#1-1-Queues" class="headerlink" title="1.1 Queues"></a>1.1 Queues</h3><blockquote>
+        <h2 id="introduction">1 Introduction</h2>
+<h3 id="queues">1.1 Queues</h3>
+<blockquote>
 <p>A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, commonly called the “front.”</p>
 </blockquote>
 <ul>
-<li><p>Example: wait in a line for a movie/ OS use queues control processes</p>
-</li>
+<li><p>Example: wait in a line for a movie/ OS use queues control processes</p></li>
 <li><p>Usage: keep in order</p>
-<p><img src="/2019/01/03/ADS-Queues/1546447640606.png" alt="1546447640606"></p>
-</li>
+<figure>
+<img src="/2019/01/03/ADS-Queues/1546447640606.png" alt="1546447640606"><figcaption>1546447640606</figcaption>
+</figure></li>
 </ul>
-<h3 id="1-2-ADT"><a href="#1-2-ADT" class="headerlink" title="1.2 ADT"></a>1.2 ADT</h3><div class="table-container">
+<h3 id="adt">1.2 ADT</h3>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">Queue Operation</th>
-<th style="text-align:center">Queue Contents</th>
-<th style="text-align:center">Return Value</th>
+<tr class="header">
+<th style="text-align: center;">Queue Operation</th>
+<th style="text-align: center;">Queue Contents</th>
+<th style="text-align: center;">Return Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">q.is_empty()</td>
-<td style="text-align:center">[]</td>
-<td style="text-align:center">True</td>
+<tr class="odd">
+<td style="text-align: center;">q.is_empty()</td>
+<td style="text-align: center;">[]</td>
+<td style="text-align: center;">True</td>
 </tr>
-<tr>
-<td style="text-align:center">q.enqueue(4)</td>
-<td style="text-align:center">[4]</td>
-<td style="text-align:center"></td>
+<tr class="even">
+<td style="text-align: center;">q.enqueue(4)</td>
+<td style="text-align: center;">[4]</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:center">q.enqueue(‘dog’)</td>
-<td style="text-align:center">[‘dog’, 4]</td>
-<td style="text-align:center"></td>
+<tr class="odd">
+<td style="text-align: center;">q.enqueue('dog')</td>
+<td style="text-align: center;">['dog', 4]</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:center">q.enqueue(True)</td>
-<td style="text-align:center">[True, ‘dog’, 4]</td>
-<td style="text-align:center"></td>
+<tr class="even">
+<td style="text-align: center;">q.enqueue(True)</td>
+<td style="text-align: center;">[True, 'dog', 4]</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:center">q.size()</td>
-<td style="text-align:center">[True, ‘dog’, 4]</td>
-<td style="text-align:center">3</td>
+<tr class="odd">
+<td style="text-align: center;">q.size()</td>
+<td style="text-align: center;">[True, 'dog', 4]</td>
+<td style="text-align: center;">3</td>
 </tr>
-<tr>
-<td style="text-align:center">q.is_empty()</td>
-<td style="text-align:center">[True, ‘dog’, 4]</td>
-<td style="text-align:center">False</td>
+<tr class="even">
+<td style="text-align: center;">q.is_empty()</td>
+<td style="text-align: center;">[True, 'dog', 4]</td>
+<td style="text-align: center;">False</td>
 </tr>
-<tr>
-<td style="text-align:center">q.enqueue(8.4)</td>
-<td style="text-align:center">[8.4, True, ‘dog’, 4]</td>
-<td style="text-align:center"></td>
+<tr class="odd">
+<td style="text-align: center;">q.enqueue(8.4)</td>
+<td style="text-align: center;">[8.4, True, 'dog', 4]</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td style="text-align:center">q.dequeue()</td>
-<td style="text-align:center">[8.4, True, ‘dog’]</td>
-<td style="text-align:center">4</td>
+<tr class="even">
+<td style="text-align: center;">q.dequeue()</td>
+<td style="text-align: center;">[8.4, True, 'dog']</td>
+<td style="text-align: center;">4</td>
 </tr>
-<tr>
-<td style="text-align:center">q.dequeue()</td>
-<td style="text-align:center">[8.4, True]</td>
-<td style="text-align:center">‘dog’</td>
+<tr class="odd">
+<td style="text-align: center;">q.dequeue()</td>
+<td style="text-align: center;">[8.4, True]</td>
+<td style="text-align: center;">'dog'</td>
 </tr>
-<tr>
-<td style="text-align:center">q.size()</td>
-<td style="text-align:center">[8.4, True]</td>
-<td style="text-align:center">2</td>
+<tr class="even">
+<td style="text-align: center;">q.size()</td>
+<td style="text-align: center;">[8.4, True]</td>
+<td style="text-align: center;">2</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="2-A-Queue-Implementation"><a href="#2-A-Queue-Implementation" class="headerlink" title="2 A Queue Implementation"></a>2 A Queue Implementation</h2><p>In practice, use the standard library’s <code>collections.deque</code> to achieve high performance( $O(1)$) enqueues and dequeues.</p>
+<h2 id="a-queue-implementation">2 A Queue Implementation</h2>
+<p>In practice, use the standard library's <code>collections.deque</code> to achieve high performance( <span class="math inline">\(O(1)\)</span>) enqueues and dequeues.</p>
 
       
     </div>
@@ -582,8 +584,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/Robotics-Nonlinear/" rel="next" title="Robotics-Nonlinear Control">
-                <i class="fa fa-chevron-left"></i> Robotics-Nonlinear Control
+              <a href="/2019/01/01/Robotics-Force/" rel="next" title="Robotics-Force Control">
+                <i class="fa fa-chevron-left"></i> Robotics-Force Control
               </a>
             
           </div>
@@ -769,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Queues"><span class="nav-text">1.1 Queues</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-ADT"><span class="nav-text">1.2 ADT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-A-Queue-Implementation"><span class="nav-text">2 A Queue Implementation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#queues"><span class="nav-text">1.1 Queues</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adt"><span class="nav-text">1.2 ADT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-queue-implementation"><span class="nav-text">2 A Queue Implementation</span></a></li></ol></div>
             
 
           </div>

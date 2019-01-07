@@ -104,13 +104,13 @@
 
 
 
-  <meta name="description" content="1 IntroductionSTM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
+  <meta name="description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
 <meta name="keywords" content="STM32,ADC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32-ADC">
 <meta property="og:url" content="http://yoursite.com/2018/12/27/STM32-ADC/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 IntroductionSTM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
+<meta property="og:description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/12/27/STM32-ADC/1545842732972.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/27/STM32-ADC/1545842717710.png">
@@ -118,7 +118,7 @@
 <meta property="og:updated_time" content="2018-12-27T07:58:36.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STM32-ADC">
-<meta name="twitter:description" content="1 IntroductionSTM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
+<meta name="twitter:description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/27/STM32-ADC/1545842732972.png">
 
 
@@ -474,27 +474,32 @@
       
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>STM32 have one of the most advanced ADCs on microcontroller market.</p>
+        <h2 id="introduction">1 Introduction</h2>
+<p>STM32 have one of the most advanced ADCs on microcontroller market.</p>
 <p>This note provide users to understand some modes offered in STM32</p>
 <a id="more"></a>
-<h2 id="2-Independent-Mode"><a href="#2-Independent-Mode" class="headerlink" title="2 Independent Mode"></a>2 Independent Mode</h2><ul>
+<h2 id="independent-mode">2 Independent Mode</h2>
+<ul>
 <li><p>Single Channel, <strong>single</strong> conversion</p>
-<p>Example:  Check if the battery voltage is succulent or not</p>
-<p><img src="/2018/12/27/STM32-ADC/1545842732972.png" alt="1545842732972"></p>
-</li>
+<p>Example: Check if the battery voltage is succulent or not</p>
+<figure>
+<img src="/2018/12/27/STM32-ADC/1545842732972.png" alt="1545842732972"><figcaption>1545842732972</figcaption>
+</figure></li>
 <li><p>Multichannel, single conversion</p>
-<p>Example:  Can be used when starting system depends on some <strong>parameters</strong></p>
-</li>
+<p>Example: Can be used when starting system depends on some <strong>parameters</strong></p></li>
 <li><p>Single Channel, continuous conversion</p>
 <p>Example: Run in <strong>background</strong>, so can be used as a monitor to check something all the time</p>
-<p><img src="/2018/12/27/STM32-ADC/1545842717710.png" alt="1545842717710"></p>
-</li>
+<figure>
+<img src="/2018/12/27/STM32-ADC/1545842717710.png" alt="1545842717710"><figcaption>1545842717710</figcaption>
+</figure></li>
 <li><p>Injected conversion</p>
 <p>Intended for use when conversion is triggered by an <strong>external event</strong> or by software.</p>
-<p><img src="/2018/12/27/STM32-ADC/1545843010338.png" alt="1545843010338"></p>
-</li>
+<figure>
+<img src="/2018/12/27/STM32-ADC/1545843010338.png" alt="1545843010338"><figcaption>1545843010338</figcaption>
+</figure></li>
 </ul>
-<h2 id="3-Example-Code"><a href="#3-Example-Code" class="headerlink" title="3 Example Code"></a>3 Example Code</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GPIOINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;<span class="comment">//ADC</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN;	<span class="comment">//模拟输入</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOB,&amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RCCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SystemInit();</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);</span><br><span class="line">	RCC_ADCCLKConfig(RCC_PCLK2_Div6);<span class="comment">//12M  最大14M 设置ADC时钟（ADCCLK）</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ADCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	ADC_InitTypeDef ADC_InitStructure;</span><br><span class="line">	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; </span><br><span class="line">	ADC_InitStructure.ADC_ScanConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; </span><br><span class="line">	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; </span><br><span class="line">	ADC_InitStructure.ADC_NbrOfChannel = <span class="number">1</span>; </span><br><span class="line">	ADC_Init(ADC1, &amp;ADC_InitStructure);</span><br><span class="line">	ADC_TempSensorVrefintCmd(ENABLE);</span><br><span class="line">	ADC_Cmd(ADC1,ENABLE);	</span><br><span class="line"></span><br><span class="line">	ADC_ResetCalibration(ADC1);<span class="comment">//重置指定的ADC的校准寄存器</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetResetCalibrationStatus(ADC1));<span class="comment">//获取ADC重置校准寄存器的状态</span></span><br><span class="line">	</span><br><span class="line">	ADC_StartCalibration(ADC1);<span class="comment">//开始指定ADC的校准状态</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetCalibrationStatus(ADC1));<span class="comment">//获取指定ADC的校准程序</span></span><br><span class="line">	ADC_RegularChannelConfig(ADC1,ADC_Channel_8,<span class="number">1</span>,ADC_SampleTime_239Cycles5);<span class="comment">//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间</span></span><br><span class="line">	ADC_SoftwareStartConvCmd(ADC1, ENABLE);<span class="comment">//使能或者失能指定的ADC的软件转换启动功能</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="example-code">3 Example Code</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GPIOINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;<span class="comment">//ADC</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN;	<span class="comment">//模拟输入</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOB,&amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RCCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SystemInit();</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);</span><br><span class="line">	RCC_ADCCLKConfig(RCC_PCLK2_Div6);<span class="comment">//12M  最大14M 设置ADC时钟（ADCCLK）</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ADCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	ADC_InitTypeDef ADC_InitStructure;</span><br><span class="line">	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; </span><br><span class="line">	ADC_InitStructure.ADC_ScanConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; </span><br><span class="line">	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; </span><br><span class="line">	ADC_InitStructure.ADC_NbrOfChannel = <span class="number">1</span>; </span><br><span class="line">	ADC_Init(ADC1, &amp;ADC_InitStructure);</span><br><span class="line">	ADC_TempSensorVrefintCmd(ENABLE);</span><br><span class="line">	ADC_Cmd(ADC1,ENABLE);	</span><br><span class="line"></span><br><span class="line">	ADC_ResetCalibration(ADC1);<span class="comment">//重置指定的ADC的校准寄存器</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetResetCalibrationStatus(ADC1));<span class="comment">//获取ADC重置校准寄存器的状态</span></span><br><span class="line">	</span><br><span class="line">	ADC_StartCalibration(ADC1);<span class="comment">//开始指定ADC的校准状态</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetCalibrationStatus(ADC1));<span class="comment">//获取指定ADC的校准程序</span></span><br><span class="line">	ADC_RegularChannelConfig(ADC1,ADC_Channel_8,<span class="number">1</span>,ADC_SampleTime_239Cycles5);<span class="comment">//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间</span></span><br><span class="line">	ADC_SoftwareStartConvCmd(ADC1, ENABLE);<span class="comment">//使能或者失能指定的ADC的软件转换启动功能</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -720,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Independent-Mode"><span class="nav-text">2 Independent Mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Example-Code"><span class="nav-text">3 Example Code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#independent-mode"><span class="nav-text">2 Independent Mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example-code"><span class="nav-text">3 Example Code</span></a></li></ol></div>
             
 
           </div>
