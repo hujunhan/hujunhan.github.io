@@ -104,15 +104,23 @@
 
 
 
-  <meta name="keywords" content="robotics,vision">
+  <meta name="description" content="1 Introduction  The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity.">
+<meta name="keywords" content="robotics,vision">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robotics-Vision Foundation">
 <meta property="og:url" content="http://yoursite.com/2019/01/07/Rootics-Vison foundation/index.html">
 <meta property="og:site_name" content="Whatever">
+<meta property="og:description" content="1 Introduction  The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-06T16:36:14.960Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/Rootics-Vison%20foundation/1546840747172.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/Rootics-Vison%20foundation/1546840861892.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/Rootics-Vison%20foundation/1546843100409.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/Rootics-Vison%20foundation/1546848482620.png">
+<meta property="og:updated_time" content="2019-01-07T08:36:23.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotics-Vision Foundation">
+<meta name="twitter:description" content="1 Introduction  The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity.">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/07/Rootics-Vison%20foundation/1546840747172.png">
 
 
 
@@ -404,7 +412,7 @@
                 
               
 
-              <time title="Created: 2019-01-07 00:00:00 / Modified: 00:36:14" itemprop="dateCreated datePublished" datetime="2019-01-07T00:00:00+08:00">2019-01-07</time>
+              <time title="Created: 2019-01-07 00:00:00 / Modified: 16:36:23" itemprop="dateCreated datePublished" datetime="2019-01-07T00:00:00+08:00">2019-01-07</time>
             
 
             
@@ -467,7 +475,92 @@
       
 
       
-        
+        <h2 id="introduction">1 Introduction</h2>
+<blockquote>
+<p>The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity.</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="light">2 Light</h2>
+<p>Each color is a single frequency or wavelength of electro-magnetic radiation.We perceive the wavelengths between 400 and 700 nm as different colors.</p>
+<p>In general, the light we observe can be represented as a function <span class="math inline">\(E(\lambda)\)</span> ,<span class="math inline">\(\lambda\)</span> is the wavelength. This is a function about <strong>power </strong>related to</p>
+<ul>
+<li>source temperature <span class="math inline">\(T\)</span> (e.g. 4700K)</li>
+<li>Planck’s constant <span class="math inline">\(h\)</span> , Boltzmann’s constant <span class="math inline">\(k\)</span>, speed of light <span class="math inline">\(c\)</span></li>
+<li>……</li>
+</ul>
+<figure>
+<img src="/2019/01/07/Rootics-Vison foundation/1546840747172.png" title="ideal blackbody" alt="1546840747172"><figcaption>1546840747172</figcaption>
+</figure>
+<h3 id="absorption">2.1 Absorption</h3>
+<figure>
+<img src="/2019/01/07/Rootics-Vison foundation/1546840861892.png" title="spectrum at ground level on Earth" alt="1546840861892"><figcaption>1546840861892</figcaption>
+</figure>
+<p>Spectrum will be changed (be absorbed)</p>
+<h3 id="luminance">2.2 Luminance</h3>
+<p>The light refl ected from a surface, its luminance, has a spectrum given by <span class="math display">\[
+L ( \lambda ) = E ( \lambda ) R ( \lambda )  (W  m ^ { - 2 })
+\]</span> where <span class="math inline">\(R\)</span> is the reflectance</p>
+<h3 id="color">2.3 Color</h3>
+<p>How to measure color? Take <span class="math inline">\(red\)</span> for example: <span class="math display">\[
+\rho = \int _ { \lambda } L ( \lambda ) M _ { \mathrm { r } } ( \lambda ) \mathrm { d } \lambda
+\]</span> where <span class="math inline">\(M _ { r } ( \lambda )\)</span> are the spectral response of the red.</p>
+<h2 id="image-formation">3 Image Formation</h2>
+<p>Here we introduce how images are <strong>formed and captured</strong>.</p>
+<blockquote>
+<p>a glass or plastic lens forms an image on the surface of a semiconductor chip with an array of light-sensitive devices to convert light to a digital image.</p>
+</blockquote>
+<p>However, in an eye or in a camera, the depth information is lost. This is known as <em>projection</em>.</p>
+<h3 id="model">3.1 Model</h3>
+<h4 id="perspective-camera">3.1.1 Perspective Camera</h4>
+<p>convex lens <span class="math inline">\(\frac { 1 } { z _ { 0 } } + \frac { 1 } { z _ { i } } = \frac { 1 } { f }\)</span></p>
+<p>In a camera, the image plane (the surface of the sensor chip) is <strong>fixed</strong>. How to solve the problem? <span class="math inline">\(\to\)</span> high-quality camera lens is a compound lens comprising <strong>multiple</strong> glass or plastic lenses.</p>
+<ul>
+<li><p>central perspective imaging model</p>
+<figure>
+<img src="/2019/01/07/Rootics-Vison foundation/1546843100409.png" alt="1546843100409"><figcaption>1546843100409</figcaption>
+</figure>
+<p>Map: <span class="math inline">\(\mathrm { P } = ( X , Y , Z ) \to x = f \frac { X } { Z } , y = f \frac { Y } { Z }\)</span></p>
+<ul>
+<li><span class="math inline">\(\mathcal { P } : \mathbb { R } ^ { 3 } \mapsto \mathbb { R } ^ { 2 }\)</span></li>
+<li>straight line <span class="math inline">\(\to\)</span> straight line</li>
+<li>map is not unique</li>
+<li>map is not conformal</li>
+</ul></li>
+</ul>
+<h4 id="mathematical-model">3.1.2 Mathematical Model</h4>
+<p><strong>world</strong> coordinate <strong>homogeneous</strong> form <span class="math display">\[
+\tilde { \boldsymbol { P } } = ( X , Y , Z , 1 ) ^ { T }
+\]</span></p>
+<p><strong>image-plane</strong> point <strong>coordinate</strong> <span class="math display">\[
+\tilde { \boldsymbol { p } } = \left( \begin{array} { l l l l } { f } &amp; { 0 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { f } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 0 } &amp; { 1 } &amp; { 0 } \end{array} \right)  \tilde { \boldsymbol { P } }
+\]</span></p>
+<h4 id="discrete-model">3.1.3 Discrete Model</h4>
+<figure>
+<img src="/2019/01/07/Rootics-Vison foundation/1546848482620.png" alt="1546848482620"><figcaption>1546848482620</figcaption>
+</figure>
+<hr>
+<p>Notation:</p>
+<ul>
+<li>Principle point: <span class="math inline">\((u_0,v_0)\)</span></li>
+<li>width and height of each pixel <span class="math inline">\(\rho_w , \rho_h\)</span></li>
+</ul>
+<p>So, the pixel coordinate <span class="math display">\[
+u = \frac { x } { \rho _ { w } } + u _ { 0 } , v = \frac { y } { \rho _ { h } } + v _ { 0 }
+\]</span> finally, we get <span class="math display">\[
+\tilde { \boldsymbol { p } } = \left( \begin{array} { c c c } { f / \rho _ { w } } &amp; { 0 } &amp; { u _ { 0 } } \\ { 0 } &amp; { f / \rho _ { h } } &amp; { v _ { 0 } } \\ { 0 } &amp; { 0 } &amp; { 1 } \end{array} \right) \left( \begin{array} { c c c c } { 1 } &amp; { 0 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 1 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 0 } &amp; { 1 } &amp; { 0 } \end{array} \right) \left( ^ { 0 } T _ { C } \right) ^ { - 1 } \tilde { P }
+\]</span></p>
+<hr>
+<p>In conclusion, we can describe a projection as a function <span class="math display">\[
+\boldsymbol { p } = \mathcal { P } \left( \boldsymbol { P } , \boldsymbol { K } , \boldsymbol { \xi } _ { \mathrm { C } } \right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P​\)</span> is point in the <strong>real world</strong> frame</li>
+<li><span class="math inline">\(K\)</span> is the camera <strong>parameter</strong> : <span class="math inline">\(f,\rho_w, \rho_h, u_0, v_0\)</span></li>
+<li><span class="math inline">\(\xi_c\)</span> the <strong>pose</strong> of the camera</li>
+</ul>
+<h3 id="camera-calibration">3.2 Camera Calibration</h3>
+<p>In practice, some parameter in <span class="math inline">\(K\)</span> is unclear.(<span class="math inline">\(f, u_0, v_0\)</span>)</p>
+<p>So we need to calibrate the camera</p>
 
       
     </div>
@@ -516,8 +609,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/03/TODO/" rel="prev" title="TODO">
-                TODO <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/07/Robotics-Image/" rel="prev" title="Robotics-Images and Image Processing">
+                Robotics-Images and Image Processing <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -579,7 +681,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -674,6 +776,22 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#light"><span class="nav-text">2 Light</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#absorption"><span class="nav-text">2.1 Absorption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#luminance"><span class="nav-text">2.2 Luminance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#color"><span class="nav-text">2.3 Color</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#image-formation"><span class="nav-text">3 Image Formation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model"><span class="nav-text">3.1 Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#perspective-camera"><span class="nav-text">3.1.1 Perspective Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathematical-model"><span class="nav-text">3.1.2 Mathematical Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discrete-model"><span class="nav-text">3.1.3 Discrete Model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#camera-calibration"><span class="nav-text">3.2 Camera Calibration</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
