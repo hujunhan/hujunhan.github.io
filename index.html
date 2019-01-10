@@ -543,6 +543,837 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/8051-Basics/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/10/8051-Basics/" class="post-title-link" itemprop="http://yoursite.com/index.html">8051 Basics</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-10 13:18:00 / Modified: 18:37:33" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:00+08:00">2019-01-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/8051/" itemprop="url" rel="index"><span itemprop="name">8051</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="embedded-system-introduction">1 Embedded System Introduction</h2>
+<blockquote>
+<p>An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task</p>
+</blockquote>
+<h3 id="architecture">1.1 Architecture</h3>
+<ul>
+<li><strong>Von Neumann</strong>: data and code lie in the <strong>same</strong> memory blocks</li>
+<li><strong>Harvard</strong>: data and code lie in <strong>different</strong> memory blocks</li>
+</ul>
+<h3 id="instruction-set">1.2 Instruction Set</h3>
+<ul>
+<li>CISC: Easy to use, higher clock cycle</li>
+<li>RISC: Hard to use, lower clock cycle</li>
+</ul>
+<h2 id="introduction">2 8051 Introduction</h2>
+<p>In 1981, Intel introduced an <strong>8-bit</strong> microcontroller called the <strong>8051</strong>.</p>
+<ul>
+<li>128 bytes of <strong>RAM</strong></li>
+<li>4K byte of on-chip <strong>ROM</strong>
+<ul>
+<li>Max 64K at all because <code>PC</code> is 16-bit : (0000 to FFFF address)</li>
+</ul></li>
+<li>two <strong>timers</strong></li>
+<li>4 <strong>ports</strong> (8-bit wide)</li>
+<li>3 internal and 2 external <strong>Interrupts</strong></li>
+<li>Family Member
+<ul>
+<li>8052: 8K ROM, 256 byte RAM, 3 Timer</li>
+<li>8031: 0K ROM, 128 byte RAM, 2 Timer</li>
+</ul></li>
+</ul>
+<h3 id="registers">2.1 Registers</h3>
+<table>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Registers</th>
+<th style="text-align: center;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>A</code>(8-bit)</td>
+<td style="text-align: center;">accumulator: quick. Used for all operations</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>R</code>(8-bit)</td>
+<td style="text-align: center;">R0,R1 to R7: store values temporarily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>DPTR</code>(16-bit)</td>
+<td style="text-align: center;">Data Pointer: access external memory</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>PC</code>(16-bit)</td>
+<td style="text-align: center;">Program Counter: where the next instruction to execute can be found in the memory./starts at 0000h</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>SP</code>(8-bit)</td>
+<td style="text-align: center;">Stack Pointer: the location of the stack's tail</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>PSW</code>(8-bit)</td>
+<td style="text-align: center;">program status word:<strong>4 conditional flags</strong> + <strong>RS0、RS1</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>CY</code>(1-bit)</td>
+<td style="text-align: center;">there is a carry out from the D7 bit</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>AC</code>(1-bit)</td>
+<td style="text-align: center;">there is a carry from D3 and D4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>P</code>(1-bit)</td>
+<td style="text-align: center;">odd number of 1's in <code>A</code> register, then P = 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="addressing-modes">2.2 Addressing Modes</h3>
+<ul>
+<li><p>Immediate</p>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547102397076.png" alt="1547102397076"><figcaption>1547102397076</figcaption>
+</figure></li>
+<li><p>Direct</p>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547102616673.png" alt="1547102616673"><figcaption>1547102616673</figcaption>
+</figure></li>
+<li><p>Register Direct</p>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547103070904.png" alt="1547103070904"><figcaption>1547103070904</figcaption>
+</figure></li>
+<li><p>Register Indirect</p>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547103440872.png" alt="1547103440872"><figcaption>1547103440872</figcaption>
+</figure></li>
+<li><p>Indexed</p>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547116577466.png" alt="1547116577466"><figcaption>1547116577466</figcaption>
+</figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/robotics-final-project-puma/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/08/robotics-final-project-puma/" class="post-title-link" itemprop="http://yoursite.com/index.html">Robotics-Final Project Puma560</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-08 18:26:00 / Modified: 21:43:12" itemprop="dateCreated datePublished" datetime="2019-01-08T18:26:00+08:00">2019-01-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="问题分析">1 问题分析</h2>
+<h3 id="题目要求">1.1 题目要求</h3>
+<figure>
+<img src="/2019/01/08/robotics-final-project-puma/1546943334733.png" alt="1546943334733"><figcaption>1546943334733</figcaption>
+</figure>
+<p>要求：</p>
+<p>如图所示操作臂，在机械臂末端有一末端操作器，其长度为d，尖端为O，请<strong>规划机械臂各关节的轨迹</strong>，使其绕末端操作器尖端O 定点转动，即机械臂末端操作器<strong>尖端位置不变</strong>，机械臂末端姿态变化，并利用matlab robotics toolbox 进行验证和演示。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/08/robotics-final-project-puma/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/Math-LieGroup/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/08/Math-LieGroup/" class="post-title-link" itemprop="http://yoursite.com/index.html">Math-Lie Algebras</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-08 16:00:00 / Modified: 21:46:45" itemprop="dateCreated datePublished" datetime="2019-01-08T16:00:00+08:00">2019-01-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/Algebra/" itemprop="url" rel="index"><span itemprop="name">Algebra</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/Math-LinearAlgebra/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/08/Math-LinearAlgebra/" class="post-title-link" itemprop="http://yoursite.com/index.html">Linear Algebra for Robotics</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-08 14:58:00 / Modified: 15:57:50" itemprop="dateCreated datePublished" datetime="2019-01-08T14:58:00+08:00">2019-01-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Math/Algebra/" itemprop="url" rel="index"><span itemprop="name">Algebra</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="vectors">Vectors</h2>
+<p><span class="math display">\[
+\boldsymbol { v } = \left( v _ { x } , v _ { y } , v _ { z } \right)
+\]</span></p>
+<ul>
+<li><p>length of a vector</p>
+<ul>
+<li>p-norm: <span class="math inline">\(\| v \| _ { p } = \left( \sum _ { i = 1 } ^ { n } \left| v _ { i } \right| ^ { p } \right) ^ { 1 / p }\)</span></li>
+<li>Euclidean length: <span class="math inline">\(p=2\)</span></li>
+</ul></li>
+<li><p>operation</p>
+<ul>
+<li><p>dot product <span class="math display">\[
+\boldsymbol { a } \cdot \boldsymbol { b } = \boldsymbol { b } \cdot \boldsymbol { a } = \boldsymbol { a } ^ { T } \boldsymbol { b } = \boldsymbol { b } ^ { T } \boldsymbol { a } = \sum _ { i = 1 } ^ { n } a _ { i } b _ { i } = \| a \| _ { 2 } \| b \| _ { 2 } \cos \theta
+\]</span></p></li>
+<li><p>cross product <span class="math display">\[
+\boldsymbol { a } \times \boldsymbol { b } = - \boldsymbol { b } \times \boldsymbol { a } = \operatorname { det } \left( \begin{array} { l l l } { \hat { \boldsymbol { x } } } &amp; { \hat { \boldsymbol { y } } } &amp; { \hat { z } } \\ { a _ { 1 } } &amp; { a _ { 2 } } &amp; { a _ { 3 } } \\ { b _ { 1 } } &amp; { b _ { 1 } } &amp; { b _ { 3 } } \end{array} \right) = [ a ] _ { \mathbf { x } } \boldsymbol { b } = \| a \| _ { 2 } \| b \| _ { 2 } \sin \theta \hat { \boldsymbol { n } }
+\]</span></p></li>
+</ul></li>
+</ul>
+<h2 id="matrices">Matrices</h2>
+<p><span class="math display">\[
+A = \left( \begin{array} { c c c c } { a _ { 1,1 } } &amp; { a _ { 1,2 } } &amp; { \cdots } &amp; { a _ { 1 , n } } \\ { a _ { 2,1 } } &amp; { a _ { 2,2 } } &amp; { \cdots } &amp; { a _ { 2 , n } } \\ { \vdots } &amp; { \vdots } &amp; { \ddots } &amp; { } \\ { a _ { m , 1 } } &amp; { a _ { n , 2 } } &amp; { \cdots } &amp; { a _ { m , n } } \end{array} \right) , A \in \mathbb { R } ^ { m \times n }
+\]</span></p>
+<h3 id="square-matrices">Square Matrices</h3>
+<ul>
+<li><p>Inverse <span class="math inline">\(A A ^ { - 1 } = A ^ { - 1 } A = I _ { n \times n }\)</span></p></li>
+<li><p>symmetric <span class="math inline">\(A = A ^ { T }\)</span></p></li>
+<li><p>skew-symmetric <span class="math inline">\(A = - A ^ { T }\)</span> <span class="math display">\[
+S = [ v ] _ { \times } = \left( \begin{array} { c c c } { 0 } &amp; { - v _ { z } } &amp; { v _ { y } } \\ { v _ { z } } &amp; { 0 } &amp; { - v _ { x } } \\ { - v _ { y } } &amp; { v _ { x } } &amp; { 0 } \end{array} \right)
+\]</span></p></li>
+<li><p>orthogonal: <span class="math inline">\(A ^ { - 1 } = A ^ { T }\)</span></p>
+<ul>
+<li>The product of two orthogonal matrices of the same size is also an orthogonal matrix</li>
+<li>Group <span class="math inline">\(O(n)\)</span>
+<ul>
+<li>deteminant <span class="math inline">\(=+1 \to SO(n)\)</span></li>
+</ul></li>
+</ul></li>
+<li><p>normal: <span class="math inline">\(A ^ { T } A = A A ^ { T }\)</span></p>
+<ul>
+<li>can be diagonalized by an orthogonal matrix</li>
+<li>All <strong>symmetric</strong>, <strong>skew-symmetric</strong> and <strong>orthogonal</strong> matrices are normal matrices</li>
+</ul></li>
+<li><p>determinant: factor by which the transformation changes changes volumes in an n-dimensional space;</p>
+<ul>
+<li>equal to the product of the eigenvalues: <span class="math inline">\(\operatorname { det } ( A ) = \prod _ { i = 1 } ^ { n } \lambda _ { i }\)</span></li>
+</ul></li>
+<li><p>trace: <span class="math inline">\(\operatorname { tr } ( A ) = \sum _ { i = 1 } ^ { n } A _ { i i } = \sum _ { i = 1 } ^ { n } \lambda _ { i }\)</span></p>
+<ul>
+<li>sum of the diagonal elements</li>
+<li>sum of the eigenvalues</li>
+</ul></li>
+</ul>
+<h3 id="nonsquare-matrices">Nonsquare Matrices</h3>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/Robotics-Image/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1445,742 +2276,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/ADS-Queues/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/03/ADS-Queues/" class="post-title-link" itemprop="http://yoursite.com/index.html">PADS-Queues</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-03T00:00:00+08:00">2019-01-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-07 17:06:21" itemprop="dateModified" datetime="2019-01-07T17:06:21+08:00">2019-01-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS & Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<h3 id="queues">1.1 Queues</h3>
-<blockquote>
-<p>A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, commonly called the “front.”</p>
-</blockquote>
-<ul>
-<li><p>Example: wait in a line for a movie/ OS use queues control processes</p></li>
-<li><p>Usage: keep in order</p>
-<figure>
-<img src="/2019/01/03/ADS-Queues/1546447640606.png" alt="1546447640606"><figcaption>1546447640606</figcaption>
-</figure></li></ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/03/ADS-Queues/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Force/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/Robotics-Force/" class="post-title-link" itemprop="http://yoursite.com/index.html">Robotics-Force Control</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-07 00:35:52" itemprop="dateModified" datetime="2019-01-07T00:35:52+08:00">2019-01-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<p>Mere position control is not suffice is contact is made between end-effector and environment.</p>
-<p>So introduce <strong>hybrid position/force controller</strong> to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/01/Robotics-Force/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Nonlinear/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/Robotics-Nonlinear/" class="post-title-link" itemprop="http://yoursite.com/index.html">Robotics-Nonlinear Control</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-01 00:00:00 / Modified: 15:58:40" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<p>In linear control, we modeled the manipulator by <span class="math inline">\(n\)</span> independent second-order differential equations.</p>
-<p>In this chapter, we will base our controller design on the <span class="math inline">\(n \times 1\)</span> vector differential equation</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/01/Robotics-Nonlinear/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/30/Dropout/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/30/Dropout/" class="post-title-link" itemprop="http://yoursite.com/index.html">Notes about Dropout</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-30 00:00:00 / Modified: 21:43:51" itemprop="dateCreated datePublished" datetime="2018-12-30T00:00:00+08:00">2018-12-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/paper/" itemprop="url" rel="index"><span itemprop="name">paper</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="abstract">Abstract</h2>
-<p>深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/30/Dropout/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2223,7 +2323,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2256,7 +2356,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2293,7 +2399,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
