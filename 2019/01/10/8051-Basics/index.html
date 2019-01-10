@@ -104,23 +104,24 @@
 
 
 
-  <meta name="description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task  1.1 Architecture  Von Neumann: data and code">
+  <meta name="description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
 <meta name="keywords" content="8051">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8051 Basics">
 <meta property="og:url" content="http://yoursite.com/2019/01/10/8051-Basics/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task  1.1 Architecture  Von Neumann: data and code">
+<meta property="og:description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547102397076.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547102616673.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547103070904.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547103440872.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547116577466.png">
-<meta property="og:updated_time" content="2019-01-10T10:37:33.608Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547123335060.png">
+<meta property="og:updated_time" content="2019-01-10T14:18:46.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8051 Basics">
-<meta name="twitter:description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task  1.1 Architecture  Von Neumann: data and code">
+<meta name="twitter:description" content="1 Embedded System Introduction  An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/10/8051-Basics/1547102397076.png">
 
 
@@ -413,7 +414,7 @@
                 
               
 
-              <time title="Created: 2019-01-10 13:18:00 / Modified: 18:37:33" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:00+08:00">2019-01-10</time>
+              <time title="Created: 2019-01-10 13:18:00 / Modified: 22:18:46" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:00+08:00">2019-01-10</time>
             
 
             
@@ -480,6 +481,7 @@
 <blockquote>
 <p>An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="architecture">1.1 Architecture</h3>
 <ul>
 <li><strong>Von Neumann</strong>: data and code lie in the <strong>same</strong> memory blocks</li>
@@ -538,7 +540,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>SP</code>(8-bit)</td>
-<td style="text-align: center;">Stack Pointer: the location of the stack's tail</td>
+<td style="text-align: center;">Stack Pointer: the location of the stack's tail. Initially, the SP register contains value <strong>07</strong> to point to location 08 as the first location being used for the stack by the 8051</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>PSW</code>(8-bit)</td>
@@ -581,6 +583,151 @@
 <img src="/2019/01/10/8051-Basics/1547116577466.png" alt="1547116577466"><figcaption>1547116577466</figcaption>
 </figure></li>
 </ul>
+<h3 id="hardware">2.3 Hardware</h3>
+<p>Totally 40 pins</p>
+<ul>
+<li><span class="math inline">\(4\times8\)</span> ports</li>
+<li><span class="math inline">\(8\)</span> : <code>Vcc</code> ,<code>GND</code>, <code>XTAL1</code>, <code>XTAL2</code>, <code>EA</code>, <code>ALE</code>, <code>PSEN</code></li>
+<li>default: input. 0 written to a port <span class="math inline">\(\to\)</span> output; 1 written to a port <span class="math inline">\(\to\)</span> input</li>
+</ul>
+<h4 id="port-0">2.3.1 Port 0</h4>
+<p>An open drain:</p>
+<ul>
+<li>we normally connect P0 to 10K-ohm <strong>pull-up resistors</strong> to use it as an <strong>input or outpu</strong>t port</li>
+<li>be used as both address and data, designated as AD0-AD7</li>
+</ul>
+<h4 id="port-1">2.3.2 Port 1</h4>
+<p>Can be used either as input or output</p>
+<ul>
+<li>It <strong>doesn't require</strong> pull-up resistors because they are <strong>already</strong> connected internally</li>
+</ul>
+<h4 id="port-2">2.3.3 Port 2</h4>
+<p>Similar to Port 1</p>
+<ul>
+<li>It must be used <strong>along with P0</strong> to provide the 16-bit address for the external memory. Port 2 is used for upper 8-bit of the 16 bits address</li>
+</ul>
+<h4 id="port-3">2.3.4 Port 3</h4>
+<p>Similar to Port 1</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">P3 Bit</th>
+<th style="text-align: center;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">P3.0</td>
+<td style="text-align: center;">RxD</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P3.1 &lt;</td>
+<td style="text-align: center;">TxD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">P3.2 &lt;</td>
+<td style="text-align: center;">Complement of INT0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P3.3 &lt;</td>
+<td style="text-align: center;">INT1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">P3.4 &lt;</td>
+<td style="text-align: center;">T0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P3.5 &lt;</td>
+<td style="text-align: center;">T1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">P3.6 &lt;</td>
+<td style="text-align: center;">WR</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P3.7 &lt;</td>
+<td style="text-align: center;">Complement of RD</td>
+</tr>
+</tbody>
+</table>
+<h4 id="other">2.3.5 Other</h4>
+<ul>
+<li><p><code>RST</code>: <strong>Power-On Reset</strong> To ensure a valid input of Reset, the high pulse must be <strong>high</strong> for a <strong>minimum of two machine cycles</strong></p></li>
+<li><code>EA</code>: (<strong>External Access</strong>) Applying a <strong>low pulse</strong>, it gets activated</li>
+<li><code>PSEN</code>: (<strong>Program store Enable</strong>) Applying a <strong>low pulse</strong>, it gets activated</li>
+<li>Single-Bit Instructions
+<ul>
+<li>SETB</li>
+</ul></li>
+</ul>
+<h3 id="timers">2.4 Timers</h3>
+<p>8051 has 2 timers, <code>Timer 0</code> and <code>Timer 1</code></p>
+<ul>
+<li>Both <code>Timer 0 and 1</code> are 16-bit wide</li>
+<li>2 separate 8-bit registers <code>TH0\1</code> and <code>TL0\1</code></li>
+</ul>
+<h4 id="tmod">2.4.1 TMOD</h4>
+<figure>
+<img src="/2019/01/10/8051-Basics/1547123335060.png" alt="1547123335060"><figcaption>1547123335060</figcaption>
+</figure>
+<ul>
+<li><p><code>Gate</code>: the timer only runs while INT(0,1) is high. Control the onof the timers</p>
+<ul>
+<li>Software: SETB TR0  CLR TR0</li>
+<li>Hardware: <code>Gate</code>=1</li>
+</ul></li>
+<li><p><code>C/T</code> : Counter/Timer select bit.</p>
+<ul>
+<li>=0: Timers .Be incremented with every <strong>machine cycle</strong></li>
+<li>=1: Counter</li>
+</ul></li>
+<li><p>Mode</p>
+<p><code>TF0\1</code> will be set 1 if Timer has overflowed.</p>
+<ul>
+<li>0: <strong>13-bit</strong> timer mode (8 bits of TH1 and 5 bits of TL1)</li>
+<li>1: <strong>16-bit</strong> timer mode</li>
+<li>2: <strong>8-bit Auto Reload</strong> : Overflow form <code>TL1</code> set <code>TF1</code>(1) and reload <code>TL1</code> with <code>TH1</code></li>
+</ul></li>
+</ul>
+<h3 id="interrupts">2.5 Interrupts</h3>
+<p>For every interrupt, there must be an interrupt service routine (ISR), or <strong>interrupt handler</strong></p>
+<h4 id="process">2.5.1 Process</h4>
+<ol type="1">
+<li><strong>Close</strong> currently executing instruction and <strong>save</strong> the PC in stack</li>
+<li><strong>Jump</strong> to memory location of the interrupt vector table and <strong>execute</strong> ISR</li>
+<li><strong>Get</strong> PC from stack, <strong>execute</strong> from that address</li>
+</ol>
+<h4 id="priority">2.5.2 Priority</h4>
+<p>We can alter the priority by programming a register called <code>IP</code> (8-bit)(interrupt priority).</p>
+<p>default: |Interrupt|Priority|Meaning| | ---- | ---- | ------------------------------------------------ | | PT1 | IP.3 | Defines the Timer 1 interrupt priority level. | | PX1 | IP.2 | Defines the External Interrupt 1 priority level. | | PT0 | IP.1 | Defines the Timer 0 interrupt priority level. | | PX0 | IP.0 | Defines the External Interrupt 0 priority level. |</p>
+<h4 id="enabling">2.5.3 Enabling</h4>
+<p>We can enable interrupt by programming a register called <code>IE</code>(8-bit)(interrupt enable).</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">EA</th>
+<th style="text-align: center;">-</th>
+<th style="text-align: center;">ET2</th>
+<th style="text-align: center;">ES</th>
+<th style="text-align: center;">ET1</th>
+<th style="text-align: center;">EX1</th>
+<th style="text-align: center;">ET0</th>
+<th style="text-align: center;">EX0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Global</td>
+<td style="text-align: center;">Undefined</td>
+<td style="text-align: center;">Timer 2</td>
+<td style="text-align: center;">Serial port</td>
+<td style="text-align: center;">Timer 1</td>
+<td style="text-align: center;">External 1</td>
+<td style="text-align: center;">Timer 0</td>
+<td style="text-align: center;">External 0</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -816,7 +963,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#embedded-system-introduction"><span class="nav-text">1 Embedded System Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-text">1.1 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-set"><span class="nav-text">1.2 Instruction Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">2 8051 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#registers"><span class="nav-text">2.1 Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addressing-modes"><span class="nav-text">2.2 Addressing Modes</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#embedded-system-introduction"><span class="nav-text">1 Embedded System Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-text">1.1 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-set"><span class="nav-text">1.2 Instruction Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">2 8051 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#registers"><span class="nav-text">2.1 Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addressing-modes"><span class="nav-text">2.2 Addressing Modes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hardware"><span class="nav-text">2.3 Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#port-0"><span class="nav-text">2.3.1 Port 0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#port-1"><span class="nav-text">2.3.2 Port 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#port-2"><span class="nav-text">2.3.3 Port 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#port-3"><span class="nav-text">2.3.4 Port 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#other"><span class="nav-text">2.3.5 Other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timers"><span class="nav-text">2.4 Timers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tmod"><span class="nav-text">2.4.1 TMOD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interrupts"><span class="nav-text">2.5 Interrupts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#process"><span class="nav-text">2.5.1 Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#priority"><span class="nav-text">2.5.2 Priority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#enabling"><span class="nav-text">2.5.3 Enabling</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
