@@ -562,6 +562,633 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/8051-Interface/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/12/8051-Interface/" class="post-title-link" itemprop="http://yoursite.com/index.html">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-12 20:37:26" itemprop="dateCreated datePublished" datetime="2019-01-12T20:37:26+08:00">2019-01-12</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/STM32-Basics/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/12/STM32-Basics/" class="post-title-link" itemprop="http://yoursite.com/index.html">STM32 Basics</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-12 15:44:00 / Modified: 20:35:21" itemprop="dateCreated datePublished" datetime="2019-01-12T15:44:00+08:00">2019-01-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="命名规则">1 命名规则</h2>
+<p><strong>STM32F103C8T6</strong></p>
+<ul>
+<li>STM：基于ARM®的32位微控制器</li>
+<li>F：通用类型</li>
+<li>103：增强型</li>
+<li>C：48脚</li>
+<li>8：64K字节的闪存存储器</li>
+<li>T：LQFP封装</li>
+<li>6：工业级温度范围，-40°C~85°C</li>
+</ul>
+<h2 id="rcc">2 RCC</h2>
+<p><strong>R</strong>eset and <strong>C</strong>lock <strong>C</strong>ontrol——复位和时钟控制</p>
+<h3 id="复位">2.1 复位</h3>
+<p>三种不同方式，影响的区域不同</p>
+<ul>
+<li>系统复位：除时钟控制器寄存器中的复位标志位和备份区域</li>
+<li>上电复位：除备份区域</li>
+<li>备份区域复位：只影响备份区域</li>
+</ul>
+<h3 id="时钟">2.2 时钟</h3>
+<p>三种不同的时钟来源，用来驱动系统时钟</p>
+<ul>
+<li>HSI(高速内部时钟信号)：由内部8MHz的RC振荡器产生</li>
+<li>HSE(高速外部时钟信号)：在这个模式里，必须提供外部时钟。它的频率最高可达25MHz</li>
+<li><strong>PLL</strong>(锁相环倍频输出)：用来倍频HSI RC的输出时钟或HSE晶体输出时钟
+<ul>
+<li>实验因为使用USB模块，其需要一个48MHz的时钟源，只能从PLL输出端获取，因此我们实验时只能使用此模式</li>
+</ul></li>
+</ul>
+<p>编程时，要使用<em>某个IO口</em>或者<em>外设</em>时就必须要对相应的时钟进行<em>使能</em></p>
+<h2 id="gpio">3 GPIO</h2>
+<h3 id="模式">3.1 模式</h3>
+<p>有三种模式</p>
+<ul>
+<li>通用输出
+<ul>
+<li>推挽(有上拉电阻)</li>
+<li>开漏(直接输出)</li>
+</ul></li>
+<li>复用功能输出
+<ul>
+<li>推挽</li>
+<li>开漏</li>
+</ul></li>
+<li>输入</li>
+</ul>
+<h3 id="复用功能输出">3.2 复用功能输出</h3>
+<p>因为板子上有很多外设（<code>ADC</code>  <code>DAC</code>  <code>UART</code> 等），为了节省引脚，所以将一些GPIO口作为这些外设的输出引脚。比如说，为了实现电脑和STM32的通信，<code>PA9</code>和<code>PA10</code>就被复用作为<code>UART1</code>的发送接收引脚了</p>
+<p>3.3 重映射</p>
+<blockquote>
+<p>每个内置外设都有若干个输入输出引脚，一般这些引脚的输出端口都是固定不变的，为了让设计工程师可以更好地安排引脚的走向和功能，在STM32中引入了外设引脚重映射的概念，即一个外设的引脚除了具有默认的端口外，还可以通过设置重映射寄存器的方式，把这个外设的引脚映射到其它的端口。</p>
+</blockquote>
+<p>比如，<code>UART1</code> 的 <code>Tx</code> , <code>Rx</code> 引脚在 <code>PA9</code> 和 <code>PA10</code> 上，但是同时它有两个映射端口<code>PB6</code> ，<code>PB7</code>。开启重映射，<code>PB6</code> 和<code>PB7</code> 同样可以使用UART11。</p>
+<h2 id="中断和事件">4 中断和事件</h2>
+<h3 id="nvic">4.1 NVIC</h3>
+<p>嵌套的向量式中断控制器</p>
+<h3 id="exti">4.2 EXTI</h3>
+<p>外部中断/事件控制器</p>
+<p>能产生事件/中断请求的边沿检测器。每个输入线可以独立地配置输入类型(脉冲或挂起)和对应的触发事件(上升沿或下降沿或者双边沿都触发)。</p>
+<h2 id="定时器">5 定时器</h2>
+<h3 id="普通定时器timx2345">5.1 普通定时器TIMx(2\3\4\5)</h3>
+<p>通用定时器是一个通过<strong>可编程预分频</strong>器驱动的16位自动装载<strong>计数器</strong>构成。可以用来测量输入信号的脉冲长度或者产生输出波形。</p>
+<p>对定时器的修改主要通过改变3个定时器来实现</p>
+<ul>
+<li>计数器寄存器(<code>TIMx_CNT</code>)</li>
+<li>预分频器寄存器 (<code>TIMx_PSC</code>)
+<ul>
+<li>1-65536</li>
+</ul></li>
+<li>自动装载寄存器 (<code>TIMx_ARR</code>)</li>
+</ul>
+<h2 id="usart">6 USART</h2>
+<p><em>通用同步异步收发器</em> 支持全双工同步异步数据交换，使用多缓冲配置器的DMA方式，可以实现高速数据通信。</p>
+<p>任何USART双向通信至少需要两个脚：接收数据输入(<code>RX</code>)和发送数据输出(<code>TX</code>)。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/8051-Instructions/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/11/8051-Instructions/" class="post-title-link" itemprop="http://yoursite.com/index.html">8051 Instructions</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-11 23:09:00" itemprop="dateCreated datePublished" datetime="2019-01-11T23:09:00+08:00">2019-01-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-12 21:57:03" itemprop="dateModified" datetime="2019-01-12T21:57:03+08:00">2019-01-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Embedded-System/8051/" itemprop="url" rel="index"><span itemprop="name">8051</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="overall">1 Overall</h2>
+<p>共性：</p>
+<ol type="1">
+<li>立即数不能作为<strong>目的操作数</strong></li>
+<li>以<code>A</code>为目的操作数的指令会影响<code>Parity</code></li>
+<li><code>Rn</code>与<code>Rn</code>、<code>Rn</code>与<code>@Ri</code>、<code>@Ri</code>与<code>@Ri</code>不能同时出现在指令的源、目的操作数中。</li>
+</ol>
+<p>操作数的表现形式</p>
+<ul>
+<li><strong>内部RAM：<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code></strong></li>
+<li><strong>外部RAM：<code>@DPTR</code>、<code>@Ri</code></strong></li>
+<li><strong>ROM：<code>@A+DPTR</code>、<code>@A+PC</code></strong></li>
+</ul>
+<h2 id="数据传送指令">2 数据传送指令</h2>
+<p>除以累加器<code>A</code>为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。</p>
+<h3 id="内部ram">2.1 内部RAM</h3>
+<ul>
+<li><strong>MOV</strong></li>
+<li>在<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code>之间互传
+<ul>
+<li>除了<em><code>Rn</code>之间</em>、<em><code>Rn</code>与<code>@Ri</code>之间</em>、<em><code>@Ri</code>之间</em></li>
+<li><code>direct</code>可以自己传自己</li>
+</ul></li>
+</ul>
+<h3 id="外部ram">2.2 外部RAM</h3>
+<ul>
+<li><strong>MOVX</strong></li>
+<li>其中必有一个为<code>A</code></li>
+<li>另外一个操作数（在片外）：
+<ul>
+<li><code>@Ri</code>，片外低256字节</li>
+<li><code>@DPTR</code>，片外64K</li>
+</ul></li>
+</ul>
+<h3 id="rom">2.3 ROM</h3>
+<ul>
+<li><strong>MOVC</strong></li>
+<li>都是读入<code>A</code>中</li>
+<li>只有两种
+<ul>
+<li><code>@A+DPTR</code> ：<code>DPTR</code>相当于表的位置，<code>A</code>=欲查数值距离表首地址的值</li>
+<li><code>@A+PC</code>：<code>PC</code>相当于表的位置，<code>A</code>=表首地址－当前指令的<code>PC</code>值－1</li>
+</ul></li>
+</ul>
+<h2 id="算术运算">3 算术运算</h2>
+<p>除了<code>++</code>和<code>--</code>以外都影响标志位</p>
+<ol type="1">
+<li><strong>INC</strong>  <strong>DEC</strong>：只有<code>DPTR</code>不能--</li>
+<li><strong>ADD</strong>  <strong>ADDC</strong>  <strong>SUBB</strong>
+<ul>
+<li>都存入<code>A</code>，只有<code>DPTR</code>不能进行运算</li>
+<li><strong>ADDC</strong>：(A)<span class="math inline">\(\leftarrow\)</span>(A)+(Cy)+(第二操作数)</li>
+<li><strong>SUBB</strong>: (A)<span class="math inline">\(\leftarrow\)</span> (A)－(Cy)－(第二操作数)</li>
+</ul></li>
+<li><strong>MUL</strong>   <strong>DIV</strong>
+<ol type="1">
+<li><strong>MUL</strong>: 低八位进<code>A</code>，高8位进<code>B</code></li>
+<li><strong>DIV</strong>：整数进<code>A</code>，余数进<code>B</code></li>
+</ol></li>
+</ol>
+<h2 id="逻辑运算">4 逻辑运算</h2>
+<p>目的操作数是A时影响P标志位。除了两条带进位的循环移位指令影响C标志外，其余均不影响PSW中的各标志位。</p>
+<ol type="1">
+<li><p><strong>ANL</strong>  <strong>ORL</strong>  <strong>XRL</strong></p></li>
+<li><p><strong>RL</strong>  <strong>RR</strong>  <strong>RLC</strong>  <strong>RRC</strong></p>
+<figure>
+<img src="/2019/01/11/8051-Instructions/1547300112691.png" alt="1547300112691"><figcaption>1547300112691</figcaption>
+</figure></li>
+<li><p><strong>CLR</strong>  <strong>CPL</strong></p></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/8051-Basics/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1663,563 +2290,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/ADS-Queues/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/03/ADS-Queues/" class="post-title-link" itemprop="http://yoursite.com/index.html">PADS-Queues</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-03T00:00:00+08:00">2019-01-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-07 17:06:21" itemprop="dateModified" datetime="2019-01-07T17:06:21+08:00">2019-01-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS & Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<h3 id="queues">1.1 Queues</h3>
-<blockquote>
-<p>A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, commonly called the “front.”</p>
-</blockquote>
-<ul>
-<li><p>Example: wait in a line for a movie/ OS use queues control processes</p></li>
-<li><p>Usage: keep in order</p>
-<figure>
-<img src="/2019/01/03/ADS-Queues/1546447640606.png" alt="1546447640606"><figcaption>1546447640606</figcaption>
-</figure></li></ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/03/ADS-Queues/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Force/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/Robotics-Force/" class="post-title-link" itemprop="http://yoursite.com/index.html">Robotics-Force Control</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-11 22:14:41" itemprop="dateModified" datetime="2019-01-11T22:14:41+08:00">2019-01-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<p>Mere position control is not suffice is contact is made between end-effector and environment.</p>
-<p>So introduce <strong>hybrid position/force controller</strong> to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/01/Robotics-Force/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Nonlinear/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/Robotics-Nonlinear/" class="post-title-link" itemprop="http://yoursite.com/index.html">Robotics-Nonlinear Control</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-01 00:00:00 / Modified: 15:58:40" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<p>In linear control, we modeled the manipulator by <span class="math inline">\(n\)</span> independent second-order differential equations.</p>
-<p>In this chapter, we will base our controller design on the <span class="math inline">\(n \times 1\)</span> vector differential equation</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/01/Robotics-Nonlinear/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2267,7 +2337,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
