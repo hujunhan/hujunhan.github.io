@@ -9,9 +9,16 @@
       </categories>
   </entry>
   <entry>
-    <title></title>
+    <title><![CDATA[8051 Interface]]></title>
     <url>%2F2019%2F01%2F12%2F8051-Interface%2F</url>
     <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Embedded System</category>
+        <category>8051</category>
+      </categories>
+      <tags>
+        <tag>8051</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[STM32 Basics]]></title>
@@ -28,7 +35,7 @@
   <entry>
     <title><![CDATA[8051 Instructions]]></title>
     <url>%2F2019%2F01%2F11%2F8051-Instructions%2F</url>
-    <content type="text"><![CDATA[1 Overall 共性： 立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。 操作数的表现形式 内部RAM：A、Rn、@Ri、direct、#data 外部RAM：@DPTR、@Ri ROM：@A+DPTR、@A+PC 2 数据传送指令 除以累加器A为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。 2.1 内部RAM MOV 在A、Rn、@Ri、direct、#data之间互传 除了Rn之间、Rn与@Ri之间、@Ri之间 direct可以自己传自己 2.2 外部RAM MOVX 其中必有一个为A 另外一个操作数（在片外）： @Ri，片外低256字节 @DPTR，片外64K 2.3 ROM MOVC 都是读入A中 只有两种 @A+DPTR ：DPTR相当于表的位置，A=欲查数值距离表首地址的值 @A+PC：PC相当于表的位置，A=表首地址－当前指令的PC值－1 3 算术运算 除了++和--以外都影响标志位 INC DEC：只有DPTR不能-- ADD ADDC SUBB 都存入A，只有DPTR不能进行运算 ADDC：(A)\(\leftarrow\)(A)+(Cy)+(第二操作数) SUBB: (A)\(\leftarrow\) (A)－(Cy)－(第二操作数) MUL DIV MUL: 低八位进A，高8位进B DIV：整数进A，余数进B 4 逻辑运算 目的操作数是A时影响P标志位。除了两条带进位的循环移位指令影响C标志外，其余均不影响PSW中的各标志位。 ANL ORL XRL RL RR RLC RRC 1547300112691 CLR CPL]]></content>
+    <content type="text"><![CDATA[1 Overall 共性： 立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。 操作数的表现形式 内部RAM：A、Rn、@Ri、direct、#data 外部RAM：@DPTR、@Ri ROM：@A+DPTR、@A+PC 2 数据传送指令 除以累加器A为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。 2.1 内部RAM MOV 在A、Rn、@Ri、direct、#data之间互传 除了Rn之间、Rn与@Ri之间、@Ri之间 direct可以自己传自己 2.2 外部RAM MOVX 其中必有一个为A 另外一个操作数（在片外）： @Ri，片外低256字节 @DPTR，片外64K 2.3 ROM MOVC 都是读入A中 只有两种 @A+DPTR ：DPTR相当于表的位置，A=欲查数值距离表首地址的值 @A+PC：PC相当于表的位置，A=表首地址－当前指令的PC值－1 3 算术运算 除了++和--以外都影响标志位 INC DEC：只有DPTR不能-- ADD ADDC SUBB 都存入A，只有DPTR不能进行运算 ADDC：(A)\(\leftarrow​\)(A)+(Cy)+(第二操作数) SUBB: (A)\(\leftarrow\) (A)－(Cy)－(第二操作数) MUL DIV MUL: 低八位进A，高8位进B DIV：整数进A，余数进B 4 逻辑运算 目的操作数是A时影响P标志位。除了两条带进位的循环移位指令影响C标志外，其余均不影响PSW中的各标志位。 ANL ORL XRL RL RR RLC RRC 1547300112691 CLR CPL]]></content>
       <categories>
         <category>Embedded System</category>
         <category>8051</category>
