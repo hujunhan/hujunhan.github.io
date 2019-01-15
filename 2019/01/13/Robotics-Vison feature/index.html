@@ -104,29 +104,25 @@
 
 
 
-  <meta name="description" content="1 Introduction  A process that transforms one or more input images into an output image.  Main purpose: enhance an image for human viewing">
+  <meta name="description" content="1 Introduction">
 <meta name="keywords" content="robotics,vision">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Robotics-Images and Image Processing">
-<meta property="og:url" content="http://yoursite.com/2019/01/07/Robotics-Image/index.html">
+<meta property="og:title" content="Robotics-Vision Feature Extraction">
+<meta property="og:url" content="http://yoursite.com/2019/01/13/Robotics-Vison feature/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Introduction  A process that transforms one or more input images into an output image.  Main purpose: enhance an image for human viewing">
+<meta property="og:description" content="1 Introduction">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/01/07/Robotics-Image/1546862512496.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/07/Robotics-Image/1546869040441.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/07/Robotics-Image/1546870183650.png">
-<meta property="og:updated_time" content="2019-01-13T07:03:44.978Z">
+<meta property="og:updated_time" content="2019-01-13T07:10:31.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robotics-Images and Image Processing">
-<meta name="twitter:description" content="1 Introduction  A process that transforms one or more input images into an output image.  Main purpose: enhance an image for human viewing">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/07/Robotics-Image/1546862512496.png">
+<meta name="twitter:title" content="Robotics-Vision Feature Extraction">
+<meta name="twitter:description" content="1 Introduction">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/07/Robotics-Image/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/13/Robotics-Vison feature/">
 
 
 
@@ -136,7 +132,7 @@
   };
 </script>
 
-  <title>Robotics-Images and Image Processing | Whatever</title>
+  <title>Robotics-Vision Feature Extraction | Whatever</title>
   
 
 
@@ -370,7 +366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/Robotics-Image/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/Robotics-Vison feature/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junhan Hu">
@@ -387,7 +383,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Robotics-Images and Image Processing
+          <h1 class="post-title" itemprop="name headline">Robotics-Vision Feature Extraction
 
               
             
@@ -413,24 +409,12 @@
                 
               
 
-              <time title="Created: 2019-01-07 17:03:00" itemprop="dateCreated datePublished" datetime="2019-01-07T17:03:00+08:00">2019-01-07</time>
+              <time title="Created: 2019-01-13 15:05:00 / Modified: 15:10:31" itemprop="dateCreated datePublished" datetime="2019-01-13T15:05:00+08:00">2019-01-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-13 15:03:44" itemprop="dateModified" datetime="2019-01-13T15:03:44+08:00">2019-01-13</time>
               
             
           </span>
@@ -489,79 +473,6 @@
 
       
         <h2 id="introduction">1 Introduction</h2>
-<blockquote>
-<p>A process that transforms one or more input images into an output image.</p>
-</blockquote>
-<p>Main purpose: <strong>enhance</strong> an image for <em>human</em> viewing</p>
-<a id="more"></a>
-<p>A image is just a matrix.</p>
-<ul>
-<li>Value: <code>uint8</code> ,[0-255] (from darkest to brightest)
-<ul>
-<li>if use complex algorithms, may use floating-point numbers</li>
-</ul></li>
-<li>Descibe: width <span class="math inline">\(\times\)</span> height</li>
-</ul>
-<h2 id="useful-algorithms">2 Useful Algorithms</h2>
-<blockquote>
-<p>Histogram: the number of times each pixel value occurs.</p>
-</blockquote>
-<p>If a picture was under-exposed, the histogram would shift to the left.</p>
-<p>Find peak in <em>nearby</em> x value:</p>
-<h2 id="monadic-diadic-operations">3 Monadic &amp; Diadic Operations</h2>
-<h3 id="monadic">3.1 Monadic</h3>
-<figure>
-<img src="/2019/01/07/Robotics-Image/1546862512496.png" alt="1546862512496"><figcaption>1546862512496</figcaption>
-</figure>
-<p>A function about single pixel. That is <span class="math inline">\(O [ u , v ] = f ( I [ u , v ] ) , \quad \forall ( u , v ) \in I\)</span></p>
-<p>Example:</p>
-<ul>
-<li>convert a color image to a greyscale image</li>
-<li>stretch</li>
-<li>normalize hist</li>
-</ul>
-<h3 id="diadic">3.2 Diadic</h3>
-<p>Example:</p>
-<ol type="1">
-<li><p>chroma-keying: superimpose the image of a person over some background.</p>
-<ol type="1">
-<li>gamma encoded image to linear tristimulus value.</li>
-<li>mask = g&lt;0.45 (just a example)</li>
-<li>mask.*image</li>
-</ol>
-<p>This an important problem in robot vision. But variation is a significant problem in real-world.</p></li>
-<li><p>Provess image sequence and <em>estimate</em> the <strong>background</strong></p>
-<ol type="1">
-<li><p><span class="math inline">\(\hat { \boldsymbol { B } } \langle k + 1 \rangle \leftarrow \hat { \boldsymbol { B } } \langle k \rangle + c ( \boldsymbol { I } \langle k \rangle - \hat { \boldsymbol { B } } \langle k \rangle )\)</span> <span class="math display">\[
-c ( x ) = \left\{ \begin{aligned} \sigma , &amp; x &gt; \sigma \\ x , &amp; - \sigma \leq x \leq \sigma \\ - \sigma , &amp; x &lt; - \sigma \end{aligned} \right.
-\]</span></p></li>
-<li><figure>
-<img src="/2019/01/07/Robotics-Image/1546869040441.png" alt="1546869040441"><figcaption>1546869040441</figcaption>
-</figure></li>
-</ol></li>
-</ol>
-<h2 id="spatial-operations">4 Spatial Operations</h2>
-<p>Each pixel in the output image is a function of all pixels in a region <span class="math display">\[
-O [ u , v ] = f ( I [ u + i , v + j ] ) , \quad \forall ( i , j ) \in \mathcal { W } , \quad \forall ( u , v ) \in I
-\]</span> Spatial operations are <strong>powerful</strong> for the <strong>variety</strong> of possible function <span class="math inline">\(f ( \cdot )\)</span></p>
-<h3 id="linear">4.1 Linear</h3>
-<ul>
-<li><p>Smoothing</p>
-<ul>
-<li><p>ones(K)</p></li>
-<li><p>gaussian <span class="math inline">\(\mathrm { G } ( u , v ) = \frac { 1 } { 2 \pi \sigma ^ { 2 } } e ^ { - \frac { u ^ { 2 } + v ^ { 2 } } { 2 \sigma ^ { 2 } } }\)</span></p>
-<figure>
-<img src="/2019/01/07/Robotics-Image/1546870183650.png" alt="1546870183650"><figcaption>1546870183650</figcaption>
-</figure></li>
-</ul></li>
-<li><p>Edge Detection</p>
-<ul>
-<li><span class="math inline">\(p ^ { \prime } [ v ] = p [ v ] - p [ v - 1 ]\)</span></li>
-<li><span class="math inline">\(p ^ { \prime } [ v ] = \frac { 1 } { 2 } ( p [ v + 1 ] - p [ v - 1 ] )\)</span></li>
-<li>Sobel</li>
-<li>Canny</li>
-</ul></li>
-</ul>
 
       
     </div>
@@ -600,8 +511,8 @@ O [ u , v ] = f ( I [ u + i , v + j ] ) , \quad \forall ( i , j ) \in \mathcal {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/Rootics-Vison foundation/" rel="next" title="Robotics-Vision Foundation">
-                <i class="fa fa-chevron-left"></i> Robotics-Vision Foundation
+              <a href="/2019/01/12/8051-Interface/" rel="next" title="8051 Interface">
+                <i class="fa fa-chevron-left"></i> 8051 Interface
               </a>
             
           </div>
@@ -610,8 +521,8 @@ O [ u , v ] = f ( I [ u + i , v + j ] ) , \quad \forall ( i , j ) \in \mathcal {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/08/Math-LinearAlgebra/" rel="prev" title="Linear Algebra for Robotics">
-                Linear Algebra for Robotics <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/03/TODO/" rel="prev" title="TODO">
+                TODO <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -799,7 +710,7 @@ O [ u , v ] = f ( I [ u + i , v + j ] ) , \quad \forall ( i , j ) \in \mathcal {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useful-algorithms"><span class="nav-text">2 Useful Algorithms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#monadic-diadic-operations"><span class="nav-text">3 Monadic &amp; Diadic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#monadic"><span class="nav-text">3.1 Monadic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diadic"><span class="nav-text">3.2 Diadic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spatial-operations"><span class="nav-text">4 Spatial Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linear"><span class="nav-text">4.1 Linear</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li></ol></div>
             
 
           </div>
