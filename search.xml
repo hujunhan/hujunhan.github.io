@@ -59,19 +59,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Robotics-Vision Feature Extraction]]></title>
-    <url>%2F2019%2F01%2F13%2FRobotics-Vison%20feature%2F</url>
-    <content type="text"><![CDATA[1 Introduction]]></content>
-      <categories>
-        <category>Robotics</category>
-        <category>Robotics,Vison and Control Notes</category>
-      </categories>
-      <tags>
-        <tag>robotics</tag>
-        <tag>vision</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[STM32 Basics]]></title>
     <url>%2F2019%2F01%2F12%2FSTM32-Basics%2F</url>
     <content type="text"><![CDATA[1 命名规则 STM32F103C8T6 STM：基于ARM®的32位微控制器 F：通用类型 103：增强型 C：48脚 8：64K字节的闪存存储器 T：LQFP封装 6：工业级温度范围，-40°C~85°C 2 RCC Reset and Clock Control——复位和时钟控制 2.1 复位 三种不同方式，影响的区域不同 系统复位：除时钟控制器寄存器中的复位标志位和备份区域 上电复位：除备份区域 备份区域复位：只影响备份区域 2.2 时钟 三种不同的时钟来源，用来驱动系统时钟 HSI(高速内部时钟信号)：由内部8MHz的RC振荡器产生 HSE(高速外部时钟信号)：在这个模式里，必须提供外部时钟。它的频率最高可达25MHz PLL(锁相环倍频输出)：用来倍频HSI RC的输出时钟或HSE晶体输出时钟 实验因为使用USB模块，其需要一个48MHz的时钟源，只能从PLL输出端获取，因此我们实验时只能使用此模式 编程时，要使用某个IO口或者外设时就必须要对相应的时钟进行使能 3 GPIO 3.1 模式 有三种模式 通用输出 推挽(有上拉电阻) 开漏(直接输出) 复用功能输出 推挽 开漏 输入 3.2 复用功能输出 因为板子上有很多外设（ADC DAC UART 等），为了节省引脚，所以将一些GPIO口作为这些外设的输出引脚。比如说，为了实现电脑和STM32的通信，PA9和PA10就被复用作为UART1的发送接收引脚了 3.3 重映射 每个内置外设都有若干个输入输出引脚，一般这些引脚的输出端口都是固定不变的，为了让设计工程师可以更好地安排引脚的走向和功能，在STM32中引入了外设引脚重映射的概念，即一个外设的引脚除了具有默认的端口外，还可以通过设置重映射寄存器的方式，把这个外设的引脚映射到其它的端口。 比如，UART1 的 Tx , Rx 引脚在 PA9 和 PA10 上，但是同时它有两个映射端口PB6 ，PB7。开启重映射，PB6 和PB7 同样可以使用UART11。 4 中断和事件 4.1 NVIC 嵌套的向量式中断控制器 4.2 EXTI 外部中断/事件控制器 能产生事件/中断请求的边沿检测器。每个输入线可以独立地配置输入类型(脉冲或挂起)和对应的触发事件(上升沿或下降沿或者双边沿都触发)。 5 定时器 5.1 普通定时器TIMx(2\3\4\5) 通用定时器是一个通过可编程预分频器驱动的16位自动装载计数器构成。可以用来测量输入信号的脉冲长度或者产生输出波形。 对定时器的修改主要通过改变3个定时器来实现 计数器寄存器(TIMx_CNT) 预分频器寄存器 (TIMx_PSC) 1-65536 自动装载寄存器 (TIMx_ARR) 6 USART 通用同步异步收发器 支持全双工同步异步数据交换，使用多缓冲配置器的DMA方式，可以实现高速数据通信。 任何USART双向通信至少需要两个脚：接收数据输入(RX)和发送数据输出(TX)。]]></content>
@@ -229,9 +216,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Robotics-Force Control]]></title>
-    <url>%2F2019%2F01%2F01%2FRobotics-Force%2F</url>
-    <content type="text"><![CDATA[1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control. 2 Application of Robots to Assembly Tasks Spot welding Spray painting Pick and place operations Future: assembly-line tasks, force is extremely important. Currently, the dexterity of manipulators remains quite low and limit their appplication in the automated assembly area. If we can measure and control contact forces generated at the hand, we can imporove the performance without using bigger, heavier, and more expensive manipulator. Basic Idea Every manipulation task can be broken down into subtasks that are defined by a particular contact situation occurring between the manipulator end-effector (or tool) and the work environment. With each subtask, we can associate a set of constrains mechanical geometric]]></content>
+    <title><![CDATA[Robotics-Nonlinear Control]]></title>
+    <url>%2F2019%2F01%2F01%2FRobotics-Nonlinear%2F</url>
+    <content type="text"><![CDATA[1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vector differential equation 2 Nonlinear local linearization When nonlinearities are not severe, local linearization can be used in the neighborhood of an operating point. But, manipulator move among regions so widely separated that no linearization valid for all regions can be found. moving linearization move the operating point with the manipulator as it moves, always linearizing about the desired position of the manipulator deal with the nonlinear directly the poles of the system will &quot;move&quot;, so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped Example: nonlinear spring open loop equation: \(m \ddot { x } + b \dot { x } + q x ^ { 3 } = f\) servo portion: \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) model-based portion: changed ​ \(\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}\) ##3 Control problem for Manipulators For manipulator, the model is complicated \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) \] where $$ is the position of all the joints. If we add friction to the model, we get \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \] where we can use our partitioned controller again: \[ \tau = \alpha \tau ^ { \prime } + \beta \] and we choose \[ \begin{aligned} \alpha &amp; = M ( \Theta ) \\ \beta &amp; = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned} \] servo law: \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E\) where \(E = \Theta _ { d } - \Theta\) finally we get \[ \ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0 \] This solve the problem in theory, but not in practice because computer do it by discrete nature inaccuracy in manipulator model 4 Current industrial-robot Control System Parameters may be inaccurate. So model-based control law maybe doesn't make sense For economic reasons, error driven is more usual. individual-joint PID control average gain are chosen \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt\) 5 Lyapunov Stability Analysis A analytically way to evluate stability but not the performance.]]></content>
       <categories>
         <category>Robotics</category>
         <category>Introduction to Robotics Notes</category>
@@ -242,9 +229,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Robotics-Nonlinear Control]]></title>
-    <url>%2F2019%2F01%2F01%2FRobotics-Nonlinear%2F</url>
-    <content type="text"><![CDATA[1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vector differential equation 2 Nonlinear local linearization When nonlinearities are not severe, local linearization can be used in the neighborhood of an operating point. But, manipulator move among regions so widely separated that no linearization valid for all regions can be found. moving linearization move the operating point with the manipulator as it moves, always linearizing about the desired position of the manipulator deal with the nonlinear directly the poles of the system will &quot;move&quot;, so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped Example: nonlinear spring open loop equation: \(m \ddot { x } + b \dot { x } + q x ^ { 3 } = f\) servo portion: \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) model-based portion: changed ​ \(\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}\) ##3 Control problem for Manipulators For manipulator, the model is complicated \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) \] where $$ is the position of all the joints. If we add friction to the model, we get \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \] where we can use our partitioned controller again: \[ \tau = \alpha \tau ^ { \prime } + \beta \] and we choose \[ \begin{aligned} \alpha &amp; = M ( \Theta ) \\ \beta &amp; = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned} \] servo law: \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E\) where \(E = \Theta _ { d } - \Theta\) finally we get \[ \ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0 \] This solve the problem in theory, but not in practice because computer do it by discrete nature inaccuracy in manipulator model 4 Current industrial-robot Control System Parameters may be inaccurate. So model-based control law maybe doesn't make sense For economic reasons, error driven is more usual. individual-joint PID control average gain are chosen \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt\) 5 Lyapunov Stability Analysis A analytically way to evluate stability but not the performance.]]></content>
+    <title><![CDATA[Robotics-Force Control]]></title>
+    <url>%2F2019%2F01%2F01%2FRobotics-Force%2F</url>
+    <content type="text"><![CDATA[1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control. 2 Application of Robots to Assembly Tasks Spot welding Spray painting Pick and place operations Future: assembly-line tasks, force is extremely important. Currently, the dexterity of manipulators remains quite low and limit their appplication in the automated assembly area. If we can measure and control contact forces generated at the hand, we can imporove the performance without using bigger, heavier, and more expensive manipulator. Basic Idea Every manipulation task can be broken down into subtasks that are defined by a particular contact situation occurring between the manipulator end-effector (or tool) and the work environment. With each subtask, we can associate a set of constrains mechanical geometric]]></content>
       <categories>
         <category>Robotics</category>
         <category>Introduction to Robotics Notes</category>
@@ -268,6 +255,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Robotics-Linear Control]]></title>
+    <url>%2F2018%2F12%2F27%2FRobotics-Linear%20Control%2F</url>
+    <content type="text"><![CDATA[1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution 1: Linear control system. In fact, non-linear is more usual, linear control is just a approximate methods It's resonable to make such approximation, so lineat control methods are the ones most often used in industrial practice. Learn linear first is good for later study 2 Control-Law Partitioning Partitioning Method (2 parts): model-based portion: make use of supposed knowledge of m,b,k, to make the system appear as a unit mass\(\to\) servo portion simple. servo portion: make use of feedback to modify the behavior of the system A open-loop equation of motion for the system: \[ m \ddot { x } + b \dot { x } + k x = f \] The model-based portion of the control: \[ f = \alpha f ^ { \prime } + \beta \] and we choose(because we want to make the ) \[ \begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array} \] finally we get \(\ddot { x } = f ^ { \prime }\) Graphiclly,we transform a system like this 1545907095978 into a system easier 1545907198498 What we need to do is design a control law to compute \(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\) so it yields \[ \ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0 \] Conclusion get the system‘s parameters find \(\alpha ,\beta\) calculate \(k_v,k_p\) depend on the requirement 3. Trajectory-Following Control Know: trajectory, a funciton of time \(x_d(t)\) and we can get $x_d, x_d $as well Define: \(e=x_d-x\) Design \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) Get: \(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) So, we can choose coefficients and design any response we want]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>control</tag>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[STM32-ADC]]></title>
     <url>%2F2018%2F12%2F27%2FSTM32-ADC%2F</url>
     <content type="text"><![CDATA[1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32 2 Independent Mode Single Channel, single conversion Example: Check if the battery voltage is succulent or not 1545842732972 Multichannel, single conversion Example: Can be used when starting system depends on some parameters Single Channel, continuous conversion Example: Run in background, so can be used as a monitor to check something all the time 1545842717710 Injected conversion Intended for use when conversion is triggered by an external event or by software. 1545843010338 3 Example Code 1234567891011121314151617181920212223242526272829303132333435363738394041void GPIOINIT_ADC()&#123; GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//ADC GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN; //模拟输入 GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz; GPIO_Init(GPIOB,&amp;GPIO_InitStructure);&#125;void RCCINIT_ADC()&#123; SystemInit(); RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE); RCC_ADCCLKConfig(RCC_PCLK2_Div6);//12M 最大14M 设置ADC时钟（ADCCLK）&#125;void ADCINIT_ADC()&#123; ADC_InitTypeDef ADC_InitStructure; ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; ADC_InitStructure.ADC_ScanConvMode = DISABLE; ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; ADC_InitStructure.ADC_NbrOfChannel = 1; ADC_Init(ADC1, &amp;ADC_InitStructure); ADC_TempSensorVrefintCmd(ENABLE); ADC_Cmd(ADC1,ENABLE); ADC_ResetCalibration(ADC1);//重置指定的ADC的校准寄存器 while(ADC_GetResetCalibrationStatus(ADC1));//获取ADC重置校准寄存器的状态 ADC_StartCalibration(ADC1);//开始指定ADC的校准状态 while(ADC_GetCalibrationStatus(ADC1));//获取指定ADC的校准程序 ADC_RegularChannelConfig(ADC1,ADC_Channel_8,1,ADC_SampleTime_239Cycles5);//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间 ADC_SoftwareStartConvCmd(ADC1, ENABLE);//使能或者失能指定的ADC的软件转换启动功能 while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);&#125;]]></content>
@@ -278,19 +278,6 @@
       <tags>
         <tag>STM32</tag>
         <tag>ADC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Robotics-Linear Control]]></title>
-    <url>%2F2018%2F12%2F27%2FRobotics-Linear%20Control%2F</url>
-    <content type="text"><![CDATA[1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: Howto casuse the manipulator acually to perform these desired motions. Solution 1: Linear control system. In fact, non-linear is more usual, linear control is just a approximate methods It's resonable to make such approximation, so lineat control methods are the ones most often used in industrial practice. Learn linear first is good for later study 2 Control-Law Partitioning Partitioning Method (2 parts): model-based portion: make use of supposed knowledge of m,b,k, to make the system appear as a unit mass\(\to\) servo portion simple. servo portion: make use of feedback to modify the behavior of the system A open-loop equation of motion for the system: \[ m \ddot { x } + b \dot { x } + k x = f \] The model-based portion of the control: \[ f = \alpha f ^ { \prime } + \beta \] and we choose(because we want to make the ) \[ \begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array} \] finally we get \(\ddot { x } = f ^ { \prime }\) Graphiclly,we transform a system like this 1545907095978 into a system easier 1545907198498 What we need to do is design a control law to compute \(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\) so it yields \[ \ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0 \] Conclusion get the system‘s parameters find \(\alpha ,\beta\) calculate \(k_v,k_p\) depend on the requirement 3. Trajectory-Following Control Know: trajectory, a funciton of time \(x_d(t)\) and we can get $x_d, x_d $as well Define: \(e=x_d-x\) Design \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) Get: \(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) So, we can choose coefficients and design any response we want]]></content>
-      <categories>
-        <category>Robotics</category>
-        <category>Introduction to Robotics Notes</category>
-      </categories>
-      <tags>
-        <tag>control</tag>
-        <tag>robotics</tag>
       </tags>
   </entry>
   <entry>
