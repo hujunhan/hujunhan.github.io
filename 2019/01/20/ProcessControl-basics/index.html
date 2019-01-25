@@ -114,12 +114,14 @@
 <meta property="og:site_name" content="Whatever">
 <meta property="og:description" content="1 概论 大多数生产过程的效益取决于控制的好坏，因此控制很重要。 大多数过程可以分解为一些基本环节，掌握这些环节之后我们就可以进行改造、控制，并预估性能。 总目标：对于任意外部干扰\(DV\)，通过调节操作变量\(MV\)，使被控变量\(CV/PV\)维持在设定值\(SP\)">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/01/20/ProcessControl-basics/1548120781249.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/20/ProcessControl-basics/1548121126143.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/20/ProcessControl-basics/1548070133934.png">
-<meta property="og:updated_time" content="2019-01-21T14:19:58.674Z">
+<meta property="og:updated_time" content="2019-01-22T04:58:40.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Process Control:Basics">
 <meta name="twitter:description" content="1 概论 大多数生产过程的效益取决于控制的好坏，因此控制很重要。 大多数过程可以分解为一些基本环节，掌握这些环节之后我们就可以进行改造、控制，并预估性能。 总目标：对于任意外部干扰\(DV\)，通过调节操作变量\(MV\)，使被控变量\(CV/PV\)维持在设定值\(SP\)">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/20/ProcessControl-basics/1548070133934.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/20/ProcessControl-basics/1548120781249.png">
 
 
 
@@ -430,7 +432,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-21 22:19:58" itemprop="dateModified" datetime="2019-01-21T22:19:58+08:00">2019-01-21</time>
+                <time title="Modified: 2019-01-22 12:58:40" itemprop="dateModified" datetime="2019-01-22T12:58:40+08:00">2019-01-22</time>
               
             
           </span>
@@ -666,7 +668,7 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
 <ul>
 <li>实现方式
 <ul>
-<li>相乘<span class="math inline">\(\times\)</span>方案：将流量作为设定值</li>
+<li>相乘<span class="math inline">\(\times​\)</span>方案：将流量作为设定值</li>
 <li>相除<span class="math inline">\(\div\)</span>方案：将比值作为设定值，尽量少用</li>
 </ul></li>
 <li>逻辑提降：双交叉控制</li>
@@ -787,7 +789,28 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
 <p>首先接近1的先配对，然后将这一通道断开</p>
 <h3 id="耦合系统中的控制器参数整定">6.2 耦合系统中的控制器参数整定</h3>
 <h3 id="解耦控制方案设计">6.3 解耦控制方案设计</h3>
-<p>本质：设计一个计算网络，用它去抵消过程中的关联，</p>
+<p>本质：设计一个计算网络，用它去抵消过程中的关联。</p>
+<p>基于方框图的解耦器：</p>
+<ul>
+<li><p><strong>串级解耦</strong></p>
+<figure>
+<img src="/2019/01/20/ProcessControl-basics/1548120781249.png" alt="1548120781249"><figcaption>1548120781249</figcaption>
+</figure>
+<ul>
+<li><p>初始化问题，怎么样设置初值以满足无扰动地从&quot;手动&quot;投入&quot;自动&quot;？</p>
+<p>根据<span class="math inline">\(u_1,u_2\)</span>观察框图，反推<span class="math inline">\(v_1,v_2\)</span></p></li>
+<li><p>运行约束问题，当<span class="math inline">\(u_1,u_2\)</span>中有一个受到比如控制阀上下限这样地约束，就不能很好地达到控制效果。</p></li>
+</ul></li>
+<li><p><strong>前馈解耦</strong></p>
+<figure>
+<img src="/2019/01/20/ProcessControl-basics/1548121126143.png" alt="1548121126143"><figcaption>1548121126143</figcaption>
+</figure>
+<p>因为串级解耦的一些问题，因此工业中常用<strong>前馈解耦</strong></p>
+<ul>
+<li>当某一变量受约束时，使相应控制回路等价于开环</li>
+<li>但是含有可能不稳定的回路</li>
+</ul></li>
+</ul>
 <h2 id="基于模型的控制">7 基于模型的控制</h2>
 <p>史密斯预估器：自己进行机理建模，将纯滞后给消除掉</p>
 <p>但是对于模型的准确度要求较高，因此改进加入预测误差滤波器<span class="math inline">\(G _ { f } ( s ) = \frac { 1 } { T _ { f } s + 1 }\)</span></p>
@@ -821,12 +844,12 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
 </figure>
 <h3 id="控制方案">9.3 控制方案</h3>
 <ul>
-<li><p>变量配对</p>
+<li><p><strong>变量配对</strong></p>
 <ul>
 <li>就近原则：<a href="顶部的操作变量来控制顶部的被控变量">上管上</a>，下管下</li>
 <li>耦合程度要低</li>
 </ul></li>
-<li><p>物料平衡控制</p>
+<li><p><strong>物料平衡控制</strong></p>
 <p>当精馏塔进料变化不大，或者纯度要求不高时，可采用<strong>纯物料平衡控制</strong></p>
 <ul>
 <li><span class="math inline">\(CV\)</span> ： <span class="math inline">\(L_D, L_B\)</span> 顶部和底部液位</li>
@@ -843,7 +866,7 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
 <li>不适合小回流比产品</li>
 </ul></li>
 </ul></li>
-<li><p>塔顶产品纯度控制</p>
+<li><p><strong>塔顶产品纯度控制</strong></p>
 <p>当精馏塔进料变化较大，或者纯度要求高时，可选择<strong>精馏段控制目标</strong>，塔底还是物料平衡控制</p>
 <ul>
 <li><span class="math inline">\(CV​\)</span>： <span class="math inline">\(L_D, L_B,T_R​\)</span> 顶部和底部液位，塔顶产品纯度</li>
@@ -908,8 +931,8 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/03/TODO/" rel="prev" title="TODO">
-                TODO <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/25/CG-WebGL/" rel="prev" title="2019 ICM D">
+                2019 ICM D <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -980,7 +1003,7 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1023,7 +1046,9 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1074,7 +1099,9 @@ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { 
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
