@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=6.6.0" color="#222">
+
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1 Introduction Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as frequentist statistics">
+<meta name="keywords" content="ml,bayes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML:Bayesian Learning">
+<meta property="og:url" content="http://yoursite.com/2019/01/16/CS/Machine Learning/ML-BayesianLearning/index.html">
+<meta property="og:site_name" content="Whatever">
+<meta property="og:description" content="1 Introduction Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as frequentist statistics">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/01/16/CS/Machine%20Learning/ML-BayesianLearning/1547637651952.png">
+<meta property="og:updated_time" content="2019-01-17T01:13:48.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ML:Bayesian Learning">
+<meta name="twitter:description" content="1 Introduction Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as frequentist statistics">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/16/CS/Machine%20Learning/ML-BayesianLearning/1547637651952.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/16/CS/Machine Learning/ML-BayesianLearning/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ML:Bayesian Learning | Whatever</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Whatever</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">only truth matters</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/CS/Machine Learning/ML-BayesianLearning/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ML:Bayesian Learning
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-16 13:29:00" itemprop="dateCreated datePublished" datetime="2019-01-16T13:29:00+08:00">2019-01-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-17 09:13:48" itemprop="dateModified" datetime="2019-01-17T09:13:48+08:00">2019-01-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="introduction">1 Introduction</h2>
+<p>Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as <strong><em>frequentist statistics</em></strong></p>
+<a id="more"></a>
+<ul>
+<li>An experiment with an <strong>infinite</strong> number of trials guarantees <span class="math inline">\(p\)</span> with <strong>absolute</strong> accuracy
+<ul>
+<li>It's <strong>not practial</strong> to conduct an experiment with an <strong>infinite</strong> number of trials</li>
+<li>deciding the value of this sufficient number of trials is a <strong>challenge</strong></li>
+</ul></li>
+<li>If we can determine the <strong><em>confidence</em></strong> of the estimated <span class="math inline">\(p\)</span> , it will allow us to decide whether to
+<ul>
+<li><strong>accept</strong> the conclusion</li>
+<li><strong>extend</strong> the experiment with more trials until it achieves sufficient confidence</li>
+</ul></li>
+<li><strong><em>prior beliefs</em></strong> (for example, coins are usually fair and the coin used is not made biased intentionally, therefore <span class="math inline">\(p≈0.5\)</span>)
+<ul>
+<li>play a significant role in shaping the outcome of a hypothesis test</li>
+<li>However, it ==can't== be used along with <em>frequentist statistics</em></li>
+</ul></li>
+</ul>
+<h2 id="bayesian-learning">2 Bayesian Learning</h2>
+<p>Consider the flip coin experiment, if you flip the coin <span class="math inline">\(10\)</span> times, there are 2 case:</p>
+<ul>
+<li><p>5 heads and 5 tails</p>
+<ul>
+<li>more confidence about that <span class="math inline">\(p=0.5​\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(x\)</span> head and <span class="math inline">\(10-x\)</span> tails</p>
+<p>Now you have 2 options</p>
+<ul>
+<li><em>frequentist statistics</em> :Neglect prior beliefs, just based on data</li>
+<li><em>Bayesian Learning</em> :Adjust your belief according to observation</li>
+</ul></li>
+</ul>
+<h3 id="bayes-theorem">2.1 Bayes' Theorem</h3>
+<p>Bayes’ theorem <span class="math display">\[
+P ( \theta | X ) = \frac { P ( X | \theta ) P ( \theta ) } { P ( X ) }
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P ( \theta )\)</span> Prior Probability is the probability of the hypothesis <span class="math inline">\(\theta\)</span> being true</li>
+<li><span class="math inline">\(P ( X | \theta )​\)</span> Likelihood is the conditional probability of the evidence given a hypothesis</li>
+<li><span class="math inline">\(P ( X )\)</span> Evidence :a summation (or integral) of the probabilities of all possible hypotheses</li>
+<li><span class="math inline">\(P ( \theta | X )​\)</span> Posteriori probability</li>
+</ul>
+<h3 id="application1-map">2.2 Application1: MAP</h3>
+<p>Used to confirm the valid hypothesis using posterior probabilities <span class="math display">\[
+\begin{aligned} \theta _ { M A P } &amp; = \operatorname { argmax } _ { \theta } P \left( \theta _ { i } | X \right) \\ &amp; = \operatorname { argmax } _ { \theta } \left( \frac { P ( X | \theta _ { i } ) P \left( \theta _ { i } \right) } { P ( X ) } \right) \end{aligned}
+\]</span> <span class="math inline">\(P(x)\)</span> is independent of <span class="math inline">\(\theta\)</span> . Therefore, we can simplify the $_{MAP} $ to <span class="math display">\[
+\theta _ { M A P } = \operatorname { argmax } _ { \theta } \left( P ( X | \theta _ { i } ) P \left( \theta _ { i } \right) \right)
+\]</span></p>
+<h3 id="how-to-achieve-the-goal">2.3 How to Achieve the Goal?</h3>
+<p>For the <span class="math inline">\(P ( X | \theta _ { i } )\)</span> part</p>
+<p>Use <span class="math inline">\(MLE\)</span></p>
+<p><span class="math display">\[
+\frac { d } { d \theta } \ln P (X | \theta ) = 0
+\]</span></p>
+<hr>
+<p>For the <span class="math inline">\(P \left( \theta _ { i } \right)\)</span> part</p>
+<p>if the hypothesis space is continuous, it will be <strong>endless</strong> hypothesis.</p>
+<p>So in practical, we use <strong>approximation</strong> techniques : <strong><em>Beta prior distribution</em></strong> <span class="math display">\[
+P ( \theta ) = \frac { \theta ^ { \alpha - 1 } ( 1 - \theta ) ^ { \beta - 1 } } { B ( \alpha , \beta ) }
+\]</span></p>
+<ul>
+<li><span class="math inline">\(B ( \alpha , \beta )\)</span> acts as the normalizing constant</li>
+</ul>
+<h3 id="example">2.4 Example</h3>
+<p>As a Binomial probability example <span class="math display">\[
+P ( k , N | \theta ) = \left( \begin{array} { c } { N } \\ { k } \end{array} \right) \theta ^ { k } ( 1 - \theta ) ^ { N - k }
+\]</span></p>
+<p><span class="math display">\[
+P ( \theta ) = \frac { \theta ^ { \alpha - 1 } ( 1 - \theta ) ^ { \beta - 1 } } { B ( \alpha , \beta ) }
+\]</span></p>
+<p>So the posterior <span class="math display">\[
+\begin{aligned} P ( \theta | N , k ) &amp; = \frac { P ( N , k | \theta ) \times P ( \theta ) } { P ( N , k ) } \\ &amp; = \frac { \left( \begin{array} { c } { N } \\ { k } \end{array} \right) } { B ( \alpha , \beta ) \times P ( N , k ) } \times \theta ^ { ( k + \alpha ) - 1 } ( 1 - \theta ) ^ { ( N + \beta - k ) - 1 } \end{aligned}
+\]</span> and consider it as a <strong>new</strong> <em>Beta prior distribution</em> <span class="math display">\[
+P ( \theta | N , k ) = \frac { \theta ^ { \alpha _ { n e w } - 1 } ( 1 - \theta ) ^ { \beta _ { n e w } - 1 } } { B \left( \alpha _ { n e w } , \beta _ { n e w } \right) }
+\]</span></p>
+<h2 id="bayes-optimal-classifier">3 Bayes Optimal Classifier</h2>
+<p>Given new <strong>instance</strong> <span class="math inline">\(x\)</span>, the hypothesis we get previously <span class="math inline">\(h _ { M A P } ( x )\)</span> may be not the most probable classification.</p>
+<blockquote>
+<p>e.g.1</p>
+<p><span class="math display">\[
+P \left( h _ { 1 } | D \right) = 0.4 , P \left( h _ { 2 } | D &gt;\right) = 0.3 , P \left( h _ { 3 } | D \right) = 0.3
+\]</span> New instance</p>
+<p><span class="math display">\[
+h _ { 1 } ( x ) = + , h _ { 2 } ( x ) = - , h _ { 3 } ( x ) = -
+\]</span></p>
+</blockquote>
+<p>Bayes optimal classifier tell us that we should find: <span class="math display">\[
+\arg \max _ { v _ { j } \in V } \sum _ { h _ { i } \in H } P \left( v _ { j } | h _ { i } \right) P \left( h _ { i } | D \right)
+\]</span></p>
+<blockquote>
+<p>e.g.1</p>
+<p><span class="math display">\[
+P \left( h _ { 1 } | D \right)  = 0.4 , P ( - | h _ { 1 } ) = 0 , &gt;P ( + | h _ { 1 } ) = 1 \\ P \left( h _ { 2 } | D \right) =  0.3 , &gt;P ( - | h _ { 2 } ) = 1 , P ( + | h _ { 2 } ) = 0 \\ P \left( h _ { &gt;3 } | D \right) =  0.3 , P ( - | h _ { 3 } ) = 1 , P ( + | h _ { 3 &gt;} ) = 0 
+\]</span> therefore <span class="math display">\[
+\begin{aligned} \sum _ { h _ { i } \in H } P ( + | h _ { i } ) P &gt;\left( h _ { i } | D \right) &amp; = .4 \\ \sum _ { h _ { i } \in H } P &gt;( - | h _ { i } ) P \left( h _ { i } | D \right) &amp; = .6 &gt;\end{aligned}
+\]</span> so we choose <span class="math inline">\(-\)</span> as the classification</p>
+</blockquote>
+<h2 id="navie-bayes-classifier">4 Navie Bayes Classifier</h2>
+<p>When to use:</p>
+<ul>
+<li>Large training set available</li>
+<li>Attributes are independent</li>
+<li>Used in <em>diagnosis</em> and <em>text classification</em></li>
+</ul>
+<p>Navie Bayes assumption： <span class="math display">\[
+P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) = \prod _ { i } P \left( a _ { i } | v _ { j } \right)
+\]</span> Bayes MAP <span class="math display">\[
+\begin{aligned} v _ { M A P } &amp; = \underset { v _ { j } \in V } { \operatorname { argmax } } \frac { P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) P \left( v _ { j } \right) } { P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } \right) } \\ &amp; = \underset { v _ { j } \in V } { \operatorname { argmax } } P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) P \left( v _ { j } \right) \end{aligned}
+\]</span> Navie Bayes Classifier <span class="math display">\[
+v _ { N B } = \underset { v _ { j } \in V } { \operatorname { argmax } } P \left( v _ { j } \right) \prod _ { i } P \left( a _ { i } | v _ { j } \right)
+\]</span></p>
+<h2 id="bayesian-belief-networks">5 Bayesian Belief Networks</h2>
+<p>Improve Navie Bayes Classifier:</p>
+<ul>
+<li>Attributes are independent <span class="math inline">\(\to\)</span> too restrictive</li>
+<li>So Bayes Nets describe conditional independence among <strong><em>subsets</em></strong></li>
+</ul>
+<blockquote>
+<p>Conditional Independence <span class="math display">\[
+P ( X | Y , Z ) = P ( X | Z )
+\]</span> e.g. <span class="math inline">\(P ( \text { Thunder } | \text { Rain, Lightning) } = P ( \text { Thunder } | \text {Lightning} )\)</span></p>
+</blockquote>
+<p>Bayes nets use cond. indep. to justify <span class="math display">\[
+\begin{aligned} P ( X , Y | Z ) &amp; = P ( X | Y , Z ) P ( Y | Z ) \\ &amp; = P ( X | Z ) P ( Y | Z ) \end{aligned}
+\]</span> A network</p>
+<figure>
+<img src="/2019/01/16/CS/Machine Learning/ML-BayesianLearning/1547637651952.png" alt="1547637651952"><figcaption>1547637651952</figcaption>
+</figure>
+<p>in general <span class="math display">\[
+P \left( y _ { 1 } , \ldots , y _ { n } \right) = \prod _ { i = 1 } ^ { n } P \left( y _ { i } | \text { Parents } \left( Y _ { i } \right) \right)
+\]</span> So, joint distribution is fully defined by <strong>graph</strong>, and <span class="math inline">\(P \left( y _ { i } | \text { Parents } \left( Y _ { i } \right) \right)\)</span></p>
+<hr>
+<p>Learning task:</p>
+<ul>
+<li>Graph structure might be <em>known</em> or <em>unknown</em></li>
+<li>Training data might provide <em>all</em> or <em>some</em> variables</li>
+</ul>
+<p>Case 1: known</p>
+<ul>
+<li>Simlilar to training neural network with hidden units</li>
+<li>Using gradient <strong>ascent</strong>
+<ul>
+<li>to <strong>maximizes</strong> <span class="math inline">\(P ( D | h )\)</span></li>
+</ul></li>
+<li>Using EM (Expection Maximization)
+<ul>
+<li>to <strong>maximizes</strong> <span class="math inline">\(E [ \ln P ( D | h ) ]\)</span></li>
+</ul></li>
+</ul>
+<p>Case 2: unknown</p>
+<ul>
+<li>Use greedy search to add/substact edges and nodes</li>
+<li>…… ==in research==</li>
+</ul>
+<h2 id="appendix-em">Appendix: EM</h2>
+<p>When to use? Data is only <strong>partially</strong> observable</p>
+<h3 id="question-definition">Question Definition</h3>
+<p>Given:</p>
+<ul>
+<li>Observed data <span class="math inline">\(X = \left\{ x _ { 1 } , \ldots , x _ { m } \right\}\)</span></li>
+<li>Unobserved data <span class="math inline">\(Z = \left\{ z _ { 1 } , \ldots , z _ { m } \right\}\)</span></li>
+<li>Probablity distribution <span class="math inline">\(P ( Y | h )\)</span>
+<ul>
+<li><span class="math inline">\(Y = \left\{ y _ { 1 } , \dots , y _ { m } \right\}\)</span> where <span class="math inline">\(y _ { i } = x _ { i } \cup z _ { i }\)</span></li>
+<li><span class="math inline">\(h\)</span> parameters</li>
+</ul></li>
+</ul>
+<p>Determin:</p>
+<p><span class="math inline">\(h​\)</span> that maximizes <span class="math inline">\(E [ \ln P ( Y | h ) ]​\)</span></p>
+<h3 id="general-method">General Method</h3>
+<p>Use <span class="math inline">\(h\)</span> and <span class="math inline">\(X\)</span> <strong>estimate </strong> <span class="math inline">\(Z\)</span> <span class="math display">\[
+E [ \ln P ( Y | h ) ] \to E [ \ln P ( Y | h ^ { \prime } ) | h , X ]
+\]</span></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ml/" rel="tag"># ml</a>
+          
+            <a href="/tags/bayes/" rel="tag"># bayes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/16/CS/Machine Learning/ML-ConceptLearning/" rel="next" title="ML:First Step">
+                <i class="fa fa-chevron-left"></i> ML:First Step
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/16/CS/Machine Learning/ML-DTree/" rel="prev" title="ML:Decision Tree">
+                ML:Decision Tree <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Junhan Hu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bayesian-learning"><span class="nav-text">2 Bayesian Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bayes-theorem"><span class="nav-text">2.1 Bayes&#39; Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application1-map"><span class="nav-text">2.2 Application1: MAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-to-achieve-the-goal"><span class="nav-text">2.3 How to Achieve the Goal?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-text">2.4 Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bayes-optimal-classifier"><span class="nav-text">3 Bayes Optimal Classifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#navie-bayes-classifier"><span class="nav-text">4 Navie Bayes Classifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bayesian-belief-networks"><span class="nav-text">5 Bayesian Belief Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendix-em"><span class="nav-text">Appendix: EM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#question-definition"><span class="nav-text">Question Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#general-method"><span class="nav-text">General Method</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
+</html>
