@@ -106,25 +106,25 @@
 
 
 
-  <meta name="description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
+  <meta name="description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 <meta name="keywords" content="control,robotics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Robotics-Force Control">
-<meta property="og:url" content="http://yoursite.com/2019/01/01/Robotics-Force/index.html">
+<meta property="og:title" content="Robotics-Nonlinear Control">
+<meta property="og:url" content="http://yoursite.com/2019/01/01/robotics/Robotics-Nonlinear/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
+<meta property="og:description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-11T14:14:41.717Z">
+<meta property="og:updated_time" content="2019-01-01T07:58:40.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robotics-Force Control">
-<meta name="twitter:description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
+<meta name="twitter:title" content="Robotics-Nonlinear Control">
+<meta name="twitter:description" content="1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vecto">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/01/Robotics-Force/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/01/robotics/Robotics-Nonlinear/">
 
 
 
@@ -134,7 +134,7 @@
   };
 </script>
 
-  <title>Robotics-Force Control | Whatever</title>
+  <title>Robotics-Nonlinear Control | Whatever</title>
   
 
 
@@ -368,7 +368,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/Robotics-Force/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/robotics/Robotics-Nonlinear/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junhan Hu">
@@ -385,7 +385,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Robotics-Force Control
+          <h1 class="post-title" itemprop="name headline">Robotics-Nonlinear Control
 
               
             
@@ -411,24 +411,12 @@
                 
               
 
-              <time title="Created: 2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
+              <time title="Created: 2019-01-01 00:00:00 / Modified: 15:58:40" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-11 22:14:41" itemprop="dateModified" datetime="2019-01-11T22:14:41+08:00">2019-01-11</time>
               
             
           </span>
@@ -487,25 +475,52 @@
 
       
         <h2 id="introduction">1 Introduction</h2>
-<p>Mere position control is not suffice is contact is made between end-effector and environment.</p>
-<p>So introduce <strong>hybrid position/force controller</strong> to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control.</p>
+<p>In linear control, we modeled the manipulator by <span class="math inline">\(n\)</span> independent second-order differential equations.</p>
+<p>In this chapter, we will base our controller design on the <span class="math inline">\(n \times 1\)</span> vector differential equation</p>
 <a id="more"></a>
-<h2 id="application-of-robots-to-assembly-tasks">2 Application of Robots to Assembly Tasks</h2>
+<h2 id="nonlinear">2 Nonlinear</h2>
+<ol type="1">
+<li><p>local linearization</p>
+<p>When nonlinearities are not severe, <strong>local linearization</strong> can be used in the <strong>neighborhood</strong> of an operating point.</p>
+<p>But, manipulator move among regions so <strong>widely separated</strong> that no linearization valid for all regions can be found.</p></li>
+<li><p>moving linearization</p>
+<p>move the operating point with the manipulator as it moves, always linearizing about the desired position of the manipulator</p></li>
+<li><p>deal with the nonlinear directly</p>
+<p>the poles of the system will &quot;move&quot;, so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped</p></li>
+<li><p>Example: nonlinear spring</p>
+<p>open loop equation: <span class="math inline">\(m \ddot { x } + b \dot { x } + q x ^ { 3 } = f\)</span></p>
+<p>servo portion: <span class="math inline">\(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\)</span></p>
+<p>model-based portion: <strong>changed</strong></p>
+<p>​ <span class="math inline">\(\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}\)</span></p></li>
+</ol>
+<p>##3 Control problem for Manipulators</p>
+<p>For manipulator, the model is complicated <span class="math display">\[
+\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta )
+\]</span> where $$ is the position of all the joints.</p>
+<p>If we add friction to the model, we get <span class="math display">\[
+\tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } )
+\]</span> where we can use our partitioned controller again: <span class="math display">\[
+\tau = \alpha \tau ^ { \prime } + \beta
+\]</span> and we choose <span class="math display">\[
+\begin{aligned} \alpha &amp; = M ( \Theta ) \\ \beta &amp; = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned}
+\]</span> servo law: <span class="math inline">\(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E\)</span> where <span class="math inline">\(E = \Theta _ { d } - \Theta\)</span></p>
+<p>finally we get <span class="math display">\[
+\ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0
+\]</span> This solve the problem in theory, but not in practice because</p>
+<ol type="1">
+<li>computer do it by <strong>discrete</strong> nature</li>
+<li><strong>inaccuracy</strong> in manipulator model</li>
+</ol>
+<h2 id="current-industrial-robot-control-system">4 Current industrial-robot Control System</h2>
+<p>Parameters may be inaccurate. So model-based control law maybe <strong>doesn't make sense</strong></p>
+<p>For economic reasons, error driven is more usual.</p>
 <ul>
-<li><p>Spot welding</p></li>
-<li><p>Spray painting</p></li>
-<li><p>Pick and place operations</p></li>
-<li><p>Future: assembly-line tasks, force is extremely important.</p>
-<p>Currently, the dexterity of manipulators remains <strong>quite low</strong> and limit their appplication in the automated assembly area.</p></li>
+<li><p>individual-joint PID control</p>
+<p><em>average</em> gain are chosen</p>
+<p><span class="math inline">\(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt\)</span></p></li>
 </ul>
-<p>If we can <strong>measure and control contact forces</strong> generated at the hand, we can <strong>imporove the performance without</strong> using bigger, heavier, and more expensive manipulator.</p>
-<h2 id="basic-idea">Basic Idea</h2>
-<p>Every manipulation task can be broken down into <strong>subtasks</strong> that are defined by a particular <strong>contact situation</strong> occurring between the manipulator end-effector (or tool) and the work environment.</p>
-<p>With each subtask, we can associate a set of <strong>constrains</strong></p>
-<ul>
-<li>mechanical</li>
-<li>geometric</li>
-</ul>
+<h2 id="lyapunov-stability-analysis">5 Lyapunov Stability Analysis</h2>
+<p>A analytically way to evluate stability but <strong>not</strong> the performance.</p>
 
       
     </div>
@@ -554,8 +569,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/01/Robotics-Nonlinear/" rel="prev" title="Robotics-Nonlinear Control">
-                Robotics-Nonlinear Control <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/01/robotics/Robotics-Force/" rel="prev" title="Robotics-Force Control">
+                Robotics-Force Control <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -626,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -761,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application-of-robots-to-assembly-tasks"><span class="nav-text">2 Application of Robots to Assembly Tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-idea"><span class="nav-text">Basic Idea</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nonlinear"><span class="nav-text">2 Nonlinear</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#current-industrial-robot-control-system"><span class="nav-text">4 Current industrial-robot Control System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-stability-analysis"><span class="nav-text">5 Lyapunov Stability Analysis</span></a></li></ol></div>
             
 
           </div>

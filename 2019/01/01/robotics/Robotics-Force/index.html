@@ -106,27 +106,25 @@
 
 
 
-  <meta name="description" content="1 Introduction End-effector moves with a spatial velocity, and it&apos;s a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector&apos;s">
-<meta name="keywords" content="robotics,Jacobian,Velocity">
+  <meta name="description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
+<meta name="keywords" content="control,robotics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Robotics-Manipulator Velocity">
-<meta property="og:url" content="http://yoursite.com/2019/01/05/Robotics-Manipulator Velocity/index.html">
+<meta property="og:title" content="Robotics-Force Control">
+<meta property="og:url" content="http://yoursite.com/2019/01/01/robotics/Robotics-Force/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Introduction End-effector moves with a spatial velocity, and it&apos;s a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector&apos;s">
+<meta property="og:description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/01/05/Robotics-Manipulator%20Velocity/1546688571736.png">
-<meta property="og:updated_time" content="2019-01-07T04:29:54.943Z">
+<meta property="og:updated_time" content="2019-01-11T14:14:41.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robotics-Manipulator Velocity">
-<meta name="twitter:description" content="1 Introduction End-effector moves with a spatial velocity, and it&apos;s a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector&apos;s">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/05/Robotics-Manipulator%20Velocity/1546688571736.png">
+<meta name="twitter:title" content="Robotics-Force Control">
+<meta name="twitter:description" content="1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one fo">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/05/Robotics-Manipulator Velocity/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/01/robotics/Robotics-Force/">
 
 
 
@@ -136,7 +134,7 @@
   };
 </script>
 
-  <title>Robotics-Manipulator Velocity | Whatever</title>
+  <title>Robotics-Force Control | Whatever</title>
   
 
 
@@ -370,7 +368,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/Robotics-Manipulator Velocity/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/robotics/Robotics-Force/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junhan Hu">
@@ -387,7 +385,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Robotics-Manipulator Velocity
+          <h1 class="post-title" itemprop="name headline">Robotics-Force Control
 
               
             
@@ -413,7 +411,7 @@
                 
               
 
-              <time title="Created: 2019-01-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-05T00:00:00+08:00">2019-01-05</time>
+              <time title="Created: 2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time>
             
 
             
@@ -430,7 +428,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-07 12:29:54" itemprop="dateModified" datetime="2019-01-07T12:29:54+08:00">2019-01-07</time>
+                <time title="Modified: 2019-01-11 22:14:41" itemprop="dateModified" datetime="2019-01-11T22:14:41+08:00">2019-01-11</time>
               
             
           </span>
@@ -454,7 +452,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Robotics-Vison-and-Control-Notes/" itemprop="url" rel="index"><span itemprop="name">Robotics,Vison and Control Notes</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Introduction-to-Robotics-Notes/" itemprop="url" rel="index"><span itemprop="name">Introduction to Robotics Notes</span></a></span>
 
                 
                 
@@ -489,85 +487,25 @@
 
       
         <h2 id="introduction">1 Introduction</h2>
-<p>End-effector moves with a spatial velocity, and it's a consequnece of all individual joint velocities.</p>
-<p>Here, we introduce the relationship between <strong>joint</strong> <strong>velocities</strong> and <strong>end-effector</strong>'s <strong>velocity</strong></p>
-<p><strong>In kinematics, we care about the pose, now we care about velocity</strong></p>
+<p>Mere position control is not suffice is contact is made between end-effector and environment.</p>
+<p>So introduce <strong>hybrid position/force controller</strong> to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control.</p>
 <a id="more"></a>
-<h2 id="manipulator-jacobian">2 Manipulator Jacobian</h2>
-<h3 id="overview">2.1 Overview</h3>
-<p>Jocabian: <span class="math display">\[
-J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \\ { \vdots } &amp; { \ddots } &amp; { \vdots } \\ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right)
-\]</span> In manipulator, <span class="math inline">\(f\)</span> (end-effector pose) and <span class="math inline">\(x\)</span> (joint variables) are all vector: <span class="math display">\[
-\frac { \mathrm { d } p } { \mathrm { d } q } = \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } = \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q }
-\]</span> and divide through by <span class="math inline">\(dt\)</span> <span class="math display">\[
-\begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } &amp; = J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p }  = J ( q ) \dot { q } \end{aligned}
-\]</span> Jocabian is a $J R^{6N} $ (<span class="math inline">\(6\)</span> for enviroment, <span class="math inline">\(N\)</span> for n joints) matrix</p>
-<h3 id="under--and-over-actuated-manipulators">2.2 Under- and Over-Actuated Manipulators</h3>
+<h2 id="application-of-robots-to-assembly-tasks">2 Application of Robots to Assembly Tasks</h2>
 <ul>
-<li>Under-Actuated: accepting that some Cartesian degrees of freedom are <strong>not controllable</strong></li>
-<li>Over-Actuated: multiple solution, so find a <strong>least-squares</strong> solution</li>
+<li><p>Spot welding</p></li>
+<li><p>Spray painting</p></li>
+<li><p>Pick and place operations</p></li>
+<li><p>Future: assembly-line tasks, force is extremely important.</p>
+<p>Currently, the dexterity of manipulators remains <strong>quite low</strong> and limit their appplication in the automated assembly area.</p></li>
 </ul>
-<h2 id="jocabian-numerical-properties">3 Jocabian: Numerical Properties</h2>
-<p><span class="math display">\[
-\dot{p}=J ( q ) \dot { q }\\
-\dot { q } = J ( q ) ^ { - 1 } \nu
-\]</span></p>
-<h3 id="singularities">3.1 Singularities</h3>
-<p>Singularities occur when the robot is at maximum reach or when one or more axes become aligned resulting in the loss of degrees of freedom. aka <span class="math inline">\(det(J(q))=0\)</span></p>
-<p>If robot is close to a singularity, some end-effector velocities require very high joint rates</p>
-<h3 id="manipulability">3.2 Manipulability</h3>
-<h2 id="inverse-jocabian-generate-paths">4 Inverse Jocabian: generate paths</h2>
-<h3 id="resolved-rate-motion-control">4.1 Resolved-Rate Motion Control</h3>
-<blockquote>
-<p>Resolved-rate motion control is a simple and elegant algorithm to generate straight line motion</p>
-</blockquote>
-<p>It make use of <span class="math inline">\(\dot { \boldsymbol { q } } = J ( \boldsymbol { q } ) ^ { - 1 } \boldsymbol { \nu }\)</span> to map <em>resovle</em> desired Cartesian velocity to joint velocity</p>
-<p>Control scheme:</p>
+<p>If we can <strong>measure and control contact forces</strong> generated at the hand, we can <strong>imporove the performance without</strong> using bigger, heavier, and more expensive manipulator.</p>
+<h2 id="basic-idea">Basic Idea</h2>
+<p>Every manipulation task can be broken down into <strong>subtasks</strong> that are defined by a particular <strong>contact situation</strong> occurring between the manipulator end-effector (or tool) and the work environment.</p>
+<p>With each subtask, we can associate a set of <strong>constrains</strong></p>
 <ul>
-<li>first <span class="math inline">\(\dot { \boldsymbol { q } } ^ { * } \langle k \rangle = J ( \boldsymbol { q } \langle k \rangle ) ^ { - 1 } \nu ^ { * }\)</span> computes the required <strong>joint velocity</strong> as a function of the manipulator and disired end-effector velocity <span class="math inline">\(\nu ^ { * }\)</span></li>
-<li>then <span class="math inline">\(q ^ { * } \langle k + 1 \rangle \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { t } \dot { \boldsymbol { q } } ^ { * } \langle k \rangle\)</span> perform intergration to give desired joint angle for next step.</li>
+<li>mechanical</li>
+<li>geometric</li>
 </ul>
-<h2 id="jocabian-transform-force-from-end-to-joint">5 Jocabian: Transform Force from End to Joint</h2>
-<h2 id="jocabian-inverse-kinematics">6 Jocabian: Inverse Kinematics</h2>
-<p>If a robot <strong>don't meet</strong> some specification:</p>
-<ul>
-<li>have 6 joints</li>
-<li>have a spherical wrist</li>
-</ul>
-<p>Then, it's hard to give a explicit solution. So we introduce general numerical solution <strong>based on:</strong></p>
-<ul>
-<li>forward kinematics</li>
-<li>the Jacobian transpose</li>
-</ul>
-<p>Idea: compute by error</p>
-<p>Notation: actual pose <span class="math inline">\(\xi _ { E } = \mathcal { X } ( q )\)</span> , desired pose <span class="math inline">\(\xi _ { E } ^ { * }\)</span> , error between them:<span class="math inline">\(\xi _ { \Delta }\)</span> (also can be described by a spatial displacement)</p>
-<p><img src="/2019/01/05/Robotics-Manipulator Velocity/1546688571736.png" alt="1546688571736"> <span class="math display">\[
-^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 }
-\]</span> How to compute?</p>
-<ol type="1">
-<li><p>imagine a <em>spring</em> between two pose, which is pulling and twisting (wrench) the end-effector <strong>proportional</strong> to the spatial displacement <span class="math inline">\(\to ^ { E } \boldsymbol { W } = \gamma ^ { E } \boldsymbol { \Delta }\)</span></p></li>
-<li><p>the wrench is resolved to generalized joint forces <span class="math inline">\(\to\boldsymbol { Q } = _{}^{E}\textrm{} \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \boldsymbol { W }\)</span></p></li>
-<li><p>assume joint velocity just be <strong>proportional</strong> to the forces <span class="math inline">\(\to \dot { q } = Q / B (a \ coefficient)\)</span></p></li>
-<li><p>wrap up: <span class="math inline">\(\dot { \boldsymbol { q } } = \frac { 1 } { B } \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } ) , \xi _ { E } ^ { * } \right)\)</span></p></li>
-<li><p>we can solve it interatively by: <span class="math display">\[
-\begin{aligned} \delta _ { q } \langle k \rangle = \alpha J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right )\\
-\boldsymbol { q } \langle k + 1 \rangle  \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned}
-\]</span></p></li>
-<li><p>until the norm of the update <span class="math inline">\(\left\| \delta _ { q } \langle k \rangle \right\|\)</span> is sufficiently</p></li>
-</ol>
-<p>pratically above algorithm is slow and sensitive to <span class="math inline">\(\alpha\)</span> ,so we imporve it by:</p>
-<ul>
-<li><p>formulate this as a <strong>least-squares</strong> problem: <span class="math inline">\(\to E = \boldsymbol { \Delta } ^ { T } M \Delta\)</span></p>
-<ul>
-<li>we want to <strong>minimize</strong> the scalar cost</li>
-<li>where <span class="math inline">\(M = \operatorname { diag } ( m ) \in \mathbb { R } ^ { 6 \times 6 }\)</span> and <span class="math inline">\(m\)</span> is the <strong>mask</strong> vector</li>
-</ul></li>
-<li><p>update becomes :<span class="math inline">\(\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) \right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)\)</span></p></li>
-<li><p>impove above performance near singularities by introducing a damping constant λ: <span class="math display">\[
-\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)
-\]</span></p></li>
-</ul>
-<p>An effective way to choose <span class="math inline">\(\lambda\)</span> is to test whether or not an iteration reduces the error</p>
 
       
     </div>
@@ -591,11 +529,9 @@ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac
       
         <div class="post-tags">
           
+            <a href="/tags/control/" rel="tag"># control</a>
+          
             <a href="/tags/robotics/" rel="tag"># robotics</a>
-          
-            <a href="/tags/Jacobian/" rel="tag"># Jacobian</a>
-          
-            <a href="/tags/Velocity/" rel="tag"># Velocity</a>
           
         </div>
       
@@ -608,8 +544,8 @@ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/03/ADS-Queues/" rel="next" title="PADS-Queues">
-                <i class="fa fa-chevron-left"></i> PADS-Queues
+              <a href="/2019/01/01/robotics/Robotics-Nonlinear/" rel="next" title="Robotics-Nonlinear Control">
+                <i class="fa fa-chevron-left"></i> Robotics-Nonlinear Control
               </a>
             
           </div>
@@ -618,8 +554,8 @@ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/05/robotics-final-project/" rel="prev" title="Robotics-Final Project">
-                Robotics-Final Project <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/03/ADS-Queues/" rel="prev" title="PADS-Queues">
+                PADS-Queues <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -690,7 +626,7 @@ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -825,7 +761,7 @@ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#manipulator-jacobian"><span class="nav-text">2 Manipulator Jacobian</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#overview"><span class="nav-text">2.1 Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#under--and-over-actuated-manipulators"><span class="nav-text">2.2 Under- and Over-Actuated Manipulators</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jocabian-numerical-properties"><span class="nav-text">3 Jocabian: Numerical Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#singularities"><span class="nav-text">3.1 Singularities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#manipulability"><span class="nav-text">3.2 Manipulability</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inverse-jocabian-generate-paths"><span class="nav-text">4 Inverse Jocabian: generate paths</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#resolved-rate-motion-control"><span class="nav-text">4.1 Resolved-Rate Motion Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jocabian-transform-force-from-end-to-joint"><span class="nav-text">5 Jocabian: Transform Force from End to Joint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jocabian-inverse-kinematics"><span class="nav-text">6 Jocabian: Inverse Kinematics</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application-of-robots-to-assembly-tasks"><span class="nav-text">2 Application of Robots to Assembly Tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-idea"><span class="nav-text">Basic Idea</span></a></li></ol></div>
             
 
           </div>
