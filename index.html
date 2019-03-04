@@ -401,7 +401,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/02/CS/DS & Algorithm/ADS-Lists/" class="post-title-link" itemprop="http://yoursite.com/index.html">PADS-lists</a>
+                <a href="/2019/03/02/CS/DS & Algorithm/ADS-Lists/" class="post-title-link" itemprop="http://yoursite.com/index.html">PADS-Lists</a>
               
             
           </h1>
@@ -426,12 +426,24 @@
                 
               
 
-              <time title="Created: 2019-03-02 11:11:00 / Modified: 11:12:33" itemprop="dateCreated datePublished" datetime="2019-03-02T11:11:00+08:00">2019-03-02</time>
+              <time title="Created: 2019-03-02 11:11:00" itemprop="dateCreated datePublished" datetime="2019-03-02T11:11:00+08:00">2019-03-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-04 10:54:52" itemprop="dateModified" datetime="2019-03-04T10:54:52+08:00">2019-03-04</time>
               
             
           </span>
@@ -593,12 +605,24 @@
                 
               
 
-              <time title="Created: 2019-03-02 10:00:00 / Modified: 11:11:23" itemprop="dateCreated datePublished" datetime="2019-03-02T10:00:00+08:00">2019-03-02</time>
+              <time title="Created: 2019-03-02 10:00:00" itemprop="dateCreated datePublished" datetime="2019-03-02T10:00:00+08:00">2019-03-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-04 10:54:47" itemprop="dateModified" datetime="2019-03-04T10:54:47+08:00">2019-03-04</time>
               
             
           </span>
@@ -657,86 +681,21 @@
 
       
         
-          
-            <h2 id="introduction">1 Introduction</h2>
+          <h2 id="introduction">1 Introduction</h2>
 <h3 id="deques">1.1 Deques</h3>
 <blockquote>
 <p>A <strong>deque</strong>, also known as a <strong>double-ended queue</strong>, is an ordered collection of items similar to the queue. It has two ends, a front and a rear, and the items remain positioned in the collection. In a sense, this hybrid linear structure provides all the capabilities of stacks and queues in a single data structure.</p>
 </blockquote>
 <p>Simply speaking, deques is <strong>stacks + queues</strong></p>
-<h3 id="adt">1.2 ADT</h3>
-<table>
-<thead>
-<tr class="header">
-<th>Deque Operation</th>
-<th>Deque Contents</th>
-<th>Return Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>d.is_empty()</code></td>
-<td><code>[]</code></td>
-<td><code>True</code></td>
-</tr>
-<tr class="even">
-<td><code>d.add_rear(4)</code></td>
-<td><code>[4]</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>d.add_rear('dog')</code></td>
-<td><code>['dog', 4]</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>d.add_front('cat')</code></td>
-<td><code>['dog', 4, 'cat']</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>d.add_front(True)</code></td>
-<td><code>['dog', 4,'cat', True]</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>d.size()</code></td>
-<td><code>['dog', 4, 'cat', True]</code></td>
-<td><code>4</code></td>
-</tr>
-<tr class="odd">
-<td><code>d.is_empty()</code></td>
-<td><code>['dog', 4, 'cat', True]</code></td>
-<td><code>False</code></td>
-</tr>
-<tr class="even">
-<td><code>d.add_rear(8.4)</code></td>
-<td><code>[8.4, 'dog', 4, 'cat',True]</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>d.remove_rear()</code></td>
-<td><code>['dog', 4, 'cat', True]</code></td>
-<td><code>8.4</code></td>
-</tr>
-<tr class="even">
-<td><code>d.remove_front()</code></td>
-<td><code>['dog', 4, 'cat']</code></td>
-<td><code>True</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="implementation">2 Implementation</h2>
-<p>In practice, we just <em>import deque from collections</em> module</p>
-<p>Adding and removing from the <strong>rear</strong> is <span class="math inline">\(O(1)\)</span></p>
-<p>Adding and removing from the <strong>front</strong> is <span class="math inline">\(O(n)​\)</span></p>
-<h2 id="example-palindrome-checker">3 Example: Palindrome Checker</h2>
-<figure>
-<img src="/2019/03/02/CS/DS & Algorithm/ADS-Deques/1551496245836.png" alt="1551496245836"><figcaption>1551496245836</figcaption>
-</figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_palindrome</span><span class="params">(characters)</span>:</span></span><br><span class="line">    character_deque = deque(characters)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> len(character_deque) &gt; <span class="number">1</span>:</span><br><span class="line">        first = character_deque.popleft()</span><br><span class="line">        last = character_deque.pop()</span><br><span class="line">        <span class="keyword">if</span> first != last:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">is_palindrome(<span class="string">'lsdkjfskf'</span>)   <span class="comment"># =&gt; False</span></span><br><span class="line">is_palindrome(<span class="string">'radar'</span>)   <span class="comment"># =&gt; True</span></span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/02/CS/DS & Algorithm/ADS-Deques/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
