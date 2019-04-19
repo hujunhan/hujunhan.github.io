@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[TODO]]></title>
+    <url>%2F2020%2F01%2F03%2FTODO%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:Transfer Learning]]></title>
+    <url>%2F2019%2F04%2F15%2FCS%2FMachine%20Learning%2FML-Transfer%2F</url>
+    <content type="text"><![CDATA[1 What is Transfer Learning Transfer learning is a machine learning technique where a model trained on one task is re-purposed on a second related task. For example, if I already have a fine trained model for detecting dog and cat, and now I want to train a model can detect different kinds of dogs, I don’t need to train the model from scratch. Just use the pre-trained model and train the last few layers’ neural. 2 How to use Transfer Learning Two common approaches: Develop Model : If you have large dataset on a similar problem and willing to train the model yourself. Pre-trained Model : If you don’t have enough data to train your model so you can download some pre-trained model released by some research institutions. 3 When to use Transfer Learning transfer-learning]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:Reinforcement Learning]]></title>
+    <url>%2F2019%2F04%2F15%2FCS%2FMachine%20Learning%2FML-Reinforcement%2F</url>
+    <content type="text"><![CDATA[1 Introduction Spinning Up brought by OpenAI is a good resource for learning reinforcement learning. The goal of Spinning up is to ensure AI is safe developed and help people to learn Deep RL which has a pretty high barrier to entry In a nutshell, RL is the study of agents and how they learn by trial and error. It formalizes the idea that rewarding or punishing an agent for its behavior makes it more likely to repeat or forego that behavior in the future. Learning Types： supervised：given x and y, find \(f()\) unsupervised：given x, find \(cluster\) reinforcement：given x and z, find decision \(f()\) to generate y difference from supervised learning: delayed reward that is your movement will affect later world. about time and sequence Markov decision process (MDP) : states: things described the world actions: things you can do model: rules, physics of the world reward: a scaler value to value the state policy: what we want to learn, \(\pi^{\star}(state)\to action\) ,the action can maximize the cumulative reward. when moving in the grid map, agent should avoid \(-negative​\) reward and get \(+positive​\) reward You need to set the reward carefully Even if you are in the same state, your action will be different for different step(time) you can take later. E.g. if you have only 3 steps to go, you may take action risky, \(\pi^{\star}(state,time)\to action​\) 2 Key Concepts 2.1 What can RL do? Teach computers to control robots in simulation and real world Create breakthrough AI for sophisticated strategy games (Go/Dota) … 2.2 Terminology Main loop of RL: reinforcement-learning state \(s\) : complete description of the state of the world represented by a vector, matrix or tensor Grid map e.g. \(4\times3\) observation \(o\) : partial description of a state represented by a vector, matrix or tensor Action space: The set of all valid actions Discrete action space: Go and Atari Continuous action space: Control a robot Policies: rule used by an agent to decide what actions to take deterministic \(a_{t}=\mu\left(s_{t}\right)​\) stochastic \(a_{t} \sim \pi\left(\cdot | s_{t}\right)\) : sampling action \(+\) computing \(\log \pi_{\theta}(a | s)\) , which means your action may not be execute \(100\%​\) that is uncertainty Catergorical policies: discrete, jsut like a classifier, output are probabilities vector diagonal Gaussian policies: continuous The policy is trying to maximize reward Trajectories: \(\ \) \(\tau\) is a sequence of states and actions in the world \(\tau=\left(s_{0}, a_{0}, s_{1}, a_{1}, \dots\right)\) Reward and Return: depends on the current state, the action just taken, and the next state of the world \(r_{t}=R\left(s_{t}, a_{t}, s_{t+1}\right)\) but ususally simplified to \(r_{t}=R\left(s_{t}\right)\) goal of the agent is to maximize cumulative reward over trajectory \(R(\tau)=\sum_{t=0}^{T} r_{t}\) if the time is infinite, we should add a factor to the cumulative reward or it will go \(\infty\) , so we should \(R(\tau)=\sum_{t=0}^{\infty} \gamma^{t} r_{t}\) The RL Problem: select a policy which maximized expected return Value Funciton: know the value of a state On-Policy Value Function \(V^{\pi}(s)\) On-Policy Action-Value Function \(Q^{\pi}(s, a)\) Optimal Value Function $V^{*}(s) $ Optimal Action-Value Function \(Q^{*}(s, a)\) Bellman Equations basic idea: The value of your starting point is the reward you expect to get from being there, plus the value of wherever you land next. 3 Kinds of RL Algorithms 3.1 Taxonomy Model-Based RL: Upside: allows the agent to plan by thinking ahead. Example: AlphaZero Downside: the given model is different from the real enviroment the agent works. Model-Free RL: Upside: easier to implement and tune, more popular 3.2 What to Learn 3.2.1 Model-Free RL Policy Optimization: On policy A2C / A3C, gradient ascent PPO, updates indirectly Q-Learning: Off policy learn an approximator \(Q_{\theta}(s, a)\) for the optiaml action-value function. DQN C51 Trade-offs: Policy: these kind of algorithm optimize for the thing we want directly. Q-Learning’s result is unstable, which means it may be better sometimes but maybe worse other times. 3.2.2 Model-Based RL Pure Planning: compute a new plan each time, execute the first action and discards the rest of it. Expert Iteration: updated version of Pure-Planning Data Augmentation for Model-Free Methods … 4 Policy Optimization 4.1 Deriving some Math Here we consider the case of stochastic, parameterized policy. Aim: maximize the expected return \(J\left(\pi_{\theta}\right)=\underset{\tau \sim \pi_{\theta}}{E}[R(\tau)]\) How: optimize by gradient ascent: \(\theta_{k+1}=\theta_{k}+\alpha \nabla_{\theta} J\left.\left(\pi_{\theta}\right)\right|_{\theta_{k}}\) ,which means we need an expression for the policy. Program: Making the policy network make core policy network make action selection Making the Loss Function Running one Epoch of Training]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Flight Controller]]></title>
+    <url>%2F2019%2F04%2F13%2FRobotics%2FProject%2Fflight-controller%2F</url>
+    <content type="text"><![CDATA[1 Introduction This project was brought to make a flight controller from scratch. I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32/Arduino/Linux ) will make the general task more difficult. Before the program, I have no experience in flight controller programming. So I would learn from other project shared on Github.com. 2 Learning from Others 2.1 HackFlight As a education oriented project, Hackflight is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators 2.1.1 Unit First of all, HackFlight defined some standard units to write simpler code. Distance $ m/s $ Time $ s $ Euler angle $ radians $ Stick demand interval $ [-1,1 ] $ Motor demands $ [0,1] $ Quaternions interval $ [-1,1] $ 2.1.2 Programming Structure This project is a practice of C++ for it’s speed and object-oriented features HackFlight build several separate class to provide basic function of a controller. Board class, specifies 4 abstract method a flight must implement Sending commands to the motors Getting current quaternion from the IMU Getting gyrometer rates from the IMU Getting the current time Receiver class perform basic function associate with R/C control Mixer class that can be subclassed by specific mixer like QuadX / Bicopter PID_Controller class specific the PID value appropriate for your model 2.1.3 Design Principle hackflight-dataflow There are 2 basic data type: State: State is updated by sensors which read IMU sensors and calculate quaternion Demands There are 2 basic fly mode: All a kind of PID controller Self-Level Mode: Auto mode, hold the angle or keep the level when there is no input. The input is regarded as the distance you want to move Rate Mode: Manual/Acro mode. The input is taken as the speed you want to move]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Project</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>flight-controller</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Data-Regression]]></title>
+    <url>%2F2019%2F03%2F17%2FCS%2FData%2FData-Regression%2F</url>
+    <content type="text"><![CDATA[1 Introduction In statistical modeling, regression analysis is a set of statistical processes for estimating the relationships among variables. \[ \left\{\begin{array}{l}{y=\beta_{0}+\beta_{1} x+\varepsilon} \\ {E \varepsilon=0, D \varepsilon=\sigma^{2}}\end{array}\right. \] 2 the Develop of Algorithm Problem set \[ \mathbf{X}=\left[ \begin{array}{cccc}{x_{11}} &amp; {x_{12}} &amp; { . .} &amp; {x_{1 m}} \\ {x_{21}} &amp; {x_{22}} &amp; {\dots} &amp; {x_{2 m}} \\ {\ldots} &amp; {\cdots} &amp; {\cdots} &amp; {\cdots} \\ {x_{n 1}} &amp; {x_{n 2}} &amp; {\dots} &amp; {x_{n m}}\end{array}\right] \] \[ Y=\left(y_{1} \quad y_{2}\right)=\left[ \begin{array}{cc}{y_{11}} &amp; {y_{12}} \\ {y_{12}} &amp; {y_{22}} \\ {\cdots} &amp; {\cdots} \\ {y_{1 n}} &amp; {y_{2 n}}\end{array}\right] \] \[ B=\left(b_{1} \quad b_{2}\right)=\left[ \begin{array}{cc}{b_{11}} &amp; {b_{21}} \\ {b_{12}} &amp; {b_{22}} \\ {\dots} &amp; {\dots} \\ {b_{1 m}} &amp; {b_{2 m}}\end{array}\right] \] \[ E=\left(e_{1} \quad e_{2}\right)=\left[ \begin{array}{cc}{e_{11}} &amp; {e_{21}} \\ {e_{12}} &amp; {e_{22}} \\ {\cdots} &amp; {\cdots} \\ {e_{1 n}} &amp; {e_{2 n}}\end{array}\right] \] \[ \boldsymbol{Y}=\boldsymbol{X} \boldsymbol{B}+\boldsymbol{E} ; \quad y_{1}=\boldsymbol{X} \boldsymbol{b}_{1} ; \quad y_{2}=\boldsymbol{X} \boldsymbol{b}_{2} \] we know (2) and (3), we want to get (6) , so we need to solve (4) and (5) 2.1 OLS Ordinary least squares Constraint: \(min(error)​\) \[ e=y-\mathbf{X} b \quad \Rightarrow \quad \min \left(e^{\prime} e\right) \] Solution: Solved by Lagrange Multiplier \[ b=\left(X^{\prime} X\right)^{-1} X^{\prime}{y} \] Problem: if there are multi -collinearity in \(\mathbf{X}​\) , \(b​\) will be very big, like \(\infin​\) 2.2 RR Ridge Regression: solve the problem in the OLS, add some constraint for \(b​\) Constraint: \(min(error \ \&amp;\ b​\)) \[ e=y-\mathbf{X} b \quad \Rightarrow \quad \min \left(e^{\prime} e+kb^{\prime}b \right ) \] Solution: \[ \hat{\boldsymbol{\beta}}(\mathrm{k})=\left(X^{\prime} X+k I\right)^{-1} X^{\prime} y \] Problem: how to choose \(k\) is a problem Why it called ridge? 岭回归 2.3 PCR Principal Component Regression: Often the principal components with higher variances are selected as regressors Constraint: Apply PCA to \(\mathbf{X}\), get component matrix \(\mathbf{F}\) \[ \mathbf{F}=\mathbf{X}_{0} \mathbf{U} \] Solution: \[ \hat{\gamma}=\left(\mathbf{F}^{\prime} \mathbf{F}\right)^{-1} \mathbf{F}^{\prime} \mathbf{Y} \] Problem: for the purpose of predicting the outcome, the principal components with low variances may also be important, in some cases even more important. MORE 2.4 PLS Partial least squares regression: it finds a linear regression model by projecting the predicted variables and the observable variables to a new space Underlying model of PLS: \[ \begin{aligned} X &amp;=T P^{\mathrm{T}}+E \\ Y &amp;=U Q^{\mathrm{T}}+F \end{aligned} \] Constraint: Variances of \(T\) and \(U\) should be as big as possible Correlation of \(T​\) and \(U​\) should be as big as possible Combine 1. and 2. , we want covariance of \(T\) and \(U​\) be as big as possible]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Data</category>
+      </categories>
+      <tags>
+        <tag>data</tag>
+        <tag>regression</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Omnibus F4 pro v3]]></title>
+    <url>%2F2019%2F03%2F15%2FRobotics%2FHardware%2Fhardware-omnibusf4%2F</url>
+    <content type="text"><![CDATA[1 Introduction Upgrade version of OMNIBUS F4, the OMNIBUS F4 Pro (Some shop call it as OMNIBUS F4 PRO V2) added SD card supports, has 5v3A BEC, LC filter for Camera and VTX, build in Current sensor for high Integration Frame. omnibusf4 2 Specifications Processor STM32F405 ARM Sensors InvenSense MPU6000 IMU (accel, gyro) BMP280 barometer Voltage and current sensor Interfaces UARTS PWM outputs RC input PWM/PPM, SBUS I2C port for external compass USB port Built-in OSD]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>hardware</tag>
+        <tag>flight-controller</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hardware Transmitter]]></title>
+    <url>%2F2019%2F03%2F15%2FRobotics%2FHardware%2Fhardware-transmitter%2F</url>
+    <content type="text"><![CDATA[1 简介 针对一个富斯FS-i6发射机及其接收机来学习接收机方面的知识 1.1 发射机 flysky-transmitter 1.2 接收机 型号：FS-iA6B 调制方式：GFSK 数据分辨率：1024级 电源标准：4.0-6.5V DC receiver 1.3 基本操作 开机： 先开发射机Tx 再开接收机Rx 正常情况下接收机红色指示灯常亮 关机 先关接收机Rx 再关发射机Tx 2 功能介绍 2.1 飞行控制 油门分左手和右手，我选择的是右手油门 左手的摇杆控制的就是飞行器的倾斜和上下俯仰 右手的摇杆控制飞机水平左右旋转和油门加速减速 2.2 逆转修正 当舵机运动方向与预期相反时，可以使用此功能修正、 2.3 油门曲线设置 针对油门操纵杆的动作调整油门输出曲线，使得发动机达到最佳状态 2.4 混控功能(Mix) 当接收机收不到信号或者失去控制时，舵机摆臂需要保持的位置 3 注意 发射机天线应和模型垂直，而不是指着飞行器（参考路由器天线摆放） 一共有4组微调杆 通道1：副翼 通道2：升降 通道3：油门 通道4：舵机中位 为保持控制质量，应尽量将接收机的两个天线保持垂直 antena-place 接收机对码(Binding) 发射机选择接收机设置功能，选择对码进入对码状态 用对码线插入B/VCC通道 用4.0-6.5V DC电源插入CH1-CH6任意通道，进入对码状态，此时LED闪烁 对码成功，发射机自动退出对码状态 拔掉对码线]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>hardware</tag>
+        <tag>transmitter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Matplotlib]]></title>
+    <url>%2F2019%2F03%2F12%2FCS%2FPython%2Fpython-matplotlib%2F</url>
+    <content type="text"><![CDATA[1. Basics Figure Axes Axis Title]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Path Planning]]></title>
+    <url>%2F2019%2F03%2F12%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRobotics-pathplaning%2F</url>
+    <content type="text"><![CDATA[Compare Obstacle Avoidance Algorithm 1 Bug algorithms bug-algorithm Simple Non optimal May be trapped in maze structures 2 Potential Field Attractive Potential Repulsive Potential Combine Attractive Potential and Repulsive Potential combine Good for static and completely known environment Bad: may lead to a local minimum point local-minimum 3 D* D* is an extension of the A* algorithm for finding minimum cost paths through a graph Support incremental replanning 4 Roadmap methods]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Robotics,Vison and Control Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>path</tag>
+        <tag>planning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-BioCopter]]></title>
+    <url>%2F2019%2F03%2F11%2FRobotics%2FProject%2Frobotics-bicopoter%2F</url>
+    <content type="text"><![CDATA[1 Introduction (Prepare) 1.1 Goal Build a bicopter(a kind of frame) like this biocopter 1.2 Pros &amp; Cons Cheap : only 2 servos and 2 motors Unstable Hard to tune 1.3 Hardware Servo \(\times\) 2 Motor \(\times\) 2 Flight Controller Board \(\times​\) 1 : SP Racing F4 Pro Transmitter \(\times\) 1 : FS-i6 Receiver (Rx) \(\times\) 1 : FS-iA6 1.4 Software CleanFlight / BeteFlight / iNav (based on similar code) 2 Assemble 电调校准，首先要将油门信号调到最大，然后上电，然后油门信号调到最低。校准完毕 3 Software Setup 3.1 Betaflight Setup servo pin map MORE 1234resource #list all avaliable pin mapresource motor 3 none #we just need 2 motor, so we can free motor 3 &amp; 4, remember the pin of motor 3 &amp; 4 resource servo 1 a06 #setup the pin for servo 1 &amp; 2save #all the changes will lose if you don't save Bib Receivers Type: PWM(avoid), PPM(main), Serial(advanced) MORE]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Project</category>
+      </categories>
+      <tags>
+        <tag>hide</tag>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Data-PCA]]></title>
+    <url>%2F2019%2F03%2F08%2FCS%2FData%2FDate-PCA%2F</url>
+    <content type="text"><![CDATA[1 Introduction Principal component analysis (PCA) is a common tool for data analysis Goal: reduce complex data set to a lower dimension Math tool: singular value decomposition (SVD) 1.1 intuition Many problem in real world can be expressed by a small number of variables. But we don't know that, we just collect so many data and have no ideal how to deal with hundreds of variables. Also, there will be noise in our data, which makes the problem even more complicated. PCA is to solve this problem by identify the most meaningful basis to re-express the data. Then we can delete the less important basis( variable) 1.2 A little math \(\mathbf{X}\) : the original data set \(\rightarrow\) how to re-express \(\mathbf{X}\) row : variable ; column : measurements \(\mathbf{Y}\) : transformed data set \(\rightarrow\) how \(\mathbf{Y}\) should look like \(\rightarrow\) \(\mathrm{C}_{\mathrm{Y}}\) \(\mathbf{P}​\) : transformation \(\sigma_{\mathrm{ab}}^{2}​\) : covariance o f A and B \(\sigma_{\mathrm{ab}}^{2} \equiv \frac{1}{n} \mathbf{a b}^{T}\) , \(\mathbf{a}=\left[a_{1} a_{2} \ldots a_{n}\right]\) ,\(\mathbf{b}=\left[b_{1} b_{2} \ldots b_{n}\right]\) \(\mathbf{C}_{\mathbf{X}} \equiv \frac{1}{n} \mathbf{X} \mathbf{X}^{T}\) : covariance matrix of \(\mathbf{X}\), the covariance value reflect the noise and redundancy in the measurement large off-diagonal terms correspond to high redundancy Assumption 1: bigger variance, more information Assumption 2: If the covariance of 2 variable is big, one of them should be deleted. Assumption 3: the principal components are orthogonal 1.3 Goal in math Find a transformation \(\mathbf{P}​\)( an orthonormal matrix) to make \(\mathrm{C}_{\mathrm{Y}}​\) A diagonal matrix, means \(\mathbf{Y}​\) is decorrelated diagonal terms decrease from the top-left, means \(\mathbf{Y}​\) is rank-ordered 2. Math Solution for PCA 2.1 Eigenvector Decomposition Rewriting \(\mathrm{C}_{\mathrm{Y}}\) \[ \begin{aligned} \mathbf{C}_{Y} &amp;=\frac{1}{n} \mathbf{Y} \mathbf{Y}^{T} \\ &amp;=\frac{1}{n}(\mathbf{P X})(\mathbf{P X})^{T} \\ &amp;=\frac{1}{n} \mathbf{P} \mathbf{X} \mathbf{X}^{T} \mathbf{P}^{T} \\ &amp;=\mathbf{P}\left(\frac{1}{n} \mathbf{X} \mathbf{X}^{T}\right) \mathbf{P}^{T}\\&amp;=\mathbf{P} \mathbf{C}_{\mathbf{X}} \mathbf{P}^{T} \end{aligned} \] Notice that \(\mathrm{C}_{\mathrm{X}}\) is a symmetric matrix, and can be diagonalized. \[ \mathrm{C}_{\mathrm{X}}=\mathbf{E D E}^{T} \] \(\mathbf{D}​\) is a diagonal matrix \(\mathbf{E}\) is a matrix of eigenvectors of \(\mathrm{C}_{\mathrm{X}}​\) Trick: select \(\mathbf{P}\) to be a matrix of eigenvectors of \(\mathrm{C}_{\mathrm{X}}​\) \[ \begin{aligned} \mathbf{C}_{\mathbf{Y}} &amp;=\mathbf{P} \mathbf{C}_{\mathbf{X}} \mathbf{P}^{T} \\ &amp;=\mathbf{P}\left(\mathbf{E}^{T} \mathbf{D E}\right) \mathbf{P}^{T} \\ &amp;=\mathbf{P}\left(\mathbf{P}^{T} \mathbf{D P}\right) \mathbf{P}^{T} \\ &amp;=\left(\mathbf{P} \mathbf{P}^{T}\right) \mathbf{D}\left(\mathbf{P} \mathbf{P}^{T}\right) \\ &amp;=\left(\mathbf{P} \mathbf{P}^{-1}\right) \mathbf{D}\left(\mathbf{P} \mathbf{P}^{-1}\right)\\ &amp;=\mathbf{D} \end{aligned} \] 2.2 Singular Value Decomposition SVD is a more general method of understanding change of basis Let \(\mathbf{X}\) be an arbitrary \(n\times m\) matrix, and \(\mathbf{X}^{T} \mathbf{X}\) be a rank r , square, symmetric \(m\times m\) matrix. define \(\left\{\hat{\mathbf{v}}_{1}, \hat{\mathbf{v}}_{2}, \ldots, \hat{\mathbf{v}}_{r}\right\}\) be the eigenvectors of \(\mathbf{X}^{T} \mathbf{X}\) with associated with eighenvalues \(\left\{\lambda_{1}, \lambda_{2}, \ldots, \lambda_{r}\right\}​\) define \(\sigma_{i} \equiv \sqrt{\lambda_{i}}\) are positive real and termed the singular value define \(\left\{\hat{\mathbf{u}}_{1}, \mathbf{\hat { u }}_{2}, \ldots, \hat{\mathbf{u}}_{r}\right\}\) where \(\hat{\mathbf{u}}_{\mathbf{i}} \equiv \frac{1}{\sigma_{\mathbf{i}}} \mathbf{X} \hat{\mathbf{v}}_{\mathbf{i}}\) (scaler version SVD)]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Data</category>
+      </categories>
+      <tags>
+        <tag>data</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-SSL]]></title>
+    <url>%2F2019%2F03%2F04%2FRobotics%2FProject%2Frobotics-ssl%2F</url>
+    <content type="text"><![CDATA[1 Introduction 1.1 SSL The Small Size league or F180 league as it is otherwise known, is one of the oldest RoboCup Soccer leagues. It focuses on the problem of intelligent multi-robot/agent cooperation and control in a highly dynamic environment with a hybrid centralized/distributed system. 1.2 Rule the robot must fit within an 180 mm diameter circle and must be no higher than 15 cm play soccer with an orange golf ball field is 12 m long by 9 m wide 1.3 How it Works? All objects on the field are tracked by a vision system called SLL-Vision Robots are controlled by off-field computers Communications is wireless Uses dedicated commercial radio units 2 Software Enviroments 2.1 GrSim The simulator grSim was contributed to the SSL community by Parsian. It performs a physical simulation of SSL robots and publishes SSL-Vision network packages. Receiving and Sending data using Protobuf library Install 2.2 Protobuf Protocol Buffers (a.k.a., protobuf) are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data. Protobuf supports many language (C++, Java, Python…) Python based protobuf programming maybe the easiest Download binary released protoc.exe or build from source Define your protocol format Compile your protocol buffers 12protoc -I=$SRC_DIR --python_out=$DST_DIR $SRC_DIR/xxx.proto## If you compile "xxx.proto", the result should be "xxx_pb2.py" Install library for your python enviroment 12pip install protobuf## Notice: the version of protobuf library must match the version of the compile tool(protoc.exe) Start programming 12import xxx_pb2...... For furthur study, read Google's doc 2.3 Packet protobuf will be used only in simulation. In real enviroments, we need to send a byte-format package to control the robots' speed and action. And the package is defined below (image lost) In our project, we just need to specify the speed of robot. 12commands = b'\xff\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x07\x00\x00\x00'## we need to change the value of commands[4],commands[5],commands[6],commands[7] 3 Project Task 1： Collison Avoidance 3.1 Background We need to control the robot move from one point to another point in the field. There will be moveable and static obstacle (are robots as well), so we need to avoid the collison What we know: the position of every robot the velocity of every robot (but is NOT accurate) What we can control: the velocity of every robot The key problem: Path planning: in general, we want to find a path short but will avoid the static obstacle as well. Action and dynamic object will change the optimal path Dynamic obstacle: there will be other moveable robot in the field, so we need to change our path in real time Action should be quick Path Tracking: How to control the robot follow the path we generated accurately 3.2 Approach: D* Lite]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Project</category>
+      </categories>
+      <tags>
+        <tag>hide</tag>
+        <tag>robotics</tag>
+        <tag>homework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Lists]]></title>
+    <url>%2F2019%2F03%2F02%2FCS%2FDS%20%26%20Algorithm%2FADS-Lists%2F</url>
+    <content type="text"><![CDATA[1 Introduciton]]></content>
+      <categories>
+        <category>CS</category>
+        <category>DS &amp; Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Deques]]></title>
+    <url>%2F2019%2F03%2F02%2FCS%2FDS%20%26%20Algorithm%2FADS-Deques%2F</url>
+    <content type="text"><![CDATA[1 Introduction 1.1 Deques A deque, also known as a double-ended queue, is an ordered collection of items similar to the queue. It has two ends, a front and a rear, and the items remain positioned in the collection. In a sense, this hybrid linear structure provides all the capabilities of stacks and queues in a single data structure. Simply speaking, deques is stacks + queues 1.2 ADT Deque Operation Deque Contents Return Value d.is_empty() [] True d.add_rear(4) [4] d.add_rear('dog') ['dog', 4] d.add_front('cat') ['dog', 4, 'cat'] d.add_front(True) ['dog', 4,'cat', True] d.size() ['dog', 4, 'cat', True] 4 d.is_empty() ['dog', 4, 'cat', True] False d.add_rear(8.4) [8.4, 'dog', 4, 'cat',True] d.remove_rear() ['dog', 4, 'cat', True] 8.4 d.remove_front() ['dog', 4, 'cat'] True 2 Implementation In practice, we just import deque from collections module Adding and removing from the rear is \(O(1)\) Adding and removing from the front is \(O(n)​\) 3 Example: Palindrome Checker deques 1234567891011121314151617from collections import dequedef is_palindrome(characters): character_deque = deque(characters) while len(character_deque) &gt; 1: first = character_deque.popleft() last = character_deque.pop() if first != last: return False return Trueis_palindrome('lsdkjfskf') # =&gt; Falseis_palindrome('radar') # =&gt; True]]></content>
+      <categories>
+        <category>CS</category>
+        <category>DS &amp; Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019 ICM D]]></title>
+    <url>%2F2019%2F01%2F25%2FMath%2FModeling%2F2019ICM%2F</url>
+    <content type="text"><![CDATA[Problem Goal: design evacuation plans at the Louvre in Paris * Quic * Safely Difficuties: Diversity of visitors Language Group Disabled Basic information: 5 floors, 2 of which are underground Entrance pyramid: main and most used Passage Richelieu Carrousel du Louvre Portes Des Lions Some other exit points, but may cause security problem What to do: Design a adaptable model Indentify potential bottlenecks Validate your model How to implement it]]></content>
+      <categories>
+        <category>Math</category>
+        <category>Modeling</category>
+      </categories>
+      <tags>
+        <tag>model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Process Control:Basics]]></title>
+    <url>%2F2019%2F01%2F20%2FControl%2FProcess%20Control%2FProcessControl-basics%2F</url>
+    <content type="text"><![CDATA[1 概论 大多数生产过程的效益取决于控制的好坏，因此控制很重要。 大多数过程可以分解为一些基本环节，掌握这些环节之后我们就可以进行改造、控制，并预估性能。 总目标：对于任意外部干扰\(DV\)，通过调节操作变量\(MV\)，使被控变量\(CV/PV\)维持在设定值\(SP\) 2 过程动态特性 不同的过程动态特性不相同。 2.1 典型动态特性，机理建模 自衡过程--纯滞后、单容、多容 非自衡--积分、指数 常用方程 物料守恒，能量守恒 2.2 变送环节与控制阀特性 变送环节一般可表示为一阶+纯滞后，希望滞后和时间常数尽量小 测量信号往往会经过处理：周期性脉动、噪声--低通滤波，线性化处理--\(\sqrt{x}\to x^2\to x\) 控制阀直接与介质接触，工作在恶劣环境下。要谨慎选择 开度\(15 \% - 85 \%\) 气开、气关，主要考虑失气时使生产状态处于安全状态 进水阀气关 燃料阀气开 流量特性 线性阀--常数 等百分比阀--先慢后快 快开阀--先快后慢 抛物线阀--先慢后快 流量特性选择 设想开环增益不变，就不用改控制器参数 选择非线性阀补偿其他环节的变化，使开环增益保持不变 e.g. 已知热平衡\(C_1G_1(T-T_1)=\lambda G_2\) 那么，控制通道的静态增益 \[ K _ { p } = \frac { \partial T } { \partial G _ { 2 } } = \frac { \lambda } { C _ { 1 } G _ { 1 } } \propto \frac { 1 } { G _ { 1 } } \] 若主要扰动为\(T_1\),\(K_p\)为常数，所以选择直流线性阀 若主要扰动为\(G_1​\)，所以\(K_V​\)要\(\boldsymbol { K } _ { \boldsymbol { V } } \propto G _ { 1 }​\)，所以选择等百分比阀 2.3 广义对象，经验建模法 广义对象：简化控制系统的分析与设计，将执行机构、被控对象、测量变送环节合起来当成广义对象 对象获取：一般考虑为一阶+纯滞后 阶跃测试法 阶跃响应：在稳态下快速改变输入量 扰动信号幅度要适宜，一般\(5\%-15\%\) 计算\(K,T,\tau\) \(K\)广义对象的输出输入比 \(T=1.5(t_{y=0.632}-t_{y=0.283})\) *\(\tau=t_{y=0.283}-T\) 3 反馈控制 最基本、应用最广泛——单回路反馈控制 反馈不是唯一的控制方法，但是最简单、鲁棒性最好。 3.1 性能指标 以阶跃响应的特征参数为指标 衰减比 一般\(4:1-10:1\)之间，保持足够的稳定裕度。不希望有振荡的就不要了 余差 偏差积分性能指标 一个综合性的指标来全面反映控制的品质 偏差积分IE ：不能保证有合适衰减比 平方偏差积分 ISE ：数学上处理较为方便 绝对偏差积分 IAE ：较为常用 3.2 PID P比例控制 输出=k*偏差+稳态工作点 比例度\(PB=1/K_c\) \(K_c​\)的选择是对稳定性和精度*的权衡，越大精度提高，但稳定性变差 缺点：存在余差，但很多场合适用（液位） PI比例积分控制 静态增益\(\infty\)，所以没有余差 因为带来相角滞后，因此稳定性变差，所以\(K_c\)要相应减小 积分饱和问题：控制器的饱和输出比执行机构的范围大，使得控制信号很慢回落 解决方法：当发现控制器输出饱和时，就停止积分作用。用控制器的输出值作为反馈信号 PID比例积分微分控制 微分控制通过误差的变化率来预报误差信号的变化趋势 理想微分实现不了，用传递函数近似 为什么PID在时域中有偏置\(u_0\)，但在复频域的算式中没有？ 答：因为传递函数表达的是系统在稳态工作点附近变化时的情况 理论PID模拟算式 \[ u ( t ) = K _ { c } \left[ e ( t ) + \frac { 1 } { T _ { i } } \int _ { 0 } ^ { t } e ( \tau ) d \tau + T _ { d } \frac { d e ( t ) } { d t } \right] + u _ { 0 } \] 当然实际上无法达到，无论是理论的积分还是微分。位置式数字PID \[ u ( k ) = K _ { c } \left[ e ( k ) + \frac { T _ { s } } { T _ { i } } \sum _ { j = 0 } ^ { k } e ( j ) + \frac { T _ { d } } { T _ { s } } ( e ( k ) - e ( k - 1 ) ) \right] + u _ { 0 } \] 上式计算机可以实现，但是要存储过往的误差消耗空间太大，提出增量式数字PID \[ \begin{array} { l } { \Delta u ( k ) = u ( k ) - u ( k - 1 ) } \\ { \qquad \quad= K _ { c } \left[ ( e ( k ) - e ( k - 1 ) ) + \frac { T _ { s } } { T _ { i } } e ( k ) + \frac { T _ { d } } { T _ { s } } ( e ( k ) - 2 e ( k - 1 ) + e ( k - 2 ) ) \right] } \end{array} \] 3.3 PID的选取与整定 选型 P：简单，调整方便，但有余差。特别适合具有积分环节的对象以及允许余差的场合 PI：大部分都是PI。流量和快速压力等滞后小、运行周期短的过程，\(K_c\)一般取得比较小，如果不用积分就会有较大余差 PID：对于响应过程缓慢的过程如温度控制和成分控制，可以加入微分作用。在具有高频噪声的场合不适宜PID 正反作用：要想使得回路是负反馈，各个环节最后的乘积要为负（正作用为+，负作用为—） 对象输出变大，控制器输出也变大，就是正作用 参数整定 可以利用积分准则(ISE)来求最佳，但是比较费时。工程整定法如下 经验法 临界比例度法(Z-N法) 只保留比例作用，调整\(K_c\)直到系统振荡，根据临界振荡周期和临界比例增益来求PID参数 限制：需要对象高阶或有纯滞后，否则不会振荡 响应曲线法：根据一阶纯滞后模型的参数来求PID参数 4 前馈控制和比例控制 反馈只有在被控变量产生偏差以后才能校正，不提供预测功能 前馈控制器 特点：反应快，开环控制，“专用”控制器 结构形式 静态前馈，只要稳态下实现补偿，是一个定值 动态前馈，即使工作点转移也能有“全补偿”的性能 单独的前馈不太好用，所以一般和反馈一起使用，构成前馈-反馈控制 对前馈来说，降低了对模型精度的要求 对反馈来说，对干扰做了及时的粗调 线性、非线性？ 要根据系统的特性(能量守恒、物料守恒)来选择不同前馈变量之间的关系(\(+、 - 、\div、\times\)) 其中一种特殊的方法——比值控制，工业生产中很多过程可以通过保持物料的流量比来保证产品质量 定比值控制 开环：无法保证两流量比值 单闭环：PI控制器，但主流量不可控，所以总流量不能控制 双闭环：有设定值，能控制主流量 变比值控制 干扰造成最后产品质量的误差，很难通过人工手工调节比值 根据工艺参数\(y\)自动改变比值 其他问题 实现方式 相乘\(\times​\)方案：将流量作为设定值 相除\(\div\)方案：将比值作为设定值，尽量少用 逻辑提降：双交叉控制 5 其他典型控制系统 过程变得复杂时，在单回路PID上改进 5.1 串级控制 用途和串级类似，也是用来克服干扰。主要就是增加第二测量点，能更快检测干扰并克服。 主控制器接受设定值，副控制器输出控制信号 副回路具有快速调节作用 主回路对副对象有较好的鲁棒性 。因为只要副回路增益够大 系统设计 原则: 尽量多的干扰放在副回路中 副回路滞后不能太大 具有非线性和时变的特征放入副回路 控制器选型 主控制器PID 副回路大部分时候用PI 正反作用：反正都是要让两个回路构成负反馈 抗积分饱和：用负变量的测量值作为反馈信号 微分先行：如果给定值频繁变化，那么直接加在控制器里的微分结果会有很大的跳变。所以“先行”，加在测量变送的后面，这样就不会有跳变。 5.2 均匀控制 要解决的问题：怎样将一个变化较剧烈的流量换成一个变化平缓的流量？ 加一个缓冲罐，但是要增加设备、可能产生副反应 均匀控制：让液面平稳变化，所以相比单纯的液面控制来说，比例度宽，积分时间大 5.3 选择控制(超驰控制) 主要用于设备软保护，也就是引入选择器，当参数达到极限时的控制手段。 设计步骤： 首先根据控制阀的特性确定控制器的正反特性 根据控制器的特性确定选择器的性质（LS） 抗积分饱和： 限幅法：高低值限幅器 外反馈法（用在选择控制中）：采用合适的外部信号作为反馈信号 当控制器1工作时，对1来说反馈信号是自己，对2来说反馈信号是外部 积分切除法：开环情况下自动切除积分作用 5.4 分程和阀位控制 分程就是一台控制器操纵几个阀门。目的： 扩大控制阀的可调范围，改善控制系统的品质 有些场合可调范围特别大，所以在高低负荷下都不能好好工作， 选两个同向阀，组合之后，扩大可调范围 满足工艺操作的要求 e.g. 有时需加热、有时又要移走热量，就要配置两个控制阀 设计步骤 根据阀的气开气关特性，选择控制器的正反作用 根据节能要求，确定分程区间 生产上存在多个变量都能影响同一被控变量的情况。 有良好动态性能的变量，静态性能差 e.g. 加热炉内温度可以通过两种手段改变 加水冷却，动态性能好，但能量损失大，静态性能差 改变进料多少，动态性能不佳，但静态性能好 为了协调这些矛盾，引入阀位控制 加水冷却回路的阀门开度要小，通过参数整定，使其动作缓慢（宽比例度、大积分时间） 燃料阀是普通控制 5.5 非线性补偿方法 大多数控制过程都有一定非线性，因此要引入补偿，常用的补偿方法： 控制阀特性补偿：实现广义对象增益近似线性 串级控制 引入中间变量 变增益控制器 \(pH\)控制实例： 单回路PID控制，在\(pH=7\)附近容易振荡 带有不灵敏区的非线性PID，在\(pH=7\)附近控制器增益变小 引入非线性变化的线性PID，不用\(pH\)控制，而直接控制浓度 6 多回路控制系统 当有多个操纵变量，多个被控变量时，如何选择输入输出就很难判断。 在设计之前，对过程的耦合程度有了充分了解之后再进行设计 6.1 相对增益 相对增益\(\lambda_{11}\)为开环增益\(K_{11}\)(回路2开环)与闭环增益\(K&#39;_{11}\)(回路2闭环)之比。 计算： 计算开环增益矩阵\(K​\)，其中\(K _ { i j } = \left. \frac { \partial y _ { i } } { \partial u _ { j } } \right| _ { \Delta y_ { e } = 0 }​\) 计算\(\mathrm { H } = \mathrm { K } ^ { - 1 } ​\) 相对增益矩阵\(\left\{ \mu _ { i j } \right\} = \mathrm { K } \bullet \mathrm { H } ^ { T }\)，其中\(\bullet\)为点乘，即对应位置的相乘 含义：其他通道开环时，通道\(u_j-y_i\)的静态增益为\(K_{ij}\)，当其他回路闭环时，该通道静态增益变为\(\frac1{\lambda_ij}\)倍 因此，相对增益越接近1越好，说明耦合越小 有了相对增益矩阵，如何进行配对？ 首先接近1的先配对，然后将这一通道断开 6.2 耦合系统中的控制器参数整定 6.3 解耦控制方案设计 本质：设计一个计算网络，用它去抵消过程中的关联。 基于方框图的解耦器： 串级解耦 串级解耦 初始化问题，怎么样设置初值以满足无扰动地从"手动"投入"自动"？ 根据\(u_1,u_2\)观察框图，反推\(v_1,v_2\) 运行约束问题，当\(u_1,u_2\)中有一个受到比如控制阀上下限这样地约束，就不能很好地达到控制效果。 前馈解耦 前馈解耦 因为串级解耦的一些问题，因此工业中常用前馈解耦 当某一变量受约束时，使相应控制回路等价于开环 但是含有可能不稳定的回路 7 基于模型的控制 史密斯预估器：自己进行机理建模，将纯滞后给消除掉 但是对于模型的准确度要求较高，因此改进加入预测误差滤波器\(G _ { f } ( s ) = \frac { 1 } { T _ { f } s + 1 }\) 8 锅炉设备中汽包水位的控制 汽包水位时锅炉运行的主要指标，不能太低（容易干烧），也不能太高（容易结垢） 控制方法： 单冲量：只控制给水，但由于假水位现象，可能效果不好 双冲量：根据蒸汽流量来纠正虚假水位引起的误动作，但静态补偿比较困难，而且给水系统的干扰难以克服 三冲量：引入给水信号，消除给水系统的干扰 9 精馏塔 9.1 基础知识 单一组分液体，在封闭容器中，经过一定时间，系统达到平衡时的气相绝对压力 分离度\(S = \frac { x _ { D } } { 1 - x _ { D } } \times \frac { 1 - x _ { B } } { x _ { B } }​\) 9.2 控制问题 目标：控制产品纯度(大多数只有一端出料)、增加产品产率(产品量与进料的比值) 被控变量\(CV​\)，产品质量、液位 光谱分析，可以直接得到纯度 相对稳定时，灵敏板温度也可以简介反映纯度 不稳定时，选择灵敏板温度和塔顶温度之差 操作变量\(MV\)，塔顶产品量\(D\)，回流量\(L ​\) 精馏塔 9.3 控制方案 变量配对 就近原则：上管上，下管下 耦合程度要低 物料平衡控制 当精馏塔进料变化不大，或者纯度要求不高时，可采用纯物料平衡控制 \(CV\)：\(L_D, L_B\)顶部和底部液位 \(MV​\)：可以用\(D,L,B,Q_H​\)塔顶产品量、塔顶回流量、塔底产品量和加热蒸汽量 方案1：\(D \to L_D\),\(B \to L_B\) 两液位回路无耦合 干扰因素\(V​\)对纯度影响较大 方案2：\(L\to L_D​\),\(B\to L_B​\) 两液位回路无耦合 干扰因素\(V​\)对纯度影响较小 不适合小回流比产品 塔顶产品纯度控制 当精馏塔进料变化较大，或者纯度要求高时，可选择精馏段控制目标，塔底还是物料平衡控制 \(CV\)：\(L_D, L_B,T_R\)顶部和底部液位，塔顶产品纯度 \(MV\)：可以用\(D,L,B,Q_H\)塔顶产品量、塔顶回流量、塔底产品量和加热蒸汽量 方案1：\(B\to L_B​\)，\(L \rightarrow T _ { R} , D \rightarrow L _ { D }​\) \(L\)对\(T_R\)的控制快而且强 回流量频繁波动 方案2：\(B\to L_B​\)，\(D \rightarrow T _ { R } , L \rightarrow L _ { D }​\) \(D\)对\(T_R\)的控制比较慢 有利于平稳操作]]></content>
+      <categories>
+        <category>Control</category>
+        <category>Process Control</category>
+      </categories>
+      <tags>
+        <tag>control</tag>
+        <tag>process</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:Evaluating Hypotheses]]></title>
+    <url>%2F2019%2F01%2F16%2FCS%2FMachine%20Learning%2FML-EvaluatingHypo%2F</url>
+    <content type="text"><![CDATA[1 Error! There are two types of error: true error: \(\operatorname { error } _ { \mathcal { D } } ( h ) \equiv \operatorname { Pr } _ { x \in \mathcal { D } } [ f ( x ) \neq h ( x ) ]\) \(D\) for distribution sample error: \(error_s( h ) \equiv \frac { 1 } { n } \sum _ { x \in S } \delta ( f ( x ) \neq h ( x ) )\) \(\delta ( f ( x ) \neq h ( x ) )=1\) if \(f ( x ) \neq h ( x )\) How well dose sample error estimate true error？ We can check Bias Variance 2 Estimators Choose sample \(S\) of size \(n\) according to \(D\) measure \(error_s(h)\) \(\to\) sample error is an unbiased estimator for true error e.g. with approximately \(95\%\) probability, true error lie in \[ \operatorname { error } _ { S } ( h ) \pm 1.96\sqrt \frac { \text { errors } ( h ) \left( 1 - e r r o r _ { S } ( h ) \right) } { n } \]]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>hide</tag>
+        <tag>ml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:Decision Tree]]></title>
+    <url>%2F2019%2F01%2F16%2FCS%2FMachine%20Learning%2FML-DTree%2F</url>
+    <content type="text"><![CDATA[1 Introduction 1.1 What is a Decision Tree? A tree shaped supervised learning algorithm decision-tree Problem setting: Set of possible instances \(X\) each instance \(x\) in \(X\) is a feature vector \(x = &lt; x _ { 1 } , x _ { 2 } \ldots x _ { n } &gt;\) Unknown target function \(f : X \rightarrow Y\) Set of function hypotheses \(H = \{ h | h : X \rightarrow Y \}\) Input: Training examples \(\left\{ &lt; x ^ { ( i ) } , y ^ { ( i ) } &gt; \right\}\) Output: Hypothesis \(h \in H\) that best approximates target function \(f\) 1.2 How it works? The tree divide the data into many categories make biggest entropy. That means the tree will try to get the maximum information gain from the dataset. 2 How to Split a Node In other word, how to split a node into 2 or more sub-nodes. There are multiple methods can be used： Information gain Based on entropy and information theory. Used by ID3 C4.5 C5.0 Entropy \(\mathrm { H } ( T ) = \mathrm { I } _ { E } \left( p _ { 1 } , p _ { 2 } , \ldots , p _ { J } \right) = - \sum _ { i = 1 } ^ { J } p _ { i } \log _ { 2 } p _ { i }\) Note: \(\sum p_i=1\) which means if \(p_i=p_j\) ,\(H(T)\) is biggest $1 $ (equal probablity, most chaos) Information Gain \[ I G ( T , a ) = H ( T ) - \mathrm { H } ( T | a )\\ =- \sum _ { i = 1 } ^ { J } p _ { i } \log _ { 2 } p _ { i } - \sum _ { a } p ( a ) \sum _ { i = 1 } ^ { J } - \operatorname { Pr } ( i | a ) \log _ { 2 } \operatorname { Pr } ( i | a ) \] Gini impurity A measure of impurity, lower \(\to\) better Used by CART (classification and regression tree) for classification Calculation \[ \mathrm { I } _ { G } ( p )= 1 - \sum _ { i = 1 } ^ { J } p _ { i } ^ { 2 } \] Variance reduction Used by CART (classification and regression tree) for regression 3 Overfitting How to avoid? Stop growing when data split not statistically significant easy to understand hard to decide what is significant Grow full tree, then post-prune useful in practice Reduced-Error Pruning Create a tree that classifies training set Evaluate impact on validation set of purning each possible node Greedily remove the impact most slightly]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:Bayesian Learning]]></title>
+    <url>%2F2019%2F01%2F16%2FCS%2FMachine%20Learning%2FML-BayesianLearning%2F</url>
+    <content type="text"><![CDATA[1 Introduction Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as frequentist statistics An experiment with an infinite number of trials guarantees \(p\) with absolute accuracy It's not practial to conduct an experiment with an infinite number of trials deciding the value of this sufficient number of trials is a challenge If we can determine the confidence of the estimated \(p\) , it will allow us to decide whether to accept the conclusion extend the experiment with more trials until it achieves sufficient confidence prior beliefs (for example, coins are usually fair and the coin used is not made biased intentionally, therefore \(p≈0.5\)) play a significant role in shaping the outcome of a hypothesis test However, it ==can't== be used along with frequentist statistics 2 Bayesian Learning Consider the flip coin experiment, if you flip the coin \(10\) times, there are 2 case: 5 heads and 5 tails more confidence about that \(p=0.5​\) \(x\) head and \(10-x\) tails Now you have 2 options frequentist statistics :Neglect prior beliefs, just based on data Bayesian Learning :Adjust your belief according to observation 2.1 Bayes' Theorem Bayes’ theorem \[ P ( \theta | X ) = \frac { P ( X | \theta ) P ( \theta ) } { P ( X ) } \] \(P ( \theta )\) Prior Probability is the probability of the hypothesis \(\theta\) being true \(P ( X | \theta )​\) Likelihood is the conditional probability of the evidence given a hypothesis \(P ( X )\) Evidence :a summation (or integral) of the probabilities of all possible hypotheses \(P ( \theta | X )​\) Posteriori probability 2.2 Application1: MAP Used to confirm the valid hypothesis using posterior probabilities \[ \begin{aligned} \theta _ { M A P } &amp; = \operatorname { argmax } _ { \theta } P \left( \theta _ { i } | X \right) \\ &amp; = \operatorname { argmax } _ { \theta } \left( \frac { P ( X | \theta _ { i } ) P \left( \theta _ { i } \right) } { P ( X ) } \right) \end{aligned} \] \(P(x)\) is independent of \(\theta\) . Therefore, we can simplify the $_{MAP} $ to \[ \theta _ { M A P } = \operatorname { argmax } _ { \theta } \left( P ( X | \theta _ { i } ) P \left( \theta _ { i } \right) \right) \] 2.3 How to Achieve the Goal For the \(P ( X | \theta _ { i } )\) part Use \(MLE\) \[ \frac { d } { d \theta } \ln P (X | \theta ) = 0 \] For the \(P \left( \theta _ { i } \right)\) part if the hypothesis space is continuous, it will be endless hypothesis. So in practical, we use approximation techniques : Beta prior distribution \[ P ( \theta ) = \frac { \theta ^ { \alpha - 1 } ( 1 - \theta ) ^ { \beta - 1 } } { B ( \alpha , \beta ) } \] \(B ( \alpha , \beta )\) acts as the normalizing constant 2.4 Example As a Binomial probability example \[ P ( k , N | \theta ) = \left( \begin{array} { c } { N } \\ { k } \end{array} \right) \theta ^ { k } ( 1 - \theta ) ^ { N - k } \] \[ P ( \theta ) = \frac { \theta ^ { \alpha - 1 } ( 1 - \theta ) ^ { \beta - 1 } } { B ( \alpha , \beta ) } \] So the posterior \[ \begin{aligned} P ( \theta | N , k ) &amp; = \frac { P ( N , k | \theta ) \times P ( \theta ) } { P ( N , k ) } \\ &amp; = \frac { \left( \begin{array} { c } { N } \\ { k } \end{array} \right) } { B ( \alpha , \beta ) \times P ( N , k ) } \times \theta ^ { ( k + \alpha ) - 1 } ( 1 - \theta ) ^ { ( N + \beta - k ) - 1 } \end{aligned} \] and consider it as a new Beta prior distribution \[ P ( \theta | N , k ) = \frac { \theta ^ { \alpha _ { n e w } - 1 } ( 1 - \theta ) ^ { \beta _ { n e w } - 1 } } { B \left( \alpha _ { n e w } , \beta _ { n e w } \right) } \] 3 Bayes Optimal Classifier Given new instance \(x\), the hypothesis we get previously \(h _ { M A P } ( x )\) may be not the most probable classification. e.g.1 \[ P \left( h _ { 1 } | D \right) = 0.4 , P \left( h _ { 2 } | D &gt;\right) = 0.3 , P \left( h _ { 3 } | D \right) = 0.3 \] New instance \[ h _ { 1 } ( x ) = + , h _ { 2 } ( x ) = - , h _ { 3 } ( x ) = - \] Bayes optimal classifier tell us that we should find: \[ \arg \max _ { v _ { j } \in V } \sum _ { h _ { i } \in H } P \left( v _ { j } | h _ { i } \right) P \left( h _ { i } | D \right) \] e.g.1 \[ P \left( h _ { 1 } | D \right) = 0.4 , P ( - | h _ { 1 } ) = 0 , &gt;P ( + | h _ { 1 } ) = 1 \\ P \left( h _ { 2 } | D \right) = 0.3 , &gt;P ( - | h _ { 2 } ) = 1 , P ( + | h _ { 2 } ) = 0 \\ P \left( h _ { &gt;3 } | D \right) = 0.3 , P ( - | h _ { 3 } ) = 1 , P ( + | h _ { 3 &gt;} ) = 0 \] therefore \[ \begin{aligned} \sum _ { h _ { i } \in H } P ( + | h _ { i } ) P &gt;\left( h _ { i } | D \right) &amp; = .4 \\ \sum _ { h _ { i } \in H } P &gt;( - | h _ { i } ) P \left( h _ { i } | D \right) &amp; = .6 &gt;\end{aligned} \] so we choose \(-\) as the classification 4 Navie Bayes Classifier When to use: Large training set available Attributes are independent Used in diagnosis and text classification Navie Bayes assumption： \[ P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) = \prod _ { i } P \left( a _ { i } | v _ { j } \right) \] Bayes MAP \[ \begin{aligned} v _ { M A P } &amp; = \underset { v _ { j } \in V } { \operatorname { argmax } } \frac { P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) P \left( v _ { j } \right) } { P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } \right) } \\ &amp; = \underset { v _ { j } \in V } { \operatorname { argmax } } P \left( a _ { 1 } , a _ { 2 } \ldots a _ { n } | v _ { j } \right) P \left( v _ { j } \right) \end{aligned} \] Navie Bayes Classifier \[ v _ { N B } = \underset { v _ { j } \in V } { \operatorname { argmax } } P \left( v _ { j } \right) \prod _ { i } P \left( a _ { i } | v _ { j } \right) \] 5 Bayesian Belief Networks Improve Navie Bayes Classifier: Attributes are independent \(\to\) too restrictive So Bayes Nets describe conditional independence among subsets Conditional Independence \[ P ( X | Y , Z ) = P ( X | Z ) \] e.g. \(P ( \text { Thunder } | \text { Rain, Lightning) } = P ( \text { Thunder } | \text {Lightning} )\) Bayes nets use cond. indep. to justify \[ \begin{aligned} P ( X , Y | Z ) &amp; = P ( X | Y , Z ) P ( Y | Z ) \\ &amp; = P ( X | Z ) P ( Y | Z ) \end{aligned} \] A network bayesian-belief-network in general \[ P \left( y _ { 1 } , \ldots , y _ { n } \right) = \prod _ { i = 1 } ^ { n } P \left( y _ { i } | \text { Parents } \left( Y _ { i } \right) \right) \] So, joint distribution is fully defined by graph, and \(P \left( y _ { i } | \text { Parents } \left( Y _ { i } \right) \right)\) Learning task: Graph structure might be known or unknown Training data might provide all or some variables Case 1: known Simlilar to training neural network with hidden units Using gradient ascent to maximizes \(P ( D | h )\) Using EM (Expection Maximization) to maximizes \(E [ \ln P ( D | h ) ]\) Case 2: unknown Use greedy search to add/substact edges and nodes …… ==in research== Appendix: EM When to use? Data is only partially observable Question Definition Given: Observed data \(X = \left\{ x _ { 1 } , \ldots , x _ { m } \right\}\) Unobserved data \(Z = \left\{ z _ { 1 } , \ldots , z _ { m } \right\}\) Probablity distribution \(P ( Y | h )\) \(Y = \left\{ y _ { 1 } , \dots , y _ { m } \right\}\) where \(y _ { i } = x _ { i } \cup z _ { i }\) \(h\) parameters Determin: \(h​\) that maximizes \(E [ \ln P ( Y | h ) ]​\) General Method Use \(h\) and \(X\) estimate \(Z\) \[ E [ \ln P ( Y | h ) ] \to E [ \ln P ( Y | h ^ { \prime } ) | h , X ] \]]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ml</tag>
+        <tag>bayes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ML:First Step]]></title>
+    <url>%2F2019%2F01%2F16%2FCS%2FMachine%20Learning%2FML-ConceptLearning%2F</url>
+    <content type="text"><![CDATA[1 Introduction How machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did. Most simple algorithms: Find-S 2 What is Concept Learning “The problem of searching through a predefined space of potential hypotheses for the hypothesis that best fits the training examples.” ​ — Tom Michell Human learning: acquiring general concepts from past experiences. Machine learning: find a hypothesis that best fits the training example. Notaion: target concept \(c\) object \(X\) all hypothesis set \(H\) \(c : X \to \{ 0,1 \}\) **What we should do is to find a hypothesis \(h ( x ) = c ( x ) \text { for all } x \text { in } X\) Good hypothesis fit large set of training example well \(\to\) the hypothesis fit unobserved example well 3 Find-S 3.1 Hypothesis Notations \(\varnothing\) :a hypothesis that rejects all \(&lt; ? , ? , ? , ? &gt;\) :accepts all \(&lt; \text { true, false, } ? , ? &gt;\) :accepts some Total number of the possible hypothesis \(N=(3*3*3*3)+1=82\) 3.2 Specific to General Start with the most specific hypothesis \(\mathbf { h } \leftarrow &lt; \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } &gt;\) Pick up a sample if sample is negative \(\to​\) unchanged if sample is positive \(\to\) update current hypothesis \(&lt;true,true,false,true&gt; \and &lt;true,true,false,false&gt; \to &lt;true,true,false,?&gt;\) repetition of Step 2 3.3 Limitations No way to determine if result is consistent with the data Inconsistent sets will mislead the result No backtrack 4 Candidate-elimination 4.1 Chrarcters Maintain 2 hypothesis \(S_0\) most specific \(G_0\) most general 4.2 Algorithm Pick up a sample if sample is negative \(\to\) specificalize \(G_0\) if sample is positive \(\to\) generalize \(S_0\) 4.3 Limitations Low fault tolerance 5 Inductive Bias Stronger the bias is, more powerful the generaliztion is. indicate that: If there is no assumption, the learner can learn nothing but the data Common biases: Maximum conditional independence Minimum cross-validation error Minimum description length :Occam's razor Minimum features]]></content>
+      <categories>
+        <category>CS</category>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ml</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STM32 Basics]]></title>
+    <url>%2F2019%2F01%2F12%2FEmbedded%20System%2FSTM32%2FSTM32-Basics%2F</url>
+    <content type="text"><![CDATA[1 命名规则 STM32F103C8T6 STM：基于ARM®的32位微控制器 F：通用类型 103：增强型 C：48脚 8：64K字节的闪存存储器 T：LQFP封装 6：工业级温度范围，-40°C~85°C 2 RCC Reset and Clock Control——复位和时钟控制 2.1 复位 三种不同方式，影响的区域不同 系统复位：除时钟控制器寄存器中的复位标志位和备份区域 上电复位：除备份区域 备份区域复位：只影响备份区域 2.2 时钟 三种不同的时钟来源，用来驱动系统时钟 HSI(高速内部时钟信号)：由内部8MHz的RC振荡器产生 HSE(高速外部时钟信号)：在这个模式里，必须提供外部时钟。它的频率最高可达25MHz PLL(锁相环倍频输出)：用来倍频HSI RC的输出时钟或HSE晶体输出时钟 实验因为使用USB模块，其需要一个48MHz的时钟源，只能从PLL输出端获取，因此我们实验时只能使用此模式 编程时，要使用某个IO口或者外设时就必须要对相应的时钟进行使能 3 GPIO 3.1 模式 有三种模式 通用输出 推挽(有上拉电阻) 开漏(直接输出) 复用功能输出 推挽 开漏 输入 3.2 复用功能输出 因为板子上有很多外设（ADC DAC UART 等），为了节省引脚，所以将一些GPIO口作为这些外设的输出引脚。比如说，为了实现电脑和STM32的通信，PA9和PA10就被复用作为UART1的发送接收引脚了 3.3 重映射 每个内置外设都有若干个输入输出引脚，一般这些引脚的输出端口都是固定不变的，为了让设计工程师可以更好地安排引脚的走向和功能，在STM32中引入了外设引脚重映射的概念，即一个外设的引脚除了具有默认的端口外，还可以通过设置重映射寄存器的方式，把这个外设的引脚映射到其它的端口。 比如，UART1 的 Tx , Rx 引脚在 PA9 和 PA10 上，但是同时它有两个映射端口PB6 ，PB7。开启重映射，PB6 和PB7 同样可以使用UART11。 4 中断和事件 4.1 NVIC 嵌套的向量式中断控制器 4.2 EXTI 外部中断/事件控制器 能产生事件/中断请求的边沿检测器。每个输入线可以独立地配置输入类型(脉冲或挂起)和对应的触发事件(上升沿或下降沿或者双边沿都触发)。 5 定时器 5.1 普通定时器TIMx(2\3\4\5) 通用定时器是一个通过可编程预分频器驱动的16位自动装载计数器构成。可以用来测量输入信号的脉冲长度或者产生输出波形。 对定时器的修改主要通过改变3个定时器来实现 计数器寄存器(TIMx_CNT) 预分频器寄存器 (TIMx_PSC) 1-65536 自动装载寄存器 (TIMx_ARR) 6 USART 通用同步异步收发器 支持全双工同步异步数据交换，使用多缓冲配置器的DMA方式，可以实现高速数据通信。 任何USART双向通信至少需要两个脚：接收数据输入(RX)和发送数据输出(TX)。]]></content>
+      <categories>
+        <category>Embedded System</category>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[8051 Instructions]]></title>
+    <url>%2F2019%2F01%2F11%2FEmbedded%20System%2F8051%2F8051-Instructions%2F</url>
+    <content type="text"><![CDATA[1 Overall 共性： 立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。 操作数的表现形式 内部RAM：A、Rn、@Ri、direct、#data 外部RAM：@DPTR、@Ri ROM：@A+DPTR、@A+PC 2 数据传送指令 除以累加器A为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。 2.1 内部RAM MOV 在A、Rn、@Ri、direct、#data之间互传 除了Rn之间、Rn与@Ri之间、@Ri之间 direct可以自己传自己 2.2 外部RAM MOVX 其中必有一个为A 另外一个操作数（在片外）： @Ri，片外低256字节 @DPTR，片外64K 2.3 ROM MOVC 都是读入A中 只有两种 @A+DPTR ：DPTR相当于表的位置，A=欲查数值距离表首地址的值 @A+PC：PC相当于表的位置，A=表首地址－当前指令的PC值－1 3 算术运算 除了++和--以外都影响标志位 INC DEC：只有DPTR不能-- ADD ADDC SUBB 都存入A，只有DPTR不能进行运算 ADDC：(A)\(\leftarrow​\)(A)+(Cy)+(第二操作数) SUBB: (A)\(\leftarrow\) (A)－(Cy)－(第二操作数) MUL DIV MUL: 低八位进A，高8位进B DIV：整数进A，余数进B 4 逻辑运算 目的操作数是A时影响P标志位。除了两条带进位的循环移位指令影响C标志外，其余均不影响PSW中的各标志位。 ANL ORL XRL RL RR RLC RRC logical-operation CLR CPL]]></content>
+      <categories>
+        <category>Embedded System</category>
+        <category>8051</category>
+      </categories>
+      <tags>
+        <tag>8051</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[8051 Basics]]></title>
+    <url>%2F2019%2F01%2F10%2FEmbedded%20System%2F8051%2F8051-Basics%2F</url>
+    <content type="text"><![CDATA[1 Embedded System Introduction An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task 1.1 Architecture Von Neumann: data and code lie in the same memory blocks Harvard: data and code lie in different memory blocks 1.2 Instruction Set CISC: Easy to use, higher clock cycle RISC: Hard to use, lower clock cycle 2 8051 Introduction In 1981, Intel introduced an 8-bit microcontroller called the 8051. 128 bytes of RAM 4K byte of on-chip ROM Max 64K at all because PC is 16-bit : (0000 to FFFF address) two timers 4 ports (8-bit wide) 3 internal and 2 external Interrupts Family Member 8052: 8K ROM, 256 byte RAM, 3 Timer 8031: 0K ROM, 128 byte RAM, 2 Timer 2.1 Registers Registers Meaning A(8-bit) accumulator: quick. Used for all operations R(8-bit) R0,R1 to R7: store values temporarily DPTR(16-bit) Data Pointer: access external memory PC(16-bit) Program Counter: where the next instruction to execute can be found in the memory./starts at 0000h SP(8-bit) Stack Pointer: the location of the stack's tail. Initially, the SP register contains value 07 to point to location 08 as the first location being used for the stack by the 8051 PSW(8-bit) program status word:4 conditional flags + RS0、RS1 CY(1-bit) there is a carry out from the D7 bit AC(1-bit) there is a carry from D3 and D4 P(1-bit) odd number of 1's in A register, then P = 1 2.2 Addressing Modes Immediate address-Immediate Direct address-direct Register Direct register-direct Register Indirect register-indirect Indexed index-address 2.3 Hardware Totally 40 pins \(4\times8\) ports \(8\) : Vcc ,GND, XTAL1, XTAL2, EA, ALE, PSEN default: input. 0 written to a port \(\to\) output; 1 written to a port \(\to\) input 2.3.1 Port 0 An open drain: we normally connect P0 to 10K-ohm pull-up resistors to use it as an input or output port be used as both address and data, designated as AD0-AD7 2.3.2 Port 1 Can be used either as input or output It doesn't require pull-up resistors because they are already connected internally 2.3.3 Port 2 Similar to Port 1 It must be used along with P0 to provide the 16-bit address for the external memory. Port 2 is used for upper 8-bit of the 16 bits address 2.3.4 Port 3 Similar to Port 1 P3 Bit Function P3.0 RxD P3.1 &lt; TxD P3.2 &lt; Complement of INT0 P3.3 &lt; INT1 P3.4 &lt; T0 P3.5 &lt; T1 P3.6 &lt; WR P3.7 &lt; Complement of RD 2.3.5 Other RST: Power-On Reset To ensure a valid input of Reset, the high pulse must be high for a minimum of two machine cycles EA: (External Access) Applying a low pulse, it gets activated PSEN: (Program store Enable) Applying a low pulse, it gets activated Single-Bit Instructions SETB 2.4 Timers 8051 has 2 timers, Timer 0 and Timer 1 Both Timer 0 and 1 are 16-bit wide 2 separate 8-bit registers TH0\1 and TL0\1 2.4.1 TMOD tmod Gate: the timer only runs while INT(0,1) is high. Control the onof the timers Software: SETB TR0 CLR TR0 Hardware: Gate=1 C/T : Counter/Timer select bit. =0: Timers .Be incremented with every machine cycle =1: Counter Mode TF0\1 will be set 1 if Timer has overflowed. 0: 13-bit timer mode (8 bits of TH1 and 5 bits of TL1) 1: 16-bit timer mode 2: 8-bit Auto Reload : Overflow form TL1 set TF1(1) and reload TL1 with TH1 2.5 Interrupts For every interrupt, there must be an interrupt service routine (ISR), or interrupt handler 2.5.1 Process Close currently executing instruction and save the PC in stack Jump to memory location of the interrupt vector table and execute ISR Get PC from stack, execute from that address 2.5.2 Priority We can alter the priority by programming a register called IP (8-bit)(interrupt priority). default: Interrupt Priority Meaning PT1 IP.3 Defines the Timer 1 interrupt priority level. PX1 IP.2 Defines the External Interrupt 1 priority level. PT0 IP.1 Defines the Timer 0 interrupt priority level. PX0 IP.0 Defines the External Interrupt 0 priority level. 2.5.3 Enabling We can enable interrupt by programming a register called IE(8-bit)(interrupt enable). EA - ET2 ES ET1 EX1 ET0 EX0 Global Undefined Timer 2 Serial port Timer 1 External 1 Timer 0 External 0]]></content>
+      <categories>
+        <category>Embedded System</category>
+        <category>8051</category>
+      </categories>
+      <tags>
+        <tag>8051</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Math-Lie Algebras]]></title>
+    <url>%2F2019%2F01%2F08%2FMath%2FAlgebra%2FMath-LieGroup%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Math</category>
+        <category>Algebra</category>
+      </categories>
+      <tags>
+        <tag>hide</tag>
+        <tag>algebra</tag>
+        <tag>math</tag>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linear Algebra for Robotics]]></title>
+    <url>%2F2019%2F01%2F08%2FMath%2FAlgebra%2FMath-LinearAlgebra%2F</url>
+    <content type="text"><![CDATA[Vectors \[ \boldsymbol { v } = \left( v _ { x } , v _ { y } , v _ { z } \right) \] length of a vector p-norm: \(\| v \| _ { p } = \left( \sum _ { i = 1 } ^ { n } \left| v _ { i } \right| ^ { p } \right) ^ { 1 / p }\) Euclidean length: \(p=2\) operation dot product \[ \boldsymbol { a } \cdot \boldsymbol { b } = \boldsymbol { b } \cdot \boldsymbol { a } = \boldsymbol { a } ^ { T } \boldsymbol { b } = \boldsymbol { b } ^ { T } \boldsymbol { a } = \sum _ { i = 1 } ^ { n } a _ { i } b _ { i } = \| a \| _ { 2 } \| b \| _ { 2 } \cos \theta \] cross product \[ \boldsymbol { a } \times \boldsymbol { b } = - \boldsymbol { b } \times \boldsymbol { a } = \operatorname { det } \left( \begin{array} { l l l } { \hat { \boldsymbol { x } } } &amp; { \hat { \boldsymbol { y } } } &amp; { \hat { z } } \\ { a _ { 1 } } &amp; { a _ { 2 } } &amp; { a _ { 3 } } \\ { b _ { 1 } } &amp; { b _ { 1 } } &amp; { b _ { 3 } } \end{array} \right) = [ a ] _ { \mathbf { x } } \boldsymbol { b } = \| a \| _ { 2 } \| b \| _ { 2 } \sin \theta \hat { \boldsymbol { n } } \] Matrices \[ A = \left( \begin{array} { c c c c } { a _ { 1,1 } } &amp; { a _ { 1,2 } } &amp; { \cdots } &amp; { a _ { 1 , n } } \\ { a _ { 2,1 } } &amp; { a _ { 2,2 } } &amp; { \cdots } &amp; { a _ { 2 , n } } \\ { \vdots } &amp; { \vdots } &amp; { \ddots } &amp; { } \\ { a _ { m , 1 } } &amp; { a _ { n , 2 } } &amp; { \cdots } &amp; { a _ { m , n } } \end{array} \right) , A \in \mathbb { R } ^ { m \times n } \] Square Matrices Inverse \(A A ^ { - 1 } = A ^ { - 1 } A = I _ { n \times n }\) symmetric \(A = A ^ { T }\) skew-symmetric \(A = - A ^ { T }\) \[ S = [ v ] _ { \times } = \left( \begin{array} { c c c } { 0 } &amp; { - v _ { z } } &amp; { v _ { y } } \\ { v _ { z } } &amp; { 0 } &amp; { - v _ { x } } \\ { - v _ { y } } &amp; { v _ { x } } &amp; { 0 } \end{array} \right) \] orthogonal: \(A ^ { - 1 } = A ^ { T }\) The product of two orthogonal matrices of the same size is also an orthogonal matrix Group \(O(n)\) deteminant \(=+1 \to SO(n)\) normal: \(A ^ { T } A = A A ^ { T }\) can be diagonalized by an orthogonal matrix All symmetric, skew-symmetric and orthogonal matrices are normal matrices determinant: factor by which the transformation changes changes volumes in an n-dimensional space; equal to the product of the eigenvalues: \(\operatorname { det } ( A ) = \prod _ { i = 1 } ^ { n } \lambda _ { i }\) trace: \(\operatorname { tr } ( A ) = \sum _ { i = 1 } ^ { n } A _ { i i } = \sum _ { i = 1 } ^ { n } \lambda _ { i }\) sum of the diagonal elements sum of the eigenvalues Nonsquare Matrices]]></content>
+      <categories>
+        <category>Math</category>
+        <category>Algebra</category>
+      </categories>
+      <tags>
+        <tag>algebra</tag>
+        <tag>math</tag>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Images and Image Processing]]></title>
+    <url>%2F2019%2F01%2F07%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRobotics-Image%2F</url>
+    <content type="text"><![CDATA[1 Introduction A process that transforms one or more input images into an output image. Main purpose: enhance an image for human viewing A image is just a matrix. Value: uint8 ,[0-255] (from darkest to brightest) if use complex algorithms, may use floating-point numbers Descibe: width \(\times\) height 2 Useful Algorithms Histogram: the number of times each pixel value occurs. If a picture was under-exposed, the histogram would shift to the left. Find peak in nearby x value: 3 Monadic &amp; Diadic Operations 3.1 Monadic monadic A function about single pixel. That is \(O [ u , v ] = f ( I [ u , v ] ) , \quad \forall ( u , v ) \in I\) Example: convert a color image to a greyscale image stretch normalize hist 3.2 Diadic Example: chroma-keying: superimpose the image of a person over some background. gamma encoded image to linear tristimulus value. mask = g&lt;0.45 (just a example) mask.*image This an important problem in robot vision. But variation is a significant problem in real-world. Provess image sequence and estimate the background \(\hat { \boldsymbol { B } } \langle k + 1 \rangle \leftarrow \hat { \boldsymbol { B } } \langle k \rangle + c ( \boldsymbol { I } \langle k \rangle - \hat { \boldsymbol { B } } \langle k \rangle )\) \[ c ( x ) = \left\{ \begin{aligned} \sigma , &amp; x &gt; \sigma \\ x , &amp; - \sigma \leq x \leq \sigma \\ - \sigma , &amp; x &lt; - \sigma \end{aligned} \right. \] diadic 4 Spatial Operations Each pixel in the output image is a function of all pixels in a region \[ O [ u , v ] = f ( I [ u + i , v + j ] ) , \quad \forall ( i , j ) \in \mathcal { W } , \quad \forall ( u , v ) \in I \] Spatial operations are powerful for the variety of possible function \(f ( \cdot )\) 4.1 Linear Smoothing ones(K) gaussian \(\mathrm { G } ( u , v ) = \frac { 1 } { 2 \pi \sigma ^ { 2 } } e ^ { - \frac { u ^ { 2 } + v ^ { 2 } } { 2 \sigma ^ { 2 } } }\) gaussian Edge Detection \(p ^ { \prime } [ v ] = p [ v ] - p [ v - 1 ]\) \(p ^ { \prime } [ v ] = \frac { 1 } { 2 } ( p [ v + 1 ] - p [ v - 1 ] )\) Sobel Canny]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Robotics,Vison and Control Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>vision</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Vision Foundation]]></title>
+    <url>%2F2019%2F01%2F07%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRootics-Vison%20foundation%2F</url>
+    <content type="text"><![CDATA[1 Introduction The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity. 2 Light Each color is a single frequency or wavelength of electro-magnetic radiation.We perceive the wavelengths between 400 and 700 nm as different colors. In general, the light we observe can be represented as a function \(E(\lambda)\) ,\(\lambda\) is the wavelength. This is a function about power related to source temperature \(T\) (e.g. 4700K) Planck’s constant \(h\) , Boltzmann’s constant \(k\), speed of light \(c\) …… black-body-power 2.1 Absorption earth-spectrum Spectrum will be changed (be absorbed) 2.2 Luminance The light refl ected from a surface, its luminance, has a spectrum given by \[ L ( \lambda ) = E ( \lambda ) R ( \lambda ) (W m ^ { - 2 }) \] where \(R\) is the reflectance 2.3 Color How to measure color? Take \(red\) for example: \[ \rho = \int _ { \lambda } L ( \lambda ) M _ { \mathrm { r } } ( \lambda ) \mathrm { d } \lambda \] where \(M _ { r } ( \lambda )\) are the spectral response of the red. 3 Image Formation Here we introduce how images are formed and captured. a glass or plastic lens forms an image on the surface of a semiconductor chip with an array of light-sensitive devices to convert light to a digital image. However, in an eye or in a camera, the depth information is lost. This is known as projection. 3.1 Model 3.1.1 Perspective Camera convex lens \(\frac { 1 } { z _ { 0 } } + \frac { 1 } { z _ { i } } = \frac { 1 } { f }\) In a camera, the image plane (the surface of the sensor chip) is fixed. How to solve the problem? \(\to\) high-quality camera lens is a compound lens comprising multiple glass or plastic lenses. central perspective imaging model perspective-camera Map: \(\mathrm { P } = ( X , Y , Z ) \to x = f \frac { X } { Z } , y = f \frac { Y } { Z }\) \(\mathcal { P } : \mathbb { R } ^ { 3 } \mapsto \mathbb { R } ^ { 2 }\) straight line \(\to\) straight line map is not unique map is not conformal 3.1.2 Mathematical Model world coordinate homogeneous form \[ \tilde { \boldsymbol { P } } = ( X , Y , Z , 1 ) ^ { T } \] image-plane point coordinate \[ \tilde { \boldsymbol { p } } = \left( \begin{array} { l l l l } { f } &amp; { 0 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { f } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 0 } &amp; { 1 } &amp; { 0 } \end{array} \right) \tilde { \boldsymbol { P } } \] 3.1.3 Discrete Model camera-discrete-model Notation: Principle point: \((u_0,v_0)\) width and height of each pixel \(\rho_w , \rho_h\) So, the pixel coordinate \[ u = \frac { x } { \rho _ { w } } + u _ { 0 } , v = \frac { y } { \rho _ { h } } + v _ { 0 } \] finally, we get \[ \tilde { \boldsymbol { p } } = \left( \begin{array} { c c c } { f / \rho _ { w } } &amp; { 0 } &amp; { u _ { 0 } } \\ { 0 } &amp; { f / \rho _ { h } } &amp; { v _ { 0 } } \\ { 0 } &amp; { 0 } &amp; { 1 } \end{array} \right) \left( \begin{array} { c c c c } { 1 } &amp; { 0 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 1 } &amp; { 0 } &amp; { 0 } \\ { 0 } &amp; { 0 } &amp; { 1 } &amp; { 0 } \end{array} \right) \left( ^ { 0 } T _ { C } \right) ^ { - 1 } \tilde { P } \] In conclusion, we can describe a projection as a function \[ \boldsymbol { p } = \mathcal { P } \left( \boldsymbol { P } , \boldsymbol { K } , \boldsymbol { \xi } _ { \mathrm { C } } \right) \] \(P​\) is point in the real world frame \(K\) is the camera parameter : \(f,\rho_w, \rho_h, u_0, v_0\) \(\xi_c\) the pose of the camera 3.2 Camera Calibration In practice, some parameter in \(K\) is unclear.(\(f, u_0, v_0\)) So we need to calibrate the camera]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Robotics,Vison and Control Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>vision</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Arm Kinematics]]></title>
+    <url>%2F2019%2F01%2F06%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRobotics-Arm%20Kinematics%2F</url>
+    <content type="text"><![CDATA[1 Introduction Kinematics is the branch of mechanics that studies the motion of a body, without considering it's mass or forces. A robot arm, a serial-link manipulator, a chain of rigid links and joints. Each joint has one degree of freedom. 2 types: Translational—–prismatic joint Rotational—–revolute joint 2 Forward Kinematics 3 Inverse Kinematics 4 Trajectory Requirement: move the end-effector smoothly from pose A to pose B. Approach: joint-space Cartesian motion 4.1 joint-space 4.2 Cartesian motion 5 Advanced Application]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Robotics,Vison and Control Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>Jacobian</tag>
+        <tag>Velocity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Manipulator Velocity]]></title>
+    <url>%2F2019%2F01%2F05%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRobotics-Manipulator%20Velocity%2F</url>
+    <content type="text"><![CDATA[1 Introduction End-effector moves with a spatial velocity, and it's a consequnece of all individual joint velocities. Here, we introduce the relationship between joint velocities and end-effector's velocity In kinematics, we care about the pose, now we care about velocity 2 Manipulator Jacobian 2.1 Overview Jocabian: \[ J = \frac { \partial f } { \partial x } = \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \\ { \vdots } &amp; { \ddots } &amp; { \vdots } \\ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right) \] In manipulator, \(f\) (end-effector pose) and \(x\) (joint variables) are all vector: \[ \frac { \mathrm { d } p } { \mathrm { d } q } = \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } = \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q } \] and divide through by \(dt\) \[ \begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } &amp; = J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p } = J ( q ) \dot { q } \end{aligned} \] Jocabian is a $J R^{6N} $ (\(6\) for enviroment, \(N\) for n joints) matrix 2.2 Under- and Over-Actuated Manipulators Under-Actuated: accepting that some Cartesian degrees of freedom are not controllable Over-Actuated: multiple solution, so find a least-squares solution 3 Jocabian: Numerical Properties \[ \dot{p}=J ( q ) \dot { q }\\ \dot { q } = J ( q ) ^ { - 1 } \nu \] 3.1 Singularities Singularities occur when the robot is at maximum reach or when one or more axes become aligned resulting in the loss of degrees of freedom. aka \(det(J(q))=0\) If robot is close to a singularity, some end-effector velocities require very high joint rates 3.2 Manipulability 4 Inverse Jocabian: generate paths 4.1 Resolved-Rate Motion Control Resolved-rate motion control is a simple and elegant algorithm to generate straight line motion It make use of \(\dot { \boldsymbol { q } } = J ( \boldsymbol { q } ) ^ { - 1 } \boldsymbol { \nu }\) to map resovle desired Cartesian velocity to joint velocity Control scheme: first \(\dot { \boldsymbol { q } } ^ { * } \langle k \rangle = J ( \boldsymbol { q } \langle k \rangle ) ^ { - 1 } \nu ^ { * }\) computes the required joint velocity as a function of the manipulator and disired end-effector velocity \(\nu ^ { * }\) then \(q ^ { * } \langle k + 1 \rangle \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { t } \dot { \boldsymbol { q } } ^ { * } \langle k \rangle\) perform intergration to give desired joint angle for next step. 5 Jocabian: Transform Force from End to Joint 6 Jocabian: Inverse Kinematics If a robot don't meet some specification: have 6 joints have a spherical wrist Then, it's hard to give a explicit solution. So we introduce general numerical solution based on: forward kinematics the Jacobian transpose Idea: compute by error Notation: actual pose \(\xi _ { E } = \mathcal { X } ( q )\) , desired pose \(\xi _ { E } ^ { * }\) , error between them:\(\xi _ { \Delta }\) (also can be described by a spatial displacement) \[ ^ { E } \Delta = \Delta \left( \xi _ { E } , \xi _ { E } ^ { * } \right) = ( t , \hat { v } \theta ) \in \mathbb { R } ^ { 6 } \] How to compute? imagine a spring between two pose, which is pulling and twisting (wrench) the end-effector proportional to the spatial displacement \(\to ^ { E } \boldsymbol { W } = \gamma ^ { E } \boldsymbol { \Delta }\) the wrench is resolved to generalized joint forces \(\to\boldsymbol { Q } = _{}^{E}\textrm{} \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \boldsymbol { W }\) assume joint velocity just be proportional to the forces \(\to \dot { q } = Q / B (a \ coefficient)\) wrap up: \(\dot { \boldsymbol { q } } = \frac { 1 } { B } \boldsymbol { J } ( \boldsymbol { q } ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } ) , \xi _ { E } ^ { * } \right)\) we can solve it interatively by: \[ \begin{aligned} \delta _ { q } \langle k \rangle = \alpha J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \Delta \left( \mathcal { K } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right )\\ \boldsymbol { q } \langle k + 1 \rangle \leftarrow \boldsymbol { q } \langle k \rangle + \delta _ { q } \langle k \rangle \end{aligned} \] until the norm of the update \(\left\| \delta _ { q } \langle k \rangle \right\|\) is sufficiently pratically above algorithm is slow and sensitive to \(\alpha\) ,so we imporve it by: formulate this as a least-squares problem: \(\to E = \boldsymbol { \Delta } ^ { T } M \Delta\) we want to minimize the scalar cost where \(M = \operatorname { diag } ( m ) \in \mathbb { R } ^ { 6 \times 6 }\) and \(m\) is the mask vector update becomes :\(\delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) \right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right)\) impove above performance near singularities by introducing a damping constant λ: \[ \delta _ { q } \langle k \rangle = \left( J ( \boldsymbol { q } \langle k \rangle ) ^ { T } \boldsymbol { M } \boldsymbol { J } ( \boldsymbol { q } \langle k \rangle ) +\lambda I_{N\times N}\right) ^ { - 1 } \boldsymbol { J } ( \boldsymbol { q } \langle k ) ) ^ { T } \boldsymbol { M } \Delta \left( \mathcal { X } ( \boldsymbol { q } \langle k \rangle ) , \xi _ { E } ^ { * } \right) \] An effective way to choose \(\lambda\) is to test whether or not an iteration reduces the error]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Robotics,Vison and Control Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>Jacobian</tag>
+        <tag>Velocity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Queues]]></title>
+    <url>%2F2019%2F01%2F03%2FCS%2FDS%20%26%20Algorithm%2FADS-Queues%2F</url>
+    <content type="text"><![CDATA[1 Introduction 1.1 Queues A queue is an ordered collection of items where the addition of new items happens at one end, called the “rear,” and the removal of existing items occurs at the other end, commonly called the “front.” Example: wait in a line for a movie/ OS use queues control processes Usage: keep in order queues 1.2 ADT Queue Operation Queue Contents Return Value q.is_empty() [] True q.enqueue(4) [4] q.enqueue('dog') ['dog', 4] q.enqueue(True) [True, 'dog', 4] q.size() [True, 'dog', 4] 3 q.is_empty() [True, 'dog', 4] False q.enqueue(8.4) [8.4, True, 'dog', 4] q.dequeue() [8.4, True, 'dog'] 4 q.dequeue() [8.4, True] 'dog' q.size() [8.4, True] 2 2 A Queue Implementation In practice, use the standard library's collections.deque to achieve high performance( \(O(1)\)) enqueues and dequeues. 3 Example: Simulating Hot Potato As mentioned in the first section, queues can be used in FIFO manner. Hot Potato game: people line up in a circle and pass item to neighbor, at a certain point, the action stopped and the man who has the item is removed from the circle. Finally there will be only 1 person left. hot-patato The person who is in front of the queue may be randomly removed.]]></content>
+      <categories>
+        <category>CS</category>
+        <category>DS &amp; Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Force Control]]></title>
+    <url>%2F2019%2F01%2F01%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Force%2F</url>
+    <content type="text"><![CDATA[1 Introduction Mere position control is not suffice is contact is made between end-effector and environment. So introduce hybrid position/force controller to solve the problem. This method is one formalism through which industrial robots might someday be controlled in order to perform tasks requiring force control. 2 Application of Robots to Assembly Tasks Spot welding Spray painting Pick and place operations Future: assembly-line tasks, force is extremely important. Currently, the dexterity of manipulators remains quite low and limit their appplication in the automated assembly area. If we can measure and control contact forces generated at the hand, we can imporove the performance without using bigger, heavier, and more expensive manipulator. Basic Idea Every manipulation task can be broken down into subtasks that are defined by a particular contact situation occurring between the manipulator end-effector (or tool) and the work environment. With each subtask, we can associate a set of constrains mechanical geometric]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>control</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Nonlinear Control]]></title>
+    <url>%2F2019%2F01%2F01%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Nonlinear%2F</url>
+    <content type="text"><![CDATA[1 Introduction In linear control, we modeled the manipulator by \(n\) independent second-order differential equations. In this chapter, we will base our controller design on the \(n \times 1\) vector differential equation 2 Nonlinear local linearization When nonlinearities are not severe, local linearization can be used in the neighborhood of an operating point. But, manipulator move among regions so widely separated that no linearization valid for all regions can be found. moving linearization move the operating point with the manipulator as it moves, always linearizing about the desired position of the manipulator deal with the nonlinear directly the poles of the system will "move", so we can not select fixed gains. Instead, the gains are also time-varying so it will keep the system critically damped Example: nonlinear spring open loop equation: \(m \ddot { x } + b \dot { x } + q x ^ { 3 } = f\) servo portion: \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) model-based portion: changed ​ \(\begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + q x ^ { 3 } } \end{array}\) ##3 Control problem for Manipulators For manipulator, the model is complicated \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) \] where $$ is the position of all the joints. If we add friction to the model, we get \[ \tau = M ( \Theta ) \ddot { \Theta } + V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \] where we can use our partitioned controller again: \[ \tau = \alpha \tau ^ { \prime } + \beta \] and we choose \[ \begin{aligned} \alpha &amp; = M ( \Theta ) \\ \beta &amp; = V ( \Theta , \dot { \Theta } ) + G ( \Theta ) + F ( \Theta , \dot { \Theta } ) \end{aligned} \] servo law: \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E\) where \(E = \Theta _ { d } - \Theta\) finally we get \[ \ddot { E } + K _ { v } \dot { E } + K _ { p } E = 0 \] This solve the problem in theory, but not in practice because computer do it by discrete nature inaccuracy in manipulator model 4 Current industrial-robot Control System Parameters may be inaccurate. So model-based control law maybe doesn't make sense For economic reasons, error driven is more usual. individual-joint PID control average gain are chosen \(\tau ^ { \prime } = \ddot { \Theta } _ { d } + K _ { v } \dot { E } + K _ { p } E + K _ { i } \int Edt\) 5 Lyapunov Stability Analysis A analytically way to evluate stability but not the performance.]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>control</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Notes about Dropout]]></title>
+    <url>%2F2018%2F12%2F30%2FCS%2Fpaper%2FDropout%2F</url>
+    <content type="text"><![CDATA[Abstract 深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。 Introduction 深度神经网络包含了许多非线性隐藏层，这使得深度神经网络变得有很强的表达性，也就是说其可以学习输入和输出之间的复杂的关系。 但是当训练数据有限的时候，可能部分关系是从采样噪声学到的，这些关系在训练集中存在但在实际的测试数据中不存在。这就导致了过拟合。 减少过拟合的方法包括，验证集上的性能开始下降时尽快停止训练，为权重引入L1/L2正则惩罚项。 如果计算量上不受限制，按照bayesian的黄金准则，regularize 一个固定规模的模型的最好的方式是，在参数的所有可能的取值上做预测，再根据每种取值的后验概率对这些预测加权取平均。实际中希望用更少的计算量近似到达bayesian的性能。 本文提出dropout，学习指数个共享参数的模型，做预测，求几何平均。近似地有效地组合了指数多个神经网络体系结构。 Dropout做法，暂时地随机地移除网络中的单元（及其输入和输出连接）。比如，每个单元都以固定的概率\(p\)（比如=0.5）保留。（但是输入单元的保留概率应该接近1），相当于从原网络中采样一个thinned稀疏的网络。 原网络有\(n\)个单元，则有\(2^n​\)种可能（每个节点有移除/保留2种可能,各节点独立）的稀疏网络。 dropout_compare 在测试的时候，直接地先对每个网络做预测再平均 计算量大不可行。采用近似平均方法，将\(2^n​\)个网络组合成一个神经网络（所有单元都保留，但单元的输出权重都乘以该单元在训练时候的保留概率），基于这个神经网络做预测。 Motivation Dropout的动机来自于关于性别在进化中的作用的理论。有性生殖包括从一个亲本和另一个亲本中提取一半的基因，加入非常少量的随机突变，并将它们结合产生受精卵。无性繁殖是通过父母基因的拷贝中加入微小突变来创造后代。无性繁殖应该是一种更好的方法来优化个体的健康，这似乎是合理的，因为一组良好的基因组合在一起可以直接传递给后代。另一方面，有性生殖很可能会破坏这些共同适应的基因，特别是如果这些基因的数量很大，而且直觉上，这应该会降低已经进化出复杂的共同适应的生物体的适应性。然而，有性繁殖是最先进的生物进化的方式。 对有性生殖优势的一种可能解释是，从长期来看，自然选择的标准可能不是个体特性，而是基因的混合能力。就是说那些能够和更多随机的基因协作的基因才是更加健壮的。因此一些基因必须要自己学会做一些事而不只是跟很多其他基因合作，这种合作会减少个体适应性。类似地，随机的选择dropout可以增加隐层神经元的健壮性。 有个密切相关但却略有不同的例子，十个阴谋，每个五人参与和一个大阴谋五十人参与相比，显然前者获得一次成功概率较大。一个复杂的共同协作的网络在训练集表现会很出色，但到测试集中，出现了很多新的数据，他就不如很多个更为简单的协作神经元工作的效果好。 Model Description 考虑一个有着\(L\)层隐藏层的神经网络，让\(l \in \{1,....,L \}\) 表示隐藏层的层数，让\(z^{(l)}\) 表示输入到第\(l\)c层神经网络的向量，\(y^{(l)}\) 表示第\(l\)层神经网络的输出，\(W^{(l)}\)表示第\(l\)层神经网络的权重，\(b^{(l)}\)表示第\(l\)层神经网络的bias \[ \begin{aligned} z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \mathbf { y } ^ { l } + b _ { i } ^ { ( l + 1 ) } \\ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned} \] 左图：普通神经网络。右图：dropout之后的神经网络 \[ \begin{aligned} r _ { j } ^ { ( l ) } &amp; \sim \text { Bernoulli } ( p ) \\ \widetilde { \mathbf { y } } ^ { ( l ) } &amp; = \mathbf { r } ^ { ( l ) } * \mathbf { y } ^ { ( l ) } , \\ z _ { i } ^ { ( l + 1 ) } &amp; = \mathbf { w } _ { i } ^ { ( l + 1 ) } \widetilde { \mathbf { y } } ^ { l } + b _ { i } ^ { ( l + 1 ) } \\ y _ { i } ^ { ( l + 1 ) } &amp; = f \left( z _ { i } ^ { ( l + 1 ) } \right) \end{aligned} \] Conclusion Dropout是一种可以在神经网络中减小过拟合程度的一种方法。普通的反向传播算法只能在学习到训练集中的知识但是泛化性能不够。而随机的Dropout使得每一个隐藏层的单元都不一定会在输出中起到作用，因此能够提升神经网络在各个领域内的使用性能。 Dropout的一个缺点是它使得训练的时间延长了，通常来说，一个使用Dropout来训练的神经网络会比拥有相同结构的普通神经网络耗费2-3倍的时间，这主要是因为变量的更新较为缓慢，每一次更新都是几乎不相同的结构。当然有得必有失，在机器学习的领域中，要想获得一方面的进步，就要在其他方面做出让步。Dropout方法增加了算法的训练时间，降低了模型的过拟合风险。]]></content>
+      <categories>
+        <category>CS</category>
+        <category>paper</category>
+      </categories>
+      <tags>
+        <tag>paper</tag>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Linear Control]]></title>
+    <url>%2F2018%2F12%2F27%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Linear%20Control%2F</url>
+    <content type="text"><![CDATA[1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution 1: Linear control system. In fact, non-linear is more usual, linear control is just a approximate methods It's resonable to make such approximation, so lineat control methods are the ones most often used in industrial practice. Learn linear first is good for later study 2 Control-Law Partitioning Partitioning Method (2 parts): model-based portion: make use of supposed knowledge of m,b,k, to make the system appear as a unit mass\(\to\) servo portion simple. servo portion: make use of feedback to modify the behavior of the system A open-loop equation of motion for the system: \[ m \ddot { x } + b \dot { x } + k x = f \] The model-based portion of the control: \[ f = \alpha f ^ { \prime } + \beta \] and we choose(because we want to make the ) \[ \begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array} \] finally we get \(\ddot { x } = f ^ { \prime }\) Graphiclly,we transform a system like this robotics-linear-control into a system easier easier-system What we need to do is design a control law to compute \(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\) so it yields \[ \ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0 \] Conclusion get the system‘s parameters find \(\alpha ,\beta\) calculate \(k_v,k_p\) depend on the requirement 3. Trajectory-Following Control Know: trajectory, a funciton of time \(x_d(t)\) and we can get $x_d, x_d $as well Define: \(e=x_d-x\) Design \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) Get: \(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) So, we can choose coefficients and design any response we want]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>control</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STM32-ADC]]></title>
+    <url>%2F2018%2F12%2F27%2FEmbedded%20System%2FSTM32%2FSTM32-ADC%2F</url>
+    <content type="text"><![CDATA[1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32 2 Independent Mode Single Channel, single conversion Example: Check if the battery voltage is succulent or not single-conversion Multichannel, single conversion Example: Can be used when starting system depends on some parameters Single Channel, continuous conversion Example: Run in background, so can be used as a monitor to check something all the time continuous-conversion Injected conversion Intended for use when conversion is triggered by an external event or by software. Injected-conversion 3 Example Code 1234567891011121314151617181920212223242526272829303132333435363738394041void GPIOINIT_ADC()&#123; GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//ADC GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN; //模拟输入 GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz; GPIO_Init(GPIOB,&amp;GPIO_InitStructure);&#125;void RCCINIT_ADC()&#123; SystemInit(); RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE); RCC_ADCCLKConfig(RCC_PCLK2_Div6);//12M 最大14M 设置ADC时钟（ADCCLK）&#125;void ADCINIT_ADC()&#123; ADC_InitTypeDef ADC_InitStructure; ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; ADC_InitStructure.ADC_ScanConvMode = DISABLE; ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; ADC_InitStructure.ADC_NbrOfChannel = 1; ADC_Init(ADC1, &amp;ADC_InitStructure); ADC_TempSensorVrefintCmd(ENABLE); ADC_Cmd(ADC1,ENABLE); ADC_ResetCalibration(ADC1);//重置指定的ADC的校准寄存器 while(ADC_GetResetCalibrationStatus(ADC1));//获取ADC重置校准寄存器的状态 ADC_StartCalibration(ADC1);//开始指定ADC的校准状态 while(ADC_GetCalibrationStatus(ADC1));//获取指定ADC的校准程序 ADC_RegularChannelConfig(ADC1,ADC_Channel_8,1,ADC_SampleTime_239Cycles5);//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间 ADC_SoftwareStartConvCmd(ADC1, ENABLE);//使能或者失能指定的ADC的软件转换启动功能 while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);&#125;]]></content>
+      <categories>
+        <category>Embedded System</category>
+        <category>STM32</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
+        <tag>ADC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Trajectory]]></title>
+    <url>%2F2018%2F12%2F25%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Trajectory%2F</url>
+    <content type="text"><![CDATA[1 Introduction trajectory refers to a time history of position, velocity, and acceleration for each degree of freedom. Concern: Easy description：just desired goal position and orientation How to generating and representing in computer 2 General consideration Huamn-interface. Consider tool frame \(\{T\}\) , in which a user would think and design path. Path include many intermediate points (position and orientation) Want a smooth path, first derivative even second derivative. jerky motions tend to cause increased wear on the mechanism andcause vibrations by exciting resonances in the manipulator 3 Joint-Space Schemes First get the via points and then convert it to a set of joint angle by inverse kinematics Joint space schemes is the easiest to compute. 3.1 Cubic Polynomials Some constrains: \(θ(0) = θ_0\) initial \(θ(t_f ) = θ_f\) final \(\dotθ(0) = 0\) continuous in velocity \(\dotθ(t_f ) = 0\) continuous in velocity apply \[ θ(t) = a_0 + a_1t + a_2t^2 + a_3t^3solve the problem \] to solve the problem (between two points) 3.2 Cubic polynomials for a path with via points What if we wish to specfify the intermediate via points? (between many points) constrains becoms \(θ(0) = θ_0\) initial \(θ(t_f ) = θ_f\) final \(\dotθ(0) = \dot\theta_0\) continuous in velocity \(\dotθ(t_f ) = \dot\theta_f\) continuous in velocity But how we choose the intermediate velocity? There are some method: Specified by user Choose by computer via-points If the slope of lines change sign at via point \(\to\)zero velocity if the slope of lines does not change sign\(\to\)average velocity 3.3 Linear function with parabolic blends parabolic-1 \[ \ddotθ\times t_b =\frac{θ_h − θ_b}{t_h − t_b} \] \[ θ_b = θ_0 + \frac12\ddotθ\times t_b^2 \] There are 2 equations and 6 variabels So, given \(\theta_f ,\theta_0, t_h\), choose \(\ddot\theta\to\)we can calculate \(t_b\) 3.4 Linear function with parabolic blends for a path with via points Consider there an arbitrary number of via points parabolic-viapoints 4 Cartesian-Space Schemes In Joint-Space, the spatial shape of path taken by the end-effector will be complicated In Cartesian-Space, we can also specify shape of the path. Line However, Cartesian schemes are more computationally expensive because inverse kinematics must be solved at real time 5 Geometric Problems with Cartesian Paths Intermediate points unreachable Intermediate-points-unreachable High joint rates near singularity high-joint-rate Start and goal reachable in different solutions different-solution]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>trajectory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Analysis]]></title>
+    <url>%2F2018%2F12%2F24%2FCS%2FDS%20%26%20Algorithm%2FADS-Analysis%2F</url>
+    <content type="text"><![CDATA[1. Big Picture What makes a program better？many valid criteria, which are often in conflict. omputer scientists love Time Memory trade off sum of 1-n： simple add gauss formula 2. Big O Notation f(n) Name 1 Constant \(log n\) Logarithmic \(n\) Linear \(nlogn\) Log Linear \(n^2\) Quadratic \(n^3\) Cubic \(2^n\) Exponential 3. Example :Anagram Detection Checking off: check one by one ,\(O(n^2)\). Sort and Compare: \(O(nlogn)\) Brute Force , try all possibilities: \(O(n!)\) Count and Compare: \(O(n)\) 4. Performance of Python Types Lists Indexing &amp; Assigning &amp; Appending \(O(1)\) Poping, Shifting &amp; Deleting, normally \(O(n)\) ,beacuse has to shift changed element Reversing \(O(n)\) Dictionaries “getting” and “setting” : \(O(1)\) Iterating &amp; Copying: \(O(n)\)]]></content>
+      <categories>
+        <category>CS</category>
+        <category>DS &amp; Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PADS-Stacks]]></title>
+    <url>%2F2018%2F12%2F24%2FCS%2FDS%20%26%20Algorithm%2FADS-Stacks%2F</url>
+    <content type="text"><![CDATA[1. Introduction to Stacks Stacks is a kind of linear data structures. What distinguishes one linear structure from another is where additions and removals may occur 1.1 Stacks A stack is an ordered collection of items where the addition of new items and the removal of existing items always takes place at the same end. Example: stack of books, URL back button Usage: reverse the order stacks 1.2 ADT ADT data represents DS physical implementation of an ADT Stack operation Stack contents Return value s.is_empty() [] True s.push(4) [4] s.push('dog') [4, 'dog'] s.peek() [4, 'dog'] 'dog' s.push(True) [4, 'dog', True] s.size() [4, 'dog', True] 3 s.is_empty() [4, 'dog', True] False s.push(8.4) [4, 'dog', True, 8.4] s.pop() [4, 'dog', True] 8.4 s.pop() [4, 'dog'] True s.size() [4, 'dog'] 2 2. A Stack Implementation In practice , “use a Python list as a stack” even though the implementations are logically equivalent, they would have very different timings when performing benchmark testing. Here, just use python list with limit function. 3. Example:Balanced Parentheses parentheses are used to order the performance of operations \[ (5+6)×(7+8)/(4+3) \] or lisp function 12(defun square(n) (* n n)) So,it's important to differentiate between parentheses that are correctly balanced and those that are unbalanced in strucures. Why Stack ? open match close close match open, reverse order So a stack, push if open, pop if close. Finally, if len(stack)==0, balance. 123456789101112131415161718192021222324252627PAIRINGS = &#123; '(': ')', '&#123;': '&#125;', '[': ']'&#125;def is_balanced(symbols): stack = [] for s in symbols: if s in PAIRINGS.keys(): stack.append(s) continue try: expected_opening_symbol = stack.pop() except IndexError: # too many closing symbols return False if s != PAIRINGS[expected_opening_symbol]: # mismatch return False return len(stack) == 0 # false if too many opening symbolsis_balanced('&#123;&#123;([][])&#125;()&#125;') # =&gt; Trueis_balanced('&#123;[])') # =&gt; Falseis_balanced('((()))') # =&gt; Trueis_balanced('(()') # =&gt; Falseis_balanced('())') # =&gt; False 4. Example: Converting Number Bases \[ 233_{10}=11101001_{2} \] Why stack？ Divide by Base algorithm conver-num-base So, Push fisrt, Pop at the end 1234567891011121314151617181920DIGITS = '0123456789abcdef'def convert_to_base(decimal_number, base): remainder_stack = [] while decimal_number &gt; 0: remainder = decimal_number % base remainder_stack.append(remainder) decimal_number = decimal_number // base new_digits = [] while remainder_stack: new_digits.append(DIGITS[remainder_stack.pop()]) return ''.join(new_digits)convert_to_base(25, 2) # =&gt; '11001'convert_to_base(25, 16) # =&gt; '19' 5. Example: Infix, Prefix and Postfix Expressions Infix expression Prefix expression Postfix expression A + B + A B A B + A + B * C + A * B C A B C * + Infix expression need parenthese to force the performance of addition before multiplication. Prefix &amp; Postfixexpression DON'T need it How to convert infix to prefix or postfix? Fully parenthesize the expression using the order of operations. Then move the enclosed operator to the position of either the left or the right parenthesis depending on whether you want prefix or postfix notation. postfix 5.1 Algorithm Create an empty stack called operation_stack for keeping operators. Create an empty list for output. Convert the input infix string to a list by using the string method split. Scan the token list from left to right. If the token is an operand, append it to the end of the output list. If the token is a left parenthesis, push it on the operation_stack. If the token is a right parenthesis, pop the operation_stack until the corresponding left parenthesis is removed. Append each operator to the end of the output list. If the token is an operator, *, /, +, or -, push it on the operation_stack. However, first remove any operators already on the operation_stack that have higher or equal precedence and append them to the output list. When the input expression has been completely processed, check the operation_stack. Any operators still on the stack can be removed and appended to the end of the output list. 5.2 Implementation 123456789101112131415161718192021222324252627282930313233343536373839404142434445PRECEDENCE = &#123; '*': 3, '/': 3, '+': 2, '-': 2, '(': 1&#125;CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'DIGITS = '0123456789'LEFT_PAREN = '('RIGHT_PAREN = ')'def infix_to_postfix(infix_expression): operation_stack = [] postfix = [] tokens = infix_expression.split() for token in tokens: if token in CHARACTERS or token in DIGITS: postfix.append(token) elif token == LEFT_PAREN: operation_stack.append(token) elif token == RIGHT_PAREN: top_token = operation_stack.pop() while top_token != LEFT_PAREN: postfix.append(top_token) top_token = operation_stack.pop() else: while operation_stack and \ (PRECEDENCE[operation_stack[-1]] &gt;= PRECEDENCE[token]): postfix.append(operation_stack.pop()) operation_stack.append(token) while operation_stack: postfix.append(operation_stack.pop()) return ' '.join(postfix)infix_to_postfix('A * B + C * D') # =&gt; 'A B * C D * +'infix_to_postfix('( A + B ) * C - ( D - E ) * ( F + G )')# =&gt; 'A B + C * D E - F G + * -'infix_to_postfix('( A + B ) * ( C + D )') # =&gt; 'A B + C D + *'infix_to_postfix('( A + B ) * C') # =&gt; 'A B + C *'infix_to_postfix('A + B * C') # =&gt; 'A B C * +']]></content>
+      <categories>
+        <category>CS</category>
+        <category>DS &amp; Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DS</tag>
+      </tags>
+  </entry>
+</search>

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1 Introduction  In statistical modeling, regression analysis is a set of statistical processes for estimating the relationships among variables.  \[ \left\{\begin{array}{l}{y=\beta_{0}+\beta_{1} x+\va">
+<meta name="keywords" content="data,regression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Regression">
+<meta property="og:url" content="http://yoursite.com/2019/03/17/CS/Data/Data-Regression/index.html">
+<meta property="og:site_name" content="Whatever">
+<meta property="og:description" content="1 Introduction  In statistical modeling, regression analysis is a set of statistical processes for estimating the relationships among variables.  \[ \left\{\begin{array}{l}{y=\beta_{0}+\beta_{1} x+\va">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/岭回归.png">
+<meta property="og:updated_time" content="2019-04-19T03:01:42.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Data-Regression">
+<meta name="twitter:description" content="1 Introduction  In statistical modeling, regression analysis is a set of statistical processes for estimating the relationships among variables.  \[ \left\{\begin{array}{l}{y=\beta_{0}+\beta_{1} x+\va">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/岭回归.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/03/17/CS/Data/Data-Regression/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Data-Regression | Whatever</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Whatever</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">only truth matters</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/CS/Data/Data-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Data-Regression
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-17 20:18:00" itemprop="dateCreated datePublished" datetime="2019-03-17T20:18:00+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-19 11:01:42" itemprop="dateModified" datetime="2019-04-19T11:01:42+08:00">2019-04-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/Data/" itemprop="url" rel="index"><span itemprop="name">Data</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="introduction">1 Introduction</h2>
+<blockquote>
+<p>In statistical modeling, regression analysis is a set of statistical processes for <strong>estimating the relationships among variables.</strong></p>
+</blockquote>
+<p><span class="math display">\[
+\left\{\begin{array}{l}{y=\beta_{0}+\beta_{1} x+\varepsilon} \\ {E \varepsilon=0, D \varepsilon=\sigma^{2}}\end{array}\right.
+\]</span></p>
+<a id="more"></a>
+<h2 id="the-develop-of-algorithm">2 the Develop of Algorithm</h2>
+<h3 id="problem-set">Problem set</h3>
+<p><span class="math display">\[
+\mathbf{X}=\left[ \begin{array}{cccc}{x_{11}} &amp; {x_{12}} &amp; { . .} &amp; {x_{1 m}} \\ {x_{21}} &amp; {x_{22}} &amp; {\dots} &amp; {x_{2 m}} \\ {\ldots} &amp; {\cdots} &amp; {\cdots} &amp; {\cdots} \\ {x_{n 1}} &amp; {x_{n 2}} &amp; {\dots} &amp; {x_{n m}}\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[
+Y=\left(y_{1} \quad y_{2}\right)=\left[ \begin{array}{cc}{y_{11}} &amp; {y_{12}} \\ {y_{12}} &amp; {y_{22}} \\ {\cdots} &amp; {\cdots} \\ {y_{1 n}} &amp; {y_{2 n}}\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[
+B=\left(b_{1} \quad b_{2}\right)=\left[ \begin{array}{cc}{b_{11}} &amp; {b_{21}} \\ {b_{12}} &amp; {b_{22}} \\ {\dots} &amp; {\dots} \\ {b_{1 m}} &amp; {b_{2 m}}\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[
+E=\left(e_{1} \quad e_{2}\right)=\left[ \begin{array}{cc}{e_{11}} &amp; {e_{21}} \\ {e_{12}} &amp; {e_{22}} \\ {\cdots} &amp; {\cdots} \\ {e_{1 n}} &amp; {e_{2 n}}\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{Y}=\boldsymbol{X} \boldsymbol{B}+\boldsymbol{E} ; \quad y_{1}=\boldsymbol{X} \boldsymbol{b}_{1} ; \quad y_{2}=\boldsymbol{X} \boldsymbol{b}_{2}
+\]</span></p>
+<p>we know (2) and (3), we want to get (6) , so we need to solve (4) and (5)</p>
+<h3 id="ols">2.1 OLS</h3>
+<p>Ordinary least squares</p>
+<ul>
+<li><p>Constraint: <span class="math inline">\(min(error)​\)</span> <span class="math display">\[
+e=y-\mathbf{X} b \quad \Rightarrow \quad \min \left(e^{\prime} e\right)
+\]</span></p></li>
+<li><p>Solution: Solved by Lagrange Multiplier <span class="math display">\[
+b=\left(X^{\prime} X\right)^{-1} X^{\prime}{y}
+\]</span></p></li>
+<li><p>Problem: if there are multi -collinearity in <span class="math inline">\(\mathbf{X}​\)</span> , <span class="math inline">\(b​\)</span> will be <strong>very big</strong>, like <span class="math inline">\(\infin​\)</span></p></li>
+</ul>
+<h3 id="rr">2.2 RR</h3>
+<p>Ridge Regression: solve the problem in the OLS, add some constraint for <span class="math inline">\(b​\)</span></p>
+<ul>
+<li><p>Constraint: <span class="math inline">\(min(error \ \&amp;\ b​\)</span>) <span class="math display">\[
+e=y-\mathbf{X} b \quad \Rightarrow \quad \min \left(e^{\prime} e+kb^{\prime}b \right )
+\]</span></p></li>
+<li><p>Solution: <span class="math display">\[
+\hat{\boldsymbol{\beta}}(\mathrm{k})=\left(X^{\prime} X+k I\right)^{-1} X^{\prime} y
+\]</span></p></li>
+<li><p>Problem: how to choose <span class="math inline">\(k\)</span> is a problem</p></li>
+</ul>
+<p><a href="https://stats.stackexchange.com/questions/118712/why-does-ridge-estimate-become-better-than-ols-by-adding-a-constant-to-the-diago/119708#119708" target="_blank" rel="noopener">Why it called <em>ridge</em>?</a></p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/岭回归.png" alt="岭回归"><figcaption>岭回归</figcaption>
+</figure>
+<h3 id="pcr">2.3 PCR</h3>
+<p>Principal Component Regression: Often the principal components with higher variances are selected as regressors</p>
+<ul>
+<li><p>Constraint: Apply PCA to <span class="math inline">\(\mathbf{X}\)</span>, get component matrix <span class="math inline">\(\mathbf{F}\)</span> <span class="math display">\[
+\mathbf{F}=\mathbf{X}_{0} \mathbf{U}
+\]</span></p></li>
+<li><p>Solution: <span class="math display">\[
+\hat{\gamma}=\left(\mathbf{F}^{\prime} \mathbf{F}\right)^{-1} \mathbf{F}^{\prime} \mathbf{Y}
+\]</span></p></li>
+<li><p>Problem: for the purpose of predicting the outcome, the principal components with <strong>low variances</strong> may also be <strong>important</strong>, in some cases even more important. <a href="https://www.jstor.org/stable/2348005" target="_blank" rel="noopener">MORE</a></p></li>
+</ul>
+<h3 id="pls">2.4 PLS</h3>
+<p>Partial least squares regression: it finds a linear regression model by projecting the predicted variables and the observable variables to a <em>new space</em></p>
+<p>Underlying model of PLS:</p>
+<p><span class="math display">\[
+\begin{aligned} X &amp;=T P^{\mathrm{T}}+E \\ Y &amp;=U Q^{\mathrm{T}}+F \end{aligned}
+\]</span></p>
+<ul>
+<li>Constraint:
+<ol type="1">
+<li>Variances of <span class="math inline">\(T\)</span> and <span class="math inline">\(U\)</span> should be as big as possible</li>
+<li>Correlation of <span class="math inline">\(T​\)</span> and <span class="math inline">\(U​\)</span> should be as big as possible</li>
+</ol>
+<ul>
+<li>Combine 1. and 2. , we want covariance of <span class="math inline">\(T\)</span> and <span class="math inline">\(U​\)</span> be as big as possible</li>
+</ul></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/data/" rel="tag"># data</a>
+          
+            <a href="/tags/regression/" rel="tag"># regression</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/Robotics/Hardware/hardware-omnibusf4/" rel="next" title="Omnibus F4 pro v3">
+                <i class="fa fa-chevron-left"></i> Omnibus F4 pro v3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/Robotics/Project/flight-controller/" rel="prev" title="Flight Controller">
+                Flight Controller <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hu Junhan</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-develop-of-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2 the Develop of Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-set"><span class="nav-number">2.1.</span> <span class="nav-text">Problem set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ols"><span class="nav-number">2.2.</span> <span class="nav-text">2.1 OLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rr"><span class="nav-number">2.3.</span> <span class="nav-text">2.2 RR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pcr"><span class="nav-number">2.4.</span> <span class="nav-text">2.3 PCR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pls"><span class="nav-number">2.5.</span> <span class="nav-text">2.4 PLS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hu Junhan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
