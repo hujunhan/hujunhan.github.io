@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="1 视觉里程计：ICP  前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点 有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features）  特征点由两部分组成：  关键点：特征点在图像里的位置、朝向、大小 描述子：通常是一个向量，描述周围像素的信息  常见图像特征点：  SIFT（Scale-Inv">
+  <meta name="description" content="1 Introduction SLAM builds a map and localize the sensor in the map with a strong focus on real-time operation. Camera: cheap and provide rich information of the environment.  Monocular camera, cheape">
 <meta name="keywords" content="ov,slam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SLAM-14讲 读书笔记 实践篇">
-<meta property="og:url" content="http://yoursite.com/2019/04/29/Robotics/Robotics-SLAM14-practice/index.html">
+<meta property="og:title" content="Vision Based SLAM a review">
+<meta property="og:url" content="http://yoursite.com/2019/01/06/Robotics/Robotics-ORB-SLAM/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 视觉里程计：ICP  前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点 有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features）  特征点由两部分组成：  关键点：特征点在图像里的位置、朝向、大小 描述子：通常是一个向量，描述周围像素的信息  常见图像特征点：  SIFT（Scale-Inv">
+<meta property="og:description" content="1 Introduction SLAM builds a map and localize the sensor in the map with a strong focus on real-time operation. Camera: cheap and provide rich information of the environment.  Monocular camera, cheape">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-01T12:00:57.685Z">
+<meta property="og:updated_time" content="2019-05-01T12:01:47.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SLAM-14讲 读书笔记 实践篇">
-<meta name="twitter:description" content="1 视觉里程计：ICP  前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点 有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features）  特征点由两部分组成：  关键点：特征点在图像里的位置、朝向、大小 描述子：通常是一个向量，描述周围像素的信息  常见图像特征点：  SIFT（Scale-Inv">
+<meta name="twitter:title" content="Vision Based SLAM a review">
+<meta name="twitter:description" content="1 Introduction SLAM builds a map and localize the sensor in the map with a strong focus on real-time operation. Camera: cheap and provide rich information of the environment.  Monocular camera, cheape">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/29/Robotics/Robotics-SLAM14-practice/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/06/Robotics/Robotics-ORB-SLAM/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>SLAM-14讲 读书笔记 实践篇 | Whatever</title>
+  <title>Vision Based SLAM a review | Whatever</title>
   
 
 
@@ -380,7 +380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/Robotics/Robotics-SLAM14-practice/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/06/Robotics/Robotics-ORB-SLAM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hu Junhan">
@@ -397,7 +397,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SLAM-14讲 读书笔记 实践篇
+          <h1 class="post-title" itemprop="name headline">Vision Based SLAM a review
 
               
             
@@ -423,7 +423,7 @@
                 
               
 
-              <time title="Created: 2019-04-29 15:11:00" itemprop="dateCreated datePublished" datetime="2019-04-29T15:11:00+08:00">2019-04-29</time>
+              <time title="Created: 2019-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-06T00:00:00+08:00">2019-01-06</time>
             
 
             
@@ -440,29 +440,11 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-01 20:00:57" itemprop="dateModified" datetime="2019-05-01T20:00:57+08:00">2019-05-01</time>
+                <time title="Modified: 2019-05-01 20:01:47" itemprop="dateModified" datetime="2019-05-01T20:01:47+08:00">2019-05-01</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -492,55 +474,62 @@
       
 
       
-        <h2 id="视觉里程计icp">1 视觉里程计：ICP</h2>
-<blockquote>
-<p>前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值</p>
-</blockquote>
-<h3 id="图像特征点">1.1 图像特征点</h3>
-<p><strong>有代表性的点</strong>被称为</p>
+        <h2 id="introduction">1 Introduction</h2>
+<p>SLAM builds a map and localize the sensor in the map with a strong focus on <strong>real-time operation</strong>.</p>
+<p>Camera: cheap and provide rich information of the environment.</p>
 <ul>
-<li>经典SLAM中：路标</li>
-<li><strong>视觉SLAM中</strong>：图像特征（features）</li>
-</ul>
-<p><strong>特征点</strong>由两部分组成：</p>
+<li>Monocular camera, cheapest and smallest camera
 <ul>
-<li><strong>关键点</strong>：特征点在图像里的位置、朝向、大小</li>
-<li><strong>描述子</strong>：通常是一个向量，描述周围像素的信息</li>
-</ul>
-<p>常见图像特征点：</p>
+<li>depth is not observable</li>
+<li>scale drift and mail fail if performing pure rotations</li>
+</ul></li>
+<li>RGB-D camera, all these issue can be solved.
 <ul>
-<li>SIFT（Scale-Invariant Feature Transform）：运算量大</li>
-<li>FAST：计算快</li>
-<li>ORB（Oriented FAST and Rotated BRIEF）：折中
-<ul>
-<li>关键点为 FAST：如果一个<strong>像素</strong>与它领域的像素差别较大，则更可能是<strong>角点</strong></li>
-<li>描述子为 BRIEF：二进制描述子，关键点附近两个像素的大小关系</li>
+<li>Outdoor performance is not good. Usually used in indoor environment</li>
 </ul></li>
 </ul>
-<h3 id="对极几何">1.2 对极几何</h3>
-<h3 id="pnp问题图像对应">1.3 PNP问题：图像对应</h3>
-<h3 id="icp问题点云匹配">1.4 ICP问题：点云匹配</h3>
-<h3 id="三角化获得三维结构">1.5 三角化获得三维结构</h3>
-<h2 id="视觉里程计直接法">2 视觉里程计：直接法</h2>
-<p>使用特征点的方法有一些缺点：</p>
-<ol type="1">
-<li>就算是ORB算法也很耗时</li>
-<li>图像上很多信息没有利用到</li>
-<li>相机有时候会运动到特征确实的地方（面对着墙）</li>
-</ol>
-<p>直接法就不匹配<em>描述子</em>，直接比较像素或特征点</p>
-<h3 id="设计前端">3 设计前端</h3>
-<h3 id="确定程序框架">3.1 确定程序框架</h3>
-<p>选用RGB-D摄像头实现，因为较为简单，没有初始化，没有尺度问题。</p>
-<p>建立不同的文件夹，分类存放文件</p>
+<a id="more"></a>
+<h3 id="main-idea">1.1 Main Idea</h3>
+<blockquote>
+<p>At its heart, SLAM is an <strong>optimization problem</strong>, where the goal is to compute the best configuration of camera poses and point positions in order to <strong>minimize reprojection error</strong> (the difference between a point's tracked location and where it is expected to be given the camera pose estimate, over all points). —from <a href="https://www.kudan.io/post/an-introduction-to-simultaneous-localisation-and-mapping" target="_blank" rel="noopener">Kudan</a></p>
+</blockquote>
+<p>The optimization method: Bundle adjustment, iteratively approaches the minimum error for the whole system.</p>
 <ul>
-<li>bin 存放可执行的二进制</li>
-<li>include/slam 主要是.h头文件</li>
-<li>src 主要是.cpp源文件</li>
-<li>test 主要是.cpp测试源文件</li>
-<li>lib 编译好的库文件</li>
-<li>config 存放配置文件</li>
-<li>cmake_modules 第三方的cmake库</li>
+<li>Problem: time consuming to find the best solution</li>
+<li>But with the help of multi-core machine, this problem was solved</li>
+</ul>
+<p>Another essential technique: relocalization</p>
+<h3 id="how-it-works">1.2 How it Works</h3>
+<ol type="1">
+<li>Read sensor data</li>
+<li>Front end: VO</li>
+<li>Back end: Optimization</li>
+<li>Loop Closing: Correct the trajactory</li>
+<li>Mapping</li>
+</ol>
+<h2 id="slam-type">2 SLAM type</h2>
+<h3 id="slam-framework">2.0 SLAM Framework</h3>
+<ul>
+<li>Front end: Vision odometry, estimate camera’s motion based on 2 frame
+<ul>
+<li>Stereo</li>
+<li>Double</li>
+<li>RGB-D</li>
+</ul></li>
+<li>Back end: Optimization and calculate the map
+<ul>
+<li>Filter: KF EKF</li>
+<li>Optimization : graph, g2o..</li>
+</ul></li>
+</ul>
+<h3 id="stereo-slam">2.1 Stereo SLAM</h3>
+<p>Most modern stereo SLAM systems are <strong>keyframe-based</strong> and perform <strong>BA optimization</strong></p>
+<h3 id="rgb-d-slam">2.2 RGB-D SLAM</h3>
+<p>KinectFusion is the earliest RGB-D SLAM system. This method track the camera pose using <strong>ICP</strong></p>
+<p>Endres’ open-source system is a feature-based system.</p>
+<ul>
+<li>Front end: compute frame to frame motion by feature matching ICP</li>
+<li>Back end: pose-graph optimization</li>
 </ul>
 
       
@@ -580,8 +569,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/28/Robotics/Robotics-SLAM14-math/" rel="next" title="SLAM-14讲 读书笔记 数学基础篇">
-                <i class="fa fa-chevron-left"></i> SLAM-14讲 读书笔记 数学基础篇
+              <a href="/2019/01/06/Robotics/Robotics,Vison and Control Notes/Robotics-Arm Kinematics/" rel="next" title="Robotics-Arm Kinematics">
+                <i class="fa fa-chevron-left"></i> Robotics-Arm Kinematics
               </a>
             
           </div>
@@ -590,8 +579,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/03/TODO/" rel="prev" title="TODO">
-                TODO <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/07/Robotics/Robotics,Vison and Control Notes/Rootics-Vison foundation/" rel="prev" title="Robotics-Vision Foundation">
+                Robotics-Vision Foundation <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -839,7 +828,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计icp"><span class="nav-text">1 视觉里程计：ICP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像特征点"><span class="nav-text">1.1 图像特征点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对极几何"><span class="nav-text">1.2 对极几何</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pnp问题图像对应"><span class="nav-text">1.3 PNP问题：图像对应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#icp问题点云匹配"><span class="nav-text">1.4 ICP问题：点云匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三角化获得三维结构"><span class="nav-text">1.5 三角化获得三维结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计直接法"><span class="nav-text">2 视觉里程计：直接法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计前端"><span class="nav-text">3 设计前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定程序框架"><span class="nav-text">3.1 确定程序框架</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-idea"><span class="nav-text">1.1 Main Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-it-works"><span class="nav-text">1.2 How it Works</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slam-type"><span class="nav-text">2 SLAM type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slam-framework"><span class="nav-text">2.0 SLAM Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stereo-slam"><span class="nav-text">2.1 Stereo SLAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rgb-d-slam"><span class="nav-text">2.2 RGB-D SLAM</span></a></li></ol></li></ol></div>
             
 
           </div>
