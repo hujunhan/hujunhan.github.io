@@ -108,8 +108,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>flight-controller</tag>
         <tag>robotics</tag>
+        <tag>flight-controller</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +212,8 @@
       </categories>
       <tags>
         <tag>hide</tag>
-        <tag>homework</tag>
         <tag>robotics</tag>
+        <tag>homework</tag>
       </tags>
   </entry>
   <entry>
@@ -361,9 +361,9 @@
       </categories>
       <tags>
         <tag>hide</tag>
-        <tag>robotics</tag>
         <tag>algebra</tag>
         <tag>math</tag>
+        <tag>robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -375,9 +375,9 @@
         <category>Algebra</category>
       </categories>
       <tags>
-        <tag>robotics</tag>
         <tag>algebra</tag>
         <tag>math</tag>
+        <tag>robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -407,15 +407,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Vision Based SLAM a review]]></title>
-    <url>%2F2019%2F01%2F06%2FRobotics%2FRobotics-ORB-SLAM%2F</url>
-    <content type="text"><![CDATA[1 Introduction SLAM builds a map and localize the sensor in the map with a strong focus on real-time operation. Camera: cheap and provide rich information of the environment. Monocular camera, cheapest and smallest camera depth is not observable scale drift and mail fail if performing pure rotations RGB-D camera, all these issue can be solved. Outdoor performance is not good. Usually used in indoor environment 1.1 Main Idea At its heart, SLAM is an optimization problem, where the goal is to compute the best configuration of camera poses and point positions in order to minimize reprojection error (the difference between a point's tracked location and where it is expected to be given the camera pose estimate, over all points). —from Kudan The optimization method: Bundle adjustment, iteratively approaches the minimum error for the whole system. Problem: time consuming to find the best solution But with the help of multi-core machine, this problem was solved Another essential technique: relocalization 1.2 How it Works Read sensor data Front end: VO Back end: Optimization Loop Closing: Correct the trajactory Mapping 2 SLAM type 2.0 SLAM Framework Front end: Vision odometry, estimate camera’s motion based on 2 frame Stereo Double RGB-D Back end: Optimization and calculate the map Filter: KF EKF Optimization : graph, g2o.. 2.1 Stereo SLAM Most modern stereo SLAM systems are keyframe-based and perform BA optimization 2.2 RGB-D SLAM KinectFusion is the earliest RGB-D SLAM system. This method track the camera pose using ICP Endres’ open-source system is a feature-based system. Front end: compute frame to frame motion by feature matching ICP Back end: pose-graph optimization]]></content>
-      <tags>
-        <tag>ov</tag>
-        <tag>slam</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Robotics-Arm Kinematics]]></title>
     <url>%2F2019%2F01%2F06%2FRobotics%2FRobotics%2CVison%20and%20Control%20Notes%2FRobotics-Arm%20Kinematics%2F</url>
     <content type="text"><![CDATA[1 Introduction Kinematics is the branch of mechanics that studies the motion of a body, without considering it's mass or forces. A robot arm, a serial-link manipulator, a chain of rigid links and joints. Each joint has one degree of freedom. 2 types: Translational—–prismatic joint Rotational—–revolute joint 2 Forward Kinematics 3 Inverse Kinematics 4 Trajectory Requirement: move the end-effector smoothly from pose A to pose B. Approach: joint-space Cartesian motion 4.1 joint-space 4.2 Cartesian motion 5 Advanced Application]]></content>
@@ -427,6 +418,18 @@
         <tag>robotics</tag>
         <tag>Jacobian</tag>
         <tag>Velocity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vision Based SLAM a review]]></title>
+    <url>%2F2019%2F01%2F06%2FRobotics%2FRobotics-ORB-SLAM%2F</url>
+    <content type="text"><![CDATA[1 Introduction SLAM builds a map and localize the sensor in the map with a strong focus on real-time operation. Camera: cheap and provide rich information of the environment. Monocular camera, cheapest and smallest camera depth is not observable scale drift and mail fail if performing pure rotations RGB-D camera, all these issue can be solved. Outdoor performance is not good. Usually used in indoor environment 1.1 Main Idea At its heart, SLAM is an optimization problem, where the goal is to compute the best configuration of camera poses and point positions in order to minimize reprojection error (the difference between a point's tracked location and where it is expected to be given the camera pose estimate, over all points). —from Kudan The optimization method: Bundle adjustment, iteratively approaches the minimum error for the whole system. Problem: time consuming to find the best solution But with the help of multi-core machine, this problem was solved Another essential technique: relocalization 1.2 How it Works Read sensor data Front end: VO Back end: Optimization Loop Closing: Correct the trajactory Mapping 2 SLAM type 2.0 SLAM Framework Front end: Vision odometry, estimate camera’s motion based on 2 frame Stereo Double RGB-D Back end: Optimization and calculate the map Filter: KF EKF Optimization : graph, g2o.. 2.1 Stereo SLAM Most modern stereo SLAM systems are keyframe-based and perform BA optimization 2.2 RGB-D SLAM KinectFusion is the earliest RGB-D SLAM system. This method track the camera pose using ICP Endres’ open-source system is a feature-based system. Front end: compute frame to frame motion by feature matching ICP Back end: pose-graph optimization]]></content>
+      <categories>
+        <category>Robotics</category>
+      </categories>
+      <tags>
+        <tag>ov</tag>
+        <tag>slam</tag>
       </tags>
   </entry>
   <entry>
@@ -495,19 +498,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Robotics-Linear Control]]></title>
-    <url>%2F2018%2F12%2F27%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Linear%20Control%2F</url>
-    <content type="text"><![CDATA[1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution 1: Linear control system. In fact, non-linear is more usual, linear control is just a approximate methods It's resonable to make such approximation, so lineat control methods are the ones most often used in industrial practice. Learn linear first is good for later study 2 Control-Law Partitioning Partitioning Method (2 parts): model-based portion: make use of supposed knowledge of m,b,k, to make the system appear as a unit mass\(\to\) servo portion simple. servo portion: make use of feedback to modify the behavior of the system A open-loop equation of motion for the system: \[ m \ddot { x } + b \dot { x } + k x = f \] The model-based portion of the control: \[ f = \alpha f ^ { \prime } + \beta \] and we choose(because we want to make the ) \[ \begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array} \] finally we get \(\ddot { x } = f ^ { \prime }\) Graphiclly,we transform a system like this robotics-linear-control into a system easier easier-system What we need to do is design a control law to compute \(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\) so it yields \[ \ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0 \] Conclusion get the system‘s parameters find \(\alpha ,\beta\) calculate \(k_v,k_p\) depend on the requirement 3. Trajectory-Following Control Know: trajectory, a funciton of time \(x_d(t)\) and we can get $x_d, x_d $as well Define: \(e=x_d-x\) Design \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) Get: \(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) So, we can choose coefficients and design any response we want]]></content>
-      <categories>
-        <category>Robotics</category>
-        <category>Introduction to Robotics Notes</category>
-      </categories>
-      <tags>
-        <tag>robotics</tag>
-        <tag>control</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[STM32-ADC]]></title>
     <url>%2F2018%2F12%2F27%2FEmbedded%20System%2FSTM32%2FSTM32-ADC%2F</url>
     <content type="text"><![CDATA[1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32 2 Independent Mode Single Channel, single conversion Example: Check if the battery voltage is succulent or not single-conversion Multichannel, single conversion Example: Can be used when starting system depends on some parameters Single Channel, continuous conversion Example: Run in background, so can be used as a monitor to check something all the time continuous-conversion Injected conversion Intended for use when conversion is triggered by an external event or by software. Injected-conversion 3 Example Code 1234567891011121314151617181920212223242526272829303132333435363738394041void GPIOINIT_ADC()&#123; GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//ADC GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN; //模拟输入 GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz; GPIO_Init(GPIOB,&amp;GPIO_InitStructure);&#125;void RCCINIT_ADC()&#123; SystemInit(); RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE); RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE); RCC_ADCCLKConfig(RCC_PCLK2_Div6);//12M 最大14M 设置ADC时钟（ADCCLK）&#125;void ADCINIT_ADC()&#123; ADC_InitTypeDef ADC_InitStructure; ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; ADC_InitStructure.ADC_ScanConvMode = DISABLE; ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; ADC_InitStructure.ADC_NbrOfChannel = 1; ADC_Init(ADC1, &amp;ADC_InitStructure); ADC_TempSensorVrefintCmd(ENABLE); ADC_Cmd(ADC1,ENABLE); ADC_ResetCalibration(ADC1);//重置指定的ADC的校准寄存器 while(ADC_GetResetCalibrationStatus(ADC1));//获取ADC重置校准寄存器的状态 ADC_StartCalibration(ADC1);//开始指定ADC的校准状态 while(ADC_GetCalibrationStatus(ADC1));//获取指定ADC的校准程序 ADC_RegularChannelConfig(ADC1,ADC_Channel_8,1,ADC_SampleTime_239Cycles5);//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间 ADC_SoftwareStartConvCmd(ADC1, ENABLE);//使能或者失能指定的ADC的软件转换启动功能 while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);&#125;]]></content>
@@ -518,6 +508,19 @@
       <tags>
         <tag>STM32</tag>
         <tag>ADC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Robotics-Linear Control]]></title>
+    <url>%2F2018%2F12%2F27%2FRobotics%2FIntroduction%20to%20Robotics%20Notes%2FRobotics-Linear%20Control%2F</url>
+    <content type="text"><![CDATA[1 Introduction Premise: Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution 1: Linear control system. In fact, non-linear is more usual, linear control is just a approximate methods It's resonable to make such approximation, so lineat control methods are the ones most often used in industrial practice. Learn linear first is good for later study 2 Control-Law Partitioning Partitioning Method (2 parts): model-based portion: make use of supposed knowledge of m,b,k, to make the system appear as a unit mass\(\to\) servo portion simple. servo portion: make use of feedback to modify the behavior of the system A open-loop equation of motion for the system: \[ m \ddot { x } + b \dot { x } + k x = f \] The model-based portion of the control: \[ f = \alpha f ^ { \prime } + \beta \] and we choose(because we want to make the ) \[ \begin{array} { l } { \alpha = m } \\ { \beta = b \dot { x } + k x } \end{array} \] finally we get \(\ddot { x } = f ^ { \prime }\) Graphiclly,we transform a system like this robotics-linear-control into a system easier easier-system What we need to do is design a control law to compute \(f ^ { \prime } = - k _ { v } \dot { x } - k _ { p } x\) so it yields \[ \ddot { x } + k _ { v } \dot { x } + k _ { p } x = 0 \] Conclusion get the system‘s parameters find \(\alpha ,\beta\) calculate \(k_v,k_p\) depend on the requirement 3. Trajectory-Following Control Know: trajectory, a funciton of time \(x_d(t)\) and we can get $x_d, x_d $as well Define: \(e=x_d-x\) Design \(f ^ { \prime } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) Get: \(\ddot { x } = \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e\) So, we can choose coefficients and design any response we want]]></content>
+      <categories>
+        <category>Robotics</category>
+        <category>Introduction to Robotics Notes</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>control</tag>
       </tags>
   </entry>
   <entry>
