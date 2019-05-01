@@ -531,6 +531,596 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/Robotics/Robotics-SLAM14-practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/29/Robotics/Robotics-SLAM14-practice/" class="post-title-link" itemprop="url">SLAM-14讲 读书笔记 实践篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-29 15:11:00 / Modified: 18:34:44" itemprop="dateCreated datePublished" datetime="2019-04-29T15:11:00+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="视觉里程计icp">1 视觉里程计：ICP</h2>
+<blockquote>
+<p>前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值</p>
+</blockquote>
+<h3 id="图像特征点">1.1 图像特征点</h3>
+<p><strong>有代表性的点</strong>被称为</p>
+<ul>
+<li>经典SLAM中：路标</li>
+<li><strong>视觉SLAM中</strong>：图像特征（features）</li>
+</ul>
+<p><strong>特征点</strong>由两部分组成：</p>
+<ul>
+<li><strong>关键点</strong>：特征点在图像里的位置、朝向、大小</li>
+<li><strong>描述子</strong>：通常是一个向量，描述周围像素的信息</li>
+</ul>
+<p>常见图像特征点：</p>
+<ul>
+<li>SIFT（Scale-Invariant Feature Transform）：运算量大</li>
+<li>FAST：计算快</li>
+<li>ORB（Oriented FAST and Rotated BRIEF）：折中
+<ul>
+<li>关键点为 FAST：如果一个<strong>像素</strong>与它领域的像素差别较大，则更可能是<strong>角点</strong></li>
+<li>描述子为 BRIEF：二进制描述子，关键点附近两个像素的大小关系</li>
+</ul></li>
+</ul>
+<h3 id="对极几何">1.2 对极几何</h3>
+<h3 id="pnp问题图像对应">1.3 PNP问题：图像对应</h3>
+<h3 id="icp问题点云匹配">1.4 ICP问题：点云匹配</h3>
+<h3 id="三角化获得三维结构">1.5 三角化获得三维结构</h3>
+<h2 id="视觉里程计直接法">2 视觉里程计：直接法</h2>
+<p>使用特征点的方法有一些缺点：</p>
+<ol type="1">
+<li>就算是ORB算法也很耗时</li>
+<li>图像上很多信息没有利用到</li>
+<li>相机有时候会运动到特征确实的地方（面对着墙）</li>
+</ol>
+<p>直接法就不匹配<em>描述子</em>，直接比较像素或特征点</p>
+<h3 id="设计前端">3 设计前端</h3>
+<h3 id="确定程序框架">3.1 确定程序框架</h3>
+<p>选用RGB-D摄像头实现，因为较为简单，没有初始化，没有尺度问题。</p>
+<p>建立不同的文件夹，分类存放文件</p>
+<ul>
+<li>bin 存放可执行的二进制</li>
+<li>include/slam 主要是.h头文件</li>
+<li>src 主要是.cpp源文件</li>
+<li>test 主要是.cpp测试源文件</li>
+<li>lib 编译好的库文件</li>
+<li>config 存放配置文件</li>
+<li>cmake_modules 第三方的cmake库</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/Robotics/Robotics-SLAM14-math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/28/Robotics/Robotics-SLAM14-math/" class="post-title-link" itemprop="url">SLAM-14讲 读书笔记 数学基础篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-28 21:24:00" itemprop="dateCreated datePublished" datetime="2019-04-28T21:24:00+08:00">2019-04-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-29 16:39:37" itemprop="dateModified" datetime="2019-04-29T16:39:37+08:00">2019-04-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言">1 前言</h2>
+<p>全书分为两部分</p>
+<ol type="1">
+<li>数学基础，涉及到SLAM概述、矩阵知识、李群知识、非线性优化</li>
+<li>SLAM技术，实践视觉里程计（特征点法、直接法），后端优化，回环检测</li>
+</ol>
+<h2 id="slam概述">2 SLAM概述</h2>
+<h3 id="slam框架各模块及任务">2.1 SLAM框架各模块及任务</h3>
+<figure>
+<img src="Robotics-SLAM14-math/1556524354601.png" alt="1556524354601"><figcaption>1556524354601</figcaption>
+</figure>
+<ul>
+<li>VO：视觉里程计，和计算机视觉研究领域相关。根据两张图片确定旋转了多少度、平移了多少厘米。通过VO计算两帧之间的移动，再累加。问题是会有<strong>累计漂移</strong>，需要后端优化和回环检测</li>
+<li>后端优化：降噪，估计整个系统的状态。主要是滤波和非线性优化算法，<strong>优化轨迹</strong></li>
+<li>回环检测：解决累计漂移问题，让机器人<strong>具有识别曾经到达过的场景的能力</strong></li>
+<li>建图，现在常用的是<strong>度量地图</strong>，拓扑地图有待研究
+<ul>
+<li>稀疏：仅表达重要物体，即路标，<strong><em>对定位来说，稀疏地图就够了</em></strong></li>
+<li>稠密：建模所有东西，用于导航ls</li>
+</ul></li>
+</ul>
+<h3 id="编程环境">2.2 编程环境</h3>
+<p>Ubuntu14.04</p>
+<p>CMake</p>
+<p>g++</p>
+<h3 id="库">2.3 库</h3>
+<p>C++工程中，只有带main函数的文件才会生成可执行程序，另外的代码供其他程序应用。叫做<strong>库</strong></p>
+<ul>
+<li>静态库：.a作为后缀名，每次被调用都会产生一个副本</li>
+<li>共享库：.so作为后缀名，只有一个副本，更省空间</li>
+</ul>
+<p>一个库往往是许多算法、程序的集合。如果只有二进制库，不方便使用，所以提供头文件，方便调用。</p>
+<p>如果可执行程序想要调用库中的函数，需要参考头文件，并把可执行程序链接到库文件上。</p>
+<h3 id="cmake基本用法">2.4 cmake基本用法</h3>
+<p>cmake处理了工程文件之间的关系，make调用g++编译程序</p>
+<p>所以维护CMakeLists.txt降低了维护难度</p>
+<h2 id="三维空间刚体运动">3 三维空间刚体运动</h2>
+<h3 id="运动描述方式">3.1 运动描述方式</h3>
+<h3 id="eigen库使用">3.2 Eigen库使用</h3>
+<h2 id="李群与李代数">4 李群与李代数</h2>
+<h3 id="基本概念">4.1 基本概念</h3>
+<h3 id="bch近似">4.2 BCH近似</h3>
+<h3 id="扰动模型">4.3 扰动模型</h3>
+<h3 id="sophus对李代数的运算">4.4 Sophus对李代数的运算</h3>
+<h2 id="相机与图像">5 相机与图像</h2>
+<h3 id="针孔相机模型">5.1 针孔相机模型</h3>
+<h3 id="空间点如何投影到相机">5.2 空间点如何投影到相机</h3>
+<h3 id="opencv中的图像存储与表示">5.3 OpenCV中的图像存储与表示</h3>
+<h3 id="摄像头标定">5.4 摄像头标定</h3>
+<h2 id="非线性优化">6 非线性优化</h2>
+<h3 id="最小二乘法">6.1 最小二乘法</h3>
+<h3 id="下降策略">6.2 下降策略</h3>
+<h3 id="g2o库的使用">6.3 g2o库的使用</h3>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/CS/Machine Learning/RL-QLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/27/CS/Machine Learning/RL-QLearning/" class="post-title-link" itemprop="url">RL:tabular Q-learning</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-27 20:42:00" itemprop="dateCreated datePublished" datetime="2019-04-27T20:42:00+08:00">2019-04-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 14:20:42" itemprop="dateModified" datetime="2019-04-28T14:20:42+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="introduction">1 Introduction</h2>
+<p>Q-Learning: method based on Q value</p>
+<ul>
+<li>Every <em>action</em> in a specific <em>state</em> will have a Q value <span class="math inline">\(Q(s,a)\)</span></li>
+<li>For example, if someone in state <span class="math inline">\(s_1\)</span> have 2 optional action <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span>, and <span class="math inline">\(Q(s_1,a_1)&gt;Q(s_1,a_2)\)</span>, then this agent will do <span class="math inline">\(a_1\)</span> rather than <span class="math inline">\(a_2\)</span></li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/27/CS/Machine Learning/RL-QLearning/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/CS/Data/Project/KNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1157,7 +1747,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 13:17:13" itemprop="dateModified" datetime="2019-04-19T13:17:13+08:00">2019-04-19</time>
+                <time title="Modified: 2019-04-27 20:41:13" itemprop="dateModified" datetime="2019-04-27T20:41:13+08:00">2019-04-27</time>
               
             
           </span>
@@ -1688,572 +2278,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Robotics/Hardware/hardware-omnibusf4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hu Junhan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/15/Robotics/Hardware/hardware-omnibusf4/" class="post-title-link" itemprop="url">Omnibus F4 pro v3</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-15 22:15:00" itemprop="dateCreated datePublished" datetime="2019-03-15T22:15:00+08:00">2019-03-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-19 12:12:45" itemprop="dateModified" datetime="2019-04-19T12:12:45+08:00">2019-04-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<blockquote>
-<p>Upgrade version of OMNIBUS F4, the OMNIBUS F4 Pro (Some shop call it as OMNIBUS F4 PRO V2) added SD card supports, has 5v3A BEC, LC filter for Camera and VTX, build in Current sensor for high Integration Frame.</p>
-</blockquote>
-<figure>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/omnibusf4.png" alt="omnibusf4"><figcaption>omnibusf4</figcaption>
-</figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/15/Robotics/Hardware/hardware-omnibusf4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Robotics/Hardware/hardware-transmitter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hu Junhan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/15/Robotics/Hardware/hardware-transmitter/" class="post-title-link" itemprop="url">Hardware Transmitter</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-15 20:36:00" itemprop="dateCreated datePublished" datetime="2019-03-15T20:36:00+08:00">2019-03-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-19 12:14:46" itemprop="dateModified" datetime="2019-04-19T12:14:46+08:00">2019-04-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简介">1 简介</h2>
-<p>针对一个富斯FS-i6发射机及其接收机来学习接收机方面的知识</p>
-<h3 id="发射机">1.1 发射机</h3>
-<figure>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/transmitter.png" alt="flysky-transmitter"><figcaption>flysky-transmitter</figcaption>
-</figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/15/Robotics/Hardware/hardware-transmitter/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/CS/Python/python-matplotlib/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hu Junhan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/12/CS/Python/python-matplotlib/" class="post-title-link" itemprop="url">Matplotlib</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-12 10:33:00 / Modified: 10:56:27" itemprop="dateCreated datePublished" datetime="2019-03-12T10:33:00+08:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="basics">1. Basics</h2>
-<ul>
-<li>Figure
-<ul>
-<li>Axes
-<ul>
-<li>Axis</li>
-<li>Title</li>
-</ul></li>
-</ul></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2295,7 +2324,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2429,7 +2458,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2693,7 +2728,7 @@
     }
   });
 </script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.bootcss.com/mathjax/2.7.5/latest.js"></script>
 
     
   

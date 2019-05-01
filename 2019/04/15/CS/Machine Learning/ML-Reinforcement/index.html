@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="1 Introduction Spinning Up brought by OpenAI is a good resource for learning reinforcement learning. The goal of Spinning up is to ensure AI is safe developed and help people to learn Deep RL which ha">
-<meta name="keywords" content="ml">
+<meta name="keywords" content="ml,rl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ML:Reinforcement Learning">
 <meta property="og:url" content="http://yoursite.com/2019/04/15/CS/Machine Learning/ML-Reinforcement/index.html">
@@ -106,7 +106,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/reinforcement-learning.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/15/CS/Machine%20Learning/ML-Reinforcement/rl_algorithms_9_15.svg">
-<meta property="og:updated_time" content="2019-04-19T05:17:13.615Z">
+<meta property="og:updated_time" content="2019-04-27T12:41:13.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ML:Reinforcement Learning">
 <meta name="twitter:description" content="1 Introduction Spinning Up brought by OpenAI is a good resource for learning reinforcement learning. The goal of Spinning up is to ensure AI is safe developed and help people to learn Deep RL which ha">
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 13:17:13" itemprop="dateModified" datetime="2019-04-19T13:17:13+08:00">2019-04-19</time>
+                <time title="Modified: 2019-04-27 20:41:13" itemprop="dateModified" datetime="2019-04-27T20:41:13+08:00">2019-04-27</time>
               
             
           </span>
@@ -526,10 +526,10 @@
 <li>reward: a scaler value to value the <em>state</em></li>
 <li><strong>policy</strong>: what we want to learn, <span class="math inline">\(\pi^{\star}(state)\to action\)</span> ,the action can maximize the cumulative reward.
 <ul>
-<li>when moving in the grid map, agent should avoid <span class="math inline">\(-negative​\)</span> reward and get <span class="math inline">\(+positive​\)</span> reward</li>
+<li>when moving in the grid map, agent should avoid <span class="math inline">\(-negative\)</span> reward and get <span class="math inline">\(+positive\)</span> reward</li>
 <li>You need to set the reward carefully<br>
 </li>
-<li>Even if you are in the same state, your action will be different for different <strong>step(time)</strong> you can take later. E.g. if you have only 3 steps to go, you may take action <strong>risky</strong>, <span class="math inline">\(\pi^{\star}(state,time)\to action​\)</span></li>
+<li>Even if you are in the same state, your action will be different for different <strong>step(time)</strong> you can take later. E.g. if you have only 3 steps to go, you may take action <strong>risky</strong>, <span class="math inline">\(\pi^{\star}(state,time)\to action\)</span></li>
 </ul></li>
 </ul>
 <h2 id="key-concepts">2 Key Concepts</h2>
@@ -561,8 +561,8 @@
 </ul></li>
 <li><p>Policies: rule used by an agent to decide what actions to <strong>take</strong></p>
 <ul>
-<li>deterministic <span class="math inline">\(a_{t}=\mu\left(s_{t}\right)​\)</span></li>
-<li>stochastic <span class="math inline">\(a_{t} \sim \pi\left(\cdot | s_{t}\right)\)</span> : sampling action <span class="math inline">\(+\)</span> computing <span class="math inline">\(\log \pi_{\theta}(a | s)\)</span> , <em>which means your action may not be execute <span class="math inline">\(100\%​\)</span></em> that is <strong>uncertainty</strong>
+<li>deterministic <span class="math inline">\(a_{t}=\mu\left(s_{t}\right)\)</span></li>
+<li>stochastic <span class="math inline">\(a_{t} \sim \pi\left(\cdot | s_{t}\right)\)</span> : sampling action <span class="math inline">\(+\)</span> computing <span class="math inline">\(\log \pi_{\theta}(a | s)\)</span> , <em>which means your action may not be execute <span class="math inline">\(100\%\)</span></em> that is <strong>uncertainty</strong>
 <ul>
 <li>Catergorical policies: <strong>discrete</strong>, jsut like a <strong>classifier</strong>, output are probabilities vector</li>
 <li>diagonal Gaussian policies: continuous</li>
@@ -582,16 +582,21 @@
 <li><p>The RL Problem: select a policy which maximized <strong>expected return</strong></p></li>
 <li><p>Value Funciton: know the value of a state</p>
 <ol type="1">
-<li><strong>On-Policy Value Function</strong> <span class="math inline">\(V^{\pi}(s)\)</span></li>
-<li><strong>On-Policy Action-Value Function</strong> <span class="math inline">\(Q^{\pi}(s, a)\)</span></li>
-<li><strong>Optimal Value Function</strong> $V^{*}(s) $</li>
-<li><strong>Optimal Action-Value Function</strong> <span class="math inline">\(Q^{*}(s, a)\)</span></li>
+<li><p><strong>On-Policy Value Function</strong> <span class="math inline">\(V^{\pi}(s)\)</span></p></li>
+<li><p><strong>On-Policy Action-Value Function</strong> <span class="math inline">\(Q^{\pi}(s, a)\)</span></p></li>
+</ol>
+<p>start with random action</p>
+<ol start="3" type="1">
+<li><p><strong>Optimal Value Function</strong> $V^{*}(s) $</p></li>
+<li><p><strong>Optimal Action-Value Function</strong> <span class="math inline">\(Q^{*}(s, a)\)</span></p></li>
 </ol></li>
 <li><p>Bellman Equations</p>
 <ul>
 <li><blockquote>
 <p>basic idea: The value of your starting point is the reward you expect to get from being there, plus the value of wherever you land next.</p>
 </blockquote></li>
+<li><p><span class="math inline">\(V^{*}(s)=\max _{\pi} \underset{\tau \sim \pi}{\mathrm{E}}\left[R(\tau) | s_{0}=s\right]\)</span></p>
+<p><span class="math inline">\(n\)</span> equations and <span class="math inline">\(n\)</span> unknown</p></li>
 </ul></li>
 </ul>
 <h2 id="kinds-of-rl-algorithms">3 Kinds of RL Algorithms</h2>
@@ -672,6 +677,8 @@
         <div class="post-tags">
           
             <a href="/tags/ml/" rel="tag"># ml</a>
+          
+            <a href="/tags/rl/" rel="tag"># rl</a>
           
         </div>
       
@@ -765,7 +772,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -899,7 +906,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1162,7 +1175,7 @@
     }
   });
 </script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.bootcss.com/mathjax/2.7.5/latest.js"></script>
 
     
   
