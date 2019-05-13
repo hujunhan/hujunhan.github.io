@@ -114,7 +114,7 @@
 <meta property="og:description" content="1 前言 全书分为两部分  数学基础，涉及到SLAM概述、矩阵知识、李群知识、非线性优化 SLAM技术，实践视觉里程计（特征点法、直接法），后端优化，回环检测">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/salm-framework.png">
-<meta property="og:updated_time" content="2019-05-01T12:24:02.433Z">
+<meta property="og:updated_time" content="2019-05-13T03:37:16.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLAM-14讲 读书笔记 数学基础篇">
 <meta name="twitter:description" content="1 前言 全书分为两部分  数学基础，涉及到SLAM概述、矩阵知识、李群知识、非线性优化 SLAM技术，实践视觉里程计（特征点法、直接法），后端优化，回环检测">
@@ -447,7 +447,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-01 20:24:02" itemprop="dateModified" datetime="2019-05-01T20:24:02+08:00">2019-05-01</time>
+                <time title="Modified: 2019-05-13 11:37:16" itemprop="dateModified" datetime="2019-05-13T11:37:16+08:00">2019-05-13</time>
               
             
           </span>
@@ -518,21 +518,78 @@
 <p>所以维护CMakeLists.txt降低了维护难度</p>
 <h2 id="三维空间刚体运动">3 三维空间刚体运动</h2>
 <h3 id="运动描述方式">3.1 运动描述方式</h3>
+<p>旋转矩阵<span class="math inline">\(S O(n)\)</span>是特殊正交群的意思（Special Orthogonal Group），定义如下 <span class="math display">\[
+S O(n)=\left\{\boldsymbol{R} \in \mathbb{R}^{n \times n} | \boldsymbol{R} \boldsymbol{R}^{T}=\boldsymbol{I}, \operatorname{det}(\boldsymbol{R})=1\right\}
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{R}^{-1}=\boldsymbol{R}^T
+\]</span></p>
+<p>可以用来<strong>描述相机的旋转</strong></p>
+<hr>
+<p>如果是<strong>旋转加上平移</strong>，那就要用<span class="math inline">\(SE(n)\)</span>来表示，意思是特殊欧式群（Special Euclidean Group），定义如下 <span class="math display">\[
+S E(3)=\left\{T=\left[ \begin{array}{cc}{\boldsymbol{R}} &amp; {\boldsymbol{t}} \\ {\mathbf{0}^{T}} &amp; {1}\end{array}\right] \in \mathbb{R}^{4 \times 4} | \boldsymbol{R} \in S O(3), \boldsymbol{t} \in \mathbb{R}^{3}\right\}
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{T}^{-1}=\left[ \begin{array}{cc}{\boldsymbol{R}^{T}} &amp; {-\boldsymbol{R}^{T} \boldsymbol{t}} \\ {\mathbf{0}^{T}} &amp; {1}\end{array}\right]
+\]</span></p>
+<hr>
+<p>上述的表示方法缺点是有冗余的变量表达，且旋转矩阵自身带有约束</p>
+<p>改进：用2个三维向量表示</p>
+<ul>
+<li><p>一个是旋转向量，方向与旋转轴一致，长度与旋转角一直</p>
+<p>旋转向量和旋转矩阵的转换由罗德里格斯公式表明</p></li>
+<li><p>另一个是平移向量</p></li>
+</ul>
+<hr>
+<p>旋转向量对人来说不好理解，所以可以用欧拉角来表示，但是欧拉角表示会存在万向节死锁问题。</p>
+<hr>
+<p>虽然旋转向量和欧拉角都是紧凑的，但是具有<strong>奇异性</strong></p>
+<p>因此引入<strong>四元数</strong>，类似于表示三维空间旋转的复数</p>
 <h3 id="eigen库使用">3.2 Eigen库使用</h3>
 <h2 id="李群与李代数">4 李群与李代数</h2>
+<p>知道了三维空间中刚体的运动方式，而我们需要解决<strong>什么样的相机位姿最符合当前观测数据</strong>这样的问题，可以抽象为一个优化问题，求解最优的<span class="math inline">\(R,t\)</span>，使得误差最小化</p>
 <h3 id="基本概念">4.1 基本概念</h3>
+<p>对于只有一个运算(比如<span class="math inline">\(*\)</span>)的集合，我们把它叫做<strong>群</strong>，也就是说群是定义在<strong>一种集合加上一种运算</strong>的基础上的，比如<span class="math inline">\(SO(n),SE(n)\)</span></p>
+<p>李群是指具有连续（光滑）性质的群，<span class="math inline">\(SO(n),SE(n)\)</span></p>
+<hr>
+<p>李代数描述了李群的局部性质</p>
+<p>李群通过<strong>对数映射</strong>得到李代数</p>
+<p>李代数通过<strong>指数映射</strong>得到李群</p>
 <h3 id="bch近似">4.2 BCH近似</h3>
+<p>使用李代数的动机是为了优化</p>
+<p>对李代数来说<span class="math inline">\(\ln (\exp (\boldsymbol{A}) \exp(\boldsymbol{B}))=\boldsymbol{A}+\boldsymbol{B}\)</span> 在矩阵时不成立</p>
+<p>因此使用BCH（Baker-Campbell-Hausdorff）近似</p>
 <h3 id="扰动模型">4.3 扰动模型</h3>
 <h3 id="sophus对李代数的运算">4.4 Sophus对李代数的运算</h3>
+<p>MSVC中没有M_PI，需要增加</p>
 <h2 id="相机与图像">5 相机与图像</h2>
-<h3 id="针孔相机模型">5.1 针孔相机模型</h3>
+<h3 id="相机模型">5.1 相机模型</h3>
+<h4 id="针孔相机模型">5.1.1 针孔相机模型</h4>
+<p>内参数：针孔模型+畸变模型</p>
+<p>这两个模型把外部三维点投影到相机内部成像平面</p>
+<h4 id="双目相机模型">5.1.2 双目相机模型</h4>
+<p>利用视差计算像素深度</p>
+<h4 id="rgb-d相机模型">5.1.3 RGB-D相机模型</h4>
+<p>主动测量每个像素的深度</p>
+<ul>
+<li>通过结构光，比如Kinect 1，realsense</li>
+<li>通过飞行时间法ToF，比如Kinect 2，原理类似于激光</li>
+</ul>
 <h3 id="空间点如何投影到相机">5.2 空间点如何投影到相机</h3>
 <h3 id="opencv中的图像存储与表示">5.3 OpenCV中的图像存储与表示</h3>
+<p>宽度640，高度480的灰度图像，可以这样表示</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> image[<span class="number">480</span>][<span class="number">640</span>]</span><br></pre></td></tr></table></figure>
+<p>因为第一个下标表示行，第二个下标表示列。</p>
+<p>这样表示的原因是OpenCV中的图像也是矩阵，矩阵的数值选取是左上角原点，先纵再横。OpenCV规定纵是Y，横是X，所以最后是这样的表示</p>
 <h3 id="摄像头标定">5.4 摄像头标定</h3>
 <h2 id="非线性优化">6 非线性优化</h2>
-<h3 id="最小二乘法">6.1 最小二乘法</h3>
+<p>之前已经说明了运动方程和观测方程，但是由于噪声的存在，所以要根据有噪声的数据进行状态估计。也就是要求一个最大似然估计或者最大后验概率，“在什么情况下最可能产生现在观测到的数据”</p>
+<p>原来的观测模型加上高斯分布的噪声后，任然是高斯分布，所以我们可以使用最小化负对数来求高斯分布最大似然，这也等价于最小化噪声项，所以问题就抽象为最小二乘问题</p>
+<h3 id="非线性最小二乘法">6.1 非线性最小二乘法</h3>
 <h3 id="下降策略">6.2 下降策略</h3>
-<h3 id="g2o库的使用">6.3 g2o库的使用</h3>
+<h3 id="库的使用">6.3 库的使用</h3>
+<p>Ceres——通用的优化库，从损失函数来理解比较自然</p>
+<p><span class="math inline">\(g^2o\)</span>——基于图的优化库，需要定义新的顶点和边，但<span class="math inline">\(g^2o\)</span>提供了很多顶点和边的类型，所以在相机位姿估计问题中非常方便，如果用Ceres，要自己实现损失函数，不方便。</p>
 
       
     </div>
@@ -888,7 +945,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">1 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slam概述"><span class="nav-text">2 SLAM概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slam框架各模块及任务"><span class="nav-text">2.1 SLAM框架各模块及任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编程环境"><span class="nav-text">2.2 编程环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库"><span class="nav-text">2.3 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmake基本用法"><span class="nav-text">2.4 cmake基本用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间刚体运动"><span class="nav-text">3 三维空间刚体运动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运动描述方式"><span class="nav-text">3.1 运动描述方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eigen库使用"><span class="nav-text">3.2 Eigen库使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#李群与李代数"><span class="nav-text">4 李群与李代数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-text">4.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bch近似"><span class="nav-text">4.2 BCH近似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扰动模型"><span class="nav-text">4.3 扰动模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sophus对李代数的运算"><span class="nav-text">4.4 Sophus对李代数的运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机与图像"><span class="nav-text">5 相机与图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#针孔相机模型"><span class="nav-text">5.1 针孔相机模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间点如何投影到相机"><span class="nav-text">5.2 空间点如何投影到相机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#opencv中的图像存储与表示"><span class="nav-text">5.3 OpenCV中的图像存储与表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摄像头标定"><span class="nav-text">5.4 摄像头标定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性优化"><span class="nav-text">6 非线性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法"><span class="nav-text">6.1 最小二乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下降策略"><span class="nav-text">6.2 下降策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#g2o库的使用"><span class="nav-text">6.3 g2o库的使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">1 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slam概述"><span class="nav-text">2 SLAM概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slam框架各模块及任务"><span class="nav-text">2.1 SLAM框架各模块及任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编程环境"><span class="nav-text">2.2 编程环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库"><span class="nav-text">2.3 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmake基本用法"><span class="nav-text">2.4 cmake基本用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间刚体运动"><span class="nav-text">3 三维空间刚体运动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运动描述方式"><span class="nav-text">3.1 运动描述方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eigen库使用"><span class="nav-text">3.2 Eigen库使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#李群与李代数"><span class="nav-text">4 李群与李代数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-text">4.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bch近似"><span class="nav-text">4.2 BCH近似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扰动模型"><span class="nav-text">4.3 扰动模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sophus对李代数的运算"><span class="nav-text">4.4 Sophus对李代数的运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机与图像"><span class="nav-text">5 相机与图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相机模型"><span class="nav-text">5.1 相机模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#针孔相机模型"><span class="nav-text">5.1.1 针孔相机模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双目相机模型"><span class="nav-text">5.1.2 双目相机模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rgb-d相机模型"><span class="nav-text">5.1.3 RGB-D相机模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间点如何投影到相机"><span class="nav-text">5.2 空间点如何投影到相机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#opencv中的图像存储与表示"><span class="nav-text">5.3 OpenCV中的图像存储与表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摄像头标定"><span class="nav-text">5.4 摄像头标定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性优化"><span class="nav-text">6 非线性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性最小二乘法"><span class="nav-text">6.1 非线性最小二乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下降策略"><span class="nav-text">6.2 下降策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库的使用"><span class="nav-text">6.3 库的使用</span></a></li></ol></li></ol></div>
             
 
           </div>

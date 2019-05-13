@@ -766,7 +766,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-01 20:24:02" itemprop="dateModified" datetime="2019-05-01T20:24:02+08:00">2019-05-01</time>
+                <time title="Modified: 2019-05-13 11:37:16" itemprop="dateModified" datetime="2019-05-13T11:37:16+08:00">2019-05-13</time>
               
             
           </span>
@@ -1739,7 +1739,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 12:23:38" itemprop="dateModified" datetime="2019-04-19T12:23:38+08:00">2019-04-19</time>
+                <time title="Modified: 2019-05-13 11:38:11" itemprop="dateModified" datetime="2019-05-13T11:38:11+08:00">2019-05-13</time>
               
             
           </span>
@@ -1774,55 +1774,18 @@
 
       
         
-          
-            <h2 id="introduction">1 Introduction</h2>
+          <h2 id="introduction">1 Introduction</h2>
 <p>This project was brought to make a flight controller from scratch.</p>
 <p>I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32/Arduino/Linux ) will make the general task more difficult.</p>
-<p>Before the program, I have no experience in flight controller programming. So I would learn from other project shared on Github.com.</p>
-<h2 id="learning-from-others">2 Learning from Others</h2>
-<h3 id="hackflight">2.1 HackFlight</h3>
-<p>As a education oriented project, <em><a href="https://github.com/simondlevy/Hackflight" target="_blank" rel="noopener">Hackflight</a> is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators</em></p>
-<h4 id="unit">2.1.1 Unit</h4>
-<p>First of all, HackFlight defined some standard units to write simpler code.</p>
-<ul>
-<li>Distance $ m/s $</li>
-<li>Time $ s $</li>
-<li>Euler angle $ radians $</li>
-<li>Stick demand interval $ [-1,1 ] $</li>
-<li>Motor demands $ [0,1] $</li>
-<li>Quaternions interval $ [-1,1] $</li>
-</ul>
-<h4 id="programming-structure">2.1.2 Programming Structure</h4>
-<p>This project is a practice of C++ for it’s speed and object-oriented features</p>
-<p>HackFlight build several separate class to provide basic function of a controller.</p>
-<ul>
-<li>Board class, specifies 4 abstract method a flight must implement
-<ul>
-<li>Sending commands to the motors</li>
-<li>Getting current quaternion from the IMU</li>
-<li>Getting gyrometer rates from the IMU</li>
-<li>Getting the current time</li>
-</ul></li>
-<li>Receiver class perform basic function associate with R/C control</li>
-<li>Mixer class that can be subclassed by specific mixer like QuadX / Bicopter</li>
-<li>PID_Controller class specific the PID value appropriate for your model</li>
-</ul>
-<h4 id="design-principle">2.1.3 Design Principle</h4>
-<figure>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20190419122228.png" alt="hackflight-dataflow"><figcaption>hackflight-dataflow</figcaption>
-</figure>
-<p>There are 2 basic data type:</p>
-<ul>
-<li>State: State is updated by sensors which read IMU sensors and calculate <strong>quaternion</strong></li>
-<li>Demands</li>
-</ul>
-<p>There are 2 basic fly mode: All a kind of PID controller</p>
-<ul>
-<li>Self-Level Mode: Auto mode, hold the angle or keep the level when there is no input. The input is regarded as the <em>distance</em> you want to move</li>
-<li>Rate Mode: Manual/Acro mode. The input is taken as the <em>speed</em> you want to move</li>
-</ul>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/13/Robotics/Project/flight-controller/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
