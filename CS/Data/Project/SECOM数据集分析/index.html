@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.1.0" color="#222">
+
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. 目标  选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
+<meta name="keywords" content="data,secom,imbalance">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SECOM数据分析与预测">
+<meta property="og:url" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/index.html">
+<meta property="og:site_name" content="Whatever">
+<meta property="og:description" content="1. 目标  选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/normal-accu.svg">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556256350205.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556256364752.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/under-accu.svg">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556256787690.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556256792627.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/over-accu.svg">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556257306182.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/1556257316182.png">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/fail-rate-all.svg">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/pass-rate-all-1556260861775.svg">
+<meta property="og:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/final-rate-all.svg">
+<meta property="og:updated_time" content="2019-04-26T13:23:40.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SECOM数据分析与预测">
+<meta name="twitter:description" content="1. 目标  选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
+<meta name="twitter:image" content="http://yoursite.com/CS/Data/Project/SECOM数据集分析/normal-accu.svg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/CS/Data/Project/SECOM数据集分析/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SECOM数据分析与预测 | Whatever</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Whatever</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">only truth matters</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/CS/Data/Project/SECOM数据集分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SECOM数据分析与预测
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-26 20:55:00 / Modified: 21:23:40" itemprop="dateCreated datePublished" datetime="2019-04-26T20:55:00+08:00">2019-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目标">1. 目标</h2>
+<ul>
+<li>选择一个侧重工业领域的数据集</li>
+<li>分析数据</li>
+<li>分析问题，分析结果</li>
+</ul>
+<a id="more"></a>
+<h2 id="问题分析">2. 问题分析</h2>
+<h3 id="问题">2.1 问题</h3>
+<blockquote>
+<p>A complex modern semi-conductor manufacturing process is normally under consistent surveillance via the monitoring of signals/variables collected from sensors and or process measurement points. However, not all of these signals are equally valuable in a specific monitoring system. The measured signals contain a combination of useful information, irrelevant information as well as noise. It is often the case that useful information is buried in the latter two. Engineers typically have a much larger number of signals than are actually required. If we consider each type of signal as a feature, then feature selection may be applied to identify the most relevant signals. The Process Engineers may then use these signals to determine key factors contributing to yield excursions downstream in the process. This will enable an increase in process throughput, decreased time to learning and reduce the per unit production costs.</p>
+</blockquote>
+<p>简单来说，在半导体加工行业中，我们希望通过流水线上各个传感器的信号来预先判断最后产品合格与否。</p>
+<p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析</p>
+<p>数据来源： <a href="http://archive.ics.uci.edu/ml/datasets/secom" target="_blank" rel="noopener">SECOM Data Set</a></p>
+<h3 id="数据格式定义">2.2 数据格式定义</h3>
+<p>数据来自半导体加工工厂，数据来自半导体生产线上的传感器，整体数据已经经过了脱敏的处理，因此无法得知每个属性数据来自哪种，哪一个传感器。数据按时间点记录，1567条数据代表着1567个时间点上生产线上传感器所记录的数据。</p>
+<ul>
+<li><a href="http://archive.ics.uci.edu/ml/machine-learning-databases/secom/secom.data" target="_blank" rel="noopener">secom.data</a>
+<ul>
+<li><span class="math inline">\(1567\times961\)</span> 说明有1567个数据样本，961个特征，都是数值</li>
+</ul></li>
+<li><a href="http://archive.ics.uci.edu/ml/machine-learning-databases/secom/secom_labels.data" target="_blank" rel="noopener">secom_labels.data</a>
+<ul>
+<li><span class="math inline">\(1567\times2\)</span> 有1567个数据标签，其中一个是结果，另一个是获取数据的时间</li>
+<li>$-1 $代表通过（PASS），$1 $代表失败（FAIL）</li>
+<li>缺失的数据由<code>NaN</code>表示</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>实际中的NaN是由什么产生的呢</p>
+<p>As with any real life data situations this data contains null values varying in intensity depending on the individuals features. This needs to be taken into consideration when investigating the data either through pre-processing or within the technique applied.</p>
+</blockquote>
+<h3 id="从数据到问题">2.3 从数据到问题</h3>
+<p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析。同时由于数据提供的结果数据是用1和-1代表的质量数据，所以我们要解决的生产质量预测问题可以转化为一个二分类的问题。即利用生产线上的传感器数据来将产品进行质量合格和质量不合格的二分类。</p>
+<h3 id="计划流程">2.3 计划流程</h3>
+<ol type="1">
+<li>加载数据</li>
+<li>空缺数据填补</li>
+<li>特征选择</li>
+<li>尝试不同分类模型</li>
+<li>验证模型效果</li>
+</ol>
+<h2 id="数据预处理">3. 数据预处理</h2>
+<h3 id="可视化分析">3.1 可视化分析</h3>
+<h3 id="数据清洗">3.2 数据清洗</h3>
+<p>首先，961个特征中不能每个特征都对最后的结果都有可观的影响。因此遵从一般的原则，我们可以将其中一些特征删除。这些特征应该满足以下条件：</p>
+<ul>
+<li>是一个常数</li>
+<li>不是常数，但是方差很小，可以认为是一个常数</li>
+</ul>
+<p>我们首先观察<em>Secom_labels.data</em>中的数据，将两个数据表中质量标签缺失的数据从我们的整体数据中清洗掉。</p>
+<p>但是在这一步中我们并没有进行离群点的筛查。一是质量表征的数据过于复杂，二是作为工业生产线上的数据，突变的离群点很大可能是质量不合格的原因。因此在这里我们并没有进行离群点的筛查。</p>
+<h3 id="数据填补">3.3 数据填补</h3>
+<p>我们研究数据可以发现，许多特征并不是完整的，也就是说他们没有1567个样本，缺少的数据以<code>NaN</code>体现。</p>
+<p>我们选择的方法可以是：</p>
+<ul>
+<li>平均值填补</li>
+<li>IN-painting KNN (from paper BDCC)</li>
+</ul>
+<p>注意到我们的数据几乎都离0值较远，因此我们选用0来对我们的数据进行填补。</p>
+<h3 id="特征选择">3.4 特征选择</h3>
+<p>在填补了缺失的数据之后，我们还要进行特征选择，来精简掉一些不重要的信息，提高我们算法的运算速度</p>
+<p>其中包含的方法有数据降维PCA、通过模型计算各个参数的重要性并排序</p>
+<h3 id="数据平衡化">3.5 数据平衡化</h3>
+<p>在观察数据的过程中，我们发现SECOM这个数据集是imbalance的：也就是说数据集中的正样本数和负样本数是不匹配的。通过的(-1)的样本数要远远多于不通过的样本数(1)。<em>这在实际生产中是非常常见的，因为一个工厂的良品率肯定是要比较高的，不然生产的产品一大半不合格的话，成本太高了。</em></p>
+<p>然而不均衡的样本会导致不均衡的数据分布，这样就会使得各个分类算法的效果大大降低。(from learning from imbalanced data)</p>
+<p>那么要使数据平衡有两种方法，一种是对少的那部分样本进行过采样使得样本数量和多的样本接近，或者对多的那种样本进行欠采样。</p>
+<p>我们选择的是过采样方法，SMOTE （Synthetic Minority Oversampling Technique），这种方法会根据插值来产生新的数据</p>
+<h2 id="使用不同模型进行预测">4. 使用不同模型进行预测</h2>
+<h3 id="可用的算法">4.1 可用的算法</h3>
+<p>回顾我们的问题，我们要根据所拥有的传感器信息判断这个产品是好还是坏，搜易最后的结果只有两种可能， 这是一个典型的二分类问题。又因为这是一个有标签的有监督学习，所以我们可以将整个问题归纳为<strong>有监督的二分类学习</strong></p>
+<p>二分类学习算法有很多，常见的有以下几种</p>
+<ul>
+<li><p>朴素贝叶斯</p>
+<ul>
+<li>优点：需要估计的参数少</li>
+<li>缺点：需要知道先验概率，假设属性之间相互独立</li>
+</ul></li>
+<li><p>决策树</p>
+<ul>
+<li><p>优点：易于理解，适合高维数据</p></li>
+<li><p>缺点：容易过拟合，忽略了属性之间的相关性</p></li>
+</ul></li>
+<li><p>逻辑回归</p>
+<ul>
+<li>优点：速度快</li>
+<li>缺点：需要较多的特征工程</li>
+</ul></li>
+<li><p>KNN</p>
+<ul>
+<li>优点：不需要训练，数据即模型</li>
+<li>缺点：在高维数据下表现不好</li>
+</ul></li>
+<li><p>集成学习方法</p>
+<ul>
+<li>Adaboost</li>
+<li>XGBoost</li>
+<li>随机森林</li>
+</ul></li>
+</ul>
+<h3 id="需要注意的问题">4.2 需要注意的问题</h3>
+<p>因为我们的数据是典型的不平衡数据，也就是说正样本的数量要远远多于负样本，这就导致我们不能用一般的分析方法来观察结果的好坏，比如说<em>准确率</em>，判断正确的占所有判断的比值，这样会造成的问题就是即使我们的算法把所有的样本都判断为正，最后得到的<em>准确率</em>依然很高，因为正样本太多了，所以我们在分析时要使用其他不同的评判标准。</p>
+<h3 id="预测结果">4.3 预测结果</h3>
+<p>为了让实验结果更加完整，我们对比了不同方法下的预测效果：</p>
+<ul>
+<li>数据处理上
+<ul>
+<li>原数据</li>
+<li>欠采样</li>
+<li>过采样</li>
+</ul></li>
+<li>模型方法
+<ul>
+<li>随机森林</li>
+<li>决策树</li>
+<li>SVM</li>
+<li>朴素贝叶斯</li>
+<li>AdaBoost</li>
+<li>XGBoost</li>
+<li>KNN</li>
+</ul></li>
+</ul>
+<h4 id="原数据">4.3.1 原数据</h4>
+<p>从准确度角度看，不进行采样直接使用各种算法的预测结果如下</p>
+<figure>
+<img src="normal-accu.svg" alt="normal-accu"><figcaption>normal-accu</figcaption>
+</figure>
+<p>看上去效果还可以，但是仔细思考的话，就会发现这样的准确率是没有什么意义的，因为正样本太多，所以哪怕算法将所有的样本都判断为正样本，最后也能得到非常高的预测准确度。</p>
+<p>这一点我们可以从观察算法的混淆矩阵看出来，下面展示的两张混淆矩阵代表了大部分算法的混淆矩阵情况</p>
+<figure>
+<img src="1556256350205.png" alt="1556256350205"><figcaption>1556256350205</figcaption>
+</figure>
+<figure>
+<img src="1556256364752.png" alt="1556256364752"><figcaption>1556256364752</figcaption>
+</figure>
+<p>可以看到正如我们之前所猜测的那样，模型的预测效果很差，将大部分样本呢都标定为正样本</p>
+<h4 id="欠采样">4.3.2 欠采样</h4>
+<p>既然样本不平衡时会出现这样严重的问题，我们就需要对样本进行平滑化处理，首先我们测试的方法是使用欠采样。</p>
+<p>欠采样的方法比较简单直观，我们只需要将数据量多的样本（在这里是正样本）随机的删除掉一些，最后让正负样本量相同即可</p>
+<p>这样的情况下，再使用7种算法进行预测得到的结果如下</p>
+<figure>
+<img src="under-accu.svg" alt="under-accu"><figcaption>under-accu</figcaption>
+</figure>
+<p>可以看到，在欠采样的情况下，各个算法的预测准确度大大降低，几乎都只有一半左右，考虑到这是一个二分类问题，接近50%的预测准确度就相当于乱猜了。</p>
+<p>混淆矩阵如下</p>
+<figure>
+<img src="1556256787690.png" alt="1556256787690"><figcaption>1556256787690</figcaption>
+</figure>
+<figure>
+<img src="1556256792627.png" alt="1556256792627"><figcaption>1556256792627</figcaption>
+</figure>
+<p>从混淆矩阵可以看出，各个情况下的数据都差不多，也证实了我们的猜想，算法在欠采样的情况下没有了基本的判断能力，判断结果和随机类似。</p>
+<p>为什么会出现这样的情况呢？其实从欠采样的工作原理就能大概猜到了，那就是数据量太小，由于本身负样本的数量就很少，只有一百多，现在将正样本的数量缩减到和负样本相同的情况下，总共的样本数也就只有两百多，在这么少的训练样本情况下，训练效果不佳也是可以预见的。</p>
+<h4 id="过采样">4.3.3 过采样</h4>
+<p>既然不采样和欠采样都没有很好的效果，我们只能使用另外的方法来解决数据不平衡问题，那就是——过采样</p>
+<p>我们采样的方法是SMOTE （Synthetic Minority Oversampling Technique），这种方法会根据插值来产生新的数据。</p>
+<p>预测效果如下：</p>
+<figure>
+<img src="over-accu.svg" alt="over-accu"><figcaption>over-accu</figcaption>
+</figure>
+<p>可以看到，在过采样的情况下，一部分算法的效果大大提升，而另一些算法仍然保持着较低的预测结果</p>
+<p>从混淆矩阵来看，取得较好预测结果的算法混淆矩阵大概如下</p>
+<figure>
+<img src="1556257306182.png" alt="1556257306182"><figcaption>1556257306182</figcaption>
+</figure>
+<figure>
+<img src="1556257316182.png" alt="1556257316182"><figcaption>1556257316182</figcaption>
+</figure>
+<p>可以看到效果还是非常不错的，能够将大部分的正负样本预测出来。</p>
+<h3 id="结果分析">4.4 结果分析</h3>
+<p>我们最终的目的是要寻找一个优秀的算法能够较好地预测结果，所以我们需要算法</p>
+<ul>
+<li>能够在所有的故障中尽量将故障选择出来，这是最重要的部分，因为将一部分正常产品检测为故障问题不是特别大，无非是提高一点成本。但是一旦故障检测率太低，就会造成产品有重大缺陷，对于下游厂商来说是不可接受的。</li>
+<li>能够将所有的正常产品尽量多地通过，虽然在上一点说过故障检测率是最重要，但是正常产品的检测效果一样重要，因为如果这样检测率太低就有可能导致将许多正常产品都标定为故障，这样的话会大幅提高生产成本和二次检查的成本，对于厂商来说也是不可接受的。</li>
+</ul>
+<p>首先观察一下各个算法在不同的采样情况下能否正确地将故障从故障中找到</p>
+<figure>
+<img src="fail-rate-all.svg" alt="fail-rate-all"><figcaption>fail-rate-all</figcaption>
+</figure>
+<p>可以看到，这时过采样的效果很好</p>
+<p>再来观察一下各个算法在不同的采样情况下能否正确地将正常样本识别出来</p>
+<figure>
+<img src="pass-rate-all-1556260861775.svg" alt="pass-rate-all"><figcaption>pass-rate-all</figcaption>
+</figure>
+<p>可以看到，在这种情况下过采样和不采样的效果是较好的。</p>
+<p>那么如何将两种判断标准结合起来呢？我们最终使用的判断标准是将上述两个标准的数值取调和平均，得到的结果如下：</p>
+<figure>
+<img src="final-rate-all.svg" alt="final-rate-all"><figcaption>final-rate-all</figcaption>
+</figure>
+<p>可以看到，在过采样情况下，随机森林和XGBoost这两种算法的效果是最好的，其他的几种情况和算法都不尽如人意。</p>
+<p>我们分析这两种取得优秀效果的原因有以下几点：</p>
+<ol type="1">
+<li>我们的数据是流水线上的传感器信息，而且数量较多，有上千个，因此这样的数据之间一定是有很强的相关性的。比如说一个工艺之后到另一个工艺之间产品的性质并不会发生天翻地覆的变化，一定是慢慢变化的。</li>
+<li>表现优秀的几种算法都是基于决策树的，而决策树的优势就在于能够在数据有很强相关性的情况下进行分类，因此这样的算法和我们的数据集比较吻合，达到了较好的效果</li>
+<li>其他的一些算法比如朴素贝叶斯则假设的是各个特征之间相互独立，明显和我们的数据不吻合，因此效果很差。</li>
+</ol>
+<h2 id="总结与展望">5.总结与展望</h2>
+<p>我们利用了一般的数据分析流程对半导体加工数据进行了数据填补、数据清理、特征工程、样本平衡化和建模预测，最终结果表明在过采样情况下，随机森林和XGBoost这两种算法的效果是最好的。</p>
+<p>后续工作：</p>
+<ul>
+<li><p>更加细致的特征工程</p>
+<ul>
+<li>数据进行补全的不同方式效果对比</li>
+<li>PCA保留的主成分多寡效果对比</li>
+<li>对于异常值的删选</li>
+</ul></li>
+<li><p>模型的调参</p>
+<ul>
+<li><p>Grid Search 穷举搜索</p>
+<p>目前我们所使用的模型都使用默认的参数，所以最终效果大概率不是最好的，如果使用Grid Search对参数进行遍历搜索，会取得更加优秀的预测效果</p></li>
+</ul></li>
+<li><p>尝试不同的学习方法</p>
+<ul>
+<li><p>迁移学习</p>
+<p>因为这个数据的样本量较少，因此训练效果不佳，但是迁移学习可以将在其他大数据上所学习到的模型套用在本模型上，获得更好的效果</p></li>
+<li><p>故障诊断</p>
+<p>现在我们的思路是把问题作为一个二分类问题，但其实也可以作为一个故障诊断问题，也就是从数据出发，不直接对特征建模，而是观察数据的异常。这样的思路也是非常合理的，因为有故障的样本一般会在某些特征上与一般样本不同，所以可以通过检测某些特征的离群点来判断样本是否有故障</p></li>
+</ul></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/data/" rel="tag"># data</a>
+          
+            <a href="/tags/secom/" rel="tag"># secom</a>
+          
+            <a href="/tags/imbalance/" rel="tag"># imbalance</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CS/Machine Learning/ML-Transfer/" rel="next" title="ML:Transfer Learning">
+                <i class="fa fa-chevron-left"></i> ML:Transfer Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/CS/Data/Project/KNN/" rel="prev" title="基于KNN的花品种分类">
+                基于KNN的花品种分类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hu Junhan</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hujunhan" title="GitHub &rarr; https://github.com/hujunhan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:hujh@zju.edu.cn" title="E-Mail &rarr; mailto:hujh@zju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://hujunhan.github.io/about" title="QQ &rarr; https://hujunhan.github.io/about" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://hujunhan.github.io/about" title="WeChat &rarr; https://hujunhan.github.io/about" rel="noopener" target="_blank"><i class="fa fa-fw fa-weixin"></i>WeChat</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-text">1. 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题分析"><span class="nav-text">2. 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-text">2.1 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据格式定义"><span class="nav-text">2.2 数据格式定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从数据到问题"><span class="nav-text">2.3 从数据到问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计划流程"><span class="nav-text">2.3 计划流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据预处理"><span class="nav-text">3. 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化分析"><span class="nav-text">3.1 可视化分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据清洗"><span class="nav-text">3.2 数据清洗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据填补"><span class="nav-text">3.3 数据填补</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征选择"><span class="nav-text">3.4 特征选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据平衡化"><span class="nav-text">3.5 数据平衡化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用不同模型进行预测"><span class="nav-text">4. 使用不同模型进行预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可用的算法"><span class="nav-text">4.1 可用的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要注意的问题"><span class="nav-text">4.2 需要注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测结果"><span class="nav-text">4.3 预测结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原数据"><span class="nav-text">4.3.1 原数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#欠采样"><span class="nav-text">4.3.2 欠采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过采样"><span class="nav-text">4.3.3 过采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果分析"><span class="nav-text">4.4 结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结与展望"><span class="nav-text">5.总结与展望</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hu Junhan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
