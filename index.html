@@ -534,6 +534,243 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Math/Algebra/immersive-math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hu Junhan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Whatever">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/Math/Algebra/immersive-math/" class="post-title-link" itemprop="url">Immersive Math</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-24 18:59:00 / Modified: 23:14:38" itemprop="dateCreated datePublished" datetime="2019-05-24T18:59:00+08:00">2019-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="vector">1 Vector</h2>
+<h3 id="operation">operation</h3>
+<ul>
+<li>Addition</li>
+<li>Scalar vector multiplication</li>
+</ul>
+<h3 id="column-vector">column vector</h3>
+<p><strong>column vector</strong> <span class="math display">\[
+\mathbf{w}=\left( \begin{array}{c}{w_{x}} \\ {w_{y}} \\ {w_{z}}\end{array}\right)
+\]</span></p>
+<p>also can be written as</p>
+<p><span class="math display">\[
+\mathbf{w}=\left(w_{1}, w_{2}, w_{3}\right)
+\]</span></p>
+<p>notice the commas between the vector elements</p>
+<h3 id="vector-space">vector space</h3>
+<ul>
+<li>a set <span class="math inline">\(V\)</span> of objects (called vector)</li>
+<li>a field <span class="math inline">\(F\)</span> where addition and multiplication is well defined (e.g. real number <span class="math inline">\(\mathbb{R}\)</span> and complex number <span class="math inline">\(\mathbb{C}\)</span>)</li>
+</ul>
+<p>e.g.</p>
+<p>Polynomials up to degree 2 / Gray-scale images</p>
+<h2 id="the-dot-product">2 The Dot Product</h2>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/cg-ball.png"></p>
+<p>Essential in computer graphics, the dot product was used to</p>
+<ul>
+<li>calculate the intersection between a ray and a sphere</li>
+<li>measure the length to the points</li>
+<li>implement reflection law</li>
+</ul>
+<h3 id="dot-product">2.1 Dot Product</h3>
+<p><span class="math display">\[
+\mathbf{u} \cdot \mathbf{v}=\|\mathbf{u}\|\|\mathbf{v}\| \cos [\mathbf{u}, \mathbf{v}]
+\]</span></p>
+<h3 id="orthogonal">2.2 Orthogonal</h3>
+<ul>
+<li>projection</li>
+</ul>
+<p><span class="math display">\[
+\mathcal{P}_{\mathbf{v}} \mathbf{u}=\frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^{2}} \mathbf{v}
+\]</span></p>
+<ul>
+<li><p>basis</p>
+<p><span class="math display">\[
+\mathbf{e}_{i} \cdot \mathbf{e}_{j}=\left\{\begin{array}{ll}{1} &amp; {\text { if } i=j} \\ {0} &amp; {\text { if } i \neq j}\end{array}\right.
+\]</span></p></li>
+<li><p>dot product in orthogonal basis <span class="math display">\[
+\mathbf{u} \cdot \mathbf{v}=\sum_{i=1}^{n} u_{i} v_{i}
+\]</span></p></li>
+</ul>
+<h3 id="inequalities">2.3 Inequalities</h3>
+<ul>
+<li><p>Cauchy-Schwarz Inequality <span class="math display">\[
+|\mathbf{u} \cdot \mathbf{v}| \leq\|\mathbf{u}\|\|\mathbf{v}\|
+\]</span></p></li>
+<li><p>Triangle Inequality <span class="math display">\[
+\|\mathbf{u}+\mathbf{v}\| \leq\|\mathbf{u}\|+\|\mathbf{v}\|
+\]</span></p></li>
+</ul>
+<h3 id="line">2.4 Line</h3>
+<p>A parameterized explicit line <span class="math display">\[
+P(t)=S+t \mathbf{d}
+\]</span></p>
+<p><span class="math display">\[
+e(P)=\mathbf{n} \cdot(P-S)
+\]</span></p>
+<p>or implicit line <span class="math display">\[
+\mathbf{n} \cdot(P-S)=0
+\]</span></p>
+<hr>
+<p>If we want to calculate the distance from a point <span class="math inline">\(P(x,y)\)</span> to a line</p>
+<ul>
+<li>the line pass through point <span class="math inline">\(S=(2,1)\)</span> and has normal <span class="math inline">\(n=(3,4)\)</span> <span class="math display">\[
+d=\left|\frac{\mathbf{n}}{|\mathbf{n}|} \cdot(P-S)\right|
+\]</span></li>
+</ul>
+<hr>
+<p>In computer game, there is usually a graphics processor highly optimized for drawing triangles.</p>
+<p>To determine whether a pixel is inside a triangle, the graphics processor often uses three edge equations</p>
+<ul>
+<li><p>Ray-Sphere Intersection</p>
+<ul>
+<li>Sphere can be expressed as <span class="math inline">\(\|P-C\|=r\)</span></li>
+<li>The ray <span class="math inline">\(R(t)=S+t \mathrm{d}\)</span></li>
+</ul></li>
+<li><p>Law of reflection</p>
+<ul>
+<li><p>ray <span class="math inline">\(i\)</span>. normal <span class="math inline">\(n\)</span></p></li>
+<li><p>longer <span class="math inline">\(i\)</span>, calculate the projection to <span class="math inline">\(n\)</span></p></li>
+<li><p>longer <span class="math inline">\(n\)</span></p></li>
+<li><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/law.png"> <span class="math display">\[
+\mathbf{r}=\mathbf{i}-2(\mathbf{i} \cdot \mathbf{n}) \mathbf{n}
+\]</span></p></li>
+</ul></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/CS/Web/html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -753,7 +990,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-16 14:44:16" itemprop="dateModified" datetime="2019-05-16T14:44:16+08:00">2019-05-16</time>
+                <time title="Modified: 2019-05-22 15:18:27" itemprop="dateModified" datetime="2019-05-22T15:18:27+08:00">2019-05-22</time>
               
             
           </span>
@@ -1819,169 +2056,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Robotics/Project/flight-controller/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hu Junhan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Whatever">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/Robotics/Project/flight-controller/" class="post-title-link" itemprop="url">Flight Controller</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-13 14:56:00" itemprop="dateCreated datePublished" datetime="2019-04-13T14:56:00+08:00">2019-04-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-13 11:38:11" itemprop="dateModified" datetime="2019-05-13T11:38:11+08:00">2019-05-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="introduction">1 Introduction</h2>
-<p>This project was brought to make a flight controller from scratch.</p>
-<p>I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32/Arduino/Linux ) will make the general task more difficult.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Robotics/Project/flight-controller/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2028,7 +2102,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

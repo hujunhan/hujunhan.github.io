@@ -105,18 +105,21 @@
 
 
 
-  <meta name="description" content="1 Introduction How machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
-<meta name="keywords" content="ml">
+  <meta name="description" content="1 Vector operation  Addition Scalar vector multiplication  column vector column vector \[ \mathbf{w}=\left( \begin{array}{c}{w_{x}} \\ {w_{y}} \\ {w_{z}}\end{array}\right) \] also can be written as \[">
+<meta name="keywords" content="algebra,math,robotics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ML:First Step">
-<meta property="og:url" content="http://yoursite.com/CS/Machine Learning/ML-ConceptLearning/index.html">
+<meta property="og:title" content="Immersive Math">
+<meta property="og:url" content="http://yoursite.com/Math/Algebra/immersive-math/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Introduction How machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
+<meta property="og:description" content="1 Vector operation  Addition Scalar vector multiplication  column vector column vector \[ \mathbf{w}=\left( \begin{array}{c}{w_{x}} \\ {w_{y}} \\ {w_{z}}\end{array}\right) \] also can be written as \[">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-19T03:09:10.640Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/cg-ball.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/law.png">
+<meta property="og:updated_time" content="2019-05-24T15:14:38.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ML:First Step">
-<meta name="twitter:description" content="1 Introduction How machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
+<meta name="twitter:title" content="Immersive Math">
+<meta name="twitter:description" content="1 Vector operation  Addition Scalar vector multiplication  column vector column vector \[ \mathbf{w}=\left( \begin{array}{c}{w_{x}} \\ {w_{y}} \\ {w_{z}}\end{array}\right) \] also can be written as \[">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/cg-ball.png">
 
 
 
@@ -124,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/CS/Machine Learning/ML-ConceptLearning/">
+  <link rel="canonical" href="http://yoursite.com/Math/Algebra/immersive-math/">
 
 
 
@@ -134,7 +137,7 @@
   };
 </script>
 
-  <title>ML:First Step | Whatever</title>
+  <title>Immersive Math | Whatever</title>
   
 
 
@@ -385,7 +388,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/CS/Machine Learning/ML-ConceptLearning/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Math/Algebra/immersive-math/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hu Junhan">
@@ -402,7 +405,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ML:First Step
+          <h1 class="post-title" itemprop="name headline">Immersive Math
 
               
             
@@ -428,24 +431,12 @@
                 
               
 
-              <time title="Created: 2019-01-16 11:50:00" itemprop="dateCreated datePublished" datetime="2019-01-16T11:50:00+08:00">2019-01-16</time>
+              <time title="Created: 2019-05-24 18:59:00 / Modified: 23:14:38" itemprop="dateCreated datePublished" datetime="2019-05-24T18:59:00+08:00">2019-05-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-19 11:09:10" itemprop="dateModified" datetime="2019-04-19T11:09:10+08:00">2019-04-19</time>
               
             
           </span>
@@ -479,81 +470,100 @@
       
 
       
-        <h2 id="introduction">1 Introduction</h2>
-<p><strong>How</strong> machine can learn from data?</p>
-<p>First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.</p>
-<a id="more"></a>
-<p><strong>Most</strong> simple algorithms: <strong>Find-S</strong></p>
-<h2 id="what-is-concept-learning">2 What is Concept Learning</h2>
-<blockquote>
-<p>“The problem of searching through a predefined space of potential hypotheses for the hypothesis that best fits the training examples.”</p>
-<p>​ — Tom Michell</p>
-</blockquote>
-<p>Human learning: acquiring general concepts from past experiences.</p>
-<p>Machine learning: find a hypothesis that best fits the training example.</p>
-<p>Notaion:</p>
+        <h2 id="vector">1 Vector</h2>
+<h3 id="operation">operation</h3>
 <ul>
-<li>target concept <span class="math inline">\(c\)</span></li>
-<li>object <span class="math inline">\(X\)</span></li>
-<li>all hypothesis set <span class="math inline">\(H\)</span></li>
-<li><span class="math inline">\(c : X \to \{ 0,1 \}\)</span></li>
+<li>Addition</li>
+<li>Scalar vector multiplication</li>
 </ul>
-<p><strong>*</strong>*<strong>What we should do is to find a hypothesis</strong> <span class="math inline">\(h ( x ) = c ( x ) \text { for all } x \text { in } X\)</span></p>
-<blockquote>
-<p>Good hypothesis fit <strong>large set</strong> of training example well</p>
-<p><span class="math inline">\(\to\)</span> the hypothesis fit <strong>unobserved</strong> example well</p>
-</blockquote>
-<h2 id="find-s">3 Find-S</h2>
-<h3 id="hypothesis-notations">3.1 Hypothesis Notations</h3>
-<ol type="1">
-<li><span class="math inline">\(\varnothing\)</span> :a hypothesis that <strong>rejects all</strong></li>
-<li><span class="math inline">\(&lt; ? , ? , ? , ? &gt;\)</span> :<strong>accepts all</strong></li>
-<li><span class="math inline">\(&lt; \text { true, false, } ? , ? &gt;\)</span> :<strong>accepts some</strong></li>
-</ol>
-<p>Total number of the possible hypothesis <span class="math inline">\(N=(3*3*3*3)+1=82\)</span></p>
-<h3 id="specific-to-general">3.2 Specific to General</h3>
-<ol type="1">
-<li>Start with the most specific hypothesis <span class="math inline">\(\mathbf { h } \leftarrow &lt; \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } &gt;\)</span></li>
-<li>Pick up a sample
-<ol type="1">
-<li>if sample is <strong>negative</strong> <span class="math inline">\(\to​\)</span> unchanged</li>
-<li>if sample is <strong>positive</strong> <span class="math inline">\(\to\)</span> update current hypothesis
+<h3 id="column-vector">column vector</h3>
+<p><strong>column vector</strong> <span class="math display">\[
+\mathbf{w}=\left( \begin{array}{c}{w_{x}} \\ {w_{y}} \\ {w_{z}}\end{array}\right)
+\]</span></p>
+<p>also can be written as</p>
+<p><span class="math display">\[
+\mathbf{w}=\left(w_{1}, w_{2}, w_{3}\right)
+\]</span></p>
+<p>notice the commas between the vector elements</p>
+<h3 id="vector-space">vector space</h3>
 <ul>
-<li><span class="math inline">\(&lt;true,true,false,true&gt; \and &lt;true,true,false,false&gt; \to &lt;true,true,false,?&gt;\)</span></li>
+<li>a set <span class="math inline">\(V\)</span> of objects (called vector)</li>
+<li>a field <span class="math inline">\(F\)</span> where addition and multiplication is well defined (e.g. real number <span class="math inline">\(\mathbb{R}\)</span> and complex number <span class="math inline">\(\mathbb{C}\)</span>)</li>
+</ul>
+<p>e.g.</p>
+<p>Polynomials up to degree 2 / Gray-scale images</p>
+<h2 id="the-dot-product">2 The Dot Product</h2>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/cg-ball.png"></p>
+<p>Essential in computer graphics, the dot product was used to</p>
+<ul>
+<li>calculate the intersection between a ray and a sphere</li>
+<li>measure the length to the points</li>
+<li>implement reflection law</li>
+</ul>
+<h3 id="dot-product">2.1 Dot Product</h3>
+<p><span class="math display">\[
+\mathbf{u} \cdot \mathbf{v}=\|\mathbf{u}\|\|\mathbf{v}\| \cos [\mathbf{u}, \mathbf{v}]
+\]</span></p>
+<h3 id="orthogonal">2.2 Orthogonal</h3>
+<ul>
+<li>projection</li>
+</ul>
+<p><span class="math display">\[
+\mathcal{P}_{\mathbf{v}} \mathbf{u}=\frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^{2}} \mathbf{v}
+\]</span></p>
+<ul>
+<li><p>basis</p>
+<p><span class="math display">\[
+\mathbf{e}_{i} \cdot \mathbf{e}_{j}=\left\{\begin{array}{ll}{1} &amp; {\text { if } i=j} \\ {0} &amp; {\text { if } i \neq j}\end{array}\right.
+\]</span></p></li>
+<li><p>dot product in orthogonal basis <span class="math display">\[
+\mathbf{u} \cdot \mathbf{v}=\sum_{i=1}^{n} u_{i} v_{i}
+\]</span></p></li>
+</ul>
+<h3 id="inequalities">2.3 Inequalities</h3>
+<ul>
+<li><p>Cauchy-Schwarz Inequality <span class="math display">\[
+|\mathbf{u} \cdot \mathbf{v}| \leq\|\mathbf{u}\|\|\mathbf{v}\|
+\]</span></p></li>
+<li><p>Triangle Inequality <span class="math display">\[
+\|\mathbf{u}+\mathbf{v}\| \leq\|\mathbf{u}\|+\|\mathbf{v}\|
+\]</span></p></li>
+</ul>
+<h3 id="line">2.4 Line</h3>
+<p>A parameterized explicit line <span class="math display">\[
+P(t)=S+t \mathbf{d}
+\]</span></p>
+<p><span class="math display">\[
+e(P)=\mathbf{n} \cdot(P-S)
+\]</span></p>
+<p>or implicit line <span class="math display">\[
+\mathbf{n} \cdot(P-S)=0
+\]</span></p>
+<hr>
+<p>If we want to calculate the distance from a point <span class="math inline">\(P(x,y)\)</span> to a line</p>
+<ul>
+<li>the line pass through point <span class="math inline">\(S=(2,1)\)</span> and has normal <span class="math inline">\(n=(3,4)\)</span> <span class="math display">\[
+d=\left|\frac{\mathbf{n}}{|\mathbf{n}|} \cdot(P-S)\right|
+\]</span></li>
+</ul>
+<hr>
+<p>In computer game, there is usually a graphics processor highly optimized for drawing triangles.</p>
+<p>To determine whether a pixel is inside a triangle, the graphics processor often uses three edge equations</p>
+<ul>
+<li><p>Ray-Sphere Intersection</p>
+<ul>
+<li>Sphere can be expressed as <span class="math inline">\(\|P-C\|=r\)</span></li>
+<li>The ray <span class="math inline">\(R(t)=S+t \mathrm{d}\)</span></li>
 </ul></li>
-</ol></li>
-<li>repetition of Step 2</li>
-</ol>
-<h3 id="limitations">3.3 Limitations</h3>
+<li><p>Law of reflection</p>
 <ul>
-<li>No way to determine if result is consistent with the data</li>
-<li>Inconsistent sets will mislead the result</li>
-<li>No backtrack</li>
-</ul>
-<h2 id="candidate-elimination">4 Candidate-elimination</h2>
-<h3 id="chrarcters">4.1 Chrarcters</h3>
-<p>Maintain 2 hypothesis</p>
-<ul>
-<li><span class="math inline">\(S_0\)</span> most specific</li>
-<li><span class="math inline">\(G_0\)</span> most general</li>
-</ul>
-<h3 id="algorithm">4.2 Algorithm</h3>
-<p>Pick up a sample</p>
-<ul>
-<li>if sample is <strong>negative</strong> <span class="math inline">\(\to\)</span> specificalize <span class="math inline">\(G_0\)</span></li>
-<li>if sample is <strong>positive</strong> <span class="math inline">\(\to\)</span> generalize <span class="math inline">\(S_0\)</span></li>
-</ul>
-<h3 id="limitations-1">4.3 Limitations</h3>
-<p>Low fault tolerance</p>
-<h2 id="inductive-bias">5 Inductive Bias</h2>
-<p>Stronger the bias is, more powerful the generaliztion is.</p>
-<p>indicate that: If there is no assumption, the learner can learn <strong>nothing</strong> but the <strong>data</strong></p>
-<p>Common biases:</p>
-<ul>
-<li>Maximum conditional independence</li>
-<li>Minimum cross-validation error</li>
-<li>Minimum description length :<em>Occam's razor</em></li>
-<li>Minimum features</li>
+<li><p>ray <span class="math inline">\(i\)</span>. normal <span class="math inline">\(n\)</span></p></li>
+<li><p>longer <span class="math inline">\(i\)</span>, calculate the projection to <span class="math inline">\(n\)</span></p></li>
+<li><p>longer <span class="math inline">\(n\)</span></p></li>
+<li><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/law.png"> <span class="math display">\[
+\mathbf{r}=\mathbf{i}-2(\mathbf{i} \cdot \mathbf{n}) \mathbf{n}
+\]</span></p></li>
+</ul></li>
 </ul>
 
       
@@ -578,7 +588,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ml/" rel="tag"># ml</a>
+            <a href="/tags/algebra/" rel="tag"># algebra</a>
+          
+            <a href="/tags/math/" rel="tag"># math</a>
+          
+            <a href="/tags/robotics/" rel="tag"># robotics</a>
           
         </div>
       
@@ -591,8 +605,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Embedded System/STM32/STM32-Basics/" rel="next" title="STM32 Basics">
-                <i class="fa fa-chevron-left"></i> STM32 Basics
+              <a href="/CS/Web/html/" rel="next" title="Basic HTML">
+                <i class="fa fa-chevron-left"></i> Basic HTML
               </a>
             
           </div>
@@ -601,8 +615,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/CS/Machine Learning/ML-BayesianLearning/" rel="prev" title="ML:Bayesian Learning">
-                ML:Bayesian Learning <i class="fa fa-chevron-right"></i>
+              <a href="/TODO/" rel="prev" title="TODO">
+                TODO <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -918,7 +932,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-is-concept-learning"><span class="nav-text">2 What is Concept Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-s"><span class="nav-text">3 Find-S</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hypothesis-notations"><span class="nav-text">3.1 Hypothesis Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#specific-to-general"><span class="nav-text">3.2 Specific to General</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#limitations"><span class="nav-text">3.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#candidate-elimination"><span class="nav-text">4 Candidate-elimination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chrarcters"><span class="nav-text">4.1 Chrarcters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm"><span class="nav-text">4.2 Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#limitations-1"><span class="nav-text">4.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inductive-bias"><span class="nav-text">5 Inductive Bias</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-text">1 Vector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#operation"><span class="nav-text">operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#column-vector"><span class="nav-text">column vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-space"><span class="nav-text">vector space</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-dot-product"><span class="nav-text">2 The Dot Product</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dot-product"><span class="nav-text">2.1 Dot Product</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orthogonal"><span class="nav-text">2.2 Orthogonal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inequalities"><span class="nav-text">2.3 Inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line"><span class="nav-text">2.4 Line</span></a></li></ol></li></ol></div>
             
 
           </div>
