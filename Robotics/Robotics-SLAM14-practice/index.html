@@ -115,7 +115,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-2d-2d.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-basic-class.png">
-<meta property="og:updated_time" content="2019-05-22T07:18:27.582Z">
+<meta property="og:updated_time" content="2019-06-07T14:45:21.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SLAM-14讲 读书笔记 实践篇">
 <meta name="twitter:description" content="1 视觉里程计：ICP  前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点 有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-22 15:18:27" itemprop="dateModified" datetime="2019-05-22T15:18:27+08:00">2019-05-22</time>
+                <time title="Modified: 2019-06-07 22:45:21" itemprop="dateModified" datetime="2019-06-07T22:45:21+08:00">2019-06-07</time>
               
             
           </span>
@@ -566,7 +566,7 @@
 <li>相机有时候会运动到特征确实的地方（面对着墙）</li>
 </ol>
 <p>直接法就不匹配<em>描述子</em>，直接比较像素或特征点</p>
-<h3 id="设计前端">3 设计前端</h3>
+<h2 id="设计前端">3 设计前端</h2>
 <h3 id="确定程序框架">3.1 确定程序框架</h3>
 <p>选用RGB-D摄像头实现，因为较为简单，没有初始化，没有尺度问题。</p>
 <p>建立不同的文件夹，分类存放文件</p>
@@ -592,6 +592,119 @@
 </ol></li>
 <li>丢失：跳过</li>
 </ul>
+<h2 id="后端优化">4 后端优化</h2>
+<p>状态估计</p>
+<ul>
+<li>Batch：批量的，状态估计会用未来的信息更新自己</li>
+<li>Incremental：渐进的，当前状态只有过去的时刻决定</li>
+</ul>
+<p>希望：轨迹在较长时间内能保持最优</p>
+<p>问题：只有里程计，会对自己的运动估计越来越不确定</p>
+<p>sfm问题：从一组图像中恢复运动和结构 <span class="math display">\[
+P\left(\boldsymbol{x}_{k} | \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k}, \boldsymbol{z}_{1 : k-1}\right)=\int P\left(\boldsymbol{x}_{k} | \boldsymbol{x}_{k-1}, \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k}, \boldsymbol{z}_{1 : k-1}\right) P\left(\boldsymbol{x}_{k-1} | \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k}, \boldsymbol{z}_{1 : k-1}\right) \mathrm{d} \boldsymbol{x}_{k-1}
+\]</span></p>
+<h3 id="线性系统和kf">4.1 线性系统和KF</h3>
+<p>假设马尔可夫性，右侧第一部分中当前状态之和上一个时刻有关 <span class="math display">\[
+P\left(\boldsymbol{x}_{k} | \boldsymbol{x}_{k-1}, \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k}, \boldsymbol{z}_{1 : k-1}\right)=P\left(\boldsymbol{x}_{k} | \boldsymbol{x}_{k-1}, \boldsymbol{u}_{k}\right)
+\]</span> 右侧第二部分 <span class="math display">\[
+P\left(\boldsymbol{x}_{k-1} | \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k}, \boldsymbol{z}_{1 : k-1}\right)=P\left(\boldsymbol{x}_{k-1} | \boldsymbol{x}_{0}, \boldsymbol{u}_{1 : k-1}, \boldsymbol{z}_{1 : k-1}\right)
+\]</span></p>
+<hr>
+<p>高斯线性系统 <span class="math display">\[
+\left\{\begin{array}{ll}{\boldsymbol{x}_{k}=\boldsymbol{A}_{k} \boldsymbol{x}_{k-1}+\boldsymbol{u}_{k}+\boldsymbol{w}_{k}} \\ {z_{k}=\boldsymbol{C}_{k} \boldsymbol{x}_{k}+\boldsymbol{v}_{k}}\end{array} \quad k=1, \ldots, N\right.
+\]</span> 其中状态和噪声都满足高斯分布（零均值）</p>
+<p>所以整个问题归纳为</p>
+<p>已知：</p>
+<ul>
+<li><span class="math inline">\(k-1\)</span>时刻的后验状态估计：<span class="math inline">\(\hat{\boldsymbol{x}}_{k-1},\hat{\boldsymbol{P}}_{k-1}\)</span></li>
+<li><span class="math inline">\(k\)</span>时刻的输入和观测</li>
+</ul>
+<p>求取:</p>
+<ul>
+<li><span class="math inline">\(x_k\)</span>的后验分布</li>
+</ul>
+<hr>
+<p>后验均值的表达，就是两个步骤，预测和更新</p>
+<ol type="1">
+<li><p>预测</p></li>
+<li><p>更新，计算<span class="math inline">\(K\)</span>，成为卡尔曼增益 <span class="math display">\[
+\boldsymbol{K}=\overline{\boldsymbol{P}}_{k} \boldsymbol{C}_{k}^{T}\left(\boldsymbol{C}_{k} \overline{\boldsymbol{P}}_{k} \boldsymbol{C}_{k}^{T}+\boldsymbol{Q}\right)^{-1}
+\]</span></p></li>
+</ol>
+<p>卡尔曼滤波器构成了线性系统的最优无偏估计</p>
+<h3 id="非线性系统和ekf">4.2 非线性系统和EKF</h3>
+<p>运动方程和观测方程一般是非线性函数，所以我们需要近似，近似成高斯分布</p>
+<p>方式：线性化，就相当于一阶泰勒展开（求偏导）</p>
+<p>仿照卡尔曼滤波，定义新的卡尔曼增益<span class="math inline">\(K\)</span> <span class="math display">\[
+\boldsymbol{K}_{k}=\overline{\boldsymbol{P}}_{k} \boldsymbol{H}^{\mathrm{T}}\left(\boldsymbol{H} \overline{\boldsymbol{P}}_{k} \boldsymbol{H}^{\mathrm{T}}+\boldsymbol{Q}_{k}\right)^{-1}
+\]</span> 利用卡尔曼增益，计算后验概率</p>
+<p>局限</p>
+<ul>
+<li>假设了<strong>马尔可夫性</strong>，所以无法做回环检测</li>
+<li>仅做了<strong>一次线性化</strong>，而一阶泰勒展开不一定能够近似整个函数，只能在很小的范围内成立</li>
+<li><span class="math inline">\(EKF\)</span>存储了状态量的均值和方差</li>
+</ul>
+<h3 id="非线性优化">4.3 非线性优化</h3>
+<p><strong>Bundle Adjustment</strong>：从视觉重建中提炼出最优的3D模型和相机参数（内参，外参）</p>
+<p>在以<strong>图优化框架</strong>的<strong>视觉</strong>SLAM问题中，BA起到了核心作用。求解<strong>只有观测方程</strong>的SLAM问题</p>
+<p>SLAM问题中，BA具有稀疏特性，可以在实时场景中使用</p>
+<hr>
+<h4 id="投影模型">投影模型</h4>
+<p>从世界坐标系到像素坐标</p>
+<ol type="1">
+<li><p>世界坐标<span class="math inline">\(\to\)</span>相机坐标，利用<strong>外参</strong></p>
+<p><span class="math inline">\(\boldsymbol{P}^{\prime}=\boldsymbol{R} \boldsymbol{p}+\boldsymbol{t}=\left[X^{\prime}, Y^{\prime}, Z^{\prime}\right]^{T}\)</span></p></li>
+<li><p>相机坐标<span class="math inline">\(\to\)</span> 归一化坐标</p>
+<p><span class="math inline">\(\boldsymbol{P}_{c}=\left[u_{c}, v_{c}, 1\right]^{T}=\left[X^{\prime} / Z^{\prime}, Y^{\prime} / Z^{\prime}, 1\right]^{T}\)</span></p></li>
+<li><p>归一化坐标<span class="math inline">\(\to\)</span>去畸变</p>
+<p><span class="math inline">\(\left\{\begin{array}{l}{u_{c}^{\prime}=u_{c}\left(1+k_{1} r_{c}^{2}+k_{2} r_{c}^{4}\right)} \\ {v_{c}^{\prime}=v_{c}\left(1+k_{1} r_{c}^{2}+k_{2} r_{c}^{4}\right)}\end{array}\right.\)</span></p></li>
+<li><p>去畸变<span class="math inline">\(\to\)</span>像素坐标，利用<strong>内参</strong></p>
+<p><span class="math inline">\(\left\{\begin{array}{l}{u_{s}=f_{x} u_{c}^{\prime}+c_{x}} \\ {v_{s}=f_{y} v_{c}^{\prime}+c_{y}}\end{array}\right.\)</span></p></li>
+</ol>
+<hr>
+<p>上面的投影模型可以说就是<strong>观测方程</strong></p>
+<p>可以抽象为<span class="math inline">\(z=h(\boldsymbol{x}, \boldsymbol{y})\)</span></p>
+<ul>
+<li><span class="math inline">\(z\)</span> 是观测数据，像素坐标</li>
+<li><span class="math inline">\(x\)</span> 是相机位姿，外参<span class="math inline">\(R,t\)</span></li>
+<li><span class="math inline">\(y\)</span> 是路标，三维点<span class="math inline">\(p\)</span></li>
+</ul>
+<p>考虑所有时刻的观测量，可以计算整体的代价函数 <span class="math display">\[
+\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{n}\left\|\boldsymbol{e}_{i j}\right\|^{2}=\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{n}\left\|\boldsymbol{z}_{i j}-h\left(\boldsymbol{\xi}_{i}, \boldsymbol{p}_{j}\right)\right\|^{2}
+\]</span></p>
+<hr>
+<h2 id="图优化">5 图优化</h2>
+<h3 id="位姿图-pose-graph">5.1 位姿图 Pose Graph</h3>
+<p>采用之前的BA优化，时间越长，运动轨迹越长，地图规模也会增长，所以计算效率就会逐渐下降。如何解决这些问题？</p>
+<p>考虑到在BA优化中，一些特征点会收敛至一个值保持不动，所以不需要再进行优化。</p>
+<blockquote>
+<p>可以构建一个只有轨迹的图优化，而位姿节点之间的边，可以由两个关键帧之间通过特征 匹配之后得到的运动估计来给定初始值。不同的是，一旦初始估计完成，我们就不再优化 那些路标点的位置，而只关心所有的相机位姿之间的联系了。通过这种方式，我们省去了大 量的特征点优化的计算，只保留了关键帧的轨迹，从而构建了所谓的位姿图（Pose Graph）</p>
+</blockquote>
+<h2 id="回环检测">6 回环检测</h2>
+<h3 id="概述">概述</h3>
+<p>前端：特征点提取，提供轨迹和地图的<strong>初值</strong></p>
+<p>后端：对前端提供的数据进行<strong>优化</strong></p>
+<p>但是只考虑相邻帧之间的位移，长期来看还是会有累计误差，所以要加入<strong>回环检测</strong></p>
+<p>所以仅有前端和局部后端的系统称为VO，而有回环检测和全局后端的称为SLAM</p>
+<h3 id="实现">实现</h3>
+<p>最简单的方式：任意两张做特征匹配，匹配多的关系就越强，但是计算量太大</p>
+<p>几何的方式：在几何关系上回到起点时做检测，但是逻辑上也是鸡和蛋的问题</p>
+<p>实际中应用的方式：基于外观，计算图像间的相似性</p>
+<p>有两个统计量来检验<strong>判断效果</strong></p>
+<ul>
+<li><strong>准确率</strong>，就是所有检测到的回环中是真实回环的概率，在SLAM中更加重要一些</li>
+<li>召回率，就是所有真实回环中被检测到的概率</li>
+</ul>
+<h3 id="词袋模型">词袋模型</h3>
+<p>Bag of Words (BoW)，用图像特征来描述图像，比如说一张图片里两个人，另一张一个人</p>
+<ol type="1">
+<li>确定”人“的概念，相当于Words，许多<strong>Words</strong>组合在一起组成字典<strong>Dictionary</strong></li>
+<li>计算一张图中的各个Words，只计算出现的次数，和空间位置等无关</li>
+<li>比较相似程度</li>
+</ol>
+<hr>
+<p>字典的定义——通过聚类解决</p>
+<p>问题抽象：从一张图片中提取了<span class="math inline">\(N\)</span>个特征点，想要找一个有<span class="math inline">\(k\)</span></p>
 
       
     </div>
@@ -957,7 +1070,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计icp"><span class="nav-text">1 视觉里程计：ICP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像特征点"><span class="nav-text">1.1 图像特征点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对极几何2d-2d"><span class="nav-text">1.2 对极几何:2D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pnp问题3d-2d"><span class="nav-text">1.3 PnP问题：3D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#icp问题3d-3d"><span class="nav-text">1.4 ICP问题：3D-3D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三角化获得三维结构"><span class="nav-text">1.5 三角化获得三维结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计直接法"><span class="nav-text">2 视觉里程计：直接法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计前端"><span class="nav-text">3 设计前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定程序框架"><span class="nav-text">3.1 确定程序框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本类及其关系"><span class="nav-text">3.2 基本类及其关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本逻辑"><span class="nav-text">3.3 基本逻辑</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计icp"><span class="nav-text">1 视觉里程计：ICP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像特征点"><span class="nav-text">1.1 图像特征点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对极几何2d-2d"><span class="nav-text">1.2 对极几何:2D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pnp问题3d-2d"><span class="nav-text">1.3 PnP问题：3D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#icp问题3d-3d"><span class="nav-text">1.4 ICP问题：3D-3D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三角化获得三维结构"><span class="nav-text">1.5 三角化获得三维结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉里程计直接法"><span class="nav-text">2 视觉里程计：直接法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计前端"><span class="nav-text">3 设计前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定程序框架"><span class="nav-text">3.1 确定程序框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本类及其关系"><span class="nav-text">3.2 基本类及其关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本逻辑"><span class="nav-text">3.3 基本逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端优化"><span class="nav-text">4 后端优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性系统和kf"><span class="nav-text">4.1 线性系统和KF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性系统和ekf"><span class="nav-text">4.2 非线性系统和EKF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性优化"><span class="nav-text">4.3 非线性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#投影模型"><span class="nav-text">投影模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图优化"><span class="nav-text">5 图优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位姿图-pose-graph"><span class="nav-text">5.1 位姿图 Pose Graph</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回环检测"><span class="nav-text">6 回环检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词袋模型"><span class="nav-text">词袋模型</span></a></li></ol></li></ol></div>
             
 
           </div>
