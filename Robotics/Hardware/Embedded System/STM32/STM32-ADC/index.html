@@ -105,20 +105,22 @@
 
 
 
-  <meta name="description" content="1 Overall 共性：  立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。">
-<meta name="keywords" content="8051">
+  <meta name="description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
+<meta name="keywords" content="STM32,ADC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="8051 Instructions">
-<meta property="og:url" content="http://yoursite.com/Embedded System/8051/8051-Instructions/index.html">
+<meta property="og:title" content="STM32-ADC">
+<meta property="og:url" content="http://yoursite.com/Robotics/Hardware/Embedded System/STM32/STM32-ADC/index.html">
 <meta property="og:site_name" content="Whatever">
-<meta property="og:description" content="1 Overall 共性：  立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。">
+<meta property="og:description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/logical-op.png">
-<meta property="og:updated_time" content="2019-04-19T04:08:49.457Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/single-conversion.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/continuous-conversion.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/Injected-conversion.png">
+<meta property="og:updated_time" content="2019-06-15T04:45:44.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="8051 Instructions">
-<meta name="twitter:description" content="1 Overall 共性：  立即数不能作为目的操作数 以A为目的操作数的指令会影响Parity Rn与Rn、Rn与@Ri、@Ri与@Ri不能同时出现在指令的源、目的操作数中。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/logical-op.png">
+<meta name="twitter:title" content="STM32-ADC">
+<meta name="twitter:description" content="1 Introduction STM32 have one of the most advanced ADCs on microcontroller market. This note provide users to understand some modes offered in STM32">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/single-conversion.png">
 
 
 
@@ -126,7 +128,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/Embedded System/8051/8051-Instructions/">
+  <link rel="canonical" href="http://yoursite.com/Robotics/Hardware/Embedded System/STM32/STM32-ADC/">
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>8051 Instructions | Whatever</title>
+  <title>STM32-ADC | Whatever</title>
   
 
 
@@ -387,7 +389,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Embedded System/8051/8051-Instructions/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Robotics/Hardware/Embedded System/STM32/STM32-ADC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hu Junhan">
@@ -404,7 +406,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">8051 Instructions
+          <h1 class="post-title" itemprop="name headline">STM32-ADC
 
               
             
@@ -430,7 +432,7 @@
                 
               
 
-              <time title="Created: 2019-01-11 23:09:00" itemprop="dateCreated datePublished" datetime="2019-01-11T23:09:00+08:00">2019-01-11</time>
+              <time title="Created: 2018-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-27T00:00:00+08:00">2018-12-27</time>
             
 
             
@@ -447,7 +449,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 12:08:49" itemprop="dateModified" datetime="2019-04-19T12:08:49+08:00">2019-04-19</time>
+                <time title="Modified: 2019-06-15 12:45:44" itemprop="dateModified" datetime="2019-06-15T12:45:44+08:00">2019-06-15</time>
               
             
           </span>
@@ -481,77 +483,32 @@
       
 
       
-        <h2 id="overall">1 Overall</h2>
-<p>共性：</p>
-<ol type="1">
-<li>立即数不能作为<strong>目的操作数</strong></li>
-<li>以<code>A</code>为目的操作数的指令会影响<code>Parity</code></li>
-<li><code>Rn</code>与<code>Rn</code>、<code>Rn</code>与<code>@Ri</code>、<code>@Ri</code>与<code>@Ri</code>不能同时出现在指令的源、目的操作数中。</li>
-</ol>
+        <h2 id="introduction">1 Introduction</h2>
+<p>STM32 have one of the most advanced ADCs on microcontroller market.</p>
+<p>This note provide users to understand some modes offered in STM32</p>
 <a id="more"></a>
-<p>操作数的表现形式</p>
+<h2 id="independent-mode">2 Independent Mode</h2>
 <ul>
-<li><strong>内部RAM：<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code></strong></li>
-<li><strong>外部RAM：<code>@DPTR</code>、<code>@Ri</code></strong></li>
-<li><strong>ROM：<code>@A+DPTR</code>、<code>@A+PC</code></strong></li>
-</ul>
-<h2 id="数据传送指令">2 数据传送指令</h2>
-<p>除以累加器<code>A</code>为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。</p>
-<h3 id="内部ram">2.1 内部RAM</h3>
-<ul>
-<li><strong>MOV</strong></li>
-<li>在<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code>之间互传
-<ul>
-<li>除了<em><code>Rn</code>之间</em>、<em><code>Rn</code>与<code>@Ri</code>之间</em>、<em><code>@Ri</code>之间</em></li>
-<li><code>direct</code>可以自己传自己</li>
-</ul></li>
-</ul>
-<h3 id="外部ram">2.2 外部RAM</h3>
-<ul>
-<li><strong>MOVX</strong></li>
-<li>其中必有一个为<code>A</code></li>
-<li>另外一个操作数（在片外）：
-<ul>
-<li><code>@Ri</code>，片外低256字节</li>
-<li><code>@DPTR</code>，片外64K</li>
-</ul></li>
-</ul>
-<h3 id="rom">2.3 ROM</h3>
-<ul>
-<li><strong>MOVC</strong></li>
-<li>都是读入<code>A</code>中</li>
-<li>只有两种
-<ul>
-<li><code>@A+DPTR</code> ：<code>DPTR</code>相当于表的位置，<code>A</code>=欲查数值距离表首地址的值</li>
-<li><code>@A+PC</code>：<code>PC</code>相当于表的位置，<code>A</code>=表首地址－当前指令的<code>PC</code>值－1</li>
-</ul></li>
-</ul>
-<h2 id="算术运算">3 算术运算</h2>
-<p>除了<code>++</code>和<code>--</code>以外都影响标志位</p>
-<ol type="1">
-<li><strong>INC</strong>  <strong>DEC</strong>：只有<code>DPTR</code>不能--</li>
-<li><strong>ADD</strong>  <strong>ADDC</strong>  <strong>SUBB</strong>
-<ul>
-<li>都存入<code>A</code>，只有<code>DPTR</code>不能进行运算</li>
-<li><strong>ADDC</strong>：(A)<span class="math inline">\(\leftarrow​\)</span>(A)+(Cy)+(第二操作数)</li>
-<li><strong>SUBB</strong>: (A)<span class="math inline">\(\leftarrow\)</span> (A)－(Cy)－(第二操作数)</li>
-</ul></li>
-<li><strong>MUL</strong>   <strong>DIV</strong>
-<ol type="1">
-<li><strong>MUL</strong>: 低八位进<code>A</code>，高8位进<code>B</code></li>
-<li><strong>DIV</strong>：整数进<code>A</code>，余数进<code>B</code></li>
-</ol></li>
-</ol>
-<h2 id="逻辑运算">4 逻辑运算</h2>
-<p>目的操作数是A时影响P标志位。除了两条带进位的循环移位指令影响C标志外，其余均不影响PSW中的各标志位。</p>
-<ol type="1">
-<li><p><strong>ANL</strong>  <strong>ORL</strong>  <strong>XRL</strong></p></li>
-<li><p><strong>RL</strong>  <strong>RR</strong>  <strong>RLC</strong>  <strong>RRC</strong></p>
+<li><p>Single Channel, <strong>single</strong> conversion</p>
+<p>Example: Check if the battery voltage is succulent or not</p>
 <figure>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/logical-op.png" alt="logical-operation"><figcaption>logical-operation</figcaption>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/single-conversion.png" alt="single-conversion"><figcaption>single-conversion</figcaption>
 </figure></li>
-<li><p><strong>CLR</strong>  <strong>CPL</strong></p></li>
-</ol>
+<li><p>Multichannel, single conversion</p>
+<p>Example: Can be used when starting system depends on some <strong>parameters</strong></p></li>
+<li><p>Single Channel, continuous conversion</p>
+<p>Example: Run in <strong>background</strong>, so can be used as a monitor to check something all the time</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/continuous-conversion.png" alt="continuous-conversion"><figcaption>continuous-conversion</figcaption>
+</figure></li>
+<li><p>Injected conversion</p>
+<p>Intended for use when conversion is triggered by an <strong>external event</strong> or by software.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/Injected-conversion.png" alt="Injected-conversion"><figcaption>Injected-conversion</figcaption>
+</figure></li>
+</ul>
+<h2 id="example-code">3 Example Code</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GPIOINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;<span class="comment">//ADC</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN;	<span class="comment">//模拟输入</span></span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOB,&amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RCCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SystemInit();</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);</span><br><span class="line">	RCC_ADCCLKConfig(RCC_PCLK2_Div6);<span class="comment">//12M  最大14M 设置ADC时钟（ADCCLK）</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ADCINIT_ADC</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	ADC_InitTypeDef ADC_InitStructure;</span><br><span class="line">	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; </span><br><span class="line">	ADC_InitStructure.ADC_ScanConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; </span><br><span class="line">	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; </span><br><span class="line">	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; </span><br><span class="line">	ADC_InitStructure.ADC_NbrOfChannel = <span class="number">1</span>; </span><br><span class="line">	ADC_Init(ADC1, &amp;ADC_InitStructure);</span><br><span class="line">	ADC_TempSensorVrefintCmd(ENABLE);</span><br><span class="line">	ADC_Cmd(ADC1,ENABLE);	</span><br><span class="line"></span><br><span class="line">	ADC_ResetCalibration(ADC1);<span class="comment">//重置指定的ADC的校准寄存器</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetResetCalibrationStatus(ADC1));<span class="comment">//获取ADC重置校准寄存器的状态</span></span><br><span class="line">	</span><br><span class="line">	ADC_StartCalibration(ADC1);<span class="comment">//开始指定ADC的校准状态</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetCalibrationStatus(ADC1));<span class="comment">//获取指定ADC的校准程序</span></span><br><span class="line">	ADC_RegularChannelConfig(ADC1,ADC_Channel_8,<span class="number">1</span>,ADC_SampleTime_239Cycles5);<span class="comment">//设置指定ADC的规则组通道，设置它们的转化顺序和采样时间</span></span><br><span class="line">	ADC_SoftwareStartConvCmd(ADC1, ENABLE);<span class="comment">//使能或者失能指定的ADC的软件转换启动功能</span></span><br><span class="line">	<span class="keyword">while</span>(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -575,7 +532,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/8051/" rel="tag"># 8051</a>
+            <a href="/tags/STM32/" rel="tag"># STM32</a>
+          
+            <a href="/tags/ADC/" rel="tag"># ADC</a>
           
         </div>
       
@@ -588,8 +547,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Embedded System/8051/8051-Basics/" rel="next" title="8051 Basics">
-                <i class="fa fa-chevron-left"></i> 8051 Basics
+              <a href="/Robotics/Introduction to Robotics Notes/Robotics-Trajectory/" rel="next" title="Robotics-Trajectory">
+                <i class="fa fa-chevron-left"></i> Robotics-Trajectory
               </a>
             
           </div>
@@ -598,8 +557,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Embedded System/STM32/STM32-Basics/" rel="prev" title="STM32 Basics">
-                STM32 Basics <i class="fa fa-chevron-right"></i>
+              <a href="/Robotics/Introduction to Robotics Notes/Robotics-Linear Control/" rel="prev" title="Robotics-Linear Control">
+                Robotics-Linear Control <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,7 +628,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -732,7 +691,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -827,7 +786,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -923,7 +886,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#overall"><span class="nav-text">1 Overall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据传送指令"><span class="nav-text">2 数据传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部ram"><span class="nav-text">2.1 内部RAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部ram"><span class="nav-text">2.2 外部RAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rom"><span class="nav-text">2.3 ROM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算术运算"><span class="nav-text">3 算术运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算"><span class="nav-text">4 逻辑运算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#independent-mode"><span class="nav-text">2 Independent Mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example-code"><span class="nav-text">3 Example Code</span></a></li></ol></div>
             
 
           </div>
