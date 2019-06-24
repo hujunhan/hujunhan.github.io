@@ -596,7 +596,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-06-23 14:30:03" itemprop="dateModified" datetime="2019-06-23T14:30:03+08:00">2019-06-23</time>
+                <time title="Modified: 2019-06-23 21:00:21" itemprop="dateModified" datetime="2019-06-23T21:00:21+08:00">2019-06-23</time>
               
             
           </span>
@@ -631,136 +631,21 @@
 
       
         
-          
-            <h2 id="概述">1 概述</h2>
+          <h2 id="概述">1 概述</h2>
 <h3 id="控制的本质">1.1 控制的本质</h3>
 <p>过程控制、时序控制、运动控制都是控制，核心在于<strong>闭环反馈</strong></p>
 <h3 id="课程目的">1.2 课程目的</h3>
 <p>掌握控制系统<strong>组成部件设备</strong>的基本原理和特性，能够<strong>选用</strong>合适的设备部件用于构成控制系统</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/ccs-course.png"></p>
-<p>计算机体现在<strong>控制器</strong>的输入输出都是<strong>数字量</strong>的</p>
-<p>FCS相当于DCS多一层级，把机柜下降到传感器的层级</p>
-<h3 id="数字通信技术">1.3 数字通信技术</h3>
-<p>基本概念</p>
-<ul>
-<li>信号类型
-<ul>
-<li>模拟，连续的物理量</li>
-<li><strong>数字</strong>，不连续的物理状态</li>
-</ul></li>
-<li>串并传输方式
-<ul>
-<li>并行，以字或字节为单位传输，不宜远距离通信</li>
-<li><strong>串行</strong>，逐位传输，</li>
-</ul></li>
-<li>交互方式
-<ul>
-<li>单工：单一方向</li>
-<li><strong>半双工</strong>：双方可以交互，但不同时</li>
-<li>全双工：双方可同时交互</li>
-</ul></li>
-<li>波特率</li>
-<li>基带传输，数字信号的数字传输</li>
-<li>频带传输，把数字信号调制成模拟信号，HART协议</li>
-</ul>
-<p>现场总线首选RS-485</p>
-<hr>
-<p><strong>传感器硬件一般自己都做了滤波</strong></p>
-<p>为了防止<strong>周期性干扰</strong>（<span class="math inline">\(60Hz\)</span>）和<strong>随机干扰</strong>，可以采用滤波</p>
-<p>在实际应用中，选取什么数字滤波要视具体情况而定</p>
-<ul>
-<li>中位值滤波法适用于偶然的脉冲干扰</li>
-<li>算术平均值滤波法适用于随机干扰</li>
-<li>递推平均滤波算法对周期性干扰有良好的抑制作用</li>
-<li>加权递推平均滤波算法适用于大纯滞后对象和采样周期较短的系统</li>
-<li>惯性滤波法适用于高频的干扰信号（但不能太大）</li>
-</ul>
-<h2 id="变送器检测仪表的原理与选型">2 变送器——检测仪表的原理与选型</h2>
-<h3 id="基本概念">2.1 基本概念</h3>
-<p>分类，单元组合仪表</p>
-<ul>
-<li>电动单元组合</li>
-<li>气动单元组合</li>
-</ul>
-<p>信号制</p>
-<ul>
-<li>气动：<span class="math inline">\(20KPa-100KPa\)</span></li>
-<li>电动：<span class="math inline">\(4-20mA\)</span></li>
-<li>数字：RS-232,RS-485</li>
-</ul>
-<p>防爆</p>
-<ol type="1">
-<li>分类，煤矿井下用、工厂用</li>
-<li>分级，根据最小引爆火花能量区分</li>
-<li>分组，根据最高表面温度区分</li>
-</ol>
-<h3 id="选型">2.2 选型</h3>
-<ul>
-<li>量程，工作范围在仪表的<span class="math inline">\(\frac{1}{3}-\frac2{3}\)</span>之间</li>
-<li>精度，满足生产要求</li>
-<li>类型
-<ul>
-<li>材料及处理，腐蚀性、特殊参数</li>
-<li>环境条件，防爆，高温低潮</li>
-<li>输出信号类型</li>
-</ul></li>
-</ul>
-<h2 id="执行器">3 执行器</h2>
-<h3 id="概述-1">3.1 概述</h3>
-<p>作用：接收控制信号<span class="math inline">\(\to\)</span>产生驱动力<span class="math inline">\(\to\)</span>改变控制变量</p>
-<p>需要注意的问题：与介质直接接触</p>
-<h3 id="执行机构">3.2 执行机构</h3>
-<ul>
-<li><strong>气动薄膜</strong>，输出力较小，但可以加装阀门定位器解决，<strong>应用更加广泛</strong></li>
-<li>气动活塞：行程长，输出力大</li>
-</ul>
-<h3 id="控制系统的其他组件">3.3 控制系统的其他组件</h3>
-<ul>
-<li><p>安全栅</p>
-<ul>
-<li>作用：应用在防爆系统，将供给本质安全电路的电压和电流限制在一定安全范围内，防止非本安电路的危险能量串入本安电路</li>
-<li>原理：通过二极管、电容来隔离</li>
-</ul></li>
-<li><p>线缆</p>
-<ul>
-<li><p>RVV,全称铜芯聚氯乙烯绝缘聚氯乙烯护套软电线，又称轻型聚氯乙烯护套软线,俗称软护套线.</p>
-<p>规格：“平方”，在工作温度30°，长期连续90%负载下的载流</p></li>
-</ul></li>
-</ul>
-<h2 id="控制器">4 控制器</h2>
-<h3 id="概述-2">4.1 概述</h3>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/ccs-controller.png"></p>
-<h3 id="控制律">4.2 控制律</h3>
-<ul>
-<li>比例控制
-<ul>
-<li>控制块、有余差</li>
-<li><span class="math inline">\(K_p\)</span>越大，比例作用越强，余差越小。但越大，系统也越容易发散</li>
-</ul></li>
-<li>比例积分</li>
-<li>比例微分</li>
-<li>比例积分微分</li>
-</ul>
-<h3 id="plc">4.3 PLC</h3>
-<p>Programmable Logical Controller</p>
-<p>开发初衷：用可编程的控制设备取代继电器控制系统</p>
-<p>特点</p>
-<ul>
-<li>高可靠性，接口光电隔离，RC滤波器</li>
-<li>模块化结构，CPU，电源，I/O都是模块化</li>
-<li>组态化编程，通过组态软件编程</li>
-<li>I/O口丰富</li>
-</ul>
-<p>工作原理</p>
-<ol type="1">
-<li>输入采样</li>
-<li>用户程序执行</li>
-<li>输出刷新</li>
-</ol>
-<h2 id="西门子控制器">5 西门子控制器</h2>
-<h2 id="欧姆龙控制器">6 欧姆龙控制器</h2>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/Control/Process Control/Computer-control-system/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1368,12 +1253,24 @@
                 
               
 
-              <time title="Created: 2019-06-14 06:42:00 / Modified: 07:32:32" itemprop="dateCreated datePublished" datetime="2019-06-14T06:42:00+08:00">2019-06-14</time>
+              <time title="Created: 2019-06-14 06:42:00" itemprop="dateCreated datePublished" datetime="2019-06-14T06:42:00+08:00">2019-06-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-23 19:33:50" itemprop="dateModified" datetime="2019-06-23T19:33:50+08:00">2019-06-23</time>
               
             
           </span>
@@ -1409,7 +1306,7 @@
       
         
           <h2 id="第一步-熟悉水中环境">第一步： 熟悉水中环境</h2>
-<h3 id="克服恐惧">1 克服恐惧</h3>
+<h3 id="克服恐惧">0 克服恐惧</h3>
 <p>要想学会游泳，首先要克服的是自己的恐惧，不要害怕溺水，做好以下几步以防溺水</p>
 <ul>
 <li>与他人（会游泳）同行</li>
