@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/project/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/project/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/project/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/project/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/project/css/main.css">
+
+
+<link rel="stylesheet" href="/project/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/project/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="How to Drive Robots We mainly need 3 part  Controller Sensors Robot model  Some basic facts we need know  the world is changing controller must be able to respond to environmental conditions Instead o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mobile Robots">
+<meta property="og:url" content="https://hujunhan.github.io/project/2020/04/08/Markdown%20Notes/Robotics/MobileRobots/2-mobile-robots/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="How to Drive Robots We mainly need 3 part  Controller Sensors Robot model  Some basic facts we need know  the world is changing controller must be able to respond to environmental conditions Instead o">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408010709.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408011114.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200418154633.png">
+<meta property="article:published_time" content="2020-04-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-24T15:13:32.459Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="control">
+<meta property="article:tag" content="robotics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408010709.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/project/2020/04/08/Markdown%20Notes/Robotics/MobileRobots/2-mobile-robots/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Mobile Robots | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/project/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/project/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/project/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/project/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/project/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/project/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/project/2020/04/08/Markdown%20Notes/Robotics/MobileRobots/2-mobile-robots/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/project/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mobile Robots
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-08T00:00:00+08:00">2020-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-24 23:13:32" itemprop="dateModified" datetime="2021-05-24T23:13:32+08:00">2021-05-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/project/categories/Markdown-Notes/" itemprop="url" rel="index"><span itemprop="name">Markdown Notes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/project/categories/Markdown-Notes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/project/categories/Markdown-Notes/Robotics/MobileRobots/" itemprop="url" rel="index"><span itemprop="name">MobileRobots</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="how-to-drive-robots">How to Drive Robots</h2>
+<p>We mainly need 3 part</p>
+<ul>
+<li>Controller</li>
+<li>Sensors</li>
+<li>Robot model</li>
+</ul>
+<p>Some basic facts we need know</p>
+<ul>
+<li>the world is changing</li>
+<li>controller must be able to respond to environmental conditions</li>
+<li>Instead of building one complicated controller, we <strong>divide and conquer</strong> and build some <strong>Behavior</strong>
+<ul>
+<li>goal-to-goal</li>
+<li>obstacles-avoid</li>
+<li>line-follow</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h2 id="robot-model-differential-drive-robots">Robot Model – Differential Drive Robots</h2>
+<p>This is a very common type</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408010709.png" alt="image-20200408010708398" /><figcaption aria-hidden="true">image-20200408010708398</figcaption>
+</figure>
+<p>we need to know some basic parameter <span class="math inline">\(L\)</span> , <span class="math inline">\(R\)</span>, easy to measure</p>
+<p>What we <strong>can</strong> control: <span class="math inline">\(v_r\)</span> and <span class="math inline">\(v_l\)</span></p>
+<p>What we <strong>want</strong> to control: <strong>position <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></strong> and <strong>orientation <span class="math inline">\(\phi\)</span></strong></p>
+<p>The real <strong>input of the model</strong> is velocity of wheels <span class="math inline">\(v_r\)</span> and <span class="math inline">\(v_l\)</span>. But in this way, the design of controller could be very hard, so we can translate the input to <strong>middle input form</strong></p>
+<p>Change <span class="math inline">\(v_r\)</span> and <span class="math inline">\(v_l\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
+v=\frac{R}{2}(v_l+v_r)
+\\ 
+w=\frac{R}{L}(v_r-v_l)
+\]</span> the <strong>output of the model</strong> is the state of the robot</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408011114.png" alt="image-20200408011112780" /><figcaption aria-hidden="true">image-20200408011112780</figcaption>
+</figure>
+<p>Then the physic would be simplified <span class="math display">\[
+\left\{\begin{array}{l}
+\dot{x}=v \cos \phi \\
+\dot{y}=v \sin \phi \\
+\dot{\phi}=\omega
+\end{array}\right.
+\]</span></p>
+<blockquote>
+<p>In this way, we can control the <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> by the controller because <span class="math inline">\(v_r\)</span> and <span class="math inline">\(v_l\)</span> could be calculated by given <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span></p>
+</blockquote>
+<h2 id="odometry">Odometry</h2>
+<p>Two possibilities</p>
+<ul>
+<li>Internal sensors
+<ul>
+<li><p>Orientation: compass</p></li>
+<li><p>Position: accelerometers, gryoscopes</p></li>
+<li><p>Wheel Encoders: DRIFT should be noticed</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200418154633.png" alt="image-20200417162710138" /><figcaption aria-hidden="true">image-20200417162710138</figcaption>
+</figure></li>
+</ul></li>
+<li>External sensors</li>
+</ul>
+<h2 id="sensor">Sensor</h2>
+<p>Robots need to the world around them</p>
+<p>standard sensor suiite, ‘SKIRT’ range</p>
+<p>Abstraction, assume we know the <strong>distance</strong> and <strong>direction</strong> to all obstacles around us</p>
+<p>Then, we can calculate the position of the obstacles</p>
+<p>IR sensor: map from voltage to measured distance.</p>
+<h2 id="behavior-based">Behavior-Based</h2>
+<p>World is changing and unknown <span class="math inline">\(\to\)</span> Do not make sense to over-plan <span class="math inline">\(\to\)</span> develope a library of useful controller</p>
+<p>2 Basic behavior:</p>
+<ul>
+<li>Go-to-goal</li>
+<li>Avoid-obstacal</li>
+</ul>
+<h2 id="go-to-goal">Go to Goal</h2>
+<h3 id="ver.1">Ver.1</h3>
+<p>A Differential-drive, wheeled mobile robot</p>
+<p>Now we want it to drive in a desired heading, how should we control <span class="math inline">\(w\)</span>?</p>
+<p>Control perspective：</p>
+<ul>
+<li>Reference: <span class="math inline">\(\phi_d\)</span></li>
+<li>error: <span class="math inline">\(\phi_d-\phi\)</span></li>
+<li>model: <span class="math inline">\(\dot{\phi}=w\)</span></li>
+</ul>
+<p>Why not use PID? <span class="math display">\[
+w=K_pe+K_I\sum ed\tau+K_d\dot e
+\]</span> <strong>NO</strong></p>
+<h3 id="ver.2">Ver.2</h3>
+<p>Since the angle is something <strong>special</strong> we should consider</p>
+<ul>
+<li>Ensure that <span class="math inline">\(e\)</span> is between <span class="math inline">\([-\pi,\pi]\)</span></li>
+<li>Standard strick is to use <strong>atan2</strong></li>
+</ul>
+<h2 id="obstacle-avoidance">Obstacle Avoidance</h2>
+<p>Use the same idea by defining a desired heading</p>
+<p>How to combine two goals？</p>
+<ul>
+<li>Winner takes all = hard switch
+<ul>
+<li>Easy to analysis</li>
+</ul></li>
+<li>Blending = combined behaviors
+<ul>
+<li>Good performance</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/project/tags/control/" rel="tag"># control</a>
+              <a href="/project/tags/robotics/" rel="tag"># robotics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/project/2020/04/06/Markdown%20Notes/Philosophy/Brains,%20Minds%20and%20Machines%20Summer%20Course/tutorial-neural-decoding/" rel="prev" title="Tutorial:Decoding to Understand Neural">
+      <i class="fa fa-chevron-left"></i> Tutorial:Decoding to Understand Neural
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/project/2020/04/21/Markdown%20Notes/Robotics/MobileRobots/3-linear-system/" rel="next" title="Linear System">
+      Linear System <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-drive-robots"><span class="nav-text">How to Drive Robots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#robot-model-differential-drive-robots"><span class="nav-text">Robot Model – Differential Drive Robots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#odometry"><span class="nav-text">Odometry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sensor"><span class="nav-text">Sensor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#behavior-based"><span class="nav-text">Behavior-Based</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#go-to-goal"><span class="nav-text">Go to Goal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ver.1"><span class="nav-text">Ver.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ver.2"><span class="nav-text">Ver.2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#obstacle-avoidance"><span class="nav-text">Obstacle Avoidance</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/project/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/project/categories/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/project/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/project/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/project/lib/velocity/velocity.min.js"></script>
+  <script src="/project/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/project/js/utils.js"></script>
+
+<script src="/project/js/motion.js"></script>
+
+
+<script src="/project/js/schemes/muse.js"></script>
+
+
+<script src="/project/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/project/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
