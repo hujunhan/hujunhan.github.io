@@ -13637,4 +13637,171 @@ E={ {L_2 }^2 \,f^4 -{L_1 }^2 \,f^4}
         <tag>robotics</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Get Sponsored</title>
+    <url>/Markdown%20Notes/Life/sponsorship/</url>
+    <content><![CDATA[<h2 id="why-company-sponsor">Why Company Sponsor</h2>
+<p>Make their product known by customers</p>
+<p>Build opportunities between people and sponsor</p>
+<ul>
+<li>In meaningful way</li>
+<li>Interesting</li>
+</ul>
+<h3 id="how-sponsor">How Sponsor</h3>
+<p>Type</p>
+<ul>
+<li>Experience, make people feel the product</li>
+<li>Media</li>
+<li>Cash</li>
+<li>...</li>
+</ul>
+<h2 id="know-the-audience">Know the Audience</h2>
+<ul>
+<li>Demographic</li>
+<li>Psychographic</li>
+<li>Preferred brands</li>
+<li>Coming purchases</li>
+</ul>
+<p>The more data of audience, the better</p>
+<h3 id="how-to-do">How to do</h3>
+<p>Talking to preferred company</p>
+<p>Markert search thepriority</p>
+<h3 id="value-of-audience">Value of AUDIENCE</h3>
+<p>The value highly depend on your audience</p>
+<ul>
+<li>Who are they</li>
+<li>What they want</li>
+<li>Fair value</li>
+</ul>
+<h2 id="after-event">After Event</h2>
+<p>Prove you did what you promised</p>
+<p>Get feedback and do better next time</p>
+]]></content>
+      <categories>
+        <category>Markdown Notes</category>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>marketing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SIFT特征</title>
+    <url>/Markdown%20Notes/Robotics/Computer%20Vision/SIFT/</url>
+    <content><![CDATA[<h2 id="intro">Intro</h2>
+<p>什么是SIFT？Scale Invariant Feature Transform</p>
+<p>对下列变化不敏感</p>
+<ul>
+<li>尺度变换</li>
+<li>旋转</li>
+<li>光照</li>
+<li>视角</li>
+</ul>
+<p>SIFT算法较为复杂，主要分为两个大的部分</p>
+<ol type="1">
+<li>找出特征点
+<ol type="1">
+<li>目的是去掉一些不重要的细节。方法：高斯模糊</li>
+<li>变化大的区域就是边缘、点、角</li>
+</ol></li>
+<li>描述特征点
+<ol type="1">
+<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
+<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
+<li>一共是4x4x8=128维的特征向量</li>
+</ol></li>
+</ol>
+<h2 id="details">Details</h2>
+<ol type="1">
+<li><p>找出特征点</p>
+<ol type="1">
+<li><p>目的是去掉一些不重要的细节。方法：高斯模糊，不同的level</p></li>
+<li><p>不断resize，变成金字塔形状，不同的octaves。每次resize之后都高斯模糊。</p>
+<blockquote>
+<p>建议的值octave=4，level=5</p>
+</blockquote></li>
+<li><p>生成Difference of Gaussians (DoG)，变化大的区域就是边缘、点、角</p>
+<p>这是对Laplacian of Gaussian (LoG) 的一个近似</p>
+<ul>
+<li>好处：LoG不具有尺度不变性，而DoG有</li>
+<li>坏处：引入了其他的常量k，但不影响特征点位置，所以无所谓</li>
+</ul></li>
+<li><p>确定极大点、极小点</p>
+<ol type="1">
+<li><p>粗略估计，如果在3层，27个点中是最大或最小的，就作为极值点。注意：最低或者最高层不做，因为没有相邻的三层。得到的点就是<strong>关键点</strong></p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-17-14-39.png" alt="2021-07-15-17-14-39" /><figcaption aria-hidden="true">2021-07-15-17-14-39</figcaption>
+</figure></li>
+<li><p>利用差分图计算亚像素，可以更精确 <span class="math display">\[
+D(\mathbf{x})=D+\frac{\partial D^{T}}{\partial \mathbf{x}} \mathbf{x}+\frac{1}{2} \mathbf{x}^{\mathrm{T}} \frac{\partial^{2} D}{\partial \mathbf{x}^{2}} \mathbf{x}
+\]</span></p></li>
+</ol></li>
+</ol></li>
+<li><p>描述特征点</p>
+<ol type="1">
+<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
+<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
+<li>一共是4x4x8=128维的特征向量</li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Markdown Notes</category>
+        <category>Robotics</category>
+        <category>Computer Vision</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>camera</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>流水线抓取</title>
+    <url>/Markdown%20Notes/Robotics/Computer%20Vision/object-grasp/</url>
+    <content><![CDATA[<h2 id="流程">流程</h2>
+<h3 id="rgb-image">RGB Image</h3>
+<ol type="1">
+<li>获取图像</li>
+<li>利用传统的方式得到主体脉络</li>
+<li>提取RGB关键点</li>
+<li>判断抓取位置</li>
+</ol>
+<h3 id="rgb-image-3d-model">RGB Image + 3D Model</h3>
+<ol type="1">
+<li><p>如果有3D模型，则通过RGB关键点匹配模型，得到关键点的3D坐标</p></li>
+<li><p>利用多组点，求解6D位姿</p></li>
+</ol>
+<h3 id="疑惑">疑惑</h3>
+<ul>
+<li>什么是主体脉络</li>
+<li>2d特征点的3d坐标</li>
+</ul>
+<h2 id="安排">安排</h2>
+<p>基于模型的位姿估计</p>
+<ul>
+<li>提前在3D模型上选好特征点，确定特征点在模型坐标系下的坐标</li>
+<li>计算RGB图象中的特征点，</li>
+</ul>
+<h2 id="survey">Survey</h2>
+<p>位姿估计方法</p>
+<h3 id="已知三维模型">已知三维模型</h3>
+<ul>
+<li><p>PNP，based on marker</p></li>
+<li><p>Markerless.</p>
+<p>Search for point correspondences between two frames and distances to be minimized</p>
+<figure>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-10-51-54.png" alt="2021-07-15-10-51-54" /><figcaption aria-hidden="true">2021-07-15-10-51-54</figcaption>
+</figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Markdown Notes</category>
+        <category>Robotics</category>
+        <category>Computer Vision</category>
+      </categories>
+      <tags>
+        <tag>robotics</tag>
+        <tag>camera</tag>
+      </tags>
+  </entry>
 </search>
