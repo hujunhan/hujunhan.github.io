@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Goal针对机械领域的复杂工程问题提出解决思路，设计满足特定需求的机械、电子系统或具体解决方法与流程 基础知识：  工程图学：绘制和阅读机械工程草图 刚体力学：刚体运动的数学建模表达，平动、转动、定轴转动 机械制图CAD：CAD软件的基本操作，三维设计SolidWorks 设计、材料和制造：不同材料和制造的基础知识  扩展知识  电机与拖动：直流电机、伺服电机的结构与工作原理，矩、力的计算  机械">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机械设计学习计划">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Robotics/Mechanical/mechanics-study-plan/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="Goal针对机械领域的复杂工程问题提出解决思路，设计满足特定需求的机械、电子系统或具体解决方法与流程 基础知识：  工程图学：绘制和阅读机械工程草图 刚体力学：刚体运动的数学建模表达，平动、转动、定轴转动 机械制图CAD：CAD软件的基本操作，三维设计SolidWorks 设计、材料和制造：不同材料和制造的基础知识  扩展知识  电机与拖动：直流电机、伺服电机的结构与工作原理，矩、力的计算  机械">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-15-27-09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-16-07-26.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-16-47-21.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-16-56-10.png">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20171115/ad67b9fda0874bd399f8188ab40734e6.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-22-14-53.jpeg">
+<meta property="article:published_time" content="2022-04-09T06:28:00.000Z">
+<meta property="article:modified_time" content="2022-04-14T04:37:59.000Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="mechanics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-15-27-09.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mechanical/mechanics-study-plan/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>机械设计学习计划 | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mechanical/mechanics-study-plan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机械设计学习计划
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-08 23:28:00" itemprop="dateCreated datePublished" datetime="2022-04-08T23:28:00-07:00">2022-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-13 21:37:59" itemprop="dateModified" datetime="2022-04-13T21:37:59-07:00">2022-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Mechanical/" itemprop="url" rel="index"><span itemprop="name">Mechanical</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>针对机械领域的复杂工程问题提出解决思路，设计满足特定需求的机械、电子系统或具体解决方法与流程</p>
+<p>基础知识：</p>
+<ul>
+<li><del>工程图学：绘制和阅读机械工程草图</del></li>
+<li>刚体力学：刚体运动的数学建模表达，平动、转动、定轴转动</li>
+<li>机械制图CAD：CAD软件的基本操作，三维设计SolidWorks</li>
+<li>设计、材料和制造：不同材料和制造的基础知识</li>
+</ul>
+<p>扩展知识</p>
+<ul>
+<li>电机与拖动：直流电机、伺服电机的结构与工作原理，矩、力的计算</li>
+</ul>
+<p>机械的设计思维，</p>
+<ul>
+<li>功能，设计<ul>
+<li>功能性需求：模仿人工怎么采摘，两个手指头往下一揪</li>
+<li>实际问题：相机平面误差，冗余性设计，宽度做宽一点</li>
+<li>改进：做一个机构，根据功能来，</li>
+</ul>
+</li>
+<li>从概念到实用<ul>
+<li>供应链<ul>
+<li>知道已经有了哪些东西</li>
+<li>电机，问答机制</li>
+</ul>
+</li>
+<li>电机</li>
+</ul>
+</li>
+</ul>
+<p>设计时候的漏洞</p>
+<ul>
+<li>general的经验，可以避免</li>
+<li>spec的经验，很难避免</li>
+</ul>
+<h2 id="机器人"><a href="#机器人" class="headerlink" title="机器人"></a>机器人</h2><p>算法需求，机器人要做的事情</p>
+<ol>
+<li>动力学：动的很快的时候成为一个约束</li>
+<li>驱动装置，连杆、齿轮</li>
+<li>最重要：画图，机械夹爪的驱动方式<ul>
+<li>传感器，测距，单点的</li>
+<li>算法，</li>
+</ul>
+</li>
+<li>各种层面的需求</li>
+</ol>
+<h2 id="Crash-Course"><a href="#Crash-Course" class="headerlink" title="Crash Course"></a>Crash Course</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=A1V-QQ5wFU4">https://www.youtube.com/watch?v=A1V-QQ5wFU4</a></p>
+<p>Invention of wheels</p>
+<p>Need a engine: steam engine</p>
+<p>Air, space, robotics, automation, biomechanics</p>
+<h2 id="机械原理"><a href="#机械原理" class="headerlink" title="机械原理"></a>机械原理</h2><p>机构：传递与变换 运动和力 的 可动装置</p>
+<h3 id="机构结构分析"><a href="#机构结构分析" class="headerlink" title="机构结构分析"></a>机构结构分析</h3><p>基本概念</p>
+<ul>
+<li>构件，lnik，独立的运动单元</li>
+<li>运动副，kinematic pair，两个机构接触而成的可动连接</li>
+<li>运动链，kinematic chain，通过运动副连接而构成的可相对运动系统</li>
+<li>原动件（主动件）：按给定的已知运动规律独立运动的构件</li>
+<li>欠驱、冗驱：原动件数多余机构自由度</li>
+</ul>
+<p>自由度&#x3D;<strong>3 * 活动构件数 - (2 * 低副数 + 高副数 - 虚约束数) - 局部自由度</strong></p>
+<h3 id="运动分析"><a href="#运动分析" class="headerlink" title="运动分析"></a>运动分析</h3><p>速度瞬心（速度为0的点），刚体的瞬时运动可以理解为绕瞬心旋转，简化计算</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-15-27-09.png" alt="image-20220409152709501" style="zoom: 20%;" />
+
+<p>速度、角速度、角加速度</p>
+<h3 id="力学分析"><a href="#力学分析" class="headerlink" title="力学分析"></a>力学分析</h3><p>两种力</p>
+<ul>
+<li>驱动力 driving force</li>
+<li>阻抗力 resistance</li>
+</ul>
+<p>摩擦力的确定，当量摩擦系数$f_v$</p>
+<ul>
+<li>移动副</li>
+<li>旋转副</li>
+</ul>
+<h3 id="机械效率、机械平衡、速度波动调节"><a href="#机械效率、机械平衡、速度波动调节" class="headerlink" title="机械效率、机械平衡、速度波动调节"></a>机械效率、机械平衡、速度波动调节</h3><p>$$<br>\eta&#x3D;\frac{P_r}{P_d}&#x3D;\frac{输出功率}{输入功率}<br>$$</p>
+<p>串联效率：$\eta&#x3D;\eta_1\eta_2…\eta_k$</p>
+<p>并联效率: $\eta&#x3D;\frac{\sum P_{ri}}{\sum P_{di}}$，总效率取决于传递功率最大的机器的效率</p>
+<hr>
+<p>机械平衡目的：将构件的不平衡惯性力加以平衡消除不良影响</p>
+<p>转子平衡、机构平衡；静平衡、动平衡</p>
+<hr>
+<p>应设法将速度限制在许可范围内</p>
+<ul>
+<li>启动阶段</li>
+<li>稳定运转阶段，平均角速度保持常数、角速度周期性波动</li>
+<li>停车阶段</li>
+</ul>
+<h3 id="常见机构"><a href="#常见机构" class="headerlink" title="常见机构"></a>常见机构</h3><h4 id="连杆机构"><a href="#连杆机构" class="headerlink" title="连杆机构"></a>连杆机构</h4><p>特点；原动件经过一个中间构件（coupler）才能传动从动件</p>
+<p>优点：</p>
+<ul>
+<li>运动副一般为低副，面接触，压强小，磨损小，加工制造容易</li>
+<li>容易改变运动传递方向，扩大行程，远距离传动</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>传动路线长，容易产生累计误差</li>
+<li>惯性力很难消除，不适用于<strong>高速运动</strong></li>
+</ul>
+<p>平面四连杆</p>
+<h4 id="凸轮机构"><a href="#凸轮机构" class="headerlink" title="凸轮机构"></a>凸轮机构</h4><p>凸轮：cam，作为主动件做等速转动</p>
+<p>推杆：作为从动件，被凸轮直接推动的构件</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-16-07-26.gif" alt="圆柱凸轮" style="zoom:66%;" />
+
+<p>运动规律：推杆的位移、速度和加速度随着凸轮转角的变化而变换</p>
+<ul>
+<li>多项式</li>
+<li>三角函数</li>
+</ul>
+<p>设计方法：反转法，根据需要的运动曲线设计轮廓</p>
+<h4 id="齿轮机构"><a href="#齿轮机构" class="headerlink" title="齿轮机构"></a>齿轮机构</h4><p>优点：传递功率范围大，效率高，精度高，寿命长，可靠</p>
+<p>缺点：成本较高，制造和安装精度要求较高</p>
+<p>平行轴间传动</p>
+<ul>
+<li>外啮：相反转动</li>
+<li>内啮：相同方向</li>
+<li>直齿轮、斜齿轮、人资齿轮</li>
+</ul>
+<p>相交轴间传动：</p>
+<ul>
+<li>锥齿轮<ul>
+<li>直齿：应用最广</li>
+<li>曲线齿：承载能力高，用于告诉承载</li>
+</ul>
+</li>
+</ul>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-09-16-47-21.png" alt="曲线齿锥齿轮" style="zoom:25%;" />
+
+
+
+<h2 id="机械设计"><a href="#机械设计" class="headerlink" title="机械设计"></a>机械设计</h2><h3 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h3><p>机器的基本组成要素是零件，学习一般尺寸常用工作参数下的通用零件设计。</p>
+<p>机器的组成：动力源、传动、执行、测控、辅助</p>
+<p>设计程序：动力学设计，动力学计算，零件工作能力，装配草图设计，零件核验</p>
+<p>零件的失效形式：断裂、形变、磨损</p>
+<p>零件的设计准则：强度、刚度，可靠性，MTTF，MTBF</p>
+<h4 id="零件的工作能力"><a href="#零件的工作能力" class="headerlink" title="零件的工作能力"></a>零件的工作能力</h4><p>载荷：应力</p>
+<p>体积强度：静应力强度失效会断裂或变形，变应力强度失效导致疲劳断裂</p>
+<p>表面强度：表面挤压强度、表面磨损强度</p>
+<p>刚度：零件抵抗弹性形变的能力</p>
+<p>冲击强度：采用能增大零件弹性形变的结构</p>
+<h4 id="疲劳强度"><a href="#疲劳强度" class="headerlink" title="疲劳强度"></a>疲劳强度</h4><p>疲劳极限应力图，近似为抛物线分析，简化为几条折线段</p>
+<h4 id="磨损"><a href="#磨损" class="headerlink" title="磨损"></a>磨损</h4><p>金属表面的滑动摩擦</p>
+<p>膜厚比，用于大致估计两滑动表面所处的摩擦状态</p>
+<p>磨损：三个阶段</p>
+<ol>
+<li>磨合阶段，表面轮廓形状变化</li>
+<li>稳定磨损，磨损平稳而缓，长短代表了零件使用寿命的长短</li>
+<li>剧烈磨损阶段，出现噪声和振动</li>
+</ol>
+<p>润滑油：最重要的性能之一：黏度，流动阻力</p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><h4 id="螺纹连接"><a href="#螺纹连接" class="headerlink" title="螺纹连接"></a>螺纹连接</h4><p>参数：大径、小径、中径，线数（2,3）</p>
+<p>螺栓连接：加工精度低，结构简单</p>
+<p>铰制孔螺栓：精确固定相对位置，承受较大横向载荷</p>
+<p>双头螺柱：不能采用螺栓的场合，材料较软，需要经常拆装</p>
+<p>防松手段：</p>
+<ul>
+<li>摩擦防松：对顶螺母，弹簧垫圈，自锁螺母</li>
+<li>机械防松：开口销，止动垫圈</li>
+</ul>
+<p>设计螺栓组：确定数目、布置方式、结构尺寸</p>
+<ul>
+<li>轴对称的简单几何形状</li>
+<li>数目4、6、8等偶数</li>
+</ul>
+<h4 id="键连接"><a href="#键连接" class="headerlink" title="键连接"></a>键连接</h4><p>平键、滑键、半圆键</p>
+<p>花键</p>
+<p>无键</p>
+<h4 id="铆接、焊接、胶接"><a href="#铆接、焊接、胶接" class="headerlink" title="铆接、焊接、胶接"></a>铆接、焊接、胶接</h4><p>铆接：用铆钉将多个元件连在一起</p>
+<ul>
+<li>优点：简单、抗振、耐冲击</li>
+<li>缺点：较为笨重，被连接件强度受到削弱</li>
+</ul>
+<p>焊接：通过加热或者加压或者两者并用的方式，使工件达到结合</p>
+<p>胶接：利用胶黏剂在一定条件下把预制的元件链接在一起</p>
+<ul>
+<li>优点：可以胶接不同性质的材料；面连接，耐疲劳性好；工艺简单</li>
+<li>缺点：抗剥离、抗弯曲性能较差；耐老化性能较差；检测手段不完善</li>
+</ul>
+<p>过盈连接：利用零件间的配合过盈来达到连接目的</p>
+<h3 id="传动"><a href="#传动" class="headerlink" title="传动"></a>传动</h3><p>意义：运动形式、 参数的改变，调速</p>
+<p>分类</p>
+<ul>
+<li>摩擦传动：带传动、摩擦轮传动</li>
+<li>啮合传动：共轭啮合、非共轭啮合</li>
+<li>液压与气动</li>
+</ul>
+<h4 id="带传动"><a href="#带传动" class="headerlink" title="带传动"></a>带传动</h4><p>挠性运动，基本组成：主动带轮、从动带轮、传动带</p>
+<ul>
+<li>优点：结构简单，传动平稳，噪声小</li>
+<li>缺点：有弹性滑动，打滑等现象，带的寿命短，压轴力大</li>
+</ul>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-16-56-10.png" alt="img" style="zoom:50%;" />
+
+<h4 id="链传动"><a href="#链传动" class="headerlink" title="链传动"></a>链传动</h4><p>挠性运动，基本组成：链条、小链轮、大链轮</p>
+<ul>
+<li>优点：传动效率高，更准确的平均传动比，成本较低，制造安装精度要求较低</li>
+<li>缺点：不能保持恒定的传动比，有噪声</li>
+</ul>
+<h4 id="齿轮传动"><a href="#齿轮传动" class="headerlink" title="齿轮传动"></a>齿轮传动</h4><p>齿轮</p>
+<ul>
+<li>优点：效率高，工作可靠</li>
+<li>缺点：精度要求高，价格高</li>
+</ul>
+<h4 id="蜗杆传动"><a href="#蜗杆传动" class="headerlink" title="蜗杆传动"></a>蜗杆传动</h4><img src="http://5b0988e595225.cdn.sohucs.com/images/20171115/ad67b9fda0874bd399f8188ab40734e6.jpeg" alt="蜗轮蜗杆油及其润滑要求" style="zoom:25%;" />
+
+<ul>
+<li>优点：效率高，承载能力高，体积小，质量小</li>
+</ul>
+<h3 id="轴系零部件"><a href="#轴系零部件" class="headerlink" title="轴系零部件"></a>轴系零部件</h3><p>意义：轴、滑动轴承、滚动轴承、联轴器、离合器等内容，支持并保证传动零件持续保持正确位置</p>
+<p>滑动轴承：用途：转速高，冲击大，在水或腐蚀性介质中工作</p>
+<p>滚动轴承：</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-22-14-53.jpeg" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mechanics/" rel="tag"># mechanics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Entrepreneurship%20/Management-For-Startup/" rel="prev" title="Management for Startup">
+      <i class="fa fa-chevron-left"></i> Management for Startup
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Robotics/Computer%20Vision/depth-estimation/" rel="next" title="双目深度估计">
+      双目深度估计 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="nav-text">机器人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crash-Course"><span class="nav-text">Crash Course</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86"><span class="nav-text">机械原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E6%9E%84%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="nav-text">机构结构分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E5%88%86%E6%9E%90"><span class="nav-text">运动分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9B%E5%AD%A6%E5%88%86%E6%9E%90"><span class="nav-text">力学分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E6%95%88%E7%8E%87%E3%80%81%E6%9C%BA%E6%A2%B0%E5%B9%B3%E8%A1%A1%E3%80%81%E9%80%9F%E5%BA%A6%E6%B3%A2%E5%8A%A8%E8%B0%83%E8%8A%82"><span class="nav-text">机械效率、机械平衡、速度波动调节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%9C%BA%E6%9E%84"><span class="nav-text">常见机构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%9D%86%E6%9C%BA%E6%9E%84"><span class="nav-text">连杆机构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%B8%E8%BD%AE%E6%9C%BA%E6%9E%84"><span class="nav-text">凸轮机构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BD%BF%E8%BD%AE%E6%9C%BA%E6%9E%84"><span class="nav-text">齿轮机构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1"><span class="nav-text">机械设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E8%AE%BA"><span class="nav-text">总论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%B6%E4%BB%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%83%BD%E5%8A%9B"><span class="nav-text">零件的工作能力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%96%B2%E5%8A%B3%E5%BC%BA%E5%BA%A6"><span class="nav-text">疲劳强度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%A8%E6%8D%9F"><span class="nav-text">磨损</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5"><span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9E%BA%E7%BA%B9%E8%BF%9E%E6%8E%A5"><span class="nav-text">螺纹连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%AE%E8%BF%9E%E6%8E%A5"><span class="nav-text">键连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%86%E6%8E%A5%E3%80%81%E7%84%8A%E6%8E%A5%E3%80%81%E8%83%B6%E6%8E%A5"><span class="nav-text">铆接、焊接、胶接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E5%8A%A8"><span class="nav-text">传动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6%E4%BC%A0%E5%8A%A8"><span class="nav-text">带传动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E4%BC%A0%E5%8A%A8"><span class="nav-text">链传动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BD%BF%E8%BD%AE%E4%BC%A0%E5%8A%A8"><span class="nav-text">齿轮传动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9C%97%E6%9D%86%E4%BC%A0%E5%8A%A8"><span class="nav-text">蜗杆传动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%B4%E7%B3%BB%E9%9B%B6%E9%83%A8%E4%BB%B6"><span class="nav-text">轴系零部件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

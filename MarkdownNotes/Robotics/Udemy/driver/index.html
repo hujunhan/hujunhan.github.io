@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Mechanical AdvantageLever，杠杆，变大变小  力 运动  Trade-off，力换距离，或者距离换力 为了在所有时间上都能产生力，我们生成了齿轮，gear Gear混合齿轮 Compound Gear，also applied to wheel Linear: use stepper motor for a precise control Arm电机，在极坐标平面的分辨率是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Driver">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Robotics/Udemy/driver/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="Mechanical AdvantageLever，杠杆，变大变小  力 运动  Trade-off，力换距离，或者距离换力 为了在所有时间上都能产生力，我们生成了齿轮，gear Gear混合齿轮 Compound Gear，also applied to wheel Linear: use stepper motor for a precise control Arm电机，在极坐标平面的分辨率是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://toshiba.semicon-storage.com/content/dam/toshiba-ss-v2/master/en/semiconductor/knowledge/e-learning/brushless-motor/chapter1/1-2.png">
+<meta property="og:image" content="https://www.build-electronic-circuits.com/wp-content/uploads/2018/11/H-bridge-switches-1-drawn-217x300.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/2/21/HarmonicDriveAni.gif">
+<meta property="article:published_time" content="2022-06-14T21:14:00.000Z">
+<meta property="article:modified_time" content="2022-07-14T03:40:29.000Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="course">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://toshiba.semicon-storage.com/content/dam/toshiba-ss-v2/master/en/semiconductor/knowledge/e-learning/brushless-motor/chapter1/1-2.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Udemy/driver/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Driver | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Udemy/driver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Driver
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-14 14:14:00" itemprop="dateCreated datePublished" datetime="2022-06-14T14:14:00-07:00">2022-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-13 20:40:29" itemprop="dateModified" datetime="2022-07-13T20:40:29-07:00">2022-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Udemy/" itemprop="url" rel="index"><span itemprop="name">Udemy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Mechanical-Advantage"><a href="#Mechanical-Advantage" class="headerlink" title="Mechanical Advantage"></a>Mechanical Advantage</h2><p>Lever，杠杆，变大变小</p>
+<ul>
+<li>力</li>
+<li>运动</li>
+</ul>
+<p>Trade-off，力换距离，或者距离换力</p>
+<p>为了在所有时间上都能产生力，我们生成了齿轮，gear</p>
+<h2 id="Gear"><a href="#Gear" class="headerlink" title="Gear"></a>Gear</h2><p>混合齿轮 Compound Gear，also applied to wheel</p>
+<p>Linear: use <strong>stepper motor</strong> for a precise control</p>
+<h2 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h2><p>电机，在极坐标平面的分辨率是固定的，但是在xy方向上，分辨率是不固定的，</p>
+<h2 id="Backlash"><a href="#Backlash" class="headerlink" title="Backlash"></a>Backlash</h2><p>滞后，机器人的诅咒。尤其在齿轮系统中，存在滞后，对精度有很大的影响</p>
+<p>Will amplified in the whole system</p>
+<p>Anti-backlash, use tension</p>
+<h2 id="Precise-Control"><a href="#Precise-Control" class="headerlink" title="Precise Control"></a>Precise Control</h2><p>Wedge, thread</p>
+<p>Ball screw</p>
+<h2 id="DC-brushed-Motor"><a href="#DC-brushed-Motor" class="headerlink" title="DC-brushed Motor"></a>DC-brushed Motor</h2><p>Most common in small robotics</p>
+<p>永磁体，为了控制方向，我们需要3向磁铁。</p>
+<ul>
+<li>如果只有两个接口，一般没法控制方向</li>
+<li>如果有多个接口，就可以控制方向</li>
+</ul>
+<h2 id="Back-EMF"><a href="#Back-EMF" class="headerlink" title="Back EMF"></a>Back EMF</h2><p>当电机卡住的时候，电阻变小，电流变大了，所以得计算stalled时候的最大电流，来选择其他的配件，不然可能会烧坏</p>
+<h2 id="Toggle-Mechanisim"><a href="#Toggle-Mechanisim" class="headerlink" title="Toggle Mechanisim"></a>Toggle Mechanisim</h2><p>Good for grippers, very large mechanical advantage</p>
+<h2 id="Electrical-Generation"><a href="#Electrical-Generation" class="headerlink" title="Electrical Generation"></a>Electrical Generation</h2><p>Reverse of the motor, use the power of human, wind and water</p>
+<h2 id="Regenerative-braking"><a href="#Regenerative-braking" class="headerlink" title="Regenerative braking"></a>Regenerative braking</h2><p>回收电，在停下来之前，把电收集起来</p>
+<p>实际上，因为太少、电压不高，因此普通的不行。得用AC-DC转换器把电压升高</p>
+<h2 id="Servo-and-Feedback"><a href="#Servo-and-Feedback" class="headerlink" title="Servo and Feedback"></a>Servo and Feedback</h2><p>closed-loop <strong>positional</strong>(most important in robot) servo</p>
+<p>Example: use positional control to do a changable capacitors, make many high&#x3D;accurate sensor</p>
+<p>Encoder，optical binary encoder；accelerometer to detect move and orientation</p>
+<h2 id="Stepper-motors"><a href="#Stepper-motors" class="headerlink" title="Stepper motors"></a>Stepper motors</h2><p>brushless motor: multiple phase wire to change the field,</p>
+<ul>
+<li>more current, much more powerful, no back EMF</li>
+</ul>
+<img src="https://toshiba.semicon-storage.com/content/dam/toshiba-ss-v2/master/en/semiconductor/knowledge/e-learning/brushless-motor/chapter1/1-2.png" alt="History of Brushless Motors | Toshiba Electronic Devices & Storage  Corporation | Europe(EMEA)" style="zoom:33%;" />
+
+<p>You need to make sure the system moves, or the position would be lost</p>
+<h2 id="BLDC"><a href="#BLDC" class="headerlink" title="BLDC"></a>BLDC</h2><p>No sensor, open loop, use back EMF to do a closed-loop control</p>
+<ul>
+<li>Hall sensor, good for the feedback</li>
+</ul>
+<p>H-bridge: control the motor move forward or backward</p>
+<ul>
+<li>Just open loop</li>
+</ul>
+<img src="https://www.build-electronic-circuits.com/wp-content/uploads/2018/11/H-bridge-switches-1-drawn-217x300.png" alt="img" style="zoom:33%;" />
+
+<p>Hall sensor, make the motor closed loop</p>
+<hr>
+<p>Transform in to AC servo motor (expensive)</p>
+<ul>
+<li>AC motor, more accurate, more position</li>
+</ul>
+<h2 id="PWMAC"><a href="#PWMAC" class="headerlink" title="PWMAC"></a>PWMAC</h2><p>Use PWM to simulate the AC</p>
+<h2 id="Harmonic-Drive"><a href="#Harmonic-Drive" class="headerlink" title="Harmonic Drive"></a>Harmonic Drive</h2><p>Using the mechanical advantage of <strong>wedge</strong> to drive</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/HarmonicDriveAni.gif" alt="Strain wave gearing - Wikipedia" style="zoom:25%;" />
+
+<p><strong>NO</strong> <strong>backlash</strong></p>
+<h2 id="AC-Motor"><a href="#AC-Motor" class="headerlink" title="AC Motor"></a>AC Motor</h2><p>How to initiate the motor? use a capacitor to keep a 90 offset</p>
+<p>AC frequency is the same as rotate frequency</p>
+<p>Sync: Only the magnite is used</p>
+<p>Async: Use wire, so introduce current</p>
+<h2 id="Stored-power-Air-and-Water"><a href="#Stored-power-Air-and-Water" class="headerlink" title="Stored power: Air and Water"></a>Stored power: Air and Water</h2><p>Anything that stores energy is dangerous</p>
+<h2 id="Spring，Resolver"><a href="#Spring，Resolver" class="headerlink" title="Spring，Resolver"></a>Spring，Resolver</h2><p>Spring: More natural, more realistic, since it has bouncing</p>
+<p>Resolver: rotation position feedback, different angle show different wave shape</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/course/" rel="tag"># course</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Life/Career-Planning/" rel="prev" title="Career Planning">
+      <i class="fa fa-chevron-left"></i> Career Planning
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Robotics/Manipulation/" rel="next" title="Manipulation Notes">
+      Manipulation Notes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mechanical-Advantage"><span class="nav-text">Mechanical Advantage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gear"><span class="nav-text">Gear</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arm"><span class="nav-text">Arm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backlash"><span class="nav-text">Backlash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precise-Control"><span class="nav-text">Precise Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DC-brushed-Motor"><span class="nav-text">DC-brushed Motor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Back-EMF"><span class="nav-text">Back EMF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Toggle-Mechanisim"><span class="nav-text">Toggle Mechanisim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Electrical-Generation"><span class="nav-text">Electrical Generation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regenerative-braking"><span class="nav-text">Regenerative braking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servo-and-Feedback"><span class="nav-text">Servo and Feedback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stepper-motors"><span class="nav-text">Stepper motors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BLDC"><span class="nav-text">BLDC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWMAC"><span class="nav-text">PWMAC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Harmonic-Drive"><span class="nav-text">Harmonic Drive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC-Motor"><span class="nav-text">AC Motor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-power-Air-and-Water"><span class="nav-text">Stored power: Air and Water</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%EF%BC%8CResolver"><span class="nav-text">Spring，Resolver</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

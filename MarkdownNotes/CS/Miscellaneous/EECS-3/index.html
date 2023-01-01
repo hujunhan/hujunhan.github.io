@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="信号与系统上一章主要的目的就是如何构建复杂系统, 主要是和编程有关, 已经是抽象过一次了, 不需要了解物理层面的问题. 这种状态机的方式有一个问题就是有时候系统太过于复杂, 以至于我们必须要实际运行系统然后再看看实际发生了什么 这一章, 主要介绍的是如何对物理系统建模和控制, 也就是比上一级更加low-level的内容, LTI, 通过一个模型, 将一些输出$x(t)$转化成输出$y(t)$, 因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT EECS 导论课 3">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/EECS-3/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="信号与系统上一章主要的目的就是如何构建复杂系统, 主要是和编程有关, 已经是抽象过一次了, 不需要了解物理层面的问题. 这种状态机的方式有一个问题就是有时候系统太过于复杂, 以至于我们必须要实际运行系统然后再看看实际发生了什么 这一章, 主要介绍的是如何对物理系统建模和控制, 也就是比上一级更加low-level的内容, LTI, 通过一个模型, 将一些输出$x(t)$转化成输出$y(t)$, 因">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175342.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175422.png">
+<meta property="article:published_time" content="2020-03-19T07:07:00.000Z">
+<meta property="article:modified_time" content="2021-10-18T03:53:51.000Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="cs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175342.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/EECS-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>MIT EECS 导论课 3 | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/EECS-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT EECS 导论课 3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-19 00:07:00" itemprop="dateCreated datePublished" datetime="2020-03-19T00:07:00-07:00">2020-03-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="信号与系统"><a href="#信号与系统" class="headerlink" title="信号与系统"></a>信号与系统</h1><p>上一章主要的目的就是如何构建<strong>复杂</strong>系统, 主要是和编程有关, 已经是抽象过一次了, 不需要了解物理层面的问题. 这种状态机的方式有一个问题就是有时候系统太过于复杂, 以至于我们必须要实际运行系统然后再看看实际发生了什么</p>
+<p>这一章, 主要介绍的是如何对物理系统建模和控制, 也就是比上一级更加low-level的内容, LTI, 通过一个模型, 将一些输出$x(t)$转化成输出$y(t)$, 因为系统是离散的, 所以我们可以用差分方程或者方块图来表示这个系统, 然后教授通过一个简单的例子说明了为什么差分方程可以变成简单的代数形式(因为比如一个右移<strong>算符Operator</strong>就可以表示差分), 这让学生在直观上了解了差分方程表示法的优点(容易转换成简单的计算相比于差分方程, 表达又很简介相比于方块图).</p>
+<p>如果有反馈的话, 会出现算符作为分母的形式, 我们可以用无穷级数来表示, 比如<br>$$<br>\frac{1}{1+2R}&#x3D;1-2R+4R^2-8R^3 \cdots<br>$$<br>这也解释了为什么有反馈的滤波器是无线脉冲响应的(IIR)</p>
+<span id="more"></span>
+
+<blockquote>
+<p>现在我能明白这是Top-Down的教学或者学习方式, 我最早接触这种学习方式是在学习计算机网络时使用的教科书: “计算机网络: 自顶向下的方法”, 当时读的时候就觉得非常舒服, 很自然, 先知道目的, 然后逐渐了解一些底层的实现细节. 对我来说这是更加高效的方式(相比于Bottom-Up). 先学电子电路, 物理, 直到大二下才有机器人导论, 到玉泉再学机器人的设计与实践, 在这样的学习过程中我有很长一段时间不知道自己学的东西有什么用, 只是单纯的从理论到实践的过程.</p>
+<p>老师的水平和授课质量就不说了, 差距太大, 对知识的理解完全不在一个层次上. </p>
+</blockquote>
+<h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1 基础知识"></a>1 基础知识</h2><p>LTI, 前馈, 反馈之类的</p>
+<h3 id="助教课-LTI动机与表示"><a href="#助教课-LTI动机与表示" class="headerlink" title="助教课 LTI动机与表示"></a>助教课 LTI动机与表示</h3><p>主要应用在控制系统中, 是为了通过建模预测系统之后的输出</p>
+<h2 id="2-预测系统行为"><a href="#2-预测系统行为" class="headerlink" title="2 预测系统行为"></a>2 预测系统行为</h2><p>假设我们已经知道了系统的代数方程表示, 我们要如何预测系统的输出?</p>
+<ul>
+<li>单位冲击响应s</li>
+<li>通过系统的**极点(Poles)**来了解</li>
+</ul>
+<p>先研究一阶的, 比较简单, $\frac{1}{1-p_0R}$, 如果$P_0&lt;1$收敛, 否则就发散</p>
+<h3 id="二阶系统"><a href="#二阶系统" class="headerlink" title="二阶系统"></a>二阶系统</h3><p>再研究二阶的, 稍微复杂一点, 可以看成是<strong>两个一阶的级联</strong>或者<strong>两个一阶的累加(拆分)</strong></p>
+<p>为了方便因式分解, 令$R&#x3D;\frac{1}{z}$, 这样可以方便找出方程的极点, 设未知数求解也可以</p>
+<ul>
+<li><p>如果都是实根, 比较简单, 和1比大小就行</p>
+</li>
+<li><p>如果有复根, 将其表示为指数形式(为什么要这样呢?因为这样的表示在做幂的时候比较简洁), 那么复根会怎么影响输出呢? 主要看幅值最大</p>
+<blockquote>
+<p>类似于之前反馈时提到的无穷级数, 对于复数也可以这样操作<br>$$<br>\frac{1}{1-\operatorname{re}^{j \Omega} R }&#x3D;1+ r e^{j \Omega} R +r^{2} e^{j 2 \Omega} R ^{2}+\cdots<br>$$</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175342.png" alt="image-20200319020038344" style="zoom: 80%;" />
+
+<p>因为现实生活中的模型都是<strong>实参数</strong>的, 因此<strong>复根都是共轭</strong>的, 所以分母乘起来复数就消失了</p>
+</blockquote>
+</li>
+</ul>
+<p>二阶系统有两个复根时可以表示成这样<br>$$<br>\frac{Y}{X}&#x3D;\frac{\frac{1}{2}(1-j \cot \Omega)}{1-r e^{j Q} R }+\frac{\frac{1}{2}(1+j \cot \Omega)}{1-r e^{-j \Omega} R }<br>$$</p>
+<p>$$<br>y[n]&#x3D;r^{n}(\cos n \Omega+\cot \Omega \sin n \Omega)<br>$$</p>
+<p>利用<br>$$<br>-\sqrt{1+\cot ^{2} \Omega} \leqslant \cos n \Omega+\cot \Omega \sin n \Omega \leqslant \sqrt{1+\cot ^{2} \Omega}<br>$$<br>得到了<br>$$<br>-\frac{1}{\sin \Omega} r^{n} \leqslant y[n] \leqslant \frac{1}{\sin \Omega} r^{n}<br>$$<br>可以看出,$\Omega$和$r$影响了系统的响应</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175422.png" alt="image-20200319021647812"></p>
+<p>其中$r$代表了红色和绿色的线, 也就是收敛的速度,</p>
+<p>而$\Omega$表示了振荡的速度 </p>
+<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3><ul>
+<li>零点极点消除, 一般来说不能消除(<em>不是很理解</em>)</li>
+<li>重复极点</li>
+<li>可叠加</li>
+</ul>
+<h2 id="3-设计实例-反馈控制"><a href="#3-设计实例-反馈控制" class="headerlink" title="3 设计实例 反馈控制"></a>3 设计实例 反馈控制</h2><p>让一个小车检测到墙壁的距离并在停在一定距离, 使用<strong>比例控制</strong></p>
+<h3 id="3-1-不考虑延迟"><a href="#3-1-不考虑延迟" class="headerlink" title="3.1 不考虑延迟"></a>3.1 不考虑延迟</h3><p>理论上传感器获取数据是有延迟的, 从传达指令到实际速度执行也是有延迟的. 这里暂时不考虑</p>
+<ol>
+<li><p>先列差分方程<br>$$<br>v[n]&#x3D;k(d_i[n]-d_0[n])\<br>d_0[n]&#x3D;d_0[n-1]-Tv[n-1]\<br>d_s[n]&#x3D;d_0[n-1]<br>$$<br>注意到这个差分方程其实包含了许多个方程(近似3n)和很多个未知数, 不便于处理和计算, 转成算符方程, 方程式就少了很多</p>
+</li>
+<li><p>转成代数形式<br>$$<br>V&#x3D;k(D_i-D_0) \<br>D_0&#x3D;RD_0-TRV\<br>D_0&#x3D;\frac{-TKR}{1-(1+TK)R}D_i<br>$$</p>
+</li>
+<li><p>看根的情况</p>
+<p>一个根是$1+TK$, 为了让系统能够收敛, $|1+TK|&lt;1$. </p>
+<p>现在假设$T&#x3D;0.1$, 显然$K&#x3D;-10$是最好的, 一步收敛</p>
+</li>
+</ol>
+<h4 id="3-2-考虑延迟"><a href="#3-2-考虑延迟" class="headerlink" title="3.2 考虑延迟"></a>3.2 考虑延迟</h4><ol>
+<li><p>先列差分方程<br>$$<br>v[n]&#x3D;k(d_i[n]-d_0[n-1])\<br>d_0[n]&#x3D;d_0[n-1]-Tv[n-1]<br>$$</p>
+</li>
+<li><p>转成代数形式<br>$$<br>V&#x3D;k(D_i-RD_0) \<br>D_0&#x3D;RD_0-TRV\<br>D_0&#x3D;\frac{-TKR}{1-R-TkR^2}D_i<br>$$</p>
+</li>
+<li><p>看根的情况</p>
+<p>两个个根是$\frac{1}{2} \pm \frac{1}{2} \sqrt{1+4 k T}$,</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cs/" rel="tag"># cs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/CS/Miscellaneous/EECS-2/" rel="prev" title="MIT EECS 导论课 2">
+      <i class="fa fa-chevron-left"></i> MIT EECS 导论课 2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/CS/Miscellaneous/EECS-4/" rel="next" title="MIT EECS 导论课 4">
+      MIT EECS 导论课 4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F"><span class="nav-text">信号与系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">1 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A9%E6%95%99%E8%AF%BE-LTI%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%A1%A8%E7%A4%BA"><span class="nav-text">助教课 LTI动机与表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%A2%84%E6%B5%8B%E7%B3%BB%E7%BB%9F%E8%A1%8C%E4%B8%BA"><span class="nav-text">2 预测系统行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%98%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">二阶系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="nav-text">特殊情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6"><span class="nav-text">3 设计实例 反馈控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%B8%8D%E8%80%83%E8%99%91%E5%BB%B6%E8%BF%9F"><span class="nav-text">3.1 不考虑延迟</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E8%80%83%E8%99%91%E5%BB%B6%E8%BF%9F"><span class="nav-text">3.2 考虑延迟</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

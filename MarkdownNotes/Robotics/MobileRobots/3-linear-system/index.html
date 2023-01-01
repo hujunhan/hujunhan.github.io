@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Simple RobotWe need a more systematic way in discussion Give a point mass on a line whose acceleration is directly controlled: Translate the physics model into state space form, 3 steps  Pick the stat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear System">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Robotics/MobileRobots/3-linear-system/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="Simple RobotWe need a more systematic way in discussion Give a point mass on a line whose acceleration is directly controlled: Translate the physics model into state space form, 3 steps  Pick the stat">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-21T07:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-18T03:53:51.000Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="control">
+<meta property="article:tag" content="robotics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Robotics/MobileRobots/3-linear-system/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Linear System | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/MobileRobots/3-linear-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linear System
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-21T00:00:00-07:00">2020-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/MobileRobots/" itemprop="url" rel="index"><span itemprop="name">MobileRobots</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Simple-Robot"><a href="#Simple-Robot" class="headerlink" title="Simple Robot"></a>Simple Robot</h2><p>We need a more systematic way in discussion</p>
+<p>Give a point mass on a line whose acceleration is directly controlled:</p>
+<p>Translate the physics model into state space form, 3 steps</p>
+<ol>
+<li>Pick the state variables </li>
+<li>High order to low order</li>
+<li>Put these in terms of state, input and output</li>
+</ol>
+<p>$$<br>\dot{x}&#x3D;\left[\begin{array}{c}<br>\dot{x}<em>{1} \<br>\dot{x}</em>{2}<br>\end{array}\right]&#x3D;\left[\begin{array}{c}<br>x_{2} \<br>u<br>\end{array}\right]&#x3D;\left[\begin{array}{cc}<br>0 &amp; 1 \<br>0 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>x_{1} \<br>x_{2}<br>\end{array}\right]+\left[\begin{array}{c}<br>0 \<br>1<br>\end{array}\right] u<br>$$</p>
+<p>$$<br>y&#x3D;p&#x3D;x_1&#x3D;[1 \space0]x<br>$$</p>
+<p>Write in a more <strong>general</strong> form<br>$$<br>\begin{aligned}<br>&amp;\dot{x}&#x3D;A x+B u\<br>&amp;y&#x3D;C x<br>\end{aligned}<br>$$<br>Here, $A$ is given by physics. What we can design is $B$ (how we control the system) and $C$ (how we sensor the system)  </p>
+<span id="more"></span>
+
+<h2 id="State-Space-Models-amp-Linearization"><a href="#State-Space-Models-amp-Linearization" class="headerlink" title="State-Space Models &amp; Linearization"></a>State-Space Models &amp; Linearization</h2><p>We need know how the system works, then we can model it using physics</p>
+<p>But sometimes the system is non-linear, so we need linearization&#96;<br>$$<br>\dot{x}&#x3D;f(x, u), \quad y&#x3D;h(x)<br>$$</p>
+<ol>
+<li>Find a operating point</li>
+<li>Taylor expansion</li>
+</ol>
+<p>$$<br> \dot{\delta} x&#x3D;f\left(x_{o}+\delta x, u_{o}+\delta u\right)<br>&#x3D;f\left(x_{o}, u_{o}\right)+\frac{\partial f}{\partial x}\left(x_{o}, u_{o}\right) \delta x+\frac{\partial f}{\partial u}\left(x_{o}, u_{o}\right) \delta u+ H.O.T<br>$$</p>
+<p>$H.O.T$ for high order terms  </p>
+<blockquote>
+<p>Sometimes the linearization do not give reasonable models</p>
+</blockquote>
+<h2 id="Solving-ODE"><a href="#Solving-ODE" class="headerlink" title="Solving ODE"></a>Solving ODE</h2><p>$$<br>e^{A t}&#x3D;\sum_{k&#x3D;0}^{\infty} \frac{A^{k} t^{k}}{k !}<br>$$</p>
+<p>The State Transition Matrix<br>$$<br>e^{A\left(t-t_{0}\right)}&#x3D;\Phi\left(t, t_{0}\right)<br>$$<br>If we do not apply a control system, then $\dot x&#x3D;Ax$, then<br>$$<br> x(t)&#x3D;\Phi(t, \tau) x(\tau)<br>$$<br>If we have the controlled system: $\dot x&#x3D;Ax+Bu$, then<br>$$<br>x(t)&#x3D;\Phi\left(t, t_{0}\right) x\left(t_{0}\right)+\int_{t_{0}}^{t} \Phi(t, \tau) B u(\tau) d \tau<br>$$<br>We can verify the answers by checking the initial point and derivation</p>
+<p>Why so care about the solution? </p>
+<p>Because we can write the $y$<br>$$<br>y&#x3D;Cx<br>$$</p>
+<h2 id="Stability"><a href="#Stability" class="headerlink" title="Stability"></a>Stability</h2><p>$$<br>\dot{x}&#x3D;A x \Rightarrow x(t)&#x3D;e^{A t} x(0)<br>$$</p>
+<p>By calculating the eigenvalue of $A$</p>
+<p>When all eigenvalue of $A$ is negative:<br>$$<br>\operatorname{Re}(\lambda)&lt;0, \forall \lambda \in \operatorname{eig}(A)<br>$$</p>
+<h2 id="Design-Feedback-Control"><a href="#Design-Feedback-Control" class="headerlink" title="Design Feedback Control"></a>Design Feedback Control</h2><p>How?  Recall the control system<br>$$<br>\begin{aligned}&amp;\dot{x}&#x3D;A x+B u\&amp;y&#x3D;C x\end{aligned}<br>$$<br>Let $u$ related with $y$, say $u&#x3D;-Ky$, than, the $A$ matrix changes!<br>$$<br>\dot x&#x3D;Ax-BKCx&#x3D;(A-BKC)x<br>$$<br>Make sure that $Re(eig(A-BKC))&lt;0$</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h3><p>For <strong>Physics</strong><br>$$<br>m \ddot{f}&#x3D;\alpha \dot{f}+\beta f+c p<br>$$<br>For <strong>Human</strong></p>
+<ol>
+<li>Pick the state variables </li>
+<li>High order to low order</li>
+<li>Put these in terms of state, input and output</li>
+</ol>
+<p>For <strong>Math</strong></p>
+<ol>
+<li>$x&#x3D;\left[\begin{array}{c}<br>f \<br>\dot{f}<br>\end{array}\right] \quad u&#x3D;p \quad y&#x3D;f$</li>
+<li>$\begin{aligned}<br>&amp;\dot{f}&#x3D;\dot{x}<em>{\hat{1}}&#x3D;x</em>{2}\<br>&amp;\ddot{f}&#x3D;\dot{x}<em>{2}&#x3D;\frac{1}{m}\left(\alpha x</em>{2}+\beta x_{1}+c u\right)<br>\end{aligned}$</li>
+<li>$\dot{x}&#x3D;\left[\begin{array}{l}<br>\dot{x}<em>{1} \<br>\dot{x}</em>{2}<br>\end{array}\right]&#x3D;\left[\begin{array}{l}<br>x_{2} \<br>\frac{1}{m}\left(\alpha x_{2}+\beta x_{1}+c u\right)<br>\end{array}\right]$</li>
+</ol>
+<p>For <strong>Control</strong><br>$$<br>\begin{array}{l}<br>x&#x3D;\left[\begin{array}{c}<br>f \<br>\dot{f}<br>\end{array}\right] \quad u&#x3D;p \quad y&#x3D;f \<br>(A, B, C)&#x3D;\left(\left[\begin{array}{cc}<br>0 &amp; 1 \<br>\frac{\beta}{m} &amp; \frac{\alpha}{m}<br>\end{array}\right],\left[\begin{array}{c}<br>0 \<br>\frac{c}{m}<br>\end{array}\right],\left[\begin{array}{cc}<br>1 &amp; 0<br>\end{array}\right]\right)<br>\end{array}<br>$$</p>
+<h3 id="Linearization"><a href="#Linearization" class="headerlink" title="Linearization"></a>Linearization</h3><p>For physics<br>$$<br>\ddot{z}&#x3D;\ell z^{2}+\gamma \dot{z}+c \tau \quad x&#x3D;\left[\begin{array}{c}<br>z \<br>\dot{z}<br>\end{array}\right] \quad u&#x3D;\tau<br>$$<br>If we want to linearize the system around $x&#x3D;0$ (<strong>important</strong>!)<br>$$<br>\begin{array}{c}<br>A&#x3D;\left[\begin{array}{cc}<br>\frac{\partial f_{1}}{\partial x_{1}} &amp; \frac{\partial f_{1}}{\partial x_{2}} \<br>\frac{\partial f_{2}}{\partial x_{1}} &amp; \frac{\partial f_{2}}{\partial x_{2}}<br>\end{array}\right]<em>{x&#x3D;(0,0)}&#x3D;\left[\begin{array}{cc}<br>0 &amp; 1 \<br>2 \ell x</em>{1} &amp; \gamma<br>\end{array}\right]<em>{x&#x3D;(0,0)}&#x3D;\left[\begin{array}{cc}<br>0 &amp; 1 \<br>0 &amp; \gamma<br>\end{array}\right] \<br>B&#x3D;\left[\begin{array}{c}<br>\frac{\partial f</em>{1}}{\partial u} \<br>\frac{\partial f_{2}}{\partial u}<br>\end{array}\right]<em>{x&#x3D;(0,0)}&#x3D;\left[\begin{array}{c}<br>0 \<br>c<br>\end{array}\right]</em>{x&#x3D;(0,0)}&#x3D;\left[\begin{array}{c}<br>0 \<br>c<br>\end{array}\right]<br>\end{array}<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/control/" rel="tag"># control</a>
+              <a href="/tags/robotics/" rel="tag"># robotics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Robotics/MobileRobots/2-mobile-robots/" rel="prev" title="Mobile Robots">
+      <i class="fa fa-chevron-left"></i> Mobile Robots
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/CS/Machine%20Learning/ai-nilsson-note/" rel="next" title="读书感想:Nilsson人工智能">
+      读书感想:Nilsson人工智能 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Robot"><span class="nav-text">Simple Robot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Space-Models-amp-Linearization"><span class="nav-text">State-Space Models &amp; Linearization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solving-ODE"><span class="nav-text">Solving ODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stability"><span class="nav-text">Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-Feedback-Control"><span class="nav-text">Design Feedback Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeling"><span class="nav-text">Modeling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linearization"><span class="nav-text">Linearization</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
