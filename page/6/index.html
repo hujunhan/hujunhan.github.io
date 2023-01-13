@@ -188,6 +188,644 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Manipulation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Manipulation/" class="post-title-link" itemprop="url">Manipulation Notes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-01 12:25:00" itemprop="dateCreated datePublished" datetime="2022-07-01T12:25:00-07:00">2022-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-30 15:19:26" itemprop="dateModified" datetime="2022-09-30T15:19:26-07:00">2022-09-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hard problem: need strong ability in so many technical areas</p>
+<ul>
+<li>Perception</li>
+<li>Planning</li>
+<li>Control</li>
+</ul>
+<h3 id="More-Than-Pick-and-Place"><a href="#More-Than-Pick-and-Place" class="headerlink" title="More Than Pick-and-Place"></a>More Than Pick-and-Place</h3><p>The task a human can do is so remarkable.</p>
+<p>Making salad? Grasping? Much more!</p>
+<h3 id="Open-world-Manipulation"><a href="#Open-world-Manipulation" class="headerlink" title="Open-world Manipulation"></a>Open-world Manipulation</h3><p>Challenge: very diverse world, and we have high expectation</p>
+<p>Maybe it also is a chance that diversity would make the problem easier, since we would never ask for a optimal solution</p>
+<h3 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h3><p>Perception and physics</p>
+<h3 id="Model-Based-Design-and-Analysis"><a href="#Model-Based-Design-and-Analysis" class="headerlink" title="Model-Based Design and Analysis"></a>Model-Based Design and Analysis</h3><p>More accurate and informative messages</p>
+<p>How to model? Diagrams</p>
+<h2 id="Get-a-robot"><a href="#Get-a-robot" class="headerlink" title="Get a robot"></a>Get a robot</h2><h3 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h3><h4 id="Position-control"><a href="#Position-control" class="headerlink" title="Position-control"></a>Position-control</h4><p>Most are position controlled</p>
+<p>Torque control is not widely used since the $\tau_{motor}&#x3D;k_t i$ doesn’t hold in real life</p>
+<p>How: use position sensor to do a PID control, we are controlling torque but in reality we are ouputing voltage by PWM</p>
+<blockquote>
+<p>Though the control objects are always different, the gains are surprisingly not that different</p>
+</blockquote>
+<h4 id="Torque-control"><a href="#Torque-control" class="headerlink" title="Torque-control"></a>Torque-control</h4><p>Not common</p>
+<ul>
+<li>Direct control to electrical motor with small gear reduction (&lt;10:1)</li>
+<li>Hydraulic actuators</li>
+<li>Keep large gear-ratio motors, add sensors to measure the torque</li>
+</ul>
+<p>The cost is going down</p>
+<h4 id="Simulation-1"><a href="#Simulation-1" class="headerlink" title="Simulation"></a>Simulation</h4><p>Drake</p>
+<ul>
+<li>MultibodyPlant, represent the physical system, in control field</li>
+<li>SceneGraph, handle the geometry of the scene</li>
+</ul>
+<p>For the torque, we need to specify even the controller is off</p>
+<p>To simulate the arm well, we need to implement  a low-level controller</p>
+<h3 id="Hand"><a href="#Hand" class="headerlink" title="Hand"></a>Hand</h3><p>Different camps</p>
+<ul>
+<li>Dexterous hands, just like human’s hands, sensor rich. We are not there yet</li>
+<li>Simple grippers, can also do amazing useful job. Why we need a dexterous hand?</li>
+<li>Soft hands, good at something but not general.</li>
+</ul>
+<h3 id="Sensor"><a href="#Sensor" class="headerlink" title="Sensor"></a>Sensor</h3><p>Perception, tactile sensing is important. Now, we only need to focus on joint sensor.</p>
+<ul>
+<li>reliable: position, velocity, torque</li>
+<li>unreliable: acceleration</li>
+</ul>
+<h2 id="Pick-and-Place"><a href="#Pick-and-Place" class="headerlink" title="Pick and Place"></a>Pick and Place</h2><p>Naturally, we can start from <strong>geometry</strong> and <strong>kinematics</strong></p>
+<h3 id="Notion"><a href="#Notion" class="headerlink" title="Notion"></a>Notion</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-32-06.png" alt="image-20220701000523016"></p>
+<p>very powerful</p>
+<h3 id="Pick-Transform"><a href="#Pick-Transform" class="headerlink" title="Pick Transform"></a>Pick Transform</h3><p>Object $O$, Gripper $G$，Sensor tell us $^WX^O$, Desired $^WX^{O_d}$</p>
+<p>goal: make $X^O&#x3D;X^{O_d}$</p>
+<blockquote>
+<p>Example: camera frame to world frame<br>$$<br>p^{P_i}&#x3D;X^{CC}p^{P_i}<br>$$</p>
+</blockquote>
+<h3 id="FK"><a href="#FK" class="headerlink" title="FK"></a>FK</h3><p>In real life, we give command for the joint position, so we need to convert from <strong>joint angles</strong> to <strong>cartesian frames</strong></p>
+<p>Define 3 element in every joint</p>
+<ul>
+<li>transform from children joint frame to parent joint frame $^{J_P}X^{J_C}(q)$</li>
+<li>transform from children joint frame to children body frame $^{C}X^{J_C}$</li>
+<li>transform from parent joint frame to parent body frame $^{P}X^{J_C}$</li>
+</ul>
+<p>All in all, we can compute the transform<br>$$<br>^PX^C(q)&#x3D;^{P}X^{J_CJ_P}X^{J_C}(q)^{J_C}X^{C}<br>$$<br>In short, we get a map<br>$$<br>X^G&#x3D;f^G_{kin}(q)<br>$$</p>
+<h3 id="Jacobians"><a href="#Jacobians" class="headerlink" title="Jacobians"></a>Jacobians</h3><p>If the goal is to move the gripper, then we should how <strong>change in joint</strong> relate to <strong>change in pose</strong></p>
+<p>Straightforward to compute the partial derivative<br>$$<br>dX^B&#x3D;J^B(q)dq<br>$$</p>
+<p>To represent a 6D velocity more clearly, we use the following<br>$$<br>{ }^{A} V_{C}^{B}&#x3D;\left[\begin{array}{c}<br>{ }^{A} \omega_{C}^{B} \<br>A_{\mathrm{V}_{C}^{B}}^{B}<br>\end{array}\right]<br>$$</p>
+<ul>
+<li>$w$ is the angular velocity</li>
+<li>$v$ is the translational velocity</li>
+</ul>
+<h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>If we have a desired a gripper velocity $V^{G_d}$, may be we could do $v&#x3D;\left[J^{G}(q)\right]^{-1} V^{G_{d}}$?</p>
+<h4 id="Pseudo-inverse"><a href="#Pseudo-inverse" class="headerlink" title="Pseudo-inverse"></a>Pseudo-inverse</h4><p>First consider is the matrix invertible? E.g. the dimension is $6\times7$, it’s more than required</p>
+<p>Moore-Penrose pseudo inverse<br>$$<br>v&#x3D;\left[J^{G}(q)\right]^{+} V^{G_{d}}<br>$$<br>This would give the solution with minimum-norm</p>
+<h3 id="Trajectory"><a href="#Trajectory" class="headerlink" title="Trajectory"></a>Trajectory</h3><p>Define the keyframe pose we wish the gripper to travel</p>
+<p>What kind of trajectory? splines is a good way</p>
+<p>Interpolation</p>
+<ul>
+<li>Position: simply linear interpolation</li>
+<li>Rotation: Spherical linear interpolation or slerp</li>
+</ul>
+<h3 id="Constrains"><a href="#Constrains" class="headerlink" title="Constrains"></a>Constrains</h3><p>Pseudo-inverse solution might lead to large velocity (beyond robot limits) which we don’t want</p>
+<p>Regard the inverse as a optimization problem<br>$$<br>\min <em>{v}\left|J^{G}(q) v-V^{G</em>{d}}\right|<em>{2}^{2}<br>$$<br>and we have constrains in positions, speed and acceleration<br>$$<br>\begin{array}{ll}<br>\min</em>{v_{n}} &amp; \left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2} \<br>\text { subject to } &amp; v</em>{\min } \leq v_{n} \leq v_{\max } \<br>&amp; q_{\min } \leq q+h v_{n} \leq q_{\max } \<br>&amp; \dot{v}<em>{\min } \leq \frac{v</em>{n}-v}{h} \leq \dot{v}_{\max }<br>\end{array}<br>$$</p>
+<h4 id="Joint-Centering"><a href="#Joint-Centering" class="headerlink" title="Joint Centering"></a>Joint Centering</h4><p>In robotics, we could add a secondary control<br>$$<br>\min <em>{v</em>{n}}\left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2}+\epsilon\left|P(q)\left(v</em>{n}-K\left(q_{0}-q\right)\right)\right|_{2}^{2}<br>\<br>subject \ to \  constraints.<br>$$</p>
+<h2 id="Pose-Estimation"><a href="#Pose-Estimation" class="headerlink" title="Pose Estimation"></a>Pose Estimation</h2><p>Assumption: we know the object and have depth camera</p>
+<p>Two trends:</p>
+<ul>
+<li>deep learning</li>
+<li>geometric reasoning</li>
+</ul>
+<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><p>In practice, <strong>camera</strong> or <strong>range</strong> sensor are more important</p>
+<h4 id="Depth-sensor"><a href="#Depth-sensor" class="headerlink" title="Depth sensor"></a>Depth sensor</h4><p>RGBD (ToF and structured light)</p>
+<p>There are noise in real life, and dependent to lighting conditions, surface normals and other properties.</p>
+<h3 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h3><ul>
+<li>depth image</li>
+<li>color image</li>
+<li>camera pose</li>
+</ul>
+<p>Combine, we can get a point cloud</p>
+<h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>Point cloud registration</p>
+<ul>
+<li>given two point clouds</li>
+<li>find the transform</li>
+</ul>
+<p>In two strong assumption:</p>
+<ol>
+<li>knowing the camera pose</li>
+<li>known correspondences. Each point in the scene correspond with one model point</li>
+</ol>
+<p>In this situation, it becomes a optimization problem<br>$$<br>\begin{array}{ll}<br>\min <em>{p, R} &amp; \sum</em>{i&#x3D;1}^{N_{s}} | p+R^{O} p^{m_{c_{i}}}-X^{C C^{s_{i}}} p^{2} \<br>\text { subject to } &amp; R^{T}&#x3D;R^{-1}, \quad \operatorname{det}(R)&#x3D;+1<br>\end{array}<br>$$<br>We can get the rotation first, then get the translation. So we center two point</p>
+<p>Using SVD, we can get the solution</p>
+<h3 id="ICP"><a href="#ICP" class="headerlink" title="ICP"></a>ICP</h3><ol>
+<li>initial guess of the object <strong>pose</strong></li>
+<li>calculate the <strong>correspondence</strong> via closet points</li>
+<li>Use the correspondence update pose</li>
+</ol>
+<p>We have very good numerical solution like FLANN</p>
+<h3 id="Partial-View"><a href="#Partial-View" class="headerlink" title="Partial View"></a>Partial View</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-14-22-11-39.png" alt="image-20220714221135748"></p>
+<p>In real world, the data is not perfect, how to deal with it?</p>
+<h4 id="Detecting-outliers"><a href="#Detecting-outliers" class="headerlink" title="Detecting outliers"></a>Detecting outliers</h4><ul>
+<li>detect outliers need good estimation</li>
+<li>good estimation need detect outliers</li>
+</ul>
+<p>How?</p>
+<ol>
+<li>ICP with RANSAC<ol>
+<li>many seed to select a good start (good estimation)</li>
+</ol>
+</li>
+<li>relative distance (graph theory)</li>
+</ol>
+<h4 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h4><p>Use NN more</p>
+<h4 id="Multiple-object-and-Partial-view"><a href="#Multiple-object-and-Partial-view" class="headerlink" title="Multiple object and Partial view"></a>Multiple object and Partial view</h4><p>Use a correspondence matrix to find the minimum<br>$$<br>\min <em>{X \in \operatorname{SE}(3)} \sum</em>{i&#x3D;1}^{N_{s}} \sum_{j&#x3D;1}^{N_{m}} C_{i j}\left|X^{O} p^{m_{j}}-p^{s_{i}}\right|^{2}<br>$$<br>The main idea behind CPD: relax the strict and let the matrix between 0 and 1</p>
+<p>This make CPD more robust than ICP, but still use SVD</p>
+<h4 id="Non-linear-Optimization"><a href="#Non-linear-Optimization" class="headerlink" title="Non-linear Optimization"></a>Non-linear Optimization</h4><p>Try to estimate the pose and outliers at the same time, make the problem <strong>nonconvex</strong>, but</p>
+<ol>
+<li>the computation time would be saved</li>
+<li>can add more objective function</li>
+</ol>
+<h3 id="Looking-ahead"><a href="#Looking-ahead" class="headerlink" title="Looking ahead"></a>Looking ahead</h3><p>In the discussion, we lost the color, only use the depth.</p>
+<p>In the future, the color should be used more</p>
+<h2 id="Bin-Picking"><a href="#Bin-Picking" class="headerlink" title="Bin Picking"></a>Bin Picking</h2><p>Consider the simplest situation: pick objects from one bin to another bin</p>
+<ul>
+<li>How to simulate the drop and grasping?</li>
+</ul>
+<p>We could refine it to more complicated situation.</p>
+<h3 id="Generate-Scenes"><a href="#Generate-Scenes" class="headerlink" title="Generate Scenes"></a>Generate Scenes</h3><ol>
+<li>Falling<ol>
+<li>uniform rotate, place in X,Y</li>
+</ol>
+</li>
+<li>Frictional Contact<ol>
+<li>$M(q) \dot{v}+C(q, v) v&#x3D;\tau_{g}(q)+\sum_{i} J_{i}^{T}(q) F^{c_{i}}$</li>
+<li>static $v&#x3D;\dot v&#x3D;0\to$ $\tau_{g}(q)&#x3D;-\sum_{i} J_{i}^{T}(q) F^{c_{i}}$</li>
+</ol>
+</li>
+<li>Optimization, consider the constrain</li>
+</ol>
+<p>However, the simulation is not stable in current study, we need more computation source.</p>
+<h3 id="Grasp-Selection"><a href="#Grasp-Selection" class="headerlink" title="Grasp Selection"></a>Grasp Selection</h3><p>The problem is hard: how to choose the right point of grasp</p>
+<ul>
+<li>Still a problem in nowadays</li>
+<li>New approach: by learning method</li>
+</ul>
+<h4 id="Point-cloud"><a href="#Point-cloud" class="headerlink" title="Point cloud"></a>Point cloud</h4><ol>
+<li>crop：delete unwanted points</li>
+<li>estimate: estimate the normal</li>
+<li>merge</li>
+<li>down-sample: using voxel grid</li>
+</ol>
+<h4 id="Normal-and-Curvature"><a href="#Normal-and-Curvature" class="headerlink" title="Normal and Curvature"></a>Normal and Curvature</h4><p>Calculate the normal<br>$$<br>\min <em>{p, n} \sum</em>{i&#x3D;1}^{N}\left|\left(p^{i}-p\right)^{T} n\right|^{2}, \quad \text { subject to } \quad|n|&#x3D;1<br>$$<br>and we can transform it into<br>$$<br>\min <em>{n} n^{T} W n, \quad \text { subject to } \quad|n|&#x3D;1, \quad \text { where } W&#x3D;\left[\sum</em>{i}\left(p^{i}-p^{<em>}\right)\left(p^{i}-p^{</em>}\right)^{T}\right] \text {. }<br>$$<br>By finding the eigenvalue of W, we can find the optimal solution</p>
+<h4 id="Grasp-point"><a href="#Grasp-point" class="headerlink" title="Grasp point"></a>Grasp point</h4><p>two step</p>
+<ol>
+<li>find a cost function<ol>
+<li><strong>antipodal grasps</strong>. the most force to fight gravity</li>
+<li>$\text { cost }&#x3D;-\sum_{i}\left(n_{G_{x}}^{i}\right)^{2}$</li>
+</ol>
+</li>
+<li>find the low cost candidate<ol>
+<li>How to find  $X^G$<ol>
+<li>local curvature</li>
+<li>find antipodal point pair</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h2><p>Geometric method can give good estimate of local minima, but perform bad in complex scene</p>
+<p>Deep learning based method are more powerful</p>
+<h3 id="Big-Data"><a href="#Big-Data" class="headerlink" title="Big Data"></a>Big Data</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-20-00-22-41.png" alt="image-20220720002240961"></p>
+<p>Massive annotated datasets</p>
+<p>Instance segmentation is what we need in manipulation</p>
+<hr>
+<p>What if we met new classes?</p>
+<ul>
+<li>In the dataset, we have data for like plates, forks</li>
+<li>What about the bottles?<ul>
+<li>From the backbone</li>
+<li>Finetune</li>
+</ul>
+</li>
+</ul>
+<h3 id="Simulation-2"><a href="#Simulation-2" class="headerlink" title="Simulation"></a>Simulation</h3><p>Real data is valuable, but we can also use simulation to synthetic data</p>
+<h3 id="Object-Detection-1"><a href="#Object-Detection-1" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>Image recognition:</p>
+<ul>
+<li>input the full image</li>
+<li>output is the probability of the image contain something</li>
+</ul>
+<p>Semantic Segmentation:</p>
+<ul>
+<li>input the full image</li>
+<li>output is another image</li>
+</ul>
+<p>Instance Segmentation: Mask R-CNN</p>
+<h2 id="Force-Control"><a href="#Force-Control" class="headerlink" title="Force Control"></a>Force Control</h2><p>A hard task to grasp something</p>
+<h3 id="Simple-Model"><a href="#Simple-Model" class="headerlink" title="Simple Model"></a>Simple Model</h3><p>To fight against complexity, find a setup as simple as possible.</p>
+<p>Consider the following setup</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-23-13-11-33.png" alt="img"></p>
+<p>We have two model to consider</p>
+<ul>
+<li>Dynamic model for simulation</li>
+<li>Robot model for controller</li>
+</ul>
+<hr>
+<p>Direct force control</p>
+<ul>
+<li>Direct means we control the <strong>contact forces</strong></li>
+</ul>
+<p>How to do a flip-up?</p>
+<p>Text version: Apply a moment around the bottom left corner to generate a rotation. also add a force that the corner would not slip</p>
+<p>Math version:<br>$$<br>\begin{aligned}<br>\min <em>{f</em>{W}^{C}} &amp;\left|w f_{C_{x}}^{C}-\operatorname{PID}\left(\theta_{d}, \theta\right)\right|^{2} \<br>\text { subject to } &amp;\left|f_{W_{x}}^{C}\right| \leq \hat{\mu}<em>{A}\left(\hat{m} g-f</em>{W_{z}}^{C}\right) \<br>&amp; f_{C_{z}}^{C} \geq 0, \quad\left|f_{C_{x}}^{C}\right| \leq \hat{\mu}<em>{C} f</em>{C_{z}}^{C} \<br>\text { with } &amp;{ }^{W} R^{C}(\theta)&#x3D;\left[\begin{array}{cc}<br>-\sin \theta &amp; -\cos \theta \<br>\cos \theta &amp; -\sin \theta<br>\end{array}\right] .<br>\end{aligned}<br>$$</p>
+<hr>
+<p>Indirect force control</p>
+<p>Program our robot to act like a mechanical system reacts to the contact forces</p>
+<ul>
+<li>Benefit: we only need to know the robot rather than environments</li>
+<li>Guarantee the robot won’t go unstable</li>
+</ul>
+<h2 id="Motion-Planning"><a href="#Motion-Planning" class="headerlink" title="Motion Planning"></a>Motion Planning</h2><p>Why motion planning?</p>
+<ul>
+<li>Collision between arm and environment</li>
+<li>In different environment, we need more automated robot</li>
+<li>In static environment, we could optimize the manipulation process significantly</li>
+</ul>
+<p>Need MORE brave robot</p>
+<h3 id="IK"><a href="#IK" class="headerlink" title="IK"></a>IK</h3><h3 id="Trajectory-Optimization"><a href="#Trajectory-Optimization" class="headerlink" title="Trajectory Optimization"></a>Trajectory Optimization</h3><h3 id="Sampling-Based-Planning"><a href="#Sampling-Based-Planning" class="headerlink" title="Sampling-Based Planning"></a>Sampling-Based Planning</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Udemy/driver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Udemy/driver/" class="post-title-link" itemprop="url">Driver</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-14 14:14:00" itemprop="dateCreated datePublished" datetime="2022-06-14T14:14:00-07:00">2022-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-13 20:40:29" itemprop="dateModified" datetime="2022-07-13T20:40:29-07:00">2022-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Udemy/" itemprop="url" rel="index"><span itemprop="name">Udemy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Mechanical-Advantage"><a href="#Mechanical-Advantage" class="headerlink" title="Mechanical Advantage"></a>Mechanical Advantage</h2><p>Lever，杠杆，变大变小</p>
+<ul>
+<li>力</li>
+<li>运动</li>
+</ul>
+<p>Trade-off，力换距离，或者距离换力</p>
+<p>为了在所有时间上都能产生力，我们生成了齿轮，gear</p>
+<h2 id="Gear"><a href="#Gear" class="headerlink" title="Gear"></a>Gear</h2><p>混合齿轮 Compound Gear，also applied to wheel</p>
+<p>Linear: use <strong>stepper motor</strong> for a precise control</p>
+<h2 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h2><p>电机，在极坐标平面的分辨率是固定的，但是在xy方向上，分辨率是不固定的，</p>
+<h2 id="Backlash"><a href="#Backlash" class="headerlink" title="Backlash"></a>Backlash</h2><p>滞后，机器人的诅咒。尤其在齿轮系统中，存在滞后，对精度有很大的影响</p>
+<p>Will amplified in the whole system</p>
+<p>Anti-backlash, use tension</p>
+<h2 id="Precise-Control"><a href="#Precise-Control" class="headerlink" title="Precise Control"></a>Precise Control</h2><p>Wedge, thread</p>
+<p>Ball screw</p>
+<h2 id="DC-brushed-Motor"><a href="#DC-brushed-Motor" class="headerlink" title="DC-brushed Motor"></a>DC-brushed Motor</h2><p>Most common in small robotics</p>
+<p>永磁体，为了控制方向，我们需要3向磁铁。</p>
+<ul>
+<li>如果只有两个接口，一般没法控制方向</li>
+<li>如果有多个接口，就可以控制方向</li>
+</ul>
+<h2 id="Back-EMF"><a href="#Back-EMF" class="headerlink" title="Back EMF"></a>Back EMF</h2><p>当电机卡住的时候，电阻变小，电流变大了，所以得计算stalled时候的最大电流，来选择其他的配件，不然可能会烧坏</p>
+<h2 id="Toggle-Mechanisim"><a href="#Toggle-Mechanisim" class="headerlink" title="Toggle Mechanisim"></a>Toggle Mechanisim</h2><p>Good for grippers, very large mechanical advantage</p>
+<h2 id="Electrical-Generation"><a href="#Electrical-Generation" class="headerlink" title="Electrical Generation"></a>Electrical Generation</h2><p>Reverse of the motor, use the power of human, wind and water</p>
+<h2 id="Regenerative-braking"><a href="#Regenerative-braking" class="headerlink" title="Regenerative braking"></a>Regenerative braking</h2><p>回收电，在停下来之前，把电收集起来</p>
+<p>实际上，因为太少、电压不高，因此普通的不行。得用AC-DC转换器把电压升高</p>
+<h2 id="Servo-and-Feedback"><a href="#Servo-and-Feedback" class="headerlink" title="Servo and Feedback"></a>Servo and Feedback</h2><p>closed-loop <strong>positional</strong>(most important in robot) servo</p>
+<p>Example: use positional control to do a changable capacitors, make many high&#x3D;accurate sensor</p>
+<p>Encoder，optical binary encoder；accelerometer to detect move and orientation</p>
+<h2 id="Stepper-motors"><a href="#Stepper-motors" class="headerlink" title="Stepper motors"></a>Stepper motors</h2><p>brushless motor: multiple phase wire to change the field,</p>
+<ul>
+<li>more current, much more powerful, no back EMF</li>
+</ul>
+<img src="https://toshiba.semicon-storage.com/content/dam/toshiba-ss-v2/master/en/semiconductor/knowledge/e-learning/brushless-motor/chapter1/1-2.png" alt="History of Brushless Motors | Toshiba Electronic Devices & Storage  Corporation | Europe(EMEA)" style="zoom:33%;" />
+
+<p>You need to make sure the system moves, or the position would be lost</p>
+<h2 id="BLDC"><a href="#BLDC" class="headerlink" title="BLDC"></a>BLDC</h2><p>No sensor, open loop, use back EMF to do a closed-loop control</p>
+<ul>
+<li>Hall sensor, good for the feedback</li>
+</ul>
+<p>H-bridge: control the motor move forward or backward</p>
+<ul>
+<li>Just open loop</li>
+</ul>
+<img src="https://www.build-electronic-circuits.com/wp-content/uploads/2018/11/H-bridge-switches-1-drawn-217x300.png" alt="img" style="zoom:33%;" />
+
+<p>Hall sensor, make the motor closed loop</p>
+<hr>
+<p>Transform in to AC servo motor (expensive)</p>
+<ul>
+<li>AC motor, more accurate, more position</li>
+</ul>
+<h2 id="PWMAC"><a href="#PWMAC" class="headerlink" title="PWMAC"></a>PWMAC</h2><p>Use PWM to simulate the AC</p>
+<h2 id="Harmonic-Drive"><a href="#Harmonic-Drive" class="headerlink" title="Harmonic Drive"></a>Harmonic Drive</h2><p>Using the mechanical advantage of <strong>wedge</strong> to drive</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/HarmonicDriveAni.gif" alt="Strain wave gearing - Wikipedia" style="zoom:25%;" />
+
+<p><strong>NO</strong> <strong>backlash</strong></p>
+<h2 id="AC-Motor"><a href="#AC-Motor" class="headerlink" title="AC Motor"></a>AC Motor</h2><p>How to initiate the motor? use a capacitor to keep a 90 offset</p>
+<p>AC frequency is the same as rotate frequency</p>
+<p>Sync: Only the magnite is used</p>
+<p>Async: Use wire, so introduce current</p>
+<h2 id="Stored-power-Air-and-Water"><a href="#Stored-power-Air-and-Water" class="headerlink" title="Stored power: Air and Water"></a>Stored power: Air and Water</h2><p>Anything that stores energy is dangerous</p>
+<h2 id="Spring，Resolver"><a href="#Spring，Resolver" class="headerlink" title="Spring，Resolver"></a>Spring，Resolver</h2><p>Spring: More natural, more realistic, since it has bouncing</p>
+<p>Resolver: rotation position feedback, different angle show different wave shape</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Career-Planning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Career-Planning/" class="post-title-link" itemprop="url">Career Planning</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-10 00:07:00" itemprop="dateCreated datePublished" datetime="2022-06-10T00:07:00-07:00">2022-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-13 12:01:37" itemprop="dateModified" datetime="2022-06-13T12:01:37-07:00">2022-06-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Philosophy-for-the-future-with-Purpose"><a href="#Philosophy-for-the-future-with-Purpose" class="headerlink" title="Philosophy for the future (with Purpose)"></a>Philosophy for the future (with Purpose)</h2><p>Design the future career</p>
+<p>Do the work help others</p>
+<p>Don’t waste time and keep learning</p>
+<h2 id="Career-Exploration"><a href="#Career-Exploration" class="headerlink" title="Career Exploration"></a>Career Exploration</h2><p>How to shape the career path?</p>
+<p>The world is changing soon, so the career path is changing</p>
+<ul>
+<li>aware of the possibilities</li>
+<li>signup project outside fields</li>
+<li>become a subject matter experts in important area</li>
+<li>emotional resistence</li>
+</ul>
+<p>Ask yourself, what is the driven and can you resist when face hard situation</p>
+<ul>
+<li>can be paid for</li>
+<li>what you love</li>
+<li>what you good at</li>
+<li>what the world need</li>
+</ul>
+<p>Transferable skills</p>
+<ul>
+<li>leadership</li>
+<li>interperson</li>
+</ul>
+<h2 id="Technique-for-career-exploration"><a href="#Technique-for-career-exploration" class="headerlink" title="Technique for career exploration"></a>Technique for career exploration</h2><ol>
+<li>Design thinking, choose the value you value most</li>
+<li>Big 5 model</li>
+<li>Make plan<ol>
+<li>Current, long-term decision</li>
+<li>Next, alternative</li>
+<li>Final, worst case</li>
+</ol>
+</li>
+</ol>
+<p>What’s really important? Confidence and Reputation</p>
+<h2 id="Softskills"><a href="#Softskills" class="headerlink" title="Softskills"></a>Softskills</h2><h3 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h3><ul>
+<li>future contacts</li>
+<li>different information</li>
+<li>How<ul>
+<li>overcome the anxiety</li>
+<li>Integrate new experience</li>
+<li>Positive, smile and curious</li>
+</ul>
+</li>
+</ul>
+<h3 id="Character-flaws-personal-imperfections"><a href="#Character-flaws-personal-imperfections" class="headerlink" title="Character flaws, personal imperfections"></a>Character flaws, personal imperfections</h3><ul>
+<li>unstable emotional status</li>
+<li>Develop more self-awareness</li>
+<li>Get feedback</li>
+</ul>
+<h3 id="Changing-career"><a href="#Changing-career" class="headerlink" title="Changing career"></a>Changing career</h3><p>discipline</p>
+<p>confidence</p>
+<p>transferable skills</p>
+<ul>
+<li>Know some tools</li>
+<li>Tools in useful in new career</li>
+<li>Know how to apply in new career</li>
+</ul>
+<hr>
+<p>mid-career crisis</p>
+<h2 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a>Communication</h2><h3 id="Digital-profile"><a href="#Digital-profile" class="headerlink" title="Digital profile"></a>Digital profile</h3><p>Linkedin</p>
+<ul>
+<li>passive candidate</li>
+<li>Professional photo</li>
+<li>Headline contain important information</li>
+<li>Summary, unique, credential<ul>
+<li>action, outcome</li>
+</ul>
+</li>
+</ul>
+<h3 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h3><h2 id="Adapt"><a href="#Adapt" class="headerlink" title="Adapt"></a>Adapt</h2><p>work is more virtual</p>
+<h3 id="Essential-Skill"><a href="#Essential-Skill" class="headerlink" title="Essential Skill"></a>Essential Skill</h3><p>Cultural Frequency</p>
+<ul>
+<li>personal </li>
+<li>organizational</li>
+</ul>
+<hr>
+<ul>
+<li>Work smarter than harder</li>
+<li>Understand Banter</li>
+<li>Articulate goals</li>
+<li>Find allies and mentor</li>
+</ul>
+<h3 id="Stand-Out"><a href="#Stand-Out" class="headerlink" title="Stand Out"></a>Stand Out</h3><ul>
+<li>show up<ul>
+<li>Start a blog</li>
+<li>Publish articles on Medium</li>
+<li>Publish in publication</li>
+</ul>
+</li>
+<li>Add value<ul>
+<li>more efficient</li>
+<li>save&#x2F;earn money</li>
+</ul>
+</li>
+<li>Fix problem</li>
+</ul>
+<h3 id="Personal-Branding"><a href="#Personal-Branding" class="headerlink" title="Personal Branding"></a>Personal Branding</h3><p>Using your strength</p>
+<p>Show the value</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/8000-hours/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -945,356 +1583,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/patent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/patent/" class="post-title-link" itemprop="url">发明专利写作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-26 13:56:00" itemprop="dateCreated datePublished" datetime="2022-04-26T13:56:00-07:00">2022-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-03 22:05:10" itemprop="dateModified" datetime="2022-05-03T22:05:10-07:00">2022-05-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="创作主要原则"><a href="#创作主要原则" class="headerlink" title="创作主要原则"></a>创作主要原则</h2><p>主要是给审查员看，所以从审查员视角看</p>
-<p>重点：<strong>创造性</strong>，与现有技术相比，该发明的</p>
-<ul>
-<li>实质性特点。相对于现有技术领域的人来说，发明并不是显而易见的。（<strong>有独特的见解</strong>）</li>
-<li>显著的进步。能够产生有益的技术效果。（考虑领域、技术问题、产生的效果）</li>
-</ul>
-<p>判断方法</p>
-<ul>
-<li>确定最接近的现有技术</li>
-<li>确定技术的特征、解决的问题</li>
-<li>判断发明对本领域技术人员是否显而易见</li>
-</ul>
-<p>方式</p>
-<ul>
-<li>有不一样的内容</li>
-</ul>
-<h2 id="修复与回复"><a href="#修复与回复" class="headerlink" title="修复与回复"></a>修复与回复</h2><p>意见主要有两种</p>
-<ul>
-<li>对比文件给出了启示</li>
-<li>区别特征属于公知常识</li>
-</ul>
-<p>答复论述</p>
-<ul>
-<li>技术问题，问题不同</li>
-<li>技术方案，方案不同</li>
-<li>技术效果，效果不同</li>
-</ul>
-<p>Tips：</p>
-<ul>
-<li>整个技术方案是新的</li>
-<li>有较强的理论创新</li>
-<li>专利在论文之前</li>
-</ul>
-<h2 id="写作反馈"><a href="#写作反馈" class="headerlink" title="写作反馈"></a>写作反馈</h2><p>和论文类似，有主论点，分论点，分步论证</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/detection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Computer%20Vision/detection/" class="post-title-link" itemprop="url">目标检测</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-24 17:10:00" itemprop="dateCreated datePublished" datetime="2022-04-24T17:10:00-07:00">2022-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 13:42:02" itemprop="dateModified" datetime="2022-04-25T13:42:02-07:00">2022-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>两个子任务</p>
-<ul>
-<li>分类</li>
-<li>定位</li>
-</ul>
-<h2 id="发展脉络"><a href="#发展脉络" class="headerlink" title="发展脉络"></a>发展脉络</h2><ol>
-<li>传统：HOG，DPM。速度慢、准确率不高</li>
-<li>Anchor based，计算Anchor比较耗时，且固定anchor降低了普适性<ol>
-<li>two stage：RCNN，选框、resize、CNN、SVM $\to$ SPPNET提高了速度$\to$ faster RCNN 提取一个ROI来做处理，再选择候选框 $\to$ FPN，在不同尺度上效果更好</li>
-<li>one stage：YOLO，速度快精度低；SSD加入不同的检测分支</li>
-</ol>
-</li>
-<li>Anchor free：<ol>
-<li>CornerNet，将网络对边界框的检测转化为左上角、右上角的检测 $\to$ CenterNet, 检测目标中心点</li>
-<li>FCOS，不训练Anchor、不提Proposal</li>
-</ol>
-</li>
-</ol>
-<h2 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h2><p>IOU</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-25-50.png" alt="image-20220424172550611" style="zoom:25%;" />
-
-<p>Precision-Recall曲线</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-26-49.png" alt="image-20220424172649320"></p>
-<p>面积越大，性能越好</p>
-<p>mAP：越大越好，Mean Average Precision，考察了所有类的精度</p>
-<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ul>
-<li>尺寸小</li>
-<li>背景复杂</li>
-<li>颜色对比度低</li>
-</ul>
-<h2 id="五大技术"><a href="#五大技术" class="headerlink" title="五大技术"></a>五大技术</h2><ul>
-<li>Multi-scale</li>
-<li>Bounding Box regression</li>
-<li>Context Prime</li>
-<li>NMS</li>
-</ul>
-<h2 id="模型加速"><a href="#模型加速" class="headerlink" title="模型加速"></a>模型加速</h2><ul>
-<li>轻量化网络<ul>
-<li>卷积分解、bottle-neck、神经架构搜索</li>
-</ul>
-</li>
-<li>模型压缩<ul>
-<li>剪枝</li>
-<li>Float to Int to Bool</li>
-<li>知识蒸馏</li>
-</ul>
-</li>
-<li>数值加速</li>
-</ul>
-<h2 id="提高精度"><a href="#提高精度" class="headerlink" title="提高精度"></a>提高精度</h2><ul>
-<li>特征提取网络，对于性能非常重要<ul>
-<li>Backbone</li>
-</ul>
-</li>
-<li>特征融合</li>
-<li>目标定位：微调、新的损失函数CIOU</li>
-<li>语义分割</li>
-<li>旋转和尺度变化</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/us-tax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/us-tax/" class="post-title-link" itemprop="url">美国税法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-15 14:47:00" itemprop="dateCreated datePublished" datetime="2022-04-15T14:47:00-07:00">2022-04-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-16 07:07:58" itemprop="dateModified" datetime="2022-04-16T07:07:58-07:00">2022-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>IRS——internal revenue service， tax collection agency</p>
-<p>Tax return——tax form sent to IRS</p>
-<p>W-2——tax form from employer</p>
-<p>1042-s——tax from unversity</p>
-<h2 id="Tax-Residency"><a href="#Tax-Residency" class="headerlink" title="Tax Residency"></a>Tax Residency</h2><p>different residency determines which form you need</p>
-<p>F1-Non-resident alien (within 5 calendar year)</p>
-<h2 id="Tax-Forms"><a href="#Tax-Forms" class="headerlink" title="Tax Forms"></a>Tax Forms</h2><p>May receive if you have income</p>
-<ul>
-<li>Main-W-2, employer in US, document the <strong>wages</strong></li>
-</ul>
-<p>1099-MISC: independent contractor</p>
-<p>1099-INT： bank</p>
-<h2 id="Federal-Tax-Return"><a href="#Federal-Tax-Return" class="headerlink" title="Federal Tax Return"></a>Federal Tax Return</h2><ol>
-<li>receive the W2 and …</li>
-<li>Prepare the tax return</li>
-<li>Print and mail to IRS, send it by April 15</li>
-</ol>
-<h2 id="State-Tax-Return"><a href="#State-Tax-Return" class="headerlink" title="State Tax Return"></a>State Tax Return</h2><p>Two reason：</p>
-<ul>
-<li>made more than some money</li>
-<li>To get some money back</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1364,17 +1652,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">52</span>
-        <span class="site-state-item-name">categories</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">96</span>
-        <span class="site-state-item-name">tags</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>

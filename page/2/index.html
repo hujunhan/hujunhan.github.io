@@ -188,6 +188,333 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Control/Project/motor_control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Control/Project/motor_control/" class="post-title-link" itemprop="url">Motor Control for Autonomous Robot</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-10 21:24:00" itemprop="dateCreated datePublished" datetime="2022-12-10T21:24:00-08:00">2022-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-13 22:29:31" itemprop="dateModified" datetime="2022-12-13T22:29:31-08:00">2022-12-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Control/" itemprop="url" rel="index"><span itemprop="name">Control</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Control/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><ol>
+<li>Identity the behavior of the object to be controlled.<ol>
+<li>In theory, analyze the response, the more linear, the easier to control</li>
+</ol>
+</li>
+<li>Design Controller</li>
+<li>Check the result and tune</li>
+</ol>
+<h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Collect the data by giving the motor PWM from 0 to 255, record the RPM and see whats going on</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-21-40-34.png" alt="image-20221210214034055"></p>
+<p>We can see that the relation is almost linear</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-22-52-30.png" alt="image-20221210225230532"></p>
+<p>So we can fit the data<br>$$<br>RPM&#x3D;0.88PWM-8.1<br>$$<br>Above is the data from right motor, things in left motor is similar</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-23-28-29.png" alt="image-20221210232829155"></p>
+<p>However, the coef is a little different<br>$$<br>RPM&#x3D;0.86PWM-5.99<br>$$<br>Maybe two reason</p>
+<ol>
+<li>Error introduced while manufacturing the two motor</li>
+<li>Error while installing the two motor</li>
+</ol>
+<h3 id="Response-Time"><a href="#Response-Time" class="headerlink" title="Response Time"></a>Response Time</h3><p>We need to see how quickly the encoder can calculate a accurate RPM</p>
+<p>How much pulse the system need? We need to be accurate in slowest situation</p>
+<p>From the data, the RPM start to be normal from 10 RPM while given PWM around 20.</p>
+<p>Let’s see 10RPM, means 10&#x2F;60 per seconds, times 187, around 30 pulse, not enough, if we use both RISING and FALLING signal and use two signal, it would be around 120 pulse in a second, then 200ms (24 count) would be enough.</p>
+<p>Conclusion: 200ms (4% error max), 100ms (10% error max)</p>
+<p>Use 100ms </p>
+<h3 id="PID"><a href="#PID" class="headerlink" title="PID"></a>PID</h3><ol>
+<li>Add fraction, the RPM should be smaller</li>
+<li>We need to increase PWM to maintain the desired RPM</li>
+</ol>
+<p>Say the working speed at 0.2m&#x2F;s<br>$$<br>v&#x3D;2\pi \times r\times\frac{RPM}{60}\<br>RPM&#x3D;\frac{60v}{2\pi \times r}<br>$$<br>The $r$ here is 0.06m, so RPM should be $\frac{60\times 0.2}{2*\times 3.14\times 0.06}&#x3D;31.8$</p>
+<p>Let’s see how much PWM we should give to motor?</p>
+<ul>
+<li>For right motor,(31.8+8.1)&#x2F;0.88&#x3D;45</li>
+<li>For left motor, (31.8+5.99)&#x2F;0.86&#x3D;44</li>
+</ul>
+<p>Be generous, just use the 45</p>
+<p>In the experiments, we can see that while the PWM is 45, the RPM should be around 33 without load.</p>
+<p>By giving a fraction (holding a book on the wheel), the RPM is 23</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/encoder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/encoder/" class="post-title-link" itemprop="url">Encoder</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-06 21:45:00" itemprop="dateCreated datePublished" datetime="2022-12-06T21:45:00-08:00">2022-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-07 23:39:12" itemprop="dateModified" datetime="2022-12-07T23:39:12-08:00">2022-12-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Usage</p>
+<ol>
+<li>Active, can be used as motor controller, like a physical button to tell the system how much speed&#x2F;volume you want</li>
+<li>Passive, can be used as a motor sensor, reading the rotation of a motor, can be further calculated as angular speed</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-06-21-53-55.png" alt="image-20221206215355653"></p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Typically, the encoder on a motor would have 4 channel,</p>
+<ul>
+<li>VCC: in general, 5V</li>
+<li>GND: ground</li>
+<li>ChA and ChB, two channel of the encoder that output PWM<ul>
+<li>two channel can be used at same time to determine the direction of motor</li>
+<li>In reality, only ONE channel is enough since the direction is controlled by the controller (us)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>Resolution need to be known to calculate the speed</p>
+<h3 id="PPR"><a href="#PPR" class="headerlink" title="PPR"></a>PPR</h3><p>Pulses Per Revolution</p>
+<p>Describe the number of high pulse an encoder will have over a single revolution</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-07-21-53-12.png" alt="image-20221207215312381"></p>
+<h3 id="CPR"><a href="#CPR" class="headerlink" title="CPR"></a>CPR</h3><p>Counts Per Revolution</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-07-21-52-55.png" alt="image-20221207215255380"></p>
+<h2 id="Datasheet"><a href="#Datasheet" class="headerlink" title="Datasheet"></a>Datasheet</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-07-23-32-25.png" alt="image-20221207233224754"></p>
+<p>Gearbox output shaft shows 751.8, but when I rotate the wheel for a revolution, the encoder increased by around 180, what’s wrong?</p>
+<ul>
+<li><p>There are two channel A&#x2F;B</p>
+</li>
+<li><p>Each square wave would have two pulse (although only one is rising)</p>
+</li>
+<li><p>So 751.8&#x2F;4&#x3D;187.95, that’s right :white_check_mark:</p>
+<p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/FTC/comments/aity1l/how_many_encoder_pulses_in_a_gobilda_motor/">Ref</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Project/battery-localization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Project/battery-localization/" class="post-title-link" itemprop="url">Battery Localization</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-04 23:03:00" itemprop="dateCreated datePublished" datetime="2022-12-04T23:03:00-08:00">2022-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-05 00:15:56" itemprop="dateModified" datetime="2022-12-05T00:15:56-08:00">2022-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>矿山电池定位系统</p>
+<p>目标：使用多相机多角度视觉系统，定位电池的3d位置</p>
+<p>描述：</p>
+<ol>
+<li>多个相机拍摄电池的不同位置</li>
+<li>将信息组合，列公式或者</li>
+<li>推算出相机相对于电池的位置</li>
+</ol>
+<p>算法：</p>
+<ul>
+<li>输入：多张图片</li>
+<li>输出：相对位姿</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/poem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1219,352 +1546,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/motor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Hardware/motor/" class="post-title-link" itemprop="url">Motor In Robots</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-11-07 22:06:00" itemprop="dateCreated datePublished" datetime="2022-11-07T22:06:00-08:00">2022-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-10 21:24:14" itemprop="dateModified" datetime="2022-12-10T21:24:14-08:00">2022-12-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Method: test the single motor first and then deploy it to real robot</p>
-<p>Any problem can be solved using a layered abstraction</p>
-<h2 id="Motor-Types"><a href="#Motor-Types" class="headerlink" title="Motor Types"></a>Motor Types</h2><p>AC Motor, taken from AC, application in industrial</p>
-<ul>
-<li>Higher power, higher torque</li>
-</ul>
-<p><strong>Brushed and Brushless DC</strong></p>
-<ul>
-<li>Brushed</li>
-<li>Brushless: smooth, no noise, efficient, high speed</li>
-</ul>
-<p>Geared-: Speed reduction</p>
-<p><strong>Stepper&#x2F;Servo</strong>: highest precision</p>
-<h2 id="Control-the-Motor"><a href="#Control-the-Motor" class="headerlink" title="Control the Motor"></a>Control the Motor</h2><ol>
-<li>Motor, can’t de anything</li>
-<li>Supply Voltage, the motor can move</li>
-<li>Motor Driver, take low voltage and output high voltage</li>
-<li>Motor Controller, take practical input and output real signal</li>
-<li>Open-loop control, feedback control, encoder, at a precise speed</li>
-<li>Communication layer, serial</li>
-<li>Robot controller<ol>
-<li>Driver software,</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-07-22-25-39.png" alt="image-20221107222539340"></p>
-<p>Keep the system more modularity, easier to swap the components</p>
-<hr>
-<h2 id="For-Robot"><a href="#For-Robot" class="headerlink" title="For Robot"></a>For Robot</h2><p>How to choose?</p>
-<ul>
-<li>Torque, know the load of your robot</li>
-<li>Speed, on mobile robot, trade off between torque and speed</li>
-<li>Accuracy,</li>
-<li>Voltage, check the nominal volt, the mainstream</li>
-</ul>
-<h2 id="How-to-Master-Robotics"><a href="#How-to-Master-Robotics" class="headerlink" title="How to Master Robotics"></a>How to Master Robotics</h2><p>Stage 1</p>
-<ul>
-<li>Programming</li>
-<li>Assembly</li>
-<li>Electronics</li>
-</ul>
-<p>Stage 2</p>
-<ul>
-<li>OO-programming</li>
-<li>Math and Physics</li>
-<li>Linux</li>
-<li>Embedded System</li>
-</ul>
-<p>Stage 3</p>
-<ul>
-<li>Algorithm</li>
-<li>Library</li>
-<li>ROS</li>
-<li>Design：need a mechanical expert</li>
-</ul>
-<p>Stage 4</p>
-<ul>
-<li>Technology that fascinating</li>
-<li>Work on various tool</li>
-<li>Work with as many single board as  possible</li>
-<li>Maintain the project gut hub</li>
-</ul>
-<h2 id="Speed-Torque-Current"><a href="#Speed-Torque-Current" class="headerlink" title="Speed, Torque, Current"></a>Speed, Torque, Current</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=STdONYFI2C4&t=266s">Ref</a></p>
-<p>First, there is current, the current in the magefield would generate force</p>
-<p>If there is movement, it would generate a oppose voltage (current)</p>
-<ul>
-<li>Faster, the current would be less</li>
-<li>Stall, the largest current</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-19-21-47-01.png" alt="image-20221119214701264"></p>
-<p>Try to keep in the left half</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Finance/f1-job/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Finance/f1-job/" class="post-title-link" itemprop="url">F1 Visa Job</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-25 23:59:00" itemprop="dateCreated datePublished" datetime="2022-10-25T23:59:00-07:00">2022-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-26 00:08:11" itemprop="dateModified" datetime="2022-10-26T00:08:11-07:00">2022-10-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Current status:</p>
-<ul>
-<li>F1 Visa</li>
-<li>OPT</li>
-</ul>
-<p>Multiple Job: </p>
-<ul>
-<li>F1 still could do multiple job</li>
-<li>How to add a new employer</li>
-<li>How many jobs can you do? at least 20 hours per week for each employer</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Machine%20Learning/ai-painting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Machine%20Learning/ai-painting/" class="post-title-link" itemprop="url">AI Painting</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-10-22 21:01:00 / Modified: 21:39:44" itemprop="dateCreated datePublished" datetime="2022-10-22T21:01:00-07:00">2022-10-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Stable Diffusion is a state of the art text-to-image model that generates images from text.</p>
-<p><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/stabilityai/stable-diffusion">Online test</a> by Hugging Face</p>
-<p>E.g the text: a samoyed running on the moon</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-10-22-21-04-37.png" alt="image-20221022210437827"></p>
-<p>Confusion:</p>
-<ol>
-<li>How text to image</li>
-<li>What kind of ML&#x2F;DL tech used</li>
-</ol>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=SVcsDDABEkM">Ref</a> By Vox</p>
-<p>5 step:</p>
-<ol>
-<li>Prepare training data</li>
-<li>Deep learning</li>
-<li>Latent space</li>
-<li>Generation (diffusion)</li>
-<li>Output</li>
-</ol>
-<p>The key step is the <strong>latent space</strong> and <strong>diffusion</strong></p>
-<ul>
-<li><p>The deep learning network would learn from the dataset to learn all kinds of latent space for different word. For example, how yellow is the image, how round is the object, etc. </p>
-</li>
-<li><p>Diffusion start with noise and invert the noise step, guess the true data from noisy data <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=yTAMrHVG1ew">Ref</a></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-10-22-21-16-53.png" alt="image-20221022211653230"> </p>
-<p>From Gaussin to inverse the bayesian. the label would work as a guide as the distribution</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1634,17 +1615,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">52</span>
-        <span class="site-state-item-name">categories</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">96</span>
-        <span class="site-state-item-name">tags</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>

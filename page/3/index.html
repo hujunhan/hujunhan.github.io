@@ -188,6 +188,352 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/motor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/motor/" class="post-title-link" itemprop="url">Motor In Robots</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-07 22:06:00" itemprop="dateCreated datePublished" datetime="2022-11-07T22:06:00-08:00">2022-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-10 21:24:14" itemprop="dateModified" datetime="2022-12-10T21:24:14-08:00">2022-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Method: test the single motor first and then deploy it to real robot</p>
+<p>Any problem can be solved using a layered abstraction</p>
+<h2 id="Motor-Types"><a href="#Motor-Types" class="headerlink" title="Motor Types"></a>Motor Types</h2><p>AC Motor, taken from AC, application in industrial</p>
+<ul>
+<li>Higher power, higher torque</li>
+</ul>
+<p><strong>Brushed and Brushless DC</strong></p>
+<ul>
+<li>Brushed</li>
+<li>Brushless: smooth, no noise, efficient, high speed</li>
+</ul>
+<p>Geared-: Speed reduction</p>
+<p><strong>Stepper&#x2F;Servo</strong>: highest precision</p>
+<h2 id="Control-the-Motor"><a href="#Control-the-Motor" class="headerlink" title="Control the Motor"></a>Control the Motor</h2><ol>
+<li>Motor, can’t de anything</li>
+<li>Supply Voltage, the motor can move</li>
+<li>Motor Driver, take low voltage and output high voltage</li>
+<li>Motor Controller, take practical input and output real signal</li>
+<li>Open-loop control, feedback control, encoder, at a precise speed</li>
+<li>Communication layer, serial</li>
+<li>Robot controller<ol>
+<li>Driver software,</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-07-22-25-39.png" alt="image-20221107222539340"></p>
+<p>Keep the system more modularity, easier to swap the components</p>
+<hr>
+<h2 id="For-Robot"><a href="#For-Robot" class="headerlink" title="For Robot"></a>For Robot</h2><p>How to choose?</p>
+<ul>
+<li>Torque, know the load of your robot</li>
+<li>Speed, on mobile robot, trade off between torque and speed</li>
+<li>Accuracy,</li>
+<li>Voltage, check the nominal volt, the mainstream</li>
+</ul>
+<h2 id="How-to-Master-Robotics"><a href="#How-to-Master-Robotics" class="headerlink" title="How to Master Robotics"></a>How to Master Robotics</h2><p>Stage 1</p>
+<ul>
+<li>Programming</li>
+<li>Assembly</li>
+<li>Electronics</li>
+</ul>
+<p>Stage 2</p>
+<ul>
+<li>OO-programming</li>
+<li>Math and Physics</li>
+<li>Linux</li>
+<li>Embedded System</li>
+</ul>
+<p>Stage 3</p>
+<ul>
+<li>Algorithm</li>
+<li>Library</li>
+<li>ROS</li>
+<li>Design：need a mechanical expert</li>
+</ul>
+<p>Stage 4</p>
+<ul>
+<li>Technology that fascinating</li>
+<li>Work on various tool</li>
+<li>Work with as many single board as  possible</li>
+<li>Maintain the project gut hub</li>
+</ul>
+<h2 id="Speed-Torque-Current"><a href="#Speed-Torque-Current" class="headerlink" title="Speed, Torque, Current"></a>Speed, Torque, Current</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=STdONYFI2C4&t=266s">Ref</a></p>
+<p>First, there is current, the current in the magefield would generate force</p>
+<p>If there is movement, it would generate a oppose voltage (current)</p>
+<ul>
+<li>Faster, the current would be less</li>
+<li>Stall, the largest current</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-19-21-47-01.png" alt="image-20221119214701264"></p>
+<p>Try to keep in the left half</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Finance/f1-job/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Finance/f1-job/" class="post-title-link" itemprop="url">F1 Visa Job</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-25 23:59:00" itemprop="dateCreated datePublished" datetime="2022-10-25T23:59:00-07:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-10-26 00:08:11" itemprop="dateModified" datetime="2022-10-26T00:08:11-07:00">2022-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Current status:</p>
+<ul>
+<li>F1 Visa</li>
+<li>OPT</li>
+</ul>
+<p>Multiple Job: </p>
+<ul>
+<li>F1 still could do multiple job</li>
+<li>How to add a new employer</li>
+<li>How many jobs can you do? at least 20 hours per week for each employer</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Machine%20Learning/ai-painting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/Machine%20Learning/ai-painting/" class="post-title-link" itemprop="url">AI Painting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-22 21:01:00 / Modified: 21:39:44" itemprop="dateCreated datePublished" datetime="2022-10-22T21:01:00-07:00">2022-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Stable Diffusion is a state of the art text-to-image model that generates images from text.</p>
+<p><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/stabilityai/stable-diffusion">Online test</a> by Hugging Face</p>
+<p>E.g the text: a samoyed running on the moon</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-10-22-21-04-37.png" alt="image-20221022210437827"></p>
+<p>Confusion:</p>
+<ol>
+<li>How text to image</li>
+<li>What kind of ML&#x2F;DL tech used</li>
+</ol>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=SVcsDDABEkM">Ref</a> By Vox</p>
+<p>5 step:</p>
+<ol>
+<li>Prepare training data</li>
+<li>Deep learning</li>
+<li>Latent space</li>
+<li>Generation (diffusion)</li>
+<li>Output</li>
+</ol>
+<p>The key step is the <strong>latent space</strong> and <strong>diffusion</strong></p>
+<ul>
+<li><p>The deep learning network would learn from the dataset to learn all kinds of latent space for different word. For example, how yellow is the image, how round is the object, etc. </p>
+</li>
+<li><p>Diffusion start with noise and invert the noise step, guess the true data from noisy data <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=yTAMrHVG1ew">Ref</a></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-10-22-21-16-53.png" alt="image-20221022211653230"> </p>
+<p>From Gaussin to inverse the bayesian. the label would work as a guide as the distribution</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Web/portfolio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1106,327 +1452,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/photo_post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/photo_post/" class="post-title-link" itemprop="url">图像后期流程优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-09-15 22:33:00 / Modified: 22:47:49" itemprop="dateCreated datePublished" datetime="2022-09-15T22:33:00-07:00">2022-09-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>为了更好的节省时间和优化后期的流程，避免重复文件</p>
-<p>Input：一个文件夹，里面包含raw和jpg</p>
-<p>Output: 一个文件夹，里面包含普通照片的heic和优秀照片的raw+heic</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>之前的后期流程比较随意，现在更好的清理</p>
-<ol>
-<li>将照片分到两个文件夹（代码完成）<ol>
-<li>raw</li>
-<li>jpg</li>
-</ol>
-</li>
-<li>在jpg文件夹将照片分成两类（手动完成）<ol>
-<li>good</li>
-<li>normal（全部转成heic）</li>
-</ol>
-</li>
-<li>将raw文件中找到和good文件中同名的照片复制到good文件夹中（代码完成）</li>
-<li>后期good文件夹中的raw照片<ol>
-<li>如果没有good中的jpg好，直接jpg放到final中</li>
-<li>如果比jpg好，输出heic到final中</li>
-</ol>
-</li>
-<li>将normal和final放到合适的目录</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/travel_methodology/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/travel_methodology/" class="post-title-link" itemprop="url">Travel Methodology</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-15 01:02:00" itemprop="dateCreated datePublished" datetime="2022-09-15T01:02:00-07:00">2022-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-25 23:31:28" itemprop="dateModified" datetime="2022-09-25T23:31:28-07:00">2022-09-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>To get more from a trip</p>
-<p>Experience more authentic culture</p>
-<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><p>Some places are easier to live like a local</p>
-<h3 id="Budget"><a href="#Budget" class="headerlink" title="Budget"></a>Budget</h3><p>The cheaper, the better</p>
-<p>The most famous cities are usually the most expensive</p>
-<p>Biggest cost: Flight, use the travel reward card</p>
-<p>Figure out a budget</p>
-<p>Right before or after the “busy” season would be helpful</p>
-<h3 id="What-to-do"><a href="#What-to-do" class="headerlink" title="What to do"></a>What to do</h3><p>City or wilderness? Night or daytime?</p>
-<p>Follow your heart</p>
-<p>Some cities are full of tourist, do some research</p>
-<hr>
-<p>Friendly locals: ignore the stereotype, there are good and bad people everywhere</p>
-<h2 id="Fit-in"><a href="#Fit-in" class="headerlink" title="Fit in"></a>Fit in</h2><p>There are all kinds of thing you should not do, but in fact, you may not offend anyone.</p>
-<p>Just be conscious of the people around</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/produce_music/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/produce_music/" class="post-title-link" itemprop="url">How to Produce Music</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-13 23:16:00" itemprop="dateCreated datePublished" datetime="2022-09-13T23:16:00-07:00">2022-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-25 23:31:28" itemprop="dateModified" datetime="2022-09-25T23:31:28-07:00">2022-09-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>For me, I really not appreciate music that much, and I regard music as a mixture of sound wave.</p>
-<p>But music can do effect our emotion, so I say “why not get hands dirty and produce something?”</p>
-<h2 id="Learn"><a href="#Learn" class="headerlink" title="Learn"></a>Learn</h2><p>The basics from <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=mYVFF-MTkOM">youtube</a></p>
-<p>Software:</p>
-<ol>
-<li>DAW, digital audio workstation<ol>
-<li>FL studio</li>
-<li>Albeton</li>
-<li>Just pick one and use it</li>
-</ol>
-</li>
-</ol>
-<p>Hardware:</p>
-<ol>
-<li>All in, time is the resource</li>
-<li>Mini controller<ol>
-<li>AKAI MK2 MINI</li>
-<li>M Audio</li>
-</ol>
-</li>
-<li>Studio headphone<ol>
-<li>ATH-M50X&#x2F;30X</li>
-</ol>
-</li>
-</ol>
-<h2 id="Knowledge-Base"><a href="#Knowledge-Base" class="headerlink" title="Knowledge Base"></a>Knowledge Base</h2><p>Music: complex yet widely recognized expression</p>
-<p>Sound: vibration in the air, music is just a complex form of the vibration</p>
-<p>Why: Human are attracted to <strong>pattern</strong> and <strong>symmetries</strong> </p>
-<p>All intervals are combination of <strong>tones</strong> and <strong>semitones</strong></p>
-<p>Most harmonious interval:</p>
-<ul>
-<li>Octave: A set of equally spaced notes<ul>
-<li>twice as the one before (frequency)</li>
-</ul>
-</li>
-<li>Agree to each other (a simple ratio)<ul>
-<li>$2^{7&#x2F;12}&#x3D;1.5$ good</li>
-<li>$2^{6&#x2F;12}&#x3D;1.414$ bad</li>
-</ul>
-</li>
-</ul>
-<p>Wave Shape:</p>
-<ul>
-<li>Sin, simple</li>
-<li>Square</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1496,17 +1521,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-count">254</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">52</span>
-        <span class="site-state-item-name">categories</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">96</span>
-        <span class="site-state-item-name">tags</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
