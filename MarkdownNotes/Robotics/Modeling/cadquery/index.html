@@ -27,13 +27,15 @@
 <meta property="og:site_name" content="Only Truth Matters">
 <meta property="og:description" content="WhyGoal: 3D modeling something in my mind, and 3D print the object Tried: I tried   Solidworks (standard software for 3D modeling, but too expensive and not portable) Pure Python, generate point manua">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230114232840.png">
 <meta property="article:published_time" content="2023-01-13T07:35:00.000Z">
-<meta property="article:modified_time" content="2023-01-13T07:48:25.466Z">
+<meta property="article:modified_time" content="2023-01-15T07:30:36.162Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="robotics">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="modeling">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230114232840.png">
 
 <link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Modeling/cadquery/">
 
@@ -218,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-01-12 23:35:00 / Modified: 23:48:25" itemprop="dateCreated datePublished" datetime="2023-01-12T23:35:00-08:00">2023-01-12</time>
+              <time title="Created: 2023-01-12 23:35:00" itemprop="dateCreated datePublished" datetime="2023-01-12T23:35:00-08:00">2023-01-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-14 23:30:36" itemprop="dateModified" datetime="2023-01-14T23:30:36-08:00">2023-01-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -258,7 +266,49 @@
 <li>Pure Python, generate point manually, then use Meshlab to reconstruct the face&#x2F;mesh again, this method is  free but the result is harsh and hard to modify.</li>
 </ul>
 <p>This time, I would try to use a Python library called CadQuery, it based on OpenCascade, an open-source 3D modeling engine.</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id="Design-Principle"><a href="#Design-Principle" class="headerlink" title="Design Principle"></a>Design Principle</h2><p>Intuitive Construction</p>
+<ul>
+<li>the language should just like human language</li>
+</ul>
+<p>Capture Design Intent</p>
+<ul>
+<li>Should follow some unclaimed assumption</li>
+<li>Understand the constrain between different part</li>
+</ul>
+<p>CAD file as cource code</p>
+<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><ul>
+<li><p>Topology</p>
+<ul>
+<li>Boundary Representation, objects are defined by their enclosing surfaces</li>
+<li>vertex to edge to wire to face to shell to solid to compound</li>
+</ul>
+</li>
+<li><p>Workplane, represent a plane that features are located</p>
+<ul>
+<li>Usually start with “XY” plane</li>
+<li>Work in 2D, but generate the 3D thing</li>
+</ul>
+</li>
+<li><p>2D Construction: circle, lines, arcs, mirror</p>
+</li>
+<li><p>3D Construction: boxes, wedges</p>
+</li>
+<li><p>Selector, select the vertices, edges, faces, solids and wire using selectors (like the hand and mouse in GUI CAD software)</p>
+</li>
+<li><p>Assumption: working on a SINGLE solid object</p>
+</li>
+<li></li>
+</ul>
+<h2 id="Try"><a href="#Try" class="headerlink" title="Try"></a>Try</h2><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>Need x86_64 env in M1 Mac, MiniForge can do the job</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/CadQuery/cadquery/issues/997">Ref</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CONDA_SUBDIR=osx-64 conda create -n rosetta python   <span class="comment"># create a new environment called rosetta with intel packages.</span></span><br><span class="line">conda activate rosetta</span><br><span class="line">python -c <span class="string">&quot;import platform;print(platform.machine())&quot;</span></span><br><span class="line">conda config --<span class="built_in">env</span> --<span class="built_in">set</span> subdir osx-64  <span class="comment"># make sure that conda commands in this environment use intel packages</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230114232840.png" alt="image-20230114232840060" style="zoom:15%;" />
+
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>The extra for hole don’t need to be so generous</li>
+</ol>
+
     </div>
 
     
@@ -281,7 +331,10 @@
     <a href="/MarkdownNotes/Life/Skills/haircut/" rel="prev" title="理发助手">
       <i class="fa fa-chevron-left"></i> 理发助手
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Robotics/Mechanical/part/" rel="next" title="Part Learning in Mechanics">
+      Part Learning in Mechanics <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -340,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-Principle"><span class="nav-text">Design Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concept"><span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Try"><span class="nav-text">Try</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install"><span class="nav-text">Install</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Result"><span class="nav-text">Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-text">Takeaway</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -354,20 +407,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">254</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
