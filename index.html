@@ -188,6 +188,387 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Planning/path-planning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Planning/path-planning/" class="post-title-link" itemprop="url">General Path Planning (Advanced)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-04-04 13:11:00" itemprop="dateCreated datePublished" datetime="2023-04-04T13:11:00-07:00">2023-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-06 00:14:50" itemprop="dateModified" datetime="2023-04-06T00:14:50-07:00">2023-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Planning/" itemprop="url" rel="index"><span itemprop="name">Planning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Choose the most suitable path planning algorithm for mobile robot</p>
+<h3 id="Graph-Search"><a href="#Graph-Search" class="headerlink" title="Graph-Search"></a>Graph-Search</h3><p>Discrete approximation</p>
+<ul>
+<li>Optimally efficient</li>
+</ul>
+<p>Con:</p>
+<ul>
+<li>quality depends on discretization</li>
+<li>Suffer in high-dimensional spaces</li>
+</ul>
+<h3 id="Sampling-Based"><a href="#Sampling-Based" class="headerlink" title="Sampling-Based"></a>Sampling-Based</h3><p>No discretization</p>
+<p>Scale well in higher dimensions</p>
+<p>Con:</p>
+<ul>
+<li>random lead to long computation times</li>
+</ul>
+<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><ul>
+<li>Dijkstra: 1956</li>
+<li>A*: 1968</li>
+<li>RRT: 1998</li>
+<li>RRT*: 2010<ul>
+<li>Store the distance info</li>
+<li>Tree would be rewired</li>
+</ul>
+</li>
+<li>CHOMP: 2013</li>
+</ul>
+<h2 id="Some-New-Algorithm"><a href="#Some-New-Algorithm" class="headerlink" title="Some New Algorithm"></a>Some New Algorithm</h2><ul>
+<li>FMT</li>
+<li>Informed RRT*<ul>
+<li>Narrow search space</li>
+<li>Subproblem defined by a ellipse</li>
+</ul>
+</li>
+<li>BIT: find a balance between graph and sample</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230404133448.png" alt="image-20230404133447946"></p>
+<h2 id="BIT-Algorithm"><a href="#BIT-Algorithm" class="headerlink" title="BIT Algorithm"></a>BIT Algorithm</h2><ol>
+<li>Init the tree with start point</li>
+<li>Batch creation, create new sample</li>
+<li>Edge selection, processing the $Q_E$, find the best edge<ol>
+<li>$Q_V$, the vertex expansion queue</li>
+</ol>
+</li>
+<li>Edge Processing<ol>
+<li>check if can improve current soluition</li>
+</ol>
+</li>
+<li>Vertex Expansion<ol>
+<li>remove a vertex from the queue and </li>
+<li>Adds outgoing edge from the vertex to the edge queue</li>
+</ol>
+</li>
+<li>Graph Pruning<ol>
+<li>remove states that cannot provide a solution better than the given cost</li>
+</ol>
+</li>
+</ol>
+<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/songyunli1111/article/details/102808704">Python实现-BIT*-Batch Informed Tree 运动规划算法_海晨威的博客-CSDN博客</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> self.BestVertexQueueValue() &lt;= self.BestEdgeQueueValue():</span><br><span class="line">	result = self.BestInVertexQueue()</span><br><span class="line">	self.ExpandVertex(result)</span><br></pre></td></tr></table></figure>
+
+<p>Only expand when current point’s value is better than the point in the current tree</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (</span><br><span class="line">  self.g_T[vm] + self.calc_dist(vm, xm) + self.h_estimated(xm)</span><br><span class="line">  &lt; self.g_T[self.x_goal]</span><br><span class="line">  ):</span><br><span class="line">  actual_cost = self.cost(vm, xm)</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">      self.g_estimated(vm) + actual_cost + self.h_estimated(xm)</span><br><span class="line">      &lt; self.g_T[self.x_goal]</span><br><span class="line">  ):</span><br><span class="line">      <span class="keyword">if</span> self.g_T[vm] + actual_cost &lt; self.g_T[xm]:</span><br></pre></td></tr></table></figure>
+
+<p>Check the vvalue of a edge, should add it to tree or not</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><h3 id="Empty-QV"><a href="#Empty-QV" class="headerlink" title="Empty QV"></a>Empty QV</h3><p>Too little sample point, increase the sample size solve the problem</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/imu-calibration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/imu-calibration/" class="post-title-link" itemprop="url">IMU Calibration</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-31 23:31:00" itemprop="dateCreated datePublished" datetime="2023-03-31T23:31:00-07:00">2023-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-09 23:30:23" itemprop="dateModified" datetime="2023-04-09T23:30:23-07:00">2023-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>For a IMU, it can measure</p>
+<ul>
+<li>linear acceleration</li>
+<li>angular velocity</li>
+</ul>
+<p>What to calibrate:</p>
+<ul>
+<li>measurement bias<ul>
+<li>constant over time, independent of sonsor motion</li>
+<li>due to manufacturing tolerance</li>
+</ul>
+</li>
+<li>scale factor<ul>
+<li>constant over time</li>
+<li>due to tolerance</li>
+</ul>
+</li>
+<li>misalignments</li>
+<li>drift rate</li>
+<li>Noise</li>
+</ul>
+<h2 id="Basic-Math"><a href="#Basic-Math" class="headerlink" title="Basic Math"></a>Basic Math</h2><p><a target="_blank" rel="noopener" href="http://www.starlino.com/imu_guide.html">Ref</a></p>
+<p>How accelerator works: MEMS</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230409212510.png" alt="accelerometer model"></p>
+<p>The basic is: detect <strong>force</strong></p>
+<p>Calculation:</p>
+<ul>
+<li>get 3 (xyz) axis voltage $\to$ ADC to digital signal (in a range) $\to$ convert into real acc, $(V_x-V_{x_0})&#x2F;Sensitivity$</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Planning/GJK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Planning/GJK/" class="post-title-link" itemprop="url">Gilbert-Johnson-Keerthi Distance Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-28 18:32:00" itemprop="dateCreated datePublished" datetime="2023-03-28T18:32:00-07:00">2023-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-29 00:08:16" itemprop="dateModified" datetime="2023-03-29T00:08:16-07:00">2023-03-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Planning/" itemprop="url" rel="index"><span itemprop="name">Planning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Collision Testing algorithm</p>
+<ul>
+<li>Very general, works with any combination of convex shape</li>
+<li>Fast</li>
+</ul>
+<p>Useful in physics simulation and video games</p>
+<h2 id="Math-Foundations"><a href="#Math-Foundations" class="headerlink" title="Math Foundations"></a>Math Foundations</h2><p>Define a <strong>shape</strong></p>
+<ul>
+<li>A set of points that are infinitely dense</li>
+</ul>
+<p>Define the intersection: share at least one point, vector difference is 0</p>
+<ul>
+<li>if a&#x3D;b</li>
+<li>then a-b&#x3D;0</li>
+</ul>
+<p>If there are infinite number of points, it fails</p>
+<h3 id="Minkowski-Sum"><a href="#Minkowski-Sum" class="headerlink" title="Minkowski Sum"></a>Minkowski Sum</h3><p>Sum of two shape, a shape travel along another shape’s outliers </p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328213559.png" alt="image-20230328213559449"></p>
+<p>Blue + Pink&#x3D; Purple</p>
+<p>The center is located at the sum of the original shape center</p>
+<h3 id="Minkowski-Difference"><a href="#Minkowski-Difference" class="headerlink" title="Minkowski Difference"></a>Minkowski Difference</h3><p>Just like the sum, but the position are define as differences rather than sum</p>
+<p>Key point:</p>
+<ul>
+<li>When the shape intersect, the difference always contains the origin</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328214717.png" alt="image-20230328214716877"></p>
+<p>Takeaway: We only need to test if the origin is in the Minkowski difference</p>
+<h3 id="Simplify"><a href="#Simplify" class="headerlink" title="Simplify"></a>Simplify</h3><p>Instead of working with infinite points, we find <strong>useful points</strong> and calculate the difference of these points</p>
+<p>The convex hull is a good approximation of the entire difference </p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328220242.png" alt="image-20230328220242147"></p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Initialization:</span><br><span class="line"></span><br><span class="line">1. Pick an arbitrary starting direction.</span><br><span class="line"></span><br><span class="line">2. Find a point in the Minkowski difference using the support function.</span><br><span class="line"></span><br><span class="line">3. Add this point to a Simplex, a shape created using the minimum number of </span><br><span class="line">   points in a given dimension. For example, a point in 0 dimensions, a </span><br><span class="line">   line in 2, a triangle in 3, and a tetrahedron in 4. </span><br><span class="line">   </span><br><span class="line">   These shapes are easy to test for intersection, so we will find simplex </span><br><span class="line">   subsets of the convex hull and perform the intersection tests on them.</span><br><span class="line"></span><br><span class="line">Main Loop:</span><br><span class="line"></span><br><span class="line">4. Choose a new direction from the simplex towards the origin.</span><br><span class="line"></span><br><span class="line">5. Get a point with the support function using the direction.</span><br><span class="line"></span><br><span class="line">6. If the point didn&#x27;t pass the origin, then the origin must be outside the </span><br><span class="line">   convex hull. Terminate and return false.</span><br><span class="line"></span><br><span class="line">7. Add the new point to the simplex.</span><br><span class="line"></span><br><span class="line">8. Test to see if the origin intersects the simplex. </span><br><span class="line"></span><br><span class="line">   If it does, keep the entire simplex. </span><br><span class="line">   </span><br><span class="line">   If it does not, reduce to the closest, largest simplex that surrounds </span><br><span class="line">   the origin when it is mapped onto the simplex&#x27;s dimension.</span><br><span class="line"></span><br><span class="line">9. If we found a simplex of the maximum dimension that surrounds the origin,</span><br><span class="line">   terminate and return true. Otherwise, return to step 4.</span><br></pre></td></tr></table></figure>
+
+<p>Keypoint:</p>
+<ul>
+<li>preserve the nearest K point to the origin</li>
+<li>maintain a K+1 dimension simplex</li>
+<li>support point calculation is important</li>
+</ul>
+<p>Determine if the dot product of the new point and the last direction</p>
+<ul>
+<li>if &lt;0, means in the opposite direction, no hope, just exit and return false</li>
+<li>if &gt;0, mean in the same direction, should be iterate</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/AI/chatgpt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,7 +705,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-24 23:41:15" itemprop="dateModified" datetime="2023-03-24T23:41:15-07:00">2023-03-24</time>
+                <time title="Modified: 2023-04-10 22:11:47" itemprop="dateModified" datetime="2023-04-10T22:11:47-07:00">2023-04-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -409,6 +790,13 @@
 </ol>
 </li>
 </ol>
+<h2 id="Wheel-Steer"><a href="#Wheel-Steer" class="headerlink" title="Wheel Steer"></a>Wheel Steer</h2><p>In the MPC, we used a simplified car model (bicycle model), there are only two wheels (front and back) in the car. Here is the problem</p>
+<ul>
+<li>Given front and back steer, how to calcualte the real steer the car should go?</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230410202402.png" alt="image-20230410202402763"></p>
+<p>Almost the same, but in opposite direction</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230410205220.png" alt="image-20230410205220309"></p>
 
       
     </div>
@@ -964,487 +1352,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/CPP/modern-cpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/CPP/modern-cpp/" class="post-title-link" itemprop="url">Modern C++ Learning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-03-09 20:34:00" itemprop="dateCreated datePublished" datetime="2023-03-09T20:34:00-08:00">2023-03-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-13 22:42:11" itemprop="dateModified" datetime="2023-03-13T22:42:11-07:00">2023-03-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/CPP/" itemprop="url" rel="index"><span itemprop="name">CPP</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
-<li>\n and endl?<ul>
-<li>Use \n for general</li>
-<li>endl for flush the output and immediately visible</li>
-</ul>
-</li>
-<li>using: can be in different level<ul>
-<li>Used as alias</li>
-</ul>
-</li>
-<li>Cout? cerr? Buffer or not</li>
-</ul>
-<p>String could be see as a read-only array with zero terminator, so the “Hello” is <strong>6</strong> byte rather than 5</p>
-<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Static type</p>
-<p>Variable could be declared or assigned multiple times, but only <strong>define</strong> once </p>
-<ul>
-<li>Heap? Stack? <ul>
-<li>Stack for local varariable and function call frame</li>
-<li>Heap for dynamic data</li>
-</ul>
-</li>
-</ul>
-<p>define array</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,...&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>size_t: represent the maximum size of any object</li>
-<li>float should be noted as 0.f as example</li>
-<li>byte 8 bit, unsigned char 8 bit, but the byte can only take bitwise operation</li>
-<li>:: would use the global varaiable</li>
-<li>thread_local and static</li>
-<li>use const</li>
-</ul>
-<p>Reference</p>
-<ul>
-<li>Left-value</li>
-<li>right-value: an alias</li>
-</ul>
-<p>Const</p>
-<ul>
-<li>const</li>
-<li>Constexpr: more strict, more performance, don’t need to calculte in run time</li>
-</ul>
-<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>Parameter by reference</p>
-<ul>
-<li>The <code>&amp;</code> is used to create a alias</li>
-</ul>
-<p>Forward declarations</p>
-<ul>
-<li>return type, function name and types</li>
-</ul>
-<p>Multiple definition of function with same name, but the parameters are different type</p>
-<ul>
-<li>Static local, NOT thread-safe</li>
-</ul>
-<p>Return with auto, structured binding</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> std::pair&#123;a,b&#125;</span><br><span class="line"><span class="keyword">auto</span> [a,b]=..</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-<p>Inline function: remove the the <strong>time</strong> <strong>overhead</strong> of a function call</p>
-<ul>
-<li>best for very short function</li>
-</ul>
-<p>No returning</p>
-<ul>
-<li>Std::terminate(), but the memory is not freed</li>
-<li>[[noreturn]], may be more optimization<ul>
-<li>Useful when function would terminate the program</li>
-</ul>
-</li>
-</ul>
-<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>Lvalue, rvalue</p>
-<ul>
-<li>lvalue is just an alias, but to a defined data</li>
-<li>rvalue, the lvalue of a <strong>temporary</strong> object</li>
-</ul>
-<p>Pointer: a 64bit value, works on typed or untyped data</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* p=str;</span><br><span class="line"><span class="comment">// Actuarry is &quot;const char*&quot; and &quot;p&quot;, means the p is a pointer to const string</span></span><br></pre></td></tr></table></figure>
-
-<p>Traversal array: compare address</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> p=<span class="built_in">begin</span>(numbers);p!=<span class="built_in">end</span>(numbers);p++)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>reverse order: rbegin, rend</li>
-</ul>
-<h2 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h2><p>Why enum? commonly a set of named integer?</p>
-<ul>
-<li>give name to integer, more readable and self-explanatory</li>
-</ul>
-<p>Struct: composite types, instantance of struct called object</p>
-<ul>
-<li>benefit: more intuitive, value would be init as 0</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//inheritance or composition</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Pixel</span>: Point &#123;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Pixel</span> &#123;</span><br><span class="line">  Point x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Struct and Class? almost the same, just preference</p>
-<ul>
-<li>default accessibility: struct public, class private</li>
-<li>inheritance: struct public, class private</li>
-</ul>
-<h2 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h2><p>String</p>
-<ul>
-<li>Std::string, concatenation, indexing, sub-string, comparison</li>
-<li>Use  <code>.at</code> for checked selection</li>
-<li>insert, erase, replace, substr</li>
-<li>to_string()</li>
-<li>stoi, stol..</li>
-</ul>
-<p>String_views: can be constructed and passed more cheaply</p>
-<ul>
-<li>read only</li>
-<li>use when you want performance</li>
-</ul>
-<p>Vector</p>
-<ul>
-<li>Std::vector</li>
-<li>Sort(begin(v),end(v))</li>
-<li>Many function to use, </li>
-<li>Push_back, pop_back, front, back, at, resize</li>
-</ul>
-<p>Span: differnt data structure version of string_view</p>
-<ul>
-<li>name from math world</li>
-<li>can be used with array, vector, string</li>
-</ul>
-<p>Sets:  ordered or unordered</p>
-<ul>
-<li>fast lookup</li>
-</ul>
-<p>List: for insertion and erase for better performance</p>
-<ul>
-<li>forward list, single direction linked list</li>
-</ul>
-<p>Maps: contain pair for key and value</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map&lt;string,<span class="type">double</span>&gt; products&#123;</span><br><span class="line">        &#123; <span class="string">&quot;Apples&quot;</span>, <span class="number">0.65</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;Oranges&quot;</span>, <span class="number">0.85</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;Bananas&quot;</span>, <span class="number">0.45</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;Pears&quot;</span>, <span class="number">0.50</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>Vector</p>
-<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifstream infile;</span><br><span class="line"><span class="type">int</span> c = infile.<span class="built_in">get</span>();</span><br><span class="line"><span class="keyword">while</span> (c != ifstream::traits_type::<span class="built_in">eof</span>()) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">static_cast</span>&lt;<span class="type">char</span>&gt;(c);</span><br><span class="line">        c = infile.<span class="built_in">get</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>sanity check <code>eol</code> end of file</li>
-<li>File are just like stream</li>
-</ul>
-<p>Getline(cin,s) would dynamically collect the memory</p>
-<h2 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h2><p>constructor</p>
-<ul>
-<li>protect, private <ul>
-<li>private is only this class</li>
-<li>protected can be accessed by subclass</li>
-</ul>
-</li>
-<li>Virtual: a base function that can be overriden<ul>
-<li>if not, the base function would be called</li>
-</ul>
-</li>
-</ul>
-<p>Deconstructor</p>
-<ul>
-<li>objects allocated using <code>new</code> is on heap, so won’t be deleted if explicitly <code>delete</code></li>
-<li><code>=delete</code> is used to prevent unwanted unwanted operation</li>
-</ul>
-<p>Friend functions and classes</p>
-<ul>
-<li>have access to private and protected</li>
-</ul>
-<p>Polymorphism</p>
-<ul>
-<li><p>derived class can be manipulated as a base class</p>
-</li>
-<li><p>if declared with <code>virtual</code>, the function used would be selected in run-time</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">//normal</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="title">f</span><span class="params">()</span></span>=<span class="number">0</span>; <span class="comment">//must be override</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">override</span></span>; <span class="comment">// is override previous</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">override</span> <span class="keyword">final</span></span>; <span class="comment">// no more override</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>Abstract class: if contain a pure virtual function (has no implementation)</p>
-<h2 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h2><p>Types as parameters</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">double</span>&gt; vd</span><br></pre></td></tr></table></figure>
-
-<p>in fact, STD does NOT contain a specialization of vector for double, is is generated by compiler.</p>
-<p>Use std::optional to provide more safety check for maybe null ptr</p>
-<p>Explicit: the compiler would not perform implicit conversion</p>
-<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p><code>Try</code> and <code>Catch</code>,</p>
-<p><code>...</code>  can take any thing</p>
-<p>for_each(begin, end, ref(f))</p>
-<ul>
-<li>Ref make a reference, so no object is copyed</li>
-</ul>
-<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> l=[]()&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Use with std algorithm like for_each and sort etc</p>
-<p>[] capture the data</p>
-<p>if [&amp;], then the data in main() could be accessed,  by reference</p>
-<p>if [&#x3D;], accessed by value</p>
-<h2 id="Smart-Pointers"><a href="#Smart-Pointers" class="headerlink" title="Smart Pointers"></a>Smart Pointers</h2><p>Entities behind heap object </p>
-<ul>
-<li>unique_ptr: exculsive ownership, only the object</li>
-<li>Shared_ptr: become reference counted, only delete it when the last pointer goes out of scope</li>
-<li>weak_ptr: have access right but don’t affect the life time</li>
-</ul>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>[[noreturn]] for termination</p>
-<p>[[noexcept]] for performance and better memory usage</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/pybind11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Miscellaneous/pybind11/" class="post-title-link" itemprop="url">Pybind11</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-03-09 01:00:00 / Modified: 01:09:58" itemprop="dateCreated datePublished" datetime="2023-03-09T01:00:00-08:00">2023-03-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><ul>
-<li>Header only library</li>
-<li>Expose C++ function, classes and objects as Python module</li>
-</ul>
-<h2 id="How-to-Use"><a href="#How-to-Use" class="headerlink" title="How to Use"></a>How to Use</h2><ol>
-<li>Include the pybind11</li>
-<li>define python modules using macros</li>
-<li>export to python module</li>
-</ol>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>my_class.h</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">const</span> std::string&amp; name);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setName</span><span class="params">(<span class="type">const</span> std::string&amp; name)</span></span>;</span><br><span class="line">    <span class="function">std::string <span class="title">getName</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string name_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>my_class.cpp</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;my_class.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">MyClass::<span class="built_in">MyClass</span>(<span class="type">const</span> std::string&amp; name) : <span class="built_in">name_</span>(name) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MyClass::setName</span><span class="params">(<span class="type">const</span> std::string&amp; name)</span> </span>&#123;</span><br><span class="line">    name_ = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">std::string <span class="title">MyClass::getName</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name_;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>My_module.cpp</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pybind11/pybind11.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;my_class.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> py = pybind11;</span><br><span class="line"></span><br><span class="line"><span class="built_in">PYBIND11_MODULE</span>(my_module, m) &#123;</span><br><span class="line">    py::<span class="built_in">class_</span>&lt;MyClass&gt;(m, <span class="string">&quot;MyClass&quot;</span>)</span><br><span class="line">        .<span class="built_in">def</span>(py::<span class="built_in">init</span>&lt;<span class="type">const</span> std::string&amp;&gt;())</span><br><span class="line">        .<span class="built_in">def</span>(<span class="string">&quot;setName&quot;</span>, &amp;MyClass::setName)</span><br><span class="line">        .<span class="built_in">def</span>(<span class="string">&quot;getName&quot;</span>, &amp;MyClass::getName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>In python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> my_module</span><br><span class="line"></span><br><span class="line">obj = my_module.MyClass(<span class="string">&quot;Hello, world!&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(obj.getName()) <span class="comment"># prints &quot;Hello, world!&quot;</span></span><br><span class="line">obj.setName(<span class="string">&quot;Goodbye, world!&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(obj.getName()) <span class="comment"># prints &quot;Goodbye, world!&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Datatype"><a href="#Datatype" class="headerlink" title="Datatype?"></a>Datatype?</h2><p>Pybind11 auto perform type conversions</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/lib/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Miscellaneous/lib/" class="post-title-link" itemprop="url">Dynamic? Static?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-03-08 22:32:00 / Modified: 23:39:14" itemprop="dateCreated datePublished" datetime="2023-03-08T22:32:00-08:00">2023-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Understand the difference between dynamic and static libraries in software</p>
-<ul>
-<li>Static: link at compile time, make the final program larger</li>
-<li>Dynamic: link at runtime, require the system to have the lib</li>
-</ul>
-<p>When to use?</p>
-<ul>
-<li>Static: lib is small, not change, need to be optimized</li>
-<li>Dynamic: lib is large, frequently update</li>
-</ul>
-<h2 id="Compile-Process"><a href="#Compile-Process" class="headerlink" title="Compile Process"></a>Compile Process</h2><ul>
-<li>Preprocessing, remove comments, expand macro</li>
-<li>Compilation, translate into assembly</li>
-<li>Assembly, translatie into machine code</li>
-<li>Linking, combine it with other libraries and modules</li>
-</ul>
-<h2 id="Linking"><a href="#Linking" class="headerlink" title="Linking?"></a>Linking?</h2><ul>
-<li>Static linking is usually used for local</li>
-<li>Dynamic linking is usually used for external libraries</li>
-</ul>
-<p>How it works?</p>
-<ul>
-<li>When compiled, it split into object file and combined into a single file</li>
-<li>Header files should be used to make sure the parameter is correct</li>
-</ul>
-<p>References?</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1510,7 +1421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-count">291</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1523,7 +1434,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

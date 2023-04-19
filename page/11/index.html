@@ -188,6 +188,407 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mechanical/design-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Mechanical/design-problem/" class="post-title-link" itemprop="url">零件设计疑惑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-14 22:08:00 / Modified: 20:53:42" itemprop="dateCreated datePublished" datetime="2022-04-14T22:08:00-07:00">2022-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Mechanical/" itemprop="url" rel="index"><span itemprop="name">Mechanical</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>最近开始学习机械画图，但画图不是目的，目的是做出能够工作的机械零部件</p>
+<p>练习项目：相机外壳</p>
+<p>已经有的：PCB和相机</p>
+<p>目标：相机的外壳，分别对PCB和相机，也就是说两个壳体</p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>由于不是机械出身，对于一些设计时候需要经验的地方就无从下手</p>
+<p>相机外壳设计遇到的问题</p>
+<ul>
+<li>设计冗余量怎么确定：<ul>
+<li>专业术语叫公差、配合</li>
+</ul>
+</li>
+<li>壳体厚度怎么确定：<ul>
+<li>看设计，和大小有关。这里设计的相机比较小，厚度1.5mm或者2mm就够了</li>
+</ul>
+</li>
+<li>排线能否在相机段插拔，<ul>
+<li>设计时要考虑加工的难易程度，尽量设计简单易加工的。比如说，我本来的想法是给排线设计一个孔，但是加工孔的难度较大，那么应该设计一个槽，加工就容易很多</li>
+</ul>
+</li>
+<li>什么时候用倒角圆角，0.5<ul>
+<li>从安全、美观角度来说应该多使用。比如说直角容易划破排线、对于人来说也很危险，因此要使用倒角。倒角的半径设计：不能太大（大于厚度不行），不能太小（小了没用）</li>
+</ul>
+</li>
+<li>稳定的连接，一般需要螺丝多长<ul>
+<li>看壳体厚度</li>
+</ul>
+</li>
+</ul>
+<h2 id="Fit-and-Tolerance"><a href="#Fit-and-Tolerance" class="headerlink" title="Fit and Tolerance"></a>Fit and Tolerance</h2><p>设计时我们希望不同的部件是怎么样配合在一起的？紧密的？松垮的？</p>
+<p>公差-告诉加工人员多大的误差是可接受范围。精度要求越高，成本指数上升</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-14-22-50-44.png" alt="image-20220414225044634" style="zoom:10%;" />
+
+<p>根据需求选择合适的配合</p>
+<img src="https://249261-772960-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2021/03/flow-chart-of-the-types-of-fits-.jpg" alt="flow chart of the types of fits" style="zoom:25%;" />
+
+<hr>
+<p>想到的问题</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-14-23-51-24.png" alt="image-20220414235123855" style="zoom:33%;" />
+
+<p>过盈配合，稍微大一点也是可以装配的</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Entrepreneurship%20/bp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Entrepreneurship%20/bp/" class="post-title-link" itemprop="url">Business Proposal</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-14 15:19:00 / Modified: 13:12:15" itemprop="dateCreated datePublished" datetime="2022-04-14T15:19:00-07:00">2022-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Entrepreneurship/" itemprop="url" rel="index"><span itemprop="name">Entrepreneurship </span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>What: A document outlines ideas and strategies for launching and managing</p>
+<h2 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h2><ol>
+<li>What is the company<ol>
+<li>slogan</li>
+</ol>
+</li>
+<li>Team<ol>
+<li>experience</li>
+<li>unique</li>
+</ol>
+</li>
+<li>Operation<ol>
+<li>What is user gonna use</li>
+<li>technology</li>
+</ol>
+</li>
+<li>Marketplace<ol>
+<li>facts, numbers</li>
+</ol>
+</li>
+<li>Strategy<ol>
+<li>When will you make money</li>
+</ol>
+</li>
+<li>Competition<ol>
+<li>Why hasn’t been done</li>
+</ol>
+</li>
+<li>Revenue<ol>
+<li>How are you going to make money</li>
+<li>The cost</li>
+</ol>
+</li>
+<li>How much do you need</li>
+</ol>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zlrb_X6fYZ0">Business Plan Writing 101: Wharton Entrepreneurship Series</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Entrepreneurship%20/one-line-desc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Entrepreneurship%20/one-line-desc/" class="post-title-link" itemprop="url">一句话描述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-14 15:07:00 / Modified: 12:18:38" itemprop="dateCreated datePublished" datetime="2022-04-14T15:07:00-07:00">2022-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Entrepreneurship/" itemprop="url" rel="index"><span itemprop="name">Entrepreneurship </span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>为什么需要一句话描述？</p>
+<p>项目创业有很多，想要引起别人的注意，我们需要给别人留下深刻的印象，通过一句话描述可以在短时间内将自己的公司说明清楚</p>
+<p>具体怎么做？</p>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p><a target="_blank" rel="noopener" href="https://fi.co/insight/can-you-explain-your-startup-idea-in-one-sentence">https://fi.co/insight/can-you-explain-your-startup-idea-in-one-sentence</a></p>
+<p> <strong>(公司名称)提供的 (产品或服务) 利用 (特色功能的突出) 帮助 (目标用户) 解决 (问题描述)</strong></p>
+<p>几个原则</p>
+<ul>
+<li>避免使用主观性描述</li>
+<li>准确定义目标市场和客户</li>
+<li>保持简单</li>
+</ul>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><p>腾浩视线利用机器人和人工智能技术为茶企提供智能采摘机器人，帮助茶企降低人工成本、提高茶叶质量</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/DS_Algorithm/Furthest-Point-Sampling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/DS_Algorithm/Furthest-Point-Sampling/" class="post-title-link" itemprop="url">根据距离的降采样</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-13 16:18:00" itemprop="dateCreated datePublished" datetime="2022-04-13T16:18:00-07:00">2022-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-10-23 16:02:16" itemprop="dateModified" datetime="2022-10-23T16:02:16-07:00">2022-10-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS_Algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Furthest-Point-Sampling"><a href="#Furthest-Point-Sampling" class="headerlink" title="Furthest Point Sampling"></a>Furthest Point Sampling</h2><p>用处：给点云或者密集点降采样，使点云达到空间中的均匀分布</p>
+<p>Above：从正态分布到均匀分布</p>
+<p>输入：N个点，想要的最终点数M(&lt;N)</p>
+<p>输出：index</p>
+<p>思想：不停迭代离其他点最远的，直到选出M个点。</p>
+<p>算法：</p>
+<ol>
+<li>维护两个set，sampled和remain</li>
+<li>对于每个remain中的点，在sampled找最近的，保存距离</li>
+<li>找到remain中最近距离最远的，移动到sampled中</li>
+</ol>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fps</span>(<span class="params">points, n_samples</span>):</span><br><span class="line">    points = np.array(points)</span><br><span class="line">    <span class="comment"># Represent the points by their indices in points</span></span><br><span class="line">    points_left = np.arange(<span class="built_in">len</span>(points)) <span class="comment"># [P]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialise an array for the sampled indices</span></span><br><span class="line">    sample_inds = np.zeros(n_samples, dtype=<span class="string">&#x27;int&#x27;</span>) <span class="comment"># [S]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initialise distances to inf</span></span><br><span class="line">    dists = np.ones_like(points_left) * <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>) <span class="comment"># [P]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Select a point from points by its index, save it</span></span><br><span class="line">    selected = <span class="number">0</span></span><br><span class="line">    sample_inds[<span class="number">0</span>] = points_left[selected]</span><br><span class="line">    <span class="comment"># Delete selected </span></span><br><span class="line">    points_left = np.delete(points_left, selected) <span class="comment"># [P - 1]</span></span><br><span class="line">    <span class="comment"># Iteratively select points for a maximum of n_samples</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_samples):</span><br><span class="line">        <span class="comment"># Find the distance to the last added point in selected</span></span><br><span class="line">        <span class="comment"># and all the others</span></span><br><span class="line">        last_added = sample_inds[i-<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        dist_to_last_added_point = (</span><br><span class="line">            (points[last_added] - points[points_left])**<span class="number">2</span>).<span class="built_in">sum</span>(-<span class="number">1</span>) <span class="comment"># [P - i]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># If closer, updated distances</span></span><br><span class="line">        dists[points_left] = np.minimum(dist_to_last_added_point, </span><br><span class="line">                                        dists[points_left]) <span class="comment"># [P - i]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># We want to pick the one that has the largest nearest neighbour</span></span><br><span class="line">        <span class="comment"># distance to the sampled points</span></span><br><span class="line">        selected = np.argmax(dists[points_left])</span><br><span class="line">        sample_inds[i] = points_left[selected]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Update points_left</span></span><br><span class="line">        points_left = np.delete(points_left, selected)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> points[sample_inds]</span><br><span class="line"></span><br><span class="line">num,dim = <span class="number">300</span>,<span class="number">2</span></span><br><span class="line">x=np.random.randn(num,dim)</span><br><span class="line">ds=fps(x,<span class="number">30</span>)</span><br><span class="line"><span class="built_in">print</span>(x.shape)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">plt.scatter(x[:,<span class="number">0</span>],x[:,<span class="number">1</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Normal Dist&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">plt.scatter(ds[:,<span class="number">0</span>],ds[:,<span class="number">1</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;FPS Dist&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-16-24-21.png" alt="image-20220413162421627"></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://minibatchai.com/ai/2021/08/07/FPS.html">https://minibatchai.com/ai/2021/08/07/FPS.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/depth-estimation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1086,554 +1487,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Web/webrtc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Web/webrtc/" class="post-title-link" itemprop="url">WebRTC</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-03-11 15:53:00 / Modified: 22:03:14" itemprop="dateCreated datePublished" datetime="2022-03-11T15:53:00-08:00">2022-03-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Web realtime trans </p>
-<p>differ from web sockets</p>
-<ul>
-<li>reduce the latency</li>
-</ul>
-<h2 id="How-to-communicate"><a href="#How-to-communicate" class="headerlink" title="How to communicate"></a>How to communicate</h2><h3 id="Signaling"><a href="#Signaling" class="headerlink" title="Signaling"></a>Signaling</h3><p>A,B connect to server and exchange informations</p>
-<h3 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h3><p>API</p>
-<p>Indentity</p>
-<p>Type of data</p>
-<p>NAT traversal</p>
-<p>Security: crypto</p>
-<p>Codec</p>
-<h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><p>works via UDP</p>
-<p>No standard signaling protocal</p>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Remove the need foe extra apps</p>
-<p>Embedded in web technologies</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Test/pytest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Test/pytest/" class="post-title-link" itemprop="url">Pytest Basics</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-03-11 13:48:00 / Modified: 10:56:23" itemprop="dateCreated datePublished" datetime="2022-03-11T13:48:00-08:00">2022-03-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Test/" itemprop="url" rel="index"><span itemprop="name">Test</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>The <code>pytest</code> framework makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries.</p>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Benefit of testing framework</p>
-<ul>
-<li>Integrarte within</li>
-<li>add assertions</li>
-</ul>
-<p>PyTest Markers$\to$grouping</p>
-<p>PyTest Fixtures$\to$prerequest</p>
-<p>PyTest Hooks$\to$</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Entrepreneurship%20/strategy-notes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Entrepreneurship%20/strategy-notes/" class="post-title-link" itemprop="url">Strategy for Startup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-06 21:20:00" itemprop="dateCreated datePublished" datetime="2022-03-06T21:20:00-08:00">2022-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-13 12:45:24" itemprop="dateModified" datetime="2022-04-13T12:45:24-07:00">2022-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Entrepreneurship/" itemprop="url" rel="index"><span itemprop="name">Entrepreneurship </span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Choosing-Your-Opportunity"><a href="#Choosing-Your-Opportunity" class="headerlink" title="Choosing Your Opportunity"></a>Choosing Your Opportunity</h2><p>Opportunity is neither a matter of simple luck nor a certain path. Opportunity is the formulation of a hypothesis by an entrepreneur about how to potentially create and capture value by providing something that is “missing” from the marketplace. </p>
-<h3 id="A-Strategic-Approach"><a href="#A-Strategic-Approach" class="headerlink" title="A Strategic Approach"></a>A Strategic Approach</h3><p>3 insight about opportunities </p>
-<ul>
-<li>opportunities are everywhere</li>
-<li>while opportunities are everywhere, not every opportunity is the right opportunity for every individual.</li>
-<li>opportunities are uncertain</li>
-</ul>
-<p>Opportunity is a hypothesis about the potential for creating and capture value that, by its very nature, is uncertain at the moment it is first perceived. Indeed, it is that very uncertainty that creates the opportunity.</p>
-<h3 id="Why-Choose-an-Opportunity"><a href="#Why-Choose-an-Opportunity" class="headerlink" title="Why Choose an Opportunity"></a>Why Choose an Opportunity</h3><p>Two questions </p>
-<ul>
-<li>why is there an opportunity in a particular location and moment (here and now) to introduce something novel to the marketplace?</li>
-<li>why are you the entrepreneur or founding team to translate this opportunity into a reality?</li>
-</ul>
-<h3 id="Value-Creation-and-Capture-Why-Here-and-Now"><a href="#Value-Creation-and-Capture-Why-Here-and-Now" class="headerlink" title="Value Creation and Capture: Why Here and Now"></a>Value Creation and Capture: Why Here and Now</h3><ul>
-<li>Novel technologies,most involve a process of combinatorial innovation, where the innovator seeks to arrange different technological elements in a novel way</li>
-<li>Novel needs</li>
-</ul>
-<h3 id="Perspective-Advantage-and-Passion-Why-You"><a href="#Perspective-Advantage-and-Passion-Why-You" class="headerlink" title="Perspective, Advantage, and Passion: Why You"></a>Perspective, Advantage, and Passion: Why You</h3><ul>
-<li>The Individual-Opportunity Nexus. Presented with precisely the same opportunity, different individuals will have differing assessments of the value of that opportunity as well as how best to pursue it.</li>
-<li>Unfair Advantage. prior knowledge allows an entrepreneur to weigh the relative strengths and weaknesses of alternative strategic options</li>
-<li>Passion. entrepreneur needs to undertake hard work and effort to realize value.</li>
-</ul>
-<h3 id="Choosing-Opportunity"><a href="#Choosing-Opportunity" class="headerlink" title="Choosing Opportunity"></a>Choosing Opportunity</h3><p>Three key criteria stand out.</p>
-<ul>
-<li>unique value creation. The most valuable opportunities are those that have the potential to create value and are not already being pursued</li>
-<li>whether the entrepreneur possesses an unfair advantage. An entrepreneur is more likely to successfully pursue an opportunity for which that entrepreneur can leverage or attract resources and capabilities that others may not be able to access.</li>
-<li>the passion that entrepreneur has for that idea. Passion is not simply a willingness to undertake the opportunity in the abstract but an ability to undertake the significant effort and work required to bring a particular opportunity to life.</li>
-</ul>
-<h2 id="Choosing-your-Strategy"><a href="#Choosing-your-Strategy" class="headerlink" title="Choosing your Strategy"></a>Choosing your Strategy</h2><h3 id="Forming-a-core-idea-identifying-what-you-can-choose"><a href="#Forming-a-core-idea-identifying-what-you-can-choose" class="headerlink" title="Forming a core idea: identifying what you can choose"></a>Forming a core idea: identifying what you can choose</h3><p>the best way to identify those choices is to know and be able to state very clearly what the core idea of the venture is.</p>
-<blockquote>
-<p>Amazon: use the Internet to order and deliver goods directly to consumers</p>
-</blockquote>
-<h3 id="Four-Domains-of-Entrepreneurial-Choice"><a href="#Four-Domains-of-Entrepreneurial-Choice" class="headerlink" title="Four Domains of Entrepreneurial Choice"></a>Four Domains of Entrepreneurial Choice</h3><ul>
-<li>customer</li>
-<li>technology </li>
-<li>organization: culture style people location, attract resources as much as possible</li>
-<li>competition: choose who to avoid</li>
-</ul>
-<h3 id="Why-Choice-Matters"><a href="#Why-Choice-Matters" class="headerlink" title="Why Choice Matters"></a>Why Choice Matters</h3><p><strong>Resources is limited.</strong></p>
-<p>The best process ends up being one between just doing it and full-on planning.</p>
-<h3 id="The-Choice-Challenge"><a href="#The-Choice-Challenge" class="headerlink" title="The Choice Challenge"></a>The Choice Challenge</h3><ul>
-<li>Many Alternatives, good idea have more than one path to achieve it</li>
-<li>Tight Constraints, Financial and organizational resource constraints prevent the pursuit of more than one alternative at the same time.</li>
-</ul>
-<h3 id="The-Learning-Challenge"><a href="#The-Learning-Challenge" class="headerlink" title="The Learning Challenge"></a>The Learning Challenge</h3><p>Given that there is fundamental uncertainty about the quality of the entrepreneur’s core idea as well as whether any given path might create sufficient value, it is unclear which path to choose.</p>
-<ul>
-<li>Fundamental Uncertainty, Because of uncertainty, even the most optimistic projections should be treated with considerable skepticism.it is precisely this high level of uncertainty that justifies undertaking an active and iterative planning process. Unavoidable </li>
-<li>Commitment-free learning can only generate noisy estimates of the value of an idea and an alternative.</li>
-<li>The paradox of entrepreneurship: Choosing between alternatives strategies requires knowledge that can only be gained through learning and<br>experimentation that itself can foreclose on the pursuit of other strategies.<br>Ultimately, entrepreneurs must experiment.</li>
-</ul>
-<h3 id="Test-Two-Choose-One"><a href="#Test-Two-Choose-One" class="headerlink" title="Test Two, Choose One"></a>Test Two, Choose One</h3><p>For a given idea, entrepreneurs should only begin to commit to one business plan after considering multiple strategic alternatives and identifying at least two that are commercially viable yet difficult to rank.</p>
-<h3 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h3><p>one reason you might choose one path above another is that the path involves fewer commitments and an opportunity to pivot if that path proves unsuccessful</p>
-<h2 id="Choosing-Customer"><a href="#Choosing-Customer" class="headerlink" title="Choosing Customer"></a>Choosing Customer</h2><p>there are often multiple paths for technological development</p>
-<h2 id="Choosing-Technology"><a href="#Choosing-Technology" class="headerlink" title="Choosing Technology"></a>Choosing Technology</h2><p>Fewer challenges or potentially superior trajectory</p>
-<ul>
-<li>Prioritizing  innovation  allows  a  startup  to  offer  a  vision  to  potential investors, employees, partners, customers</li>
-<li>The  resources,  time  and  emphasis  to achieving technical objectives may lead to different consumer insights and thus, it will  also  matter  if  those  are  the  right  consumers</li>
-</ul>
-<h3 id="The-Technology-S-curve"><a href="#The-Technology-S-curve" class="headerlink" title="The Technology S-curve"></a>The Technology S-curve</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-02-05-14-36-46.png" alt="image-20220205143646216"></p>
-<p>Need a metrics to evaluate an idea, connect it with value creation</p>
-<ul>
-<li>Existing solutions’ constrain can be overcame by new solutions</li>
-<li>Can start-up team take advantage from the window of opportunity in S-Curve. Compare different method</li>
-<li>General vs. Specialized</li>
-</ul>
-<h2 id="Choosing-Organization"><a href="#Choosing-Organization" class="headerlink" title="Choosing Organization"></a>Choosing Organization</h2><p>Questions: It’s impossible to great at everything.</p>
-<h3 id="Why-Choose-Organization"><a href="#Why-Choose-Organization" class="headerlink" title="Why Choose Organization"></a>Why Choose Organization</h3><p>Need a group, so an organizations is required to deliver on value creation and capture.</p>
-<p>It’s about</p>
-<ul>
-<li>How organization formed</li>
-<li>What element is prioritized</li>
-</ul>
-<p>At beginning, the startup team is limited. Face 3 challenges</p>
-<ul>
-<li>Limited resources like money human and time</li>
-<li>High level of uncertainty of alternative organization form.<ul>
-<li>Whom to hire? Tech? Sale?</li>
-</ul>
-</li>
-<li>Imprinting of founders</li>
-</ul>
-<h3 id="Resources-and-Capabilities"><a href="#Resources-and-Capabilities" class="headerlink" title="Resources and Capabilities"></a>Resources and Capabilities</h3><p>The effective management of valuable resources and unique capabilities is often identified as the one of (if not the most) important driver of the success of any organization.</p>
-<p>Make use of the unique advantage of group (like high education level, or locate more local), so that competition can not imitate quickly.</p>
-<h3 id="Starting-Organization"><a href="#Starting-Organization" class="headerlink" title="Starting Organization"></a>Starting Organization</h3><p>for most ventures, the pursuit of opportunity involves somehow gaining access or control over resources and capabilities beyond the initial resources and capabilities of the founding team.</p>
-<p>The entrepreneur must also figure out how to gain access to those resources and capabilities in order to grow their organization over time.</p>
-<p>The key is <strong>growth</strong></p>
-<ul>
-<li>Focus by setting metrics.</li>
-<li>Choosing the founding team, those who have the same core mission</li>
-</ul>
-<h3 id="Grwoth"><a href="#Grwoth" class="headerlink" title="Grwoth"></a>Grwoth</h3><p>The growth of a firm (the most common type of organization established by an entrepreneur) is the change over time in the accumulation of human, physical, and financial resources and the development of processes and structures (and even organizational culture) that enable capabilities.</p>
-<ul>
-<li>to test and implement their overall entrepreneurial strategy, a new firm needs to attract or acquire new resources and capabilities beyond those under its control at the time of founding.</li>
-<li>On the other hand, the process of attracting and acquiring resources itself takes time and attention away from implementing the strategy itself.</li>
-</ul>
-<h3 id="Build-Capabilities-amp-Leveraging-resources"><a href="#Build-Capabilities-amp-Leveraging-resources" class="headerlink" title="Build Capabilities &amp; Leveraging resources"></a>Build Capabilities &amp; Leveraging resources</h3><p>A capability is, at a very broad level, something that your business is good at.</p>
-<p>The make versus buy decision defines what will be done inside the business as opposed to outside of it. </p>
-<ul>
-<li>**In choosing whether to make or buy with respect to a good or service, a startup must trade off the ability to procure externally the best products available globally at present versus the ability to set their own dynamic path for internal improvement of those products.**q</li>
-</ul>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><ul>
-<li>Star model</li>
-<li>Factory model</li>
-<li>Engineering model</li>
-<li>Commitment model</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/Photography/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/Photography/" class="post-title-link" itemprop="url">Photograph</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-02-20 21:29:00" itemprop="dateCreated datePublished" datetime="2022-02-20T21:29:00-08:00">2022-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-03 22:22:06" itemprop="dateModified" datetime="2022-10-03T22:22:06-07:00">2022-10-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Photography"><a href="#Photography" class="headerlink" title="Photography"></a>Photography</h1><blockquote>
-<p>Photography means Writing with Lights</p>
-</blockquote>
-<h2 id="Elements"><a href="#Elements" class="headerlink" title="Elements"></a>Elements</h2><p>Record of people and things. Photo serves as document or symbol?</p>
-<p>Making photo rather than Taking</p>
-<p>Well organized&#x2F;composited photo</p>
-<p>Learning photography is just like learning language&#x2F;writing</p>
-<h3 id="Shape"><a href="#Shape" class="headerlink" title="Shape"></a>Shape</h3><p>Syntax creates meaning, we arrange elements</p>
-<p>Just 2D information</p>
-<p>Use exposure to control what to emphasis</p>
-<h3 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h3><p>3D aspect info</p>
-<p>lighting and shadowing</p>
-<p>distortion information</p>
-<p>Close-large, far-small</p>
-<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>Touch information</p>
-<p>We need light&#x2F;shadow to illustrate the texture</p>
-<p>We should emphasis texture that people ignore in daily life</p>
-<h3 id="Tone"><a href="#Tone" class="headerlink" title="Tone"></a>Tone</h3><p>Lightness and darkness</p>
-<p>Based on the message we want to convey</p>
-<blockquote>
-<p>Meter: make the spot&#x2F;overall image in <strong>gray</strong></p>
-</blockquote>
-<h3 id="Line"><a href="#Line" class="headerlink" title="Line"></a>Line</h3><p>We need to put element in a purpose</p>
-<p>Visible&#x2F;Implied</p>
-<p>Vertical line $\to$ Solidity</p>
-<p>Horizontal $\to$ from left to right (written language)</p>
-<p>S-curve, radiant line, circular</p>
-<h3 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h3><p><strong>Repetition</strong> of similar elements</p>
-<p>Direction, leads to the emphasis things</p>
-<p>Capture the simple memory</p>
-<p>Find the difference in pattern</p>
-<p>too simple $\to$ visual candy (bad)</p>
-<h3 id="Color"><a href="#Color" class="headerlink" title="Color"></a>Color</h3><p>Address color as elements</p>
-<p>Visual weights</p>
-<ul>
-<li>contrast (avoid)</li>
-<li>similar</li>
-</ul>
-<p>To achieve harmonious</p>
-<h2 id="Composition"><a href="#Composition" class="headerlink" title="Composition"></a>Composition</h2><p>Visual weights</p>
-<ul>
-<li>someone interests in something</li>
-<li>we need to assess the element</li>
-</ul>
-<p><strong>Goal: let the viewer look deeply to where I want them to</strong></p>
-<p>NO.1: Human Being</p>
-<p>Other things like</p>
-<ul>
-<li>strange shape</li>
-<li>contrast color</li>
-<li>strange texture</li>
-<li>size</li>
-</ul>
-<h3 id="Balance"><a href="#Balance" class="headerlink" title="Balance"></a>Balance</h3><p>composition is a map,</p>
-<ul>
-<li>map has to be accurate</li>
-<li>viewer, the information want to convey</li>
-</ul>
-<p>balance is bike riding</p>
-<ul>
-<li>shifting body parts to balance</li>
-<li>shifting the visual weight to balance</li>
-</ul>
-<h2 id="Organizing"><a href="#Organizing" class="headerlink" title="Organizing"></a>Organizing</h2><h3 id="Perspective"><a href="#Perspective" class="headerlink" title="Perspective"></a>Perspective</h3><p>Perspective is a great tool to adjust visual weights</p>
-<h3 id="Symmetry"><a href="#Symmetry" class="headerlink" title="Symmetry"></a>Symmetry</h3><p>bike ride straight ahead</p>
-<p>visually identical&#x2F;similar items, size, number, shape</p>
-<h3 id="Asymmetry"><a href="#Asymmetry" class="headerlink" title="Asymmetry"></a>Asymmetry</h3><p>engage more intellectually</p>
-<p><strong>attention</strong> is the key, how viewer see the image</p>
-<p>like rule of thirds</p>
-<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="Portrait"><a href="#Portrait" class="headerlink" title="Portrait"></a>Portrait</h3><p><strong>soft</strong> light</p>
-<p>fast shutter speed</p>
-<p>F5.6-F8</p>
-<p>Don’t include too much background</p>
-<p>goal: reveal something unique and striking</p>
-<h3 id="Landscape"><a href="#Landscape" class="headerlink" title="Landscape"></a>Landscape</h3><p>Striking position</p>
-<p>largest F stop</p>
-<h3 id="Still-Life"><a href="#Still-Life" class="headerlink" title="Still Life"></a>Still Life</h3><p>Different angle</p>
-<p>Lightning condition</p>
-<h3 id="Tableau-Manipulated-Landscape"><a href="#Tableau-Manipulated-Landscape" class="headerlink" title="Tableau, Manipulated Landscape"></a>Tableau, Manipulated Landscape</h3><p>recreating photo, dramtic</p>
-<p>post-processing</p>
-<h2 id="Light"><a href="#Light" class="headerlink" title="Light"></a>Light</h2><h3 id="Color-1"><a href="#Color-1" class="headerlink" title="Color"></a>Color</h3><p>Temperature</p>
-<h3 id="Ambient-Light"><a href="#Ambient-Light" class="headerlink" title="Ambient Light"></a>Ambient Light</h3><p>fill flash to avoid shadow</p>
-<p>change your&#x2F;subject position</p>
-<p>light and color</p>
-<h3 id="Controlled-Light"><a href="#Controlled-Light" class="headerlink" title="Controlled Light"></a>Controlled Light</h3><p>Normal sunlight, cause least attention</p>
-<p>Writing with light</p>
-<p>If we want viewer to notice the light, we should make it abnormal</p>
-<p>Most flash in 5500K-6000K,</p>
-<p>Dedicated flash, </p>
-<h3 id="Shutter-type"><a href="#Shutter-type" class="headerlink" title="Shutter type"></a>Shutter type</h3><p>Focal plane shutter</p>
-<p>Sync speed, means how long the flash would last</p>
-<p>Slow sync: use the flash with lower shutter speed to make the background correctly exposured in night</p>
-<h2 id="Studio-Light"><a href="#Studio-Light" class="headerlink" title="Studio Light"></a>Studio Light</h2><h3 id="Kitchen"><a href="#Kitchen" class="headerlink" title="Kitchen"></a>Kitchen</h3><p>Setup a lighting system to shoot</p>
-<p>Lighting an object</p>
-<ul>
-<li>determine the goal for the object first<ul>
-<li>sell<ul>
-<li>show the characteristic</li>
-<li>convey the message</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>use extra light</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1699,7 +1556,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-count">291</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1712,7 +1569,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

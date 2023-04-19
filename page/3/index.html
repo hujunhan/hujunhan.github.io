@@ -188,6 +188,553 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Kinematics/jacobian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Kinematics/jacobian/" class="post-title-link" itemprop="url">Jacobian Matrix for Robot Arm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-27 19:36:21 / Modified: 20:52:15" itemprop="dateCreated datePublished" datetime="2023-02-27T19:36:21-08:00">2023-02-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Kinematics/" itemprop="url" rel="index"><span itemprop="name">Kinematics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What-is-Jacobian-Matrix"><a href="#What-is-Jacobian-Matrix" class="headerlink" title="What is Jacobian Matrix"></a>What is Jacobian Matrix</h2><p>The Jacobian matrix is a matrix of partial derivatives that describes the rate of change of a system with respect to its variables. In other words, it relates the <strong>change in inpu</strong>t variables to the <strong>change in output variables</strong>. The Jacobian matrix is commonly used in multivariable calculus and in the fields of physics, engineering, and robotics.</p>
+<p>For example, consider a robotic arm with n degrees of freedom. The state of the robot can be described by a set of joint angles q &#x3D; (q1, q2, …, qn), and the position of the end-effector can be described by a vector x &#x3D; (x, y, z). The Jacobian matrix J relates the joint angles to the end-effector position:<br>$$<br>\frac{\partial x}{\partial q_1} &amp; \frac{\partial x}{\partial q_2} &amp; \cdots &amp; \frac{\partial x}{\partial q_n}\<br>\frac{\partial y}{\partial q_1} &amp; \frac{\partial y}{\partial q_2} &amp; \cdots &amp; \frac{\partial y}{\partial q_n}\<br>\frac{\partial z}{\partial q_1} &amp; \frac{\partial z}{\partial q_2} &amp; \cdots &amp; \frac{\partial z}{\partial q_n}<br>$$</p>
+<h2 id="Jacobian-for-Robot-Arm"><a href="#Jacobian-for-Robot-Arm" class="headerlink" title="Jacobian for Robot Arm"></a>Jacobian for Robot Arm</h2><p>In robotics, the Jacobian matrix is used to calculate the end-effector velocity given the joint velocities. This is important for controlling the motion of a robotic arm, as it allows us to <strong>determine the joint velocities required to achieve a desired end-effector velocity</strong>. </p>
+<p>To calculate the Jacobian matrix for a robotic arm, we need to know the kinematic structure of the arm. This can be described using a URDF (Unified Robot Description Format) file, which defines the joint types, joint limits, and link lengths of the arm. Once we have the URDF file, we can derive the jacobian matrix mannauly</p>
+<h2 id="Jacobian-for-Inverse-Kinematics"><a href="#Jacobian-for-Inverse-Kinematics" class="headerlink" title="Jacobian for Inverse Kinematics"></a>Jacobian for Inverse Kinematics</h2><p>Inverse kinematics is a challenging problem in robotics, as it requires solving a system of <strong>non-linear equations</strong>. </p>
+<p>The Jacobian matrix can be used to solve this problem by providing a linear approximation of the relationship between the joint angles and end-effector position. Specifically, we can use the Jacobian transpose to convert the desired end-effector velocity into joint velocities:</p>
+<p>$$\dot{q} &#x3D; J^T(x) \cdot \dot{x}$$ where $\dot{q}$ is the joint velocity, $\dot{x}$ is the desired end-effector velocity, and $J^T$ is the transpose of the Jacobian matrix. By iteratively updating the joint angles using the calculated joint velocities, we can converge to a solution that achieves the desired end-effector position.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Planning/arm-path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Planning/arm-path/" class="post-title-link" itemprop="url">Path Planning for Robot Arm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-26 15:41:00 / Modified: 18:16:53" itemprop="dateCreated datePublished" datetime="2023-02-26T15:41:00-08:00">2023-02-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Planning/" itemprop="url" rel="index"><span itemprop="name">Planning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Math-Formulation"><a href="#Math-Formulation" class="headerlink" title="Math Formulation"></a>Math Formulation</h2><p>目标：生成一条符合<strong>要求</strong>的轨迹（<strong>点</strong>的集合）</p>
+<ul>
+<li>目标是根据需求来选择的，一般的会有的需求</li>
+<li>时间</li>
+<li>joint constraints</li>
+<li>避障</li>
+<li>点：在三维空间中</li>
+</ul>
+<h2 id="Library"><a href="#Library" class="headerlink" title="Library"></a>Library</h2><p>OMPL (Open Motion Planning Library)</p>
+<ul>
+<li>sampling based and optimization based</li>
+<li>How: PRM (Probabilistic Roadmaps ), RRT, BIT( Batch Informed Trees)</li>
+<li>Input: include the robot’s configuration, the environment</li>
+<li>Output: the motion plan, a sequence of robot configuration or trajectories</li>
+</ul>
+<p>PIMPL (Pilz Industrial Motion Planner)</p>
+<ul>
+<li>especially designed for industrial robot</li>
+</ul>
+<p>STOMP (Stochastic Trajectory Optimization for Motion Planning)</p>
+<ul>
+<li>optimization based, suited for many degree of freedoms</li>
+<li>How: iteratively optimizing a random trajectories</li>
+</ul>
+<p>SBPL (Search-Based Planning Library )</p>
+<ul>
+<li>search based</li>
+<li>How: reprensent the robot and environment as a grid, then use search algorithm like A*, Dijkstra, to explore</li>
+</ul>
+<p>CHOMP (Covariant Hamiltonian Optimization for Motion Planning )</p>
+<ul>
+<li>optimization based</li>
+<li>How:  based on the Hamiltonian formulation of mechanics and optimizes the Hamiltonian of the system subject to constraints.</li>
+</ul>
+<h2 id="Math-Basis"><a href="#Math-Basis" class="headerlink" title="Math Basis"></a>Math Basis</h2><p>RPM, RRT, BIT, Search, Optmization</p>
+<h3 id="Cell-Decomposition"><a href="#Cell-Decomposition" class="headerlink" title="Cell Decomposition"></a>Cell Decomposition</h3><p>Sample the space into grid, so the problem degrade to a classic search problem</p>
+<ul>
+<li>Bad for high-dimensional situation</li>
+</ul>
+<h3 id="Control-based"><a href="#Control-based" class="headerlink" title="Control based"></a>Control based</h3><ul>
+<li>Fast, can be done in online with minimal error</li>
+<li>Difficult to compute with  complex dynamics</li>
+</ul>
+<h3 id="Potential-Fields"><a href="#Potential-Fields" class="headerlink" title="Potential Fields"></a>Potential Fields</h3><p>Simple and intuitive</p>
+<ul>
+<li>Real time speed</li>
+<li>Fail in local minima</li>
+</ul>
+<h3 id="Sample-Based"><a href="#Sample-Based" class="headerlink" title="Sample Based"></a>Sample Based</h3><ul>
+<li>If the solution exist, the method would find it</li>
+</ul>
+<p>Some idea: workspace, state space, free state space, ppath</p>
+<p>Two type</p>
+<ul>
+<li><p>PRM, Using the knowdege of graph</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181351.png" alt="image-20230226181351316"></p>
+</li>
+<li><p>Tree based</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181414.png" alt="image-20230226181414617"></p>
+</li>
+</ul>
+<p>Important tool</p>
+<ul>
+<li>Collision checking</li>
+<li>Nearest neighbor</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Modeling/design-process/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Modeling/design-process/" class="post-title-link" itemprop="url">Design Process for Robot Arm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-02-21 20:31:00" itemprop="dateCreated datePublished" datetime="2023-02-21T20:31:00-08:00">2023-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-12 22:35:20" itemprop="dateModified" datetime="2023-04-12T22:35:20-07:00">2023-04-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Modeling/" itemprop="url" rel="index"><span itemprop="name">Modeling</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Try to figure out a clear path or best practice for robot arm modeling and programming </p>
+<p>Input: the requirements and some consideration, limitation</p>
+<p>Output:</p>
+<ul>
+<li>The robot arm model (the math model for kinematics)</li>
+<li>The control algorithm<ul>
+<li>Kinematics</li>
+<li>Invser-Kinematics</li>
+</ul>
+</li>
+<li>Simulation:(webots)</li>
+</ul>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>Payload:<ul>
+<li>Influence: Structure and motor actuator</li>
+<li>How: the weight, how far from the center of gravity, <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=larhoalnVSQ">Ref</a></li>
+<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221204935.png" alt="image-20230221204934948"></li>
+</ul>
+</li>
+<li>Workspace, <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=_canCYWZPsc">Ref</a><ul>
+<li>reachable</li>
+<li>dexterous</li>
+<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221210331.png" alt="image-20230221210331362"></li>
+</ul>
+</li>
+<li>Accuracy: determined by sensor</li>
+<li>Speed: model and actuators</li>
+<li>Control: software and hardware needed for control and <strong>communication</strong></li>
+<li>Cost: materials, components, labor</li>
+<li>Safety: vision &#x2F; lidar</li>
+<li>Maintenance: repair, parts, mechanical, electrical system</li>
+</ul>
+<h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Format-URDF"><a href="#Format-URDF" class="headerlink" title="Format? URDF"></a>Format? URDF</h3><ul>
+<li><strong>URDF: Unified Robot Description Format</strong><ul>
+<li>Simpler, only the basics like geometry, kinematics, dynamics</li>
+</ul>
+</li>
+<li>SDF: Simulation Description Format<ul>
+<li>More featured, materials, lighting, camera model, environments</li>
+</ul>
+</li>
+</ul>
+<h3 id="URDF-Crash-Course"><a href="#URDF-Crash-Course" class="headerlink" title="URDF Crash Course"></a>URDF Crash Course</h3><p><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/sm/ug/urdf-model-import.html">Matlab Ref</a></p>
+<p>XML based</p>
+<p>Nested structure, <robot>, <link>, <joint></p>
+<ul>
+<li><p>Elements, <robot>, <link>, <joint></p>
+</li>
+<li><p>Attributes, <code>name</code> , <code>rgba</code></p>
+</li>
+<li><p>Parent and Child could be indicated by the parent and child elements</p>
+<ul>
+<li>Model <strong>Topology</strong></li>
+<li>No closed-loop Chain: A <link> could only be <strong>one</strong> child of <joint></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221223829.png" alt="image-20230221223829402"></p>
+<p>Green are optional</p>
+<h3 id="URDF-Parser"><a href="#URDF-Parser" class="headerlink" title="URDF Parser"></a>URDF Parser</h3><p>XML based file, find the root and iterate over node</p>
+<Link>  defines the structure of the robot
+
+<p><joint> defines the transformation of the robot</p>
+<ol>
+<li>Read all the link and joint by their <strong>name</strong></li>
+<li>Iterate over joint<ol>
+<li>calculate the translation, orientation</li>
+<li>joint origin descsribe how <strong>two links related</strong>, in default situation</li>
+</ol>
+</li>
+</ol>
+<p>&#x3D;&#x3D;So <strong>only the joint</strong> matter the kinematics, the link just matters for physics and simulation&#x3D;&#x3D;</p>
+<ul>
+<li><p>In many case, the collision and visual should be the same, however it  should not in the following situation</p>
+<ul>
+<li>simpler collision for faster processsing</li>
+<li>Safe zone, make more room in collision</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>Collision</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230412223503.png" alt="image-20230412223503445"></td>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230412223512.png" alt="image-20230412223512348"></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="Kinematics"><a href="#Kinematics" class="headerlink" title="Kinematics"></a>Kinematics</h3><ol>
+<li><p>Get the translation and rotation from the URDF</p>
+</li>
+<li><p>Apply the forward kinematics</p>
+<ol>
+<li>Calculate the forward kinematics from code</li>
+<li><del>Simulate the forward kinematics in Webots</del> Hard to get position of the end arm, use python visual instead</li>
+</ol>
+</li>
+<li><p>Solve the Inverse kinematics</p>
+</li>
+</ol>
+<h2 id="Motion-Planning"><a href="#Motion-Planning" class="headerlink" title="Motion Planning"></a>Motion Planning</h2><h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>Problem: many constrains</p>
+<p>For 6 or 7 DOF: IKFast, open source, use a approximation, fast and numerically robust solution</p>
+<ul>
+<li>Fact: the 6D pose constraint on a 6D manipulator has closed form solution</li>
+</ul>
+<p>For less constrained for inequality constrained, became an <strong>optimization</strong> problem</p>
+<ul>
+<li>Differential IK</li>
+<li>Full IK</li>
+</ul>
+<h3 id="Trajectory-Optimization"><a href="#Trajectory-Optimization" class="headerlink" title="Trajectory Optimization"></a>Trajectory Optimization</h3><p>Not solving the problem independently, the basic idea is to solve in a optimization form,</p>
+<h3 id="Sampling-Based"><a href="#Sampling-Based" class="headerlink" title="Sampling Based"></a>Sampling Based</h3><h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>workspace calculation, maybe by sampling?</p>
+<ul>
+<li>2D to 3D</li>
+</ul>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>Make the cost function simple</p>
+<p>Write minimal constraints</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Learning/chatgpt-why/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Learning/chatgpt-why/" class="post-title-link" itemprop="url">Note for Understanding ChatGPT</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-02-19 21:35:00" itemprop="dateCreated datePublished" datetime="2023-02-19T21:35:00-08:00">2023-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-20 13:26:52" itemprop="dateModified" datetime="2023-02-20T13:26:52-08:00">2023-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Learning/" itemprop="url" rel="index"><span itemprop="name">Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="怎么产生有意义的文本"><a href="#怎么产生有意义的文本" class="headerlink" title="怎么产生有意义的文本"></a>怎么产生有意义的文本</h2><p>核心任务：生成一个合理的延续，生成一个符合人类书写习惯的下一个合理内容，给出每个单词的概率排名</p>
+<ul>
+<li>但不是每次都使用概率最高的那一个单词，这样的话会很平淡。可能会导致重复</li>
+<li>随机性的引入</li>
+</ul>
+<h2 id="概率的计算"><a href="#概率的计算" class="headerlink" title="概率的计算"></a>概率的计算</h2><p>从训练文本中，统计字母的出现频率</p>
+<p>但如果单纯只是用<strong>单个字母</strong>概率进行生成，最后的结果是非常随机的，但是如果考虑<strong>多个字母</strong>的情况，就可以出现有意义的单词</p>
+<p>但是有意义的单词连接在一起还是没有产生有意义的<strong>句子</strong>。类似的，我们可以考虑<strong>多个单词</strong>的情况，就可以出现有意义的句子</p>
+<p>问题是，如果只是用统计的方式来做这样的统计，所需要的文字样本太多，当前互联网上的信息就不够了，所以我们需要更加高效的方式。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="什么是模型"><a href="#什么是模型" class="headerlink" title="什么是模型"></a>什么是模型</h3><p>利用参数达到构建统计学的效果，比如一条二维直线，可以用$y&#x3D;kx+b$，其中k和b两个参数表示，达到了压缩信息的效果</p>
+<h3 id="类人的模型"><a href="#类人的模型" class="headerlink" title="类人的模型"></a>类人的模型</h3><p>神经网络模型：模型自动选择输入的特征，并计算概率。还有以下特点</p>
+<ul>
+<li>通过给定的输入和输出自动调整参数</li>
+<li>计算更复杂的问题比简单的问题更容易，因为有很多梯度下降的方向，而不是局部最优</li>
+<li>神经网络端到端的训练效果往往比人手工选择特征更好，因为人类特征的选择往往很局限</li>
+<li>训练数据集的轻微变化对于模型训练也是非常重要的</li>
+<li><strong>无法保证意外不发生</strong>， Trade off，一个越是稳定的系统，越不容易做复杂的计算</li>
+</ul>
+<h3 id="嵌入的概念"><a href="#嵌入的概念" class="headerlink" title="嵌入的概念"></a>嵌入的概念</h3><p>上面所提到的，都是对数字进行计算，那人类的文本要怎么表示呢？</p>
+<p>用数字表示文字，并且</p>
+<ul>
+<li>附近的事物由附近的数字来表示</li>
+<li>比如用3542代表’cat’，</li>
+</ul>
+<p>为了解决2中所提到的问题，GPT对人类语言文本建立了一个模型</p>
+<ul>
+<li>相比于图像，有一点好处：训练样本非常容易获得，只要输入是文本的前一部分，然后给后一部分作为输出就可以了，不需要标注</li>
+</ul>
+<h3 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h3><p>在处理具有特殊的、已知的特殊结构时，不需要全连接</p>
+<ul>
+<li>对于图像，卷积神经网络是有效的</li>
+<li>对于文本，Transformer引入了Attention的概念，对于文本中值得注意的部分</li>
+</ul>
+<p>输入：单词值和单词位置，只是一个有效的方式</p>
+<p>训练:</p>
+<ol>
+<li>给大量原始数据，进行初始训练</li>
+<li>和ChatGPT聊天，通过人类的反馈让其提高</li>
+</ol>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>语言在根本层面是简单的（相比于看起来</p>
+<p>我们可以根据ChatGPT的性质去设计更加高效的模型</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Learning/critical-thinking/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -922,379 +1469,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Python/auto-import/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Python/auto-import/" class="post-title-link" itemprop="url">Auto Import Image from SD card to Lightroom</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-02-01 21:06:00 / Modified: 21:14:22" itemprop="dateCreated datePublished" datetime="2023-02-01T21:06:00-08:00">2023-02-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>I have multiple cameras, and I always shoot with Raw+JPG, but at the end of the day, I only need the raw file since it’s better for post-processing</p>
-<p>So everytime I do the work</p>
-<ol>
-<li>Open the folder</li>
-<li>Select the JPG image</li>
-<li>Delete the JPG image</li>
-<li>Right click the remained RAW file</li>
-<li>Import to Lightroom</li>
-</ol>
-<p>This process is simple but I don’t like repeat it, so an automation tool would be great</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>In a nutshell, we can use Automator and Python to finish the job</p>
-<ul>
-<li>Automator is just to run the Python script and tell the Python script where is the location</li>
-<li>In Python, the code will run the logic 2&#x2F;3&#x2F;4&#x2F;5</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230201211241.png" alt="image-20230201211240945"></p>
-<p>Python code:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Automate the image import process</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment">## Get the path to the folder containing the images</span></span><br><span class="line">root_path=sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## Define the extensions of the raw and jpg files</span></span><br><span class="line">raw_extensions = [<span class="string">&quot;.DND&quot;</span>, <span class="string">&quot;.RW2&quot;</span>, <span class="string">&quot;.NEF&quot;</span>, <span class="string">&quot;.ORF&quot;</span>]</span><br><span class="line">jpg_extensions = [<span class="string">&quot;.JPG&quot;</span>,<span class="string">&#x27;.JPEG&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## Find the raw files and the jpg files</span></span><br><span class="line">raw_list = []</span><br><span class="line">jpg_list = []</span><br><span class="line">jpg_remove_list = []</span><br><span class="line"><span class="keyword">for</span> rext <span class="keyword">in</span> raw_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(rext):</span><br><span class="line">                raw_list.append(file[:-<span class="built_in">len</span>(rext)])</span><br><span class="line"><span class="built_in">print</span>(raw_list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> jext <span class="keyword">in</span> jpg_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(jext):</span><br><span class="line">                jpg_list.append(file[:-<span class="built_in">len</span>(jext)])</span><br><span class="line"><span class="built_in">print</span>(jpg_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## Find the jpg files that have a corresponding raw file</span></span><br><span class="line"><span class="keyword">for</span> jpg <span class="keyword">in</span> jpg_list:</span><br><span class="line">    <span class="keyword">if</span> jpg <span class="keyword">in</span> raw_list:</span><br><span class="line">        jpg_remove_list.append(jpg)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Delete the jpg files that have a corresponding raw file</span></span><br><span class="line"><span class="built_in">print</span>(jpg_remove_list)</span><br><span class="line"><span class="keyword">for</span> jext <span class="keyword">in</span> jpg_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(jext) <span class="keyword">and</span> file[:-<span class="built_in">len</span>(jext)] <span class="keyword">in</span> jpg_remove_list:</span><br><span class="line">                os.remove(os.path.join(root,file))</span><br><span class="line">                <span class="comment"># print(f&#x27;removing &#123;os.path.join(root,file)&#125;&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Open the remaining raw and jpg files in default application</span></span><br><span class="line">command_list = [<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> file.startswith(<span class="string">&#x27;.&#x27;</span>):</span><br><span class="line">                command_list.append(os.path.join(root,file))</span><br><span class="line"><span class="built_in">print</span>(command_list)</span><br><span class="line">subprocess.run(command_list)                </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/AI/ai-writer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/AI/ai-writer/" class="post-title-link" itemprop="url">AI Writer</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-02-01 00:38:00 / Modified: 00:49:18" itemprop="dateCreated datePublished" datetime="2023-02-01T00:38:00-08:00">2023-02-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Using NN to generate novel</p>
-<ul>
-<li>Input: the start</li>
-<li>Output: renewed novel with the start</li>
-</ul>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Convert the input text into number, find the stat pattern</p>
-<p>By learning a model</p>
-<ul>
-<li>Given a bunch of data</li>
-<li><strong>Predict the next word</strong></li>
-</ul>
-<p>GPT model</p>
-<ul>
-<li>Training data: novel, small</li>
-</ul>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://github.com/BlinkDL/AI-Writer">Github Repo</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/house-heating/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/house-heating/" class="post-title-link" itemprop="url">房屋供暖方案研究</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-01-30 22:10:00 / Modified: 22:11:33" itemprop="dateCreated datePublished" datetime="2023-01-30T22:10:00-08:00">2023-01-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>研究排屋供暖方案</p>
-<ul>
-<li>类型</li>
-<li>原理</li>
-<li>效果</li>
-<li>成本</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mapping/icp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Mapping/icp/" class="post-title-link" itemprop="url">ICP Algorithm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-25 23:06:00" itemprop="dateCreated datePublished" datetime="2023-01-25T23:06:00-08:00">2023-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-30 18:54:38" itemprop="dateModified" datetime="2023-01-30T18:54:38-08:00">2023-01-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Mapping/" itemprop="url" rel="index"><span itemprop="name">Mapping</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Hardware: Laser Lidar</p>
-<p>Input: a series of 2D or 3D point, $X_0, X_1…X_n$</p>
-<p>Output: the R,T betwwen $X_i$ and $X_{i+1}$</p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>General Procedure</p>
-<ol>
-<li>Point selection: for lidar, the data is in order</li>
-<li>Matching: nearest neighbor</li>
-<li>Weighting</li>
-<li>Rejecting</li>
-<li>Calculate error</li>
-<li>Minimize the error</li>
-</ol>
-<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><ol>
-<li>get real data<ol>
-<li>From ros, record the data using ROS bag</li>
-<li>Convert the rosbag to numpy</li>
-</ol>
-</li>
-<li>Test algorithm in existing code</li>
-<li>Migrate the algorithm to Taichi version</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1360,7 +1538,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-count">291</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1373,7 +1551,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
