@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230409212510.png">
 <meta property="article:published_time" content="2023-04-01T06:31:00.000Z">
-<meta property="article:modified_time" content="2023-04-10T06:30:23.452Z">
+<meta property="article:modified_time" content="2023-04-19T06:09:17.241Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="hardware">
 <meta property="article:tag" content="sensor">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-09 23:30:23" itemprop="dateModified" datetime="2023-04-09T23:30:23-07:00">2023-04-09</time>
+                <time title="Modified: 2023-04-18 23:09:17" itemprop="dateModified" datetime="2023-04-18T23:09:17-07:00">2023-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,6 +287,36 @@
 <p>Calculation:</p>
 <ul>
 <li>get 3 (xyz) axis voltage $\to$ ADC to digital signal (in a range) $\to$ convert into real acc, $(V_x-V_{x_0})&#x2F;Sensitivity$</li>
+</ul>
+<h2 id="Calibration"><a href="#Calibration" class="headerlink" title="Calibration"></a>Calibration</h2><p>What to Calibrate?</p>
+<ul>
+<li>Scaling</li>
+<li>Misalignment</li>
+<li>Bias</li>
+</ul>
+<p>Process:</p>
+<ol>
+<li>In a static position, the norms is equal to the gravity + a error factor</li>
+<li>After calibration of accelerometer, we use it as reference</li>
+<li>Intergrating the angular velocity and compare with the pose calculated by accelerometer</li>
+</ol>
+<p>Notes:</p>
+<ul>
+<li><p>require a larger number of static states</p>
+</li>
+<li><p>model the gyroscope bias drift using <strong>Allan variance</strong></p>
+<ul>
+<li>Definition: $\sigma_y^2(\tau)&#x3D;\frac{1}{2}&lt;\left[y_{i+1}(\tau)-y_i(\tau)\right]^2&gt;$</li>
+<li>can be used to analyze angular random walk, rate random walk, bias instablity</li>
+</ul>
+</li>
+<li><p>exploit sampling window, cutting thersh that automatically estimated in the framework</p>
+</li>
+<li><p>Use <strong>Runge-Kutta numerical integration</strong> to improve the accuracy of the gyro calibration</p>
+<ul>
+<li>A method of numerically integrating <a target="_blank" rel="noopener" href="https://mathworld.wolfram.com/OrdinaryDifferentialEquation.html">ordinary differential equations</a> by using a trial step at the midpoint of an interval to cancel out lower-order error terms. The second-order formula is<br>$$<br>\begin{aligned}<br>k_1 &amp; &#x3D;h f\left(x_n, y_n\right) \<br>k_2 &amp; &#x3D;h f\left(x_n+\frac{1}{2} h, y_n+\frac{1}{2} k_1\right) \<br>y_{n+1} &amp; &#x3D;y_n+k_2+O\left(h^3\right)<br>\end{aligned}<br>$$<br>For RK4<br>$$<br>\begin{aligned}<br>k_1 &amp; &#x3D;h f\left(x_n, y_n\right) \<br>k_2 &amp; &#x3D;h f\left(x_n+\frac{1}{2} h, y_n+\frac{1}{2} k_1\right) \<br>k_3 &amp; &#x3D;h f\left(x_n+\frac{1}{2} h, y_n+\frac{1}{2} k_2\right) \<br>k_4 &amp; &#x3D;h f\left(x_n+h, y_n+k_3\right) \<br>y_{n+1} &amp; &#x3D;y_n+\frac{1}{6} k_1+\frac{1}{3} k_2+\frac{1}{3} k_3+\frac{1}{6} k_4+O\left(h^5\right)<br>\end{aligned}<br>$$</li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -373,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Math"><span class="nav-text">Basic Math</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Math"><span class="nav-text">Basic Math</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calibration"><span class="nav-text">Calibration</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,20 +417,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">291</span>
+          <span class="site-state-item-count">301</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">112</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
