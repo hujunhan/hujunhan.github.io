@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Learning/history/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Vision/3d-reconstruction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Life/Learning/history/" class="post-title-link" itemprop="url">为什么要学习历史</a>
+            <a href="/MarkdownNotes/Robotics/Vision/3d-reconstruction/" class="post-title-link" itemprop="url">3D Reconstruction with Meshroom</a>
         </h2>
 
         <div class="post-meta">
@@ -212,7 +212,612 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-04-11 19:57:00" itemprop="dateCreated datePublished" datetime="2021-04-11T19:57:00-07:00">2021-04-11</time>
+              <time title="Created: 2021-12-14 14:38:00" itemprop="dateCreated datePublished" datetime="2021-12-14T14:38:00-08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-24 22:16:53" itemprop="dateModified" datetime="2023-02-24T22:16:53-08:00">2023-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Vision/" itemprop="url" rel="index"><span itemprop="name">Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Meshroom"><a href="#Meshroom" class="headerlink" title="Meshroom"></a>Meshroom</h2><blockquote>
+<p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
+<p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
+</blockquote>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ol>
+<li>Feature extraction<ol>
+<li>Goal: extract feature points</li>
+<li>Method: SIFT</li>
+</ol>
+</li>
+<li>Image matching<ol>
+<li>Goal: find images looking to the same area, then we can reduce computation</li>
+<li>Method: Vocabulary tree approach</li>
+</ol>
+</li>
+<li>Feature matching<ol>
+<li>Goal: match feature points between candidate image pairs</li>
+<li>Method: calculate distance and use RANSAC</li>
+</ol>
+</li>
+<li>Structure from Motion (SFM)<ol>
+<li>Goal: compute the pose of each images</li>
+<li>Methods: <ol>
+<li>Fuse all matched feature point pairs</li>
+<li>Choose the best initial image pair</li>
+<li>Compute the fundamental matrix</li>
+<li>Using PnP to calculate the pose</li>
+<li>Filter the results using Bundle Adjustment</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Depth Maps Estimation<ol>
+<li>Goal: get the depth value of each pixel</li>
+<li>Method: Semi-Global Matching</li>
+</ol>
+</li>
+<li>Meshing<ol>
+<li>Goal: create geometric surface representation of the scene</li>
+<li>Method: <ol>
+<li>Fuse all depth maps into global octree</li>
+<li>Perform 3D Delaunay tetrahedralization (四面体化), then voting</li>
+<li>Graph cut Max-Flow, optimally cut the volume</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Texturing <ol>
+<li>Goal: texture the generated mesh</li>
+<li>Method:<ol>
+<li>Compute UV maps</li>
+<li>For each triangle, use the color of each candidate to estimate</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Data-Acquisition"><a href="#Data-Acquisition" class="headerlink" title="Data Acquisition"></a>Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<p>Camera setting</p>
+<ul>
+<li>Fixed <strong>low</strong> ISO (low noise)</li>
+<li>Fixed <strong>high</strong> shutter speed (less then 1&#x2F;100s, no blur)</li>
+<li>Fixed <strong>long</strong> focal length (everything is in focus)</li>
+<li>Fixed white balance  (stable image color for feature matching)</li>
+<li>Enough lighting (so that we can keep low iso and high shutter speed)</li>
+</ul>
+<p>Move:</p>
+<ul>
+<li><p>Camera fixed, object move</p>
+<ul>
+<li>will need a spin base</li>
+<li>keep the background pure color</li>
+</ul>
+</li>
+<li><p>Camera move, object fixed</p>
+<ul>
+<li>Shot around the object (360 degree)</li>
+<li>In each spot, shot from 3 different heights</li>
+</ul>
+</li>
+</ul>
+<p>Illustration:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<p>The final results of Meshroom is pretty unstable</p>
+<ul>
+<li>In many cases, even high quality images dataset can not generate satisfied results</li>
+<li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
+</ul>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Why performs bad?</p>
+<p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
+<ul>
+<li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
+<li>The leaf is semi-transparent, it will look differently from different angle</li>
+<li>The leaf skin is so smooth that would generate reflection</li>
+</ul>
+<p>How to solve the problem? (Possible solution)</p>
+<ul>
+<li>Using laser to generate point cloud (to capture textureless feature)</li>
+<li>Create great lighting system, try to avoid reflection and semi-transparent situation</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Rotation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Rotation/" class="post-title-link" itemprop="url">旋转矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-12 21:11:00" itemprop="dateCreated datePublished" datetime="2021-12-12T21:11:00-08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-14 11:38:20" itemprop="dateModified" datetime="2021-12-14T11:38:20-08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h2><p>旋转方式</p>
+<ul>
+<li>绕自身旋转（右乘变换矩阵）</li>
+<li>绕固定轴旋转（左乘变换矩阵）</li>
+</ul>
+<blockquote>
+<p>比如说RPY，绕XYZ旋转，如果是绕自身，那就是<br>$$<br>R_x()R_y()R_z()<br>$$<br>如果是绕固定轴，那就是<br>$$<br>R_z()R_y()R_x()<br>$$</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/poster-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/poster-guide/" class="post-title-link" itemprop="url">Poster 101</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-04 00:00:00 / Modified: 20:27:06" itemprop="dateCreated datePublished" datetime="2021-12-04T00:00:00-08:00">2021-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Research-Poster-Worksheet"><a href="#Research-Poster-Worksheet" class="headerlink" title="Research Poster Worksheet"></a>Research Poster Worksheet</h2><p>A poster is a visual presentation, NOT a paper.</p>
+<ol>
+<li>List 5 image, and place them on the poster, to see where they might show up</li>
+<li>Audience analysis: who cares your research, who will use it, what are the real-world application</li>
+<li>Describe your research in 2-3 bullets<ol>
+<li>The purpose of this research is to</li>
+</ol>
+</li>
+<li>What problem is your research attempting to solve</li>
+<li>How does your research work to solve the problem</li>
+<li>What are the results of your research? What are your findings?</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Machine%20Learning/hyperband/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/Machine%20Learning/hyperband/" class="post-title-link" itemprop="url">HyperBand Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-27 14:30:00" itemprop="dateCreated datePublished" datetime="2021-11-27T14:30:00-08:00">2021-11-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-04 18:09:55" itemprop="dateModified" datetime="2021-12-04T18:09:55-08:00">2021-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: To tune hyper-parameter in machine learning or deep learning, using bandit algorithm, to minimize the time usag</p>
+<p>Methods used with</p>
+<ul>
+<li>SGD</li>
+<li>Tree ensembles</li>
+</ul>
+<p>Idea: Try a large number of random configurations, but takes a lot of time. So hyperband:</p>
+<ol>
+<li>Run just an iteration (random configuration) or two at first</li>
+<li>Evaluate how they perform</li>
+<li>Using earlier results to select candidates for longer runs</li>
+</ol>
+<blockquote>
+<p>e.g, following experiments: max iteration:81</p>
+<table>
+<thead>
+<tr>
+<th>Runs</th>
+<th>Iteration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>81</td>
+<td>1</td>
+</tr>
+<tr>
+<td>27</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>27</td>
+</tr>
+</tbody></table>
+<p>It starts with 81 runs, one iteration each. Then the best 27 configurations get three iterations each. Then the best nine get nine, and so on</p>
+</blockquote>
+<h2 id="Learning-Rate-Tune-or-Not"><a href="#Learning-Rate-Tune-or-Not" class="headerlink" title="Learning Rate: Tune or Not"></a>Learning Rate: Tune or Not</h2><p>“Low learning rate with many iterations” is good for XGBoost</p>
+<p>If we do not tune learning rate, the hyperband make good sense </p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>Just need two function</p>
+<ol>
+<li>one return a random configuration</li>
+<li>another one train that configuration for a given number of iterations and return a loss value</li>
+</ol>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>To evaluate the performance of hyperband, we did several experiment. From the high level, we want to answer two major question: </p>
+<ol>
+<li>How hyperband perform in different machine learning algorithms.</li>
+<li>How hyperband perform compared to other hyper parameter tuning algorithms</li>
+</ol>
+<h3 id="Setting"><a href="#Setting" class="headerlink" title="Setting"></a>Setting</h3><p>In our experiments, we are making a binary classification problem. For the dataset, we choose Breast Cancer Wisconsin (Diagnostic) dataset, features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image.</p>
+<p>According to Algorithm 1, we set $R&#x3D;81$ and $\eta&#x3D;3$, which means maximum iterations per configuration is $3$ and configuration downsampling rate is $3$</p>
+<p>To evaluate the performance of hyperband in different machine learning algorithms, we choose gradient boosting, random forest, extremely randomized trees and linear SGD. To compare between different methods, we use log loss as our metric</p>
+<p>From the figure below, we can observe that after few iterations, the hyperband algorithm has the ability to optimize the parameter of these machine learning algorithm and make good prediction with low log loss.</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-11-30-23-35-57.png" alt="Figure_1"></p>
+<p>To compare the performance of different parameter tuning method, we choose 5 candidate.</p>
+<ol>
+<li>Grid search. this method would explore the whole hyperparameter space, every combination given by the space</li>
+<li>Randomized search. In contrast to Grid search, a fixed number of parameter setting is sampled from the given parameter space</li>
+<li>Halving Grid Search, based on grid search and apply successive halving strategy, all candidate would be evaluated with a small amout of resource at first and iteratively select the best candidates </li>
+<li>Halving Randomized search, based on Randomized search and apply successive halving strategy, all candidate would be evaluated with a small amout of resource at first and iteratively select the best candidates </li>
+<li>hyperband</li>
+</ol>
+<p>Grid based search algorithms are time consuming, since the overall search space is quite large. On the opposite, randomized search algorithms is efficient but the output is unstable, which means the results highly depend on the  randomized initial configuration.</p>
+<p>* </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/can-bus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/can-bus/" class="post-title-link" itemprop="url">CAN Bus</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-31 13:50:00 / Modified: 11:29:04" itemprop="dateCreated datePublished" datetime="2021-10-31T13:50:00-07:00">2021-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Like the nerve system in human body</p>
+<ul>
+<li>ECU like the body parts</li>
+<li>Sensor can broadcast the data and share in the can bus</li>
+</ul>
+<p>Hardware level</p>
+<ul>
+<li>CAN High</li>
+<li>CAN Low</li>
+</ul>
+<h2 id="Why-Main-Benefical"><a href="#Why-Main-Benefical" class="headerlink" title="Why (Main Benefical)"></a>Why (Main Benefical)</h2><ol>
+<li>Simple and Low cost</li>
+<li>Fully Centerlized</li>
+<li>Extremely Robust (抗干扰)</li>
+<li>Effcient, with priority ID</li>
+</ol>
+<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><p>BOSCH CAN 1986</p>
+<p>CAN 2.0 1991 </p>
+<p>International standard 1998</p>
+<h2 id="Message-x2F-Frame"><a href="#Message-x2F-Frame" class="headerlink" title="Message &#x2F; Frame"></a>Message &#x2F; Frame</h2><p>8 fields</p>
+<ol>
+<li>SOF</li>
+<li>CAN ID</li>
+<li>RTR</li>
+<li>Control, extension for ID</li>
+<li>Data, actual information</li>
+<li>CRC, redundancy check</li>
+<li>ACK</li>
+<li>EOF</li>
+</ol>
+<h2 id="Record-and-Decode"><a href="#Record-and-Decode" class="headerlink" title="Record and Decode"></a>Record and Decode</h2><p>ID and Data, use a logger</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oYps7vT708E">https://www.youtube.com/watch?v=oYps7vT708E</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Things/tea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Things/tea/" class="post-title-link" itemprop="url">Tea</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-26 23:39:00" itemprop="dateCreated datePublished" datetime="2021-10-26T23:39:00-07:00">2021-10-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -235,7 +840,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Learning/" itemprop="url" rel="index"><span itemprop="name">Learning</span></a>
+                  <a href="/categories/MarkdownNotes/Life/Things/" itemprop="url" rel="index"><span itemprop="name">Things</span></a>
                 </span>
             </span>
 
@@ -250,773 +855,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-什么是历史"><a href="#1-什么是历史" class="headerlink" title="1 什么是历史"></a>1 什么是历史</h2><ul>
-<li>记录了重要人物做了什么</li>
-<li>逐渐的，开始记录日常人的生活</li>
-<li>后来，研究大众是如何推动世界的发展的</li>
-</ul>
-<p>怀疑论：不同时间、不同人的视角下的历史是一样的吗。如何保证我们的历史是客观的  </p>
-<h2 id="2-为什么要学习历史"><a href="#2-为什么要学习历史" class="headerlink" title="2 为什么要学习历史"></a>2 为什么要学习历史</h2><p>理论上是客观的</p>
-<p>从国家角度来说，学习历史证明了国家的合理性</p>
-<p>从个人角度，满足我们的好奇心，一切是如何走到目前的情况的</p>
-<p>了解历史来解释我们现在发生了什么</p>
-<p>研究人性。科林伍德有言：”严格说来，没有人性这种东西，这一名词所指称的，确切地说，不是人类的本性而是人类的历史。”</p>
-<p>人类积累着知识和看法，塑造了人的特质</p>
-<p>影响社会</p>
-<h2 id="3-目前有哪些历史"><a href="#3-目前有哪些历史" class="headerlink" title="3 目前有哪些历史"></a>3 目前有哪些历史</h2><h2 id="4-开始学习"><a href="#4-开始学习" class="headerlink" title="4 开始学习"></a>4 开始学习</h2><p>如何学习</p>
-<ul>
-<li>掌握求真的技能</li>
-<li>积累贯古通今的智慧</li>
-<li>培养对人类命运的关怀</li>
-</ul>
-<p>Carr：用科学的方法学习历史，cause是概率的，有多种可能性</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/politics-econo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Philosophy/politics-econo/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-29 16:27:00" itemprop="dateCreated datePublished" datetime="2021-03-29T16:27:00-07:00">2021-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <!doctype html>
-<html>
-<head>
-<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>政治经济学序言</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
-.mac-os-11 { --title-bar-height:28px; }
-html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
-iframe { margin: auto; }
-a.url { word-break: break-all; }
-a:active, a:hover { outline: 0px; }
-.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
-#write.first-line-indent p { text-indent: 2em; }
-#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
-#write.first-line-indent li { margin-left: 2em; }
-.for-image #write { padding-left: 8px; padding-right: 8px; }
-body.typora-export { padding-left: 30px; padding-right: 30px; }
-.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-.typora-export .task-list-item input { pointer-events: none; }
-@media screen and (max-width: 500px) {
-  body.typora-export { padding-left: 0px; padding-right: 0px; }
-  #write { padding-left: 20px; padding-right: 20px; }
-  .CodeMirror-sizer { margin-left: 0px !important; }
-  .CodeMirror-gutters { display: none !important; }
-}
-#write li > figure:last-child { margin-bottom: 0.5rem; }
-#write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font: inherit; }
-input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
-*, ::after, ::before { box-sizing: border-box; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
-p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
-p { orphans: 4; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.4rem; }
-h5 { font-size: 1.2rem; }
-h6 { font-size: 1rem; }
-.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
-.hidden { display: none; }
-.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
-a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
-sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
-#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
-figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px; }
-tr { break-inside: avoid; break-after: auto; }
-thead { display: table-header-group; }
-table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
-table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
-.CodeMirror-linenumber { user-select: none; }
-.CodeMirror { text-align: left; }
-.CodeMirror-placeholder { opacity: 0.3; }
-.CodeMirror pre { padding: 0px 4px; }
-.CodeMirror-lines { padding: 0px; }
-div.hr:focus { cursor: none; }
-#write pre { white-space: pre-wrap; }
-#write.fences-no-line-wrapping pre { white-space: pre; }
-#write pre.ty-contain-cm { white-space: normal; }
-.CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
-#write .md-fences.mock-cm { white-space: pre-wrap; }
-.md-fences.md-fences-with-lineno { padding-left: 0px; }
-#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
-.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
-.CodeMirror-line, twitterwidget { break-inside: avoid; }
-.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
-.footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
-li div { padding-top: 0px; }
-blockquote { margin: 1rem 0px; }
-li .mathjax-block, li p { margin: 0.5rem 0px; }
-li blockquote { margin: 1rem 0px; }
-li { margin: 0px; position: relative; }
-blockquote > :last-child { margin-bottom: 0px; }
-blockquote > :first-child, li > :first-child { margin-top: 0px; }
-.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
-#write .footnote-line { white-space: pre-wrap; }
-@media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
-  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
-  .typora-export * { -webkit-print-color-adjust: exact; }
-  .typora-export #write { break-after: avoid; }
-  .typora-export #write::after { height: 0px; }
-  .is-mac table { break-inside: avoid; }
-}
-.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
-a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
-p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
-#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
-p > .md-image:only-child { display: inline-block; width: 100%; }
-#write .MathJax_Display { margin: 0.8em 0px 0px; }
-.md-math-block { width: 100%; }
-.md-math-block:not(:empty)::after { display: none; }
-.MathJax_ref { fill: currentcolor; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
-.md-task-list-item { position: relative; list-style-type: none; }
-.task-list-item.md-task-list-item { padding-left: 0px; }
-.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
-.math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
-.md-toc-content { position: relative; margin-left: 0px; }
-.md-toc-content::after, .md-toc::after { display: none; }
-.md-toc-item { display: block; color: rgb(65, 131, 196); }
-.md-toc-item a { text-decoration: none; }
-.md-toc-inner:hover { text-decoration: underline; }
-.md-toc-inner { display: inline-block; cursor: pointer; }
-.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
-.md-toc-h2 .md-toc-inner { margin-left: 2em; }
-.md-toc-h3 .md-toc-inner { margin-left: 4em; }
-.md-toc-h4 .md-toc-inner { margin-left: 6em; }
-.md-toc-h5 .md-toc-inner { margin-left: 8em; }
-.md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) {
-  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
-  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
-  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
-  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
-}
-a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
-.footnote-line a:not(.reversefootnote) { color: inherit; }
-.md-attr { display: none; }
-.md-fn-count::after { content: "."; }
-code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
-.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
-code { text-align: left; vertical-align: initial; }
-a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.md-inline-math .MathJax_SVG .noError { display: none !important; }
-.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
-.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
-.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none 0s ease 0s; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
-.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
-.md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
-[lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom: 0px; }
-video { max-width: 100%; display: block; margin: 0px auto; }
-iframe { max-width: 100%; width: 100%; border: none; }
-.highlight td, .highlight tr { border: 0px; }
-mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
-.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
-@media print {
-  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
-}
-.md-diagram-panel .messageText { stroke: none !important; }
-.md-diagram-panel .start-state { fill: var(--node-fill); }
-.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
-.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
-
-
-:root {
-    --side-bar-bg-color: #fafafa;
-    --control-text-color: #777;
-}
-
-@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
-
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
-    font-size: 16px;
-}
-
-body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(51, 51, 51);
-    line-height: 1.6;
-}
-
-#write {
-    max-width: 860px;
-  	margin: 0 auto;
-  	padding: 30px;
-    padding-bottom: 100px;
-}
-
-@media only screen and (min-width: 1400px) {
-	#write {
-		max-width: 1024px;
-	}
-}
-
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
-}
-
-#write > ul:first-child,
-#write > ol:first-child{
-    margin-top: 30px;
-}
-
-a {
-    color: #4183C4;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    line-height: 1.4;
-    cursor: text;
-}
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
-}
-h1 tt,
-h1 code {
-    font-size: inherit;
-}
-h2 tt,
-h2 code {
-    font-size: inherit;
-}
-h3 tt,
-h3 code {
-    font-size: inherit;
-}
-h4 tt,
-h4 code {
-    font-size: inherit;
-}
-h5 tt,
-h5 code {
-    font-size: inherit;
-}
-h6 tt,
-h6 code {
-    font-size: inherit;
-}
-h1 {
-    font-size: 2.25em;
-    line-height: 1.2;
-    border-bottom: 1px solid #eee;
-}
-h2 {
-    font-size: 1.75em;
-    line-height: 1.225;
-    border-bottom: 1px solid #eee;
-}
-
-/*@media print {
-    .typora-export h1,
-    .typora-export h2 {
-        border-bottom: none;
-        padding-bottom: initial;
-    }
-
-    .typora-export h1::after,
-    .typora-export h2::after {
-        content: "";
-        display: block;
-        height: 100px;
-        margin-top: -96px;
-        border-top: 1px solid #eee;
-    }
-}*/
-
-h3 {
-    font-size: 1.5em;
-    line-height: 1.43;
-}
-h4 {
-    font-size: 1.25em;
-}
-h5 {
-    font-size: 1em;
-}
-h6 {
-   font-size: 1em;
-    color: #777;
-}
-p,
-blockquote,
-ul,
-ol,
-dl,
-table{
-    margin: 0.8em 0;
-}
-li>ol,
-li>ul {
-    margin: 0 0;
-}
-hr {
-    height: 2px;
-    padding: 0;
-    margin: 16px 0;
-    background-color: #e7e7e7;
-    border: 0 none;
-    overflow: hidden;
-    box-sizing: content-box;
-}
-
-li p.first {
-    display: inline-block;
-}
-ul,
-ol {
-    padding-left: 30px;
-}
-ul:first-child,
-ol:first-child {
-    margin-top: 0;
-}
-ul:last-child,
-ol:last-child {
-    margin-bottom: 0;
-}
-blockquote {
-    border-left: 4px solid #dfe2e5;
-    padding: 0 15px;
-    color: #777777;
-}
-blockquote blockquote {
-    padding-right: 0;
-}
-table {
-    padding: 0;
-    word-break: initial;
-}
-table tr {
-    border-top: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 0;
-}
-table tr:nth-child(2n),
-thead {
-    background-color: #f8f8f8;
-}
-table th {
-    font-weight: bold;
-    border: 1px solid #dfe2e5;
-    border-bottom: 0;
-    margin: 0;
-    padding: 6px 13px;
-}
-table td {
-    border: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 6px 13px;
-}
-table th:first-child,
-table td:first-child {
-    margin-top: 0;
-}
-table th:last-child,
-table td:last-child {
-    margin-bottom: 0;
-}
-
-.CodeMirror-lines {
-    padding-left: 4px;
-}
-
-.code-tooltip {
-    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
-    border-top: 1px solid #eef2f2;
-}
-
-.md-fences,
-code,
-tt {
-    border: 1px solid #e7eaed;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
-}
-
-code {
-    background-color: #f3f4f4;
-    padding: 0 2px 0 2px;
-}
-
-.md-fences {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding-top: 8px;
-    padding-bottom: 6px;
-}
-
-
-.md-task-list-item > input {
-  margin-left: -1.3em;
-}
-
-@media print {
-    html {
-        font-size: 13px;
-    }
-    table,
-    pre {
-        page-break-inside: avoid;
-    }
-    pre {
-        word-wrap: break-word;
-    }
-}
-
-.md-fences {
-	background-color: #f8f8f8;
-}
-#write pre.md-meta-block {
-	padding: 1rem;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border: 0;
-    border-radius: 3px;
-    color: #777777;
-    margin-top: 0 !important;
-}
-
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
-}
-
-.md-mathjax-midline {
-    background: #fafafa;
-}
-
-#write>h3.md-focus:before{
-	left: -1.5625rem;
-	top: .375rem;
-}
-#write>h4.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h5.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h6.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
-}
-
-.md-tag {
-    color: #a7a7a7;
-    opacity: 1;
-}
-
-.md-toc { 
-    margin-top:20px;
-    padding-bottom:20px;
-}
-
-.sidebar-tabs {
-    border-bottom: none;
-}
-
-#typora-quick-open {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-}
-
-#typora-quick-open-item {
-    background-color: #FAFAFA;
-    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
-    border-style: solid;
-    border-width: 1px;
-}
-
-/** focus mode */
-.on-focus-mode blockquote {
-    border-left-color: rgba(85, 85, 85, 0.12);
-}
-
-header, .context-menu, .megamenu-content, footer{
-    font-family: "Segoe UI", "Arial", sans-serif;
-}
-
-.file-node-content:hover .file-node-icon,
-.file-node-content:hover .file-node-open-state{
-    visibility: visible;
-}
-
-.mac-seamless-mode #typora-sidebar {
-    background-color: #fafafa;
-    background-color: var(--side-bar-bg-color);
-}
-
-.md-lang {
-    color: #b4654d;
-}
-
-.html-for-mac .context-menu {
-    --item-hover-bg-color: #E6F0FE;
-}
-
-#md-notification .btn {
-    border: 0;
-}
-
-.dropdown-menu .divider {
-    border-color: #e5e5e5;
-}
-
-.ty-preferences .window-content {
-    background-color: #fafafa;
-}
-
-.ty-preferences .nav-group-item.active {
-    color: white;
-    background: #999;
-}
-
- :root {--mermaid-font-zoom:1.5em ;} 
-</style>
-</head>
-<body class='typora-export os-windows'>
-<div id='write'  class=''><h2><a name="历史背景" class="md-header-anchor"></a><span>历史背景</span></h2><p><span>19世纪三四十年代,无产阶级作为政治力量登上历史舞台,革命实践迫切需要理论指导。马克思考察大量文献,总结自己的研究。序言是在整理手稿时写下,对唯物史观作了说明.</span></p><h2><a name="内容概要" class="md-header-anchor"></a><span>内容概要</span></h2><h3><a name="1-马克斯研究政治经济学的动因" class="md-header-anchor"></a><span>1 马克斯研究政治经济学的动因</span></h3><p><span>要对利益发表意见,迫使他正视社会现实。</span></p><p><span>要批判空想社会主义</span></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Philosophy/politics-econo/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/equality/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Philosophy/equality/" class="post-title-link" itemprop="url">平等</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-11 01:17:00" itemprop="dateCreated datePublished" datetime="2020-08-11T01:17:00-07:00">2020-08-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>本文主要关注于社会和政治上的平等。因为内涵积极，因此很适合作为一种政治口号。</p>
-<p>平常生活中我们也经常会谈到平等。但什么是平等，我们真的懂平等吗？有一些正义的问题值得考虑</p>
-<h2 id="1-平等概念的定义"><a href="#1-平等概念的定义" class="headerlink" title="1 平等概念的定义"></a>1 平等概念的定义</h2><p>平等是一个有争议的概念，且作为一种政治理念在宣传的过程中导致存在广泛误解，我们需要给出一个明确的定义</p>
-<p><em>平等是指在一组不同的物体、人员、过程或者环境之间的对应关系，这些对象至少在一个方面具有相同的性质，但不是所有方面</em></p>
-<p>要说明的是，这里的相同性质并不是完全相同，允许存在差异。</p>
-<p><em>平等</em>既可以是描述，也可以是一种规定。本文讨论的更多是后者，应该提供怎么样的平等，提供给谁，什么时候提供。</p>
-<p>因为平等本身并不完整，他没有说明具体比较的对象是什么，<strong>因此根据对象的不同，平等的概念也是不一样的</strong></p>
-<h2 id="2-平等和公正之间的关系"><a href="#2-平等和公正之间的关系" class="headerlink" title="2 平等和公正之间的关系"></a>2 平等和公正之间的关系</h2><p>自古以来，平等就被认为是公正的组成部分.</p>
-<p>接下来讨论一些平等的原则，适用于我们对他人的一切行动</p>
-<h3 id="2-1-形式平等"><a href="#2-1-形式平等" class="headerlink" title="2.1 形式平等"></a>2.1 形式平等</h3><p>When two persons have equal status in at least one normatively relevant respect, they must be treated equally with regard to this respect</p>
-<h3 id="2-2-比例平等"><a href="#2-2-比例平等" class="headerlink" title="2.2 比例平等"></a>2.2 比例平等</h3><p>按比例分配</p>
-<h3 id="2-3-道德平等"><a href="#2-3-道德平等" class="headerlink" title="2.3 道德平等"></a>2.3 道德平等</h3><p>18世纪以前，人们一直认为人类本质上是不平等的，也就是说存在着一个自然的人类等级制度。随着自然权利思想的出现，全人类自然秩序平等的假设被大众所接受</p>
-<p>道德平等指的是<strong>用同样的方式对待</strong>。当然这种平等还是太抽象了，我们需要更加具体</p>
-<p>我们将平等的目标从待遇转向<strong>公平分配</strong></p>
-<h3 id="2-4-平等推定"><a href="#2-4-平等推定" class="headerlink" title="2.4 平等推定"></a>2.4 平等推定</h3><p>平等推定是政治上适合公共分配过程的所有商品平等分配的初步原则。要求每个人，虽然存在差异，但是都获得平等的份额。</p>
-<p>平等假设为构建正义提供了一个优雅的程序，为了达成实质性和全面的正义，必须回答一下问题</p>
-<ul>
-<li><p>哪些社会商品构成了分配正义的对象</p>
-<p>自由民主的国家：</p>
-<ol>
-<li>公民自由</li>
-<li>政治参与</li>
-<li>社会地位和机会</li>
-<li>经济回报</li>
+          <h2 id="茶是如何做出来的？"><a href="#茶是如何做出来的？" class="headerlink" title="茶是如何做出来的？"></a>茶是如何做出来的？</h2><ol>
+<li>茶叶种植<ol>
+<li>茶树是一种常青灌木，喜欢酸性土壤和丰富的灌溉。种植的海拔越高，味道越浓烈</li>
+<li>从种下一棵茶树开始，一般需要3年才能有用于喝的叶片</li>
+<li>虽然茶树可以长得很高，但为了采摘嫩叶，一般会修剪到一定高度。（一般来说，茶树越矮，能产出的叶片越多）</li>
 </ol>
-<p>然而由于历史原因，很难做到平等，</p>
 </li>
-<li><p>谁接受分发</p>
+<li>茶叶采摘<ol>
+<li>只有在最顶端3-5cm的叶片会被采摘。在丰收季节，每7-15天会长出新的嫩芽</li>
+<li>目前茶叶一般都是手工采摘</li>
+<li>茶叶被收集起来之后会再筛选一遍，把破损的和品相不好的筛选掉</li>
+</ol>
 </li>
-<li><p>哪些不平等是合理的</p>
+<li>处理茶叶<ol>
+<li>导致茶叶颜色、风味不同的主要是处理过程不同</li>
+<li>比如绿茶主要是通过晒干、烘烤</li>
+<li>比如红茶主要是被氧化了，让茶叶中的酶和氧气反应，使茶叶颜色变深，风味更浓厚</li>
+</ol>
 </li>
-<li><p>那种公平分配正义的方法是最好的</p>
-</li>
-</ul>
-<h2 id="3-平等的尺度是什么"><a href="#3-平等的尺度是什么" class="headerlink" title="3 平等的尺度是什么"></a>3 平等的尺度是什么</h2><h2 id="4-什么之间要平等"><a href="#4-什么之间要平等" class="headerlink" title="4 什么之间要平等"></a>4 什么之间要平等</h2><h2 id="5-为什么要平等"><a href="#5-为什么要平等" class="headerlink" title="5 为什么要平等"></a>5 为什么要平等</h2>
+</ol>
+
       
     </div>
 
@@ -1035,7 +894,7 @@ header, .context-menu, .megamenu-content, footer{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/love/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/myjourney/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1049,7 +908,7 @@ header, .context-menu, .megamenu-content, footer{
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Philosophy/love/" class="post-title-link" itemprop="url">爱</a>
+            <a href="/MarkdownNotes/Life/myjourney/" class="post-title-link" itemprop="url">My Robot Journey</a>
         </h2>
 
         <div class="post-meta">
@@ -1058,16 +917,10 @@ header, .context-menu, .megamenu-content, footer{
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-06 21:24:00" itemprop="dateCreated datePublished" datetime="2020-08-06T21:24:00-07:00">2020-08-06</time>
+              <time title="Created: 2021-10-17 23:27:00 / Modified: 20:53:51" itemprop="dateCreated datePublished" datetime="2021-10-17T23:27:00-07:00">2021-10-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1078,7 +931,7 @@ header, .context-menu, .megamenu-content, footer{
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
                 </span>
             </span>
 
@@ -1093,54 +946,7 @@ header, .context-menu, .megamenu-content, footer{
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>我们要如何分析个人的爱？</p>
-<ul>
-<li>对妻子的爱与对父母、孩子、朋友之间的爱的区别</li>
-<li>爱情能被证明是正当的吗</li>
-<li>个人爱情的价值与意义</li>
-</ul>
-<h2 id="区分"><a href="#区分" class="headerlink" title="区分"></a>区分</h2><p>不同的爱之间显然是不同的。古希腊先贤们已经有了一些划分</p>
-<ul>
-<li>Eros，来自于本能，对物体的一种强烈欲望的爱。典型的有性爱，这种爱是自私的，这种反应应该发展为对人的灵魂之美的反应       </li>
-<li>Agape，宗教意味浓厚的爱，上帝对我们，我们对上帝的爱。这是一种兄弟般的爱，“自发的而没有动机的”</li>
-<li>Philia，对某个好的品质做出的反应。与Eros之间的区别主要在于性的参与</li>
-</ul>
-<p>当代，我们所主要关注的爱主要是Eros和Philia。</p>
-<p>另一个重要的问题在于我们要如何区分<strong>爱</strong>与<strong>喜欢</strong>，直觉上看，两者似乎只是程度上的区别，那么如何区分<strong>程度</strong>呢？有的分析将程度理解为<strong>欲望的多少</strong>，或者说对象所具有的<strong>工具价值</strong>。然而这种分析是<strong>不充分的</strong>，因为我们可以关心或者爱一个人而不关注其工具价值。</p>
-<p>另一种常见的区分方式是<strong>认同</strong>，<strong>爱</strong>一个人是在某种程度上认同他，而<strong>喜欢</strong>不涉及认同的概念。Whiting认为对认同概念的诉求扭曲了我们对爱的动机的理解，因为如果是认同，那么这种动机更像是自我利益。Whiting主张爱的中心是<strong>可能性</strong>——被所爱之人的兴趣所感动而暂时忘却自我。</p>
-<p>还有一种区分方式是<strong>评估</strong>，爱情本质上是不是属于一种独特的评价？这是一个讨论激烈的话题。与之密切相关的问题是：我们能否证明爱的正当性</p>
-<h2 id="爱——作为联合"><a href="#爱——作为联合" class="headerlink" title="爱——作为联合"></a>爱——作为联合</h2><p>关键在于理解一个联合，“我们”，如何定义我们，是一个具体表现还是仅仅是一种比喻</p>
-<p>总的来说就是我想和你在一起，因为你身上有某些特质，我举得我和你在一起能够受益。虽然这种受益已经是最终的目的而不是通向其他欲望的手段。</p>
-<p>在这样的理解中，爱会使人失去一些自主性，但是这可能是爱的一个可接受的后果</p>
-<h2 id="爱——作为稳定关怀"><a href="#爱——作为稳定关怀" class="headerlink" title="爱——作为稳定关怀"></a>爱——作为稳定关怀</h2><p>这一派认为对心爱之人的关注是爱的中心和定义特征。爱既不是情感，也不是认知，而是意志。</p>
-<p>Frankfurt：一个人关心某事物，是因为他的背景塑造了他的偏好，引导和限制了他的行为</p>
-<h2 id="爱——作为价值"><a href="#爱——作为价值" class="headerlink" title="爱——作为价值"></a>爱——作为价值</h2><h3 id="作为价值的评估"><a href="#作为价值的评估" class="headerlink" title="作为价值的评估"></a>作为价值的<strong>评估</strong></h3><p>爱是一种独特的方式承认和回应所爱之人的价值的问题。为了理解这个问题，我们需要知道什么是价值</p>
-<h3 id="作为价值的赋予"><a href="#作为价值的赋予" class="headerlink" title="作为价值的赋予"></a>作为价值的<strong>赋予</strong></h3><p>Singer认为喜欢本质上是目的性的，而爱是没有明确目标的态度，因此爱也无法被准确定义。</p>
-<p>通过关心被爱者的需要和利益，通过希望造福或者保护，通过为她的成就而感到高兴等。与稳定关怀的区别在于这种关心并不构成爱的本身，而只是一种手段，让对方变得更有价值。</p>
-<h2 id="爱——作为情绪"><a href="#爱——作为情绪" class="headerlink" title="爱——作为情绪"></a>爱——作为情绪</h2><p>情感只是对对象的评估、动机和现象，这些都是爱的中心特征。</p>
-<p>然而这种说法的问题在于情感这个词包含的含义太复杂，和爱一样没有解释什么</p>
-<h3 id="作为情绪本身"><a href="#作为情绪本身" class="headerlink" title="作为情绪本身"></a>作为<strong>情绪</strong>本身</h3><p>这种描述方式类似于评价</p>
-<p>情绪是一种含蓄的评价，比如说，生气时评价为冒犯，害怕时评价为危险。情绪时激情的，是受外界环境干扰的</p>
-<h3 id="作为情绪混合体"><a href="#作为情绪混合体" class="headerlink" title="作为情绪混合体"></a>作为情绪混合体</h3><p>爱不仅是人对于其他人的一种情感，也是两个人或者几个人之间的复杂联系</p>
-<h2 id="为什么要爱？"><a href="#为什么要爱？" class="headerlink" title="为什么要爱？"></a>为什么要爱？</h2><p>一种方式：问我们从中得到了什么。亚里士多德的答案：所爱之人充当一面镜子，看出自己的性格，拥有爱的关系能够促进自我认识。从这个层面来说，所爱之人应该与我们相似；Brink的答案：与多样化的其他人互动可以帮助我们认识生活的其他可能性，从而更好地评估这些可能性的相对优点。</p>
-<p>另一种方式：从心理学来解释。爱增加了我们的幸福感，提升了我们的自我价值感，有助于发展我们的性格。可以降低压力和血压，增加寿命。</p>
-<ul>
-<li><p>有什么理由让我爱这个人而不是不爱他呢？</p>
-<p>这个问题是可以有答案的</p>
-</li>
-<li><p>有什么理由让我爱这个人而不是其他人呢？</p>
-<p>这个问题可能没有理性的解答</p>
-</li>
-<li><p>在环境发生了变化中之后，有什么理由继续爱这个人呢？</p>
-<p>这个问题可能没有理性的解答</p>
-</li>
-</ul>
-<p>如果爱可以是被证明的（合理化的），那么就会产生一些担忧</p>
-<ol>
-<li>我们所爱之人只是一堆优点的对象化，这实际上是对财产的爱</li>
-<li>第二个担忧是爱的对象的可替换性。如果另一个人展示了更好的属性，我们似乎可以升级一下，然而显然（？）我们的爱是不可替代的，爱似乎涉及到对某特特定人的深深的个人承诺。</li>
-</ol>
-<p>这两种担忧可以被<strong>联合</strong>所解释，爱情的目的是形成一个我们，并将其视为一个延申的自我。</p>
+          <div class="pdfobject-container" data-target="https://drive.google.com/file/d/1UW0YqjRFxnCMlV31ZnSA0AcuP57dV2ac/preview" data-height="500px"></div>
 
       
     </div>
@@ -1160,7 +966,7 @@ header, .context-menu, .megamenu-content, footer{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mapping/map/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/sponsorship/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1174,7 +980,7 @@ header, .context-menu, .megamenu-content, footer{
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Mapping/map/" class="post-title-link" itemprop="url">机器人建图技术（位置已知）</a>
+            <a href="/MarkdownNotes/Life/Skills/sponsorship/" class="post-title-link" itemprop="url">Get Sponsored</a>
         </h2>
 
         <div class="post-meta">
@@ -1184,7 +990,118 @@ header, .context-menu, .megamenu-content, footer{
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-23T00:00:00-07:00">2020-07-23</time>
+              <time title="Created: 2021-07-18 00:14:00" itemprop="dateCreated datePublished" datetime="2021-07-18T00:14:00-07:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-08 20:52:21" itemprop="dateModified" datetime="2023-02-08T20:52:21-08:00">2023-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why-Company-Sponsor"><a href="#Why-Company-Sponsor" class="headerlink" title="Why Company Sponsor"></a>Why Company Sponsor</h2><p>Make their product known by customers</p>
+<p>Build opportunities between people and sponsor</p>
+<ul>
+<li>In meaningful way</li>
+<li>Interesting</li>
+</ul>
+<h3 id="How-Sponsor"><a href="#How-Sponsor" class="headerlink" title="How Sponsor"></a>How Sponsor</h3><p>Type</p>
+<ul>
+<li>Experience, make people feel the product</li>
+<li>Media</li>
+<li>Cash</li>
+<li>…</li>
+</ul>
+<h2 id="Know-the-Audience"><a href="#Know-the-Audience" class="headerlink" title="Know the Audience"></a>Know the Audience</h2><ul>
+<li>Demographic</li>
+<li>Psychographic</li>
+<li>Preferred brands</li>
+<li>Coming purchases</li>
+</ul>
+<p>The more data of audience, the better</p>
+<h3 id="How-to-do"><a href="#How-to-do" class="headerlink" title="How to do"></a>How to do</h3><p>Talking to preferred company</p>
+<p>Markert search thepriority</p>
+<h3 id="Value-of-AUDIENCE"><a href="#Value-of-AUDIENCE" class="headerlink" title="Value of AUDIENCE"></a>Value of AUDIENCE</h3><p>The value highly depend on your audience</p>
+<ul>
+<li>Who are they</li>
+<li>What they want</li>
+<li>Fair value</li>
+</ul>
+<h2 id="After-Event"><a href="#After-Event" class="headerlink" title="After Event"></a>After Event</h2><p>Prove you did what you promised</p>
+<p>Get feedback and do better next time</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/SIFT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Computer%20Vision/SIFT/" class="post-title-link" itemprop="url">SIFT特征</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-15 15:13:00" itemprop="dateCreated datePublished" datetime="2021-07-15T15:13:00-07:00">2021-07-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -1207,7 +1124,7 @@ header, .context-menu, .megamenu-content, footer{
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Mapping/" itemprop="url" rel="index"><span itemprop="name">Mapping</span></a>
+                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
                 </span>
             </span>
 
@@ -1222,27 +1139,64 @@ header, .context-menu, .megamenu-content, footer{
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>为什么要建图：</p>
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>什么是SIFT？Scale Invariant Feature Transform</p>
+<p>对下列变化不敏感</p>
 <ul>
-<li>学习地图是基本任务</li>
-<li>有了地图可以方便其他任务</li>
-<li>其他任务依赖正确的地图</li>
+<li>尺度变换</li>
+<li>旋转</li>
+<li>光照</li>
+<li>视角</li>
 </ul>
-<p>基本问题：环境是怎么样的</p>
-<p>已知的：环境数据和状态数据 $d&#x3D;{u_1,z1,u_2,z2,…u_t,z_t}$</p>
-<p>要计算的$m^*&#x3D;argmax_mP(m|d)$</p>
-<h2 id="地图种类"><a href="#地图种类" class="headerlink" title="地图种类"></a>地图种类</h2><ul>
-<li><p>Grid Maps</p>
-<p>世界离散化，结构是固定的，每个cell可以是被占据或者free的，这个模型是没有参数的，不需要识别特征</p>
-<ul>
-<li>每个cell的状态用概率来描述</li>
-<li>每个cell之间都是相互独立的</li>
-</ul>
-<p>更新同样是用贝叶斯滤波</p>
+<p>SIFT算法较为复杂，主要分为两个大的部分</p>
+<ol>
+<li>找出特征点<ol>
+<li>目的是去掉一些不重要的细节。方法：高斯模糊</li>
+<li>变化大的区域就是边缘、点、角</li>
+</ol>
 </li>
+<li>描述特征点<ol>
+<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
+<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
+<li>一共是4x4x8&#x3D;128维的特征向量</li>
+</ol>
+</li>
+</ol>
+<h2 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h2><ol>
+<li><p>找出特征点</p>
+<ol>
+<li><p>目的是去掉一些不重要的细节。方法：高斯模糊，不同的level</p>
+</li>
+<li><p>不断resize，变成金字塔形状，不同的octaves。每次resize之后都高斯模糊。</p>
+<blockquote>
+<p>建议的值octave&#x3D;4，level&#x3D;5</p>
+</blockquote>
+</li>
+<li><p>生成Difference of Gaussians (DoG)，变化大的区域就是边缘、点、角</p>
+<p>这是对Laplacian of Gaussian (LoG) 的一个近似</p>
+<ul>
+<li>好处：LoG不具有尺度不变性，而DoG有</li>
+<li>坏处：引入了其他的常量k，但不影响特征点位置，所以无所谓</li>
 </ul>
-<p>利用上述工具，可以使用Occupancy Grid Mapping技术，最早是为了解决传感器噪声问题，根据传感器的数据来判断是障碍物的距离</p>
-<p>或者也可以使用反射概率波形，根据统计次数来生成最大似然模型</p>
+</li>
+<li><p>确定极大点、极小点</p>
+<ol>
+<li><p>粗略估计，如果在3层，27个点中是最大或最小的，就作为极值点。注意：最低或者最高层不做，因为没有相邻的三层。得到的点就是<strong>关键点</strong></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-17-14-39.png" alt="2021-07-15-17-14-39"></p>
+</li>
+<li><p>利用差分图计算亚像素，可以更精确<br>$$<br>D(\mathbf{x})&#x3D;D+\frac{\partial D^{T}}{\partial \mathbf{x}} \mathbf{x}+\frac{1}{2} \mathbf{x}^{\mathrm{T}} \frac{\partial^{2} D}{\partial \mathbf{x}^{2}} \mathbf{x}<br>$$</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>描述特征点</p>
+<ol>
+<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
+<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
+<li>一共是4x4x8&#x3D;128维的特征向量</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -1262,7 +1216,7 @@ header, .context-menu, .megamenu-content, footer{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/UKF/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/object-grasp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1276,7 +1230,7 @@ header, .context-menu, .megamenu-content, footer{
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Localization/UKF/" class="post-title-link" itemprop="url">无迹卡尔曼滤波</a>
+            <a href="/MarkdownNotes/Robotics/Computer%20Vision/object-grasp/" class="post-title-link" itemprop="url">流水线抓取</a>
         </h2>
 
         <div class="post-meta">
@@ -1286,7 +1240,7 @@ header, .context-menu, .megamenu-content, footer{
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-18 14:00:21" itemprop="dateCreated datePublished" datetime="2020-07-18T14:00:21-07:00">2020-07-18</time>
+              <time title="Created: 2021-07-12 13:25:00" itemprop="dateCreated datePublished" datetime="2021-07-12T13:25:00-07:00">2021-07-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -1309,7 +1263,7 @@ header, .context-menu, .megamenu-content, footer{
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
+                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
                 </span>
             </span>
 
@@ -1324,497 +1278,35 @@ header, .context-menu, .megamenu-content, footer{
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？</p>
-<p><strong>性能</strong>：在扩展卡尔曼滤波中，我们只使用了<strong>一个点</strong>展开来线性化，这就导致了这种估计方法的效果不佳</p>
-<p><strong>更好的方法</strong>：用许多点来近似</p>
-<p><strong>Trade-Off</strong>： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就越精确</p>
-<p>高斯分布在经过一个非线性变换之后就不再是高斯分布了，所以在这里引入一个Unscented Transform来完成这个变换任务</p>
-<ol>
-<li><p>计算一个Sigma Point的集合</p>
-<p>通常来说，如果系统是N维的，那么Sigma Point的个数选择$2N+1$<br>$$<br>\begin{aligned}<br>X ^{[0]} &amp;&#x3D;\mu \<br>X ^{[i]} &amp;&#x3D;\mu+(\sqrt{(n+\lambda) \Sigma})<em>{i} \text { for } i&#x3D;1, \ldots, n \<br>X ^{[i]} &amp;&#x3D;\mu-(\sqrt{(n+\lambda) \Sigma})</em>{i-n} \quad \text { for } i&#x3D;n+1, \ldots, 2 n<br>\end{aligned}<br>$$<br>其中$\Sigma$是协方差矩阵，$\lambda$是一个扩张系数（一般选择$3-n$），$X$是Sigma Point矩阵，每一行都是Sigma Point的集合。</p>
-<p>如果系统是2维的，那么$X$就是$2\times5$的大小</p>
+          <h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="RGB-Image"><a href="#RGB-Image" class="headerlink" title="RGB Image"></a>RGB Image</h3><ol>
+<li>获取图像</li>
+<li>利用传统的方式得到主体脉络</li>
+<li>提取RGB关键点</li>
+<li>判断抓取位置</li>
+</ol>
+<h3 id="RGB-Image-3D-Model"><a href="#RGB-Image-3D-Model" class="headerlink" title="RGB Image + 3D Model"></a>RGB Image + 3D Model</h3><ol>
+<li><p>如果有3D模型，则通过RGB关键点匹配模型，得到关键点的3D坐标</p>
 </li>
-<li><p>给每个Sigma Point赋予不同的权重<br>$$<br>\begin{aligned}<br>w^{[0]} &amp;&#x3D;\frac{\lambda}{n+\lambda} \<br>w^{[i]} &amp;&#x3D;\frac{1}{2(n+\lambda)} \quad \text { for } i&#x3D;1, \ldots, 2 n<br>\end{aligned}<br>$$</p>
-</li>
-<li><p>将这些点做一个非线性变换$g(x)$</p>
-</li>
-<li><p>变换后的点计算高斯</p>
-</li>
-<li><p>计算新分布的均值和方差<br>$$<br>\begin{aligned}<br>\mu^{\prime} &amp;&#x3D;\sum_{i&#x3D;0}^{2 n} w^{[i]} g\left( X ^{[i]}\right) \<br>\Sigma^{\prime} &amp;&#x3D;\sum_{i&#x3D;0}^{2 n} w^{[i]}\left(g\left( X ^{[i]}\right)-\mu^{\prime}\right)\left(g\left( X ^{[i]}\right)-\mu^{\prime}\right)^{T}<br>\end{aligned}<br>$$</p>
+<li><p>利用多组点，求解6D位姿</p>
 </li>
 </ol>
-<h2 id="卡尔曼滤波框架"><a href="#卡尔曼滤波框架" class="headerlink" title="卡尔曼滤波框架"></a>卡尔曼滤波框架</h2><ol>
-<li>预测步骤：用上一节提到的几个公式计算新的期望和方差</li>
-<li>更新步骤：我们可以选择采用之前生成的Sigma Point</li>
-</ol>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d">https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/EKF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Localization/EKF/" class="post-title-link" itemprop="url">扩展卡尔曼滤波</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-17 16:32:21" itemprop="dateCreated datePublished" datetime="2020-07-17T16:32:21-07:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>因为卡尔曼滤波有两个重要假设，其中的<strong>线性假设</strong>在现实环境中是不能够满足的。</p>
-<p>大部分现实环境中的问题都包含非线性函数。如果还是使用卡尔曼滤波，那么更新状态之后就不再是高斯分布了。也就不满足卡尔曼滤波的条件了</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>通过泰勒展开，在均值附近线性近似。保留一阶</p>
-<h2 id="Example：传感器融合"><a href="#Example：传感器融合" class="headerlink" title="Example：传感器融合"></a>Example：传感器融合</h2><p>自动驾驶同时使用激光雷达和雷达两种传感器，其中</p>
-<ul>
-<li>激光雷达：给出px，py两个</li>
-<li>雷达：距离、转向、转向速度</li>
+<h3 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h3><ul>
+<li>什么是主体脉络</li>
+<li>2d特征点的3d坐标</li>
 </ul>
-<p><img src="https://miro.medium.com/max/541/1*EEuBSPnR-JykUz-5patCGg.png" alt="Image for post"></p>
-<p>回忆卡尔曼滤波的两个步骤</p>
-<ol>
-<li><p>预测部分。和普通的卡尔曼滤波是完全一样的，因为这里并不涉及到观测<br>$$<br>\bar x&#x3D;Fx+Bu\<br>\bar P&#x3D;FPF^T+Q<br>$$<br>其中x是状态，P也是状态是方差（也可以理解成<strong>误差</strong>），F是状态转移矩阵，Q是过程协方差，也可以理解为在行动过程中引入的<strong>噪声</strong>，B是输入矩阵，u是系统的控制输入</p>
+<h2 id="安排"><a href="#安排" class="headerlink" title="安排"></a>安排</h2><p>基于模型的位姿估计</p>
+<ul>
+<li>提前在3D模型上选好特征点，确定特征点在模型坐标系下的坐标</li>
+<li>计算RGB图象中的特征点，</li>
+</ul>
+<h2 id="Survey"><a href="#Survey" class="headerlink" title="Survey"></a>Survey</h2><p>位姿估计方法</p>
+<h3 id="已知三维模型"><a href="#已知三维模型" class="headerlink" title="已知三维模型"></a>已知三维模型</h3><ul>
+<li><p>PNP，based on marker</p>
 </li>
-<li><p>矫正部分。利用传感器观测到并使用贝叶斯估计计算新的状态</p>
-<ol>
-<li><p>$ y&#x3D;z-H(\bar x)$，因为我们想要的状态是在笛卡尔坐标系下的，但是观测的却是有极坐标的，因此H做了个转换<br>$$<br>h\left(x^{\prime}\right)&#x3D;\left(\begin{array}{c}<br>\rho \<br>\phi \<br>\dot{\rho}<br>\end{array}\right)&#x3D;\left(\begin{array}{c}<br>\sqrt{p_{x}^{\prime 2}+p_{y}^{\prime 2}} \<br>\arctan \left(p_{y}^{\prime} &#x2F; p_{x}^{\prime}\right) \<br>\frac{p_{x}^{\prime} v_{x}^{\prime}+p_{y}^{\prime} v_{y}^{\prime}}{\sqrt{p^{\prime} 2+p^{\prime 2}}}<br>\end{array}\right)<br>$$</p>
+<li><p>Markerless.</p>
+<p>Search for point correspondences between two frames and distances to be minimized</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-10-51-54.png" alt="2021-07-15-10-51-54"></p>
 </li>
-<li><p>$K&#x3D;\bar P H{_j}^T(H_j\bar P H_j{^T}+R)^{-1}$</p>
-<p>其中$H_j$是一阶雅可比矩阵<br>$$<br>H_{j}&#x3D;\left[\begin{array}{llll}<br>\frac{\partial \rho}{\partial p_{x}} &amp; \frac{\partial \rho}{\partial p_{y}} &amp; \frac{\partial \rho}{\partial v_{x}} &amp; \frac{\partial \rho}{\partial v_{y}} \<br>\frac{\partial \varphi}{\partial p_{x}} &amp; \frac{\partial \varphi}{\partial p_{y}} &amp; \frac{\partial \varphi}{\partial v_{x}} &amp; \frac{\partial \varphi}{\partial v_{y}} \<br>\frac{\partial \dot{p}}{\partial p_{x}} &amp; \frac{\partial \dot{\rho}}{\partial p_{y}} &amp; \frac{\partial \dot{\rho}}{\partial v_{x}} &amp; \frac{\partial \dot{\rho}}{\partial v_{y}}<br>\end{array}\right]<br>$$</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>所以说重点就是在矫正部分使用雅可比矩阵代替普通的H</p>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/extended-kalman-filter-43e52b16757d">https://towardsdatascience.com/extended-kalman-filter-43e52b16757d</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/Kalmanfilter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Localization/Kalmanfilter/" class="post-title-link" itemprop="url">卡尔曼滤波</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-17 15:30:21" itemprop="dateCreated datePublished" datetime="2020-07-17T15:30:21-07:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>为什么用概率来描述？因为机器人的环境是不确定的，所使用的传感器也是有误差的</p>
-<ul>
-<li>某个随机变量的期望：$E [X]&#x3D;\sum_{i&#x3D;1}^{n} p_{i} x_{i}$</li>
-<li>为什么只使用单峰模型？因为机器人在某一时间的位置是固定的，并不会出现在不同位置</li>
-</ul>
-<h2 id="高斯"><a href="#高斯" class="headerlink" title="高斯"></a>高斯</h2><p>中心极限定理：样本数够多，就会出现正态分布</p>
-<p>使用单峰分布处理起来非常困难。</p>
-<p>状态的更新（两个正态分布的相乘）可以用贝叶斯来计算<br>$$<br>\begin{array}{c}<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}} \<br>\sigma_{\text {new }}&#x3D;\frac{\sigma_{1}^{2} \sigma_{2}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>\end{array}<br>$$<br>有的时候状态更新只是两个正态分布的相加，那么新的期望和方差就是两个期望和方差的简单相加</p>
-<h2 id="概率生成定理"><a href="#概率生成定理" class="headerlink" title="概率生成定理"></a>概率生成定理</h2><p>$z$表示测量，$u$表示指令，$x$表示状态</p>
-<p>第一定理：$p\left(x_{t} \mid x_{0: t-1}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(x_{t} \mid x_{t-1}, u_{t}\right)$</p>
-<ul>
-<li>也就是说，当前状态只和<strong>上一时刻状态</strong>以及<strong>此刻的指令</strong>有关</li>
-</ul>
-<p>第二定理：$p\left(z_{t} \mid x_{0: t}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(z_{t} \mid x_{t}\right)$</p>
-<ul>
-<li>如果$x_t$是完整的，那么当前的测量概率只和<strong>当前的状态</strong>有关</li>
-</ul>
-<h2 id="贝叶斯法则"><a href="#贝叶斯法则" class="headerlink" title="贝叶斯法则"></a>贝叶斯法则</h2><p>$$<br>后验概率&#x3D;\frac{可能性<em>先验概率}{边界概率}&#x3D;\frac{观测</em>上一时刻概率}{1}<br>$$</p>
-<p>利用贝叶斯法则估算状态：</p>
-<ol>
-<li>预测步骤：计算先验概率，不考虑观测，只考虑指令会带来的变化：利用模型<ul>
-<li>这一步会引入误差，包括传感器、执行器上的</li>
-</ul>
-</li>
-<li>矫正步骤：利用上一步计算出的先验概率，加上观测，计算后验概率（贝叶斯法则）</li>
-</ol>
-<h2 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h2><p>两个重要假设：</p>
-<ul>
-<li>线性</li>
-<li>高斯</li>
-</ul>
-<p>主体框架和贝叶斯估计是一样的，最大的区别是数学表达：</p>
-<ul>
-<li>卡尔曼滤波使用了高斯概率</li>
-</ul>
-<p>也就是说在卡尔曼滤波中，无论是先验还是后验抑或是置信，都是一个高斯分布<br>$$<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>$$<br>回想我们之前是如何计算新的期望的，显然可以拆成两个<br>$$<br>\mu&#x3D;W_1\mu_1+W_2\mu_2<br>$$<br>我们是根据两个的权重线性叠加的。且$W_1+W_2&#x3D;1$，因此我们引入新的变量$K$——<strong>卡尔曼增益</strong></p>
-<p>卡尔曼增益在卡尔曼滤波中起着重要的作用。令$K&#x3D;W_1$</p>
-<p>则有：<br>$$<br>\begin{aligned}<br>\mu &amp;&#x3D;K \mu_{z}+(1-K) \bar{\mu} \<br>&amp;&#x3D;\bar{\mu}+K\left(\mu_{z}-\bar{\mu}\right)<br>\end{aligned}<br>$$<br>和<br>$$<br>\sigma^2&#x3D;K\sigma_{z}^{2}<br>$$</p>
-<h2 id="卡尔曼滤波框架"><a href="#卡尔曼滤波框架" class="headerlink" title="卡尔曼滤波框架"></a>卡尔曼滤波框架</h2><ol>
-<li><p>预测部分。执行器模型一般是线性的，在目前的状态下直接相加一些变量，期望和方差都是相加<br>$$<br>\bar x&#x3D;Fx+Bu\<br>\bar P&#x3D;FPF^T+Q<br>$$<br>其中x是状态，P也是状态是方差（也可以理解成<strong>误差</strong>），F是状态转移矩阵，Q是过程协方差，也可以理解为在行动过程中引入的<strong>噪声</strong>，B是输入矩阵，u是系统的控制输入</p>
-</li>
-<li><p>矫正部分。利用传感器观测到并使用贝叶斯估计计算新的状态<br>$$<br>y&#x3D;z-H\bar z\<br>K&#x3D;\bar P H^T(H\bar P H^T+R)^{-1}\<br>x&#x3D;\bar x+Ky\<br>P&#x3D;(I-KH)\bar P<br>$$<br>其中y是误差，K是卡尔曼增益，x和P是新的状态</p>
-</li>
-</ol>
-<h2 id="卡尔曼增益"><a href="#卡尔曼增益" class="headerlink" title="卡尔曼增益"></a>卡尔曼增益</h2><p>卡尔曼增益的更新<br>$$<br>K&#x3D;\bar P H^T(H\bar P H^T+R)^{-1}<br>$$</p>
-<ul>
-<li>R是测量噪声，由传感器的制造商给出</li>
-<li>$(H\bar P H^T+R)$总的噪声，是预测噪声+测量噪声</li>
-<li>为什么K如此复杂？因为矩阵的除法是没有定义的，因此计算总的噪声再取逆</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/DS_Algorithm/labuladong/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/DS_Algorithm/labuladong/" class="post-title-link" itemprop="url">labuladong学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-13 21:30:00" itemprop="dateCreated datePublished" datetime="2020-07-13T21:30:00-07:00">2020-07-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-23 16:02:16" itemprop="dateModified" datetime="2022-10-23T16:02:16-07:00">2022-10-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/DS-Algorithm/" itemprop="url" rel="index"><span itemprop="name">DS_Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>我从一个礼拜左右前开始刷题，到目前刷了三十几道，感觉逐渐有点上手，但没有一个系统的框架。在刷一道二分法的题目时，看到了labuladong的笔记，感觉思路清晰，值得学习。之后还发现他总结了一系列的算法框架并写了文章，所以在这里记录下阅读时的收获</p>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>目标：<strong>求最值</strong>。动态规划是运筹学中的最优化方法，在CS中应用较多</p>
-<p>核心思想：<strong>穷举</strong>。把所有的可行答案穷举并找最值</p>
-<p>难点：存在“重叠子问题”，直接暴力穷举效率低下。需要记<strong>录下一些中间过程</strong>节省计算量</p>
-<p>方法：找到<strong>最优子结构</strong>，并列出正确的<strong>状态转移方程</strong>。</p>
-<ul>
-<li>技巧：状态压缩，每次只记录必要的数据</li>
-</ul>
-<h2 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h2><p>实际上是决策树的遍历过程，要考虑三个问题</p>
-<ol>
-<li>路径</li>
-<li>选择列表</li>
-<li>结束条件</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line">def backtrack(路径, 选择列表):</span><br><span class="line">    if 满足结束条件:</span><br><span class="line">        result.add(路径)</span><br><span class="line">        return</span><br><span class="line"></span><br><span class="line">    for 选择 in 选择列表:</span><br><span class="line">        做选择</span><br><span class="line">        backtrack(路径, 选择列表)</span><br><span class="line">        撤销选择</span><br></pre></td></tr></table></figure>
-
-<p>在全排列问题中</p>
-<ol>
-<li>路径就是已经用掉的数字</li>
-<li>选择列表就是还剩下的数字</li>
-<li>结束条件就是列表为空</li>
-</ol>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组主要就是考察插入、删除和搜索</p>
-<p>为了节省内存空间，利用in-place操作可以达到$O(1)$的空间复杂度</p>
-<ul>
-<li>为了实验in-place的操作，往往会使用<strong>双指针</strong></li>
-</ul>
-<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>单向链表：遍历、插入、删除</p>
-<p>双向链表：相比于单向链表，在插入和删除时要更加小心。但是在删除时会更加容易，不需要$O(N)$的时间复杂度去找到上一个结点</p>
-<p>在知道<strong>前一个</strong>结点的情况下，链表的插入和删除都是非常快的</p>
-<p>双指针技巧同样非常有用。相比数组更加容易出错</p>
-<ul>
-<li>要多检查是否结点为空</li>
-<li>多检查几遍确保循环能够正确结束<ul>
-<li>多尝试一些边界条件</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/Great%20Ideas/Justice/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Philosophy/Great%20Ideas/Justice/" class="post-title-link" itemprop="url">自由平等正义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-28 01:35:00" itemprop="dateCreated datePublished" datetime="2020-06-28T01:35:00-07:00">2020-06-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="自由"><a href="#自由" class="headerlink" title="自由"></a>自由</h2><p>在三种主要的自由形式</p>
-<ul>
-<li>天生的选择自由</li>
-<li>后天的道德自由</li>
-<li>环境制约的行为自由（政治相关）</li>
-</ul>
-<p>只有社会中的<strong>行动自由</strong>是未被实际否认的。（法无禁止即可为）</p>
-<p>自由意志和自由选择是在哲学中被长期讨论的。关键点在于</p>
-<ul>
-<li>人性是否超越自然？</li>
-</ul>
-<h2 id="平等"><a href="#平等" class="headerlink" title="平等"></a>平等</h2><p>关键点：是否同意<strong>共同人性</strong></p>
-<p>如果肯定人性上人人平等，那么就可以接着考虑</p>
-<ul>
-<li>环境条件平等</li>
-<li>机会平等</li>
-</ul>
-<p>如何评价平等？将平等分级，先要满足种类上的平等（指大家都处于类似的水平上），然后才能考虑程度上的平等（指大家都有相同的量化结果）</p>
-<h2 id="正义"><a href="#正义" class="headerlink" title="正义"></a>正义</h2><p>自古以来有三种关于正义的争辩</p>
-<ul>
-<li>有权势则有理，权威就是正义</li>
-<li>自然正义先于法律正义</li>
-<li>功利主义</li>
-</ul>
-<p>作者认为这三种正义都是有一定道理的。</p>
-<p>关于正义还有两个难以解决的问题</p>
-<ul>
-<li>我们为什么要做到正义？正义和幸福有关吗，表面上看是否定的。但是如果仔细考虑，为了达到善这个终极目的，为了整个一生过上好日子，我必须以正义待人，以正义处理与我所在社区的关系</li>
-<li>当别人以不正义的行为做事，我们要怎么办？忍受还是同样不正义？如果我的不正义行为会改变我的习惯气质，并使我最终丧失美德，那么就不应该同样不正义，但其实是不太可能的。</li>
 </ul>
 
       
@@ -1834,7 +1326,7 @@ header, .context-menu, .megamenu-content, footer{
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1900,20 +1392,20 @@ header, .context-menu, .megamenu-content, footer{
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-count">330</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
