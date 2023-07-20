@@ -188,6 +188,501 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Project/lidar-slam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Project/lidar-slam/" class="post-title-link" itemprop="url">Lidar SLAM -- Simulation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-02-06 21:28:00" itemprop="dateCreated datePublished" datetime="2023-02-06T21:28:00-08:00">2023-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-08 18:59:33" itemprop="dateModified" datetime="2023-02-08T18:59:33-08:00">2023-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Try to recover the path using lidar data</p>
+<p>Data: <a target="_blank" rel="noopener" href="https://ori-drs.github.io/newer-college-dataset/stereo-cam/">Newer College Dataset</a> from Oxford</p>
+<ul>
+<li>Why not self-acquired data? Hard to get the ground truth, low resolution data</li>
+</ul>
+<p>The data: quad with dynamics</p>
+<ul>
+<li>4 loops of quad with increasingly aggressive motion of device with swinging and fast walking (398 seconds)</li>
+</ul>
+<p>Hardware</p>
+<ul>
+<li><strong>Intel Realsense D435i</strong> - a stereoscopic-inertial camera</li>
+<li><strong>Ouster OS-1 (Gen 1) 64</strong> - a 64 multi-beam 3D LiDAR also with an IMU</li>
+</ul>
+<h2 id="Explore"><a href="#Explore" class="headerlink" title="Explore"></a>Explore</h2><p>Read the ground truth</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230206213810.png" alt="image-20230206213810188" style="zoom:33%;" />
+
+<p>X: from -10 to 20</p>
+<p>Y: from -40 to 10</p>
+<hr>
+<p>Read data, from Ouster OS1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct_fmt = <span class="string">f&#x27;&lt;<span class="subst">&#123;<span class="number">1024</span>*<span class="number">64</span>*<span class="number">3</span>&#125;</span>H&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>64 in veritical</p>
+<p>1024 in honrizontal</p>
+<p>3 for [x,y,z]</p>
+<hr>
+<p>Test ICP in 2D</p>
+<p>Read PointCloud Data in Python</p>
+<ul>
+<li>Offset defined in fields is important</li>
+<li>Calculate how many byte needed for the info</li>
+<li>ROS’s PointCloud2 data,<ul>
+<li>Read the fields, understand how much inforamtion for a point, e.g 48byte and related datatype, e.g float32</li>
+<li>Init a struct to read the data</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230208183313.png" alt="image-20230208183313530"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Python/auto-import/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/Python/auto-import/" class="post-title-link" itemprop="url">Auto Import Image from SD card to Lightroom</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-01 21:06:00 / Modified: 21:14:22" itemprop="dateCreated datePublished" datetime="2023-02-01T21:06:00-08:00">2023-02-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>I have multiple cameras, and I always shoot with Raw+JPG, but at the end of the day, I only need the raw file since it’s better for post-processing</p>
+<p>So everytime I do the work</p>
+<ol>
+<li>Open the folder</li>
+<li>Select the JPG image</li>
+<li>Delete the JPG image</li>
+<li>Right click the remained RAW file</li>
+<li>Import to Lightroom</li>
+</ol>
+<p>This process is simple but I don’t like repeat it, so an automation tool would be great</p>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>In a nutshell, we can use Automator and Python to finish the job</p>
+<ul>
+<li>Automator is just to run the Python script and tell the Python script where is the location</li>
+<li>In Python, the code will run the logic 2&#x2F;3&#x2F;4&#x2F;5</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230201211241.png" alt="image-20230201211240945"></p>
+<p>Python code:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Automate the image import process</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment">## Get the path to the folder containing the images</span></span><br><span class="line">root_path=sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## Define the extensions of the raw and jpg files</span></span><br><span class="line">raw_extensions = [<span class="string">&quot;.DND&quot;</span>, <span class="string">&quot;.RW2&quot;</span>, <span class="string">&quot;.NEF&quot;</span>, <span class="string">&quot;.ORF&quot;</span>]</span><br><span class="line">jpg_extensions = [<span class="string">&quot;.JPG&quot;</span>,<span class="string">&#x27;.JPEG&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## Find the raw files and the jpg files</span></span><br><span class="line">raw_list = []</span><br><span class="line">jpg_list = []</span><br><span class="line">jpg_remove_list = []</span><br><span class="line"><span class="keyword">for</span> rext <span class="keyword">in</span> raw_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(rext):</span><br><span class="line">                raw_list.append(file[:-<span class="built_in">len</span>(rext)])</span><br><span class="line"><span class="built_in">print</span>(raw_list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> jext <span class="keyword">in</span> jpg_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(jext):</span><br><span class="line">                jpg_list.append(file[:-<span class="built_in">len</span>(jext)])</span><br><span class="line"><span class="built_in">print</span>(jpg_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## Find the jpg files that have a corresponding raw file</span></span><br><span class="line"><span class="keyword">for</span> jpg <span class="keyword">in</span> jpg_list:</span><br><span class="line">    <span class="keyword">if</span> jpg <span class="keyword">in</span> raw_list:</span><br><span class="line">        jpg_remove_list.append(jpg)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Delete the jpg files that have a corresponding raw file</span></span><br><span class="line"><span class="built_in">print</span>(jpg_remove_list)</span><br><span class="line"><span class="keyword">for</span> jext <span class="keyword">in</span> jpg_extensions:</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.endswith(jext) <span class="keyword">and</span> file[:-<span class="built_in">len</span>(jext)] <span class="keyword">in</span> jpg_remove_list:</span><br><span class="line">                os.remove(os.path.join(root,file))</span><br><span class="line">                <span class="comment"># print(f&#x27;removing &#123;os.path.join(root,file)&#125;&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Open the remaining raw and jpg files in default application</span></span><br><span class="line">command_list = [<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(root_path):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> file.startswith(<span class="string">&#x27;.&#x27;</span>):</span><br><span class="line">                command_list.append(os.path.join(root,file))</span><br><span class="line"><span class="built_in">print</span>(command_list)</span><br><span class="line">subprocess.run(command_list)                </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/AI/ai-writer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/AI/ai-writer/" class="post-title-link" itemprop="url">AI Writer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-02-01 00:38:00" itemprop="dateCreated datePublished" datetime="2023-02-01T00:38:00-08:00">2023-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-26 20:29:08" itemprop="dateModified" datetime="2023-02-26T20:29:08-08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Using NN to generate novel</p>
+<ul>
+<li>Input: the start</li>
+<li>Output: renewed novel with the start</li>
+</ul>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Convert the input text into number, find the stat pattern</p>
+<p>By learning a model</p>
+<ul>
+<li>Given a bunch of data</li>
+<li><strong>Predict the next word</strong></li>
+</ul>
+<p>GPT model</p>
+<ul>
+<li>Training data: novel, small</li>
+</ul>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://github.com/BlinkDL/AI-Writer">Github Repo</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/house-heating/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Skills/house-heating/" class="post-title-link" itemprop="url">房屋供暖方案研究</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-01-30 22:10:00 / Modified: 22:11:33" itemprop="dateCreated datePublished" datetime="2023-01-30T22:10:00-08:00">2023-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>研究排屋供暖方案</p>
+<ul>
+<li>类型</li>
+<li>原理</li>
+<li>效果</li>
+<li>成本</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mapping/icp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Mapping/icp/" class="post-title-link" itemprop="url">ICP Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-01-25 23:06:00" itemprop="dateCreated datePublished" datetime="2023-01-25T23:06:00-08:00">2023-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-30 18:54:38" itemprop="dateModified" datetime="2023-01-30T18:54:38-08:00">2023-01-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Mapping/" itemprop="url" rel="index"><span itemprop="name">Mapping</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Hardware: Laser Lidar</p>
+<p>Input: a series of 2D or 3D point, $X_0, X_1…X_n$</p>
+<p>Output: the R,T betwwen $X_i$ and $X_{i+1}$</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>General Procedure</p>
+<ol>
+<li>Point selection: for lidar, the data is in order</li>
+<li>Matching: nearest neighbor</li>
+<li>Weighting</li>
+<li>Rejecting</li>
+<li>Calculate error</li>
+<li>Minimize the error</li>
+</ol>
+<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><ol>
+<li>get real data<ol>
+<li>From ros, record the data using ROS bag</li>
+<li>Convert the rosbag to numpy</li>
+</ol>
+</li>
+<li>Test algorithm in existing code</li>
+<li>Migrate the algorithm to Taichi version</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Python/taichi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -724,631 +1219,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/haircut/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/haircut/" class="post-title-link" itemprop="url">理发助手</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-02 22:06:00" itemprop="dateCreated datePublished" datetime="2023-01-02T22:06:00-08:00">2023-01-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-31 01:14:16" itemprop="dateModified" datetime="2023-01-31T01:14:16-08:00">2023-01-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Create a haircut helper to reduce the time of haircut</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230102220652.png" alt="image-20230102220652682" style="zoom:33%;" />
-
-<p>Using a template trimmer to get hairstyle like the above state, the important part is the <strong>back of head</strong> since it’s hard to trim the hair in that area. </p>
-<h2 id="Prototype"><a href="#Prototype" class="headerlink" title="Prototype"></a>Prototype</h2><p>Type I: a fixed template that cover the back head area</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230102221030.png" alt="image-20230102221030466"></p>
-<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h3><p>Material: soft alumni string to shape my head, since the precise model is not that important, a 4 by 4 grid is used</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230102222227.png" alt="image-20230102222226998" style="zoom: 25%;" />
-
-<p>Then we need to digitalize the curve. Using iPad and modeling software would be a good idea</p>
-<p>Software:</p>
-<ul>
-<li>Tried Shapr3D, a good modeler, but require pricy subscription</li>
-<li>Freecad</li>
-</ul>
-<h3 id="Improvement"><a href="#Improvement" class="headerlink" title="Improvement"></a>Improvement</h3><p>In the last design, although the overall idea is pretty simple and straightforward, but the implementation and modeling is too hard. So in this version, I would try to simplify the design</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104204255.png" alt="image-20230104204255368" style="zoom: 25%;" />
-
-<p>this way, I separate the hair cut region into 2 part, program each part</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104204608.png" alt="image-20230104204608578" style="zoom:25%;" />
-
-<hr>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104222424.png" alt="image-20230104222424555" style="zoom:25%;" />
-
-<p>Tried control point and spline fit, doesn’t work well. That lead to my 2nd attempt, the log curve</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104224544.png" alt="image-20230104224543872" style="zoom:33%;" />
-
-<p>Well, it doesn’t do well either</p>
-<hr>
-<p>Let try $x^3$</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104230705.png" alt="image-20230104230705207" style="zoom:33%;" />
-
-<p>Emm.. Still kind of werid.</p>
-<hr>
-<p>Nevermind, lets do arc</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230104231534.png" alt="image-20230104231534596" style="zoom:33%;" />
-
-<p>Circle never let me down</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230105015721.png" alt="image-20230105015721033" style="zoom:50%;" />
-
-<p>Create the point cloud in open3d</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230105220445.png" alt="image-20230105220444788" style="zoom:33%;" />
-
-<p>However, 3d printer can NOT print point cloud straight, we need to generate the face and compute the stl file. Meshlab can do this job by using ball pivoting algorithm</p>
-<h2 id="3D-Print"><a href="#3D-Print" class="headerlink" title="3D Print"></a>3D Print</h2><h3 id="V1-0"><a href="#V1-0" class="headerlink" title="V1.0"></a>V1.0</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230131011018.jpeg" alt="IMG_7679 Large"></p>
-<ul>
-<li>Problem: Can’t gather hair</li>
-<li>Solution: remove the horizontal line and mimic the normal comb</li>
-</ul>
-<h3 id="V1-1"><a href="#V1-1" class="headerlink" title="V1.1"></a>V1.1</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230131011305.jpeg" alt="IMG_7680 Large"></p>
-<ul>
-<li>Problem: can’t control the hair clipper</li>
-<li>Solution: add guide for clipper</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/plan-2023/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/plan-2023/" class="post-title-link" itemprop="url">2023计划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-02 17:36:00" itemprop="dateCreated datePublished" datetime="2023-01-02T17:36:00-08:00">2023-01-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-20 22:36:11" itemprop="dateModified" datetime="2023-06-20T22:36:11-07:00">2023-06-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h2><p>2022年对于个人来说是重要的一年，在过去的一年多时间里</p>
-<ul>
-<li>在GT获得Master学位</li>
-<li>搬到加州，从事图像处理方面的工作</li>
-<li>学会开车、滑雪</li>
-<li>与贾博完成了采茶机器人的初步研发，由于缺少资金支持暂停</li>
-<li>开始制作个人的机器人平台，完成了基本运动模块（底盘）</li>
-<li>更加频繁的拍摄照片，利用M43系统的便携性，日常携带相机进行拍摄</li>
-</ul>
-<h2 id="2023"><a href="#2023" class="headerlink" title="2023"></a>2023</h2><p>机器人方面：</p>
-<ul>
-<li><p>个人机器人平台，增加雷达导航、增加机械臂，完成一项基本功能（e.g. 拖地）</p>
-</li>
-<li><p>工业机器人方面，参与厨房机器人和底盘机器人项目，主要会涉及到机械臂算法的开发</p>
-</li>
-<li><p>茶叶机器人的重新开发</p>
-<ul>
-<li>注重技术积累</li>
-<li>3维识别</li>
-<li>底盘+机械臂</li>
-</ul>
-</li>
-<li><p>仿真</p>
-<ul>
-<li><del>Webots， 控制，图像，模型</del></li>
-</ul>
-</li>
-<li><p>机械臂算法开发</p>
-<ul>
-<li><del>基于开源模型</del></li>
-</ul>
-</li>
-<li><p><del>Modern C++ 学习</del></p>
-<ul>
-<li><del>语法， best practice</del></li>
-</ul>
-</li>
-<li><p>导航与控制</p>
-<ul>
-<li><del>四轮独立转向系统模型</del></li>
-<li><del>MPC轨迹控制</del></li>
-<li>加速度到速度？</li>
-<li></li>
-</ul>
-</li>
-</ul>
-<p>工作方面：</p>
-<ul>
-<li><p><del>继续完善PyISP项目，增加可视化模块（GUI），并且增加ISP的其他重要模块</del></p>
-</li>
-<li><p>算法开发方面，要更加注重原理和直觉的积累</p>
-<ul>
-<li>和manager多交流</li>
-</ul>
-</li>
-<li><p>积累更多经验，主要是关于ISP的，对于各个模块要更加熟悉</p>
-</li>
-</ul>
-<p>个人兴趣方面：</p>
-<ul>
-<li><del>继续保持使用相机记录生活的习惯，要开始有意识的精选一些照片，而不是全部都保存下来，其实不利于后期回顾</del></li>
-<li><del>理发助手，将后脑勺头部模型开发完成并3D打印</del></li>
-</ul>
-<h2 id="Current-TODO"><a href="#Current-TODO" class="headerlink" title="Current TODO"></a>Current TODO</h2><ol>
-<li><del>CadQuery, basic learning</del></li>
-<li><del>Lidar SLAM, basic learning</del></li>
-<li><del>Robot with lidar and IMU</del></li>
-</ol>
-<ul>
-<li><del>ICP to taichi version</del></li>
-<li>Robot arm development</li>
-<li>Robot arm taichi version</li>
-</ul>
-<p>PyISP项目主要是工作时间在开发，因为也算是辅助工作</p>
-<p>在制作机器人方面，目前还欠缺的点是</p>
-<ul>
-<li>传感器融合：IMU，Lidar<ul>
-<li>已经在开展，个人的机器人项目采集数据和Ground Truth较难获取</li>
-<li>通过数据集开展研究<ul>
-<li>读取数据，绘图，明白数据意义</li>
-<li>应用ICP算法绘制轨迹</li>
-<li>应用IMU算法绘制轨迹</li>
-<li>融合Lidar和IMU优化效果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>机械臂算法开发<ul>
-<li><del>成熟的机械臂算法库研究</del></li>
-<li><del>正运动学</del></li>
-<li><del>逆运动学</del></li>
-<li><del>URDF解析</del></li>
-<li><del>碰撞检测</del></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>在实体机器人上实现和研究这些算法太麻烦了，利用机器人仿真平台进行测试</p>
-<p>02&#x2F;12: 目前选择webots进行测试</p>
-<p>这一个月做了webots的调试，通用机械臂算法开发</p>
-<p>03&#x2F;09 python的性能无法满足需求，学习C++</p>
-<p>04&#x2F;03 上个月完成了car like robot和arm like robot的基础开发，接下来就不断完善功能，并且开始研究雷达slam算法</p>
-<p>04&#x2F;16 这两周完善了carlike robot和arm like robot，可以进行实机测试，接下来，用条件的进行实机测试，开始实验雷达slam算法</p>
-<p>05&#x2F;14 前两周开启了一些新的活动，主要是足球、食物摄影，足球训练和摄影具体方式的学习，需要重新考虑机器人的发展方向和创业的方向</p>
-<p>06&#x2F;07 前几周学完了食物摄影，开始将上半年做的一些算法和软件开始部署到真实机器人上（目前阶段是小车），研究了激光雷达的建图和定位，有了更加清晰的认知；更新了简历，为职业发展做了规划，0620近期开始在实机上测试MPC算法，lidar导航和建图功能</p>
-</blockquote>
-<blockquote>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-01 11:51:56" itemprop="dateCreated datePublished" datetime="2023-01-01T11:51:56-08:00">2023-01-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Project/mobile-robot-ii/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Project/mobile-robot-ii/" class="post-title-link" itemprop="url">Build A Mobile Robot from Scratch —— Part II</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-12-30 11:10:00 / Modified: 12:17:08" itemprop="dateCreated datePublished" datetime="2022-12-30T11:10:00-08:00">2022-12-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>It has been several weeks since the project begins. To make the project more clear, we can summarize the progress here and plan the next step</p>
-<h2 id="Current"><a href="#Current" class="headerlink" title="Current"></a>Current</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png" alt="image-20221221223618322" style="zoom: 15%;" />
-
-<p>Material:</p>
-<ul>
-<li>Chasis</li>
-<li>Power distribution: 12V, 5V, GND, voltage transformer, power </li>
-<li>Move: Motor</li>
-<li>Control: Arduino, Jetson Nano</li>
-<li>Sensor<ul>
-<li>Encoder</li>
-<li>IMU</li>
-<li>IR: for communication and control</li>
-</ul>
-</li>
-</ul>
-<p>Function</p>
-<ul>
-<li>Remote Manual Control: move forward&#x2F;backward, rotate clockwise&#x2F;counter-clockwise. SPEED CONTROL</li>
-<li>TODO: move robot to a specific position. POSITION CONTROL<ul>
-<li>use IMU, accumulate the ACCL</li>
-</ul>
-</li>
-<li>TODO: use lidar to build map and refer it for localization. CLOSED LOOP POSITION CONTROL<ul>
-<li>use Lidar</li>
-</ul>
-</li>
-</ul>
-<p>For the current phase, the goal is to move from point A to point B</p>
-<ul>
-<li>due to the design, easy to rotate and move</li>
-</ul>
-<h2 id="Next-Phase"><a href="#Next-Phase" class="headerlink" title="Next Phase"></a>Next Phase</h2><p>For a robot, movement is the most basic task, following by the question: what can it do?</p>
-<p>I would like to see a robot can move and finish some task that are useful, for example, clean the floor</p>
-<ul>
-<li>Force feedback</li>
-<li>Motor arm</li>
-</ul>
-<hr>
-<p>厨房机器人</p>
-<p>半年的时间做一个demo</p>
-<p>投入20w-30w美元</p>
-<ul>
-<li>招人<ul>
-<li>电气开发，福龙水平</li>
-<li>算法开发</li>
-</ul>
-</li>
-</ul>
-<p>合作：</p>
-<ul>
-<li>工业扫地</li>
-<li>酒店送餐机器人</li>
-<li>不大的企业</li>
-</ul>
-<hr>
-<p>场景</p>
-<ul>
-<li>Fry robot</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Miscellaneous/face_change/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Miscellaneous/face_change/" class="post-title-link" itemprop="url">Face Time Lapse</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-12-29 13:06:00 / Modified: 16:24:05" itemprop="dateCreated datePublished" datetime="2022-12-29T13:06:00-08:00">2022-12-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Show how my face and hair style changes from time to time</p>
-<p>Input: a bunch of selfie</p>
-<p>Output: a short clip show the change</p>
-<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><ol>
-<li>Collect data (image) from camera and phone</li>
-<li>Put into Lightroom in a album for organization and further development</li>
-<li>Output the image with time-tagged prefix</li>
-<li>Remove the background (maybe not)</li>
-<li>Use computer vision to detect the face and crop</li>
-</ol>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Eye alignment is the key process</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/hujunhan/eyelign">https://github.com/hujunhan/eyelign</a></p>
-<ol>
-<li>main.py use machine learning to do the most job</li>
-<li>gui_manual_align.py use GUI to manual align the corner case</li>
-</ol>
-<hr>
-<p>Generate the timelapse</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg \                                                                 </span><br><span class="line">  -framerate 15 \</span><br><span class="line">  -pattern_type glob \</span><br><span class="line">  -i <span class="string">&quot;/Users/Hu/Downloads/output/*.jpg&quot;</span> \</span><br><span class="line">  -s:v 500x500 \</span><br><span class="line">  -c:v libx264 \</span><br><span class="line">  -crf 17 \</span><br><span class="line">  -pix_fmt yuv420p \</span><br><span class="line">  timelapse.mp4</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1414,20 +1288,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">335</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

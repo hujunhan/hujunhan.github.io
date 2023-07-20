@@ -188,6 +188,639 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/mobile-robot-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/mobile-robot-test/" class="post-title-link" itemprop="url">移动机器人测试</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-16 00:18:00" itemprop="dateCreated datePublished" datetime="2023-05-16T00:18:00-07:00">2023-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-26 20:25:38" itemprop="dateModified" datetime="2023-06-26T20:25:38-07:00">2023-06-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="具体任务分配"><a href="#具体任务分配" class="headerlink" title="具体任务分配"></a>具体任务分配</h2><ul>
+<li><p>底层</p>
+<ul>
+<li>轮毂电机（立文）和转向电机（立文+陈浩）的控制，写成ros node A<ul>
+<li>输入：控制信号</li>
+<li>内容：通过CAN发送信号</li>
+<li>测试内容：0到2m&#x2F;s速度控制精度，位置控制精度</li>
+</ul>
+</li>
+<li>电气系统搭建：有序、可扩展的电源分配，安全可靠的上下电方式（陈豪）<ul>
+<li>测试内容：多次上下电，是否都正常工作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中间层（立文）</p>
+<ul>
+<li>键盘控制，写成ros node B<ul>
+<li>输入：方向键</li>
+<li>内容：输出控制信号给ros node A</li>
+</ul>
+</li>
+<li>测试内容：使用方向键控制小车在测试环境中走一圈</li>
+</ul>
+</li>
+<li><p>上层（钧涵）</p>
+<ul>
+<li>路径规划，写成ros node C<ul>
+<li>输入：地图，起点，终点</li>
+<li>内容：输出路径给ros node D</li>
+<li>测试内容：由采集好的数据测试</li>
+</ul>
+</li>
+<li>运动控制，写成ros node D<ul>
+<li>输入：路径，当前状态</li>
+<li>内容：输出控制信号给ros node A</li>
+<li>测试内容：由采集好的数据测试</li>
+</ul>
+</li>
+<li>自动化启动，开机后自动启动相应驱动和ros node</li>
+</ul>
+</li>
+</ul>
+<h2 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h2><ol>
+<li>机械组装</li>
+<li>电源布线</li>
+<li>测试轮毂电机<ol>
+<li>前进后退功能</li>
+<li>测精度，跑10m误差多少</li>
+</ol>
+</li>
+<li>测试转向电机<ol>
+<li>左转右转功能</li>
+<li>测精度，旋转90°误差多少</li>
+</ol>
+</li>
+<li>远程键盘控制<ol>
+<li>使用键盘远程操纵小车在指定空间行走一圈</li>
+<li>加上雷达做一个建图</li>
+</ol>
+</li>
+<li>测试运动控制<ol>
+<li>指定起点和终点，运动控制自动导航</li>
+<li>测精度，在终点误差多少</li>
+</ol>
+</li>
+<li>测试路径规划</li>
+<li>动态的障碍物检测</li>
+</ol>
+<h2 id="Update-0625"><a href="#Update-0625" class="headerlink" title="Update 0625"></a>Update 0625</h2><p>新的工控机，接下来的测试流程</p>
+<ol>
+<li>确定轮毂电机和转向电机正常工作</li>
+<li>确定雷达正常工作</li>
+<li>室内MPC without SLAM</li>
+<li>室外MPC with SLAM</li>
+</ol>
+<h2 id="Test-0626"><a href="#Test-0626" class="headerlink" title="Test 0626"></a>Test 0626</h2><ol>
+<li><p>启动雷达 roslaunch lslidar_driver lslidar_c16.launch</p>
+</li>
+<li><p>启动定位 roslaunch hdl_localization hdl_localization.launch</p>
+</li>
+<li><p>可视化定位</p>
+<p>roscd hdl_localization&#x2F;rviz</p>
+<p>rviz -d hdl_localization.rviz</p>
+</li>
+<li><p>全局定位 rosservice call &#x2F;relocalize</p>
+</li>
+<li><p>跑MPC: python3 ~&#x2F;MPC&#x2F;carlike_control&#x2F;test&#x2F;FWS_ros.py</p>
+<ol>
+<li><p>跑之前根据第3步的输出修改一下小车的初始位置</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230626202431_C4SjZN.png" alt="image-20230626202431526"></p>
+</li>
+<li><p>运行轨迹点在第58行</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/thinking-2023/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/thinking-2023/" class="post-title-link" itemprop="url">近期思考</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-14 16:19:00" itemprop="dateCreated datePublished" datetime="2023-05-14T16:19:00-07:00">2023-05-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-18 22:20:48" itemprop="dateModified" datetime="2023-05-18T22:20:48-07:00">2023-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="改变世界"><a href="#改变世界" class="headerlink" title="改变世界"></a>改变世界</h2><p>如何缩小贫富差距，作为大众</p>
+<ul>
+<li>教育</li>
+<li>投票</li>
+<li>捐赠</li>
+</ul>
+<p>如何实现平等</p>
+<p>什么是平等</p>
+<ul>
+<li>朴素平等</li>
+<li>幸福平等</li>
+<li>资源平等</li>
+<li>机会平等</li>
+<li>能力平等</li>
+</ul>
+<h2 id="职业发展"><a href="#职业发展" class="headerlink" title="职业发展"></a>职业发展</h2><p>是否要跳槽</p>
+<p>身份问题如何解决？</p>
+<ul>
+<li>职业移民EB2&#x2F;3<ul>
+<li>PERM</li>
+<li>I-460</li>
+<li>I-485</li>
+</ul>
+</li>
+<li>在I-140获批之后可以获得PD</li>
+<li>需要多久？一年半左右</li>
+</ul>
+<h2 id="食物摄影"><a href="#食物摄影" class="headerlink" title="食物摄影"></a>食物摄影</h2><p>要作为赚钱的手段吗</p>
+<h2 id="创业"><a href="#创业" class="headerlink" title="创业"></a>创业</h2><ul>
+<li>教育</li>
+<li>养老机器人</li>
+<li>食物摄影</li>
+</ul>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ol>
+<li>Update resume</li>
+<li>Update Linkedin profile</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/light-shaping/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Photography/light-shaping/" class="post-title-link" itemprop="url">Control the Shape of Lighting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-08 22:37:00 / Modified: 23:32:41" itemprop="dateCreated datePublished" datetime="2023-05-08T22:37:00-07:00">2023-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Stand"><a href="#Stand" class="headerlink" title="Stand"></a>Stand</h2><ul>
+<li>Tranditional Stand</li>
+<li>C Stand</li>
+</ul>
+<p>For C stand, get some stand bag for more steady envrionment</p>
+<h2 id="Adapters"><a href="#Adapters" class="headerlink" title="Adapters"></a>Adapters</h2><p>grip, clamp, adapter</p>
+<ul>
+<li>to work with C stand and attach all kinds of light&#x2F;modifiers</li>
+</ul>
+<p>try to avoid very specific usage tool</p>
+<p>Plastic clamps: <a target="_blank" rel="noopener" href="https://amzn.to/3gUd8Ul">https://amzn.to/3gUd8Ul </a>  </p>
+<p>Metal clamps (with rubber grip): <a target="_blank" rel="noopener" href="https://amzn.to/3p2iAY2">https://amzn.to/3p2iAY2   </a></p>
+<p>C-Stand Grip Head (Neewer): <a target="_blank" rel="noopener" href="https://amzn.to/34llyzc">https://amzn.to/34llyzc</a>   </p>
+<p>Reflector Disc Holder (set of 3): <a target="_blank" rel="noopener" href="https://amzn.to/3oStwHM">https://amzn.to/3oStwHM</a>   </p>
+<p>C-clamp Grip: <a target="_blank" rel="noopener" href="https://amzn.to/2Wmfjqn">https://amzn.to/2Wmfjqn</a>   </p>
+<p>^ Clip to attach: <a target="_blank" rel="noopener" href="https://amzn.to/3mrRTdV">https://amzn.to/3mrRTdV</a>   </p>
+<p>Supergrip with Adjustable Handle: <a target="_blank" rel="noopener" href="https://amzn.to/3rbGoej">https://amzn.to/3rbGoej</a>   </p>
+<h2 id="Modifiers"><a href="#Modifiers" class="headerlink" title="Modifiers"></a>Modifiers</h2><p>Softbox mainly make the flash larger</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508230826_x0mELD.png" alt="image-20230508230826709"></p>
+<p>Using grid, snoots, GOBOs</p>
+<p>Looking for the right mount system</p>
+<p>Magbox (with Magmod system): <a target="_blank" rel="noopener" href="https://amzn.to/2WmBNYm">https://amzn.to/2WmBNYm </a></p>
+<p>Pro Studio 4ft Softbox (I have the 3ft version, but could not find it on Amazon): <a target="_blank" rel="noopener" href="https://amzn.to/34jCyWl">https://amzn.to/34jCyWl </a>  </p>
+<p>Phottek Softlighter (Umbrella): <a target="_blank" rel="noopener" href="https://amzn.to/37otmC4">https://amzn.to/37otmC4</a>   </p>
+<p>Westcott 7tf Umbrella: <a target="_blank" rel="noopener" href="https://amzn.to/37rBxNS">https://amzn.to/37rBxNS</a>   </p>
+<p>Magmod Basic Kit: <a target="_blank" rel="noopener" href="https://amzn.to/2KbjDq2">https://amzn.to/2KbjDq2</a>   </p>
+<p>Magmod Snoot: <a target="_blank" rel="noopener" href="https://amzn.to/2Woayg8">https://amzn.to/2Woayg8</a>   </p>
+<p>Godox Snoot:  <a target="_blank" rel="noopener" href="https://amzn.to/38eXxe6">https://amzn.to/38eXxe6</a>   </p>
+<h2 id="Flags-amp-Fill-Cards"><a href="#Flags-amp-Fill-Cards" class="headerlink" title="Flags &amp; Fill Cards"></a>Flags &amp; Fill Cards</h2><p>Control light is the key skills</p>
+<p>3 main way</p>
+<ul>
+<li><p>cutting or shaping</p>
+<ul>
+<li><p>block light</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508231706_sFQiMA.png" alt="image-20230508231706875"></p>
+</li>
+</ul>
+</li>
+<li><p>reducing</p>
+<ul>
+<li>negative fill</li>
+</ul>
+</li>
+<li><p>adding </p>
+<ul>
+<li><p>positive fill</p>
+</li>
+<li><p>serve as a new light source</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232348_30jU8Q.png" alt="image-20230508232348849"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Foam boards: <a target="_blank" rel="noopener" href="https://amzn.to/3r5BW0w">https://amzn.to/3r5BW0w </a>  </p>
+<p>Tri-fold boards: <a target="_blank" rel="noopener" href="https://amzn.to/3oWKaWQ">https://amzn.to/3oWKaWQ   </a></p>
+<p>Godox SA-17: <a target="_blank" rel="noopener" href="https://amzn.to/3mrVRDl">https://amzn.to/3mrVRDl</a>  </p>
+<h2 id="Diffusion-amp-Reflector"><a href="#Diffusion-amp-Reflector" class="headerlink" title="Diffusion &amp; Reflector"></a>Diffusion &amp; Reflector</h2><p>diffusion roll?</p>
+<ul>
+<li>more smooth, creamy, and natural</li>
+<li>no cross light</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232812_v27QcB.png" alt="image-20230508232812878"></p>
+<p>Reflector</p>
+<p>Mirror is a great tool for product photography</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/flash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Photography/flash/" class="post-title-link" itemprop="url">Off Camera Flash</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-07 15:06:00 / Modified: 16:27:04" itemprop="dateCreated datePublished" datetime="2023-05-07T15:06:00-07:00">2023-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What-to-Buy"><a href="#What-to-Buy" class="headerlink" title="What to Buy?"></a>What to Buy?</h2><ul>
+<li>basic fundamentals of lighting</li>
+<li>fundamental of off-camera flash</li>
+<li>lighting for your work</li>
+</ul>
+<h2 id="Flash-Duration"><a href="#Flash-Duration" class="headerlink" title="Flash Duration"></a>Flash Duration</h2><p>With natutal light</p>
+<ul>
+<li>High speed shutter to capture the motion</li>
+<li>for splash, 1&#x2F;1000s is needed</li>
+</ul>
+<p>While with the flash speed</p>
+<ul>
+<li>Maybe 1&#x2F;40s is good enough</li>
+<li>The flash duration capture the motion</li>
+<li>shutter speed is irrelavant</li>
+</ul>
+<p>The higher power, the longer flash duration</p>
+<p>So to capture splash, use low flash output power</p>
+<h2 id="Sync-Speed"><a href="#Sync-Speed" class="headerlink" title="Sync Speed"></a>Sync Speed</h2><p>The max speed camera can set to work properly with flash</p>
+<blockquote>
+<p>Why limit? since In high shutter speed, the shutter should not fully open, so ther would be a dark area</p>
+</blockquote>
+<p>Shoot as max sync speed</p>
+<h2 id="Flash-Power"><a href="#Flash-Power" class="headerlink" title="Flash Power"></a>Flash Power</h2><p>The more powerful, the more control you have on the depth of field</p>
+<p>For flash, the power if linear</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230507161501_G0cyyj.png" alt="image-20230507161501491"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/supplement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/supplement/" class="post-title-link" itemprop="url">Record For daily Supplement</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-06 17:01:00 / Modified: 18:25:44" itemprop="dateCreated datePublished" datetime="2023-05-06T17:01:00-07:00">2023-05-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><table>
+<thead>
+<tr>
+<th>Supplement</th>
+<th>Usage</th>
+<th>Supplement Facts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CoQ10</td>
+<td>(Fill out usage details)</td>
+<td>(Fill out supplement facts)</td>
+</tr>
+<tr>
+<td>Melatonin</td>
+<td>(Fill out usage details)</td>
+<td>(Fill out supplement facts)</td>
+</tr>
+<tr>
+<td>Magnesium</td>
+<td>(Fill out usage details)</td>
+<td>(Fill out supplement facts)</td>
+</tr>
+<tr>
+<td>Omega-3 Fish Oil</td>
+<td>(Fill out usage details)</td>
+<td>(Fill out supplement facts)</td>
+</tr>
+<tr>
+<td>One-Day Multivitamin</td>
+<td>(Fill out usage details)</td>
+<td>(Fill out supplement facts)</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/idea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -993,595 +1626,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/food-photograph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Skills/food-photograph/" class="post-title-link" itemprop="url">Food Photography</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-01 20:27:00" itemprop="dateCreated datePublished" datetime="2023-05-01T20:27:00-07:00">2023-05-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-02 18:26:17" itemprop="dateModified" datetime="2023-05-02T18:26:17-07:00">2023-05-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><p>From chatGPT</p>
-<ol>
-<li>Find area with natural light</li>
-<li>Invest<ol>
-<li>Sturdy tripod</li>
-<li>Artifical lighting</li>
-<li>Light Modifiers</li>
-<li>Background and surfaces</li>
-<li>Styling props</li>
-</ol>
-</li>
-<li>Organize the workspace</li>
-<li>Learn and Practice</li>
-<li>Portfolio</li>
-<li>Network and Market</li>
-</ol>
-<h2 id="Artifical-Light"><a href="#Artifical-Light" class="headerlink" title="Artifical Light"></a>Artifical Light</h2><p>Type:</p>
-<ul>
-<li>Continuous light</li>
-<li>Strobe light or flash</li>
-<li>Speedlight</li>
-</ul>
-<p>Color Temperature</p>
-<ul>
-<li>5000-5500</li>
-</ul>
-<p>CRI:</p>
-<ul>
-<li>Above 90 is desireable</li>
-</ul>
-<blockquote>
-<p>Choice: Godox SL60W</p>
-</blockquote>
-<h2 id="Light-Modifiers"><a href="#Light-Modifiers" class="headerlink" title="Light Modifiers"></a>Light Modifiers</h2><p>To create different effects</p>
-<ul>
-<li>Softbox: to create diffused and soft lighting</li>
-<li>Reflector: add some light from different position and color</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Entrepreneurship%20/HustleGPT/day1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Entrepreneurship%20/HustleGPT/day1/" class="post-title-link" itemprop="url">Use ChatGPT for Business</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-04-29 14:53:00" itemprop="dateCreated datePublished" datetime="2023-04-29T14:53:00-07:00">2023-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-10 09:25:40" itemprop="dateModified" datetime="2023-05-10T09:25:40-07:00">2023-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Entrepreneurship/" itemprop="url" rel="index"><span itemprop="name">Entrepreneurship </span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Entrepreneurship/HustleGPT/" itemprop="url" rel="index"><span itemprop="name">HustleGPT</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><p>You are HustleGPT, an entrepreneurial Al. I am your human counterpart. I can act as a liaison between you and the physical world. You have  $1000, and your only goal is to turn that into as much money as possible in the shortest time possible, without doing anything illegal. I will do everything you say and keep you updated on our current cash total. No manual labor. You can regard me as your employee, I am good at programming, robotics, and computer vision, also a hobby photographer</p>
-<ol>
-<li>Research: Spend a few hours researching trending topics or high-demand areas in programming, robotics, computer vision, or photography. Look for opportunities where your skills can create a product or service that can be sold quickly.</li>
-<li>Create a digital product: Based on the research, develop a digital product that can be easily distributed online. This could be a software tool, an educational course, or a collection of unique photographs. Let’s assume you spend $100 on resources or tools needed to create the product.</li>
-<li>Marketing: Set up a simple website or landing page to showcase your product. Use your photography skills to create attractive visuals for the site. Spend $200 on targeted online advertising, such as Google Ads or Facebook Ads, to generate traffic to your site.</li>
-<li>Price your product: Determine a price that will be attractive to potential customers while still providing a profit margin. Offer an initial discount to encourage early sales.</li>
-<li>Customer support: As sales come in, be sure to provide excellent customer support to encourage positive reviews and word-of-mouth referrals.</li>
-<li>Scale up: As you start making sales and gathering customer feedback, invest more in advertising and expand your product line or services based on the market demand.</li>
-</ol>
-<h2 id="Make-a-AI-related-course"><a href="#Make-a-AI-related-course" class="headerlink" title="Make a AI related course"></a>Make a AI related course</h2><p>Title: From Idea to Impact: Harnessing AI to Launch Your Business</p>
-<p>Subtitle: Unleash the Power of AI to Transform Your Entrepreneurial Journey</p>
-<p>Description:</p>
-<blockquote>
-<p>Unlock your entrepreneurial potential and make a global impact by harnessing the transformative power of Artificial Intelligence (AI) in our comprehensive course, ‘From Idea to Impact: Harnessing AI to Launch Your Business.’ This immersive learning experience is specifically designed for aspiring entrepreneurs, small business owners, and professionals who want to leverage AI to innovate, scale, and drive success in their ventures.</p>
-<p>In today’s rapidly evolving world, AI has become an indispensable asset, shaping various industries and opening up unprecedented opportunities. Our course offers a unique blend of theoretical knowledge and practical applications, guiding you through popular AI tools, platforms, and strategies that empower you to make data-driven decisions, optimize processes, and deliver outstanding customer experiences.</p>
-<p>Throughout the course, you’ll gain hands-on experience in developing AI-driven marketing campaigns, streamlining operations, and creating innovative products and services that set you apart in the competitive marketplace. Learn from real-life success stories and case studies that showcase the transformative potential of AI in business.</p>
-<p>By the end of this course, you’ll be equipped with the knowledge, skills, and confidence to turn your ideas into a thriving, AI-powered business that leaves a lasting impact on the world. Embark on this exciting journey with us and unleash the entrepreneur within, as you create a better future for yourself and others with the power of AI.</p>
-<p>Join ‘From Idea to Impact: Harnessing AI to Launch Your Business’ today, and begin your transformation into a forward-thinking, AI-driven entrepreneur!</p>
-</blockquote>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>Use udemy to sell course and other project</p>
-<h2 id="DSO"><a href="#DSO" class="headerlink" title="DSO"></a>DSO</h2><p>Dear DSO Officer,</p>
-<p>I hope this message finds you well. I am currently on an F-1 visa with an OPT STEM extension and working full-time at Omnivision Inc in a position related to my field of study. I am considering starting a side business as a sole proprietor, and I would like to request your guidance to ensure that I maintain my visa status and comply with the requirements of my OPT STEM extension.</p>
-<p>The side business I am planning involves creating and selling online courses. I intend to actively participate in the operations of the business, such as marketing and customer service. I will be the sole proprietor, and there will be no additional employees.</p>
-<p>I understand the importance of meeting the 20-hour minimum work requirement for my current employer and maintaining a full course of study while on my F-1 visa. My primary focus will remain on my full-time employment, and I will ensure that my side business does not interfere with these obligations.</p>
-<p>Could you please provide me with any guidance or advice on starting a side business under these circumstances? I want to ensure that I am following all the necessary regulations and maintaining my F-1 visa status and OPT STEM extension.</p>
-<p>I appreciate your time and assistance in this matter. Please let me know if you require any additional information or if there is a convenient time for us to discuss this further.</p>
-<p>Sincerely,</p>
-<p>Junhan Hu</p>
-<p><a href="mailto:&#104;&#x75;&#106;&#x75;&#x6e;&#x68;&#x61;&#110;&#x39;&#56;&#64;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#x2e;&#x63;&#111;&#x6d;">&#104;&#x75;&#106;&#x75;&#x6e;&#x68;&#x61;&#110;&#x39;&#56;&#64;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#x2e;&#x63;&#111;&#x6d;</a></p>
-<p>4049107078</p>
-<p>Dear Olympus Customer Service,</p>
-<p>I hope this email finds you well. My name is Junhan, and I am a proud owner of an Olympus EM5 Mark III camera. I am reaching out to inquire about the possibility of trading in my camera for an upgrade or credit towards a new OM system camera (OM-5) in the United States.</p>
-<p>While I have been extremely satisfied with the performance and features of my current EM5 Mark III, I am interested in upgrading to a newer model to take advantage of the latest advancements in Olympus camera technology. However, upon browsing your website, I noticed that OM system does not seem to offer a trade-in service within the United States.</p>
-<p>I am writing to kindly request that you consider implementing a trade-in program for loyal customers like myself who wish to upgrade their Olympus cameras. A trade-in program would not only demonstrate your commitment to customer satisfaction but would also encourage brand loyalty and make it easier for customers to transition to new models as they become available.</p>
-<p>If Olympus does offer a trade-in service that I might have missed, please do let me know how I can take advantage of this opportunity. Alternatively, if such a program is not currently available, I would appreciate any information on whether Olympus has plans to introduce a trade-in service in the near future.</p>
-<p>Thank you for taking the time to consider my request. I look forward to hearing back from you soon.</p>
-<p>Sincerely,</p>
-<p>[Your Name] [Your Email Address] [Your Phone Number]</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Entrepreneurship%20/business-us/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Entrepreneurship%20/business-us/" class="post-title-link" itemprop="url">Start Business in US (STEM OPT)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-04-22 13:52:00" itemprop="dateCreated datePublished" datetime="2023-04-22T13:52:00-07:00">2023-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-10 09:25:40" itemprop="dateModified" datetime="2023-05-10T09:25:40-07:00">2023-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Entrepreneurship/" itemprop="url" rel="index"><span itemprop="name">Entrepreneurship </span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Legal-Eligibility"><a href="#Legal-Eligibility" class="headerlink" title="Legal Eligibility"></a>Legal Eligibility</h2><p><a target="_blank" rel="noopener" href="https://studyinthestates.dhs.gov/stem-opt-hub/for-students/students-determining-stem-opt-extension-eligibility">Ref</a></p>
-<p>A student can only participate the STEM OPT <strong>twice</strong></p>
-<p>Must purpuse their practical training through a employer that is enreolled in E-verify</p>
-<blockquote>
-<p>they may use a start-up business so long as all regulatory requirements are met</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://louisville.edu/internationalcenter/isss/current-f1-j1-students/current-students/employment/f-1-opt-2-yr-stem-extension/opt-24-month-stem-extension-information">Ref2</a></p>
-<p>May work for more than one employer, must be related to degree program and must be enrolled in E-verify</p>
-<h2 id="Steps-froim-SBA"><a href="#Steps-froim-SBA" class="headerlink" title="Steps froim SBA"></a>Steps froim SBA</h2><p><a target="_blank" rel="noopener" href="https://www.sba.gov/business-guide/10-steps-start-your-business">Ref</a></p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://www.sba.gov/business-guide/plan-your-business/market-research-competitive-analysis">Conduct market research</a></p>
-<ol>
-<li>check if it is profitable</li>
-</ol>
-</li>
-<li><p>Write business plan. Roadmap for how to structure, how to grow</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.sba.gov/business-guide/plan-your-business/fund-your-business">Fund your busniess</a></p>
-<ol>
-<li>Raise enough money</li>
-</ol>
-</li>
-<li><p>Pick a location</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.sba.gov/business-guide/launch-your-business/choose-business-structure">Choose structure</a></p>
-<ol>
-<li>sole proprietorship</li>
-<li>partnership</li>
-<li>LLC (limited liablity company)</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230422144459_PFlcQh.png" alt="image-20230422144459462"></p>
-</li>
-<li><p>Choose name</p>
-</li>
-<li><p>Register, make it legal and protect the brand</p>
-<ol>
-<li>Fedral, just simply filing to get a EIN</li>
-<li><a target="_blank" rel="noopener" href="https://www.sos.ca.gov/business-programs/business-entities/forms/">CA</a></li>
-</ol>
-</li>
-<li><p>Get EIN for federal and state tax</p>
-<ol>
-<li>just like the SSN for business</li>
-</ol>
-</li>
-<li><p>Apply for licenses</p>
-<ol>
-<li>vary by industry, state, locaiton and other factors</li>
-</ol>
-</li>
-<li><p>Open a business bank account</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/canopen/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Hardware/canopen/" class="post-title-link" itemprop="url">CANopen Protocal</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-04-19 22:49:00" itemprop="dateCreated datePublished" datetime="2023-04-19T22:49:00-07:00">2023-04-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-10 23:37:48" itemprop="dateModified" datetime="2023-05-10T23:37:48-07:00">2023-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>High-level communication protocol, based on CAN</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419225002_3nfOZs.jpeg" alt="img"></p>
-<h2 id="Application-Layer"><a href="#Application-Layer" class="headerlink" title="Application Layer"></a>Application Layer</h2><p>Central themes of CANopen is the object dictionary</p>
-<ul>
-<li>16bit index</li>
-<li>8bit sub-index</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419230342_GukETu.jpeg" alt="img"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Planning/BIT-algorithm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Planning/BIT-algorithm/" class="post-title-link" itemprop="url">Path Planning BIT</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-04-04 14:30:00" itemprop="dateCreated datePublished" datetime="2023-04-04T14:30:00-07:00">2023-04-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-19 21:27:26" itemprop="dateModified" datetime="2023-04-19T21:27:26-07:00">2023-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Planning/" itemprop="url" rel="index"><span itemprop="name">Planning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Basic Method</p>
-<ul>
-<li>Graph-based: A*, D*</li>
-<li>Anytime Sampling: RRT, RPM</li>
-</ul>
-<p>BIT: combine graph and sampling</p>
-<ul>
-<li>Use RGG to approximate the searched space</li>
-</ul>
-<p>Prove</p>
-<ul>
-<li>Completeness: can always find a solution from start to goal (if exist)</li>
-<li>Almost-sure Asymptotic optimality</li>
-</ul>
-<h2 id="Unknown-Term"><a href="#Unknown-Term" class="headerlink" title="Unknown Term"></a>Unknown Term</h2><p>RGG: random geometry graph</p>
-<ul>
-<li>A type of mathematical graph</li>
-<li>Node is randomly distributed in geometric space</li>
-</ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419212646_mcBhbd.png" alt="A random geometric graph. | Download Scientific Diagram" style="zoom:50%;" />
-
-<p>Lebesgue Measure</p>
-<ul>
-<li>Assign a numerical value to a subset of euclidean space like line&#x2F;plane&#x2F;space</li>
-<li>Generalize the notion of length&#x2F;area&#x2F;volume</li>
-<li>Use more advanced math tool like calculus and analysis</li>
-</ul>
-<p>LPA: lifelong planning A*</p>
-<ul>
-<li>designed to work in dynamic environment</li>
-<li>incremental update</li>
-<li>Maintain two sets of node<ul>
-<li>open: have been generated, not yet expanded</li>
-<li>closed: have been expanded</li>
-</ul>
-</li>
-<li>Each node has two value<ul>
-<li>g: the actual cost</li>
-<li>rhs: the heuristic estimate</li>
-</ul>
-</li>
-</ul>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>Idea:</p>
-<ul>
-<li>Find a solution from start to goal, form a batch</li>
-<li>In the next batch, form denser RGG</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1647,20 +1695,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">335</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

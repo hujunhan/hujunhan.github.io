@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Conclusion Robot-Human Interaction &amp; Collaboration: This theme is prevalent throughout the seminars, emphasizing the need for more natural and efficient interactions between robots and humans. Thi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stanford Robotics Seminar Writeup">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Robotics/Seminar/Stanford-robotics/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="Conclusion Robot-Human Interaction &amp; Collaboration: This theme is prevalent throughout the seminars, emphasizing the need for more natural and efficient interactions between robots and humans. Thi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710220204_pZmZBx.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710225328_rEgOzh.png">
+<meta property="article:published_time" content="2023-07-11T04:18:00.000Z">
+<meta property="article:modified_time" content="2023-07-13T05:56:02.533Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="robotics">
+<meta property="article:tag" content="learn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710220204_pZmZBx.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Seminar/Stanford-robotics/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Stanford Robotics Seminar Writeup | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Seminar/Stanford-robotics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Stanford Robotics Seminar Writeup
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-10 21:18:00" itemprop="dateCreated datePublished" datetime="2023-07-10T21:18:00-07:00">2023-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-12 22:56:02" itemprop="dateModified" datetime="2023-07-12T22:56:02-07:00">2023-07-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Seminar/" itemprop="url" rel="index"><span itemprop="name">Seminar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><ol>
+<li><strong>Robot-Human Interaction &amp; Collaboration</strong>: This theme is prevalent throughout the seminars, emphasizing the need for more natural and efficient interactions between robots and humans. This covers areas like haptic feedback, interaction through touch, remote presence systems, and even the ethical considerations of autonomous systems.</li>
+<li><strong>Autonomous Systems &amp; Self-learning</strong>: There’s a substantial focus on making robots more autonomous and adaptable through the use of learning algorithms. This includes seminars on autonomous vehicles, field-hardened robotic autonomy, self-supervised networks, and machine learning for robots.</li>
+<li><strong>Manipulation &amp; Grasping</strong>: The issue of creating robotic systems that can effectively interact with their physical environment is clearly important. There are numerous seminars focused on designing grippers, in-hand manipulation, and incorporating tactile sensors for better performance in various tasks.</li>
+<li><strong>Robotic Design &amp; Fabrication</strong>: A number of seminars are dedicated to the development and design of novel robotic systems. This includes topics such as designing bioinspired aerial robots, flexible surgical robots, shape-changing displays and robots, as well as pressure-operated soft robotic snakes.</li>
+<li><strong>Safety &amp; Robustness</strong>: There’s a clear emphasis on making robots more robust and safer, whether it’s through perception-based control, modeling, planning, reachability, or learning in uncertain environments. This theme is especially relevant for autonomous vehicles and robots operating in dynamic or challenging environments.</li>
+<li><strong>Perception &amp; Sensing</strong>: Multiple seminars focus on enabling robots to perceive, understand, and make sense of their environments. This includes topics such as spatial perception, tactile sensing, self-supervision for robotic learning, and incorporating semantics into robot perception.</li>
+<li><strong>Software &amp; Simulation</strong>: The transition from open-source to safety-certified software and the use of simulations for testing and training robots are also recurring themes. This also includes discussions on distributive representations and scalable simulations for Real-to-Sim-to-Real with deformables.</li>
+<li><strong>Applications</strong>: There is a range of seminars focusing on specific applications of robotics, from logistics and surgical assistance to ocean exploration and space.</li>
+</ol>
+<h2 id="Control-Oriented-Learning-for-Dynamical-Systems"><a href="#Control-Oriented-Learning-for-Dynamical-Systems" class="headerlink" title="Control-Oriented Learning for Dynamical Systems."></a>Control-Oriented Learning for Dynamical Systems.</h2><p>The seminar is about “Control-Oriented Learning for Dynamical Systems.” It focuses on the interplay between learning and <strong>control</strong>, particularly in the context of robotics.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>Difficulty in modeling robotic systems operating under <strong>different conditions</strong>, such as icy roads, wind conditions, and contact situations.</li>
+<li>The <strong>limitations of naive regression</strong> for closed-loop control tasks that happen over long time horizons.</li>
+<li>The need for a learning approach that is more <strong>adaptable</strong> and efficient for closed-loop control.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710220204_pZmZBx.png" alt="image-20230710220204066"></p>
+<ul>
+<li>The speaker proposes “control-oriented learning,” which conditions the model to perform better in closed-loop control.</li>
+<li>This approach involves three different lines of work:<ul>
+<li>Translating the concept of <strong>stabilizability into algebraic</strong> conditions used as a regularizer for closed-loop control performance during offline learning.</li>
+<li>Structuring the model appropriately offline to yield a useful control <strong>close-up controller based on Linear Quadratic Regulator</strong> (LQR).</li>
+<li>Using meta-learning to learn a good extension to a nominal model for adaptive control.</li>
+</ul>
+</li>
+<li>These methods work because they focus on the downstream control objective rather than just the model fitting objective. They also leverage the inherent structure of the systems to enable control design.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> Are you testing on like quadcopters throughout and is it dependent on how linear the Dynamics of the Drone is the results you’re showing here?<ul>
+<li><strong>Answer:</strong> The method is pretty agnostic to the system. It was tested on a quadcopter for one project, but it can be applied to other systems as well. The difference in performance between the method and baselines increases with the nonlinearity of the system.</li>
+</ul>
+</li>
+<li><strong>Question:</strong> Are there a certain a priori structure you impose on that class of functions when regressing over models F to learn?<ul>
+<li><strong>Answer:</strong> In the first project, the system is assumed to be control affine (f of x plus b of x times U). There are some assumptions about the system that simplify the application of inequality conditions, such as some sparsity in that b of X.</li>
+</ul>
+</li>
+<li><strong>Question:</strong> What would happen if the Dynamics that you’re trying to learn are not actually controllable or maybe there is some subset of the states that are controllable and some that are uncontrolled?<ul>
+<li><strong>Answer:</strong> You would have to find some way of dividing those things out. In linear systems, you can look at ideas like common decomposition where you can break down the controllable states from the uncontrollable states.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway"><a href="#Takeaway-the-most-important-takeaway" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>Control-oriented learning can significantly improve the performance of robotic systems operating under different conditions.</li>
+<li>This approach is more adaptable and efficient than traditional methods, focusing on the <strong>downstream control</strong> objective rather than just the model fitting objective.</li>
+<li>The speaker’s work demonstrates that this method outperforms naive and certificate-based methods in terms of sample efficiency and performance, and can even beat the oracle when enough data is available.</li>
+</ul>
+<h2 id="Aligning-Human-and-Robot-Representations"><a href="#Aligning-Human-and-Robot-Representations" class="headerlink" title="Aligning Human and Robot Representations"></a>Aligning Human and Robot Representations</h2><p>The seminar is about “Aligning Human and Robot Representations.” It focuses on the challenge of aligning the <strong>understanding and interpretation of tasks</strong> between humans and robots, particularly in the context of human-robot interaction.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-1"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-1" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li><strong>Difficulty in aligning</strong> human and robot representations, leading to misinterpretation of tasks and suboptimal performance.</li>
+<li>The limitations of traditional learning methods that require handcrafted representations or end-to-end deep learning methods that generalize poorly.</li>
+<li>The need for a learning approach that can efficiently learn from human supervision and adapt to different human capabilities and preferences.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-1"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-1" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a “divide and conquer” approach to robot learning, focusing first on <strong>learning the representation from human input</strong> before learning the downstream task.</li>
+<li>The approach involves learning features one at a time from human supervision, using a method called “feature traces” where the human provides a <strong>sequence of states with monotonically decreasing feature values</strong>.</li>
+<li>The robot can then use these feature traces to learn a <strong>feature function</strong>, and this method has been shown to generalize well to more complex settings, including perceptual features and motion features.</li>
+<li>The speaker also introduces a method for the robot to autonomously detect when its representation is misaligned with the human’s, using a model that estimates the robot’s confidence in explaining the human’s input.</li>
+<li>These methods work because they leverage human input in a structured and efficient way, allowing the robot to <strong>learn and adapt to human preferences</strong> and capabilities.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-1"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-1" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> Are you learning these features one by one?<ul>
+<li><strong>Answer:</strong> Yes, the features are learned one at a time from human supervision using a method called “feature traces.” This allows the robot to focus on learning each feature individually, which can lead to more accurate and generalizable learning.</li>
+</ul>
+</li>
+<li><strong>Question:</strong> How easy is it to combine these features? Are you assuming that they are starting from the same value?<ul>
+<li><strong>Answer:</strong> The features are normalized to be between zero and one, which makes the reward learning easier. However, this is not mandatory and the features do not have to start from the same value. The important thing is that the features need to be positive.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-1"><a href="#Takeaway-the-most-important-takeaway-1" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The “<strong>divide and conquer</strong>“ approach to robot learning can significantly improve the alignment of human and robot representations, leading to better performance and adaptability in human-robot interaction.</li>
+<li>This approach allows robots to learn from human supervision in a structured and efficient way, and to autonomously detect when their representation is misaligned with the human’s.</li>
+<li>The speaker’s work demonstrates the potential of this method in various applications, including <strong>personal robotics, semi-autonomous driving,</strong> and shared autonomy, and highlights the importance of aligning representations in successful human-robot interaction.</li>
+</ul>
+<h2 id="Connecting-Robotics-and-Foundation-Models"><a href="#Connecting-Robotics-and-Foundation-Models" class="headerlink" title="Connecting Robotics and Foundation Models"></a>Connecting Robotics and Foundation Models</h2><p>The seminar is about the integration of machine learning and robotics, specifically focusing on the use of deep learning for robotic manipulation tasks.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-2"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-2" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the challenge of <strong>applying machine learning to real-world</strong> robotic tasks. This includes issues such as the <strong>variability</strong> of real-world environments and the difficulty of collecting <strong>sufficient training data.</strong></li>
+<li>The speaker also discusses the problem of <strong>transferring</strong> learned skills from one task or environment to another, which is a major challenge in robotics.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-2"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-2" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a novel approach that combines deep learning with reinforcement learning. This approach allows the robot to <strong>learn from its own experiences</strong>, rather than relying solely on pre-programmed instructions.</li>
+<li>The speaker’s solution works because it allows the robot to <strong>adapt</strong> to new situations and tasks. It also reduces the amount of training data required, as the robot can learn from its own trial-and-error experiences.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-2"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-2" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><p>Question:</p>
+<p> How does the robot learn from its own experiences?</p>
+<ul>
+<li><strong>Answer:</strong> The robot uses a combination of deep learning and reinforcement learning. It learns to <strong>associate its actions with the resulting changes</strong> in its environment, and it adjusts its behavior based on the outcomes of its actions.</li>
+</ul>
+</li>
+<li><p>Question:</p>
+<p> How does the robot handle new tasks or environments?</p>
+<ul>
+<li><strong>Answer:</strong> The robot uses a technique called <strong>transfer learning.</strong> This allows it to apply the skills it has learned in one context to new contexts.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-2"><a href="#Takeaway-the-most-important-takeaway-2" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of combining machine learning and robotics. This approach allows robots to learn from their own experiences and adapt to new tasks and environments, which is a major step forward in the field of robotics.</li>
+</ul>
+<h2 id="Robots-in-Dynamic-Tasks-Learning-Risk-and-Safety"><a href="#Robots-in-Dynamic-Tasks-Learning-Risk-and-Safety" class="headerlink" title="Robots in Dynamic Tasks: Learning, Risk, and Safety"></a>Robots in Dynamic Tasks: Learning, Risk, and Safety</h2><p>The seminar is about the development and application of <strong>Robotic Manipulation</strong> in real-world scenarios.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-3"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-3" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li><strong>Complexity of Real-world Manipulation</strong>: The speaker addresses the challenge of designing robots that can manipulate objects in the real world, which is a complex and unpredictable environment.</li>
+<li><strong>Lack of Generalization</strong>: Current robotic systems struggle to generalize their learning to new tasks or environments.</li>
+<li><strong>Safety and Efficiency</strong>: Balancing the need for robots to perform tasks efficiently while ensuring safety, especially when interacting with humans.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-3"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-3" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li><strong>Deep Reinforcement Learning</strong>: The speaker’s work involves the use of <strong>deep reinforcement learning</strong> to train robots. This approach allows robots to learn from their mistakes and improve their performance over time.</li>
+<li><strong>Sim-to-Real Transfer</strong>: The speaker also discusses the use of <strong>simulation environments</strong> to train robots before deploying them in the real world. This approach reduces the risk of damage to the robot or its environment during the learning process.</li>
+<li><strong>Multi-task Learning</strong>: The speaker’s solution involves training robots on multiple tasks simultaneously. This approach increases the robot’s ability to generalize its learning to new tasks.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-3"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-3" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><p>Q</p>
+<p>: How does deep reinforcement learning work in robotic manipulation?</p>
+<ul>
+<li><strong>A</strong>: Deep reinforcement learning involves training a robot to make decisions based on its current state and the reward associated with different actions. The robot learns to improve its performance by maximizing the reward it receives over time.</li>
+</ul>
+</li>
+<li><p>Q</p>
+<p>: What is sim-to-real transfer?</p>
+<ul>
+<li><strong>A</strong>: Sim-to-real transfer involves training a robot in a simulated environment before deploying it in the real world. This approach allows the robot to learn complex tasks without the risk of causing damage.</li>
+</ul>
+</li>
+<li><p>Q</p>
+<p>: How does multi-task learning improve a robot’s performance?</p>
+<ul>
+<li><strong>A</strong>: Multi-task learning involves training a robot on multiple tasks simultaneously. This approach allows the robot to generalize its learning to new tasks, improving its overall performance.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-3"><a href="#Takeaway-the-most-important-takeaway-3" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of deep reinforcement learning, sim-to-real transfer, and multi-task learning in advancing the field of robotic manipulation. These approaches allow robots to learn complex tasks, generalize their learning to new tasks, and perform safely and efficiently in real-world environments.</li>
+</ul>
+<h2 id="Open-Source-to-Safety-Certified"><a href="#Open-Source-to-Safety-Certified" class="headerlink" title="Open-Source to Safety-Certified"></a>Open-Source to Safety-Certified</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710225328_rEgOzh.png" alt="image-20230710225328468" style="zoom: 25%;" />
+
+<p>How to speed up?</p>
+<p>Zero-copy memory</p>
+<h2 id="Adaptable-Robotic-Manipulation-Using-Tactile-Sensors"><a href="#Adaptable-Robotic-Manipulation-Using-Tactile-Sensors" class="headerlink" title="Adaptable Robotic Manipulation Using Tactile Sensors"></a>Adaptable Robotic Manipulation Using Tactile Sensors</h2><p>The seminar is about adaptable robotic manipulation using tactile sensors. The speaker discusses the challenges of integrating robots into our daily lives, particularly in <strong>contact-rich environments</strong> such as kitchens, healthcare, and e-commerce pipelines. The speaker presents their research on developing tactile sensors for robots to handle contact events better, focusing on two specific projects: in-hand manipulation using <strong>multimodal slip sensing</strong> and <strong>haptic exploration</strong> and grip monitoring of a suction cup gripper.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-4"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-4" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>Robots struggle in contact-rich environments due to their inability to handle <strong>contact events</strong> well.</li>
+<li>The <strong>unpredictable</strong> nature of contact, including <strong>unknown friction</strong> coefficients and <strong>inertia of objects</strong>, makes adaptive control challenging.</li>
+<li>Tactile sensors, while developed and commercially available, are not often seen in robots due to difficulties in <strong>generalization across different robot hardware,</strong> tasks, and contact physics.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-4"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-4" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker developed a compact multimodal sensor using a single transducer, called the “<strong>nib array sensor</strong>“, capable of monitoring linear and rotational slip in a more generalizable manner. This sensor can detect normal pressure, shear force, and vibrations, which are useful for estimating slip direction.</li>
+<li>The speaker also developed a “<strong>smart suction cup</strong>“ that can directly measure local contacts without interfering with suction seal formation. This is achieved by redesigning a single bellows suction cup to have internal four chambers connected to pressure sensors. The sensors measure the leakage flow through each chamber, providing valuable information about the contact state.</li>
+<li>The speaker’s solutions work because they directly address the challenges of contact-rich environments. The nib array sensor can adapt to changing contact conditions, while the smart suction cup can find the best contact location and monitor the grip during manipulation.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-4"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-4" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> How does the nib array sensor differentiate between linear and rotational slip?<ul>
+<li><strong>Answer:</strong> The sensor measures the capacitance between electrodes and a grounded conductive fabric. When the nib vibrates due to slip, it causes a directional capacitance change. By observing the direction of this change, the sensor can estimate the direction of the slip.</li>
+</ul>
+</li>
+<li><strong>Question:</strong> How does the smart suction cup work?<ul>
+<li><strong>Answer:</strong> The smart suction cup has internal four chambers, each connected to a pressure sensor. These sensors measure the leakage flow through each chamber, providing information about the contact state. This design allows the cup to measure local contacts without interfering with the suction seal formation.</li>
+</ul>
+</li>
+<li><strong>Question:</strong> What are the main challenges in expanding the use of tactile sensors in robots?<ul>
+<li><strong>Answer:</strong> The main challenges include the wiring and processing of large tactile arrays. Current approaches often involve a central processor querying the tactile sensing information, which may not be efficient for large arrays. A shift towards a system more like the human nervous system, where sensors inform the central processor when they have a stimulus, may be more efficient.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-4"><a href="#Takeaway-the-most-important-takeaway-4" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><p>The most important takeaway from the seminar is the potential of tactile sensors in improving the adaptability and functionality of robots in contact-rich environments. The speaker’s research on the nib array sensor and the smart suction cup demonstrates innovative approaches to overcoming the challenges of contact events in robotics. These developments could pave the way for more widespread integration of robots into our daily lives.</p>
+<h2 id="Multi-Sensory-Neural-Objects-Modeling-Inference-and-Applications-in-Robotics"><a href="#Multi-Sensory-Neural-Objects-Modeling-Inference-and-Applications-in-Robotics" class="headerlink" title="Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics"></a>Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics</h2><p>The seminar is about “Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics”. The speaker discusses the development and application of multi-sensory neural objects in the field of robotics, focusing on the challenges and solutions associated with modeling, inference, and practical applications.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-5"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-5" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The difficulty in integrating multiple sensory inputs into a single, coherent model that can be used effectively in robotics.</li>
+<li>The challenge of creating a model that can infer and predict the behavior of objects in the environment based on sensory inputs.</li>
+<li>The need for more efficient and accurate methods of applying these models in real-world robotics applications.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-5"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-5" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes the use of neural networks to create a multi-sensory model. This model can integrate inputs from various sensors and generate a unified representation of the environment.</li>
+<li>The model uses machine learning techniques to infer and predict the behavior of objects, improving the robot’s ability to interact with its environment.</li>
+<li>The speaker’s solution works because it leverages the power of neural networks and machine learning, which are capable of handling complex data and making accurate predictions.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-5"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-5" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><p>Question</p>
+<p>: How does the multi-sensory model integrate different types of sensory data?</p>
+<ul>
+<li><strong>Answer</strong>: The model uses neural networks to process and combine the data from different sensors, creating a unified representation of the environment.</li>
+</ul>
+</li>
+<li><p>Question</p>
+<p>: How does the model predict the behavior of objects?</p>
+<ul>
+<li><strong>Answer</strong>: The model uses machine learning techniques to analyze the sensory data and make predictions about how objects in the environment will behave.</li>
+</ul>
+</li>
+<li><p>Question</p>
+<p>: How can this model be applied in real-world robotics applications?</p>
+<ul>
+<li><strong>Answer</strong>: The model can be used to improve a robot’s ability to interact with its environment, for example, by helping it to navigate or manipulate objects more effectively.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-5"><a href="#Takeaway-the-most-important-takeaway-5" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of multi-sensory neural objects in robotics. By integrating multiple sensory inputs into a single model and using machine learning to infer and predict object behavior, robots can interact with their environment more effectively and accurately. This approach represents a significant advancement in the field of robotics.</li>
+</ul>
+<h2 id="Why-would-we-want-a-multi-agent-system-unstable"><a href="#Why-would-we-want-a-multi-agent-system-unstable" class="headerlink" title="Why would we want a multi-agent system unstable"></a>Why would we want a multi-agent system unstable</h2><ul>
+<li>The seminar is about the concept and implications of creating unstable multi-agent systems in the field of robotics and AI. The speaker discusses the potential benefits and challenges of such systems.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-6"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-6" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the problem of stability and predictability in multi-agent systems. Traditional systems aim for stability, but this can limit their adaptability and responsiveness.</li>
+<li>The speaker also discusses the challenge of designing systems that can handle unexpected situations or changes in the environment.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-6"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-6" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes intentionally designing multi-agent systems to be unstable. <strong>This instability allows the system to adapt and respond to changes more quickly.</strong></li>
+<li>This approach works because it allows each agent in the system to operate independently and make decisions based on its own observations and experiences, rather than relying on a central control system.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-6"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-6" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><p>Question:</p>
+<p> Why would we want a multi-agent system to be unstable?</p>
+<ul>
+<li><strong>Answer:</strong> An <strong>unstable system can adapt and respond to changes more quickly</strong> than a stable one. It allows each agent to operate independently and make decisions based on its own observations and experiences.</li>
+</ul>
+</li>
+<li><p>Question:</p>
+<p> Isn’t instability a bad thing in a system?</p>
+<ul>
+<li><strong>Answer:</strong> Not necessarily. While stability is often desirable, it can also limit a system’s adaptability and responsiveness. In some cases, a degree of instability can be beneficial.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-6"><a href="#Takeaway-the-most-important-takeaway-6" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the idea that instability in a multi-agent system can be a strength rather than a weakness. This approach can potentially lead to more adaptable and responsive systems, although it also presents new challenges in terms of system design and control.</li>
+</ul>
+<h2 id="Computational-Design-of-Compliant-Dynamical-Robots"><a href="#Computational-Design-of-Compliant-Dynamical-Robots" class="headerlink" title="Computational Design of Compliant, Dynamical Robots"></a>Computational Design of Compliant, Dynamical Robots</h2><ul>
+<li>The seminar focuses on the computational design of compliant, dynamical robots. The speaker, Cynthia Sung, discusses her research and work in the field of robotics, particularly in the <strong>design and development of robots</strong> that are compliant and dynamic.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-7"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-7" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The primary research problem addressed in the seminar is the challenge of designing robots that are both <strong>compliant</strong> (flexible in their interactions with the environment) and <strong>dynamic</strong> (capable of complex, high-speed movements).</li>
+<li>The speaker also discusses the difficulties in creating robots that can adapt to a variety of tasks and environments, as well as the challenges in making these robots accessible and usable for non-experts.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-7"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-7" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker’s approach involves using <strong>computational methods</strong> to design and optimize robots. This includes the use of algorithms and software tools that can automatically generate robot designs based on specified tasks and constraints.</li>
+<li>The speaker also emphasizes the importance of designing robots that are compliant and dynamic, as this allows them to be more versatile and adaptable in their tasks.</li>
+<li>This approach works because it leverages the power of computation to automate and optimize the design process, <strong>making it easier to create complex, high-performance robots</strong>.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-7"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-7" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How can we design robots that are both compliant and dynamic?<ul>
+<li>A: This can be achieved through computational design methods, which can automatically generate and optimize robot designs based on specified tasks and constraints.</li>
+</ul>
+</li>
+<li>Q: How can we make robots more accessible and usable for non-experts?<ul>
+<li>A: One approach is to develop intuitive software tools that allow non-experts to easily design and customize their own robots.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-7"><a href="#Takeaway-the-most-important-takeaway-7" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of <strong>computational</strong> design methods in the field of robotics. By using these methods, we can automate and optimize the design process, making it easier to create robots that are compliant, dynamic, and adaptable to a variety of tasks and environments. This not only advances the field of robotics, but also makes robots more accessible and usable for non-experts.</li>
+</ul>
+<h2 id="Deploying-Autonomous-Service-Mobile-Robots-And-Keeping-Them-Autonomous"><a href="#Deploying-Autonomous-Service-Mobile-Robots-And-Keeping-Them-Autonomous" class="headerlink" title="Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous"></a>Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous</h2><p>The seminar focuses on the deployment of autonomous service mobile robots and the challenges and solutions to keep them autonomous in real-world environments.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-8"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-8" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the problem of maintaining the autonomy of service mobile robots in <strong>dynamic and unpredictable environments</strong>.</li>
+<li>The challenge of designing robots that can handle a wide variety of tasks and adapt to changes in their operating environment is also discussed.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-8"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-8" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a solution that involves the use of machine learning and AI to improve the adaptability and decision-making capabilities of the robots.</li>
+<li>This approach works because it allows the robots to learn from their experiences and adjust their behavior accordingly, thereby improving their performance over time.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-8"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-8" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How can we ensure that the robots can operate safely in dynamic environments?<ul>
+<li>A: This can be achieved by incorporating advanced sensors and AI algorithms that allow the robots to perceive their environment and make decisions in real-time.</li>
+</ul>
+</li>
+<li>Q: How can the robots adapt to changes in their operating environment?<ul>
+<li>A: The robots can be designed to learn from their experiences and adjust their behavior accordingly. This can be achieved through machine learning and AI.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-8"><a href="#Takeaway-the-most-important-takeaway-8" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the importance of adaptability in autonomous service mobile robots. By incorporating machine learning and AI, these robots can learn from their experiences and adapt to changes in their environment, thereby improving their performance and autonomy.</li>
+</ul>
+<h2 id="Robot-Manipulation-in-the-Logistics-Industry"><a href="#Robot-Manipulation-in-the-Logistics-Industry" class="headerlink" title="Robot Manipulation in the Logistics Industry"></a>Robot Manipulation in the Logistics Industry</h2><ul>
+<li>The seminar is about the application of robot manipulation in the logistics industry. The speakers, Samir Menon, Robert Sun, and Kunal Shah, discuss their research and development in this field.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-9"><a href="#One-or-more-of-the-research-problems-the-speaker’s-work-address-9" class="headerlink" title="One or more of the research problems the speaker’s work address"></a>One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speakers address the problem of efficient and accurate robot manipulation in the logistics industry. They focus on the challenges of <strong>handling a wide variety of objects,</strong> dealing with uncertainties in the environment, and ensuring the safety and efficiency of robotic systems.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-9"><a href="#What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-9" class="headerlink" title="What is the novel approach or idea behind the speaker’s solution, Why it works"></a>What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speakers propose a novel approach that combines machine learning techniques with <strong>traditional control methods</strong>. This approach allows robots to learn from their experiences and improve their performance over time.</li>
+<li>The solution works because it leverages the strengths of both machine learning and control theory. Machine learning allows the robots to adapt to new situations and improve their performance, while control theory ensures <strong>stability and safety</strong>.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-9"><a href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-9" class="headerlink" title="Questions that maybe asked by an unexperienced robotics engineer and Answers"></a>Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How does the system handle a wide variety of objects?<ul>
+<li>A: The system uses machine learning to learn from its experiences and adapt to new situations. It can handle a wide variety of objects by learning from its past interactions with similar objects.</li>
+</ul>
+</li>
+<li>Q: How does the system deal with uncertainties in the environment?<ul>
+<li>A: The system uses a combination of machine learning and control theory to deal with uncertainties. Machine learning allows the system to adapt to new situations, while control theory provides stability and safety.</li>
+</ul>
+</li>
+<li>Q: How does the system ensure the safety and efficiency of the robotic systems?<ul>
+<li>A: The system uses control theory to ensure stability and safety. It also uses machine learning to improve its performance over time, which increases efficiency.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-9"><a href="#Takeaway-the-most-important-takeaway-9" class="headerlink" title="Takeaway, the most important takeaway"></a>Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of combining machine learning with traditional control methods in robotic manipulation. This approach allows robots to adapt to new situations, handle a wide variety of objects, and improve their performance over time, which is crucial for the logistics industry.</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>Why would we want a multi-agent system unstable<br>Designing Robotic Grippers for Interaction with Real-World Environments<br>Incorporating Sample Efficient Monitoring into Learned Autonomy<br>From open-source to safety-certified robotic software<br>The Age of Human-Robot Collaboration: OceanOneK Deep-Sea Exploration<br>Towards Shape Changing Displays and Shape Changing Robots<br>Robotics algorithms that take people into account<br>DeXtreme: Transferring Agile In-Hand Manipulation from Simulations to Reality<br>Failure is Not an Option: Our Techniques at the DARPA Subterranean Challenge, Lessons Learned, and Next Steps<br>Robots in Dynamic Tasks: Learning, Risk, and Safety<br>Autonomous NASA robots breaking records on Mars<br>Perceiving, Understanding, and Interacting through Touch<br>Flexible Surgical Robots: Design, Sensing, and Control<br>Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics<br>Towards Generalizable Autonomy: Duality of Discovery &amp; Bias<br>Adaptable Robotic Manipulation Using Tactile Sensors<br>Get in touch: Tactile perception for human-robot systems<br>Democratizing Robot Learning<br>Understanding the Utility of Haptic Feedback in Telerobotic Devices<br>Humanizing Robot Design<br>Representation Learning for Autonomous Robots<br>Robot Manipulation in the Logistics Industry<br>Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous<br>Distributional Representations and Scalable Simulations for Real-to-Sim-to-Real with Deformables<br>Leveraging Human Input to Enable Robust AI Systems<br>Computational Design of Compliant, Dynamical Robots<br>Using Data for Increased Realism with Haptic Modeling and Devices<br>Modeling and interacting with other agents<br>Towards Complex Language in Partially Observed Environments<br>Interactive Imitation Learning: Planning Alongside Humans<br>Toward Scalable Autonomy<br>Deconfliction, Or How to Keep Fleets of Fast-Flying Robots from Crashing into Each Other<br>Opening the Doors of (Robot) Perception: Towards Certifiable Spatial Perception Algorithms and Systems<br>Objects, Skills, and the Quest for Compositional Robot Autonomy<br>Considerations for Human-Robot Collaboration<br>Towards Robust Human-Robot Interaction: A Quality Diversity Approach<br>Distributed Perception and Learning Between Robots and the Cloud<br>Robotic Autonomy and Perception in Challenging Environments<br>Motion planning of bipedal robots based on Divergent Component of Motion<br>Challenges to Developing Low Cost Robotic Systems<br>Designing More Effective Remote Presence Systems for Human Connection and Exploration<br>Safety-Critical Control of Dynamic Robots<br>Safe and Robust Perception-Based Control<br>Toward robust manipulation in complex environments<br>Designing bioinspired aerial robots with feathered morphing wings<br>Mind the Gap: Bridging model-based and data-driven reasoning for safe human-centered robotics<br>Modeling and Control for Robotic Assistants<br>Self-Supervised Pseudo-Lidar Networks<br>Field-hardened Robotic Autonomy<br>Learning and Predictions in Autonomous Systems<br>Scaled Learning for Autonomous Vehicles<br>Model Predictive Control of Hybrid Dynamical Systems<br>Bay Area Robotics Symposium<br>Hands in the Real World: Grasping Outside the Lab<br>The Next Generation of Robot Learning<br>Practical Challenges of Urban Autonomous Driving<br>Formalizing Teamwork in Human-Robot Interaction<br>Avian Inspired Design<br>How to Make, Sense, and Make Sense of Contact in Robotic Manipulation<br>Crossing the Reality Gap: Coordinating Multirobot Systems in The Physical World<br>Safety Guarantees with Perception and Learning in the Loop<br>Autonomous, Agile, Vision-controlled Drones: from Frame-based to Event-based Vision<br>The Merits of Models in Continuous Reinforcement Learning<br>No Title<br>Paradigm shift of haptic human-machine interaction: Historical perspective and our practice<br>Reachability in Robotics<br>Sub-sampling approaches to mapping and imaging<br>Fabrication via Mobile Robotics and Digital Manufacturing<br>Lagrangian control at large and local scales in mixed autonomy traffic flow: optimization and deep-RL approaches<br>High-Performance Aerial Robotics<br>Fast computation of robust multi-contact behaviors<br>Taking robots to the cloud and other insights on the path to market<br>Conversation with a Robot<br>No Title<br>Learning Dexterity<br>L1 Adaptive Control and Its Transition to Practice<br>Learning Model-free Representations for Fast, Adaptive Robot Control and Motion Planning<br>Attack-Resilient and Verifiable Autonomous Systems: A Satisfiability Modulo Convex Programming Approach<br>The Devil Made Me Do it: Computational Ethics for Robots<br>Making Sense of the Physical World with High-resolution Tactile Sensing<br>Control-Theoretic Regularization for Nonlinear Dynamical Systems Learning<br>Assistance of Walking and Running Using Wearable Robots<br>Learning Representations for Planning<br>A Grand Challenge for E-Commerce: Optimizing Rate, Reliability, and Range for Robot Bin Picking and Related Projects<br>Human-Robot Teaming: From Space Robotics to Self-Driving Cars<br>Recent advances in surgical robotics: some examples through the LIRMM research activities illustrated in minimally invasive surgery and interventional radiology<br>Hopping Rovers for Exploration of Asteroids and Comets: Design, Control, and Autonomy<br>Safety and Efficiency in Autonomous Vehicles through Planning with Uncertainty<br>Planning for Contact<br>Law as Action: Profit-Driven Bias in Autonomous Vehicles<br>The Combinatorics of Multi-contact Feedback Control<br>Autonomous Scheduling of Agile Spacecraft Constellations for Rapid Response Imaging<br>Safety in Autonomy via Reachability<br>Design, Theoretical Modeling, Motion Planning , and Control of a Pressure-operated Modular Soft Robotic Snake<br>The Information Knot Tying Sensing and Control and the Emergence Theory of Deep Representation Learning<br>Biological and Robotic haptics<br>Learning Perception and Control for Agile Off-Road Autonomous Driving<br>Towards Generalizable Imitation in Robotics<br>Designing exoskeletons and prostheses that enhance human performance<br>Value sensitive design for autonomous vehicle motion planning<br>On Quantifying Uncertainty for Robot Planning and Decision Making<br>Self-Supervision for Robotic Learning<br>Numerical methods for modeling, simulation and control for deformable robots.<br>Semantic Understanding for Robot Perception<br>Persistent Coverage Control for Constrained Multi-UAV Systems<br>Recent Advances Enabling Autonomous Transportation<br>Safety-Critical Control for Dynamic Legged and Aerial Robotics<br>No Title<br>Combining learned and analytical models for predicting the effect of contact interaction<br>Combining learned and analytical models for predicting the effect of contact interaction<br>Evolvability and adaptation in robotic systems<br>Continuously Learning Robots<br>Probabilistic Numerics — Uncertainty in Computation</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/robotics/" rel="tag"># robotics</a>
+              <a href="/tags/learn/" rel="tag"># learn</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Life/Skills/small-claim-court/" rel="prev" title="File Small Court Claim Against Landlord">
+      <i class="fa fa-chevron-left"></i> File Small Court Claim Against Landlord
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Robotics/Seminar/gatech-robotics/" rel="next" title="GaTech Robotics Seminar Writeup">
+      GaTech Robotics Seminar Writeup <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Oriented-Learning-for-Dynamical-Systems"><span class="nav-text">Control-Oriented Learning for Dynamical Systems.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aligning-Human-and-Robot-Representations"><span class="nav-text">Aligning Human and Robot Representations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-1"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-1"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-1"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-1"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connecting-Robotics-and-Foundation-Models"><span class="nav-text">Connecting Robotics and Foundation Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-2"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-2"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-2"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-2"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Robots-in-Dynamic-Tasks-Learning-Risk-and-Safety"><span class="nav-text">Robots in Dynamic Tasks: Learning, Risk, and Safety</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-3"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-3"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-3"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-3"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Open-Source-to-Safety-Certified"><span class="nav-text">Open-Source to Safety-Certified</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptable-Robotic-Manipulation-Using-Tactile-Sensors"><span class="nav-text">Adaptable Robotic Manipulation Using Tactile Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-4"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-4"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-4"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-4"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Sensory-Neural-Objects-Modeling-Inference-and-Applications-in-Robotics"><span class="nav-text">Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-5"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-5"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-5"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-5"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-would-we-want-a-multi-agent-system-unstable"><span class="nav-text">Why would we want a multi-agent system unstable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-6"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-6"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-6"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-6"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computational-Design-of-Compliant-Dynamical-Robots"><span class="nav-text">Computational Design of Compliant, Dynamical Robots</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-7"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-7"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-7"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-7"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploying-Autonomous-Service-Mobile-Robots-And-Keeping-Them-Autonomous"><span class="nav-text">Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-8"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-8"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-8"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-8"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Robot-Manipulation-in-the-Logistics-Industry"><span class="nav-text">Robot Manipulation in the Logistics Industry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-or-more-of-the-research-problems-the-speaker%E2%80%99s-work-address-9"><span class="nav-text">One or more of the research problems the speaker’s work address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-novel-approach-or-idea-behind-the-speaker%E2%80%99s-solution-Why-it-works-9"><span class="nav-text">What is the novel approach or idea behind the speaker’s solution, Why it works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-9"><span class="nav-text">Questions that maybe asked by an unexperienced robotics engineer and Answers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Takeaway-the-most-important-takeaway-9"><span class="nav-text">Takeaway, the most important takeaway</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

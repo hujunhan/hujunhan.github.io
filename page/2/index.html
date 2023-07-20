@@ -188,6 +188,552 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Math/borwein/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Math/borwein/" class="post-title-link" itemprop="url">Borwein 积分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-08 23:11:00 / Modified: 23:27:30" itemprop="dateCreated datePublished" datetime="2023-06-08T23:11:00-07:00">2023-06-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>$$<br>\begin{aligned}<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} d x&#x3D;(0.99999999998529) \pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} \frac{\sin (x &#x2F; 17)}{x &#x2F; 17} d x&#x3D;(0.99999998807962) \pi<br>\end{aligned}<br>$$</p>
+<p>Why?</p>
+<h2 id="Sliding-Window"><a href="#Sliding-Window" class="headerlink" title="Sliding Window"></a>Sliding Window</h2><p>Moving average</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230608231855_dStpt5.png" alt="image-20230608231854902"></p>
+<p>Same pattern</p>
+<p>Stable for sometime, then change suddenly</p>
+<h2 id="Sinc-function"><a href="#Sinc-function" class="headerlink" title="Sinc function"></a>Sinc function</h2><p>$$<br>\int_{-\infty}^{\infty} \frac{\sin (\pi x)}{\pi x} d x&#x3D;1.0<br>$$</p>
+<p>Why</p>
+<p>Since it’s the Fourier tranform of the rect function<br>$$<br>\int_{-\infty}^{\infty} f(t) d t&#x3D;\mathcal{F}<a href="0">f(t)</a><br>$$</p>
+<h2 id="FT"><a href="#FT" class="headerlink" title="FT"></a>FT</h2><p>$$<br>\mathcal{F}\left[\frac{\sin (\pi x)}{\pi x} \cdot \frac{\sin (\pi x &#x2F; 2)}{\pi x &#x2F; 2}\right]&#x3D;\mathcal{F}\left[\frac{\sin (\pi x)}{\pi x}\right] * \mathcal{F}\left[\frac{\sin (\pi x &#x2F; 2)}{\pi x &#x2F; 2}\right]<br>$$</p>
+<p>So just window average</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/gicp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Localization/gicp/" class="post-title-link" itemprop="url">Generalized ICP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-31 22:46:21" itemprop="dateCreated datePublished" datetime="2023-05-31T22:46:21-07:00">2023-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-24 17:04:28" itemprop="dateModified" datetime="2023-06-24T17:04:28-07:00">2023-06-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Combine ICP and point-to-plane ICP into a single probabilistic framework</p>
+<ul>
+<li>More robust to incorrect correspondence</li>
+<li>Easier to tune the maximum match distance</li>
+</ul>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h2><p>Align two point sets in 3D space</p>
+<ul>
+<li>by minimizing the distance</li>
+<li>Extends ICP by allowing more general types of correspondaences</li>
+</ul>
+<h2 id="Standard-ICP"><a href="#Standard-ICP" class="headerlink" title="Standard ICP"></a>Standard ICP</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230531230521_hcUb4D.png" alt="image-20230531230520928"></p>
+<h2 id="Point-to-Plane"><a href="#Point-to-Plane" class="headerlink" title="Point-to-Plane"></a>Point-to-Plane</h2><p>Update the T calculation process (Line 11)<br>$$<br>T \leftarrow \underset{T}{\operatorname{argmin}}\left{\sum_i w_i\left|\eta_i \cdot\left(T \cdot b_i-m_i\right)\right|^2\right}<br>$$<br>Taking the surface normal information</p>
+<h2 id="GICP"><a href="#GICP" class="headerlink" title="GICP"></a>GICP</h2><p>Also improved the Line 11</p>
+<p>Attaching a probabilistic model</p>
+<ul>
+<li>Correspondence: computed with Euclidean distance<ul>
+<li>Use of KD-tree and speed up</li>
+</ul>
+</li>
+</ul>
+<h2 id="NDT"><a href="#NDT" class="headerlink" title="NDT?"></a>NDT?</h2><p>NDT represents the entire point cloud as a collection of Gaussian distributions.</p>
+<ol>
+<li>divide the 3D space containing the point cloud into a grid of cells <ol>
+<li>Each cell that contains at least one point is then represented by a Gaussian distribution</li>
+</ol>
+</li>
+<li>iteratively revises the transformation (translation and rotation) to minimize the difference between the two point clouds.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/SLAM/lidar-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/SLAM/lidar-system/" class="post-title-link" itemprop="url">Lidar SLAM System Design</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-31 21:03:00" itemprop="dateCreated datePublished" datetime="2023-05-31T21:03:00-07:00">2023-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-06 21:15:34" itemprop="dateModified" datetime="2023-06-06T21:15:34-07:00">2023-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/SLAM/" itemprop="url" rel="index"><span itemprop="name">SLAM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Overlooked the localization problem earlier.</p>
+<p>So now the system is more clear</p>
+<ul>
+<li>Offline map construction<ul>
+<li>Use LOAM series to build graph map and construction</li>
+</ul>
+</li>
+<li>Online global localization<ul>
+<li>Use HDL (GICP) to to the localization in real time</li>
+</ul>
+</li>
+</ul>
+<h2 id="System"><a href="#System" class="headerlink" title="System"></a>System</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230531211522_pwfIDK.png" alt="img"></p>
+<h2 id="Test-Via-Point-Data"><a href="#Test-Via-Point-Data" class="headerlink" title="Test Via Point Data"></a>Test Via Point Data</h2><p>Building Map:</p>
+<ul>
+<li>y&#x3D;5200, x&#x3D;0</li>
+<li>x&#x3D;1920, y&#x3D;5200</li>
+<li>y&#x3D;(745)73*80+100-65*80, x&#x3D;1920</li>
+<li>y&#x3D;-300, x&#x3D;700</li>
+<li>x&#x3D;150, y&#x3D;-56</li>
+</ul>
+<p>Map</p>
+<ul>
+<li>x&#x3D;0,y&#x3D;5200-80</li>
+<li>x&#x3D;1920,y&#x3D;5200</li>
+<li>x&#x3D;1920, y&#x3D;745-80</li>
+<li>x&#x3D;1920-460, y&#x3D;745-80-100</li>
+</ul>
+<p>80: 3</p>
+<p>73: 2+3</p>
+<p>一共65</p>
+<p>58块80</p>
+<p>7块73</p>
+<p>14-7*7&#x3D;35</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/SLAM/sc-a-loam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/SLAM/sc-a-loam/" class="post-title-link" itemprop="url">SC-A-LOAM</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-29 16:58:00" itemprop="dateCreated datePublished" datetime="2023-05-29T16:58:00-07:00">2023-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-31 21:03:14" itemprop="dateModified" datetime="2023-05-31T21:03:14-07:00">2023-05-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/SLAM/" itemprop="url" rel="index"><span itemprop="name">SLAM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>I need a fully worked SALM system, what I want to get from the system?</p>
+<ul>
+<li>Generate a 3d lidar map from the system</li>
+<li>Used for further localization<ul>
+<li>Given a lidar scan</li>
+<li>give the global position</li>
+</ul>
+</li>
+</ul>
+<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><p><a target="_blank" rel="noopener" href="https://github.com/gisbi-kim/SC-A-LOAM">Source</a></p>
+<p>structure</p>
+<ul>
+<li>A-LOAM for odometry</li>
+<li>ScanContext fro global localization</li>
+<li>GTSAM for pose-graph optimization</li>
+</ul>
+<h2 id="Question-About-the-SLAM"><a href="#Question-About-the-SLAM" class="headerlink" title="Question About the SLAM"></a>Question About the SLAM</h2><p>做一个小车，以雷达传感器为主，主要实现建图和定位功能，该如何下手？</p>
+<p>我设想的方式：</p>
+<ol>
+<li><p>建图部分</p>
+<ol>
+<li><p>使用雷达建图，建立稠密点云</p>
+</li>
+<li><p>仿真重新采样（在地图的所有位置）</p>
+</li>
+<li><p>scan context计算特征</p>
+</li>
+</ol>
+</li>
+<li><p>定位部分</p>
+<ol>
+<li>获得lidar scan，计算scan context特征</li>
+<li>匹配scan context</li>
+<li>计算位置</li>
+</ol>
+</li>
+</ol>
+<p>有一些问题，这样的方式是否可行</p>
+<ol>
+<li>建图类型，那种类型适合<ol>
+<li>key frame</li>
+<li>点云</li>
+</ol>
+</li>
+<li>global localization方法</li>
+<li>比较完善的框架和代码</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/equal-education/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Philosophy/equal-education/" class="post-title-link" itemprop="url">Equality and Education</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-28 15:14:00" itemprop="dateCreated datePublished" datetime="2023-05-28T15:14:00-07:00">2023-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-29 15:14:11" itemprop="dateModified" datetime="2023-05-29T15:14:11-07:00">2023-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: try to understand the relationship betwwen education and equality</p>
+<ul>
+<li>How could education contribute to equality</li>
+<li>What is the most important force for equality</li>
+<li>Which equality should I chase first</li>
+<li>How should I do?</li>
+<li>What can GPT and AI do in the process</li>
+</ul>
+<h2 id="Equality-Fairness-Justice"><a href="#Equality-Fairness-Justice" class="headerlink" title="Equality, Fairness, Justice"></a>Equality, Fairness, Justice</h2><p>Equality: give everyone the same thing(?) to get the similar result</p>
+<ul>
+<li>same input</li>
+</ul>
+<p>Fairness: About the justice in the way people are treated.</p>
+<ul>
+<li>same output</li>
+</ul>
+<p>Justice: invlove more than equality and fairness</p>
+<ul>
+<li>address past wrongs or systemic disadvantage</li>
+</ul>
+<h2 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h2><ul>
+<li>empowerment</li>
+<li>critical thinking</li>
+<li>tolerance</li>
+<li>economic</li>
+<li>opportunities</li>
+</ul>
+<h2 id="Important-Force"><a href="#Important-Force" class="headerlink" title="Important Force"></a>Important Force</h2><ul>
+<li>education</li>
+<li>law and policy, maybe already done</li>
+<li>economic system. Distribution of resources</li>
+<li>technology</li>
+<li>social movements</li>
+<li>cultural shifts</li>
+</ul>
+<h2 id="Which-Area"><a href="#Which-Area" class="headerlink" title="Which Area"></a>Which Area</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/lidar-kidnap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -642,643 +1188,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/mobile-robot-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/mobile-robot-test/" class="post-title-link" itemprop="url">移动机器人测试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-16 00:18:00" itemprop="dateCreated datePublished" datetime="2023-05-16T00:18:00-07:00">2023-05-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-26 20:25:38" itemprop="dateModified" datetime="2023-06-26T20:25:38-07:00">2023-06-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="具体任务分配"><a href="#具体任务分配" class="headerlink" title="具体任务分配"></a>具体任务分配</h2><ul>
-<li><p>底层</p>
-<ul>
-<li>轮毂电机（立文）和转向电机（立文+陈浩）的控制，写成ros node A<ul>
-<li>输入：控制信号</li>
-<li>内容：通过CAN发送信号</li>
-<li>测试内容：0到2m&#x2F;s速度控制精度，位置控制精度</li>
-</ul>
-</li>
-<li>电气系统搭建：有序、可扩展的电源分配，安全可靠的上下电方式（陈豪）<ul>
-<li>测试内容：多次上下电，是否都正常工作</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>中间层（立文）</p>
-<ul>
-<li>键盘控制，写成ros node B<ul>
-<li>输入：方向键</li>
-<li>内容：输出控制信号给ros node A</li>
-</ul>
-</li>
-<li>测试内容：使用方向键控制小车在测试环境中走一圈</li>
-</ul>
-</li>
-<li><p>上层（钧涵）</p>
-<ul>
-<li>路径规划，写成ros node C<ul>
-<li>输入：地图，起点，终点</li>
-<li>内容：输出路径给ros node D</li>
-<li>测试内容：由采集好的数据测试</li>
-</ul>
-</li>
-<li>运动控制，写成ros node D<ul>
-<li>输入：路径，当前状态</li>
-<li>内容：输出控制信号给ros node A</li>
-<li>测试内容：由采集好的数据测试</li>
-</ul>
-</li>
-<li>自动化启动，开机后自动启动相应驱动和ros node</li>
-</ul>
-</li>
-</ul>
-<h2 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h2><ol>
-<li>机械组装</li>
-<li>电源布线</li>
-<li>测试轮毂电机<ol>
-<li>前进后退功能</li>
-<li>测精度，跑10m误差多少</li>
-</ol>
-</li>
-<li>测试转向电机<ol>
-<li>左转右转功能</li>
-<li>测精度，旋转90°误差多少</li>
-</ol>
-</li>
-<li>远程键盘控制<ol>
-<li>使用键盘远程操纵小车在指定空间行走一圈</li>
-<li>加上雷达做一个建图</li>
-</ol>
-</li>
-<li>测试运动控制<ol>
-<li>指定起点和终点，运动控制自动导航</li>
-<li>测精度，在终点误差多少</li>
-</ol>
-</li>
-<li>测试路径规划</li>
-<li>动态的障碍物检测</li>
-</ol>
-<h2 id="Update-0625"><a href="#Update-0625" class="headerlink" title="Update 0625"></a>Update 0625</h2><p>新的工控机，接下来的测试流程</p>
-<ol>
-<li>确定轮毂电机和转向电机正常工作</li>
-<li>确定雷达正常工作</li>
-<li>室内MPC without SLAM</li>
-<li>室外MPC with SLAM</li>
-</ol>
-<h2 id="Test-0626"><a href="#Test-0626" class="headerlink" title="Test 0626"></a>Test 0626</h2><ol>
-<li><p>启动雷达 roslaunch lslidar_driver lslidar_c16.launch</p>
-</li>
-<li><p>启动定位 roslaunch hdl_localization hdl_localization.launch</p>
-</li>
-<li><p>可视化定位</p>
-<p>roscd hdl_localization&#x2F;rviz</p>
-<p>rviz -d hdl_localization.rviz</p>
-</li>
-<li><p>全局定位 rosservice call &#x2F;relocalize</p>
-</li>
-<li><p>跑MPC: python3 ~&#x2F;MPC&#x2F;carlike_control&#x2F;test&#x2F;FWS_ros.py</p>
-<ol>
-<li><p>跑之前根据第3步的输出修改一下小车的初始位置</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230626202431_C4SjZN.png" alt="image-20230626202431526"></p>
-</li>
-<li><p>运行轨迹点在第58行</p>
-</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/thinking-2023/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/thinking-2023/" class="post-title-link" itemprop="url">近期思考</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-14 16:19:00" itemprop="dateCreated datePublished" datetime="2023-05-14T16:19:00-07:00">2023-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-18 22:20:48" itemprop="dateModified" datetime="2023-05-18T22:20:48-07:00">2023-05-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="改变世界"><a href="#改变世界" class="headerlink" title="改变世界"></a>改变世界</h2><p>如何缩小贫富差距，作为大众</p>
-<ul>
-<li>教育</li>
-<li>投票</li>
-<li>捐赠</li>
-</ul>
-<p>如何实现平等</p>
-<p>什么是平等</p>
-<ul>
-<li>朴素平等</li>
-<li>幸福平等</li>
-<li>资源平等</li>
-<li>机会平等</li>
-<li>能力平等</li>
-</ul>
-<h2 id="职业发展"><a href="#职业发展" class="headerlink" title="职业发展"></a>职业发展</h2><p>是否要跳槽</p>
-<p>身份问题如何解决？</p>
-<ul>
-<li>职业移民EB2&#x2F;3<ul>
-<li>PERM</li>
-<li>I-460</li>
-<li>I-485</li>
-</ul>
-</li>
-<li>在I-140获批之后可以获得PD</li>
-<li>需要多久？一年半左右</li>
-</ul>
-<h2 id="食物摄影"><a href="#食物摄影" class="headerlink" title="食物摄影"></a>食物摄影</h2><p>要作为赚钱的手段吗</p>
-<h2 id="创业"><a href="#创业" class="headerlink" title="创业"></a>创业</h2><ul>
-<li>教育</li>
-<li>养老机器人</li>
-<li>食物摄影</li>
-</ul>
-<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ol>
-<li>Update resume</li>
-<li>Update Linkedin profile</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/light-shaping/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/light-shaping/" class="post-title-link" itemprop="url">Control the Shape of Lighting</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-05-08 22:37:00 / Modified: 23:32:41" itemprop="dateCreated datePublished" datetime="2023-05-08T22:37:00-07:00">2023-05-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Stand"><a href="#Stand" class="headerlink" title="Stand"></a>Stand</h2><ul>
-<li>Tranditional Stand</li>
-<li>C Stand</li>
-</ul>
-<p>For C stand, get some stand bag for more steady envrionment</p>
-<h2 id="Adapters"><a href="#Adapters" class="headerlink" title="Adapters"></a>Adapters</h2><p>grip, clamp, adapter</p>
-<ul>
-<li>to work with C stand and attach all kinds of light&#x2F;modifiers</li>
-</ul>
-<p>try to avoid very specific usage tool</p>
-<p>Plastic clamps: <a target="_blank" rel="noopener" href="https://amzn.to/3gUd8Ul">https://amzn.to/3gUd8Ul </a>  </p>
-<p>Metal clamps (with rubber grip): <a target="_blank" rel="noopener" href="https://amzn.to/3p2iAY2">https://amzn.to/3p2iAY2   </a></p>
-<p>C-Stand Grip Head (Neewer): <a target="_blank" rel="noopener" href="https://amzn.to/34llyzc">https://amzn.to/34llyzc</a>   </p>
-<p>Reflector Disc Holder (set of 3): <a target="_blank" rel="noopener" href="https://amzn.to/3oStwHM">https://amzn.to/3oStwHM</a>   </p>
-<p>C-clamp Grip: <a target="_blank" rel="noopener" href="https://amzn.to/2Wmfjqn">https://amzn.to/2Wmfjqn</a>   </p>
-<p>^ Clip to attach: <a target="_blank" rel="noopener" href="https://amzn.to/3mrRTdV">https://amzn.to/3mrRTdV</a>   </p>
-<p>Supergrip with Adjustable Handle: <a target="_blank" rel="noopener" href="https://amzn.to/3rbGoej">https://amzn.to/3rbGoej</a>   </p>
-<h2 id="Modifiers"><a href="#Modifiers" class="headerlink" title="Modifiers"></a>Modifiers</h2><p>Softbox mainly make the flash larger</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508230826_x0mELD.png" alt="image-20230508230826709"></p>
-<p>Using grid, snoots, GOBOs</p>
-<p>Looking for the right mount system</p>
-<p>Magbox (with Magmod system): <a target="_blank" rel="noopener" href="https://amzn.to/2WmBNYm">https://amzn.to/2WmBNYm </a></p>
-<p>Pro Studio 4ft Softbox (I have the 3ft version, but could not find it on Amazon): <a target="_blank" rel="noopener" href="https://amzn.to/34jCyWl">https://amzn.to/34jCyWl </a>  </p>
-<p>Phottek Softlighter (Umbrella): <a target="_blank" rel="noopener" href="https://amzn.to/37otmC4">https://amzn.to/37otmC4</a>   </p>
-<p>Westcott 7tf Umbrella: <a target="_blank" rel="noopener" href="https://amzn.to/37rBxNS">https://amzn.to/37rBxNS</a>   </p>
-<p>Magmod Basic Kit: <a target="_blank" rel="noopener" href="https://amzn.to/2KbjDq2">https://amzn.to/2KbjDq2</a>   </p>
-<p>Magmod Snoot: <a target="_blank" rel="noopener" href="https://amzn.to/2Woayg8">https://amzn.to/2Woayg8</a>   </p>
-<p>Godox Snoot:  <a target="_blank" rel="noopener" href="https://amzn.to/38eXxe6">https://amzn.to/38eXxe6</a>   </p>
-<h2 id="Flags-amp-Fill-Cards"><a href="#Flags-amp-Fill-Cards" class="headerlink" title="Flags &amp; Fill Cards"></a>Flags &amp; Fill Cards</h2><p>Control light is the key skills</p>
-<p>3 main way</p>
-<ul>
-<li><p>cutting or shaping</p>
-<ul>
-<li><p>block light</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508231706_sFQiMA.png" alt="image-20230508231706875"></p>
-</li>
-</ul>
-</li>
-<li><p>reducing</p>
-<ul>
-<li>negative fill</li>
-</ul>
-</li>
-<li><p>adding </p>
-<ul>
-<li><p>positive fill</p>
-</li>
-<li><p>serve as a new light source</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232348_30jU8Q.png" alt="image-20230508232348849"></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Foam boards: <a target="_blank" rel="noopener" href="https://amzn.to/3r5BW0w">https://amzn.to/3r5BW0w </a>  </p>
-<p>Tri-fold boards: <a target="_blank" rel="noopener" href="https://amzn.to/3oWKaWQ">https://amzn.to/3oWKaWQ   </a></p>
-<p>Godox SA-17: <a target="_blank" rel="noopener" href="https://amzn.to/3mrVRDl">https://amzn.to/3mrVRDl</a>  </p>
-<h2 id="Diffusion-amp-Reflector"><a href="#Diffusion-amp-Reflector" class="headerlink" title="Diffusion &amp; Reflector"></a>Diffusion &amp; Reflector</h2><p>diffusion roll?</p>
-<ul>
-<li>more smooth, creamy, and natural</li>
-<li>no cross light</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232812_v27QcB.png" alt="image-20230508232812878"></p>
-<p>Reflector</p>
-<p>Mirror is a great tool for product photography</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/flash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/flash/" class="post-title-link" itemprop="url">Off Camera Flash</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-05-07 15:06:00 / Modified: 16:27:04" itemprop="dateCreated datePublished" datetime="2023-05-07T15:06:00-07:00">2023-05-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What-to-Buy"><a href="#What-to-Buy" class="headerlink" title="What to Buy?"></a>What to Buy?</h2><ul>
-<li>basic fundamentals of lighting</li>
-<li>fundamental of off-camera flash</li>
-<li>lighting for your work</li>
-</ul>
-<h2 id="Flash-Duration"><a href="#Flash-Duration" class="headerlink" title="Flash Duration"></a>Flash Duration</h2><p>With natutal light</p>
-<ul>
-<li>High speed shutter to capture the motion</li>
-<li>for splash, 1&#x2F;1000s is needed</li>
-</ul>
-<p>While with the flash speed</p>
-<ul>
-<li>Maybe 1&#x2F;40s is good enough</li>
-<li>The flash duration capture the motion</li>
-<li>shutter speed is irrelavant</li>
-</ul>
-<p>The higher power, the longer flash duration</p>
-<p>So to capture splash, use low flash output power</p>
-<h2 id="Sync-Speed"><a href="#Sync-Speed" class="headerlink" title="Sync Speed"></a>Sync Speed</h2><p>The max speed camera can set to work properly with flash</p>
-<blockquote>
-<p>Why limit? since In high shutter speed, the shutter should not fully open, so ther would be a dark area</p>
-</blockquote>
-<p>Shoot as max sync speed</p>
-<h2 id="Flash-Power"><a href="#Flash-Power" class="headerlink" title="Flash Power"></a>Flash Power</h2><p>The more powerful, the more control you have on the depth of field</p>
-<p>For flash, the power if linear</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230507161501_G0cyyj.png" alt="image-20230507161501491"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/supplement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/supplement/" class="post-title-link" itemprop="url">Record For daily Supplement</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-05-06 17:01:00 / Modified: 18:25:44" itemprop="dateCreated datePublished" datetime="2023-05-06T17:01:00-07:00">2023-05-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><table>
-<thead>
-<tr>
-<th>Supplement</th>
-<th>Usage</th>
-<th>Supplement Facts</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CoQ10</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Melatonin</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Magnesium</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Omega-3 Fish Oil</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>One-Day Multivitamin</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1344,20 +1257,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">335</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">115</span>
+        <span class="site-state-item-count">118</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
