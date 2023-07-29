@@ -188,6 +188,611 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Vision/3d-reconstruction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Vision/3d-reconstruction/" class="post-title-link" itemprop="url">3D Reconstruction with Meshroom</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-14 14:38:00" itemprop="dateCreated datePublished" datetime="2021-12-14T14:38:00-08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-24 22:16:53" itemprop="dateModified" datetime="2023-02-24T22:16:53-08:00">2023-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Vision/" itemprop="url" rel="index"><span itemprop="name">Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Meshroom"><a href="#Meshroom" class="headerlink" title="Meshroom"></a>Meshroom</h2><blockquote>
+<p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
+<p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
+</blockquote>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ol>
+<li>Feature extraction<ol>
+<li>Goal: extract feature points</li>
+<li>Method: SIFT</li>
+</ol>
+</li>
+<li>Image matching<ol>
+<li>Goal: find images looking to the same area, then we can reduce computation</li>
+<li>Method: Vocabulary tree approach</li>
+</ol>
+</li>
+<li>Feature matching<ol>
+<li>Goal: match feature points between candidate image pairs</li>
+<li>Method: calculate distance and use RANSAC</li>
+</ol>
+</li>
+<li>Structure from Motion (SFM)<ol>
+<li>Goal: compute the pose of each images</li>
+<li>Methods: <ol>
+<li>Fuse all matched feature point pairs</li>
+<li>Choose the best initial image pair</li>
+<li>Compute the fundamental matrix</li>
+<li>Using PnP to calculate the pose</li>
+<li>Filter the results using Bundle Adjustment</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Depth Maps Estimation<ol>
+<li>Goal: get the depth value of each pixel</li>
+<li>Method: Semi-Global Matching</li>
+</ol>
+</li>
+<li>Meshing<ol>
+<li>Goal: create geometric surface representation of the scene</li>
+<li>Method: <ol>
+<li>Fuse all depth maps into global octree</li>
+<li>Perform 3D Delaunay tetrahedralization (四面体化), then voting</li>
+<li>Graph cut Max-Flow, optimally cut the volume</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Texturing <ol>
+<li>Goal: texture the generated mesh</li>
+<li>Method:<ol>
+<li>Compute UV maps</li>
+<li>For each triangle, use the color of each candidate to estimate</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Data-Acquisition"><a href="#Data-Acquisition" class="headerlink" title="Data Acquisition"></a>Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<p>Camera setting</p>
+<ul>
+<li>Fixed <strong>low</strong> ISO (low noise)</li>
+<li>Fixed <strong>high</strong> shutter speed (less then 1&#x2F;100s, no blur)</li>
+<li>Fixed <strong>long</strong> focal length (everything is in focus)</li>
+<li>Fixed white balance  (stable image color for feature matching)</li>
+<li>Enough lighting (so that we can keep low iso and high shutter speed)</li>
+</ul>
+<p>Move:</p>
+<ul>
+<li><p>Camera fixed, object move</p>
+<ul>
+<li>will need a spin base</li>
+<li>keep the background pure color</li>
+</ul>
+</li>
+<li><p>Camera move, object fixed</p>
+<ul>
+<li>Shot around the object (360 degree)</li>
+<li>In each spot, shot from 3 different heights</li>
+</ul>
+</li>
+</ul>
+<p>Illustration:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<p>The final results of Meshroom is pretty unstable</p>
+<ul>
+<li>In many cases, even high quality images dataset can not generate satisfied results</li>
+<li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
+</ul>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Why performs bad?</p>
+<p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
+<ul>
+<li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
+<li>The leaf is semi-transparent, it will look differently from different angle</li>
+<li>The leaf skin is so smooth that would generate reflection</li>
+</ul>
+<p>How to solve the problem? (Possible solution)</p>
+<ul>
+<li>Using laser to generate point cloud (to capture textureless feature)</li>
+<li>Create great lighting system, try to avoid reflection and semi-transparent situation</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Rotation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Rotation/" class="post-title-link" itemprop="url">旋转矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-12 21:11:00" itemprop="dateCreated datePublished" datetime="2021-12-12T21:11:00-08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-14 11:38:20" itemprop="dateModified" datetime="2021-12-14T11:38:20-08:00">2021-12-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h2><p>旋转方式</p>
+<ul>
+<li>绕自身旋转（右乘变换矩阵）</li>
+<li>绕固定轴旋转（左乘变换矩阵）</li>
+</ul>
+<blockquote>
+<p>比如说RPY，绕XYZ旋转，如果是绕自身，那就是<br>$$<br>R_x()R_y()R_z()<br>$$<br>如果是绕固定轴，那就是<br>$$<br>R_z()R_y()R_x()<br>$$</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/poster-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/poster-guide/" class="post-title-link" itemprop="url">Poster 101</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-04 00:00:00 / Modified: 20:27:06" itemprop="dateCreated datePublished" datetime="2021-12-04T00:00:00-08:00">2021-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Research-Poster-Worksheet"><a href="#Research-Poster-Worksheet" class="headerlink" title="Research Poster Worksheet"></a>Research Poster Worksheet</h2><p>A poster is a visual presentation, NOT a paper.</p>
+<ol>
+<li>List 5 image, and place them on the poster, to see where they might show up</li>
+<li>Audience analysis: who cares your research, who will use it, what are the real-world application</li>
+<li>Describe your research in 2-3 bullets<ol>
+<li>The purpose of this research is to</li>
+</ol>
+</li>
+<li>What problem is your research attempting to solve</li>
+<li>How does your research work to solve the problem</li>
+<li>What are the results of your research? What are your findings?</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Machine%20Learning/hyperband/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/CS/Machine%20Learning/hyperband/" class="post-title-link" itemprop="url">HyperBand Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-27 14:30:00" itemprop="dateCreated datePublished" datetime="2021-11-27T14:30:00-08:00">2021-11-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-04 18:09:55" itemprop="dateModified" datetime="2021-12-04T18:09:55-08:00">2021-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: To tune hyper-parameter in machine learning or deep learning, using bandit algorithm, to minimize the time usag</p>
+<p>Methods used with</p>
+<ul>
+<li>SGD</li>
+<li>Tree ensembles</li>
+</ul>
+<p>Idea: Try a large number of random configurations, but takes a lot of time. So hyperband:</p>
+<ol>
+<li>Run just an iteration (random configuration) or two at first</li>
+<li>Evaluate how they perform</li>
+<li>Using earlier results to select candidates for longer runs</li>
+</ol>
+<blockquote>
+<p>e.g, following experiments: max iteration:81</p>
+<table>
+<thead>
+<tr>
+<th>Runs</th>
+<th>Iteration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>81</td>
+<td>1</td>
+</tr>
+<tr>
+<td>27</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>27</td>
+</tr>
+</tbody></table>
+<p>It starts with 81 runs, one iteration each. Then the best 27 configurations get three iterations each. Then the best nine get nine, and so on</p>
+</blockquote>
+<h2 id="Learning-Rate-Tune-or-Not"><a href="#Learning-Rate-Tune-or-Not" class="headerlink" title="Learning Rate: Tune or Not"></a>Learning Rate: Tune or Not</h2><p>“Low learning rate with many iterations” is good for XGBoost</p>
+<p>If we do not tune learning rate, the hyperband make good sense </p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>Just need two function</p>
+<ol>
+<li>one return a random configuration</li>
+<li>another one train that configuration for a given number of iterations and return a loss value</li>
+</ol>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>To evaluate the performance of hyperband, we did several experiment. From the high level, we want to answer two major question: </p>
+<ol>
+<li>How hyperband perform in different machine learning algorithms.</li>
+<li>How hyperband perform compared to other hyper parameter tuning algorithms</li>
+</ol>
+<h3 id="Setting"><a href="#Setting" class="headerlink" title="Setting"></a>Setting</h3><p>In our experiments, we are making a binary classification problem. For the dataset, we choose Breast Cancer Wisconsin (Diagnostic) dataset, features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image.</p>
+<p>According to Algorithm 1, we set $R&#x3D;81$ and $\eta&#x3D;3$, which means maximum iterations per configuration is $3$ and configuration downsampling rate is $3$</p>
+<p>To evaluate the performance of hyperband in different machine learning algorithms, we choose gradient boosting, random forest, extremely randomized trees and linear SGD. To compare between different methods, we use log loss as our metric</p>
+<p>From the figure below, we can observe that after few iterations, the hyperband algorithm has the ability to optimize the parameter of these machine learning algorithm and make good prediction with low log loss.</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-11-30-23-35-57.png" alt="Figure_1"></p>
+<p>To compare the performance of different parameter tuning method, we choose 5 candidate.</p>
+<ol>
+<li>Grid search. this method would explore the whole hyperparameter space, every combination given by the space</li>
+<li>Randomized search. In contrast to Grid search, a fixed number of parameter setting is sampled from the given parameter space</li>
+<li>Halving Grid Search, based on grid search and apply successive halving strategy, all candidate would be evaluated with a small amout of resource at first and iteratively select the best candidates </li>
+<li>Halving Randomized search, based on Randomized search and apply successive halving strategy, all candidate would be evaluated with a small amout of resource at first and iteratively select the best candidates </li>
+<li>hyperband</li>
+</ol>
+<p>Grid based search algorithms are time consuming, since the overall search space is quite large. On the opposite, randomized search algorithms is efficient but the output is unstable, which means the results highly depend on the  randomized initial configuration.</p>
+<p>* </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/can-bus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/can-bus/" class="post-title-link" itemprop="url">CAN Bus</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-31 13:50:00 / Modified: 11:29:04" itemprop="dateCreated datePublished" datetime="2021-10-31T13:50:00-07:00">2021-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Like the nerve system in human body</p>
+<ul>
+<li>ECU like the body parts</li>
+<li>Sensor can broadcast the data and share in the can bus</li>
+</ul>
+<p>Hardware level</p>
+<ul>
+<li>CAN High</li>
+<li>CAN Low</li>
+</ul>
+<h2 id="Why-Main-Benefical"><a href="#Why-Main-Benefical" class="headerlink" title="Why (Main Benefical)"></a>Why (Main Benefical)</h2><ol>
+<li>Simple and Low cost</li>
+<li>Fully Centerlized</li>
+<li>Extremely Robust (抗干扰)</li>
+<li>Effcient, with priority ID</li>
+</ol>
+<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><p>BOSCH CAN 1986</p>
+<p>CAN 2.0 1991 </p>
+<p>International standard 1998</p>
+<h2 id="Message-x2F-Frame"><a href="#Message-x2F-Frame" class="headerlink" title="Message &#x2F; Frame"></a>Message &#x2F; Frame</h2><p>8 fields</p>
+<ol>
+<li>SOF</li>
+<li>CAN ID</li>
+<li>RTR</li>
+<li>Control, extension for ID</li>
+<li>Data, actual information</li>
+<li>CRC, redundancy check</li>
+<li>ACK</li>
+<li>EOF</li>
+</ol>
+<h2 id="Record-and-Decode"><a href="#Record-and-Decode" class="headerlink" title="Record and Decode"></a>Record and Decode</h2><p>ID and Data, use a logger</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oYps7vT708E">https://www.youtube.com/watch?v=oYps7vT708E</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Things/tea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -718,655 +1323,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/camera-data-generator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Computer%20Vision/camera-data-generator/" class="post-title-link" itemprop="url">轻量型视觉数据生成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-08 10:01:00" itemprop="dateCreated datePublished" datetime="2021-07-08T10:01:00-07:00">2021-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><p>为了给训练模型提供大量不同背景和姿态的训练数据，基于相机模型和Open3D的渲染生成数据，输入模型、背景和相机的姿态（或者模型的姿态），输出RGB图和深度图</p>
-<h2 id="2-方法步骤"><a href="#2-方法步骤" class="headerlink" title="2 方法步骤"></a>2 方法步骤</h2><p>主要依赖两个库</p>
-<ul>
-<li>Open3D：提供读取模型（.obj .mtl .jpg）以及渲染模型的作用，生成具有真实感的模型图片</li>
-<li>虚拟相机模型virtual_camera：提供生成mask的作用，也就是获取模型在图片中的位置</li>
-</ul>
-<p>Pipeline：</p>
-<ol>
-<li>读取模型</li>
-<li>初始化相机模型，计算相机内参、外参</li>
-<li>获取mask（起到抠图的作用）<ol>
-<li>读取模型的顶点和mesh信息</li>
-<li>将顶点通过相机模型映射到像素平面</li>
-<li>根据mesh信息将对应的三角形涂上颜色</li>
-<li>最终根据颜色信息获取mask</li>
-</ol>
-</li>
-<li>渲染模型<ol>
-<li>初始化一个Open3D的render</li>
-<li>定义render中的相机位置、模型材质、环境光照信息</li>
-<li>渲染模型的深度图和RGB图</li>
-</ol>
-</li>
-<li>背景融合<ol>
-<li>读取背景图片</li>
-<li>根据3中获取的mask信息读取4中RGB图相应位置的点，赋值给背景图图片，获得融合后的RGB图</li>
-<li>根据4中获取的深度图，重新计算，映射到0-255范围，获得可视化良好的深度图</li>
-</ol>
-</li>
-</ol>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">import</span> open3d.visualization.rendering <span class="keyword">as</span> rendering</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> virtual_camera <span class="keyword">import</span> VirtualCamera</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read the Data (From obj file)</span></span><br><span class="line">bpa_mesh = o3d.io.read_triangle_mesh(<span class="string">&#x27;BigConnecter.obj&#x27;</span>,<span class="literal">True</span>)</span><br><span class="line">tri=np.asarray(bpa_mesh.triangles)</span><br><span class="line">points_raw=np.asarray(bpa_mesh.vertices)</span><br><span class="line">center_p=np.<span class="built_in">sum</span>(points_raw,<span class="number">0</span>)/<span class="built_in">len</span>(points_raw)</span><br><span class="line">rx=-np.pi/<span class="number">2</span></span><br><span class="line">ry=<span class="number">0</span></span><br><span class="line">rz=np.pi/<span class="number">2</span></span><br><span class="line">R=o3d.geometry.get_rotation_matrix_from_xyz([rx,ry,rz])</span><br><span class="line">bpa_mesh.rotate(R,center_p)</span><br><span class="line">o3d.visualization.draw_geometries([bpa_mesh])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Setup a camera</span></span><br><span class="line">rx=<span class="number">0</span></span><br><span class="line">ry=np.pi</span><br><span class="line">rz=<span class="number">0</span></span><br><span class="line">x=<span class="number">1</span></span><br><span class="line">y=<span class="number">1</span></span><br><span class="line">z=<span class="number">570</span></span><br><span class="line">W,H=<span class="number">2048</span>,<span class="number">2048</span></span><br><span class="line">focal=<span class="number">1024</span></span><br><span class="line">tic=time.time()</span><br><span class="line">cam = VirtualCamera(rx, ry, rz,x, y, z, focal*<span class="number">3.45e-6</span>, [W, H])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Create Mask</span></span><br><span class="line"><span class="comment">#  Get the triangle relationship</span></span><br><span class="line">points=points_raw</span><br><span class="line"><span class="built_in">print</span>(points)</span><br><span class="line">points=points.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ans,cp = cam.project_world_to_pixel(points)</span><br><span class="line">ans=ans.astype(<span class="built_in">int</span>)</span><br><span class="line">mask_bg=np.zeros((W,H,<span class="number">3</span>))</span><br><span class="line">mask_bg[:,:,:]=<span class="number">0</span></span><br><span class="line">ans=ans[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tri)):</span><br><span class="line">    pt1=ans[tri[i][<span class="number">0</span>]]</span><br><span class="line">    pt2=ans[tri[i][<span class="number">1</span>]]</span><br><span class="line">    pt3=ans[tri[i][<span class="number">2</span>]]</span><br><span class="line">    tri_set=np.asarray([pt1,pt2,pt3])</span><br><span class="line">    tri_set=tri_set.astype(<span class="built_in">int</span>)</span><br><span class="line">    tri_set=tri_set.reshape(-<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">    cv2.fillPoly(mask_bg,[tri_set],(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))</span><br><span class="line"><span class="comment">#  Calculate the mask</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">fushi = cv2.erode(mask_bg,kernel,iterations = <span class="number">1</span>)</span><br><span class="line">mask=np.where(fushi[:,:,<span class="number">1</span>]==<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Render model</span></span><br><span class="line">camera_intrinsics=o3d.camera.PinholeCameraIntrinsic()</span><br><span class="line">camera_intrinsics.set_intrinsics(W,H,focal,focal,W/<span class="number">2</span>,H/<span class="number">2</span>)</span><br><span class="line">extrinsics=cam.RT_world_in_camera</span><br><span class="line"></span><br><span class="line">render = rendering.OffscreenRenderer(<span class="number">2048</span>, <span class="number">2048</span>)</span><br><span class="line">material = rendering.Material()</span><br><span class="line">material.base_color = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1.0</span>]</span><br><span class="line">material.shader = <span class="string">&quot;defaultLit&quot;</span></span><br><span class="line">material.albedo_img=o3d.io.read_image(<span class="string">&#x27;BigConnectSilver.jpg&#x27;</span>)</span><br><span class="line">material.base_metallic=<span class="number">1.0</span></span><br><span class="line">render.scene.add_geometry(<span class="string">&quot;pcd&quot;</span>,bpa_mesh,material)</span><br><span class="line">render.setup_camera(camera_intrinsics,extrinsics)</span><br><span class="line">render.scene.scene.set_sun_light([<span class="number">0</span>, <span class="number">0.0</span>, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                                 <span class="number">3e6</span>)</span><br><span class="line">render.scene.scene.enable_sun_light(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read RGB and Depth image from open3d</span></span><br><span class="line">img = np.asarray(render.render_to_image())</span><br><span class="line">depth_img=np.asarray(render.render_to_depth_image())</span><br><span class="line">depth_img=<span class="number">1</span>-depth_img</span><br><span class="line">depth_img=depth_img/np.amax(depth_img)*<span class="number">255</span></span><br><span class="line">depth_img=depth_img.astype(<span class="built_in">int</span>)</span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_depth.png&#x27;</span>,<span class="number">255</span>-depth_img)</span><br><span class="line"></span><br><span class="line">img= cv2.cvtColor(img,cv2.COLOR_RGB2BGR)</span><br><span class="line">bg=cv2.imread(<span class="string">&#x27;WechatIMG1313.jpeg&#x27;</span>)</span><br><span class="line">bg=cv2.resize(bg,(<span class="number">2048</span>,<span class="number">2048</span>))</span><br><span class="line">bg[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]=img[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_rgb.jpg&#x27;</span>,bg)</span><br><span class="line">plt.imshow(cv2.cvtColor(bg,cv2.COLOR_BGR2RGB))</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4 实验结果"></a>4 实验结果</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2008%2010%2057%2022.png" alt="实验结果"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/camera-estimation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Computer%20Vision/camera-estimation/" class="post-title-link" itemprop="url">相机模型求解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-01 10:22:00" itemprop="dateCreated datePublished" datetime="2021-07-01T10:22:00-07:00">2021-07-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><p>在已经有了相机模型和已知圆的3个特征点的世界坐标及其像素坐标的情况下，我们可以用数值求解的方式求解出相机的位姿。</p>
-<p>假设世界坐标系的圆点为圆心</p>
-<h2 id="2-约束条件"><a href="#2-约束条件" class="headerlink" title="2 约束条件"></a>2 约束条件</h2><p>已知相机模型<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>是相机的内参矩阵，是一个固定的矩阵，因此可以放到等式左边，化简方程<br>$$<br>Z_{c}S^{-1}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S^{-1}&#x3D;\displaystyle \left[\begin{matrix}\frac{\mu}{f} &amp; 0 &amp; - \frac{C_{x} \mu}{f}\0 &amp; \frac{\mu}{f} &amp; - \frac{C_{y} \mu}{f}\0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>（4）中的RT矩阵用四元数的表达方式可以写成<br>$$<br>\displaystyle \left[\begin{matrix}- 2 y^{2} - 2 z^{2} + 1 &amp; - 2 w z + 2 x y &amp; 2 w y + 2 x z &amp; - T_{x} \left(- 2 y^{2} - 2 z^{2} + 1\right) - T_{y} \left(- 2 w z + 2 x y\right) - T_{z} \left(2 w y + 2 x z\right)\2 w z + 2 x y &amp; - 2 x^{2} - 2 z^{2} + 1 &amp; - 2 w x + 2 y z &amp; - T_{x} \left(2 w z + 2 x y\right) - T_{y} \left(- 2 x^{2} - 2 z^{2} + 1\right) - T_{z} \left(- 2 w x + 2 y z\right)\- 2 w y + 2 x z &amp; 2 w x + 2 y z &amp; - 2 x^{2} - 2 y^{2} + 1 &amp; - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)\0 &amp; 0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>四元数的各个数值约束为<br>$$<br>w^2+x^2+y^2+z^2&#x3D;1<br>$$</p>
-<h3 id="2-1-圆心特征点"><a href="#2-1-圆心特征点" class="headerlink" title="2.1 圆心特征点"></a>2.1 圆心特征点</h3><p>考虑世界坐标系圆心坐标 $P(0,0,0)$，像素坐标$p_0$</p>
-<p>对应缩放<br>$$<br>Zc&#x3D;\displaystyle - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_0&#x3D;\left[\begin{array}{l}<br>-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
-<h3 id="2-2-X方向直径端点"><a href="#2-2-X方向直径端点" class="headerlink" title="2.2 X方向直径端点"></a>2.2 X方向直径端点</h3><p>考虑世界坐标系X方向直径端点 $P(L,0,0)$，像素坐标$p_x$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(- 2 w y + 2 x z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_x&#x3D;\left[\begin{array}{c}<br>L\left(-2 y^{2}-2 z^{2}+1\right)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L(2 w z+2 x y)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right.<br>$$</p>
-<p>###2.3 Y方向直径端点</p>
-<p>考虑世界坐标系X方向直径端点$P(0,L,0)$，像素坐标$p_y$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(2 w x + 2 y z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_y&#x3D;\left[\begin{array}{c}<br>L(-2 w z+2 x y)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L\left(-2 x^{2}-2 z^{2}+1\right)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-总结"><a href="#2-4-总结" class="headerlink" title="2.4 总结"></a>2.4 总结</h3><p>综上，(6)(8)(10)(12)中共有7个方程</p>
-<p>已知的是$L,f,\mu,p_0,p_x,p_y,C_x,C_y$</p>
-<p>未知数$T_x,T_y,T_z,w,x,y,z$</p>
-<p>共有7个方程，7个未知数，因此可以求解</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><p>主要是用了scipy中的fsolve函数进行数值求解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">xx</span>):</span><br><span class="line">    T_x, T_y, T_z,  x, y, z, w = xx</span><br><span class="line">    p0x = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y * \</span><br><span class="line">        (-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z)</span><br><span class="line">    p0y = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> -</span><br><span class="line">                                      <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z)</span><br><span class="line">    Z_p0 = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">        T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line">    pxx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">        T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">    pxy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">        T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) + <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">    Z_px = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">        T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) - <span class="number">2</span>*w*y + <span class="number">2</span>*x*z</span><br><span class="line">    pyx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">        T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">    pyy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">        T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - <span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">    Z_py = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">        T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) + <span class="number">2</span>*w*x + <span class="number">2</span>*y*z</span><br><span class="line">    <span class="keyword">return</span> [p0x/Z_p0-pixels[<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">            p0y/Z_p0-pixels[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">            pxx/Z_px-pixels[<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">            pxy/Z_px-pixels[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">            pyx/Z_py-pixels[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">            pyy/Z_py-pixels[<span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">            w**<span class="number">2</span>+x**<span class="number">2</span>+y**<span class="number">2</span>+z**<span class="number">2</span>-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> fsolve</span><br><span class="line">guess = [<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>]</span><br><span class="line">ans = fsolve(func, guess)</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4 实验结果"></a>4 实验结果</h2><p>fsolve的参数包括一个函数和一个初始值，因为是数值求解，所以只能求出一个解，但实际上有多组解（其中只有一组解是真的）</p>
-<p>每次计算在2ms左右(个人电脑)</p>
-<p>这里设置多个初始值的（x,y），达到近似遍历的效果，在实际可能的范围内将答案求解</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2001%2011%2023%2021.png" alt="image-20210701112318068"></p>
-<p>可以看到，解中包含了真实答案，但也有许多其他答案，需要后续进行继续分析排除</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/thinking-2021/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/thinking-2021/" class="post-title-link" itemprop="url">近期思考&读书笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-27 02:46:00" itemprop="dateCreated datePublished" datetime="2021-06-27T02:46:00-07:00">2021-06-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-14 16:18:26" itemprop="dateModified" datetime="2023-05-14T16:18:26-07:00">2023-05-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="人生目标？"><a href="#人生目标？" class="headerlink" title="人生目标？"></a>人生目标？</h2><p>人这一生到底要做什么</p>
-<p>为什么</p>
-<p>目前情况怎么样</p>
-<p>怎么做</p>
-<h2 id="What-really-matters"><a href="#What-really-matters" class="headerlink" title="What really matters"></a>What really matters</h2><p>快乐主义：Hedonism</p>
-<p>Pleasure is the only direct good, Pain is the only direct bad</p>
-<p>萨特：</p>
-<ul>
-<li>对人类来说，先有存在，然后再有目的<ul>
-<li>我们的目的由自己定义</li>
-</ul>
-</li>
-<li>对于物品来说，先有目的，然后再存在</li>
-</ul>
-<p>Susan Wolf:</p>
-<ul>
-<li>Meaningful lives are lives of active engagement in projects of worth<ul>
-<li>Active engagement: 要感兴趣</li>
-<li>Projects of worth：科学研究、政治、与他人建立联系</li>
-</ul>
-</li>
-<li>我们的价值判断和文化息息相关</li>
-</ul>
-<h2 id="What-should-We-do"><a href="#What-should-We-do" class="headerlink" title="What should We do"></a>What should We do</h2><h3 id="Act-consequentialism"><a href="#Act-consequentialism" class="headerlink" title="Act consequentialism"></a>Act consequentialism</h3><ul>
-<li>To do the thing that maximize the aggregate <strong>good</strong></li>
-<li>Act utilitarianism<ul>
-<li>To do the thing maximize the aggregate <strong>utility</strong></li>
-</ul>
-</li>
-</ul>
-<p>Objection：</p>
-<ol>
-<li>对于我们的亲戚朋友，utility有什么特殊吗<ul>
-<li>Easy to help</li>
-</ul>
-</li>
-</ol>
-<h3 id="Rule-consequentialism"><a href="#Rule-consequentialism" class="headerlink" title="Rule consequentialism"></a>Rule consequentialism</h3><ul>
-<li>The optimific moral code is that system of rules would produces the best <strong>consequences</strong></li>
-<li>Rule utilitarianism<ul>
-<li>system of rules that produces the best utility</li>
-</ul>
-</li>
-</ul>
-<h3 id="Kant"><a href="#Kant" class="headerlink" title="Kant"></a>Kant</h3><p>Kant’s universalization test:</p>
-<ul>
-<li>A maxim that <strong>everyone</strong> can follow, then the action followed the maxim is moral worthy.</li>
-</ul>
-<p>Kant’s humanity formula:</p>
-<ul>
-<li>Human&#x3D;things+humanity<ul>
-<li>Humanity&#x3D;The ability to choose a goal and take rational steps to pursuit it.</li>
-</ul>
-</li>
-</ul>
-<h2 id="如何过好这一生"><a href="#如何过好这一生" class="headerlink" title="如何过好这一生"></a>如何过好这一生</h2><p>What makes a good life? 是什么让人健康和快乐</p>
-<blockquote>
-<p>从哈佛的人生研究</p>
-</blockquote>
-<p>良好的人际关系让人健康和快乐</p>
-<ul>
-<li>社会关系让我们更健康</li>
-<li>良好亲密的婚姻关系</li>
-<li>主动与他人交往</li>
-</ul>
-<h2 id="人类简史"><a href="#人类简史" class="headerlink" title="人类简史"></a>人类简史</h2><p>人类如何从动物到人，我们有什么与众不同之处呢？</p>
-<p>人类和动物的区别不在个体上，而是群体上。群体之间的大型合作 </p>
-<p>虽然人之间互相不认识，但是能够进行思想交流</p>
-<p>那么我们是如何做到的呢？<strong>想象力</strong></p>
-<ul>
-<li>我们能创造并相信虚构的故事</li>
-<li>我们遵循着相同的价值观和行事准则</li>
-</ul>
-<p>宗教、法律、人权、上帝、天堂、国家、家族、公司、钱，这些概念都不是客观事实，只是一个故事。只要大家都相信着同样的故事，事情就能开始运作。</p>
-<p>Everyone believe MONEY</p>
-<p>人类生存在双重现实中</p>
-<p>随着电脑和生产力的发展，我们还需要那么多人做什么？</p>
-<h2 id="未来简史"><a href="#未来简史" class="headerlink" title="未来简史"></a>未来简史</h2><p> 在数据时代，人的意义到底是什么？</p>
-<p>人类要解决的问题和新的追求</p>
-<ul>
-<li>饥荒、瘟疫、战争</li>
-<li>神性</li>
-</ul>
-<p>随着科技的发展，人文主义成了新的宗教，自由意志是新的神。</p>
-<p>为什么我们需要一种理论来解释发生的一切。</p>
-<p>人的行为&#x3D;想象+现实</p>
-<h2 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h2><p>随着技术的发展，新技术对于不同的人来说意味着不同的后果，我们需要新的哲学和伦理来指导</p>
-<h3 id="自由意志"><a href="#自由意志" class="headerlink" title="自由意志"></a>自由意志</h3><p>当大数据比我们自己更了解我们自己之后，我们还有自己的欲望吗</p>
-<ul>
-<li>前叶被切除、肿瘤</li>
-<li>毒品</li>
-<li>酒瘾</li>
-<li>吃饭等基本欲望</li>
-<li>人类的基本心理学<ul>
-<li>人倾向于做出容易的选择</li>
-</ul>
-</li>
-</ul>
-<p>我们能控制哪些东西呢？</p>
-<ul>
-<li>Desire？对某些东西的喜好、厌恶。短时间内不能变化，但是能在通过一段时间的训练之后改变</li>
-<li>Emotion？几乎不能控制</li>
-<li>Physiology？激素分泌等，也几乎不能控制。</li>
-<li>Belief？也是一个长期的过程，在短时间内几乎无法改变</li>
-</ul>
-<p>什么是自由意志？</p>
-<ol>
-<li>我们有几个可选的选择</li>
-<li>我们能够选择其中的一项</li>
-<li>我们对其后果负责</li>
-</ol>
-<p>随机性并不能保证我们的自由意志，正因为随机性，所以我们的选择是out of control的，所以2和3就不成立了</p>
-<h3 id="平均水平"><a href="#平均水平" class="headerlink" title="平均水平"></a>平均水平</h3><p>有效率本身就是一件符合伦理的事？</p>
-<p>集权国家，效率高，但是符合伦理？</p>
-<p>比如说用AI面试，做一些决策，比人做的更好</p>
-<h2 id="下一阶段的实习做什么"><a href="#下一阶段的实习做什么" class="headerlink" title="下一阶段的实习做什么"></a>下一阶段的实习做什么</h2><ul>
-<li><input disabled="" type="checkbox"> 如何首先选取Top30个特征点</li>
-<li><input disabled="" type="checkbox"> 已知深度图、3d点云、模型，分割出深度图</li>
-<li><input disabled="" type="checkbox"> 延迟，视觉算法，超前控制，用过去时间的信息来判断后续的算法</li>
-<li><input disabled="" type="checkbox"> 机械臂末端增加实时传感器，</li>
-</ul>
-<h2 id="道德话题"><a href="#道德话题" class="headerlink" title="道德话题"></a>道德话题</h2><h3 id="贫富差距"><a href="#贫富差距" class="headerlink" title="贫富差距"></a>贫富差距</h3><p>除了维持基本生活需要的金钱之外，是否应该将其他的所有钱捐赠给贫穷的人</p>
-<ul>
-<li>从整个社会的角度来看，只要每个发达国家的人都能捐献出一些钱，每年$170，就可以解决全世界的贫穷问题，但是问题是当大部分人不进行这个捐献的动作，那对少数人就造成了极大的压力</li>
-<li>也阔以是捐献出一部分</li>
-</ul>
-<h3 id="素食主义"><a href="#素食主义" class="headerlink" title="素食主义"></a>素食主义</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/camera-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Computer%20Vision/camera-model/" class="post-title-link" itemprop="url">相机模型仿真</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-17 13:55:00" itemprop="dateCreated datePublished" datetime="2021-06-17T13:55:00-07:00">2021-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><p>在利用2d图像进行相机位姿估计时需要进行实验验证，因此根据相机模型编写仿真代码，将3维空间点映射到最终的像素平面。</p>
-<h2 id="2-相机模型"><a href="#2-相机模型" class="headerlink" title="2 相机模型"></a>2 相机模型</h2><p>总体过程可以分位3部分：</p>
-<ol>
-<li>将世界坐标系下的三维点用相机坐标系坐标表示</li>
-<li>将相机坐标系下的点映射到成像平面，这个过程中深度信息丢失</li>
-<li>将成像平面的点映射到像素坐标系，也就是最终相机拍摄到的照片上的像素坐标</li>
-</ol>
-<h3 id="2-1-世界坐标系-相机坐标系"><a href="#2-1-世界坐标系-相机坐标系" class="headerlink" title="2.1 世界坐标系-相机坐标系"></a>2.1 世界坐标系-相机坐标系</h3><p>这是一个单纯的旋转平移过程</p>
-<ol>
-<li><p>现在世界坐标系下平移$[T_x,T_y,T_z]$<br>$$<br>T\left(T_{x}, T_{y}, T_{z}\right)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; T_{x} \<br>0 &amp; 1 &amp; 0 &amp; T_{y} \<br>0 &amp; 0 &amp; 1 &amp; T_{z} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>先绕世界坐标系的x轴旋转$\alpha$<br>$$<br>\mathbf{R}_{x}(\alpha)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \cos \alpha &amp; -\sin \alpha &amp; 0 \<br>0 &amp; \sin \alpha &amp; \cos \alpha &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>再绕世界坐标系的y轴旋转$\beta$<br>$$<br>\mathbf{R}_{y}(\beta)&#x3D;\left[\begin{array}{cccc}<br>\cos \beta &amp; 0 &amp; \sin \beta &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>-\sin \beta &amp; 0 &amp; \cos \beta &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>最后绕世界坐标系的z轴旋转$\gamma$<br>$$<br>\mathbf{R}_{z}(\gamma)&#x3D;\left[\begin{array}{cccc}<br>\cos \gamma &amp; -\sin \gamma &amp; 0 &amp; 0 \<br>\sin \gamma &amp; \cos \gamma &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-</ol>
-<p>因为是对坐标系的变换，因此按照顺序左乘各个矩阵可以描述为一个总体的变换矩阵<br>$$<br>T&#x3D;T(T_x,T_y,T_z)R_z(\gamma)R_y(\beta)R_x(\alpha)<br>$$<br>假设$P_w:(X_w,Y_w,Z_w)$是世界坐标系下的坐标，$P_c:(X_c,Y_c,Z_c)$是相机坐标系下的坐标</p>
-<p>则<br>$$<br>\begin{array}{}<br>P_1&#x3D;TP_2 \<br>P_2&#x3D;T^{-1}P_1<br>\end{array}<br>$$</p>
-<h3 id="2-2-相机坐标系-成像平面坐标系"><a href="#2-2-相机坐标系-成像平面坐标系" class="headerlink" title="2.2 相机坐标系-成像平面坐标系"></a>2.2 相机坐标系-成像平面坐标系</h3><p>相机成像原理是在光在传感器上产生信号，也就是说实际上空间点和传感器上的位置是一一对应的。控制这个对应关系的变量是焦距$f$</p>
-<p>根据相似三角形的几何特征，很容易可以得出<br>$$<br>\left{\begin{array}{l}<br>x&#x3D;f \frac{X_c}{Z_c} \<br>y&#x3D;f \frac{Y_c}{Z_c} \<br>z&#x3D;f<br>\end{array}\right.<br>$$<br>其中$(X_2,Y_2,Z_2)$为相机坐标系中的坐标，$(x,y,z)$为成像平面坐标系中的坐标。为了和之前的齐次坐标相结合，这个变换也可以写成<br>$$<br>\left[\begin{array}{c}<br>x \<br>y \<br>z<br>\end{array}\right]&#x3D;\left[\begin{array}{llll}<br>\frac{f}{Z_c} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{f}{Z_c} &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>X_c \<br>Y_c \<br>Z_c \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-3-成像平面坐标系-像素坐标系"><a href="#2-3-成像平面坐标系-像素坐标系" class="headerlink" title="2.3 成像平面坐标系-像素坐标系"></a>2.3 成像平面坐标系-像素坐标系</h3><p>最后一步是转化到像素坐标系，也就是最终图像上的位置</p>
-<p>上面推导中使用的像点坐标$(x,y)$是成像平面坐标系下，以成像平面的中心为原点。而实际像素点的表示方法是以像素来描述，坐标原点通常是图像的左上角，X轴沿着水平方向向左，Y轴竖直向下。像素是一个矩形块，这里假设其在水平和竖直方向的长度分别为：$\mu_x$和$\mu_y$。所以像素坐标和成像平面坐标之间，相差了一个<strong>缩放</strong>和<strong>原点的平移</strong>。</p>
-<p>假设像素坐标的水平方向的轴为$u$，竖直方向的轴为$v$，那么将一个成像平面的坐标$(x,y)$在水平方向上缩放$\mu_x$倍，在竖直方向上缩放$\mu_y$倍，同时平移$(c_x,c_y)$，就可以得到像素坐标系的坐标$(u,v)$，其公式如下：<br>$$<br>\begin{array}{}<br>u&#x3D;\frac{x}{\mu_x}+c_x \<br>v&#x3D;\frac{y}{\mu_y}+c_y<br>\end{array}<br>$$<br>写成齐次坐标的形式为<br>$$<br>\left[\begin{array}{l}<br>\mu \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>y \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-合并"><a href="#2-4-合并" class="headerlink" title="2.4 合并"></a>2.4 合并</h3><p>将上述变换合成，可以得到<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>f &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; f &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VirtualCamera</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, alpha, beta, gamma, Tx, Ty, Tz, focal, resolution</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Initiate the camera parameter</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            alpha ([float]): [Rotation along X-axis]</span></span><br><span class="line"><span class="string">            beta ([float]): [Rotation along Y-axis]</span></span><br><span class="line"><span class="string">            gamma ([float]): [Rotation along Z-axis]</span></span><br><span class="line"><span class="string">            Tx ([float]): [Position along X-axis]</span></span><br><span class="line"><span class="string">            Ty ([float]): [Position along Y-axis]</span></span><br><span class="line"><span class="string">            Tz ([float]): [Position along Z-axis]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.beta = beta</span><br><span class="line">        self.gamma = gamma</span><br><span class="line">        self.Tx = Tx</span><br><span class="line">        self.Ty = Ty</span><br><span class="line">        self.Tz = Tz</span><br><span class="line">        self.focal = focal</span><br><span class="line">        self.resolution = np.array(resolution)</span><br><span class="line">        self.center = np.array(resolution)/<span class="number">2</span></span><br><span class="line">        self.pixel_size_x = <span class="number">3.45e-6</span></span><br><span class="line">        self.pixel_size_y = <span class="number">3.45e-6</span></span><br><span class="line">        self.RT_camera_in_world = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">        self.RT_world_in_camera = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">        self.update()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self</span>):</span><br><span class="line">        Rx = np.array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, np.cos(</span><br><span class="line">            self.alpha), -np.sin(self.alpha)], [<span class="number">0</span>, np.sin(self.alpha), np.cos(self.alpha)]])</span><br><span class="line">        Ry = np.array([[np.cos(self.beta), <span class="number">0</span>, -np.sin(self.beta)],</span><br><span class="line">                      [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [np.sin(self.beta), <span class="number">0</span>, np.cos(self.beta)]])</span><br><span class="line">        Rz = np.array([[np.cos(self.gamma), -np.sin(self.gamma), <span class="number">0</span>],</span><br><span class="line">                      [np.sin(self.gamma), np.cos(self.gamma), <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        R0 = np.matmul(Rz, np.matmul(Ry, Rx))</span><br><span class="line">        R1 = np.column_stack((R0, np.array([self.Tx, self.Ty, self.Tz]).T))</span><br><span class="line">        R2 = np.row_stack((R1, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]))</span><br><span class="line">        self.RT_camera_in_world = R2</span><br><span class="line">        camera_in_image = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                                   [<span class="number">0</span>, self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                                    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">        image_in_pixel = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">                                   [<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">                                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">        self.RT_world_in_camera = np.linalg.inv(R2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_world_to_camera</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        points = np.row_stack((points, np.ones((<span class="number">1</span>, n))))</span><br><span class="line"></span><br><span class="line">        points = self.RT_world_in_camera@points</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points[:, <span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_camera_to_image</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        z = points[<span class="number">2</span>, :]</span><br><span class="line">        <span class="comment"># print(z)</span></span><br><span class="line">        trans = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                          [<span class="number">0</span>, self.focal, <span class="number">0</span>],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        points = trans@points</span><br><span class="line">        points = points/z</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_image_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        trans = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        points = trans@points</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_world_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">        camera_points = self.project_world_to_camera(points)</span><br><span class="line">        image_points = self.project_camera_to_image(camera_points)</span><br><span class="line">        pixel_points = self.project_image_to_pixel(image_points)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pixel_points</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4 实验结果"></a>4 实验结果</h2><p>在gazebo中进行仿真，将参数带入上述代码，进行对比，实验结果支持了模型的正确性</p>
-<p>![一轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 16 42.png)</p>
-<p>![两轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 17 01.png)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Computer%20Vision/camera-model-quat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Computer%20Vision/camera-model-quat/" class="post-title-link" itemprop="url">相机模型求解-四元数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-17 13:55:00" itemprop="dateCreated datePublished" datetime="2021-06-17T13:55:00-07:00">2021-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-17 20:53:51" itemprop="dateModified" datetime="2021-10-17T20:53:51-07:00">2021-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><p>在利用2d图像进行相机位姿估计时需要进行实验验证，因此根据相机模型编写仿真代码，将3维空间点映射到最终的像素平面。</p>
-<h2 id="2-相机模型"><a href="#2-相机模型" class="headerlink" title="2 相机模型"></a>2 相机模型</h2><p>总体过程可以分位3部分：</p>
-<ol>
-<li>将世界坐标系下的三维点用相机坐标系坐标表示</li>
-<li>将相机坐标系下的点映射到成像平面，这个过程中深度信息丢失</li>
-<li>将成像平面的点映射到像素坐标系，也就是最终相机拍摄到的照片上的像素坐标</li>
-</ol>
-<h3 id="2-1-世界坐标系-相机坐标系"><a href="#2-1-世界坐标系-相机坐标系" class="headerlink" title="2.1 世界坐标系-相机坐标系"></a>2.1 世界坐标系-相机坐标系</h3><h3 id="2-1-1-欧拉角表示"><a href="#2-1-1-欧拉角表示" class="headerlink" title="2.1.1 欧拉角表示"></a>2.1.1 欧拉角表示</h3><p>这是一个单纯的旋转平移过程</p>
-<ol>
-<li><p>现在世界坐标系下平移$[T_x,T_y,T_z]$<br>$$<br>T\left(T_{x}, T_{y}, T_{z}\right)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; T_{x} \<br>0 &amp; 1 &amp; 0 &amp; T_{y} \<br>0 &amp; 0 &amp; 1 &amp; T_{z} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>先绕世界坐标系的x轴旋转$\alpha$<br>$$<br>\mathbf{R}_{x}(\alpha)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \cos \alpha &amp; -\sin \alpha &amp; 0 \<br>0 &amp; \sin \alpha &amp; \cos \alpha &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>再绕世界坐标系的y轴旋转$\beta$<br>$$<br>\mathbf{R}_{y}(\beta)&#x3D;\left[\begin{array}{cccc}<br>\cos \beta &amp; 0 &amp; \sin \beta &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>-\sin \beta &amp; 0 &amp; \cos \beta &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-<li><p>最后绕世界坐标系的z轴旋转$\gamma$<br>$$<br>\mathbf{R}_{z}(\gamma)&#x3D;\left[\begin{array}{cccc}<br>\cos \gamma &amp; -\sin \gamma &amp; 0 &amp; 0 \<br>\sin \gamma &amp; \cos \gamma &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
-</ol>
-<p>因为是对坐标系的变换，因此按照顺序左乘各个矩阵可以描述为一个总体的变换矩阵</p>
-<p>$$<br>T&#x3D;T(T_x,T_y,T_z)R_z(\gamma)R_y(\beta)R_x(\alpha)<br>$$</p>
-<p>假设$P_w:(X_w,Y_w,Z_w)$是世界坐标系下的坐标，$P_c:(X_c,Y_c,Z_c)$是相机坐标系下的坐标</p>
-<p>则<br>$$<br>\begin{array}{}<br>P_w&#x3D;TP_c \<br>P_c&#x3D;T^{-1}P_w<br>\end{array}<br>$$</p>
-<h3 id="2-1-2-四元数表示"><a href="#2-1-2-四元数表示" class="headerlink" title="2.1.2 四元数表示"></a>2.1.2 四元数表示</h3><p>因为(5)中的运算涉及到大量三角函数的运算，使问题复杂，因此引入四元数的表达方式，用4个变量表示旋转矩阵</p>
-<p>设四元数<br>$$<br>q&#x3D;(w,x,y,z)<br>$$<br>其中<br>$$<br>w^2+x^2+y^2+z^2&#x3D;1<br>$$<br>四元数到旋转矩阵的变化可以描述为（齐次坐标系）<br>$$<br>R&#x3D;\left[\begin{array}{cccc}<br>-2 y^{2}-2 z^{2}+1 &amp; -2 w z+2 x y &amp; 2 w y+2 x z &amp; 0 \<br>2 w z+2 x y &amp; -2 x^{2}-2 z^{2}+1 &amp; -2 w x+2 y z &amp; 0 \<br>-2 w y+2 x z &amp; 2 w x+2 y z &amp; -2 x^{2}-2 y^{2}+1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-<p>平移矩阵的逆可以表达为<br>$$<br>T\left(T_{x}, T_{y}, T_{z}\right)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; -T_{x} \<br>0 &amp; 1 &amp; 0 &amp; -T_{y} \<br>0 &amp; 0 &amp; 1 &amp; -T_{z} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>总的坐标变换矩阵可以写为<br>$$<br>P_c&#x3D;TP_w<br>$$<br>其中<br>$$<br>T&#x3D;RT(T_x,T_y,T_z)&#x3D;\displaystyle \left[\begin{matrix}- 2 y^{2} - 2 z^{2} + 1 &amp; - 2 w z + 2 x y &amp; 2 w y + 2 x z &amp; - T_{x} \left(- 2 y^{2} - 2 z^{2} + 1\right) - T_{y} \left(- 2 w z + 2 x y\right) - T_{z} \left(2 w y + 2 x z\right)\2 w z + 2 x y &amp; - 2 x^{2} - 2 z^{2} + 1 &amp; - 2 w x + 2 y z &amp; - T_{x} \left(2 w z + 2 x y\right) - T_{y} \left(- 2 x^{2} - 2 z^{2} + 1\right) - T_{z} \left(- 2 w x + 2 y z\right)\- 2 w y + 2 x z &amp; 2 w x + 2 y z &amp; - 2 x^{2} - 2 y^{2} + 1 &amp; - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)\0 &amp; 0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$</p>
-<h3 id="2-2-相机坐标系-成像平面坐标系"><a href="#2-2-相机坐标系-成像平面坐标系" class="headerlink" title="2.2 相机坐标系-成像平面坐标系"></a>2.2 相机坐标系-成像平面坐标系</h3><p>相机成像原理是在光在传感器上产生信号，也就是说实际上空间点和传感器上的位置是一一对应的。控制这个对应关系的变量是焦距$f$</p>
-<p>根据相似三角形的几何特征，很容易可以得出<br>$$<br>\left{\begin{array}{l}<br>x&#x3D;f \frac{X_c}{Z_c} \<br>y&#x3D;f \frac{Y_c}{Z_c} \<br>z&#x3D;f<br>\end{array}\right.<br>$$<br>其中$(X_c,Y_c,Z_c)$为相机坐标系中的坐标，$(x,y,z)$为成像平面坐标系中的坐标。为了和之前的齐次坐标相结合，这个变换也可以写成<br>$$<br>\left[\begin{array}{c}<br>x \<br>y \<br>z<br>\end{array}\right]&#x3D;\left[\begin{array}{llll}<br>\frac{f}{Z_c} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{f}{Z_c} &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>X_c \<br>Y_c \<br>Z_c \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-3-成像平面坐标系-像素坐标系"><a href="#2-3-成像平面坐标系-像素坐标系" class="headerlink" title="2.3 成像平面坐标系-像素坐标系"></a>2.3 成像平面坐标系-像素坐标系</h3><p>最后一步是转化到像素坐标系，也就是最终图像上的位置</p>
-<p>上面推导中使用的像点坐标$(x,y)$是成像平面坐标系下，以成像平面的中心为原点。而实际像素点的表示方法是以像素来描述，坐标原点通常是图像的左上角，X轴沿着水平方向向左，Y轴竖直向下。像素是一个矩形块，这里假设其在水平和竖直方向的长度分别为：$\mu_x$和$\mu_y$。所以像素坐标和成像平面坐标之间，相差了一个<strong>缩放</strong>和<strong>原点的平移</strong>。</p>
-<p>假设像素坐标的水平方向的轴为$u$，竖直方向的轴为$v$，那么将一个成像平面的坐标$(x,y)$在水平方向上缩放$\mu_x$倍，在竖直方向上缩放$\mu_y$倍，同时平移$(c_x,c_y)$，就可以得到像素坐标系的坐标$(u,v)$，其公式如下：<br>$$<br>\begin{array}{}<br>u&#x3D;\frac{x}{\mu_x}+c_x \<br>v&#x3D;\frac{y}{\mu_y}+c_y<br>\end{array}<br>$$<br>写成齐次坐标的形式为<br>$$<br>\left[\begin{array}{l}<br>\mu \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>y \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-合并"><a href="#2-4-合并" class="headerlink" title="2.4 合并"></a>2.4 合并</h3><p>将上述变换合成，可以得到<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>f &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; f &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VirtualCamera</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, alpha, beta, gamma, Tx, Ty, Tz, focal, resolution</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Initiate the camera parameter</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            alpha ([float]): [Rotation along X-axis]</span></span><br><span class="line"><span class="string">            beta ([float]): [Rotation along Y-axis]</span></span><br><span class="line"><span class="string">            gamma ([float]): [Rotation along Z-axis]</span></span><br><span class="line"><span class="string">            Tx ([float]): [Position along X-axis]</span></span><br><span class="line"><span class="string">            Ty ([float]): [Position along Y-axis]</span></span><br><span class="line"><span class="string">            Tz ([float]): [Position along Z-axis]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.beta = beta</span><br><span class="line">        self.gamma = gamma</span><br><span class="line">        self.Tx = Tx</span><br><span class="line">        self.Ty = Ty</span><br><span class="line">        self.Tz = Tz</span><br><span class="line">        self.focal = focal</span><br><span class="line">        self.resolution = np.array(resolution)</span><br><span class="line">        self.center = np.array(resolution)/<span class="number">2</span></span><br><span class="line">        self.pixel_size_x = <span class="number">3.45e-6</span></span><br><span class="line">        self.pixel_size_y = <span class="number">3.45e-6</span></span><br><span class="line">        self.RT_camera_in_world = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">        self.RT_world_in_camera = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">        self.update()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self</span>):</span><br><span class="line">        Rx = np.array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, np.cos(</span><br><span class="line">            self.alpha), -np.sin(self.alpha)], [<span class="number">0</span>, np.sin(self.alpha), np.cos(self.alpha)]])</span><br><span class="line">        Ry = np.array([[np.cos(self.beta), <span class="number">0</span>, -np.sin(self.beta)],</span><br><span class="line">                      [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [np.sin(self.beta), <span class="number">0</span>, np.cos(self.beta)]])</span><br><span class="line">        Rz = np.array([[np.cos(self.gamma), -np.sin(self.gamma), <span class="number">0</span>],</span><br><span class="line">                      [np.sin(self.gamma), np.cos(self.gamma), <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        R0 = np.matmul(Rz, np.matmul(Ry, Rx))</span><br><span class="line">        R1 = np.column_stack((R0, np.array([self.Tx, self.Ty, self.Tz]).T))</span><br><span class="line">        R2 = np.row_stack((R1, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]))</span><br><span class="line">        self.RT_camera_in_world = R2</span><br><span class="line">        camera_in_image = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                                   [<span class="number">0</span>, self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                                    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">        image_in_pixel = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">                                   [<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">                                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">        self.RT_world_in_camera = np.linalg.inv(R2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_world_to_camera</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        points = np.row_stack((points, np.ones((<span class="number">1</span>, n))))</span><br><span class="line"></span><br><span class="line">        points = self.RT_world_in_camera@points</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points[:, <span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_camera_to_image</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        z = points[<span class="number">2</span>, :]</span><br><span class="line">        <span class="comment"># print(z)</span></span><br><span class="line">        trans = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                          [<span class="number">0</span>, self.focal, <span class="number">0</span>],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        points = trans@points</span><br><span class="line">        points = points/z</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_image_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">        <span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">        n = points.shape[<span class="number">0</span>]</span><br><span class="line">        points = points.T</span><br><span class="line">        trans = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">                          [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">        points = trans@points</span><br><span class="line">        points = points.T</span><br><span class="line">        <span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">project_world_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">        camera_points = self.project_world_to_camera(points)</span><br><span class="line">        image_points = self.project_camera_to_image(camera_points)</span><br><span class="line">        pixel_points = self.project_image_to_pixel(image_points)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pixel_points</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4 实验结果"></a>4 实验结果</h2><p>在gazebo中进行仿真，将参数带入上述代码，进行对比，实验结果支持了模型的正确性</p>
-<p>![一轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 16 42.png)</p>
-<p>![两轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 17 01.png)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1436,20 +1392,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-count">340</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">122</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

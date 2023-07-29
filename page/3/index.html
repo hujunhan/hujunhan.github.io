@@ -188,6 +188,464 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/lidar-kidnap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Localization/lidar-kidnap/" class="post-title-link" itemprop="url">Lidar Kidnap Robot Problem</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-27 22:28:00" itemprop="dateCreated datePublished" datetime="2023-05-27T22:28:00-07:00">2023-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-29 16:19:02" itemprop="dateModified" datetime="2023-05-29T16:19:02-07:00">2023-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Problem:</p>
+<ul>
+<li>have the learned 3D lidar point cloud map</li>
+<li>given a single frame (lidar scan) from lidar</li>
+<li>calculate current robot position and pose (without knowing initial pose)</li>
+</ul>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.07433">Ref</a></p>
+<p>Map</p>
+<ul>
+<li>Keyframe-based submaps</li>
+<li>Global feature map</li>
+<li>Global metric map</li>
+</ul>
+<p>Single shot localization</p>
+<ul>
+<li>Place Recognition: match the keyu frame</li>
+<li>Place Recognition and Local Pose Estimation</li>
+<li>Pose Estimation coupled Place Recognition</li>
+<li>One stage global estimation</li>
+</ul>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230528013339_anUzXY.png" alt="image-20230528013339621" style="zoom:33%;" />
+
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230528013453_bcLnsY.png" alt="image-20230528013453090"></p>
+<h2 id="Scan-Context"><a href="#Scan-Context" class="headerlink" title="Scan Context"></a>Scan Context</h2><h2 id="SegMatch"><a href="#SegMatch" class="headerlink" title="SegMatch"></a>SegMatch</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mapping/pcd_to_2d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Mapping/pcd_to_2d/" class="post-title-link" itemprop="url">3D Point Cloud to 2D Map</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-27 19:04:00 / Modified: 22:24:44" itemprop="dateCreated datePublished" datetime="2023-05-27T19:04:00-07:00">2023-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Mapping/" itemprop="url" rel="index"><span itemprop="name">Mapping</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>After running the lidar SLAM, the final map we got is a 3d point cloud.</p>
+<p>Goal: compress it to 2d plane </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Hardware/imu-lidar-calibration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Robotics/Hardware/imu-lidar-calibration/" class="post-title-link" itemprop="url">Calibration Between Lidar and IMU</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-27 16:04:00 / Modified: 17:48:12" itemprop="dateCreated datePublished" datetime="2023-05-27T16:04:00-07:00">2023-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Robotics/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: calibrate between leishen lidar C16 and 6 axis IMU</p>
+<p>Ref: <a target="_blank" rel="noopener" href="https://github.com/unmannedlab/imu_lidar_calibration">unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com)</a></p>
+<h2 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VIc8XxNrymQ">Ref</a></p>
+<p>Goal: estimate the extrinsic<br>$$<br>T_L^I&#x3D;\left[\begin{array}{cc}<br>R_L^I &amp; { }^I \mathrm{P}_{\mathrm{L}} \<br>0 &amp; 1<br>\end{array}\right]<br>$$<br>Step:</p>
+<ul>
+<li><p>Rotation Estimation</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162339_DjJ4cJ.png" alt="image-20230527162339584"></p>
+<p>Motion of Lidar &#x3D; Motion of IMU</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png" alt="image-20230527162708340" style="zoom:50%;" />
+</li>
+<li><p>Tranlation Estimation</p>
+<p>Refine the rotation and translation</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527163220_Cp8rj9.png" alt="image-20230527163220016"></p>
+<p>the key state is from Lidar data</p>
+<p>Minimize the data in a EKF process</p>
+</li>
+</ul>
+<p>System design</p>
+<h2 id="Data-Analysis"><a href="#Data-Analysis" class="headerlink" title="Data Analysis"></a>Data Analysis</h2><p>The data sample</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172131_SoemvE.png" alt="image-20230527172131502"></p>
+<p>Ours</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172251_cSXtgc.png" alt="image-20230527172251129"></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527174240_VWkk67.png" alt="image-20230527174240241"></p>
+<p>roll, pitch, azimuth</p>
+<h3 id="difference-between-azimuth-and-yaw"><a href="#difference-between-azimuth-and-yaw" class="headerlink" title="difference between azimuth and yaw"></a>difference between azimuth and yaw</h3><p>while the yaw is turn from current orientaion</p>
+<p>the azimuth is the absolute heading</p>
+<p><a target="_blank" rel="noopener" href="https://novatel.com/solutions/attitude">Ref</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/resume-updator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/resume-updator/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-18 22:35:00 / Modified: 23:57:06" itemprop="dateCreated datePublished" datetime="2023-05-18T22:35:00-07:00">2023-05-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Improve current resume</p>
+<ol>
+<li>Define the guideline and limit</li>
+<li>Transform current resume into markdown format</li>
+<li>Add up-to-date info</li>
+<li>Use ChatGPT to general a new general resume</li>
+<li>Find a good template for exporting PDF</li>
+</ol>
+<p>Later plan (target for specfic role) in the future</p>
+<ol>
+<li>Extract the most important skills needed</li>
+<li>Update accordingly</li>
+</ol>
+<h2 id="Guidelines"><a href="#Guidelines" class="headerlink" title="Guidelines"></a>Guidelines</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Tt08KmFfIYQ">Ref</a></p>
+<ul>
+<li>Include important keywords</li>
+<li>Measurable metrics</li>
+<li>475-600 words</li>
+<li>Remove the buzzwords, cliches</li>
+</ul>
+<h2 id="Reusme"><a href="#Reusme" class="headerlink" title="Reusme"></a>Reusme</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/case-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life/Photography/case-study/" class="post-title-link" itemprop="url">Case Study for Product Photograph</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-17 23:08:00" itemprop="dateCreated datePublished" datetime="2023-05-17T23:08:00-07:00">2023-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-18 18:08:08" itemprop="dateModified" datetime="2023-05-18T18:08:08-07:00">2023-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Product-Shoot"><a href="#Product-Shoot" class="headerlink" title="Product Shoot"></a>Product Shoot</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230517232401_LZUOSS.png" alt="image-20230517232401844"></p>
+<p>day light</p>
+<p>shadow</p>
+<h2 id="Fruit-Smoothies"><a href="#Fruit-Smoothies" class="headerlink" title="Fruit Smoothies"></a>Fruit Smoothies</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/mobile-robot-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -817,815 +1275,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/idea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/idea/" class="post-title-link" itemprop="url">Photography Idea Generation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-06 15:44:00" itemprop="dateCreated datePublished" datetime="2023-05-06T15:44:00-07:00">2023-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-14 15:44:38" itemprop="dateModified" datetime="2023-05-14T15:44:38-07:00">2023-05-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Consistently"><a href="#Consistently" class="headerlink" title="Consistently"></a>Consistently</h2><p>Brief: client key words</p>
-<p>Creativity is a skills</p>
-<p>Idea based on individual’s experience</p>
-<p>Steps</p>
-<ol>
-<li>Brainstorm, there are no bad idea<ol>
-<li>write down</li>
-<li>give stupid idea a chance</li>
-</ol>
-</li>
-</ol>
-<h2 id="Light-or-Food"><a href="#Light-or-Food" class="headerlink" title="Light or Food?"></a>Light or Food?</h2><p>Goal: make the food look good</p>
-<ul>
-<li>show the texture?</li>
-<li>show some feeling you want to make the food look</li>
-</ul>
-<p>So: light is work for food</p>
-<h2 id="Gather-Images"><a href="#Gather-Images" class="headerlink" title="Gather Images"></a>Gather Images</h2><p>Mood board? Visual organization</p>
-<ul>
-<li>set idea in motion</li>
-<li>ease the feeling of overwhelm</li>
-<li>Help make vision clear</li>
-</ul>
-<p>Where to?</p>
-<ul>
-<li>Pinterest<ul>
-<li>save the image attract your attention</li>
-<li>Mood board</li>
-</ul>
-</li>
-<li>Instagram<ul>
-<li>Collection</li>
-</ul>
-</li>
-</ul>
-<h2 id="Building-Treatment"><a href="#Building-Treatment" class="headerlink" title="Building Treatment"></a>Building Treatment</h2><p>Putting everything together</p>
-<ul>
-<li>color palette</li>
-<li>props</li>
-<li>lighting setup</li>
-</ul>
-<p>4 Core element</p>
-<ul>
-<li>subject analysis<ul>
-<li>color</li>
-<li>texture</li>
-<li>taste</li>
-</ul>
-</li>
-<li>Story or content</li>
-<li>color palette<ul>
-<li>complementary</li>
-</ul>
-</li>
-<li>lighting</li>
-</ul>
-<p> It would save time</p>
-<h2 id="Finalizing"><a href="#Finalizing" class="headerlink" title="Finalizing"></a>Finalizing</h2><h2 id="Assignment"><a href="#Assignment" class="headerlink" title="Assignment"></a>Assignment</h2><p>To come up with a great idea</p>
-<h3 id="Brainstorming"><a href="#Brainstorming" class="headerlink" title="Brainstorming"></a>Brainstorming</h3><p>Take some time for it, especially sometime you are more creative</p>
-<blockquote>
-<blockquote>
-<p>*<strong>Hello! I own an orange juice company. I sell organic, fresh orange juice. It’s family-owned and we juice our oranges by hand. I’m looking for an image that can really stand out and that really speaks to the fact that we juice our oranges by hand. I will be posting this to our Instagram page where we have a very loyal following. I’d love it to have a very bright, yet muted color palette and also a very minimalistic feel to it, but also isn’t very “punchy” or crunchy looking. It’d be great if the lighting was a little bit more pleasant, but also really helps the image stand out. Again, we’re family-owned and want this to have a welcoming vibe to it.*</strong></p>
-<p>*<strong>I’m sorry I don’t speak very good photography lingo! but I hope you can take my description and create something amazing for us. I’ll trust your creative direction and am looking forward to seeing what you create!*</strong></p>
-<p>*<strong>Thank you!*</strong></p>
-</blockquote>
-</blockquote>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230513175935_j8xjno.jpg" alt="image-20230513175934973" style="zoom:25%;" />
-
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Considering the nature of the subject</p>
-<ul>
-<li>let it guide the lighting decision</li>
-</ul>
-<p>Describe the elements of the subject</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230513181303_REprzg.jpeg" alt="IMG_9811" style="zoom:33%;" />
-
-<p>what kind of orange juice I would like?</p>
-<ul>
-<li>with pulp. clear orange juice seems so industrial </li>
-<li>a little red-ish color, seems more flavorful</li>
-</ul>
-<p>Container:</p>
-<ul>
-<li>clear glass cup</li>
-</ul>
-<h3 id="Moodboard"><a href="#Moodboard" class="headerlink" title="Moodboard"></a>Moodboard</h3><p>visual literacy: find, interpret, evaluate, use, create images</p>
-<ul>
-<li>ability to create more meaningful and incredible images</li>
-</ul>
-<p>How? Be a person looks at a lot of images</p>
-<p>Understand what works and what not, apply the knowledge into your shoot</p>
-<p>Hwo to read and breakdown images</p>
-<ol>
-<li>Gather image</li>
-<li>Analyze, contextualize</li>
-<li>Curate and Assemble</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230514113011_a07OiW.png" alt="image-20230514113010960"></p>
-<h3 id="Treatment"><a href="#Treatment" class="headerlink" title="Treatment"></a>Treatment</h3><p>Presenting 4 fundamental aspects of idea</p>
-<ul>
-<li>Concept, story. Describe the scene of the image</li>
-<li>Color Palette, the overall color</li>
-<li>Props, </li>
-<li>Lighting,  emotion</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/lighting-foundation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/lighting-foundation/" class="post-title-link" itemprop="url">Lighting Foundation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-05 19:51:00" itemprop="dateCreated datePublished" datetime="2023-05-05T19:51:00-07:00">2023-05-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-08 22:37:18" itemprop="dateModified" datetime="2023-05-08T22:37:18-07:00">2023-05-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>What light does</p>
-<ul>
-<li><p>Dimension</p>
-<ul>
-<li>the shadow make it more 3D</li>
-<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505195632_rIFfrM.png" alt="image-20230505195632329"></li>
-</ul>
-</li>
-<li><p>Sepatation: between subject and background</p>
-<ul>
-<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505195548_RyN3Yc.png" alt="image-20230505195548452"></li>
-</ul>
-</li>
-<li><p>Texture: how can we convey the feeling of texture</p>
-<ul>
-<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505200114_6sbLqJ.png" alt="image-20230505200114478"></li>
-<li>back lit might help</li>
-</ul>
-</li>
-<li><p>Emotion</p>
-<ul>
-<li>convey motion</li>
-<li>reminds someone of a certain food, memory,</li>
-</ul>
-</li>
-</ul>
-<h2 id="Why-REACT-strongly-to-Light"><a href="#Why-REACT-strongly-to-Light" class="headerlink" title="Why REACT strongly to Light"></a>Why REACT strongly to Light</h2><p>Psychological hard-wiring</p>
-<p>Personal experience</p>
-<ul>
-<li>bright cold for morning</li>
-<li>dim warm for sunset</li>
-<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505201218_sZbo9D.png" alt="Color temperature variation throughout a single day | Download Scientific  Diagram"></li>
-</ul>
-<h2 id="Zone-System"><a href="#Zone-System" class="headerlink" title="Zone System"></a>Zone System</h2><p>What makes a photo stand out?</p>
-<ul>
-<li>A map describe different shades of color gray</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505202011_FNI1H5.png" alt="image-20230505202011720"></p>
-<p>Expose the shadow, develop for the highlight for <strong>film</strong></p>
-<p>For digital camera:</p>
-<ul>
-<li>Shoot for highlight</li>
-<li>Develop the shadow</li>
-</ul>
-<p>Make more tone variation in a single image</p>
-<ol>
-<li>Turn RGB to B&amp;W</li>
-<li>Tune the tone</li>
-<li>Go back to RGB</li>
-<li>Fine tune</li>
-</ol>
-<h2 id="Light-Fall-off"><a href="#Light-Fall-off" class="headerlink" title="Light Fall off"></a>Light Fall off</h2><p>Fall over distance’s square</p>
-<ul>
-<li>Close to light<ul>
-<li>more contrast</li>
-</ul>
-</li>
-<li>Far from light<ul>
-<li>more flat</li>
-</ul>
-</li>
-</ul>
-<h2 id="Light-Quality"><a href="#Light-Quality" class="headerlink" title="Light Quality"></a>Light Quality</h2><ul>
-<li><p>Transition between highlight and shadow</p>
-</li>
-<li><p>Surface the light is interacting with</p>
-</li>
-</ul>
-<h3 id="Hard-and-soft-light"><a href="#Hard-and-soft-light" class="headerlink" title="Hard and soft light"></a>Hard and soft light</h3><table>
-<thead>
-<tr>
-<th>Hard</th>
-<th>Soft</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505210309_oXV0mi.png" alt="image-20230505210309643"></td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505210334_cqGTzJ.png" alt="image-20230505210334308"></td>
-</tr>
-</tbody></table>
-<p>How to control?</p>
-<ul>
-<li>Size of light (distance to the object)<ul>
-<li>Bigger size (closer) – Softer</li>
-<li>Smaller size (farer) – Harder</li>
-</ul>
-</li>
-</ul>
-<h3 id="Diffused-and-Specular"><a href="#Diffused-and-Specular" class="headerlink" title="Diffused and Specular"></a>Diffused and Specular</h3><p>Depend on the subject <strong>material</strong></p>
-<h2 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h2><p>Use reflective light to create more interesting scene </p>
-<ul>
-<li><p>Absorb light</p>
-</li>
-<li><p>Refection</p>
-</li>
-<li><p>Diffuser</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505211852_ZetUsG.png" alt="image-20230505211852514"></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505212230_oGuMDV.png" alt="image-20230505212230029"></p>
-<h2 id="Color-of-Light"><a href="#Color-of-Light" class="headerlink" title="Color of Light"></a>Color of Light</h2><p>Color temperature measure the COLOR of light</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505212854_w6bzPn.png" alt="image-20230505212854001"></p>
-<ul>
-<li>Blur hour? ozon layer and flat angle <a target="_blank" rel="noopener" href="https://www.photocourse.info/the-blue-hour.php">Ref</a></li>
-<li>During day? Rayleigh Scattering of sunlight</li>
-<li>Sunset&#x2F;Sunrise? The angle of perception <a target="_blank" rel="noopener" href="https://www.clickondetroit.com/weather-center/2018/12/10/whats-up-what-determines-the-colors-of-the-sky-at-sunrise-and-sunset/">Ref</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505214012_mGtbcD.jpg" alt="img"></p>
-<h3 id="White-Balance"><a href="#White-Balance" class="headerlink" title="White Balance"></a>White Balance</h3><p>Tell the camera how to determine the white</p>
-<p>So it’s a inverse process</p>
-<ul>
-<li>E.g. setting 3200K means we want 3200K to be white<ul>
-<li>since 3200K color is warm</li>
-<li>We are making the whole scene cooler</li>
-</ul>
-</li>
-</ul>
-<h2 id="Assignment"><a href="#Assignment" class="headerlink" title="Assignment"></a>Assignment</h2><h3 id="3-Key-Character"><a href="#3-Key-Character" class="headerlink" title="3 Key Character"></a>3 Key Character</h3><ol>
-<li>Area of greatest contrast</li>
-<li>Saturated color</li>
-<li>Texture and pattern</li>
-</ol>
-<hr>
-<p>Though process</p>
-<ol>
-<li>To make greatest contrast: the subject and background should have large color difference</li>
-<li>Saturated color: the subject should have stand out color </li>
-<li>Texture: the light should lit the texture of subject</li>
-</ol>
-<p>I choose salmon as my subject since its saturaed color. At beginning I use white background but find the image looks too flat and cheap maybe because the background’s brightness is too high, so I change the background to dark and the image seems more classy.</p>
-<p>The light I am using is a continous light, from side, I hope the light can make the texture of the salmon more obvious. </p>
-<p>The camera setting for the final image is at 70mm, f&#x2F;9.0, 1&#x2F;50s, iso 640. It seems the orange slice is still out of the focus, I guess for smaller aperture, I could get better results?</p>
-<h3 id="4-Usage-of-Light"><a href="#4-Usage-of-Light" class="headerlink" title="4 Usage of Light"></a>4 Usage of Light</h3><ol>
-<li>Separate</li>
-<li>Dimension</li>
-<li>Texture</li>
-<li>Emotion</li>
-</ol>
-<p>Though process:</p>
-<ol>
-<li>To make separate subject, the background and subject should have enough brightness difference, so the light should be focus rather than diffuse</li>
-<li>To demonstrate the dimenstion of subject, we should create shadow for the </li>
-<li>As for texture, the subject’s surface should have obvious texture</li>
-<li>I am struggle with the emotion, don’t know how to design the emotion</li>
-</ol>
-<p>For the image, I don’t know how to choose the right backdrop. For the dark backdrop, the image somehow more harmony, while the white backdrop makes the image more “fresh”</p>
-<p>Besides, I am using f&#x2F;16 to shoot however the depth of field is still not enough to include all 3 part of orange, so I use focus stacking. The following open source software give quit decent result</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/PetteriAimonen/focus-stack">PetteriAimonen&#x2F;focus-stack: Fast and easy focus stacking (github.com)</a></p>
-<h3 id="Fall-of-Light"><a href="#Fall-of-Light" class="headerlink" title="Fall of Light"></a>Fall of Light</h3><p>I just take two simple shots to test this.</p>
-<p>The difference is obvious</p>
-<ul>
-<li>when light is close, the contrast of the image is obvious higher</li>
-<li>when light is far away, the image is more flat, the overall tone is also changed</li>
-</ul>
-<h3 id="Light-Quality-1"><a href="#Light-Quality-1" class="headerlink" title="Light Quality"></a>Light Quality</h3><p>Before the course, I was thinking the specular and diffuse quality are solely depend on the light source, but now I understand the texture of the subject could be “changed” to deliver certain feeling</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/light-placement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/light-placement/" class="post-title-link" itemprop="url">Light Placement Course</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-04 22:10:00" itemprop="dateCreated datePublished" datetime="2023-05-04T22:10:00-07:00">2023-05-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-17 23:05:45" itemprop="dateModified" datetime="2023-05-17T23:05:45-07:00">2023-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>People are more happy to see usual pattern light</p>
-<p>So there is “good” light placement</p>
-<ul>
-<li>natural</li>
-</ul>
-<p>Differnt light could achieve different purpose</p>
-<p>Type</p>
-<ul>
-<li>Key light</li>
-<li>Fill light</li>
-<li>Effect light</li>
-<li>Background light</li>
-</ul>
-<h2 id="Exposure"><a href="#Exposure" class="headerlink" title="Exposure"></a>Exposure</h2><p>Ambient exposure</p>
-<p>Flash exposure</p>
-<h3 id="Eliminating-Ambient-light"><a href="#Eliminating-Ambient-light" class="headerlink" title="Eliminating Ambient light"></a>Eliminating Ambient light</h3><p>Use the exposure, eliminate the light into the camera</p>
-<p>Control the unwanted light</p>
-<p>The dimmer environment, the more flexible camera setting you would have</p>
-<hr>
-<h3 id="Incorporating-ambient-light"><a href="#Incorporating-ambient-light" class="headerlink" title="Incorporating ambient light"></a>Incorporating ambient light</h3><p>Use ambient light for </p>
-<ul>
-<li>highlight area</li>
-<li>background</li>
-</ul>
-<h2 id="Single-Light-Setup"><a href="#Single-Light-Setup" class="headerlink" title="Single Light Setup"></a>Single Light Setup</h2><h3 id="Hardlight"><a href="#Hardlight" class="headerlink" title="Hardlight"></a>Hardlight</h3><p>For bright sunny emotion, use overhead light</p>
-<blockquote>
-<p>Note: the tone of the surface would affect the total exposure level</p>
-</blockquote>
-<p>Use flash with modifiers</p>
-<ul>
-<li>for hard light, use the reflector or direct</li>
-</ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230511000341_Ei4VXk.png" alt="image-20230511000341659" style="zoom:33%;" />
-
-<h3 id="Softlight"><a href="#Softlight" class="headerlink" title="Softlight"></a>Softlight</h3><p>With a large softbox </p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230511001028_GxK6zJ.png" alt="image-20230511001027941" style="zoom:33%;" />
-
-<p>light direction would dramatic change the overall feels</p>
-<h2 id="Two-Light-Setup"><a href="#Two-Light-Setup" class="headerlink" title="Two Light Setup"></a>Two Light Setup</h2><p>When the lens is close to the object, it may seems not flat</p>
-<ul>
-<li>distorted</li>
-</ul>
-<p>Finish the image step by step, from a simple image, simply fix the problem you don’t lilke</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230512003356_7Fgp4G.png" alt="image-20230512003356170" style="zoom:33%;" />
-
-<p>Set one light at each time.</p>
-<ul>
-<li>first set up the environment light</li>
-<li>then set the key light</li>
-</ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230512004120_EZVm6V.png" alt="image-20230512004120840" style="zoom:33%;" />
-
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230512004142_kG2iEg.png" alt="image-20230512004142803" style="zoom:33%;" />
-
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230512004413_Cw5qnd.png" alt="image-20230512004413395" style="zoom:33%;" />
-
-<h2 id="Three-Light"><a href="#Three-Light" class="headerlink" title="Three Light"></a>Three Light</h2><p> <img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230517222515_vNFmkU.png" alt="image-20230517222515202"></p>
-<p>subject Analysis, walk around to find the best lighting angle or shoot angel</p>
-<h2 id="Four-Light"><a href="#Four-Light" class="headerlink" title="Four Light"></a>Four Light</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230517230542_y3psC1.png" alt="image-20230517230542203"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/food/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/food/" class="post-title-link" itemprop="url">Food Photograph Tips</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-04 21:41:00" itemprop="dateCreated datePublished" datetime="2023-05-04T21:41:00-07:00">2023-05-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-05 19:44:05" itemprop="dateModified" datetime="2023-05-05T19:44:05-07:00">2023-05-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Light-and-Emotion"><a href="#Light-and-Emotion" class="headerlink" title="Light and Emotion"></a>Light and Emotion</h2><p>Direct light help feel healthier</p>
-<p>Diffuse make people pale even ill</p>
-<p>Light could provoke emotion</p>
-<ol>
-<li>Brightness</li>
-<li>Color</li>
-<li>Contrast</li>
-<li>Direction<ol>
-<li>Natural</li>
-<li>Contribute to the mood</li>
-</ol>
-</li>
-</ol>
-<p>For food: capture more texture</p>
-<ul>
-<li>back light</li>
-<li>side light</li>
-</ul>
-<h2 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h2><p>Focus on</p>
-<ul>
-<li>bringing out the artist in your</li>
-</ul>
-<p>Feel the weight of improvements</p>
-<ol>
-<li>Foundation</li>
-<li>Light</li>
-<li>Idea</li>
-<li>Gear</li>
-</ol>
-<h2 id="Being-a-Artist"><a href="#Being-a-Artist" class="headerlink" title="Being a Artist"></a>Being a Artist</h2><p>Thouhgt process to lead the final result</p>
-<p>Sometimes you would feel stress or upset when things goes wrong</p>
-<ul>
-<li>talk to someone</li>
-<li>take a break</li>
-</ul>
-<h2 id="Hidden-Power"><a href="#Hidden-Power" class="headerlink" title="Hidden Power"></a>Hidden Power</h2><p>While shooting, we are also exploring the hidden self</p>
-<p>Apply the principle and make you own</p>
-<h2 id="Four-Mindsets"><a href="#Four-Mindsets" class="headerlink" title="Four Mindsets"></a>Four Mindsets</h2><p>Both photographer and artist</p>
-<ol>
-<li>Build for self</li>
-<li>Confidence</li>
-<li>Comitment</li>
-<li>Be playful</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Photography/composition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life/Photography/composition/" class="post-title-link" itemprop="url">Composition</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-02 20:35:00" itemprop="dateCreated datePublished" datetime="2023-05-02T20:35:00-07:00">2023-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-05 19:50:23" itemprop="dateModified" datetime="2023-05-05T19:50:23-07:00">2023-05-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Definition-and-Different-Space"><a href="#Definition-and-Different-Space" class="headerlink" title="Definition and Different Space"></a>Definition and Different Space</h2><p>Arrangement of Space</p>
-<ul>
-<li><strong>Active Space</strong>: area you want the viewer to focus</li>
-<li><strong>Negative Space</strong>: area around the subject</li>
-</ul>
-<p>Pose with different position to make different feeling</p>
-<ul>
-<li><p>To make static, stability, at rest</p>
-<ul>
-<li><strong>Passive Space</strong>: centered and surrounded by elements</li>
-<li>eye at rest</li>
-</ul>
-</li>
-<li><p>To make dynamic, attract</p>
-<ul>
-<li><strong>Active Space</strong>: not centered, something about to happen</li>
-</ul>
-</li>
-</ul>
-<h2 id="Figure-Ground"><a href="#Figure-Ground" class="headerlink" title="Figure Ground"></a>Figure Ground</h2><p>Figure: visual dominant</p>
-<p>Ground: surrouding areas </p>
-<hr>
-<p>Area of greatest contrast</p>
-<ul>
-<li>human would be attracted to greatest contrast area</li>
-</ul>
-<hr>
-<p>Value: brightness</p>
-<hr>
-<p>So how to make a figure:</p>
-<ul>
-<li>more contrast</li>
-<li>more bright</li>
-</ul>
-<h2 id="How-We-See-Light"><a href="#How-We-See-Light" class="headerlink" title="How We See Light"></a>How We See Light</h2><ol>
-<li>Area of greatest contrast</li>
-<li>Saturated color</li>
-<li>Texture and pattern<ol>
-<li>something not usual in daily life</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1695,20 +1344,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-count">340</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">122</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
