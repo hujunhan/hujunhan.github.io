@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1 视觉里程计：ICP 前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SLAM-14讲 读书笔记 实践篇">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="1 视觉里程计：ICP 前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值  1.1 图像特征点有代表性的点被称为  经典SLAM中：路标 视觉SLAM中：图像特征（features">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-2d-2d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-basic-class.png">
+<meta property="article:published_time" content="2019-04-29T22:11:00.000Z">
+<meta property="article:modified_time" content="2023-08-30T06:22:29.046Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="slam">
+<meta property="article:tag" content="ov">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-2d-2d.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>SLAM-14讲 读书笔记 实践篇 | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SLAM-14讲 读书笔记 实践篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-29 15:11:00" itemprop="dateCreated datePublished" datetime="2019-04-29T15:11:00-07:00">2019-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/" itemprop="url" rel="index"><span itemprop="name">SLAM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-视觉里程计：ICP"><a href="#1-视觉里程计：ICP" class="headerlink" title="1 视觉里程计：ICP"></a>1 视觉里程计：ICP</h2><blockquote>
+<p>前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值</p>
+</blockquote>
+<h3 id="1-1-图像特征点"><a href="#1-1-图像特征点" class="headerlink" title="1.1 图像特征点"></a>1.1 图像特征点</h3><p><strong>有代表性的点</strong>被称为</p>
+<ul>
+<li>经典SLAM中：路标</li>
+<li><strong>视觉SLAM中</strong>：图像特征（features</li>
+</ul>
+<span id="more"></span>
+
+<p><strong>特征点</strong>由两部分组成：</p>
+<ul>
+<li><strong>关键点</strong>：特征点在图像里的位置、朝向、大小</li>
+<li><strong>描述子</strong>：通常是一个向量，描述周围像素的信息</li>
+</ul>
+<p>常见图像特征点：</p>
+<ul>
+<li>SIFT（Scale-Invariant Feature Transform）：运算量大</li>
+<li>FAST：计算快</li>
+<li>ORB（Oriented FAST and Rotated BRIEF）：折中</li>
+<li>关键点为 FAST：如果一个<strong>像素</strong>与它领域的像素差别较大，则更可能是<strong>角点</strong></li>
+<li>描述子为 BRIEF：二进制描述子，关键点附近两个像素的大小关系</li>
+</ul>
+<h3 id="1-2-对极几何-2D-2D"><a href="#1-2-对极几何-2D-2D" class="headerlink" title="1.2  对极几何:2D-2D"></a>1.2  对极几何:2D-2D</h3><p>有了若干对匹配点，就可以通过对应关系，恢复出两帧之间的运动</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-2d-2d.png"></p>
+<p>设$P$的空间位置为：$\boldsymbol{P}&#x3D;[X, Y, Z]^{T}$</p>
+<p>$p_1,p_2$的像素位置为$s_{1} \boldsymbol{p}<em>{1}&#x3D;\boldsymbol{K} \boldsymbol{P}, \quad s</em>{2} \boldsymbol{p}_{2}&#x3D;\boldsymbol{K}(\boldsymbol{R} \boldsymbol{P}+\boldsymbol{t})$ 其中$K$是相机内参矩阵</p>
+<p>经过数学运算得到<strong>对极约束</strong>：$\boldsymbol{p}<em>{2}^{T} \boldsymbol{K}^{-T} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{K}^{-1} \boldsymbol{p}</em>{1}&#x3D;0$</p>
+<ul>
+<li><p>几何意义是$O_1,P,O_2$三者共面</p>
+</li>
+<li><p>中间部分记作两个矩阵</p>
+</li>
+<li><p>本质矩阵$\boldsymbol{E}&#x3D;\boldsymbol{t}^{\wedge} \boldsymbol{R}$</p>
+</li>
+<li><p>基础矩阵$\boldsymbol{F}&#x3D;\boldsymbol{K}^{-T} \boldsymbol{E} \boldsymbol{K}^{-1}$</p>
+</li>
+<li><p>对极约束进一步化简为$\boldsymbol{x}<em>{2}^{T} \boldsymbol{E} \boldsymbol{x}</em>{1}&#x3D;\boldsymbol{p}<em>{2}^{T} \boldsymbol{F} \boldsymbol{p}</em>{1}&#x3D;0$</p>
+</li>
+</ul>
+<p>相机位姿估计问题抽象为</p>
+<ol>
+<li>根据配对点和像素位置，求出$E$</li>
+<li>根据$E$，求出$R,t$</li>
+</ol>
+<h3 id="1-3-PnP问题：3D-2D"><a href="#1-3-PnP问题：3D-2D" class="headerlink" title="1.3 PnP问题：3D-2D"></a>1.3 PnP问题：3D-2D</h3><p>PnP（Perspective-n-Point），用在双目或RGB-D的视觉里程计使用</p>
+<p>求解方法多样：</p>
+<ul>
+<li>直接线性变换</li>
+<li>EPnP</li>
+<li>非线性优化，构建最小二乘问题，Bundle Adjustment</li>
+</ul>
+<h3 id="1-4-ICP问题：3D-3D"><a href="#1-4-ICP问题：3D-3D" class="headerlink" title="1.4 ICP问题：3D-3D"></a>1.4 ICP问题：3D-3D</h3><p>假设有一组配对好的3D点$\boldsymbol{P}&#x3D;\left{\boldsymbol{p}<em>{1}, \ldots, \boldsymbol{p}</em>{n}\right}, \quad \boldsymbol{P}^{\prime}&#x3D;\left{\boldsymbol{p}<em>{1}^{\prime}, \ldots, \boldsymbol{p}</em>{n}^{\prime}\right}$</p>
+<p>要找的是欧式变换使得$\forall i, \boldsymbol{p}<em>{i}&#x3D;\boldsymbol{R} \boldsymbol{p}</em>{i}^{\prime}+\boldsymbol{t}$</p>
+<p>这个问题可以用迭代最近点（Iterative Closest Point, ICP）来解决，解决方法有</p>
+<ul>
+<li>线性代数求解 SVD</li>
+</ul>
+<ol>
+<li>定义误差项 $e_{i}&#x3D;\boldsymbol{p}<em>{i}-\left(\boldsymbol{R} \boldsymbol{p}</em>{i}^{\prime}+\boldsymbol{t}\right)$</li>
+<li>构建最小二乘问题$\min <em>{\boldsymbol{R}, t} J&#x3D;\frac{1}{2} \sum</em>{i&#x3D;1}^{n}\left|\left(\boldsymbol{p}<em>{i}-\left(\boldsymbol{R} \boldsymbol{p}</em>{i}^{\prime}+\boldsymbol{t}\right)\right)\right|_{2}^{2}$</li>
+<li>可以化简为$\min <em>{\boldsymbol{R}, \boldsymbol{t}} J&#x3D;\frac{1}{2} \sum</em>{i&#x3D;1}\left|\boldsymbol{p}<em>{i}-\boldsymbol{p}-\boldsymbol{R}\left(\boldsymbol{p}</em>{i}^{\prime}-\boldsymbol{p}^{\prime}\right)\right|^{2}+\left|\boldsymbol{p}-\boldsymbol{R} \boldsymbol{p}^{\prime}-\boldsymbol{t}\right|^{2}$</li>
+<li>发现左边项只和$R$有关，因此先求出$R$，令右边为$0$即可求出$t$</li>
+<li>利用代码实现就是</li>
+<li>求出两组点质心位置，求出去质心坐标</li>
+<li>根据左边项求$\boldsymbol{R}^{*}&#x3D;\arg \min <em>{\boldsymbol{R}} \frac{1}{2} \sum</em>{i&#x3D;1}^{n}\left|\boldsymbol{q}<em>{i}-\boldsymbol{R} \boldsymbol{q}</em>{i}^{\prime}\right|^{2}$</li>
+<li>求出$t$</li>
+</ol>
+<ul>
+<li>非线性优化 BA</li>
+</ul>
+<p>迭代求解</p>
+<h3 id="1-5-三角化获得三维结构"><a href="#1-5-三角化获得三维结构" class="headerlink" title="1.5 三角化获得三维结构"></a>1.5 三角化获得三维结构</h3><h2 id="2-视觉里程计：直接法"><a href="#2-视觉里程计：直接法" class="headerlink" title="2 视觉里程计：直接法"></a>2 视觉里程计：直接法</h2><p>使用特征点的方法有一些缺点：</p>
+<ol>
+<li>就算是ORB算法也很耗时</li>
+<li>图像上很多信息没有利用到</li>
+<li>相机有时候会运动到特征确实的地方（面对着墙）</li>
+</ol>
+<p>直接法就不匹配<em>描述子</em>，直接比较像素或特征点，有几种思路</p>
+<ul>
+<li><strong>光流法</strong>，使用特征点，只计算关键点，不计算描述子</li>
+<li>直接法，只计算关键点，根据像素灰度信息来计算</li>
+</ul>
+<p>总的来说，通过最小化<strong>光度误差</strong>来求解</p>
+<h3 id="2-1-Lucas-Kanade-光流法"><a href="#2-1-Lucas-Kanade-光流法" class="headerlink" title="2.1 Lucas-Kanade 光流法"></a>2.1 Lucas-Kanade 光流法</h3><p>灰度是位置和时间的函数<br>$$<br>\boldsymbol{I}(x, y, t)<br>$$<br>光流法的基本假设：</p>
+<ul>
+<li><p>灰度不变假设，同一空间点的像素灰度值，在各个图像中不变<br>$$<br>\boldsymbol{I}(x+\mathrm{d} x, y+\mathrm{d} y, t+\mathrm{d} t)&#x3D;\boldsymbol{I}(x, y, t)&#x3D;\boldsymbol{I}(x, y, t)+\frac{\partial \boldsymbol{I}}{\partial x} \mathrm{d} x+\frac{\partial \boldsymbol{I}}{\partial y} \mathrm{d} y+\frac{\partial \boldsymbol{I}}{\partial t} \mathrm{d} t<br>$$<br>所以<br>$$<br>\frac{\partial \boldsymbol{I}}{\partial x} \mathrm{d} x+\frac{\partial \boldsymbol{I}}{\partial y} \mathrm{d} y+\frac{\partial \boldsymbol{I}}{\partial t} \mathrm{d} t&#x3D;0<br>$$<br>一个方程两个未知数，所以还需要一个假设</p>
+</li>
+<li><p>某一个窗口内的像素具有相同的运动</p>
+</li>
+</ul>
+<p>如果选取一个$w\times w$的窗口，就有$w^2$个像素，也就有$w^2$个方程，还是两个未知数，就可以利用最小二乘来求解出速度$u,v$</p>
+<h2 id="3-设计前端"><a href="#3-设计前端" class="headerlink" title="3 设计前端"></a>3 设计前端</h2><h3 id="3-1-确定程序框架"><a href="#3-1-确定程序框架" class="headerlink" title="3.1 确定程序框架"></a>3.1 确定程序框架</h3><p>选用RGB-D摄像头实现，因为较为简单，没有初始化，没有尺度问题。</p>
+<p>建立不同的文件夹，分类存放文件</p>
+<ul>
+<li>bin 存放可执行的二进制</li>
+<li>include&#x2F;slam 主要是.h头文件</li>
+<li>src 主要是.cpp源文件</li>
+<li>test 主要是.cpp测试源文件</li>
+<li>lib 编译好的库文件</li>
+<li>config 存放配置文件</li>
+<li>cmake_modules 第三方的cmake库</li>
+</ul>
+<h3 id="3-2-基本类及其关系"><a href="#3-2-基本类及其关系" class="headerlink" title="3.2 基本类及其关系"></a>3.2 基本类及其关系</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/slam-basic-class.png"></p>
+<h3 id="3-3-基本逻辑"><a href="#3-3-基本逻辑" class="headerlink" title="3.3 基本逻辑"></a>3.3 基本逻辑</h3><p>3种状态</p>
+<ul>
+<li>初始化：计算ORB，设定初始位姿</li>
+<li>正常：计算ORB，特征匹配，位姿估计PnP，设定新位姿</li>
+</ul>
+<ol>
+<li>特征匹配时使用hamming距离，找出所有匹配之间最大和最小</li>
+<li>位姿估计时把匹配点转换为向量</li>
+</ol>
+<ul>
+<li>丢失：跳过</li>
+</ul>
+<h2 id="4-后端优化"><a href="#4-后端优化" class="headerlink" title="4 后端优化"></a>4 后端优化</h2><p>状态估计</p>
+<ul>
+<li>Batch：批量的，状态估计会用未来的信息更新自己</li>
+<li>Incremental：渐进的，当前状态只有过去的时刻决定</li>
+</ul>
+<p>希望：轨迹在较长时间内能保持最优</p>
+<p>问题：只有里程计，会对自己的运动估计越来越不确定</p>
+<p>sfm问题：从一组图像中恢复运动和结构<br>$$<br>P\left(\boldsymbol{x}<em>{k} | \boldsymbol{x}</em>{0}, \boldsymbol{u}<em>{1 : k}, \boldsymbol{z}</em>{1 : k-1}\right)&#x3D;\int P\left(\boldsymbol{x}<em>{k} | \boldsymbol{x}</em>{k-1}, \boldsymbol{x}<em>{0}, \boldsymbol{u}</em>{1 : k}, \boldsymbol{z}<em>{1 : k-1}\right) P\left(\boldsymbol{x}</em>{k-1} | \boldsymbol{x}<em>{0}, \boldsymbol{u}</em>{1 : k}, \boldsymbol{z}<em>{1 : k-1}\right) \mathrm{d} \boldsymbol{x}</em>{k-1}<br>$$</p>
+<h3 id="4-1-线性系统和KF"><a href="#4-1-线性系统和KF" class="headerlink" title="4.1 线性系统和KF"></a>4.1 线性系统和KF</h3><p>假设马尔可夫性，右侧第一部分中当前状态之和上一个时刻有关<br>$$<br>P\left(\boldsymbol{x}<em>{k} | \boldsymbol{x}</em>{k-1}, \boldsymbol{x}<em>{0}, \boldsymbol{u}</em>{1 : k}, \boldsymbol{z}<em>{1 : k-1}\right)&#x3D;P\left(\boldsymbol{x}</em>{k} | \boldsymbol{x}<em>{k-1}, \boldsymbol{u}</em>{k}\right)<br>$$<br>右侧第二部分<br>$$<br>P\left(\boldsymbol{x}<em>{k-1} | \boldsymbol{x}</em>{0}, \boldsymbol{u}<em>{1 : k}, \boldsymbol{z}</em>{1 : k-1}\right)&#x3D;P\left(\boldsymbol{x}<em>{k-1} | \boldsymbol{x}</em>{0}, \boldsymbol{u}<em>{1 : k-1}, \boldsymbol{z}</em>{1 : k-1}\right)<br>$$</p>
+<hr>
+<p>高斯线性系统<br>$$<br>\left{\begin{array}{ll}{\boldsymbol{x}<em>{k}&#x3D;\boldsymbol{A}</em>{k} \boldsymbol{x}<em>{k-1}+\boldsymbol{u}</em>{k}+\boldsymbol{w}<em>{k}} \ {z</em>{k}&#x3D;\boldsymbol{C}<em>{k} \boldsymbol{x}</em>{k}+\boldsymbol{v}_{k}}\end{array} \quad k&#x3D;1, \ldots, N\right.<br>$$<br>其中状态和噪声都满足高斯分布（零均值）</p>
+<p>所以整个问题归纳为</p>
+<p>已知：</p>
+<ul>
+<li>$k-1$时刻的后验状态估计：$\hat{\boldsymbol{x}}<em>{k-1},\hat{\boldsymbol{P}}</em>{k-1}$</li>
+<li>$k$时刻的输入和观测</li>
+</ul>
+<p>求取:</p>
+<ul>
+<li>$x_k$的后验分布</li>
+</ul>
+<hr>
+<p>后验均值的表达，就是两个步骤，预测和更新</p>
+<ol>
+<li><p>预测</p>
+</li>
+<li><p>更新，计算$K$，成为卡尔曼增益<br>$$<br>\boldsymbol{K}&#x3D;\overline{\boldsymbol{P}}<em>{k} \boldsymbol{C}</em>{k}^{T}\left(\boldsymbol{C}<em>{k} \overline{\boldsymbol{P}}</em>{k} \boldsymbol{C}_{k}^{T}+\boldsymbol{Q}\right)^{-1}<br>$$</p>
+</li>
+</ol>
+<p>卡尔曼滤波器构成了线性系统的最优无偏估计</p>
+<h3 id="4-2-非线性系统和EKF"><a href="#4-2-非线性系统和EKF" class="headerlink" title="4.2 非线性系统和EKF"></a>4.2 非线性系统和EKF</h3><p>运动方程和观测方程一般是非线性函数，所以我们需要近似，近似成高斯分布</p>
+<p>方式：线性化，就相当于一阶泰勒展开（求偏导）</p>
+<p>仿照卡尔曼滤波，定义新的卡尔曼增益$K$<br>$$<br>\boldsymbol{K}<em>{k}&#x3D;\overline{\boldsymbol{P}}</em>{k} \boldsymbol{H}^{\mathrm{T}}\left(\boldsymbol{H} \overline{\boldsymbol{P}}<em>{k} \boldsymbol{H}^{\mathrm{T}}+\boldsymbol{Q}</em>{k}\right)^{-1}<br>$$<br>利用卡尔曼增益，计算后验概率</p>
+<p>局限</p>
+<ul>
+<li>假设了<strong>马尔可夫性</strong>，所以无法做回环检测</li>
+<li>仅做了<strong>一次线性化</strong>，而一阶泰勒展开不一定能够近似整个函数，只能在很小的范围内成立</li>
+<li>$EKF$存储了状态量的均值和方差</li>
+</ul>
+<h3 id="4-3-非线性优化"><a href="#4-3-非线性优化" class="headerlink" title="4.3 非线性优化"></a>4.3 非线性优化</h3><p><strong>Bundle Adjustment</strong>：从视觉重建中提炼出最优的3D模型和相机参数（内参，外参）</p>
+<p>在以<strong>图优化框架</strong>的<strong>视觉</strong>SLAM问题中，BA起到了核心作用。求解<strong>只有观测方程</strong>的SLAM问题</p>
+<p>SLAM问题中，BA具有稀疏特性，可以在实时场景中使用</p>
+<hr>
+<h4 id="投影模型"><a href="#投影模型" class="headerlink" title="投影模型"></a>投影模型</h4><p>从世界坐标系到像素坐标</p>
+<ol>
+<li>世界坐标$\to$相机坐标，利用<strong>外参</strong></li>
+</ol>
+<p>$\boldsymbol{P}^{\prime}&#x3D;\boldsymbol{R} \boldsymbol{p}+\boldsymbol{t}&#x3D;\left[X^{\prime}, Y^{\prime}, Z^{\prime}\right]^{T}$</p>
+<ol start="2">
+<li>相机坐标$\to$ 归一化坐标</li>
+</ol>
+<p>$\boldsymbol{P}<em>{c}&#x3D;\left[u</em>{c}, v_{c}, 1\right]^{T}&#x3D;\left[X^{\prime} &#x2F; Z^{\prime}, Y^{\prime} &#x2F; Z^{\prime}, 1\right]^{T}$</p>
+<ol start="3">
+<li>归一化坐标$\to$去畸变</li>
+</ol>
+<p>$\left{\begin{array}{l}{u_{c}^{\prime}&#x3D;u_{c}\left(1+k_{1} r_{c}^{2}+k_{2} r_{c}^{4}\right)} \ {v_{c}^{\prime}&#x3D;v_{c}\left(1+k_{1} r_{c}^{2}+k_{2} r_{c}^{4}\right)}\end{array}\right.$</p>
+<ol start="4">
+<li>去畸变$\to$像素坐标，利用<strong>内参</strong></li>
+</ol>
+<p>$\left{\begin{array}{l}{u_{s}&#x3D;f_{x} u_{c}^{\prime}+c_{x}} \ {v_{s}&#x3D;f_{y} v_{c}^{\prime}+c_{y}}\end{array}\right.$</p>
+<hr>
+<p>上面的投影模型可以说就是<strong>观测方程</strong></p>
+<p>可以抽象为$z&#x3D;h(\boldsymbol{x}, \boldsymbol{y})$</p>
+<ul>
+<li>$z$ 是观测数据，像素坐标</li>
+<li>$x$ 是相机位姿，外参$R,t$</li>
+<li>$y$ 是路标，三维点$p$</li>
+</ul>
+<p>考虑所有时刻的观测量，可以计算整体的代价函数<br>$$<br>\frac{1}{2} \sum_{i&#x3D;1}^{m} \sum_{j&#x3D;1}^{n}\left|\boldsymbol{e}<em>{i j}\right|^{2}&#x3D;\frac{1}{2} \sum</em>{i&#x3D;1}^{m} \sum_{j&#x3D;1}^{n}\left|\boldsymbol{z}<em>{i j}-h\left(\boldsymbol{\xi}</em>{i}, \boldsymbol{p}_{j}\right)\right|^{2}<br>$$</p>
+<hr>
+<h3 id="4-4-Ceres实践"><a href="#4-4-Ceres实践" class="headerlink" title="4.4 Ceres实践"></a>4.4 Ceres实践</h3><p>根本问题：<strong>最小化投影误差</strong>，也就是多个特征点的平均投影误差<br>$$<br>\begin{aligned} r(\boldsymbol{\xi}) &amp;&#x3D;\mathbf{p}^{\prime}-\mathbf{p}&#x3D;\left(u^{\prime}, v^{\prime}\right)-(u, v) \end{aligned}<br>$$</p>
+<p>回顾Ceres，要做优化问题</p>
+<ul>
+<li>构建<strong>代价函数</strong></li>
+<li>使用自动求导，需要构造<strong>代价函数结构体</strong>，对模板括号<code>()</code>重载，定义残差，<code>()</code>中前几个是待优化变量，最后一个是残差</li>
+<li>模板参数<code>&lt;&gt;</code>中第一个参数代价函数结构体的名字，然后是残差的维度，后几个为待优化状态量的维度</li>
+<li>用<strong>代价函数</strong>，<strong>待优化变量</strong>构建<strong>优化问题</strong></li>
+<li><em>配置</em><strong>求解器</strong></li>
+<li>运行求解器</li>
+</ul>
+<h2 id="5-图优化"><a href="#5-图优化" class="headerlink" title="5 图优化"></a>5 图优化</h2><h3 id="5-1-位姿图-Pose-Graph"><a href="#5-1-位姿图-Pose-Graph" class="headerlink" title="5.1 位姿图 Pose Graph"></a>5.1 位姿图 Pose Graph</h3><p>采用之前的BA优化，时间越长，运动轨迹越长，地图规模也会增长，所以计算效率就会逐渐下降。如何解决这些问题？</p>
+<p>考虑到在BA优化中，一些特征点会收敛至一个值保持不动，所以不需要再进行优化。</p>
+<blockquote>
+<p>可以构建一个只有轨迹的图优化，而位姿节点之间的边，可以由两个关键帧之间通过特征 匹配之后得到的运动估计来给定初始值。不同的是，一旦初始估计完成，我们就不再优化 那些路标点的位置，而只关心所有的相机位姿之间的联系了。通过这种方式，我们省去了大 量的特征点优化的计算，只保留了关键帧的轨迹，从而构建了所谓的位姿图（Pose Graph）</p>
+</blockquote>
+<h2 id="6-回环检测"><a href="#6-回环检测" class="headerlink" title="6 回环检测"></a>6 回环检测</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>前端：特征点提取，提供轨迹和地图的<strong>初值</strong></p>
+<p>后端：对前端提供的数据进行<strong>优化</strong></p>
+<p>但是只考虑相邻帧之间的位移，长期来看还是会有累计误差，所以要加入<strong>回环检测</strong></p>
+<p>所以仅有前端和局部后端的系统称为VO，而有回环检测和全局后端的称为SLAM</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>最简单的方式：任意两张做特征匹配，匹配多的关系就越强，但是计算量太大</p>
+<p>几何的方式：在几何关系上回到起点时做检测，但是逻辑上也是鸡和蛋的问题</p>
+<p>实际中应用的方式：基于外观，计算图像间的相似性</p>
+<p>有两个统计量来检验<strong>判断效果</strong></p>
+<ul>
+<li><strong>准确率</strong>，就是所有检测到的回环中是真实回环的概率，在SLAM中更加重要一些</li>
+<li>召回率，就是所有真实回环中被检测到的概率</li>
+</ul>
+<h3 id="词袋模型"><a href="#词袋模型" class="headerlink" title="词袋模型"></a>词袋模型</h3><p>Bag of Words (BoW)，用图像特征来描述图像，比如说一张图片里两个人，另一张一个人</p>
+<ol>
+<li>确定”人“的概念，相当于Words，许多<strong>Words</strong>组合在一起组成字典<strong>Dictionary</strong></li>
+<li>计算一张图中的各个Words，只计算出现的次数，和空间位置等无关</li>
+<li>比较相似程度</li>
+</ol>
+<hr>
+<p>字典的定义——通过聚类解决</p>
+<p>问题抽象：从一张图片中提取了$N$个特征点，想要找一个有$k$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/slam/" rel="tag"># slam</a>
+              <a href="/tags/ov/" rel="tag"># ov</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-math/" rel="prev" title="SLAM-14讲 读书笔记 数学基础篇">
+      <i class="fa fa-chevron-left"></i> SLAM-14讲 读书笔记 数学基础篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Engineering/Computer%20Science/Web/html/" rel="next" title="Basic HTML">
+      Basic HTML <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%EF%BC%9AICP"><span class="nav-text">1 视觉里程计：ICP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81%E7%82%B9"><span class="nav-text">1.1 图像特征点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%AF%B9%E6%9E%81%E5%87%A0%E4%BD%95-2D-2D"><span class="nav-text">1.2  对极几何:2D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-PnP%E9%97%AE%E9%A2%98%EF%BC%9A3D-2D"><span class="nav-text">1.3 PnP问题：3D-2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-ICP%E9%97%AE%E9%A2%98%EF%BC%9A3D-3D"><span class="nav-text">1.4 ICP问题：3D-3D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E4%B8%89%E8%A7%92%E5%8C%96%E8%8E%B7%E5%BE%97%E4%B8%89%E7%BB%B4%E7%BB%93%E6%9E%84"><span class="nav-text">1.5 三角化获得三维结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%EF%BC%9A%E7%9B%B4%E6%8E%A5%E6%B3%95"><span class="nav-text">2 视觉里程计：直接法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Lucas-Kanade-%E5%85%89%E6%B5%81%E6%B3%95"><span class="nav-text">2.1 Lucas-Kanade 光流法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1%E5%89%8D%E7%AB%AF"><span class="nav-text">3 设计前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%A1%AE%E5%AE%9A%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="nav-text">3.1 确定程序框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%85%B3%E7%B3%BB"><span class="nav-text">3.2 基本类及其关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%9F%BA%E6%9C%AC%E9%80%BB%E8%BE%91"><span class="nav-text">3.3 基本逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%90%8E%E7%AB%AF%E4%BC%98%E5%8C%96"><span class="nav-text">4 后端优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E5%92%8CKF"><span class="nav-text">4.1 线性系统和KF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E9%9D%9E%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E5%92%8CEKF"><span class="nav-text">4.2 非线性系统和EKF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96"><span class="nav-text">4.3 非线性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E6%A8%A1%E5%9E%8B"><span class="nav-text">投影模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Ceres%E5%AE%9E%E8%B7%B5"><span class="nav-text">4.4 Ceres实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%9B%BE%E4%BC%98%E5%8C%96"><span class="nav-text">5 图优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E4%BD%8D%E5%A7%BF%E5%9B%BE-Pose-Graph"><span class="nav-text">5.1 位姿图 Pose Graph</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9B%9E%E7%8E%AF%E6%A3%80%E6%B5%8B"><span class="nav-text">6 回环检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E8%A2%8B%E6%A8%A1%E5%9E%8B"><span class="nav-text">词袋模型</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

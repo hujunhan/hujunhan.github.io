@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽象是多层次的，从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="依据基本原理构建线代计算机--硬件部分">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/build-cs-hardware/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽象是多层次的，从">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/nand-mux-demux.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-hack-alu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu-6-options.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-clock.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-seq-logic.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-flip-flip.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-mem-dff.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-dff-ee.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-ram-hire.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-mem-hier.png">
+<meta property="article:published_time" content="2019-08-15T03:53:00.000Z">
+<meta property="article:modified_time" content="2023-08-30T06:22:29.044Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="cs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/nand-mux-demux.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/build-cs-hardware/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>依据基本原理构建线代计算机--硬件部分 | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/build-cs-hardware/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          依据基本原理构建线代计算机--硬件部分
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-14 20:53:00" itemprop="dateCreated datePublished" datetime="2019-08-14T20:53:00-07:00">2019-08-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="0-Introduction"><a href="#0-Introduction" class="headerlink" title="0 Introduction"></a>0 Introduction</h2><p>从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件</p>
+<p>这门课专注于硬件部分</p>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容</p>
+<p>当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。</p>
+<ul>
+<li>这样的抽象是多层次的，从最简单的电子元器件到CPU到计算机到编程语言</li>
+</ul>
+<p>之后的的课程，每一次都</p>
+<ul>
+<li>只考虑单一一层的抽象</li>
+<li>把低一层的接口作为已知</li>
+<li>实现高一层的接口</li>
+<li>测试我们的接口是能正常使用的</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="This-Course"><a href="#This-Course" class="headerlink" title="This Course"></a>This Course</h3><p>构建一个Hack计算机，能够沟通ROM,CPU和RAM</p>
+<p>学习的方式：从下到上，从EE到CS</p>
+<ul>
+<li>怎么建立一个芯片：使用模拟器仿真</li>
+</ul>
+<p>设计：知道了一个芯片的抽象功能，然后设计硬件图，然后转化为硬件描述语言，最后用在仿真软件里看效果</p>
+<h3 id="Next-Course"><a href="#Next-Course" class="headerlink" title="Next Course"></a>Next Course</h3><p>之前的课程中已经建立了可以运行汇编语言的电脑，在下一节课中，我们会建立更加高级的编程语言，并且建立相应的编译器、基础系统库</p>
+<h2 id="1-Boolean-Functions-and-Gate-Logic"><a href="#1-Boolean-Functions-and-Gate-Logic" class="headerlink" title="1 Boolean Functions and Gate Logic"></a>1 Boolean Functions and Gate Logic</h2><h3 id="Boolean-Functions"><a href="#Boolean-Functions" class="headerlink" title="Boolean Functions"></a>Boolean Functions</h3><p>我们可以对布尔值进行的操作</p>
+<ul>
+<li>AND</li>
+<li>OR</li>
+<li>NOT</li>
+</ul>
+<p>根据一些等价转换可以转换逻辑函数，起到化简的作用</p>
+<p>显然我们可以根据布尔表达式求解真值表，那么如何从<strong>真值表到布尔函数</strong>？</p>
+<ul>
+<li><p>将所有最终值为1的行表达为一个简单表达式（这个表达式只在那一行的值为1，其他行为0），然后将这些简单表达式用<strong>or</strong>连接起来</p>
+</li>
+<li><p>如何找最简的表达式？NP-Hard问题</p>
+</li>
+<li><p>任意表达式都可以用AND\OR\NOT组成的表达式表示</p>
+</li>
+<li><p>进阶：任意表达式都可以用AND\NOT组成的表达式表示</p>
+</li>
+</ul>
+<p>证明：$(\mathrm{x} \mathrm{OR} \mathrm{y})&#x3D;\mathrm{NOT}(\mathrm{NOT}(\mathrm{x}) \mathrm{AND} \mathrm{NOT}(\mathrm{y}))$</p>
+<ul>
+<li><strong>进进阶：任意表达式都可以用NAND组成的表达式表示</strong></li>
+</ul>
+<p>这是因为：$(\mathrm{x} \mathrm{NAND} \mathrm{y})&#x3D;\mathrm{NOT}(\mathrm{x} \mathrm{AND} \mathrm{y})$</p>
+<p>证明：AND和NOT都可以用NAND表示<br>$$<br>\begin{array}{l}{\text { 1) } \operatorname{NOT}(x)&#x3D;(x \text { NAND } x)} \ {\text { 2) }(x A N D y)&#x3D;\operatorname{NOT}(x \text { NAND } y)}\end{array}<br>$$</p>
+<h3 id="Logic-Gates"><a href="#Logic-Gates" class="headerlink" title="Logic Gates"></a>Logic Gates</h3><p>基础逻辑门：NAND、AND、OR、NOT</p>
+<p>复合逻辑门：三个输入的AND</p>
+<ul>
+<li>也是一种抽象，每种门的表达是一样的，但是实现可以不同（EE做的事）</li>
+</ul>
+<h3 id="Hardware-Description-Language"><a href="#Hardware-Description-Language" class="headerlink" title="Hardware Description Language"></a>Hardware Description Language</h3><p>HDL只是一种描述语言，还需要一个模拟器来将所描述的结构运行起来</p>
+<ul>
+<li>所以描述的顺序是没有关系的，但是推荐从左到右，调高程序的可读性</li>
+<li>有许多不同的HDL</li>
+<li>VHDL</li>
+<li>Verilog</li>
+<li>课程使用的HDL，最简化，简单</li>
+</ul>
+<p>输入输出都是由外部给定的变量名</p>
+<p>假设：我们已经有了基本的AND\NOT\OR门</p>
+<p>设计步骤：</p>
+<ol>
+<li>写出基本的逻辑表达式</li>
+<li>画成电路图（也是由AND\NOT\OR门组成）</li>
+<li>写成HDL程序</li>
+<li>用模拟器测试HDL是否正确</li>
+</ol>
+<blockquote>
+<p>在一个实际的项目中，芯片的设计是怎么样的呢？</p>
+<ol>
+<li>项目中有设计师和工程师</li>
+<li>设计师知道要实现的具体功能<ol>
+<li>决定要设计哪些小的芯片</li>
+<li>对于每个小芯片，确定<strong>名字API、测试脚本、比较文件</strong></li>
+</ol>
+</li>
+<li>让工程师根据以上内容，建立芯片</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>Multi-Bit Buses</p>
+<p>我们需要对一排bit进行操作，所以，使用数组进行描述</p>
+</blockquote>
+<h3 id="Project-1"><a href="#Project-1" class="headerlink" title="Project 1"></a>Project 1</h3><p>我们要实现的是一共<strong>15个</strong>门电路</p>
+<p>除了常见的AND\NOT\OR，还有</p>
+<ul>
+<li>MUX\DEMUX</li>
+</ul>
+<p>这两个可以作用于通信领域，将不同的信息通过通过单一的数据线进行传输</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/nand-mux-demux.png"></p>
+<p>实现过程：</p>
+<ol>
+<li>先用NAND实现AND\NOT\OR</li>
+<li>然后用AND\NOT\OR实现其他逻辑</li>
+</ol>
+<h2 id="2-Boolean-Arithmetic-and-ALU"><a href="#2-Boolean-Arithmetic-and-ALU" class="headerlink" title="2 Boolean Arithmetic and ALU"></a>2 Boolean Arithmetic and ALU</h2><h3 id="Binary-Numbers"><a href="#Binary-Numbers" class="headerlink" title="Binary Numbers"></a>Binary Numbers</h3><p>我们可以用01来表示数，不管是二进制还是十进制</p>
+<p>对于二进制数的操作，虽然看上去有很多，包括加减乘除比大小。但是其实我们只要能够实现<strong>加法</strong>，其他的一些操作都能够简单的实现</p>
+<ul>
+<li><p>减法和比大小显然能够轻松达成</p>
+</li>
+<li><p>乘法和除法<strong>不会有硬件上的实现</strong>，而是通过软件模拟</p>
+</li>
+</ul>
+<p>这是为了<strong>简单</strong>起见，如果要构建这样的硬件，需要很多的设计花费，这也是一个trade-off</p>
+<ul>
+<li><strong>溢出问题</strong></li>
+</ul>
+<p>因为加法的两个数字长是固定的，所以如果两者相加溢出了，比如8位变成了9位。那么计算机会<strong>直接忽略溢出的那个数</strong>，这是需要使用计算机的人记住的，那就是<strong>相加的结果可能不正确</strong>，如果不使用正确的长度</p>
+<p>如何操作负数呢？</p>
+<ul>
+<li><p><del>用最左边的那一位表示符号</del></p>
+</li>
+<li><p>这样的实现不优雅，比如会有-0的情况，而且还要分类讨论</p>
+</li>
+<li><p>用$2^n-x$代表$-x$</p>
+</li>
+<li><p>正的范围$0…{2^{n-1}-1}$</p>
+</li>
+<li><p>负的范围$-1…-2^{n-1}$</p>
+</li>
+<li><p><strong>加法</strong>就只需要按这个逻辑，效果是一样的</p>
+</li>
+<li><p><strong>减法</strong>可以用$2^{n}-x&#x3D;1+\left(2^{n}-1\right)-x$，这样因为$2^n-1$都是111111，所以不需要进位</p>
+</li>
+<li><p>这就是<strong>补码的背后思路</strong>：取反+1</p>
+</li>
+</ul>
+<h3 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu.png"></p>
+<p>ALU接受两个输入和一个函数$f$，输出值</p>
+<ul>
+<li>$f$是一堆已经事先定义好的函数中的一个</li>
+<li>确定$f$的集合大小是一个典型的trade-off的问题</li>
+</ul>
+<p>在这门课中的ALU，称为Hack ALU，ALU实现的$f$的集合是<strong>18个</strong>函数</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-hack-alu.png"></p>
+<p>其中比较重要的就是上面的6个控制值，他们进行了一些预处理</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu-6-options.png"></p>
+<p>下面的两个zr、ng是两个寄存器，说明一些输出的性质</p>
+<ul>
+<li>zr说明了out是否为0</li>
+<li>ng说明了out是否为负数</li>
+</ul>
+<blockquote>
+<p>设计的芯片的<strong>效率问题</strong>：总的来说基本上没有什么可以优化的，因为都是最简单的实现，没有优化的余地。</p>
+<p>但是对于加法器ADDER，因为要计算进位，所以计算的位数越多，<strong>延时</strong>也就越多</p>
+<p>解决方法：Carry Look-Ahead Adder</p>
+<p>解决思路：</p>
+<ul>
+<li>延时有<strong>线延时</strong>和<strong>门延时</strong>，我们<strong>主要关注门延时</strong></li>
+<li>改变结构，使得全加器的进入输入不来自上一级的全加器，而是<strong>超前进位</strong><ul>
+<li>优点：使得延迟时间减小，固定为3级门延迟</li>
+<li>缺点：如果拓宽加法器的位数，电路非常复杂</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Project-2"><a href="#Project-2" class="headerlink" title="Project 2"></a>Project 2</h3><p>给定：在Project 1中已经实现的所有芯片</p>
+<p>目标：构建以下新的芯片</p>
+<ul>
+<li>半加器：XOR+AND</li>
+<li>全加器：</li>
+<li>ALU</li>
+<li>…</li>
+</ul>
+<h2 id="3-Memory"><a href="#3-Memory" class="headerlink" title="3 Memory"></a>3 Memory</h2><blockquote>
+<p>Cache memory: RAM is very expensive, so there are trade-offs in the situation</p>
+<ul>
+<li>Use large and cheap RAM with low quality</li>
+<li>Use small and expensive RAM with good quality</li>
+</ul>
+</blockquote>
+<p>从这一部分开始，会涉及到时间，其中会有一些问题包括</p>
+<ul>
+<li>重复使用相同的硬件</li>
+<li>记住系统的状态</li>
+<li>协调速度</li>
+</ul>
+<h3 id="Clock"><a href="#Clock" class="headerlink" title="Clock"></a>Clock</h3><p>在一个时钟周期内，系统的状态是一样的</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-clock.png"></p>
+<p>当然在物理层面，系统状态的变化不会是瞬间的，就如图中所示灰色的部分一样</p>
+<ul>
+<li>在设计时，这部分不需要考虑，因为我们只看最后平稳的那一部分</li>
+<li>实际上，时钟的频率就是根据这段变化的时间来确定的，只要间隔比灰色时间长一点就好</li>
+</ul>
+<p><strong>时序逻辑</strong>：下一时刻的输出由上一时刻的输入决定</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-seq-logic.png"></p>
+<h3 id="Data-Flip-Flop"><a href="#Data-Flip-Flop" class="headerlink" title="Data Flip Flop"></a>Data Flip Flop</h3><p>我们需要一个电路（1-Bit），能够记住一个状态</p>
+<ul>
+<li>这个电路（1-Bit）能够永远记住一个状态，除非来了新的数据</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-flip-flip.png"></p>
+<ul>
+<li>内部结构（Data Flip Flop+Mux）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-mem-dff.png"></p>
+<p>DFF和1Bit的区别：DFF是瞬时的，而1Bit的状态可以延续</p>
+<blockquote>
+<p>DFF的电路实现</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-dff-ee.png"></p>
+</blockquote>
+<h3 id="Memory-Units"><a href="#Memory-Units" class="headerlink" title="Memory Units"></a>Memory Units</h3><p>基本电路就是上一节提到的（1-Bit）电路，通过把许多的（1-Bit）电路顺序地连接在一起，就变成了一个<strong>寄存器</strong>，寄存器的长度w，可以是16、32、64</p>
+<p><strong>RAM unit</strong></p>
+<ul>
+<li>就是一堆有地址的寄存器叠加起来</li>
+<li>在任意时刻，只有1个寄存器被选择——被读或被写</li>
+<li>地址的长度$\log_2{n}$</li>
+</ul>
+<p>在这节课中，会建立一些不同长度、大小的RAM</p>
+<h3 id="Counters"><a href="#Counters" class="headerlink" title="Counters"></a>Counters</h3><p>计数器的作用：递增地址，使得程序能够顺序执行</p>
+<p>所以需要的功能有</p>
+<ul>
+<li>Reset，PC&#x3D;0</li>
+<li>Next，PC++</li>
+<li>Goto，PC&#x3D;n</li>
+</ul>
+<p>计数器在硬件上抽象地实现了上述功能</p>
+<h3 id="Project-3"><a href="#Project-3" class="headerlink" title="Project 3"></a>Project 3</h3><p>给定：Project 2中所实现的所有芯片</p>
+<p>目标：构建以下芯片</p>
+<ul>
+<li><p>Bit</p>
+</li>
+<li><p>寄存器</p>
+</li>
+<li><p>RAM(各种大小)都是16位</p>
+</li>
+<li><p>先建立RAM8，然后拼成RAM64，再用RAM64拼成RAM512</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-ram-hire.png"></p>
+<ul>
+<li><p>在Address部分，可以使用一部分作为那一个RAM的选择，还有一部分地址作为RAM内部寄存器的选择</p>
+</li>
+<li><p>PC</p>
+</li>
+<li><p>好几个MUX选择</p>
+</li>
+</ul>
+<h2 id="4-Machine-Language"><a href="#4-Machine-Language" class="headerlink" title="4 Machine Language"></a>4 Machine Language</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>How is it possible that  we can do all different things with a single hardware</p>
+<ul>
+<li>theory from Turing: one machine can simulate all other machine</li>
+<li>practice from Von Neumann: architect</li>
+</ul>
+<p>3 Most important elements for every ML:</p>
+<ol>
+<li><strong>Operation</strong>s: what to do with this instruction</li>
+<li><strong>Program Counter</strong>: what to do next</li>
+<li><strong>Addresing</strong>: what to operate (where the data is)</li>
+</ol>
+<blockquote>
+<p>e.g. assembly language</p>
+<p>a instruction 010001000110010</p>
+<p>in fact it can be view as 3 part: <code>0100010</code> <code>0011</code> <code>0010</code> ADD R3 R2</p>
+</blockquote>
+<h3 id="Elements"><a href="#Elements" class="headerlink" title="Elements"></a>Elements</h3><p>Machine language is the interface beteween hardware and software</p>
+<h4 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h4><ul>
+<li>Arithmetic: add, subtract</li>
+<li>Logical: and, or</li>
+<li>Flow control: goto, if</li>
+</ul>
+<p><strong>Differences</strong> between machine languages:</p>
+<ul>
+<li>richness of the set of operations</li>
+<li>data types</li>
+</ul>
+<h4 id="Addressing"><a href="#Addressing" class="headerlink" title="Addressing"></a>Addressing</h4><p>Accessing a memory location is expensive</p>
+<p>Solution: Memory Hierarchy</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-mem-hier.png"></p>
+<ul>
+<li><strong>Registers’ number and functions are a center part of the machine language</strong></li>
+</ul>
+<p>这部分基本都是微机原理所涉及的内容</p>
+<h3 id="Hack-Computer"><a href="#Hack-Computer" class="headerlink" title="Hack Computer"></a>Hack Computer</h3><p>课程所要设计的电脑</p>
+<ul>
+<li>硬件部分</li>
+<li>16位计算机，意味着RAM里有一堆寄存器，每个寄存器都是16位的，CPU也都能处理16位的数据指令</li>
+<li>由3部分组成，ROM\CPU\RAM</li>
+<li>软件部分</li>
+<li>16位的指令。A instruction and D instruction</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cs/" rel="tag"># cs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Nature%20Science/Physics/quickest-down/" rel="prev" title="Brachistochrone Curve">
+      <i class="fa fa-chevron-left"></i> Brachistochrone Curve
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Life%20Skill/Interests/sunburn-repair/" rel="next" title="皮肤变黑与变白">
+      皮肤变黑与变白 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Introduction"><span class="nav-text">0 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-Course"><span class="nav-text">This Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-Course"><span class="nav-text">Next Course</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boolean-Functions-and-Gate-Logic"><span class="nav-text">1 Boolean Functions and Gate Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-Functions"><span class="nav-text">Boolean Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Gates"><span class="nav-text">Logic Gates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hardware-Description-Language"><span class="nav-text">Hardware Description Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-1"><span class="nav-text">Project 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Boolean-Arithmetic-and-ALU"><span class="nav-text">2 Boolean Arithmetic and ALU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Numbers"><span class="nav-text">Binary Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALU"><span class="nav-text">ALU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-2"><span class="nav-text">Project 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Memory"><span class="nav-text">3 Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock"><span class="nav-text">Clock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Flip-Flop"><span class="nav-text">Data Flip Flop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Units"><span class="nav-text">Memory Units</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counters"><span class="nav-text">Counters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-3"><span class="nav-text">Project 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Machine-Language"><span class="nav-text">4 Machine Language</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements"><span class="nav-text">Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Operations"><span class="nav-text">Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing"><span class="nav-text">Addressing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hack-Computer"><span class="nav-text">Hack Computer</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

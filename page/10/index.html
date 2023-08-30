@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mapping/icp/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/part/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,432 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Mapping/icp/" class="post-title-link" itemprop="url">ICP Algorithm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-25 23:06:00" itemprop="dateCreated datePublished" datetime="2023-01-25T23:06:00-08:00">2023-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-30 18:54:38" itemprop="dateModified" datetime="2023-01-30T18:54:38-08:00">2023-01-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Mapping/" itemprop="url" rel="index"><span itemprop="name">Mapping</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Hardware: Laser Lidar</p>
-<p>Input: a series of 2D or 3D point, $X_0, X_1…X_n$</p>
-<p>Output: the R,T betwwen $X_i$ and $X_{i+1}$</p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>General Procedure</p>
-<ol>
-<li>Point selection: for lidar, the data is in order</li>
-<li>Matching: nearest neighbor</li>
-<li>Weighting</li>
-<li>Rejecting</li>
-<li>Calculate error</li>
-<li>Minimize the error</li>
-</ol>
-<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><ol>
-<li>get real data<ol>
-<li>From ros, record the data using ROS bag</li>
-<li>Convert the rosbag to numpy</li>
-</ol>
-</li>
-<li>Test algorithm in existing code</li>
-<li>Migrate the algorithm to Taichi version</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Python/taichi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Python/taichi/" class="post-title-link" itemprop="url">Taichi-Lang</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-01-17 23:34:00" itemprop="dateCreated datePublished" datetime="2023-01-17T23:34:00-08:00">2023-01-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-19 01:18:54" itemprop="dateModified" datetime="2023-01-19T01:18:54-08:00">2023-01-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Learn Taichi Language to speed up python</p>
-<ul>
-<li>Especially for my ISP project<ul>
-<li>Intensive computation</li>
-<li>many for loops along the image</li>
-</ul>
-</li>
-</ul>
-<h2 id="Essential"><a href="#Essential" class="headerlink" title="Essential"></a>Essential</h2><p>Backend</p>
-<ul>
-<li>CPU</li>
-<li>GPU: cuda &#x2F; vulkan &#x2F; opengl &#x2F; metal</li>
-</ul>
-<p>Field: basic data structure, like the ndarray in numpy</p>
-<p>Structure</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ti.kernerl </span><span class="comment">## main entry point</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main_func</span>(): <span class="comment">## must take type hinted arguments</span></span><br><span class="line">  compute()</span><br><span class="line"></span><br><span class="line"><span class="meta">@ti.func </span><span class="comment">## computational function</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute</span>(): <span class="comment">## only can be called inside kernel</span></span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>Parallel: parallelize any for loop at outermost scope in a kernel</p>
-<ul>
-<li>not at the outer most scope would be handled serially</li>
-</ul>
-<p>Arguments</p>
-<ul>
-<li>Take ti.types for input<ul>
-<li>scalar and Matrix are passed by value</li>
-<li>ndarray and template are passed by reference</li>
-</ul>
-</li>
-</ul>
-<p>Primitive type</p>
-<ul>
-<li>i,u,f</li>
-<li>8,16,32,64</li>
-<li>Data type can not be changed during running time, you can only cast to another type</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://docs.taichi-lang.org/docs/field">Field</a></p>
-<ul>
-<li>Scalar</li>
-<li>Vector: A matrix of 1d element, MxNxn, use a extra [] to access the element</li>
-<li>Matrix: A matrix of 2d element, MxNxmxn, use a extra [] to access the element</li>
-</ul>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>Local parameter must be defined in the for loop, since its not global shared.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Localization/particle-filter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Localization/particle-filter/" class="post-title-link" itemprop="url">LiDAR Particle Filter</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-01-17 01:00:00 / Modified: 23:33:56" itemprop="dateCreated datePublished" datetime="2023-01-17T01:00:00-08:00">2023-01-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Given a observation, we can have a distribution</p>
-<p>How to transform from multiple observation to a estimation?</p>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=NrzmH_yerBU&list=PLn8PRpmsu08rLRGrnF-S6TyGrmcA2X7kg&index=2">Particle filter</a></p>
-<ul>
-<li>Random pose</li>
-<li>Measure the similarity</li>
-<li>Resample</li>
-<li>Update</li>
-</ul>
-<h2 id="What-if-NO-map"><a href="#What-if-NO-map" class="headerlink" title="What if NO map"></a>What if NO map</h2><p>We need SLAM</p>
-<p>Two kind</p>
-<ul>
-<li>Filtering: EKF, particle<ul>
-<li>Only estimate based on the latest observation</li>
-</ul>
-</li>
-<li>Smoothing: pose graph optimization<ul>
-<li>Optimize the whole trajectory</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>Pose Graph Optimization</p>
-<ul>
-<li>Consider each move, the confidence is set by how much we trust the odometry</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230117012032.png" alt="image-20230117012032788"></p>
-<ul>
-<li>Key: align the feature that detected in different pose</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/Machine%20Learning/copilot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/Machine%20Learning/copilot/" class="post-title-link" itemprop="url">Copilot</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-01-16 15:16:00 / Modified: 15:34:02" itemprop="dateCreated datePublished" datetime="2023-01-16T15:16:00-08:00">2023-01-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Try to understand the trending AI tool</p>
-<ul>
-<li>ChatGPT</li>
-<li>Github Co-pilot</li>
-</ul>
-<p>Decide</p>
-<ul>
-<li>Should use co-pilot or not</li>
-</ul>
-<h2 id="Copilot"><a href="#Copilot" class="headerlink" title="Copilot"></a>Copilot</h2><p>From comment to code</p>
-<ul>
-<li>Use GPT3, trained to natural language</li>
-</ul>
-<p>Use the whole github dataset and fine-tune in a supervised version</p>
-<h2 id="Chat-GPT"><a href="#Chat-GPT" class="headerlink" title="Chat-GPT"></a>Chat-GPT</h2><ol>
-<li>Use the GPT3.5 and fine-tune it on conversation dataset (human labeled)</li>
-<li>Train on a reward model (human labeled)</li>
-<li>Optimize the policy</li>
-</ol>
-<h2 id="GPT-3"><a href="#GPT-3" class="headerlink" title="GPT-3"></a>GPT-3</h2><p>Super large model</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Mechanical/part/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Robotics/Mechanical/part/" class="post-title-link" itemprop="url">Part Learning in Mechanics</a>
+            <a href="/MarkdownNotes/Engineering/Mechanics/part/" class="post-title-link" itemprop="url">Part Learning in Mechanics</a>
         </h2>
 
         <div class="post-meta">
@@ -644,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-14 18:58:50" itemprop="dateModified" datetime="2023-01-14T18:58:50-08:00">2023-01-14</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -656,11 +231,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Mechanical/" itemprop="url" rel="index"><span itemprop="name">Mechanical</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
                 </span>
             </span>
 
@@ -700,7 +275,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Modeling/cadquery/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/cadquery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -714,7 +289,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Modeling/cadquery/" class="post-title-link" itemprop="url">Python Modeling Using CadQuery</a>
+            <a href="/MarkdownNotes/Engineering/Mechanics/cadquery/" class="post-title-link" itemprop="url">Python Modeling Using CadQuery</a>
         </h2>
 
         <div class="post-meta">
@@ -731,7 +306,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-14 23:30:36" itemprop="dateModified" datetime="2023-01-14T23:30:36-08:00">2023-01-14</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -743,11 +318,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Modeling/" itemprop="url" rel="index"><span itemprop="name">Modeling</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
                 </span>
             </span>
 
@@ -763,7 +338,7 @@
 
       
           <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Goal: 3D modeling something in my mind, and 3D print the object</p>
-<p>Tried: I tried </p>
+<p>Tried: I tried</p>
 <ul>
 <li>Solidworks (standard software for 3D modeling, but too expensive and not portable)</li>
 <li>Pure Python, generate point manually, then use Meshlab to reconstruct the face&#x2F;mesh again, this method is  free but the result is harsh and hard to modify.</li>
@@ -781,16 +356,16 @@
 <p>CAD file as cource code</p>
 <h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><ul>
 <li><p>Topology</p>
-<ul>
-<li>Boundary Representation, objects are defined by their enclosing surfaces</li>
-<li>vertex to edge to wire to face to shell to solid to compound</li>
-</ul>
+</li>
+<li><p>Boundary Representation, objects are defined by their enclosing surfaces</p>
+</li>
+<li><p>vertex to edge to wire to face to shell to solid to compound</p>
 </li>
 <li><p>Workplane, represent a plane that features are located</p>
-<ul>
-<li>Usually start with “XY” plane</li>
-<li>Work in 2D, but generate the 3D thing</li>
-</ul>
+</li>
+<li><p>Usually start with “XY” plane</p>
+</li>
+<li><p>Work in 2D, but generate the 3D thing</p>
 </li>
 <li><p>2D Construction: circle, lines, arcs, mirror</p>
 </li>
@@ -830,7 +405,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Skills/haircut/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/haircut/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -844,7 +419,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Life/Skills/haircut/" class="post-title-link" itemprop="url">理发助手</a>
+            <a href="/MarkdownNotes/Life%20Skill/Interests/haircut/" class="post-title-link" itemprop="url">理发助手</a>
         </h2>
 
         <div class="post-meta">
@@ -861,7 +436,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-31 01:14:16" itemprop="dateModified" datetime="2023-01-31T01:14:16-08:00">2023-01-31</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -873,11 +448,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
                 </span>
             </span>
 
@@ -895,7 +470,7 @@
           <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Create a haircut helper to reduce the time of haircut</p>
 <img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230102220652.png" alt="image-20230102220652682" style="zoom:33%;" />
 
-<p>Using a template trimmer to get hairstyle like the above state, the important part is the <strong>back of head</strong> since it’s hard to trim the hair in that area. </p>
+<p>Using a template trimmer to get hairstyle like the above state, the important part is the <strong>back of head</strong> since it’s hard to trim the hair in that area.</p>
 <h2 id="Prototype"><a href="#Prototype" class="headerlink" title="Prototype"></a>Prototype</h2><p>Type I: a fixed template that cover the back head area</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230102221030.png" alt="image-20230102221030466"></p>
 <h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h3><p>Material: soft alumni string to shape my head, since the precise model is not that important, a 4 by 4 grid is used</p>
@@ -965,7 +540,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/plan-2023/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/plan-2023/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -979,7 +554,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Life/plan-2023/" class="post-title-link" itemprop="url">2023计划</a>
+            <a href="/MarkdownNotes/Life%20Skill/plan-2023/" class="post-title-link" itemprop="url">2023计划</a>
         </h2>
 
         <div class="post-meta">
@@ -996,7 +571,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-24 00:01:28" itemprop="dateModified" datetime="2023-08-24T00:01:28-07:00">2023-08-24</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1008,7 +583,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
             </span>
 
@@ -1039,44 +614,42 @@
 <li><p>工业机器人方面，参与厨房机器人和底盘机器人项目，主要会涉及到机械臂算法的开发</p>
 </li>
 <li><p>茶叶机器人的重新开发</p>
-<ul>
-<li>注重技术积累</li>
-<li>3维识别</li>
-<li>底盘+机械臂</li>
-</ul>
+</li>
+<li><p>注重技术积累</p>
+</li>
+<li><p>3维识别</p>
+</li>
+<li><p>底盘+机械臂</p>
 </li>
 <li><p>仿真</p>
-<ul>
-<li><del>Webots， 控制，图像，模型</del></li>
-</ul>
+</li>
+<li><p><del>Webots， 控制，图像，模型</del></p>
 </li>
 <li><p>机械臂算法开发</p>
-<ul>
-<li><del>基于开源模型</del></li>
-</ul>
+</li>
+<li><p><del>基于开源模型</del></p>
 </li>
 <li><p><del>Modern C++ 学习</del></p>
-<ul>
-<li><del>语法， best practice</del></li>
-</ul>
+</li>
+<li><p><del>语法， best practice</del></p>
 </li>
 <li><p>导航与控制</p>
-<ul>
-<li><del>四轮独立转向系统模型</del></li>
-<li><del>MPC轨迹控制</del></li>
-<li>加速度到速度？</li>
-<li></li>
-</ul>
 </li>
+<li><p><del>四轮独立转向系统模型</del></p>
+</li>
+<li><p><del>MPC轨迹控制</del></p>
+</li>
+<li><p>加速度到速度？</p>
+</li>
+<li></li>
 </ul>
 <p>工作方面：</p>
 <ul>
 <li><p><del>继续完善PyISP项目，增加可视化模块（GUI），并且增加ISP的其他重要模块</del></p>
 </li>
 <li><p>算法开发方面，要更加注重原理和直觉的积累</p>
-<ul>
-<li>和manager多交流</li>
-</ul>
+</li>
+<li><p>和manager多交流</p>
 </li>
 <li><p>积累更多经验，主要是关于ISP的，对于各个模块要更加熟悉</p>
 </li>
@@ -1099,25 +672,19 @@
 <p>PyISP项目主要是工作时间在开发，因为也算是辅助工作</p>
 <p>在制作机器人方面，目前还欠缺的点是</p>
 <ul>
-<li>传感器融合：IMU，Lidar<ul>
+<li>传感器融合：IMU，Lidar</li>
 <li>已经在开展，个人的机器人项目采集数据和Ground Truth较难获取</li>
-<li>通过数据集开展研究<ul>
+<li>通过数据集开展研究</li>
 <li>读取数据，绘图，明白数据意义</li>
 <li>应用ICP算法绘制轨迹</li>
 <li>应用IMU算法绘制轨迹</li>
 <li>融合Lidar和IMU优化效果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>机械臂算法开发<ul>
+<li>机械臂算法开发</li>
 <li><del>成熟的机械臂算法库研究</del></li>
 <li><del>正运动学</del></li>
 <li><del>逆运动学</del></li>
 <li><del>URDF解析</del></li>
 <li><del>碰撞检测</del></li>
-</ul>
-</li>
 </ul>
 <blockquote>
 <p>在实体机器人上实现和研究这些算法太麻烦了，利用机器人仿真平台进行测试</p>
@@ -1222,7 +789,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Project/mobile-robot-ii/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-ii/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1236,7 +803,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Project/mobile-robot-ii/" class="post-title-link" itemprop="url">Build A Mobile Robot from Scratch —— Part II</a>
+            <a href="/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-ii/" class="post-title-link" itemprop="url">Build A Mobile Robot from Scratch —— Part II</a>
         </h2>
 
         <div class="post-meta">
@@ -1245,10 +812,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-12-30 11:10:00 / Modified: 12:17:08" itemprop="dateCreated datePublished" datetime="2022-12-30T11:10:00-08:00">2022-12-30</time>
+              <time title="Created: 2022-12-30 11:10:00" itemprop="dateCreated datePublished" datetime="2022-12-30T11:10:00-08:00">2022-12-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1259,11 +832,15 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
                 </span>
             </span>
 
@@ -1284,27 +861,21 @@
 <p>Material:</p>
 <ul>
 <li>Chasis</li>
-<li>Power distribution: 12V, 5V, GND, voltage transformer, power </li>
+<li>Power distribution: 12V, 5V, GND, voltage transformer, power</li>
 <li>Move: Motor</li>
 <li>Control: Arduino, Jetson Nano</li>
-<li>Sensor<ul>
+<li>Sensor</li>
 <li>Encoder</li>
 <li>IMU</li>
 <li>IR: for communication and control</li>
 </ul>
-</li>
-</ul>
 <p>Function</p>
 <ul>
 <li>Remote Manual Control: move forward&#x2F;backward, rotate clockwise&#x2F;counter-clockwise. SPEED CONTROL</li>
-<li>TODO: move robot to a specific position. POSITION CONTROL<ul>
+<li>TODO: move robot to a specific position. POSITION CONTROL</li>
 <li>use IMU, accumulate the ACCL</li>
-</ul>
-</li>
-<li>TODO: use lidar to build map and refer it for localization. CLOSED LOOP POSITION CONTROL<ul>
+<li>TODO: use lidar to build map and refer it for localization. CLOSED LOOP POSITION CONTROL</li>
 <li>use Lidar</li>
-</ul>
-</li>
 </ul>
 <p>For the current phase, the goal is to move from point A to point B</p>
 <ul>
@@ -1321,11 +892,9 @@
 <p>半年的时间做一个demo</p>
 <p>投入20w-30w美元</p>
 <ul>
-<li>招人<ul>
+<li>招人</li>
 <li>电气开发，福龙水平</li>
 <li>算法开发</li>
-</ul>
-</li>
 </ul>
 <p>合作：</p>
 <ul>
@@ -1354,10 +923,422 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/face_change/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/face_change/" class="post-title-link" itemprop="url">Face Time Lapse</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-29 13:06:00" itemprop="dateCreated datePublished" datetime="2022-12-29T13:06:00-08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Show how my face and hair style changes from time to time</p>
+<p>Input: a bunch of selfie</p>
+<p>Output: a short clip show the change</p>
+<h2 id="Plan"><a href="#Plan" class="headerlink" title="Plan"></a>Plan</h2><ol>
+<li>Collect data (image) from camera and phone</li>
+<li>Put into Lightroom in a album for organization and further development</li>
+<li>Output the image with time-tagged prefix</li>
+<li>Remove the background (maybe not)</li>
+<li>Use computer vision to detect the face and crop</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Eye alignment is the key process</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hujunhan/eyelign">https://github.com/hujunhan/eyelign</a></p>
+<ol>
+<li>main.py use machine learning to do the most job</li>
+<li>gui_manual_align.py use GUI to manual align the corner case</li>
+</ol>
+<hr>
+<p>Generate the timelapse</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg \</span><br><span class="line">-framerate 15 \</span><br><span class="line">-pattern_type glob \</span><br><span class="line">-i <span class="string">&quot;/Users/Hu/Downloads/output/*.jpg&quot;</span> \</span><br><span class="line">-s:v 500x500 \</span><br><span class="line">-c:v libx264 \</span><br><span class="line">-crf 17 \</span><br><span class="line">-pix_fmt yuv420p \</span><br><span class="line">timelapse.mp4</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/BNO055/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/BNO055/" class="post-title-link" itemprop="url">IMU:BNO-055</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-22 00:07:00" itemprop="dateCreated datePublished" datetime="2022-12-22T00:07:00-08:00">2022-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>BNO-055 is a 9-DOF IMU that can output absolute orientation (a hard problem to solve)</p>
+<ul>
+<li>The fusion algorithm is in the chip already</li>
+<li>Can output</li>
+<li>Absolute orientation (Quaterion)</li>
+<li>Linear acceleration</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-22-00-13-15.jpg" alt="sensors_pinout.jpg"></p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Communicate with a board by I2C&#x2F;IIC</p>
+<ul>
+<li>SDA: data</li>
+<li>SCL: clock</li>
+</ul>
+<p>Check if the system detected</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span> <span class="comment">//include Wire.h library</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Wire.<span class="built_in">begin</span>(); <span class="comment">// Wire communication begin</span></span><br><span class="line">Serial.<span class="built_in">begin</span>(<span class="number">9600</span>); <span class="comment">// The baudrate of Serial monitor is set in 9600</span></span><br><span class="line"><span class="keyword">while</span> (!Serial); <span class="comment">// Waiting for Serial Monitor</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;\nI2C Scanner&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">byte error, address; <span class="comment">//variable for error and I2C address</span></span><br><span class="line"><span class="type">int</span> nDevices;</span><br><span class="line"></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;Scanning...&quot;</span>);</span><br><span class="line"></span><br><span class="line">nDevices = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (address = <span class="number">1</span>; address &lt; <span class="number">127</span>; address++ )</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// The i2c_scanner uses the return value of</span></span><br><span class="line"><span class="comment">// the Write.endTransmisstion to see if</span></span><br><span class="line"><span class="comment">// a device did acknowledge to the address.</span></span><br><span class="line">Wire.<span class="built_in">beginTransmission</span>(address);</span><br><span class="line">error = Wire.<span class="built_in">endTransmission</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;I2C device found at address 0x&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (address &lt; <span class="number">16</span>)</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">Serial.<span class="built_in">print</span>(address, HEX);</span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;  !&quot;</span>);</span><br><span class="line">nDevices++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (error == <span class="number">4</span>)</span><br><span class="line">&#123;</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;Unknown error at address 0x&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (address &lt; <span class="number">16</span>)</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">Serial.<span class="built_in">println</span>(address, HEX);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (nDevices == <span class="number">0</span>)</span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;No I2C devices found\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;done\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">delay</span>(<span class="number">5000</span>); <span class="comment">// wait 5 seconds for the next I2C scan</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The address should be 0x28</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Use Adafruit library</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/ir-sensor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/ir-sensor/" class="post-title-link" itemprop="url">IR Remote</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-19 21:39:00" itemprop="dateCreated datePublished" datetime="2022-12-19T21:39:00-08:00">2022-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>IR use light to transmit data</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-21-39-27.png" alt="image-20221219213927203"></p>
+<p>Light used is infrared</p>
+<ul>
+<li>inexpensive</li>
+<li>subject to interference</li>
+<li>Sunlight would interference the IR</li>
+</ul>
+<p>Data are modulated in 38K Hz (usually)</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-21-41-12.png" alt="image-20221219214112137"></p>
+<p>Each button sends a unique code</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><h3 id="Sender"><a href="#Sender" class="headerlink" title="Sender"></a>Sender</h3><p>How to see if the controller works？</p>
+<ul>
+<li>Human eye can’t see the light</li>
+<li>Camera can see it (phone)</li>
+</ul>
+<h3 id="Receiver"><a href="#Receiver" class="headerlink" title="Receiver"></a>Receiver</h3><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-22-16-09.png" alt="image-20221219221609056" style="zoom:33%;" />
+
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> RECV_PIN = <span class="number">11</span>; <span class="comment">// the pin where you connect the output pin of IR sensor</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;</span><br><span class="line">decode_results results;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">irrecv.<span class="built_in">enableIRIn</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (irrecv.<span class="built_in">decode</span>(&amp;results))<span class="comment">// Returns 0 if no data ready, 1 if data ready.</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//int value = results.value; ;// Results of decoding are stored in result.value</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;Code: &quot;</span>);</span><br><span class="line">Serial.<span class="built_in">println</span>(results.value,HEX); <span class="comment">//prints the value a a button press</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">irrecv.<span class="built_in">resume</span>(); <span class="comment">// Restart the ISR state machine and Receive the next value</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/mpu6050/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/mpu6050/" class="post-title-link" itemprop="url">IMU:MPU6050</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-17 23:04:00" itemprop="dateCreated datePublished" datetime="2022-12-17T23:04:00-08:00">2022-12-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>MPU6050 is a IMU that can measure acceleration and orientation</p>
+<p>This is part of the localization system, could be combined with encoder and lidar to provide robot a high-accuracy localization system</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-17-23-07-13.jpeg" alt="IMG_7084"></p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Communicate with a board by I2C&#x2F;IIC</p>
+<ul>
+<li>SDA: data</li>
+<li>SCL: clock</li>
+</ul>
+<p>Check if the system detected</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo i2cdetect -r -y 1</span><br><span class="line"><span class="comment">## output</span></span><br><span class="line">0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span><br><span class="line">00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --</span><br><span class="line">70: -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
+
+<p>Which means the MPU6050’s address is 68</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># read_word and read_word_2c from http://blog.bitify.co.uk/2013/11/reading-data-from-mpu-6050-on-raspberry.html</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_word</span>(<span class="params">adr</span>):</span><br><span class="line">high = bus.read_byte_data(ADDR, adr)</span><br><span class="line">low = bus.read_byte_data(ADDR, adr+<span class="number">1</span>)</span><br><span class="line">val = (high &lt;&lt; <span class="number">8</span>) + low</span><br><span class="line"><span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_word_2c</span>(<span class="params">adr</span>):</span><br><span class="line">val = read_word(adr)</span><br><span class="line"><span class="keyword">if</span> (val &gt;= <span class="number">0x8000</span>):</span><br><span class="line"><span class="keyword">return</span> -((<span class="number">65535</span> - val) + <span class="number">1</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"><span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the acceleration vals</span></span><br><span class="line">accel_x = read_word_2c(ACCEL_XOUT_H) / <span class="number">16384.0</span></span><br><span class="line">accel_y = read_word_2c(ACCEL_YOUT_H) / <span class="number">16384.0</span></span><br><span class="line">accel_z = read_word_2c(ACCEL_ZOUT_H) / <span class="number">16384.0</span></span><br><span class="line"><span class="comment"># Read the gyro vals</span></span><br><span class="line">gyro_x = read_word_2c(GYRO_XOUT_H) / <span class="number">131.0</span></span><br><span class="line">gyro_y = read_word_2c(GYRO_YOUT_H) / <span class="number">131.0</span></span><br><span class="line">gyro_z = read_word_2c(GYRO_ZOUT_H) / <span class="number">131.0</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1423,20 +1404,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">351</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">126</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="OverviewWhat is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We need to def">
+<meta property="og:type" content="article">
+<meta property="og:title" content="First Step to Optimization">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Modeling/Optimization-tutorial/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="OverviewWhat is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We need to def">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-routing.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-assi.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-jsp.png">
+<meta property="article:published_time" content="2019-09-07T22:52:00.000Z">
+<meta property="article:modified_time" content="2023-08-30T06:22:29.045Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="model">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-routing.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Modeling/Optimization-tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>First Step to Optimization | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Modeling/Optimization-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          First Step to Optimization
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-07 15:52:00" itemprop="dateCreated datePublished" datetime="2019-09-07T15:52:00-07:00">2019-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Modeling/" itemprop="url" rel="index"><span itemprop="name">Modeling</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><h3 id="What-is-an-optimization-problem"><a href="#What-is-an-optimization-problem" class="headerlink" title="What is an optimization problem"></a>What is an optimization problem</h3><p>Goal: Find the <em>best</em> solution to a problem out of a large set of possible solutions</p>
+<p>Elements:</p>
+<ul>
+<li>objective: the goal, the value you want to optimize</li>
+</ul>
+<p>We need to define a function to calculates the value</p>
+<ul>
+<li>constrains: the restrictions on the set of possible solution</li>
+</ul>
+<h2 id="Linear-Optimization"><a href="#Linear-Optimization" class="headerlink" title="Linear Optimization"></a>Linear Optimization</h2><p>Computing the best solution to a problem modeled as a set of linear relationships</p>
+<p>These problems often arise in engineering disciplines</p>
+<span id="more"></span>
+
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Goal: minimize $3x+4y$ with following constrains</p>
+<table>
+<thead>
+<tr>
+<th align="center"><em>x</em> + 2<em>y</em></th>
+<th align="center">≤</th>
+<th align="center">14</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">3<em>x</em> – <em>y</em></td>
+<td align="center">≥</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><em>x</em> – <em>y</em></td>
+<td align="center">≤</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<h2 id="Constraint-Optimization"><a href="#Constraint-Optimization" class="headerlink" title="Constraint Optimization"></a>Constraint Optimization</h2><p>Identifying feasible solutions out of a large set of candidates, where problem can be  modeled in terms of <strong>arbitrary constrains</strong></p>
+<p>This optimization <strong>focus on the constraints and variable</strong>s rather than the objective function. It just want to find out a <strong>feasible solution</strong>, not a optimal solution</p>
+<h3 id="Example-1-Employee-Scheduling"><a href="#Example-1-Employee-Scheduling" class="headerlink" title="Example 1 Employee Scheduling"></a>Example 1 Employee Scheduling</h3><p>Problem: employee scheduling</p>
+<p>Background: create weekly schedules for their employees.</p>
+<blockquote>
+<p>e.g.  a company runs three 8-hour shifts per day and assigns three of its four employees to different shifts each day, while giving the fourth the day off</p>
+<p>possible schedules: $4!&#x3D;24$</p>
+<p>possible schedules in a week: $24^7$</p>
+<p>So we need to narrow down the solution space</p>
+</blockquote>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>Find efficient paths for transporting items through a complex network.</p>
+<p>The network usually represented by a graph like the one below</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-routing.png"></p>
+<p>There are mainly 2 types of routing problem:</p>
+<ul>
+<li><p>node-routing: the goal is to visit the node</p>
+</li>
+<li><p>arc-routing: the goal is to visit the arc</p>
+</li>
+</ul>
+<p>e.g.1 Google Map’s Street view: Google need to construct the shortest route for the team to reduce the travel length. This is a <strong>arc-routing problem</strong></p>
+<p>e.g.2 A company needs to deliver packages to various locations using a fleet of vehicles. Each arc has a weight, the problem is to find a set of paths that <strong>include every destination while minimizing the total cost</strong>. This is a node-routing problem</p>
+<p>TODO: ADD MORE DETAILS</p>
+<h2 id="Pack"><a href="#Pack" class="headerlink" title="Pack"></a>Pack</h2><p>The goal is to find the best way to pack a set of items of given sizes into containers with fixed capacities</p>
+<p>There are mainly 2 packing problems:</p>
+<ul>
+<li>Knapack problems</li>
+</ul>
+<p>multiple containers (called knapack), items have <em>values</em> as well as <em>sizes</em>,</p>
+<p>goal: maximize the total value</p>
+<ul>
+<li>bin packing</li>
+</ul>
+<p>multiple containers (called bin) with equal capacity.</p>
+<p>goal: minimizing the number of bins</p>
+<h2 id="Assignment-Problem"><a href="#Assignment-Problem" class="headerlink" title="Assignment Problem"></a>Assignment Problem</h2><p>A group of workers  has to perform a set of tasks. For each worker and task, there is a fixed cost for that worker to perform the task. The goal is to minimize the total cost.</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-assi.png"></p>
+<p>And there will be a cost matrix</p>
+<h2 id="Scheduling"><a href="#Scheduling" class="headerlink" title="Scheduling"></a>Scheduling</h2><h3 id="The-Job-Shop-Problem"><a href="#The-Job-Shop-Problem" class="headerlink" title="The Job Shop Problem"></a>The Job Shop Problem</h3><p>Multiple jobs are processed on several machines. Each job consists of a sequence of tasks, which must be performed in a given order, and each task must be processed on a specific machine.</p>
+<p>Several constraints :</p>
+<ul>
+<li>No task for a job can be started until the previous task for that job is completed.</li>
+<li>A machine can only work on one task one time</li>
+<li>A task, once started, must run to completion</li>
+</ul>
+<p>For each task, it can be labeled by a pair of numbers $(m,p)$ where $m$ is the number of the machine that the task must processed and $p$ is the processing time of the task</p>
+<p>e.g. in a factory, there are 3 jobs</p>
+<ul>
+<li>job 0 &#x3D; [(0, 3), (1, 2), (2, 2)]</li>
+<li>job 1 &#x3D; [(0, 2), (2, 1), (1, 4)]</li>
+<li>job 2 &#x3D; [(1, 4), (2, 3)]</li>
+</ul>
+<p>and the  solution can be illustrate like this</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-jsp.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/model/" rel="tag"># model</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/FBD-Language/" rel="prev" title="功能块图编程语言">
+      <i class="fa fa-chevron-left"></i> 功能块图编程语言
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Engineering/Control%20Theory/control-theory-in-cs/" rel="next" title="Control Theory and Application in CS">
+      Control Theory and Application in CS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-an-optimization-problem"><span class="nav-text">What is an optimization problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Optimization"><span class="nav-text">Linear Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constraint-Optimization"><span class="nav-text">Constraint Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1-Employee-Scheduling"><span class="nav-text">Example 1 Employee Scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-text">Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pack"><span class="nav-text">Pack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assignment-Problem"><span class="nav-text">Assignment Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduling"><span class="nav-text">Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Job-Shop-Problem"><span class="nav-text">The Job Shop Problem</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

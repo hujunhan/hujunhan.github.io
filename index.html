@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Question/0826/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/0827/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Life/Question/0826/" class="post-title-link" itemprop="url">0826 Question</a>
+            <a href="/MarkdownNotes/Life%20Skill/Questions/0827/" class="post-title-link" itemprop="url">0827 Question</a>
         </h2>
 
         <div class="post-meta">
@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-27 12:38:00 / Modified: 14:10:53" itemprop="dateCreated datePublished" datetime="2023-08-27T12:38:00-07:00">2023-08-27</time>
+              <time title="Created: 2023-08-28 11:31:00" itemprop="dateCreated datePublished" datetime="2023-08-28T11:31:00-07:00">2023-08-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -225,11 +231,168 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Question/" itemprop="url" rel="index"><span itemprop="name">Question</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="How-Body-Fat-Scale-Works"><a href="#How-Body-Fat-Scale-Works" class="headerlink" title="How Body Fat Scale Works"></a>How Body Fat Scale Works</h2><p>Bioelectrical Impedance Analysis</p>
+<p>When electrical current passed through the body, it would meet resistance.</p>
+<p>The resistance is affected by</p>
+<ul>
+<li>Fat</li>
+<li>Bone</li>
+<li>Muscle</li>
+</ul>
+<p>Limitation</p>
+<ul>
+<li>Only the lower body</li>
+<li>Not accurate</li>
+</ul>
+<p>Other:</p>
+<ul>
+<li>DEXA scans: Dual-Energy X-ray Absorptiometry</li>
+<li>Hydrostatic weighing</li>
+</ul>
+<h2 id="While-Copy-What-info"><a href="#While-Copy-What-info" class="headerlink" title="While Copy, What info"></a>While Copy, What info</h2><p>Maybe not raw content</p>
+<p>Format: Maybe in multiple formats</p>
+<ul>
+<li>text, HTML verison</li>
+</ul>
+<p>Stored in RAM</p>
+<p>Handled by OS API</p>
+<p>Application decide how and which formats to provide</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Cocoa</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ViewController</span>: <span class="title class_">NSViewController</span> &#123;</span><br><span class="line"><span class="keyword">@IBOutlet</span> <span class="keyword">var</span> textField: <span class="type">NSTextField</span>!</span><br><span class="line"><span class="keyword">@IBAction</span> <span class="keyword">func</span> <span class="title function_">copyButtonClicked</span>(<span class="keyword">_</span> <span class="params">sender</span>: <span class="keyword">Any</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> pasteboard <span class="operator">=</span> <span class="type">NSPasteboard</span>.general</span><br><span class="line">pasteboard.declareTypes([.string], owner: <span class="literal">nil</span>)</span><br><span class="line">pasteboard.setString(textField.stringValue, forType: .string)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@IBAction</span> <span class="keyword">func</span> <span class="title function_">pasteButtonClicked</span>(<span class="keyword">_</span> <span class="params">sender</span>: <span class="keyword">Any</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> pasteboard <span class="operator">=</span> <span class="type">NSPasteboard</span>.general</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> stringFromPasteboard <span class="operator">=</span> pasteboard.string(forType: .string) &#123;</span><br><span class="line">textField.stringValue <span class="operator">=</span> stringFromPasteboard</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Famous-Food-Track"><a href="#Famous-Food-Track" class="headerlink" title="Famous Food Track"></a>Famous Food Track</h2><ul>
+<li>English: bacon, sausage, beans, tomatoes, fish &amp; chips</li>
+<li>French: Coq au Vin (Chicken in Wine), Bouillabaisse (Fish)</li>
+<li>Italian: Pizza, Pasta, Risotto, Tiramisu</li>
+<li>Spanish: Paella, Tapas, Gazpacho, Churros</li>
+<li>Chinese: Dim Sum, Peaking Duck, Hot pot, Kong Pao Chicken</li>
+<li>Indian: Biryani(chicken), Butter chicken,Samosa, Masala</li>
+</ul>
+<h2 id="Sushi-Menu"><a href="#Sushi-Menu" class="headerlink" title="Sushi Menu"></a>Sushi Menu</h2><ul>
+<li>Nigiri: raw or cooked fish on vinegared rice</li>
+<li>Sashimi: thin slice of raw fish</li>
+<li>Maki: Sushi row</li>
+<li>Temaki: Hand roll</li>
+<li>Nori: Seaweed wrapper</li>
+</ul>
+<p>Fish</p>
+<ul>
+<li>Salmon: Sake</li>
+<li>Tune: Ahi</li>
+<li>Yellowtail: Hamachi</li>
+<li>Eel: Unagi</li>
+<li>Shrimp: Ebi</li>
+<li>Crab: kani</li>
+</ul>
+<h2 id="Water-Percent"><a href="#Water-Percent" class="headerlink" title="Water Percent"></a>Water Percent</h2><p>Determine the total mass (easy)</p>
+<p>Determine the water mass (hard)</p>
+<h3 id="Watermelon"><a href="#Watermelon" class="headerlink" title="Watermelon"></a>Watermelon</h3><p>92%</p>
+<p>Oven drying</p>
+<h3 id="Human"><a href="#Human" class="headerlink" title="Human"></a>Human</h3><p>bioelectrical impedance</p>
+<h2 id="Name-Origin-of-City"><a href="#Name-Origin-of-City" class="headerlink" title="Name Origin of City"></a>Name Origin of City</h2><ul>
+<li>San Jose: The city was named in honor of Saint Joseph (San José in Spanish)</li>
+<li>Milpitas: Milpitas is generally believed to be named after “Milpitas,” which was the name of a rancho belonging to the prominent Alviso family, who were among the first settlers in the area.</li>
+<li>Sunnyvale: The city of Sunnyvale was incorporated in 1912 and was originally named “Murphy” after Martin Murphy Jr., an early settler in California</li>
+<li>Mountain View: Santa Cruz Mountains</li>
+</ul>
+<h3 id="Alviso"><a href="#Alviso" class="headerlink" title="Alviso"></a>Alviso</h3><p>Historical significance in Santa Clara</p>
+<p>The area was named for Ignacio Alviso, the son of Corporal Domingo Alviso, one of the members of the <strong>De Anza Expedition</strong> that first explored the San Francisco Bay area in 1776</p>
+<h3 id="De-Anza"><a href="#De-Anza" class="headerlink" title="De Anza"></a>De Anza</h3><p>The first De Anza expedition set out in 1774 to prove that a land route to California was feasible</p>
+<h2 id="Skin-Type"><a href="#Skin-Type" class="headerlink" title="Skin Type"></a>Skin Type</h2><ul>
+<li>Genetics: Adaptation to different environmental pressure</li>
+<li>UV Radiation</li>
+<li>Humidity</li>
+<li>Sexual S</li>
+<li>Hormones</li>
+<li>Diet</li>
+<li>Environment</li>
+<li>Stress</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/0826/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Questions/0826/" class="post-title-link" itemprop="url">0826 Question</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-27 12:38:00" itemprop="dateCreated datePublished" datetime="2023-08-27T12:38:00-07:00">2023-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
                 </span>
             </span>
 
@@ -247,11 +410,9 @@
           <h2 id="How-does-Ink-Made"><a href="#How-does-Ink-Made" class="headerlink" title="How does Ink Made"></a>How does Ink Made</h2><p>Componenets</p>
 <ul>
 <li>Water</li>
-<li>Dye or Pigment: provide color<ul>
+<li>Dye or Pigment: provide color</li>
 <li>dye is soluble in water</li>
 <li>Pigment are solid</li>
-</ul>
-</li>
 <li>Surfactants: keep dye or pigment dispersed uniformly 表面活性剂</li>
 <li>Humectants: 保湿剂</li>
 <li>Preservative: 防腐剂</li>
@@ -266,17 +427,13 @@
 <li>Camera don’t need to be too small</li>
 </ul>
 <h2 id="Cat-Colors"><a href="#Cat-Colors" class="headerlink" title="Cat Colors"></a>Cat Colors</h2><ul>
-<li>Genetics<ul>
+<li>Genetics</li>
 <li>color gene</li>
 <li>White spotting</li>
 <li>Agouti</li>
 <li>Dilution gene</li>
-</ul>
-</li>
-<li>Environment<ul>
+<li>Environment</li>
 <li>Temperature-sensitive</li>
-</ul>
-</li>
 </ul>
 <h3 id="Why-so-many-gene"><a href="#Why-so-many-gene" class="headerlink" title="Why so many gene?"></a>Why so many gene?</h3><ul>
 <li>Evolutionary advantage</li>
@@ -315,7 +472,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life/Question/0825/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/0825/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -329,7 +486,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Life/Question/0825/" class="post-title-link" itemprop="url">0825 Question</a>
+            <a href="/MarkdownNotes/Life%20Skill/Questions/0825/" class="post-title-link" itemprop="url">0825 Question</a>
         </h2>
 
         <div class="post-meta">
@@ -338,10 +495,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-26 13:09:00 / Modified: 23:47:51" itemprop="dateCreated datePublished" datetime="2023-08-26T13:09:00-07:00">2023-08-26</time>
+              <time title="Created: 2023-08-26 13:09:00" itemprop="dateCreated datePublished" datetime="2023-08-26T13:09:00-07:00">2023-08-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -352,11 +515,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life/Question/" itemprop="url" rel="index"><span itemprop="name">Question</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
                 </span>
             </span>
 
@@ -383,11 +546,9 @@
 <h2 id="Standard-Volume-for-Music"><a href="#Standard-Volume-for-Music" class="headerlink" title="Standard Volume for Music"></a>Standard Volume for Music</h2><ol>
 <li>recording, leave room to avoid clipping</li>
 <li>use reference track</li>
-<li>LUFS: loudness units relative to full scale<ol>
+<li>LUFS: loudness units relative to full scale</li>
 <li>Spotify -14</li>
 <li>Youtube -14</li>
-</ol>
-</li>
 </ol>
 <h3 id="LUFS-calculation"><a href="#LUFS-calculation" class="headerlink" title="LUFS calculation"></a>LUFS calculation</h3><ul>
 <li>Frequency weighting</li>
@@ -462,7 +623,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/System/education-system/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/education-system/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -476,7 +637,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Philosophy/System/education-system/" class="post-title-link" itemprop="url">Robotics System Design</a>
+            <a href="/MarkdownNotes/Engineering/System%20Design/education-system/" class="post-title-link" itemprop="url">Robotics System Design</a>
         </h2>
 
         <div class="post-meta">
@@ -485,10 +646,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-17 21:33:00 / Modified: 21:51:24" itemprop="dateCreated datePublished" datetime="2023-08-17T21:33:00-07:00">2023-08-17</time>
+              <time title="Created: 2023-08-17 21:33:00" itemprop="dateCreated datePublished" datetime="2023-08-17T21:33:00-07:00">2023-08-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -499,11 +666,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/System/" itemprop="url" rel="index"><span itemprop="name">System</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/System-Design/" itemprop="url" rel="index"><span itemprop="name">System Design</span></a>
                 </span>
             </span>
 
@@ -520,43 +687,25 @@
       
           <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>design a system that could educate people even if their previous education level is low , easy to understand</p>
 <h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><ul>
-<li>Psychology<ul>
-<li>Cognitive development stages (e.g., Piaget’s theory), learning styles, motivation theories, and memory retention.<ul>
+<li>Psychology</li>
+<li>Cognitive development stages (e.g., Piaget’s theory), learning styles, motivation theories, and memory retention.</li>
 <li>Style: visual&#x2F;auditory&#x2F;read&amp;write&#x2F;kinesthetic learner</li>
 <li>Motivation: self-determination. Expectancy-value. goal setting</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Curriculum<ul>
-<li>Bloom’s Taxonomy, backward design, differentiation<ul>
+<li>Curriculum</li>
+<li>Bloom’s Taxonomy, backward design, differentiation</li>
 <li>Bloom: remember, understand, apply, analyze, evaluate, create</li>
-<li>Backward design, purpose driven<ul>
+<li>Backward design, purpose driven</li>
 <li>Results</li>
 <li>Evidence</li>
 <li>Plan learning</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Pedagogical<ul>
+<li>Pedagogical</li>
 <li>Inquiry-based learning, project-based learning, flipped classroom, experiential learning.</li>
-</ul>
-</li>
-<li>Tech<ul>
+<li>Tech</li>
 <li>Learning Management Systems (LMS), adaptive learning platforms, AR&#x2F;VR in education, gamification.</li>
-</ul>
-</li>
-<li>Assessment<ul>
+<li>Assessment</li>
 <li>Formative vs. summative assessment, authentic assessment, rubrics.</li>
-</ul>
-</li>
-<li>Adult Learning<ul>
+<li>Adult Learning</li>
 <li>Self-directed learning, experiential learning, relevance in adult learning.</li>
-</ul>
-</li>
 </ul>
 <h2 id="System-Design"><a href="#System-Design" class="headerlink" title="System Design"></a>System Design</h2><ol>
 <li>Understand the user, need assessment</li>
@@ -587,7 +736,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/System/robotics-system/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/robotics-system/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -601,7 +750,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Philosophy/System/robotics-system/" class="post-title-link" itemprop="url">Robotics System Design</a>
+            <a href="/MarkdownNotes/Engineering/System%20Design/robotics-system/" class="post-title-link" itemprop="url">Robotics System Design</a>
         </h2>
 
         <div class="post-meta">
@@ -610,10 +759,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-17 21:18:00 / Modified: 21:27:12" itemprop="dateCreated datePublished" datetime="2023-08-17T21:18:00-07:00">2023-08-17</time>
+              <time title="Created: 2023-08-17 21:18:00" itemprop="dateCreated datePublished" datetime="2023-08-17T21:18:00-07:00">2023-08-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -624,11 +779,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/System/" itemprop="url" rel="index"><span itemprop="name">System</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/System-Design/" itemprop="url" rel="index"><span itemprop="name">System Design</span></a>
                 </span>
             </span>
 
@@ -688,7 +843,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/HDR/2-system-design/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/RawShines/2-system-design/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -702,7 +857,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/CS/HDR/2-system-design/" class="post-title-link" itemprop="url">System Design for RawShines Project</a>
+            <a href="/MarkdownNotes/Miscellaneous/RawShines/2-system-design/" class="post-title-link" itemprop="url">System Design for RawShines Project</a>
         </h2>
 
         <div class="post-meta">
@@ -719,7 +874,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-19 18:06:34" itemprop="dateModified" datetime="2023-08-19T18:06:34-07:00">2023-08-19</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -731,11 +886,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/HDR/" itemprop="url" rel="index"><span itemprop="name">HDR</span></a>
+                  <a href="/categories/MarkdownNotes/Miscellaneous/RawShines/" itemprop="url" rel="index"><span itemprop="name">RawShines</span></a>
                 </span>
             </span>
 
@@ -762,39 +917,29 @@
 <li><strong>Output Module</strong>: Outputs the processed HEIC image, complete with options for subsequent actions such as saving or sharing.</li>
 </ul>
 <h2 id="Detailed-Design"><a href="#Detailed-Design" class="headerlink" title="Detailed Design:"></a>Detailed Design:</h2><ul>
-<li><strong>a. Input Module</strong>:<ul>
+<li><strong>a. Input Module</strong>:</li>
 <li><strong>File Selection</strong>: Facilitates selection or drag-and-drop of RAW files.</li>
 <li><strong>File Validation</strong>: Ensures files adhere to supported RAW formats.</li>
 <li><strong>Batch Processing</strong>: Enables processing of multiple files simultaneously.</li>
-</ul>
-</li>
-<li><strong>b. Image Processing Engine</strong>:<ul>
+<li><strong>b. Image Processing Engine</strong>:</li>
 <li><strong>Decoding Engine</strong>: Utilizes libraries like <code>libraw</code> for RAW image decoding.</li>
 <li><strong>Color Correction</strong>: Employs algorithms for consistent color grading.</li>
 <li><strong>Intermediate Format Storage</strong>: Ensures quick processing by converting and storing images in an intermediate format.</li>
-</ul>
-</li>
-<li><strong>c. Modification GUI</strong>:<ul>
+<li><strong>c. Modification GUI</strong>:</li>
 <li><strong>Preview Pane</strong>: Real-time display of image modifications.</li>
 <li><strong>Adjustment Sliders</strong>: Controls for brightness, contrast, saturation, etc.</li>
 <li><strong>Undo&#x2F;Redo Actions</strong>: Grants flexibility in modifications.</li>
 <li><strong>Presets</strong>: Allows quick edits through predefined settings.</li>
 <li><strong>Zoom &amp; Pan Tools</strong>: Facilitates detail inspection.</li>
 <li><strong>Histogram Display</strong>: Dynamic histogram for informed editing.</li>
-</ul>
-</li>
-<li><strong>d. HEIC Converter</strong>:<ul>
+<li><strong>d. HEIC Converter</strong>:</li>
 <li><strong>Conversion Engine</strong>: Employs libraries like <code>libheif</code> for HEIC conversion.</li>
 <li><strong>Compression Settings</strong>: Users can set desired compression levels.</li>
 <li><strong>Profile Embedding</strong>: Guarantees color consistency by embedding ICC profiles.</li>
-</ul>
-</li>
-<li><strong>e. Output Module</strong>:<ul>
+<li><strong>e. Output Module</strong>:</li>
 <li><strong>File Saving</strong>: Users dictate destination and filename for output.</li>
 <li><strong>Metadata Preservation</strong>: Original metadata remains intact in the converted image.</li>
 <li><strong>Sharing Options</strong>: Direct integration for cloud, social media, or email sharing.</li>
-</ul>
-</li>
 </ul>
 <h2 id="System-Architecture-amp-Technologies"><a href="#System-Architecture-amp-Technologies" class="headerlink" title="System Architecture &amp; Technologies:"></a>System Architecture &amp; Technologies:</h2><ul>
 <li><strong>Platform</strong>: Choices include Electron or Qt, based on target audience.</li>
@@ -835,7 +980,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Philosophy/System/general-system/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/general-system/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -849,7 +994,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Philosophy/System/general-system/" class="post-title-link" itemprop="url">General System Design</a>
+            <a href="/MarkdownNotes/Engineering/System%20Design/general-system/" class="post-title-link" itemprop="url">General System Design</a>
         </h2>
 
         <div class="post-meta">
@@ -858,10 +1003,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-15 21:56:00 / Modified: 22:06:47" itemprop="dateCreated datePublished" datetime="2023-08-15T21:56:00-07:00">2023-08-15</time>
+              <time title="Created: 2023-08-15 21:56:00" itemprop="dateCreated datePublished" datetime="2023-08-15T21:56:00-07:00">2023-08-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -872,11 +1023,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Philosophy/System/" itemprop="url" rel="index"><span itemprop="name">System</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/System-Design/" itemprop="url" rel="index"><span itemprop="name">System Design</span></a>
                 </span>
             </span>
 
@@ -931,7 +1082,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/HDR/render-image/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/RawShines/render-image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -945,7 +1096,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/CS/HDR/render-image/" class="post-title-link" itemprop="url">How OS Render Image</a>
+            <a href="/MarkdownNotes/Miscellaneous/RawShines/render-image/" class="post-title-link" itemprop="url">How OS Render Image</a>
         </h2>
 
         <div class="post-meta">
@@ -954,10 +1105,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-13 21:33:00 / Modified: 21:33:12" itemprop="dateCreated datePublished" datetime="2023-08-13T21:33:00-07:00">2023-08-13</time>
+              <time title="Created: 2023-08-13 21:33:00" itemprop="dateCreated datePublished" datetime="2023-08-13T21:33:00-07:00">2023-08-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -968,11 +1125,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/HDR/" itemprop="url" rel="index"><span itemprop="name">HDR</span></a>
+                  <a href="/categories/MarkdownNotes/Miscellaneous/RawShines/" itemprop="url" rel="index"><span itemprop="name">RawShines</span></a>
                 </span>
             </span>
 
@@ -990,86 +1147,100 @@
           <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Learning how operating system render images like JPEG or PNG</p>
 <h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ol>
 <li><strong>File Read</strong>: the operating system’s file system layer reads the raw binary data from the disk.</li>
-<li><strong>Decoding</strong>: This raw binary data isn’t directly interpretable as an image. So, it gets passed to a software component (often a library or a module within an application) responsible for decoding JPEG files. JPEG is a compressed format, and decoding it involves:<ul>
+<li><strong>Decoding</strong>: This raw binary data isn’t directly interpretable as an image. So, it gets passed to a software component (often a library or a module within an application) responsible for decoding JPEG files. JPEG is a compressed format, and decoding it involves:</li>
+</ol>
+<ul>
 <li>Parsing the file headers to understand the image’s dimensions, color space, and other metadata.</li>
 <li>Decompressing the data to recover the original image information.</li>
 <li>The output from the decoding process is usually an uncompressed bitmap, which is an array of pixel values.</li>
 </ul>
-</li>
+<ol start="3">
 <li><strong>Color Space Conversion (if necessary)</strong>: Images can be stored in various color spaces. RGB (Red, Green, Blue) is one of the most common ones for displays, but images can also be stored in other formats like YUV (Luminance and Chrominance). If the decoded image is in a color space that’s not native to the display, a conversion must occur. For instance, many video playback systems use YUV because it’s more efficient for certain types of compression. When displaying such content, the YUV data is converted to RGB.</li>
 <li><strong>Rendering</strong>: Once we have the bitmap in the appropriate color space (usually RGB for displays), it’s passed to the operating system’s rendering system. This system interacts with the graphics hardware (your GPU) to display the image. Modern operating systems use a “compositor” that takes the bitmap, any other UI elements, and composes a final image that is sent to the display.</li>
 <li><strong>Data Transmission</strong>: The graphics card or GPU then sends this composed image to your monitor. The actual data transmission method (VGA, HDMI, DisplayPort, etc.) will define how this data is sent. But in essence, yes, RGB values (or sometimes other color space values) are sent to the monitor.</li>
 <li><strong>Monitor Display</strong>: The monitor receives these values, and each pixel on the monitor displays the corresponding color. If the monitor has a different color profile or calibration, it may make its own adjustments to the displayed colors.</li>
 </ol>
 <h2 id="Decode"><a href="#Decode" class="headerlink" title="Decode"></a>Decode</h2><ol>
-<li><strong>JPEG (Joint Photographic Experts Group)</strong><ul>
+<li><strong>JPEG (Joint Photographic Experts Group)</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: JPEG uses a lossy compression method based on the Discrete Cosine Transform (DCT). It converts spatial domain data into the frequency domain. During compression, some high-frequency components (which the human eye is less sensitive to) can be discarded.</li>
 <li><strong>Color Space</strong>: Typically YCbCr (which is similar to YUV in intent). Y is the luminance component, and Cb and Cr are chrominance components. After decoding, the image can be converted to RGB for display.</li>
 </ul>
-</li>
-<li><strong>PNG (Portable Network Graphics)</strong><ul>
+<ol start="2">
+<li><strong>PNG (Portable Network Graphics)</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: PNG uses lossless compression based on the DEFLATE algorithm. It supports various color depths and can handle transparency (alpha channel).</li>
 <li><strong>Color Space</strong>: RGB, often with an additional alpha channel (RGBA) for transparency.</li>
 </ul>
-</li>
-<li><strong>GIF (Graphics Interchange Format)</strong><ul>
+<ol start="3">
+<li><strong>GIF (Graphics Interchange Format)</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: GIF uses the LZW (Lempel-Ziv-Welch) lossless compression algorithm. It’s limited to 256 colors, which makes it suboptimal for full-color photos but suitable for simpler graphics and animations.</li>
 <li><strong>Color Space</strong>: Indexed color (limited to a palette of up to 256 colors).</li>
 </ul>
-</li>
-<li><strong>BMP (Bitmap)</strong><ul>
+<ol start="4">
+<li><strong>BMP (Bitmap)</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: BMP is often uncompressed, although RLE (Run-Length Encoding) compression can be used in some cases.</li>
 <li><strong>Color Space</strong>: RGB, but BMP can support various bit depths (from 1-bit monochrome to 32-bit RGBA).</li>
 </ul>
-</li>
-<li><strong>TIFF (Tagged Image File Format)</strong><ul>
+<ol start="5">
+<li><strong>TIFF (Tagged Image File Format)</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: TIFF can use multiple compression schemes, including none (uncompressed), LZW, JPEG, and others.</li>
 <li><strong>Color Space</strong>: Typically RGB, but it’s versatile and can support multiple color spaces depending on the specific TIFF variant.</li>
 </ul>
-</li>
-<li><strong>WebP</strong><ul>
+<ol start="6">
+<li><strong>WebP</strong></li>
+</ol>
+<ul>
 <li><strong>Decoding Method</strong>: WebP can be either lossy (based on VP8 video codec) or lossless.</li>
 <li><strong>Color Space</strong>: YUV for lossy WebP and RGB for lossless WebP. Lossy WebP, like JPEG, involves a conversion to RGB post-decompression for display.</li>
 </ul>
-</li>
-</ol>
 <h2 id="Data-Transmission"><a href="#Data-Transmission" class="headerlink" title="Data Transmission"></a>Data Transmission</h2><ol>
-<li><strong>VGA (Video Graphics Array)</strong><ul>
+<li><strong>VGA (Video Graphics Array)</strong></li>
+</ol>
+<ul>
 <li><strong>Transmission</strong>: Analog</li>
 <li><strong>Description</strong>: VGA transmits <strong>red, green, and blue</strong> video signals as separate analog channels. Horizontal and vertical sync signals are also transmitted to coordinate the timing of the display. Since the signal is analog, the quality can degrade with cable length and interference. This method is older and less common in modern systems.</li>
 </ul>
-</li>
-<li><strong>HDMI (High-Definition Multimedia Interface)</strong><ul>
+<ol start="2">
+<li><strong>HDMI (High-Definition Multimedia Interface)</strong></li>
+</ol>
+<ul>
 <li><strong>Transmission</strong>: Digital</li>
 <li><strong>Description</strong>: HDMI transmits both video and audio digitally. The video data is sent using TMDS (Transition Minimized Differential Signaling), which minimizes electromagnetic interference. HDMI supports various video formats, including standard, enhanced, high-definition, and 3D video. HDCP (High-bandwidth Digital Content Protection) is often used with HDMI to prevent unauthorized copying of protected content.</li>
 </ul>
-</li>
-<li><strong>DisplayPort</strong><ul>
+<ol start="3">
+<li><strong>DisplayPort</strong></li>
+</ol>
+<ul>
 <li><strong>Transmission</strong>: Digital</li>
 <li><strong>Description</strong>: DisplayPort also uses a digital protocol, somewhat similar to HDMI but distinct in its technical specifics. It transmits data using a micro-packetized format and supports daisy-chaining of multiple monitors (Multi-Stream Transport). DisplayPort can handle high refresh rates, high resolutions, and supports Adaptive Sync, which can reduce screen tearing in games.</li>
 </ul>
-</li>
-<li><strong>USB Type-C (or USB-C)</strong><ul>
+<ol start="4">
+<li><strong>USB Type-C (or USB-C)</strong></li>
+</ol>
+<ul>
 <li><strong>Transmission</strong>: Digital</li>
 <li><strong>Description</strong>: USB-C is a versatile connector that can support multiple protocols, including USB data, DisplayPort, HDMI, and even power delivery. When it comes to transmitting video, the USB-C connector doesn’t define the transmission method itself; instead, it supports “alternate modes.” For instance, a USB-C port with DisplayPort Alt Mode would use the DisplayPort protocol for transmitting video data. The presence of alternate modes makes USB-C a versatile connector, able to handle various tasks, including video output, depending on its configuration.</li>
 </ul>
-</li>
-</ol>
 <h2 id="Local-Dimming"><a href="#Local-Dimming" class="headerlink" title="Local Dimming"></a>Local Dimming</h2><p>Achieve higher contrast ratio</p>
 <p>Contrast ratio? What make it different?</p>
 <ul>
-<li>Display Tech<ul>
+<li>Display Tech</li>
 <li>LCD, different liquid crystal can block different amount of dark</li>
 <li>OLED, each pixel emit light</li>
 <li>MicroLED</li>
-</ul>
-</li>
-<li>Backlight<ul>
+<li>Backlight</li>
 <li>Edge-lit, uneven light</li>
 <li>Direct-lit, full -array, can be combined with local dimming</li>
 <li>Quantum Dot Ehnhancemtn</li>
-</ul>
-</li>
 </ul>
 
       
@@ -1090,7 +1261,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/system-design/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/system-design/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1104,7 +1275,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/system-design/" class="post-title-link" itemprop="url">System Design Thinking</a>
+            <a href="/MarkdownNotes/Engineering/System%20Design/system-design/" class="post-title-link" itemprop="url">System Design Thinking</a>
         </h2>
 
         <div class="post-meta">
@@ -1121,7 +1292,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-15 21:56:29" itemprop="dateModified" datetime="2023-08-15T21:56:29-07:00">2023-08-15</time>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1133,7 +1304,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/System-Design/" itemprop="url" rel="index"><span itemprop="name">System Design</span></a>
                 </span>
             </span>
 
@@ -1152,7 +1327,7 @@
 <p>The problem is, although it seems I solved the problem, that’s mainly from intuition. Sometimes it turns out my design is bad and hard to maintain.</p>
 <p>My goal is to learn a systematic way for system design</p>
 <h3 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h3><p>Ultimately, I am looking for a solution method to problem, how to solve problem.</p>
-<p>Maybe that’s the <strong>algorithm</strong> </p>
+<p>Maybe that’s the <strong>algorithm</strong></p>
 <h2 id="Materials"><a href="#Materials" class="headerlink" title="Materials"></a><del>Materials</del></h2><p><del>Books</del></p>
 <ul>
 <li><del><strong>Thinking in Systems: A Primer</strong></del></li>
@@ -1164,17 +1339,13 @@
 <h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><p>Based on these days research, I think the system design is a too broard subject.</p>
 <p>Asking the right question is more important</p>
 <ol>
-<li>What is the problem、<ol>
+<li>What is the problem、</li>
 <li>Why the problem exist</li>
 <li>Who involved</li>
-</ol>
-</li>
-<li>How to solve the problem<ol>
+<li>How to solve the problem</li>
 <li>What are the constraints</li>
 <li>How to measure success</li>
 <li>Assumption we made</li>
-</ol>
-</li>
 <li>What properties should the solution have</li>
 </ol>
 
@@ -1196,7 +1367,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Robotics/Planning/rrt-revisit/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/rrt-revisit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1210,7 +1381,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Robotics/Planning/rrt-revisit/" class="post-title-link" itemprop="url">RRT Revisit</a>
+            <a href="/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/rrt-revisit/" class="post-title-link" itemprop="url">RRT Revisit</a>
         </h2>
 
         <div class="post-meta">
@@ -1219,10 +1390,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-10 01:37:00 / Modified: 01:51:23" itemprop="dateCreated datePublished" datetime="2023-08-10T01:37:00-07:00">2023-08-10</time>
+              <time title="Created: 2023-08-10 01:37:00" itemprop="dateCreated datePublished" datetime="2023-08-10T01:37:00-07:00">2023-08-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1233,11 +1410,19 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Robotics/Planning/" itemprop="url" rel="index"><span itemprop="name">Planning</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Cognition/" itemprop="url" rel="index"><span itemprop="name">Cognition</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Cognition/Path-Planning/" itemprop="url" rel="index"><span itemprop="name">Path Planning</span></a>
                 </span>
             </span>
 
@@ -1273,149 +1458,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/CS/HDR/hdr-background/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/CS/HDR/hdr-background/" class="post-title-link" itemprop="url">Background for HDR Display</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-08-08 21:11:00" itemprop="dateCreated datePublished" datetime="2023-08-08T21:11:00-07:00">2023-08-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-13 21:37:27" itemprop="dateModified" datetime="2023-08-13T21:37:27-07:00">2023-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/CS/HDR/" itemprop="url" rel="index"><span itemprop="name">HDR</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><ol>
-<li>Research &amp; Problem Definition<ul>
-<li><strong>HDR Display Overview</strong>: Collect comprehensive information about the intricacies of HDR displays, their technical specifications, and benefits.</li>
-<li><strong>Problem Statement</strong>: Clearly define the problem this project aims to address. What challenges in HDR imaging are we trying to overcome? What value does our solution bring?</li>
-<li><strong>Project Scope</strong>: Outline what the project will and won’t cover, helping the team stay focused on core objectives.</li>
-</ul>
-</li>
-</ol>
-<h2 id="Display-Monitor"><a href="#Display-Monitor" class="headerlink" title="Display (Monitor)"></a>Display (Monitor)</h2><p>Apple:</p>
-<ul>
-<li>iPhone</li>
-<li>iPad Pro 12.9</li>
-<li>Macbook Pro 14&#x2F;16</li>
-<li>Pro Display XR</li>
-</ul>
-<p>DisplayHDR</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://displayhdr.org/certified-products">https://displayhdr.org/certified-products</a></li>
-</ul>
-<h2 id="HDR-Software-x2F-Standard"><a href="#HDR-Software-x2F-Standard" class="headerlink" title="HDR Software&#x2F;Standard"></a>HDR Software&#x2F;Standard</h2><h3 id="Apple"><a href="#Apple" class="headerlink" title="Apple"></a>Apple</h3><p>Apple SDK <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/metal/hdr_content/displaying_hdr_content_in_a_metal_layer">Displaying HDR Content in a Metal Layer | Apple Developer Documentation</a></p>
-<p>EDR: Use relative brightness</p>
-<blockquote>
-<p>Some Macs can process pixel data with a wider range of pixel values and send those extended values to the display. In macOS, the ability to process larger pixel values and display them is referred to as extended dynamic range (EDR). When you configure a Metal layer to support extended values, you can provide pixel values — and therefore brightness levels — that exceed the normal SDR range in order to display HDR content.</p>
-</blockquote>
-<p>Other HDR standard: use physical brightness</p>
-<h3 id="DisplayHDR"><a href="#DisplayHDR" class="headerlink" title="DisplayHDR"></a>DisplayHDR</h3><p><a target="_blank" rel="noopener" href="https://displayhdr.org/">Vesa Certified DisplayHDR™</a></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230808212127_feich7.png" alt="image-20230808212127776"></p>
-<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range">Use DirectX with Advanced Color on high&#x2F;standard dynamic range displays - Win32 apps | Microsoft Learn</a></p>
-<h2 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h2><p>HEIC</p>
-<p>JPEG XR</p>
-<p>JPEG 2000</p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>No open source software to generate HDR photo for display hdr content</p>
-<p>Challenge:</p>
-<ul>
-<li>No public standard from Apple (only SDK), need to dig further to see</li>
-<li>Compatibility, how can we make the photo compatitable with as much monitor and system as possible</li>
-<li>Tone mapping algorithm, not sure how difficult it is or could the tone mapping be generalized</li>
-</ul>
-<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><p>Input: Raw image+Config file(Optional, Maybe edited in other software like Lightroom, Rawtherapee)</p>
-<p>Operation: Use GUI manipulate the brightness level, or AUTO mode</p>
-<p>Output: HDR content ready to display on desired platform</p>
-<ul>
-<li>Maybe 10bit HEIC image like iPhone camera did</li>
-</ul>
-<p>Basic Function:</p>
-<ul>
-<li>Image conversion</li>
-<li>Image display</li>
-<li>Color management (wide color gamut display)</li>
-<li>Color space conversion on HDR display</li>
-<li>Bit depth conversion</li>
-<li>Tone mapping</li>
-</ul>
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>How OS render images？</p>
-<h2 id="Summarize"><a href="#Summarize" class="headerlink" title="Summarize"></a>Summarize</h2><ul>
-<li><strong>Problem Statement</strong>: Clearly define the problem this project aims to address. What challenges in HDR imaging are we trying to overcome? What value does our solution bring?</li>
-<li><strong>Project Scope</strong>: Outline what the project will and won’t cover, helping the team stay focused on core objectives.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1481,20 +1527,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">351</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">126</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

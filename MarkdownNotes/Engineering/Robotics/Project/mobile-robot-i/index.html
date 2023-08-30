@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of robot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build A Mobile Robot from Scratch —— Part I">
+<meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/index.html">
+<meta property="og:site_name" content="Only Truth Matters">
+<meta property="og:description" content="IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of robot">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-19-40-18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-14-15-29-46.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-15-21-13-17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-17-23-29-08.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-21-23-12-05.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-45.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-58.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png">
+<meta property="article:published_time" content="2022-11-13T00:46:00.000Z">
+<meta property="article:modified_time" content="2023-08-30T06:22:29.045Z">
+<meta property="article:author" content="Junhan Hu">
+<meta property="article:tag" content="robotics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png">
+
+<link rel="canonical" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Build A Mobile Robot from Scratch —— Part I | Only Truth Matters</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Only Truth Matters</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build A Mobile Robot from Scratch —— Part I
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-12 16:46:00" itemprop="dateCreated datePublished" datetime="2022-11-12T16:46:00-08:00">2022-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Why this project? I wanna build a robot from scratch to fill the gap between theory and reality.</p>
+<p>To build the robot, usually need following knowledge base</p>
+<ul>
+<li>Mechanics, the build the body of robot</li>
+<li>Electronic, the power of the robot</li>
+<li>Computer, the brain of the robot</li>
+</ul>
+<h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>For the robot, I would like to focus on the mobile robot platform</p>
+<p>Two level goals:</p>
+<ol>
+<li>Basic level, the robot can move, and use the lidar as a SLAM  sensor, can track something using camera</li>
+<li>More precise control, going from A to B, the error should be less than 1cm</li>
+</ol>
+<p>Consider a layer platform</p>
+<ol>
+<li>Environment sensing, different sensor to be used, a SBC is used. LiDAR, video camera, speaker, microphone</li>
+<li>Intelligence, communication, SBC, control other part</li>
+<li>Navigation, get the high-level command and go to desired position</li>
+</ol>
+<p>Communication Ethernet</p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p>Motor</p>
+<ul>
+<li>Control how it works</li>
+<li>feedback control</li>
+<li>position control</li>
+<li>speed control</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png" alt="image-20221113154430236"></p>
+<h2 id="Chassis"><a href="#Chassis" class="headerlink" title="Chassis"></a>Chassis</h2><p>Design</p>
+<p>34cm  30cm  23cm</p>
+<p>Front x2</p>
+<p>Rear x2</p>
+<h2 id="New-Thing"><a href="#New-Thing" class="headerlink" title="New Thing"></a>New Thing</h2><h3 id="Motor-Driver"><a href="#Motor-Driver" class="headerlink" title="Motor Driver"></a>Motor Driver</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ygrsIqWOh3Y">Ref</a></p>
+<p>Working with DC motor</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-19-40-18.png" alt="image-20221113194018459"></p>
+<ul>
+<li>Direction</li>
+<li>Using the H-bridge could change the direction of voltage and current</li>
+<li>MOSFET would drop a little voltage</li>
+<li>Speed</li>
+<li>PWM</li>
+</ul>
+<p>L298N, simple, classic but too old</p>
+<p>More improved design:</p>
+<ul>
+<li>TB6612FNG, improved version of L298N</li>
+<li>DRV8871, if you only need a SINGLE motor to drive</li>
+<li>MX1508, small, but not soldering friendly</li>
+</ul>
+<p>Driver that can handle large current:</p>
+<ul>
+<li>DBH-12，20A, peak 30A</li>
+<li>IBT2, single channel, 30A, peak 43A</li>
+</ul>
+<h3 id="Micro-Controller"><a href="#Micro-Controller" class="headerlink" title="Micro Controller"></a>Micro Controller</h3><p>UNO or raspberry pi PICO</p>
+<p>Pico should be a better choice in 2022 (introduced in 2021)</p>
+<ul>
+<li>Much faster (133MHz vs 16MHz)</li>
+<li>Much larger RAM</li>
+<li>Lower power DC (1.8v-5.5v)</li>
+<li>More port (Analog and Digital)</li>
+</ul>
+<h3 id="Battery"><a href="#Battery" class="headerlink" title="Battery"></a>Battery</h3><p>LIPO battery, high capacity in lightweight</p>
+<p>Con: easily damaged</p>
+<p>Lithium-Ion Polymer (锂离子聚合物电池)</p>
+<ul>
+<li>Application where weight matters</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-14-15-29-46.png" alt="image-20221114152946679"></p>
+<p>Each cell can provide 3.7V</p>
+<ul>
+<li>Fully charged 4.4V</li>
+<li>Minimum safe charge is 3.0V</li>
+</ul>
+<p>Different wire</p>
+<ul>
+<li>S- serial</li>
+<li>P- Parallel</li>
+</ul>
+<p>Capacity</p>
+<ul>
+<li>C rating</li>
+</ul>
+<p>Connection:</p>
+<ul>
+<li>Dean</li>
+<li>XT60</li>
+<li>EC3</li>
+</ul>
+<h3 id="Base-Material"><a href="#Base-Material" class="headerlink" title="Base Material"></a>Base Material</h3><p>Consider: strength to weight</p>
+<p>Aluminum</p>
+<ul>
+<li>lightweight</li>
+</ul>
+<p>Acrylic (亚克力)</p>
+<ul>
+<li>lightweight</li>
+<li>drilled</li>
+</ul>
+<h3 id="Channeling-System"><a href="#Channeling-System" class="headerlink" title="Channeling System"></a>Channeling System</h3><p>Actobotics system: good availablity</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.gobilda.com/structure/">GoBilda system</a>:</strong> good quality, successor to the Actobotics</p>
+<p>Vex system</p>
+<p>Lynxmotion</p>
+<h3 id="Motor-Selection"><a href="#Motor-Selection" class="headerlink" title="Motor Selection"></a>Motor Selection</h3><p>DC Gear motor</p>
+<ul>
+<li>Planetary: a bit expensive, but quiet</li>
+<li>Spur: cheap, but noise</li>
+</ul>
+<p>Things to consider</p>
+<ul>
+<li><p>Nominal voltage, optimal voltage</p>
+</li>
+<li><p>No Load RPM, when nothing connected, what is the RPM</p>
+</li>
+<li><p>Stall torque and current. Newton Meter</p>
+</li>
+<li><p>Stall: no more move</p>
+</li>
+<li><p>&lt;30% stall point</p>
+</li>
+<li><p>Size and shaft</p>
+</li>
+<li><p>Mount</p>
+</li>
+<li><p>Shaft may not in the center</p>
+</li>
+</ul>
+<p>Encoder is important</p>
+<p>We need to first determine the</p>
+<ul>
+<li>Weight (Load)</li>
+<li>Speed</li>
+<li>Longest working area for the robot</li>
+<li>The robot should be slower than human walking (safe to control the robot)</li>
+</ul>
+<p>Calculate the required specification for the motor and battery</p>
+<p><a target="_blank" rel="noopener" href="https://community.robotshop.com/blog/show/drive-motor-sizing-tool">Calculator</a></p>
+<p>Motor, hub, bearing, encoder</p>
+<ul>
+<li><strong>Bearing</strong> is quite important since the whole load is on the wheel</li>
+<li>if there are no bearings, the motor would load all the pressure</li>
+</ul>
+<h3 id="Wheel"><a href="#Wheel" class="headerlink" title="Wheel"></a>Wheel</h3><p>Parameter for wheel:</p>
+<ul>
+<li>Wheel size, determine the speed</li>
+<li>Wheel width, determine the traction and maximum load</li>
+<li>Wheel traction, determine the surface robot can travel</li>
+<li>Wheel type, determine the degree of movement</li>
+</ul>
+<p>Type</p>
+<ul>
+<li>Standard, most common, wide range size, can be used as driver or idler</li>
+<li>two degree (forward and backward)</li>
+<li>Caster and Ball wheel, orientable, use as idler, most used for indoor design</li>
+<li>Mecanum, different left and right wheels, multi-drirectional, 45 degree roller</li>
+<li>Omni wheels, 90 degree roller, 4 degree of freedom, best for indoor</li>
+</ul>
+<p>Arrangement</p>
+<p>Durometer</p>
+<ul>
+<li>harder or softer？</li>
+<li>30A maybe too soft</li>
+</ul>
+<h3 id="Electronics"><a href="#Electronics" class="headerlink" title="Electronics"></a>Electronics</h3><p>Motor driving</p>
+<p>Power distribution board</p>
+<p>Motor controller</p>
+<p>Fuses: (保险丝)</p>
+<ul>
+<li>if the current is too big, would case heat, may lead fire</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-15-21-13-17.png" alt="image-20221115211317451"></p>
+<h3 id="Power-Source"><a href="#Power-Source" class="headerlink" title="Power Source"></a>Power Source</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IT19dg73nKU">Ref</a></p>
+<p>Regulator and Convertor</p>
+<p>Logic voltage, 5V(4.7-5.2), 3.3V.</p>
+<p>Motor: 6V, 12V</p>
+<hr>
+<p>AC:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-17-23-29-08.png" alt="image-20221117232907848"></p>
+<hr>
+<p>DC:</p>
+<ul>
+<li>From high to low:</li>
+<li>voltage regulation，AMS1117-5(much lower voltage drop), 1A</li>
+<li>buck converter, high-efficient, mini360</li>
+<li>From low to high</li>
+<li>boost converter, PSM205, to a usb</li>
+<li>From any to any</li>
+<li>Buck boost converter, S9V11F5 (from 2-16 to 5)</li>
+</ul>
+<h3 id="Motor-Controller"><a href="#Motor-Controller" class="headerlink" title="Motor Controller"></a>Motor Controller</h3><h3 id="Weight-Consideration"><a href="#Weight-Consideration" class="headerlink" title="Weight Consideration"></a>Weight Consideration</h3><p>If the robot is too lightweight, there would be not enough traction for the robot to move.</p>
+<h3 id="Connector"><a href="#Connector" class="headerlink" title="Connector"></a>Connector</h3><p>JST</p>
+<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Name</th>
+<th>Num</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Front wheel</td>
+<td>Motor</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>120mm Wheel</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm REX bearing</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm Face bearing</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm shim</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>m4 washer</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>Hyper Hub</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>12mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>18mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Omni-wheel"><a href="#Omni-wheel" class="headerlink" title="Omni wheel"></a>Omni wheel</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Num</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Omni wheels</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Spacer 4mm</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm D shaft hub</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm D shaft bearing</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm Collar</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>30mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>80mm 6mm D-shaft</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Progress"><a href="#Progress" class="headerlink" title="Progress"></a>Progress</h2><p>11.21</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-21-23-12-05.png" alt="image-20221121231205713"></p>
+<p>12.5 Test Robot Motor</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Full Speed</li>
+<li><input checked="" disabled="" type="checkbox"> Arduino PWM</li>
+<li><input checked="" disabled="" type="checkbox"> 20%</li>
+<li><input checked="" disabled="" type="checkbox"> 50%</li>
+<li><input checked="" disabled="" type="checkbox"> 100%</li>
+<li><input checked="" disabled="" type="checkbox"> Encoder</li>
+<li><input checked="" disabled="" type="checkbox"> Each rotation</li>
+</ul>
+<p>TODO:</p>
+<ul>
+<li>Add a ferrule crimping tool kit</li>
+</ul>
+<hr>
+<p>Motor Driver:</p>
+<p>VCC is connected to 5V power supply of MCU,GND is connected to GND of MCU.</p>
+<p>R_EN AND L_EN short circuit and input PWM signal for speed regulation</p>
+<p>L_PWM,pin input 5V level,motor forward</p>
+<p>R_PWM,pin input 5V level,motor reversal</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">pinMode(<span class="number">8</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">7</span>,OUTPUT);</span><br><span class="line">digitalWrite(<span class="number">8</span>, HIGH);</span><br><span class="line">digitalWrite(<span class="number">7</span>, HIGH);</span><br><span class="line"></span><br><span class="line"><span class="comment">//PWM output</span></span><br><span class="line">pinMode(<span class="number">6</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">5</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Update-Dec-10"><a href="#Update-Dec-10" class="headerlink" title="Update Dec.10"></a>Update Dec.10</h3><p>Currently the robot works great on open-loop rotate and move forward, backward</p>
+<p>Next</p>
+<ol>
+<li>Close-loop control on the RPM</li>
+</ol>
+<p>Test how linear the motor is. That is the relation between the PWM  duty rate and the RPM</p>
+<h3 id="Update-Dec-13"><a href="#Update-Dec-13" class="headerlink" title="Update Dec.13"></a>Update Dec.13</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-45.png" alt="image-20221213223345245"></p>
+<p>Re-organize the wire and hide the wire in the alumni channel</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-58.png" alt="image-20221213223358163"></p>
+<p>Currently the robot’s speed control is under PID control</p>
+<p>To make the position control closed-loop, still need encoder+IMU</p>
+<p>And localization system should be added (SLAM)</p>
+<h3 id="Update-Dec-15"><a href="#Update-Dec-15" class="headerlink" title="Update Dec.15"></a>Update Dec.15</h3><p>Use DC jack to power the Jetson and Arduino</p>
+<p>Given the hardware and electronic elements I have, followed step</p>
+<ul>
+<li><del>Arduino Remote Control</del></li>
+<li><del>Jetson use</del></li>
+<li><del>Communicate with computer</del></li>
+<li><del>Setup wifi enable remote access</del></li>
+<li><del>Read IMU data</del></li>
+<li><del>Install Lidar and read lidar data</del></li>
+</ul>
+<h3 id="Update-Dec-17"><a href="#Update-Dec-17" class="headerlink" title="Update Dec.17"></a>Update Dec.17</h3><ol>
+<li><del>Rewire the arduino</del></li>
+<li><del>Power Arduino with Jetson Nano</del></li>
+<li><del>Communicate between arduino and jetson nano</del></li>
+</ol>
+<h3 id="Update-Dec-19"><a href="#Update-Dec-19" class="headerlink" title="Update Dec.19"></a>Update Dec.19</h3><p><del>Add IR remote in arduino</del></p>
+<p>TODO:</p>
+<ul>
+<li><del>Remote control move forward&#x2F;reverse&#x2F;rotate</del></li>
+<li>Use the lidar to build the map</li>
+</ul>
+<h3 id="Update-Dec-21"><a href="#Update-Dec-21" class="headerlink" title="Update Dec.21"></a>Update Dec.21</h3><p>Remote speed control and stop done</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png" alt="image-20221221223618322" style="zoom: 15%;" />
+
+<p>TODO:</p>
+<ul>
+<li>Add IMU</li>
+<li><del>Wire</del></li>
+<li><del>Read data</del></li>
+<li><del>Calibrate</del></li>
+<li><del>Store offset</del></li>
+<li><del>Reload offset</del></li>
+<li>3D print a level for lidar</li>
+<li>SLAM</li>
+</ul>
+<h2 id="Takeout"><a href="#Takeout" class="headerlink" title="Takeout"></a>Takeout</h2><p>Low frequency PWM would cause the motor hauling, by increasing the frequency (like 3k) the hauling would disappear. In some MCU, by playing with the register, we might change the default frequency.</p>
+<p>While selecting the MCU, checkout how many interrupt are needed and how many interrupt can the MCU provide.</p>
+<p>By using encoder’s both channel and both rising and falling, we can maximize the accuracy of the motor</p>
+<p>A good motor is almost linear between RPM and PWM</p>
+<p>When the code doesn’t go well, check the setting and setup</p>
+<p>After rewiring, double check the position especially the pin number</p>
+<p>While making the wire, the length or wire should be considered. It’s a system design, so leave some room for wiring but not too much</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/robotics/" rel="tag"># robotics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/transformer/" rel="prev" title="What is Transformer">
+      <i class="fa fa-chevron-left"></i> What is Transformer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/MarkdownNotes/Life%20Skill/Interests/poem/" rel="next" title="诗歌">
+      诗歌 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-text">Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chassis"><span class="nav-text">Chassis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Thing"><span class="nav-text">New Thing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Driver"><span class="nav-text">Motor Driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Micro-Controller"><span class="nav-text">Micro Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Battery"><span class="nav-text">Battery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base-Material"><span class="nav-text">Base Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channeling-System"><span class="nav-text">Channeling System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Selection"><span class="nav-text">Motor Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wheel"><span class="nav-text">Wheel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Electronics"><span class="nav-text">Electronics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Power-Source"><span class="nav-text">Power Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Controller"><span class="nav-text">Motor Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight-Consideration"><span class="nav-text">Weight Consideration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector"><span class="nav-text">Connector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Omni-wheel"><span class="nav-text">Omni wheel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Progress"><span class="nav-text">Progress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-10"><span class="nav-text">Update Dec.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-13"><span class="nav-text">Update Dec.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-15"><span class="nav-text">Update Dec.15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-17"><span class="nav-text">Update Dec.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-19"><span class="nav-text">Update Dec.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-21"><span class="nav-text">Update Dec.21</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeout"><span class="nav-text">Takeout</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Junhan Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
