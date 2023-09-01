@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Alpha MattingGoal: accurate matting for fine details Application: background replacement, synthetic bokeh Idea: not binary, but estimate a transparency value How: Train a CNN  input: RGB image and coa">
+  <meta name="description" content="1. Alpha MattingGoal: accurate matting for fine details Application: background replacement, synthetic bokeh Idea: not binary, but estimate a transparency value How: Train a CNN  input: RGB image and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google Computational Photography">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Alpha MattingGoal: accurate matting for fine details Application: background replacement, synthetic bokeh Idea: not binary, but estimate a transparency value How: Train a CNN  input: RGB image and coa">
+<meta property="og:description" content="1. Alpha MattingGoal: accurate matting for fine details Application: background replacement, synthetic bokeh Idea: not binary, but estimate a transparency value How: Train a CNN  input: RGB image and">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215612_k5fJ5i.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419203740_HRsNg1.png">
@@ -262,7 +262,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Alpha-Matting"><a href="#Alpha-Matting" class="headerlink" title="Alpha Matting"></a>Alpha Matting</h2><p>Goal: accurate matting for fine details</p>
+        <h2 id="Alpha-Matting">1. Alpha Matting</h2><p>Goal: accurate matting for fine details</p>
 <p>Application: background replacement, synthetic bokeh</p>
 <p>Idea: not binary, but estimate a transparency value</p>
 <p>How: Train a CNN</p>
@@ -271,14 +271,14 @@
 <li>MobileNetV3 and shallow encoder-decoder</li>
 <li>A studio to make high-quality dataset</li>
 </ul>
-<h2 id="Omnimattes"><a href="#Omnimattes" class="headerlink" title="Omnimattes"></a>Omnimattes</h2><p>Goal: produce mask not only for objects but also their effects (shadow, smoke, reflection..)</p>
+<h2 id="Omnimattes">2. Omnimattes</h2><p>Goal: produce mask not only for objects but also their effects (shadow, smoke, reflection..)</p>
 <p>Application: image and video editing</p>
 <p>Idea: create different layer for each object and also the background</p>
 <p>How: Train a CNN</p>
 <ul>
 <li>learn the strong correlation first</li>
 </ul>
-<h2 id="Denoise-and-Sharpen"><a href="#Denoise-and-Sharpen" class="headerlink" title="Denoise and Sharpen"></a>Denoise and Sharpen</h2><p>Goal: denoise for any image without knowing the parameter of the camera. (Computational effective)</p>
+<h2 id="Denoise-and-Sharpen">3. Denoise and Sharpen</h2><p>Goal: denoise for any image without knowing the parameter of the camera. (Computational effective)</p>
 <p>Application: image post-processing</p>
 <p>Idea: assess the noise level and blur type in patch level</p>
 <p>How:</p>
@@ -291,7 +291,7 @@
 <li>Assumption: mild blur</li>
 <li>How: reblur it serveral time</li>
 </ul>
-<h2 id="HDR"><a href="#HDR" class="headerlink" title="HDR+"></a>HDR+</h2><p>Goal: reduce noise, handle large dynamic range scene</p>
+<h2 id="HDR">4. HDR+</h2><p>Goal: reduce noise, handle large dynamic range scene</p>
 <p>Application: mobile phone photograph</p>
 <p>Idea: burst of under-exposure</p>
 <p>How:</p>
@@ -299,7 +299,7 @@
 <li>for noise, burst, align, average</li>
 <li>for HDR, bracketing(same exposure time), burst, align, combine</li>
 </ul>
-<h2 id="HDR-with-bracketing"><a href="#HDR-with-bracketing" class="headerlink" title="HDR+ with bracketing"></a>HDR+ with bracketing</h2><p>HDR+ works for maoderate dynamic range, but fails for High dyanmic range</p>
+<h2 id="HDR-with-bracketing">5. HDR+ with bracketing</h2><p>HDR+ works for maoderate dynamic range, but fails for High dyanmic range</p>
 <p>HDR+’s problem: noise</p>
 <ul>
 <li>shot noise, if this is the only noise, HDR+ works great</li>
@@ -313,7 +313,7 @@
 <li>Deghosting algorithm</li>
 <li>merge raw earlier</li>
 </ul>
-<h2 id="Night-Sight"><a href="#Night-Sight" class="headerlink" title="Night Sight"></a>Night Sight</h2><p>Defien the dark level, lux.</p>
+<h2 id="Night-Sight">6. Night Sight</h2><p>Defien the dark level, lux.</p>
 <ul>
 <li>Samrt phone start to struggle at 30lux</li>
 <li>HDR+ make it possible at 3lux</li>
@@ -330,7 +330,7 @@
 <li>AWB in low light: ill-posed problem, develop a learning based algorithm</li>
 <li>Tone mapping: well exposured image just like the daytime. Using the S-curve</li>
 </ul>
-<h2 id="Super-Res-Zoom"><a href="#Super-Res-Zoom" class="headerlink" title="Super Res Zoom"></a>Super Res Zoom</h2><p>Goal: better digital zoom, merge many frames to a single high-res image</p>
+<h2 id="Super-Res-Zoom">7. Super Res Zoom</h2><p>Goal: better digital zoom, merge many frames to a single high-res image</p>
 <p>Idea: sensor shift that can be used to get the detail in Bayer</p>
 <ul>
 <li>take the hand-motion as pixel-shift, OIS to compensate the large motion</li>
@@ -347,17 +347,17 @@
 <li>object has motion too, deal with imperfect alignment (only merge the confident deature)</li>
 <li>the image data is not uniformly distributed</li>
 </ul>
-<h2 id="Motion-Still"><a href="#Motion-Still" class="headerlink" title="Motion Still"></a>Motion Still</h2><p>Goal: stablize the image</p>
+<h2 id="Motion-Still">8. Motion Still</h2><p>Goal: stablize the image</p>
 <p>Idea: motion estimation and crop</p>
 <p>How:</p>
 <ul>
 <li>Pure software-based: analyze and tracking the feature, then do a affine transformation</li>
 <li>Classify fore and back ground, estimate a optimal path by the metadata</li>
 </ul>
-<h2 id="Video-Stablization"><a href="#Video-Stablization" class="headerlink" title="Video Stablization"></a>Video Stablization</h2><p>Goal: EIS+OIS</p>
+<h2 id="Video-Stablization">9. Video Stablization</h2><p>Goal: EIS+OIS</p>
 <p>Problem: camera shake, motion blur, rolling shutter, focus breathing,</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215612_k5fJ5i.png" alt="img"></p>
-<h2 id="Image-Quality-Assessment"><a href="#Image-Quality-Assessment" class="headerlink" title="Image Quality Assessment"></a>Image Quality Assessment</h2><p><a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/10/musiq-assessing-image-aesthetic-and.html">Ref</a></p>
+<h2 id="Image-Quality-Assessment">10. Image Quality Assessment</h2><p><a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/10/musiq-assessing-image-aesthetic-and.html">Ref</a></p>
 <p>Multi-scale Transformer, take image with different aspect ratio</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419203740_HRsNg1.png" alt="image-20221108142717028"></p>
 
@@ -443,7 +443,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alpha-Matting"><span class="nav-number">1.</span> <span class="nav-text">Alpha Matting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omnimattes"><span class="nav-number">2.</span> <span class="nav-text">Omnimattes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoise-and-Sharpen"><span class="nav-number">3.</span> <span class="nav-text">Denoise and Sharpen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDR"><span class="nav-number">4.</span> <span class="nav-text">HDR+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDR-with-bracketing"><span class="nav-number">5.</span> <span class="nav-text">HDR+ with bracketing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Night-Sight"><span class="nav-number">6.</span> <span class="nav-text">Night Sight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Super-Res-Zoom"><span class="nav-number">7.</span> <span class="nav-text">Super Res Zoom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motion-Still"><span class="nav-number">8.</span> <span class="nav-text">Motion Still</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Video-Stablization"><span class="nav-number">9.</span> <span class="nav-text">Video Stablization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Quality-Assessment"><span class="nav-number">10.</span> <span class="nav-text">Image Quality Assessment</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alpha-Matting"><span class="nav-number">1.</span> <span class="nav-text">1. Alpha Matting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omnimattes"><span class="nav-number">2.</span> <span class="nav-text">2. Omnimattes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoise-and-Sharpen"><span class="nav-number">3.</span> <span class="nav-text">3. Denoise and Sharpen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDR"><span class="nav-number">4.</span> <span class="nav-text">4. HDR+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDR-with-bracketing"><span class="nav-number">5.</span> <span class="nav-text">5. HDR+ with bracketing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Night-Sight"><span class="nav-number">6.</span> <span class="nav-text">6. Night Sight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Super-Res-Zoom"><span class="nav-number">7.</span> <span class="nav-text">7. Super Res Zoom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motion-Still"><span class="nav-number">8.</span> <span class="nav-text">8. Motion Still</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Video-Stablization"><span class="nav-number">9.</span> <span class="nav-text">9. Video Stablization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Quality-Assessment"><span class="nav-number">10.</span> <span class="nav-text">10. Image Quality Assessment</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

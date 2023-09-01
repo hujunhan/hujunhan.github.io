@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="语音是一种常见的信息交流方式，但是语音是非常多变的（相比于文本），语音包含了语言、方言、音调等信息，在提供了更多信息的同时也给分析加大了难度。如何正确分析语音是一项困难的工作。 语音的表示如下图所示，语音可以表示为振幅随时间的变化  再扩大一点，语音也可以看成是一系列基本发音单位（Phoneme）的集合  如果放大语音信号，我们可以看出来语音是由不同的音素组成的。不同的音素来源也是不同的。比如说w">
+  <meta name="description" content="语音是一种常见的信息交流方式，但是语音是非常多变的（相比于文本），语音包含了语言、方言、音调等信息，在提供了更多信息的同时也给分析加大了难度。如何正确分析语音是一项困难的工作。 0.1. 语音的表示如下图所示，语音可以表示为振幅随时间的变化  再扩大一点，语音也可以看成是一系列基本发音单位（Phoneme）的集合  如果放大语音信号，我们可以看出来语音是由不同的音素组成的。不同的音素来源也是不同的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Speech Analysis">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Linguistics/speech-analysis/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="语音是一种常见的信息交流方式，但是语音是非常多变的（相比于文本），语音包含了语言、方言、音调等信息，在提供了更多信息的同时也给分析加大了难度。如何正确分析语音是一项困难的工作。 语音的表示如下图所示，语音可以表示为振幅随时间的变化  再扩大一点，语音也可以看成是一系列基本发音单位（Phoneme）的集合  如果放大语音信号，我们可以看出来语音是由不同的音素组成的。不同的音素来源也是不同的。比如说w">
+<meta property="og:description" content="语音是一种常见的信息交流方式，但是语音是非常多变的（相比于文本），语音包含了语言、方言、音调等信息，在提供了更多信息的同时也给分析加大了难度。如何正确分析语音是一项困难的工作。 0.1. 语音的表示如下图所示，语音可以表示为振幅随时间的变化  再扩大一点，语音也可以看成是一系列基本发音单位（Phoneme）的集合  如果放大语音信号，我们可以看出来语音是由不同的音素组成的。不同的音素来源也是不同的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329144002.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329144225.png">
@@ -260,18 +260,18 @@
 
       
         <p>语音是一种常见的信息<strong>交流</strong>方式，但是语音是非常多变的（相比于文本），语音包含了语言、方言、音调等信息，在提供了更多信息的同时也给分析加大了难度。如何正确分析语音是一项困难的工作。</p>
-<h3 id="语音的表示"><a href="#语音的表示" class="headerlink" title="语音的表示"></a>语音的表示</h3><p>如下图所示，语音可以表示为振幅随时间的变化</p>
+<h3 id="语音的表示">0.1. 语音的表示</h3><p>如下图所示，语音可以表示为振幅随时间的变化</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329144002.jpg"></p>
 <p>再扩大一点，语音也可以看成是一系列基本发音单位（Phoneme）的集合</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329144225.png"></p>
 <p>如果放大语音信号，我们可以看出来语音是由不同的音素组成的。不同的音素来源也是不同的。比如说<code>w</code>、<em>l</em>是由声带的<strong>周期性振动</strong>产生的，所以被归类为浊音素。清类（unvoiced）和浊类（voiced）是基于声带振动对语音进行的广义分类。</p>
-<h2 id="时频分析"><a href="#时频分析" class="headerlink" title="时频分析"></a>时频分析</h2><p>通过短时傅里叶变换（STFT），我们可以计算语音的时频图，本质就是将一段语音分成很多小的帧（frame），然后对这一小段帧进行傅里叶变换。</p>
+<h2 id="时频分析">1. 时频分析</h2><p>通过短时傅里叶变换（STFT），我们可以计算语音的时频图，本质就是将一段语音分成很多小的帧（frame），然后对这一小段帧进行傅里叶变换。</p>
 <p>那为什么要这样将语音分成比较小的帧呢？因为语音的时间特性变化非常快，是一种非平稳（简单来说就是无法预测）的信号，不能对此进行傅里叶变换。而在小的帧中，我们假设语音信号是平稳的，并且在帧内不会有太大变化</p>
 <p>根据nyquist采样定理，我们能观察到的最大频率是采样率的一半</p>
 <blockquote>
 <p>语音实验中的采样频率是48kHz，所以能观测到的就是24kHz</p>
 </blockquote>
-<h3 id="Trade-off"><a href="#Trade-off" class="headerlink" title="Trade-off"></a>Trade-off</h3><p>如何选择帧的大小是一个值得考虑的问题</p>
+<h3 id="Trade-off">1.1. Trade-off</h3><p>如何选择帧的大小是一个值得考虑的问题</p>
 <ul>
 <li>选择较小的帧，可以获得更好的时间分辨率，但是样本少导致傅里叶变换时其中包含了很少的频率分量</li>
 <li>选择较大的帧，时间频率较低，但是采样数较高，频率分辨率就高了</li>
@@ -360,7 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">语音的表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%A2%91%E5%88%86%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">时频分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trade-off"><span class="nav-number">1.</span> <span class="nav-text">Trade-off</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">0.1. 语音的表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%A2%91%E5%88%86%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">1. 时频分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trade-off"><span class="nav-number">1.</span> <span class="nav-text">1.1. Trade-off</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

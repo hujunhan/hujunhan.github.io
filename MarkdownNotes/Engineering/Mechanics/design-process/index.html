@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="GoalTry to figure out a clear path or best practice for robot arm modeling and programming Input: the requirements and some consideration, limitation Output:  The robot arm model (the math model for k">
+  <meta name="description" content="1. GoalTry to figure out a clear path or best practice for robot arm modeling and programming Input: the requirements and some consideration, limitation Output:  The robot arm model (the math model fo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Design Process for Robot Arm">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/design-process/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="GoalTry to figure out a clear path or best practice for robot arm modeling and programming Input: the requirements and some consideration, limitation Output:  The robot arm model (the math model for k">
+<meta property="og:description" content="1. GoalTry to figure out a clear path or best practice for robot arm modeling and programming Input: the requirements and some consideration, limitation Output:  The robot arm model (the math model fo">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221204935.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221210331.png">
@@ -262,7 +262,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Try to figure out a clear path or best practice for robot arm modeling and programming</p>
+        <h2 id="Goal">1. Goal</h2><p>Try to figure out a clear path or best practice for robot arm modeling and programming</p>
 <p>Input: the requirements and some consideration, limitation</p>
 <p>Output:</p>
 <ul>
@@ -272,7 +272,7 @@
 <li>Invser-Kinematics</li>
 <li>Simulation:(webots)</li>
 </ul>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<h2 id="Requirements">2. Requirements</h2><ul>
 <li>Payload:</li>
 <li>Influence: Structure and motor actuator</li>
 <li>How: the weight, how far from the center of gravity, <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=larhoalnVSQ">Ref</a></li>
@@ -288,17 +288,17 @@
 <li>Safety: vision &#x2F; lidar</li>
 <li>Maintenance: repair, parts, mechanical, electrical system</li>
 </ul>
-<h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Format-URDF"><a href="#Format-URDF" class="headerlink" title="Format? URDF"></a>Format? URDF</h3><ul>
+<h2 id="Modeling">3. Modeling</h2><h3 id="Format-URDF">3.1. Format? URDF</h3><ul>
 <li><strong>URDF: Unified Robot Description Format</strong></li>
 <li>Simpler, only the basics like geometry, kinematics, dynamics</li>
 <li>SDF: Simulation Description Format</li>
 <li>More featured, materials, lighting, camera model, environments</li>
 </ul>
-<h3 id="URDF-Crash-Course"><a href="#URDF-Crash-Course" class="headerlink" title="URDF Crash Course"></a>URDF Crash Course</h3><p><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/sm/ug/urdf-model-import.html">Matlab Ref</a></p>
+<h3 id="URDF-Crash-Course">3.2. URDF Crash Course</h3><p><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/sm/ug/urdf-model-import.html">Matlab Ref</a></p>
 <p>XML based</p>
-<p>Nested structure, <robot>, <link>, <joint></p>
+<p>Nested structure, <robot>, <link>, <joint></joint></robot></p>
 <ul>
-<li><p>Elements, <robot>, <link>, <joint></p>
+<li><p>Elements, <robot>, <link>, <joint></joint></robot></p>
 </li>
 <li><p>Attributes, <code>name</code> , <code>rgba</code></p>
 </li>
@@ -306,15 +306,15 @@
 </li>
 <li><p>Model <strong>Topology</strong></p>
 </li>
-<li><p>No closed-loop Chain: A <link> could only be <strong>one</strong> child of <joint></p>
+<li><p>No closed-loop Chain: A <link> could only be <strong>one</strong> child of <joint></joint></p>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221223829.png" alt="image-20230221223829402"></p>
 <p>Green are optional</p>
-<h3 id="URDF-Parser"><a href="#URDF-Parser" class="headerlink" title="URDF Parser"></a>URDF Parser</h3><p>XML based file, find the root and iterate over node</p>
-<Link>  defines the structure of the robot
+<h3 id="URDF-Parser">3.3. URDF Parser</h3><p>XML based file, find the root and iterate over node</p>
+<link>  defines the structure of the robot
 
-<p><joint> defines the transformation of the robot</p>
+<p><joint> defines the transformation of the robot</joint></p>
 <ol>
 <li>Read all the link and joint by their <strong>name</strong></li>
 <li>Iterate over joint</li>
@@ -342,7 +342,7 @@
 <td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230412223512.png" alt="image-20230412223512348"></td>
 </tr>
 </tbody></table>
-<h3 id="Kinematics"><a href="#Kinematics" class="headerlink" title="Kinematics"></a>Kinematics</h3><ol>
+<h3 id="Kinematics">3.4. Kinematics</h3><ol>
 <li><p>Get the translation and rotation from the URDF</p>
 </li>
 <li><p>Apply the forward kinematics</p>
@@ -354,7 +354,7 @@
 <li><p>Solve the Inverse kinematics</p>
 </li>
 </ol>
-<h2 id="Motion-Planning"><a href="#Motion-Planning" class="headerlink" title="Motion Planning"></a>Motion Planning</h2><h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>Problem: many constrains</p>
+<h2 id="Motion-Planning">4. Motion Planning</h2><h3 id="Inverse-Kinematics">4.1. Inverse Kinematics</h3><p>Problem: many constrains</p>
 <p>For 6 or 7 DOF: IKFast, open source, use a approximation, fast and numerically robust solution</p>
 <ul>
 <li>Fact: the 6D pose constraint on a 6D manipulator has closed form solution</li>
@@ -364,12 +364,12 @@
 <li>Differential IK</li>
 <li>Full IK</li>
 </ul>
-<h3 id="Trajectory-Optimization"><a href="#Trajectory-Optimization" class="headerlink" title="Trajectory Optimization"></a>Trajectory Optimization</h3><p>Not solving the problem independently, the basic idea is to solve in a optimization form,</p>
-<h3 id="Sampling-Based"><a href="#Sampling-Based" class="headerlink" title="Sampling Based"></a>Sampling Based</h3><h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>workspace calculation, maybe by sampling?</p>
+<h3 id="Trajectory-Optimization">4.2. Trajectory Optimization</h3><p>Not solving the problem independently, the basic idea is to solve in a optimization form,</p>
+<h3 id="Sampling-Based">4.3. Sampling Based</h3><h2 id="Implementation">5. Implementation</h2><p>workspace calculation, maybe by sampling?</p>
 <ul>
 <li>2D to 3D</li>
 </ul>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>Make the cost function simple</p>
+<h2 id="Takeaway">6. Takeaway</h2><p>Make the cost function simple</p>
 <p>Write minimal constraints</p>
 
     </div>
@@ -455,7 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements"><span class="nav-number">2.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">3.</span> <span class="nav-text">Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Format-URDF"><span class="nav-number">3.1.</span> <span class="nav-text">Format? URDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URDF-Crash-Course"><span class="nav-number">3.2.</span> <span class="nav-text">URDF Crash Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URDF-Parser"><span class="nav-number">3.3.</span> <span class="nav-text">URDF Parser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kinematics"><span class="nav-number">3.4.</span> <span class="nav-text">Kinematics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motion-Planning"><span class="nav-number">4.</span> <span class="nav-text">Motion Planning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inverse-Kinematics"><span class="nav-number">4.1.</span> <span class="nav-text">Inverse Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trajectory-Optimization"><span class="nav-number">4.2.</span> <span class="nav-text">Trajectory Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-Based"><span class="nav-number">4.3.</span> <span class="nav-text">Sampling Based</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">5.</span> <span class="nav-text">Implementation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">6.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.</span> <span class="nav-text">1. Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements"><span class="nav-number">2.</span> <span class="nav-text">2. Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">3.</span> <span class="nav-text">3. Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Format-URDF"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Format? URDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URDF-Crash-Course"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. URDF Crash Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URDF-Parser"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. URDF Parser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kinematics"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. Kinematics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motion-Planning"><span class="nav-number">4.</span> <span class="nav-text">4. Motion Planning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inverse-Kinematics"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Inverse Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trajectory-Optimization"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Trajectory Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-Based"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. Sampling Based</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">5.</span> <span class="nav-text">5. Implementation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">6.</span> <span class="nav-text">6. Takeaway</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

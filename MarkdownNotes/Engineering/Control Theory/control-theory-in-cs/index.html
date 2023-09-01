@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IntroductionControl theory provides a systetmatic approach to design feedback loops that are stable and settle quickly to their steady state values. In many computing systems, control theory is used w">
+  <meta name="description" content="1. IntroductionControl theory provides a systetmatic approach to design feedback loops that are stable and settle quickly to their steady state values. In many computing systems, control theory is use">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Control Theory and Application in CS">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/control-theory-in-cs/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="IntroductionControl theory provides a systetmatic approach to design feedback loops that are stable and settle quickly to their steady state values. In many computing systems, control theory is used w">
+<meta property="og:description" content="1. IntroductionControl theory provides a systetmatic approach to design feedback loops that are stable and settle quickly to their steady state values. In many computing systems, control theory is use">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-09-08T22:23:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.046Z">
@@ -255,15 +255,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Control theory provides a <strong>systetmatic approach</strong> to design feedback loops that are stable and settle quickly to their steady state values.</p>
+        <h2 id="Introduction">1. Introduction</h2><p>Control theory provides a <strong>systetmatic approach</strong> to design feedback loops that are stable and settle quickly to their steady state values.</p>
 <p>In many computing systems, control theory is used widely in problem such as adjusting scheduling priorites, memory allocations, and network bandwith allocation and flow control and TCP&#x2F;IP</p>
-<h2 id="Control-Theoty-Fundamentals"><a href="#Control-Theoty-Fundamentals" class="headerlink" title="Control Theoty Fundamentals"></a>Control Theoty Fundamentals</h2><blockquote>
+<h2 id="Control-Theoty-Fundamentals">2. Control Theoty Fundamentals</h2><blockquote>
 <p>The magic of feedback: create a system that perform well from components that perform poorly.</p>
 <p>​																																							— Karl Astrom</p>
 </blockquote>
 <span id="more"></span>
 
-<h3 id="Notions"><a href="#Notions" class="headerlink" title="Notions"></a>Notions</h3><p>Because we are talking about computer system, so the time is discrete. Here are some symbols</p>
+<h3 id="Notions">2.1. Notions</h3><p>Because we are talking about computer system, so the time is discrete. Here are some symbols</p>
 <ul>
 <li>time: $k$</li>
 <li>reference input: $r(k)$, the desired value of measured output</li>
@@ -273,19 +273,19 @@
 <li>measured output $y(k)$</li>
 <li>noise input $n(k)$ changes the measured output produced by the target system</li>
 </ul>
-<h3 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h3><ul>
+<h3 id="Purpose">2.2. Purpose</h3><ul>
 <li>regulatory control: ensure the measured output is close to the reference input</li>
 <li>disturbance rejection</li>
 <li>optimization: obtain the best value of the measured output</li>
 </ul>
-<h3 id="Good-Properties"><a href="#Good-Properties" class="headerlink" title="Good Properties"></a>Good Properties</h3><p><strong>SASO</strong></p>
+<h3 id="Good-Properties">2.3. Good Properties</h3><p><strong>SASO</strong></p>
 <ul>
 <li>stable</li>
 <li>accurate</li>
 <li>short settling time</li>
 <li>no overshoot</li>
 </ul>
-<h2 id="Example-1-IBM-Lotus-Domino-Server"><a href="#Example-1-IBM-Lotus-Domino-Server" class="headerlink" title="Example 1 IBM Lotus Domino Server"></a>Example 1 IBM Lotus Domino Server</h2><p>Goal: Control <em>RIS</em> in the server</p>
+<h2 id="Example-1-IBM-Lotus-Domino-Server">3. Example 1 IBM Lotus Domino Server</h2><p>Goal: Control <em>RIS</em> in the server</p>
 <ol>
 <li>Model how <em>MaxUsers</em> (output of the controller) affects <em>RIS</em></li>
 </ol>
@@ -380,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Theoty-Fundamentals"><span class="nav-number">2.</span> <span class="nav-text">Control Theoty Fundamentals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notions"><span class="nav-number">2.1.</span> <span class="nav-text">Notions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Purpose"><span class="nav-number">2.2.</span> <span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Good-Properties"><span class="nav-number">2.3.</span> <span class="nav-text">Good Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1-IBM-Lotus-Domino-Server"><span class="nav-number">3.</span> <span class="nav-text">Example 1 IBM Lotus Domino Server</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Theoty-Fundamentals"><span class="nav-number">2.</span> <span class="nav-text">2. Control Theoty Fundamentals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notions"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Notions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Purpose"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Purpose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Good-Properties"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Good Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1-IBM-Lotus-Domino-Server"><span class="nav-number">3.</span> <span class="nav-text">3. Example 1 IBM Lotus Domino Server</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

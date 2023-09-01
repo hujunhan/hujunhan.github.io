@@ -262,14 +262,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="What-I-want-to-Know"><a href="#What-I-want-to-Know" class="headerlink" title="What I want to Know"></a>What I want to Know</h2><p>How they add key point landmark detection</p>
+          <h2 id="What-I-want-to-Know">1. What I want to Know</h2><p>How they add key point landmark detection</p>
 <p>How they design their network due to this change</p>
-<h2 id="Yolo5Face-Contribution"><a href="#Yolo5Face-Contribution" class="headerlink" title="Yolo5Face Contribution"></a>Yolo5Face Contribution</h2><ul>
+<h2 id="Yolo5Face-Contribution">2. Yolo5Face Contribution</h2><ul>
 <li>Redesign the YoloV5</li>
 <li>Design models for different model size</li>
 <li>Evaluate on Widerface</li>
 </ul>
-<h2 id="Key-Modification"><a href="#Key-Modification" class="headerlink" title="Key Modification"></a>Key Modification</h2><p><strong>Add a landmark regression head</strong>, this is what I want to know</p>
+<h2 id="Key-Modification">3. Key Modification</h2><p><strong>Add a landmark regression head</strong>, this is what I want to know</p>
 <p>In face detection, there are 5 points (simplified from 68 points)</p>
 <ul>
 <li>General loss functions for landmark regression: Wing-loss<br>$$<br>\operatorname{wing}(x)&#x3D; \begin{cases}w \cdot \ln (1+|x| &#x2F; e), &amp; \text { if } x&lt;w \ |x|-C, &amp; \text { otherwise }\end{cases}<br>$$</li>
@@ -377,11 +377,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Meshroom"><a href="#Meshroom" class="headerlink" title="Meshroom"></a>Meshroom</h2><blockquote>
+          <h2 id="Meshroom">1. Meshroom</h2><blockquote>
 <p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
 <p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
 </blockquote>
-<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ol>
+<h2 id="Pipeline">2. Pipeline</h2><ol>
 <li>Feature extraction</li>
 <li>Goal: extract feature points</li>
 <li>Method: SIFT</li>
@@ -414,7 +414,7 @@
 <li>Compute UV maps</li>
 <li>For each triangle, use the color of each candidate to estimate</li>
 </ol>
-<h2 id="Data-Acquisition"><a href="#Data-Acquisition" class="headerlink" title="Data Acquisition"></a>Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<h2 id="Data-Acquisition">3. Data Acquisition</h2><p>Goal: Clear images from different angles</p>
 <p>Camera setting</p>
 <ul>
 <li>Fixed <strong>low</strong> ISO (low noise)</li>
@@ -440,13 +440,13 @@
 </ul>
 <p>Illustration:</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
-<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<h2 id="Results">4. Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
 <p>The final results of Meshroom is pretty unstable</p>
 <ul>
 <li>In many cases, even high quality images dataset can not generate satisfied results</li>
 <li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
 </ul>
-<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Why performs bad?</p>
+<h2 id="Discussion">5. Discussion</h2><p>Why performs bad?</p>
 <p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
 <ul>
 <li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
@@ -543,7 +543,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h2><p>旋转方式</p>
+          <h2 id="旋转矩阵">1. 旋转矩阵</h2><p>旋转方式</p>
 <ul>
 <li>绕自身旋转（右乘变换矩阵）</li>
 <li>绕固定轴旋转（左乘变换矩阵）</li>
@@ -636,7 +636,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: To tune hyper-parameter in machine learning or deep learning, using bandit algorithm, to minimize the time usag</p>
+          <h2 id="Intro">1. Intro</h2><p>Goal: To tune hyper-parameter in machine learning or deep learning, using bandit algorithm, to minimize the time usag</p>
 <p>Methods used with</p>
 <ul>
 <li>SGD</li>
@@ -676,19 +676,19 @@
 </tbody></table>
 <p>It starts with 81 runs, one iteration each. Then the best 27 configurations get three iterations each. Then the best nine get nine, and so on</p>
 </blockquote>
-<h2 id="Learning-Rate-Tune-or-Not"><a href="#Learning-Rate-Tune-or-Not" class="headerlink" title="Learning Rate: Tune or Not"></a>Learning Rate: Tune or Not</h2><p>“Low learning rate with many iterations” is good for XGBoost</p>
+<h2 id="Learning-Rate-Tune-or-Not">2. Learning Rate: Tune or Not</h2><p>“Low learning rate with many iterations” is good for XGBoost</p>
 <p>If we do not tune learning rate, the hyperband make good sense</p>
-<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>Just need two function</p>
+<h2 id="Implementation">3. Implementation</h2><p>Just need two function</p>
 <ol>
 <li>one return a random configuration</li>
 <li>another one train that configuration for a given number of iterations and return a loss value</li>
 </ol>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>To evaluate the performance of hyperband, we did several experiment. From the high level, we want to answer two major question:</p>
+<h2 id="Experiment">4. Experiment</h2><p>To evaluate the performance of hyperband, we did several experiment. From the high level, we want to answer two major question:</p>
 <ol>
 <li>How hyperband perform in different machine learning algorithms.</li>
 <li>How hyperband perform compared to other hyper parameter tuning algorithms</li>
 </ol>
-<h3 id="Setting"><a href="#Setting" class="headerlink" title="Setting"></a>Setting</h3><p>In our experiments, we are making a binary classification problem. For the dataset, we choose Breast Cancer Wisconsin (Diagnostic) dataset, features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image.</p>
+<h3 id="Setting">4.1. Setting</h3><p>In our experiments, we are making a binary classification problem. For the dataset, we choose Breast Cancer Wisconsin (Diagnostic) dataset, features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image.</p>
 <p>According to Algorithm 1, we set $R&#x3D;81$ and $\eta&#x3D;3$, which means maximum iterations per configuration is $3$ and configuration downsampling rate is $3$</p>
 <p>To evaluate the performance of hyperband in different machine learning algorithms, we choose gradient boosting, random forest, extremely randomized trees and linear SGD. To compare between different methods, we use log loss as our metric</p>
 <p>From the figure below, we can observe that after few iterations, the hyperband algorithm has the ability to optimize the parameter of these machine learning algorithm and make good prediction with low log loss.</p>
@@ -794,7 +794,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Like the nerve system in human body</p>
+          <h2 id="What">1. What</h2><p>Like the nerve system in human body</p>
 <ul>
 <li>ECU like the body parts</li>
 <li>Sensor can broadcast the data and share in the can bus</li>
@@ -804,16 +804,16 @@
 <li>CAN High</li>
 <li>CAN Low</li>
 </ul>
-<h2 id="Why-Main-Benefical"><a href="#Why-Main-Benefical" class="headerlink" title="Why (Main Benefical)"></a>Why (Main Benefical)</h2><ol>
+<h2 id="Why-Main-Benefical">2. Why (Main Benefical)</h2><ol>
 <li>Simple and Low cost</li>
 <li>Fully Centerlized</li>
 <li>Extremely Robust (抗干扰)</li>
 <li>Effcient, with priority ID</li>
 </ol>
-<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><p>BOSCH CAN 1986</p>
+<h2 id="History">3. History</h2><p>BOSCH CAN 1986</p>
 <p>CAN 2.0 1991</p>
 <p>International standard 1998</p>
-<h2 id="Message-x2F-Frame"><a href="#Message-x2F-Frame" class="headerlink" title="Message &#x2F; Frame"></a>Message &#x2F; Frame</h2><p>8 fields</p>
+<h2 id="Message-x2F-Frame">4. Message &#x2F; Frame</h2><p>8 fields</p>
 <ol>
 <li>SOF</li>
 <li>CAN ID</li>
@@ -824,8 +824,8 @@
 <li>ACK</li>
 <li>EOF</li>
 </ol>
-<h2 id="Record-and-Decode"><a href="#Record-and-Decode" class="headerlink" title="Record and Decode"></a>Record and Decode</h2><p>ID and Data, use a logger</p>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oYps7vT708E">https://www.youtube.com/watch?v=oYps7vT708E</a></p>
+<h2 id="Record-and-Decode">5. Record and Decode</h2><p>ID and Data, use a logger</p>
+<h2 id="Ref">6. Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oYps7vT708E">https://www.youtube.com/watch?v=oYps7vT708E</a></p>
 
       
     </div>
@@ -907,7 +907,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="茶是如何做出来的？"><a href="#茶是如何做出来的？" class="headerlink" title="茶是如何做出来的？"></a>茶是如何做出来的？</h2><ol>
+          <h2 id="茶是如何做出来的？">1. 茶是如何做出来的？</h2><ol>
 <li>茶叶种植</li>
 <li>茶树是一种常青灌木，喜欢酸性土壤和丰富的灌溉。种植的海拔越高，味道越浓烈</li>
 <li>从种下一棵茶树开始，一般需要3年才能有用于喝的叶片</li>
@@ -1092,7 +1092,7 @@
 <li>Robotics</li>
 <li>Foundation</li>
 </ul>
-<h2 id="1-About-Robotics"><a href="#1-About-Robotics" class="headerlink" title="1 About Robotics"></a>1 About Robotics</h2><p>There are 3 main aspects of robotics</p>
+<h2 id="1-About-Robotics">1. 1 About Robotics</h2><p>There are 3 main aspects of robotics</p>
 <ul>
 <li>body</li>
 </ul>
@@ -1115,12 +1115,12 @@
 <ul>
 <li>machine learning: interact with environment on it’s own</li>
 </ul>
-<h2 id="2-Research"><a href="#2-Research" class="headerlink" title="2 Research"></a>2 Research</h2><p>stability of aerial vehicles</p>
+<h2 id="2-Research">2. 2 Research</h2><p>stability of aerial vehicles</p>
 <p>quadruped robots: MIT</p>
 <p>climbing robot: Stanford</p>
 <p>sense and avoid: UAV</p>
 <p>prosthetic hand:</p>
-<h2 id="3-Company"><a href="#3-Company" class="headerlink" title="3 Company"></a>3 Company</h2><p>Epson robots</p>
+<h2 id="3-Company">3. 3 Company</h2><p>Epson robots</p>
 <p>liquid robotics</p>
 <p>intuitive surgical</p>
 <p>ekso bionics</p>
@@ -1224,7 +1224,7 @@
 <li>Foundation</li>
 <li>MobileRobots</li>
 </ul>
-<h2 id="How-to-Drive-Robots"><a href="#How-to-Drive-Robots" class="headerlink" title="How to Drive Robots"></a>How to Drive Robots</h2><p>We mainly need 3 part</p>
+<h2 id="How-to-Drive-Robots">1. How to Drive Robots</h2><p>We mainly need 3 part</p>
 <ul>
 <li>Controller</li>
 <li>Sensors</li>
@@ -1327,35 +1327,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why-Company-Sponsor"><a href="#Why-Company-Sponsor" class="headerlink" title="Why Company Sponsor"></a>Why Company Sponsor</h2><p>Make their product known by customers</p>
+          <h2 id="Why-Company-Sponsor">1. Why Company Sponsor</h2><p>Make their product known by customers</p>
 <p>Build opportunities between people and sponsor</p>
 <ul>
 <li>In meaningful way</li>
 <li>Interesting</li>
 </ul>
-<h3 id="How-Sponsor"><a href="#How-Sponsor" class="headerlink" title="How Sponsor"></a>How Sponsor</h3><p>Type</p>
+<h3 id="How-Sponsor">1.1. How Sponsor</h3><p>Type</p>
 <ul>
 <li>Experience, make people feel the product</li>
 <li>Media</li>
 <li>Cash</li>
 <li>…</li>
 </ul>
-<h2 id="Know-the-Audience"><a href="#Know-the-Audience" class="headerlink" title="Know the Audience"></a>Know the Audience</h2><ul>
+<h2 id="Know-the-Audience">2. Know the Audience</h2><ul>
 <li>Demographic</li>
 <li>Psychographic</li>
 <li>Preferred brands</li>
 <li>Coming purchases</li>
 </ul>
 <p>The more data of audience, the better</p>
-<h3 id="How-to-do"><a href="#How-to-do" class="headerlink" title="How to do"></a>How to do</h3><p>Talking to preferred company</p>
+<h3 id="How-to-do">2.1. How to do</h3><p>Talking to preferred company</p>
 <p>Markert search thepriority</p>
-<h3 id="Value-of-AUDIENCE"><a href="#Value-of-AUDIENCE" class="headerlink" title="Value of AUDIENCE"></a>Value of AUDIENCE</h3><p>The value highly depend on your audience</p>
+<h3 id="Value-of-AUDIENCE">2.2. Value of AUDIENCE</h3><p>The value highly depend on your audience</p>
 <ul>
 <li>Who are they</li>
 <li>What they want</li>
 <li>Fair value</li>
 </ul>
-<h2 id="After-Event"><a href="#After-Event" class="headerlink" title="After Event"></a>After Event</h2><p>Prove you did what you promised</p>
+<h2 id="After-Event">3. After Event</h2><p>Prove you did what you promised</p>
 <p>Get feedback and do better next time</p>
 
       

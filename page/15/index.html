@@ -258,59 +258,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hard problem: need strong ability in so many technical areas</p>
+          <h2 id="Introduction">1. Introduction</h2><p>Hard problem: need strong ability in so many technical areas</p>
 <ul>
 <li>Perception</li>
 <li>Planning</li>
 <li>Control</li>
 </ul>
-<h3 id="More-Than-Pick-and-Place"><a href="#More-Than-Pick-and-Place" class="headerlink" title="More Than Pick-and-Place"></a>More Than Pick-and-Place</h3><p>The task a human can do is so remarkable.</p>
+<h3 id="More-Than-Pick-and-Place">1.1. More Than Pick-and-Place</h3><p>The task a human can do is so remarkable.</p>
 <p>Making salad? Grasping? Much more!</p>
-<h3 id="Open-world-Manipulation"><a href="#Open-world-Manipulation" class="headerlink" title="Open-world Manipulation"></a>Open-world Manipulation</h3><p>Challenge: very diverse world, and we have high expectation</p>
+<h3 id="Open-world-Manipulation">1.2. Open-world Manipulation</h3><p>Challenge: very diverse world, and we have high expectation</p>
 <p>Maybe it also is a chance that diversity would make the problem easier, since we would never ask for a optimal solution</p>
-<h3 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h3><p>Perception and physics</p>
-<h3 id="Model-Based-Design-and-Analysis"><a href="#Model-Based-Design-and-Analysis" class="headerlink" title="Model-Based Design and Analysis"></a>Model-Based Design and Analysis</h3><p>More accurate and informative messages</p>
+<h3 id="Simulation">1.3. Simulation</h3><p>Perception and physics</p>
+<h3 id="Model-Based-Design-and-Analysis">1.4. Model-Based Design and Analysis</h3><p>More accurate and informative messages</p>
 <p>How to model? Diagrams</p>
-<h2 id="Get-a-robot"><a href="#Get-a-robot" class="headerlink" title="Get a robot"></a>Get a robot</h2><h3 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h3><h4 id="Position-control"><a href="#Position-control" class="headerlink" title="Position-control"></a>Position-control</h4><p>Most are position controlled</p>
+<h2 id="Get-a-robot">2. Get a robot</h2><h3 id="Arm">2.1. Arm</h3><h4 id="Position-control">2.1.1. Position-control</h4><p>Most are position controlled</p>
 <p>Torque control is not widely used since the $\tau_{motor}&#x3D;k_t i$ doesn’t hold in real life</p>
 <p>How: use position sensor to do a PID control, we are controlling torque but in reality we are ouputing voltage by PWM</p>
 <blockquote>
 <p>Though the control objects are always different, the gains are surprisingly not that different</p>
 </blockquote>
-<h4 id="Torque-control"><a href="#Torque-control" class="headerlink" title="Torque-control"></a>Torque-control</h4><p>Not common</p>
+<h4 id="Torque-control">2.1.2. Torque-control</h4><p>Not common</p>
 <ul>
 <li>Direct control to electrical motor with small gear reduction (&lt;10:1)</li>
 <li>Hydraulic actuators</li>
 <li>Keep large gear-ratio motors, add sensors to measure the torque</li>
 </ul>
 <p>The cost is going down</p>
-<h4 id="Simulation-1"><a href="#Simulation-1" class="headerlink" title="Simulation"></a>Simulation</h4><p>Drake</p>
+<h4 id="Simulation-1">2.1.3. Simulation</h4><p>Drake</p>
 <ul>
 <li>MultibodyPlant, represent the physical system, in control field</li>
 <li>SceneGraph, handle the geometry of the scene</li>
 </ul>
 <p>For the torque, we need to specify even the controller is off</p>
 <p>To simulate the arm well, we need to implement  a low-level controller</p>
-<h3 id="Hand"><a href="#Hand" class="headerlink" title="Hand"></a>Hand</h3><p>Different camps</p>
+<h3 id="Hand">2.2. Hand</h3><p>Different camps</p>
 <ul>
 <li>Dexterous hands, just like human’s hands, sensor rich. We are not there yet</li>
 <li>Simple grippers, can also do amazing useful job. Why we need a dexterous hand?</li>
 <li>Soft hands, good at something but not general.</li>
 </ul>
-<h3 id="Sensor"><a href="#Sensor" class="headerlink" title="Sensor"></a>Sensor</h3><p>Perception, tactile sensing is important. Now, we only need to focus on joint sensor.</p>
+<h3 id="Sensor">2.3. Sensor</h3><p>Perception, tactile sensing is important. Now, we only need to focus on joint sensor.</p>
 <ul>
 <li>reliable: position, velocity, torque</li>
 <li>unreliable: acceleration</li>
 </ul>
-<h2 id="Pick-and-Place"><a href="#Pick-and-Place" class="headerlink" title="Pick and Place"></a>Pick and Place</h2><p>Naturally, we can start from <strong>geometry</strong> and <strong>kinematics</strong></p>
-<h3 id="Notion"><a href="#Notion" class="headerlink" title="Notion"></a>Notion</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-32-06.png" alt="image-20220701000523016"></p>
+<h2 id="Pick-and-Place">3. Pick and Place</h2><p>Naturally, we can start from <strong>geometry</strong> and <strong>kinematics</strong></p>
+<h3 id="Notion">3.1. Notion</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-32-06.png" alt="image-20220701000523016"></p>
 <p>very powerful</p>
-<h3 id="Pick-Transform"><a href="#Pick-Transform" class="headerlink" title="Pick Transform"></a>Pick Transform</h3><p>Object $O$, Gripper $G$，Sensor tell us $^WX^O$, Desired $^WX^{O_d}$</p>
+<h3 id="Pick-Transform">3.2. Pick Transform</h3><p>Object $O$, Gripper $G$，Sensor tell us $^WX^O$, Desired $^WX^{O_d}$</p>
 <p>goal: make $X^O&#x3D;X^{O_d}$</p>
 <blockquote>
 <p>Example: camera frame to world frame<br>$$<br>p^{P_i}&#x3D;X^{CC}p^{P_i}<br>$$</p>
 </blockquote>
-<h3 id="FK"><a href="#FK" class="headerlink" title="FK"></a>FK</h3><p>In real life, we give command for the joint position, so we need to convert from <strong>joint angles</strong> to <strong>cartesian frames</strong></p>
+<h3 id="FK">3.3. FK</h3><p>In real life, we give command for the joint position, so we need to convert from <strong>joint angles</strong> to <strong>cartesian frames</strong></p>
 <p>Define 3 element in every joint</p>
 <ul>
 <li>transform from children joint frame to parent joint frame $^{J_P}X^{J_C}(q)$</li>
@@ -318,42 +318,42 @@
 <li>transform from parent joint frame to parent body frame $^{P}X^{J_C}$</li>
 </ul>
 <p>All in all, we can compute the transform<br>$$<br>^PX^C(q)&#x3D;^{P}X^{J_CJ_P}X^{J_C}(q)^{J_C}X^{C}<br>$$<br>In short, we get a map<br>$$<br>X^G&#x3D;f^G_{kin}(q)<br>$$</p>
-<h3 id="Jacobians"><a href="#Jacobians" class="headerlink" title="Jacobians"></a>Jacobians</h3><p>If the goal is to move the gripper, then we should how <strong>change in joint</strong> relate to <strong>change in pose</strong></p>
+<h3 id="Jacobians">3.4. Jacobians</h3><p>If the goal is to move the gripper, then we should how <strong>change in joint</strong> relate to <strong>change in pose</strong></p>
 <p>Straightforward to compute the partial derivative<br>$$<br>dX^B&#x3D;J^B(q)dq<br>$$</p>
 <p>To represent a 6D velocity more clearly, we use the following<br>$$<br>{ }^{A} V_{C}^{B}&#x3D;\left[\begin{array}{c}<br>{ }^{A} \omega_{C}^{B} \<br>A_{\mathrm{V}_{C}^{B}}^{B}<br>\end{array}\right]<br>$$</p>
 <ul>
 <li>$w$ is the angular velocity</li>
 <li>$v$ is the translational velocity</li>
 </ul>
-<h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>If we have a desired a gripper velocity $V^{G_d}$, may be we could do $v&#x3D;\left[J^{G}(q)\right]^{-1} V^{G_{d}}$?</p>
-<h4 id="Pseudo-inverse"><a href="#Pseudo-inverse" class="headerlink" title="Pseudo-inverse"></a>Pseudo-inverse</h4><p>First consider is the matrix invertible? E.g. the dimension is $6\times7$, it’s more than required</p>
+<h3 id="Inverse-Kinematics">3.5. Inverse Kinematics</h3><p>If we have a desired a gripper velocity $V^{G_d}$, may be we could do $v&#x3D;\left[J^{G}(q)\right]^{-1} V^{G_{d}}$?</p>
+<h4 id="Pseudo-inverse">3.5.1. Pseudo-inverse</h4><p>First consider is the matrix invertible? E.g. the dimension is $6\times7$, it’s more than required</p>
 <p>Moore-Penrose pseudo inverse<br>$$<br>v&#x3D;\left[J^{G}(q)\right]^{+} V^{G_{d}}<br>$$<br>This would give the solution with minimum-norm</p>
-<h3 id="Trajectory"><a href="#Trajectory" class="headerlink" title="Trajectory"></a>Trajectory</h3><p>Define the keyframe pose we wish the gripper to travel</p>
+<h3 id="Trajectory">3.6. Trajectory</h3><p>Define the keyframe pose we wish the gripper to travel</p>
 <p>What kind of trajectory? splines is a good way</p>
 <p>Interpolation</p>
 <ul>
 <li>Position: simply linear interpolation</li>
 <li>Rotation: Spherical linear interpolation or slerp</li>
 </ul>
-<h3 id="Constrains"><a href="#Constrains" class="headerlink" title="Constrains"></a>Constrains</h3><p>Pseudo-inverse solution might lead to large velocity (beyond robot limits) which we don’t want</p>
+<h3 id="Constrains">3.7. Constrains</h3><p>Pseudo-inverse solution might lead to large velocity (beyond robot limits) which we don’t want</p>
 <p>Regard the inverse as a optimization problem<br>$$<br>\min <em>{v}\left|J^{G}(q) v-V^{G</em>{d}}\right|<em>{2}^{2}<br>$$<br>and we have constrains in positions, speed and acceleration<br>$$<br>\begin{array}{ll}<br>\min</em>{v_{n}} &amp; \left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2} \<br>\text { subject to } &amp; v</em>{\min } \leq v_{n} \leq v_{\max } \<br>&amp; q_{\min } \leq q+h v_{n} \leq q_{\max } \<br>&amp; \dot{v}<em>{\min } \leq \frac{v</em>{n}-v}{h} \leq \dot{v}_{\max }<br>\end{array}<br>$$</p>
-<h4 id="Joint-Centering"><a href="#Joint-Centering" class="headerlink" title="Joint Centering"></a>Joint Centering</h4><p>In robotics, we could add a secondary control<br>$$<br>\min <em>{v</em>{n}}\left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2}+\epsilon\left|P(q)\left(v</em>{n}-K\left(q_{0}-q\right)\right)\right|_{2}^{2}<br>\<br>subject \ to \  constraints.<br>$$</p>
-<h2 id="Pose-Estimation"><a href="#Pose-Estimation" class="headerlink" title="Pose Estimation"></a>Pose Estimation</h2><p>Assumption: we know the object and have depth camera</p>
+<h4 id="Joint-Centering">3.7.1. Joint Centering</h4><p>In robotics, we could add a secondary control<br>$$<br>\min <em>{v</em>{n}}\left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2}+\epsilon\left|P(q)\left(v</em>{n}-K\left(q_{0}-q\right)\right)\right|_{2}^{2}<br>\<br>subject \ to \  constraints.<br>$$</p>
+<h2 id="Pose-Estimation">4. Pose Estimation</h2><p>Assumption: we know the object and have depth camera</p>
 <p>Two trends:</p>
 <ul>
 <li>deep learning</li>
 <li>geometric reasoning</li>
 </ul>
-<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><p>In practice, <strong>camera</strong> or <strong>range</strong> sensor are more important</p>
-<h4 id="Depth-sensor"><a href="#Depth-sensor" class="headerlink" title="Depth sensor"></a>Depth sensor</h4><p>RGBD (ToF and structured light)</p>
+<h3 id="Camera">4.1. Camera</h3><p>In practice, <strong>camera</strong> or <strong>range</strong> sensor are more important</p>
+<h4 id="Depth-sensor">4.1.1. Depth sensor</h4><p>RGBD (ToF and structured light)</p>
 <p>There are noise in real life, and dependent to lighting conditions, surface normals and other properties.</p>
-<h3 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h3><ul>
+<h3 id="Representation">4.2. Representation</h3><ul>
 <li>depth image</li>
 <li>color image</li>
 <li>camera pose</li>
 </ul>
 <p>Combine, we can get a point cloud</p>
-<h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>Point cloud registration</p>
+<h3 id="Registration">4.3. Registration</h3><p>Point cloud registration</p>
 <ul>
 <li>given two point clouds</li>
 <li>find the transform</li>
@@ -365,15 +365,15 @@
 </ol>
 <p>In this situation, it becomes a optimization problem<br>$$<br>\begin{array}{ll}<br>\min <em>{p, R} &amp; \sum</em>{i&#x3D;1}^{N_{s}} | p+R^{O} p^{m_{c_{i}}}-X^{C C^{s_{i}}} p^{2} \<br>\text { subject to } &amp; R^{T}&#x3D;R^{-1}, \quad \operatorname{det}(R)&#x3D;+1<br>\end{array}<br>$$<br>We can get the rotation first, then get the translation. So we center two point</p>
 <p>Using SVD, we can get the solution</p>
-<h3 id="ICP"><a href="#ICP" class="headerlink" title="ICP"></a>ICP</h3><ol>
+<h3 id="ICP">4.4. ICP</h3><ol>
 <li>initial guess of the object <strong>pose</strong></li>
 <li>calculate the <strong>correspondence</strong> via closet points</li>
 <li>Use the correspondence update pose</li>
 </ol>
 <p>We have very good numerical solution like FLANN</p>
-<h3 id="Partial-View"><a href="#Partial-View" class="headerlink" title="Partial View"></a>Partial View</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-14-22-11-39.png" alt="image-20220714221135748"></p>
+<h3 id="Partial-View">4.5. Partial View</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-14-22-11-39.png" alt="image-20220714221135748"></p>
 <p>In real world, the data is not perfect, how to deal with it?</p>
-<h4 id="Detecting-outliers"><a href="#Detecting-outliers" class="headerlink" title="Detecting outliers"></a>Detecting outliers</h4><ul>
+<h4 id="Detecting-outliers">4.5.1. Detecting outliers</h4><ul>
 <li>detect outliers need good estimation</li>
 <li>good estimation need detect outliers</li>
 </ul>
@@ -383,22 +383,22 @@
 <li>many seed to select a good start (good estimation)</li>
 <li>relative distance (graph theory)</li>
 </ol>
-<h4 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h4><p>Use NN more</p>
-<h4 id="Multiple-object-and-Partial-view"><a href="#Multiple-object-and-Partial-view" class="headerlink" title="Multiple object and Partial view"></a>Multiple object and Partial view</h4><p>Use a correspondence matrix to find the minimum<br>$$<br>\min <em>{X \in \operatorname{SE}(3)} \sum</em>{i&#x3D;1}^{N_{s}} \sum_{j&#x3D;1}^{N_{m}} C_{i j}\left|X^{O} p^{m_{j}}-p^{s_{i}}\right|^{2}<br>$$<br>The main idea behind CPD: relax the strict and let the matrix between 0 and 1</p>
+<h4 id="Segmentation">4.5.2. Segmentation</h4><p>Use NN more</p>
+<h4 id="Multiple-object-and-Partial-view">4.5.3. Multiple object and Partial view</h4><p>Use a correspondence matrix to find the minimum<br>$$<br>\min <em>{X \in \operatorname{SE}(3)} \sum</em>{i&#x3D;1}^{N_{s}} \sum_{j&#x3D;1}^{N_{m}} C_{i j}\left|X^{O} p^{m_{j}}-p^{s_{i}}\right|^{2}<br>$$<br>The main idea behind CPD: relax the strict and let the matrix between 0 and 1</p>
 <p>This make CPD more robust than ICP, but still use SVD</p>
-<h4 id="Non-linear-Optimization"><a href="#Non-linear-Optimization" class="headerlink" title="Non-linear Optimization"></a>Non-linear Optimization</h4><p>Try to estimate the pose and outliers at the same time, make the problem <strong>nonconvex</strong>, but</p>
+<h4 id="Non-linear-Optimization">4.5.4. Non-linear Optimization</h4><p>Try to estimate the pose and outliers at the same time, make the problem <strong>nonconvex</strong>, but</p>
 <ol>
 <li>the computation time would be saved</li>
 <li>can add more objective function</li>
 </ol>
-<h3 id="Looking-ahead"><a href="#Looking-ahead" class="headerlink" title="Looking ahead"></a>Looking ahead</h3><p>In the discussion, we lost the color, only use the depth.</p>
+<h3 id="Looking-ahead">4.6. Looking ahead</h3><p>In the discussion, we lost the color, only use the depth.</p>
 <p>In the future, the color should be used more</p>
-<h2 id="Bin-Picking"><a href="#Bin-Picking" class="headerlink" title="Bin Picking"></a>Bin Picking</h2><p>Consider the simplest situation: pick objects from one bin to another bin</p>
+<h2 id="Bin-Picking">5. Bin Picking</h2><p>Consider the simplest situation: pick objects from one bin to another bin</p>
 <ul>
 <li>How to simulate the drop and grasping?</li>
 </ul>
 <p>We could refine it to more complicated situation.</p>
-<h3 id="Generate-Scenes"><a href="#Generate-Scenes" class="headerlink" title="Generate Scenes"></a>Generate Scenes</h3><ol>
+<h3 id="Generate-Scenes">5.1. Generate Scenes</h3><ol>
 <li>Falling</li>
 <li>uniform rotate, place in X,Y</li>
 <li>Frictional Contact</li>
@@ -407,19 +407,19 @@
 <li>Optimization, consider the constrain</li>
 </ol>
 <p>However, the simulation is not stable in current study, we need more computation source.</p>
-<h3 id="Grasp-Selection"><a href="#Grasp-Selection" class="headerlink" title="Grasp Selection"></a>Grasp Selection</h3><p>The problem is hard: how to choose the right point of grasp</p>
+<h3 id="Grasp-Selection">5.2. Grasp Selection</h3><p>The problem is hard: how to choose the right point of grasp</p>
 <ul>
 <li>Still a problem in nowadays</li>
 <li>New approach: by learning method</li>
 </ul>
-<h4 id="Point-cloud"><a href="#Point-cloud" class="headerlink" title="Point cloud"></a>Point cloud</h4><ol>
+<h4 id="Point-cloud">5.2.1. Point cloud</h4><ol>
 <li>crop：delete unwanted points</li>
 <li>estimate: estimate the normal</li>
 <li>merge</li>
 <li>down-sample: using voxel grid</li>
 </ol>
-<h4 id="Normal-and-Curvature"><a href="#Normal-and-Curvature" class="headerlink" title="Normal and Curvature"></a>Normal and Curvature</h4><p>Calculate the normal<br>$$<br>\min <em>{p, n} \sum</em>{i&#x3D;1}^{N}\left|\left(p^{i}-p\right)^{T} n\right|^{2}, \quad \text { subject to } \quad|n|&#x3D;1<br>$$<br>and we can transform it into<br>$$<br>\min <em>{n} n^{T} W n, \quad \text { subject to } \quad|n|&#x3D;1, \quad \text { where } W&#x3D;\left[\sum</em>{i}\left(p^{i}-p^{<em>}\right)\left(p^{i}-p^{</em>}\right)^{T}\right] \text {. }<br>$$<br>By finding the eigenvalue of W, we can find the optimal solution</p>
-<h4 id="Grasp-point"><a href="#Grasp-point" class="headerlink" title="Grasp point"></a>Grasp point</h4><p>two step</p>
+<h4 id="Normal-and-Curvature">5.2.2. Normal and Curvature</h4><p>Calculate the normal<br>$$<br>\min <em>{p, n} \sum</em>{i&#x3D;1}^{N}\left|\left(p^{i}-p\right)^{T} n\right|^{2}, \quad \text { subject to } \quad|n|&#x3D;1<br>$$<br>and we can transform it into<br>$$<br>\min <em>{n} n^{T} W n, \quad \text { subject to } \quad|n|&#x3D;1, \quad \text { where } W&#x3D;\left[\sum</em>{i}\left(p^{i}-p^{<em>}\right)\left(p^{i}-p^{</em>}\right)^{T}\right] \text {. }<br>$$<br>By finding the eigenvalue of W, we can find the optimal solution</p>
+<h4 id="Grasp-point">5.2.3. Grasp point</h4><p>two step</p>
 <ol>
 <li>find a cost function</li>
 <li><strong>antipodal grasps</strong>. the most force to fight gravity</li>
@@ -429,9 +429,9 @@
 <li>local curvature</li>
 <li>find antipodal point pair</li>
 </ol>
-<h2 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h2><p>Geometric method can give good estimate of local minima, but perform bad in complex scene</p>
+<h2 id="Object-Detection">6. Object Detection</h2><p>Geometric method can give good estimate of local minima, but perform bad in complex scene</p>
 <p>Deep learning based method are more powerful</p>
-<h3 id="Big-Data"><a href="#Big-Data" class="headerlink" title="Big Data"></a>Big Data</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-20-00-22-41.png" alt="image-20220720002240961"></p>
+<h3 id="Big-Data">6.1. Big Data</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-20-00-22-41.png" alt="image-20220720002240961"></p>
 <p>Massive annotated datasets</p>
 <p>Instance segmentation is what we need in manipulation</p>
 <hr>
@@ -442,8 +442,8 @@
 <li>From the backbone</li>
 <li>Finetune</li>
 </ul>
-<h3 id="Simulation-2"><a href="#Simulation-2" class="headerlink" title="Simulation"></a>Simulation</h3><p>Real data is valuable, but we can also use simulation to synthetic data</p>
-<h3 id="Object-Detection-1"><a href="#Object-Detection-1" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>Image recognition:</p>
+<h3 id="Simulation-2">6.2. Simulation</h3><p>Real data is valuable, but we can also use simulation to synthetic data</p>
+<h3 id="Object-Detection-1">6.3. Object Detection</h3><p>Image recognition:</p>
 <ul>
 <li>input the full image</li>
 <li>output is the probability of the image contain something</li>
@@ -454,8 +454,8 @@
 <li>output is another image</li>
 </ul>
 <p>Instance Segmentation: Mask R-CNN</p>
-<h2 id="Force-Control"><a href="#Force-Control" class="headerlink" title="Force Control"></a>Force Control</h2><p>A hard task to grasp something</p>
-<h3 id="Simple-Model"><a href="#Simple-Model" class="headerlink" title="Simple Model"></a>Simple Model</h3><p>To fight against complexity, find a setup as simple as possible.</p>
+<h2 id="Force-Control">7. Force Control</h2><p>A hard task to grasp something</p>
+<h3 id="Simple-Model">7.1. Simple Model</h3><p>To fight against complexity, find a setup as simple as possible.</p>
 <p>Consider the following setup</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-23-13-11-33.png" alt="img"></p>
 <p>We have two model to consider</p>
@@ -478,14 +478,14 @@
 <li>Benefit: we only need to know the robot rather than environments</li>
 <li>Guarantee the robot won’t go unstable</li>
 </ul>
-<h2 id="Motion-Planning"><a href="#Motion-Planning" class="headerlink" title="Motion Planning"></a>Motion Planning</h2><p>Why motion planning?</p>
+<h2 id="Motion-Planning">8. Motion Planning</h2><p>Why motion planning?</p>
 <ul>
 <li>Collision between arm and environment</li>
 <li>In different environment, we need more automated robot</li>
 <li>In static environment, we could optimize the manipulation process significantly</li>
 </ul>
 <p>Need MORE brave robot</p>
-<h3 id="IK"><a href="#IK" class="headerlink" title="IK"></a>IK</h3><h3 id="Trajectory-Optimization"><a href="#Trajectory-Optimization" class="headerlink" title="Trajectory Optimization"></a>Trajectory Optimization</h3><h3 id="Sampling-Based-Planning"><a href="#Sampling-Based-Planning" class="headerlink" title="Sampling-Based Planning"></a>Sampling-Based Planning</h3>
+<h3 id="IK">8.1. IK</h3><h3 id="Trajectory-Optimization">8.2. Trajectory Optimization</h3><h3 id="Sampling-Based-Planning">8.3. Sampling-Based Planning</h3>
       
     </div>
 
@@ -566,10 +566,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Philosophy-for-the-future-with-Purpose"><a href="#Philosophy-for-the-future-with-Purpose" class="headerlink" title="Philosophy for the future (with Purpose)"></a>Philosophy for the future (with Purpose)</h2><p>Design the future career</p>
+          <h2 id="Philosophy-for-the-future-with-Purpose">1. Philosophy for the future (with Purpose)</h2><p>Design the future career</p>
 <p>Do the work help others</p>
 <p>Don’t waste time and keep learning</p>
-<h2 id="Career-Exploration"><a href="#Career-Exploration" class="headerlink" title="Career Exploration"></a>Career Exploration</h2><p>How to shape the career path?</p>
+<h2 id="Career-Exploration">2. Career Exploration</h2><p>How to shape the career path?</p>
 <p>The world is changing soon, so the career path is changing</p>
 <ul>
 <li>aware of the possibilities</li>
@@ -589,7 +589,7 @@
 <li>leadership</li>
 <li>interperson</li>
 </ul>
-<h2 id="Technique-for-career-exploration"><a href="#Technique-for-career-exploration" class="headerlink" title="Technique for career exploration"></a>Technique for career exploration</h2><ol>
+<h2 id="Technique-for-career-exploration">3. Technique for career exploration</h2><ol>
 <li>Design thinking, choose the value you value most</li>
 <li>Big 5 model</li>
 <li>Make plan</li>
@@ -598,7 +598,7 @@
 <li>Final, worst case</li>
 </ol>
 <p>What’s really important? Confidence and Reputation</p>
-<h2 id="Softskills"><a href="#Softskills" class="headerlink" title="Softskills"></a>Softskills</h2><h3 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h3><ul>
+<h2 id="Softskills">4. Softskills</h2><h3 id="Networking">4.1. Networking</h3><ul>
 <li>future contacts</li>
 <li>different information</li>
 <li>How</li>
@@ -606,12 +606,12 @@
 <li>Integrate new experience</li>
 <li>Positive, smile and curious</li>
 </ul>
-<h3 id="Character-flaws-personal-imperfections"><a href="#Character-flaws-personal-imperfections" class="headerlink" title="Character flaws, personal imperfections"></a>Character flaws, personal imperfections</h3><ul>
+<h3 id="Character-flaws-personal-imperfections">4.2. Character flaws, personal imperfections</h3><ul>
 <li>unstable emotional status</li>
 <li>Develop more self-awareness</li>
 <li>Get feedback</li>
 </ul>
-<h3 id="Changing-career"><a href="#Changing-career" class="headerlink" title="Changing career"></a>Changing career</h3><p>discipline</p>
+<h3 id="Changing-career">4.3. Changing career</h3><p>discipline</p>
 <p>confidence</p>
 <p>transferable skills</p>
 <ul>
@@ -621,7 +621,7 @@
 </ul>
 <hr>
 <p>mid-career crisis</p>
-<h2 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a>Communication</h2><h3 id="Digital-profile"><a href="#Digital-profile" class="headerlink" title="Digital profile"></a>Digital profile</h3><p>Linkedin</p>
+<h2 id="Communication">5. Communication</h2><h3 id="Digital-profile">5.1. Digital profile</h3><p>Linkedin</p>
 <ul>
 <li>passive candidate</li>
 <li>Professional photo</li>
@@ -629,8 +629,8 @@
 <li>Summary, unique, credential</li>
 <li>action, outcome</li>
 </ul>
-<h3 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h3><h2 id="Adapt"><a href="#Adapt" class="headerlink" title="Adapt"></a>Adapt</h2><p>work is more virtual</p>
-<h3 id="Essential-Skill"><a href="#Essential-Skill" class="headerlink" title="Essential Skill"></a>Essential Skill</h3><p>Cultural Frequency</p>
+<h3 id="Resume">5.2. Resume</h3><h2 id="Adapt">6. Adapt</h2><p>work is more virtual</p>
+<h3 id="Essential-Skill">6.1. Essential Skill</h3><p>Cultural Frequency</p>
 <ul>
 <li>personal</li>
 <li>organizational</li>
@@ -642,7 +642,7 @@
 <li>Articulate goals</li>
 <li>Find allies and mentor</li>
 </ul>
-<h3 id="Stand-Out"><a href="#Stand-Out" class="headerlink" title="Stand Out"></a>Stand Out</h3><ul>
+<h3 id="Stand-Out">6.2. Stand Out</h3><ul>
 <li>show up</li>
 <li>Start a blog</li>
 <li>Publish articles on Medium</li>
@@ -652,7 +652,7 @@
 <li>save&#x2F;earn money</li>
 <li>Fix problem</li>
 </ul>
-<h3 id="Personal-Branding"><a href="#Personal-Branding" class="headerlink" title="Personal Branding"></a>Personal Branding</h3><p>Using your strength</p>
+<h3 id="Personal-Branding">6.3. Personal Branding</h3><p>Using your strength</p>
 <p>Show the value</p>
 
       
@@ -735,19 +735,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="8000-hours"><a href="#8000-hours" class="headerlink" title="8000-hours"></a>8000-hours</h2><h2 id="What-to-do"><a href="#What-to-do" class="headerlink" title="What to do?"></a>What to do?</h2><ul>
+          <h2 id="8000-hours">1. 8000-hours</h2><h2 id="What-to-do">2. What to do?</h2><ul>
 <li>Good at</li>
 <li>Help others</li>
 <li>Good condition</li>
 </ul>
-<h2 id="What-impact"><a href="#What-impact" class="headerlink" title="What impact?"></a>What impact?</h2><p>Not only make difference, but make huge impact</p>
+<h2 id="What-impact">3. What impact?</h2><p>Not only make difference, but make huge impact</p>
 <p>Impact&#x3D;Number X Level</p>
-<h2 id="How-to-make-differences"><a href="#How-to-make-differences" class="headerlink" title="How to make differences"></a>How to make differences</h2><ul>
+<h2 id="How-to-make-differences">4. How to make differences</h2><ul>
 <li>Donations, $1 means more in Kenya than in USA</li>
 <li>political advocacy</li>
 <li>help others become more effective</li>
 </ul>
-<h2 id="Find-the-focus-area"><a href="#Find-the-focus-area" class="headerlink" title="Find the focus area"></a>Find the focus area</h2><ul>
+<h2 id="Find-the-focus-area">5. Find the focus area</h2><ul>
 <li>big in scale</li>
 <li>use number to make comparisons</li>
 <li>number of people</li>
@@ -758,12 +758,12 @@
 <li>few people know the problem</li>
 <li>solvable</li>
 </ul>
-<h2 id="What’s-important"><a href="#What’s-important" class="headerlink" title="What’s important?"></a>What’s important?</h2><ul>
+<h2 id="What’s-important">6. What’s important?</h2><ul>
 <li>global health in poor country</li>
 <li>focusing on future generation</li>
 <li>forecast the problem in the future</li>
 </ul>
-<h2 id="How-to-help-most"><a href="#How-to-help-most" class="headerlink" title="How to help most"></a>How to help most</h2><ul>
+<h2 id="How-to-help-most">7. How to help most</h2><ul>
 <li>Earning to give</li>
 <li>Advocacy, persuade a friend to give</li>
 <li>Research, if top 10%, highest impact</li>
@@ -776,7 +776,7 @@
 <li>read profile, read career ideas</li>
 <li>go through the 4 approuch</li>
 </ol>
-<h2 id="Change"><a href="#Change" class="headerlink" title="Change"></a>Change</h2><p><a target="_blank" rel="noopener" href="https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today">https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today</a></p>
+<h2 id="Change">8. Change</h2><p><a target="_blank" rel="noopener" href="https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today">https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today</a></p>
 
       
     </div>
@@ -858,7 +858,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Compete-and-Cooperate"><a href="#Compete-and-Cooperate" class="headerlink" title="Compete and Cooperate"></a>Compete and Cooperate</h2><h3 id="3-Principes"><a href="#3-Principes" class="headerlink" title="3 Principes"></a>3 Principes</h3><h3 id="How-to-Evaluate"><a href="#How-to-Evaluate" class="headerlink" title="How to Evaluate"></a>How to Evaluate</h3><h3 id="When-to-Compete-or-Cooperate"><a href="#When-to-Compete-or-Cooperate" class="headerlink" title="When to Compete or Cooperate"></a>When to Compete or Cooperate</h3>
+          <h2 id="Compete-and-Cooperate">1. Compete and Cooperate</h2><h3 id="3-Principes">1.1. 3 Principes</h3><h3 id="How-to-Evaluate">1.2. How to Evaluate</h3><h3 id="When-to-Compete-or-Cooperate">1.3. When to Compete or Cooperate</h3>
       
     </div>
 
@@ -939,7 +939,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Good-Research"><a href="#Good-Research" class="headerlink" title="Good Research"></a>Good Research</h2><p>Collect information and answer questions, make inference more than the data itself</p>
+          <h2 id="Good-Research">1. Good Research</h2><p>Collect information and answer questions, make inference more than the data itself</p>
 <hr>
 <p>Systematic inquiry</p>
 <ul>
@@ -951,7 +951,7 @@
 </ul>
 <hr>
 <p>Find something and publish it (make it as knowledge)</p>
-<h2 id="Literature-Review"><a href="#Literature-Review" class="headerlink" title="Literature Review"></a>Literature Review</h2><p>Being part of a broader view.</p>
+<h2 id="Literature-Review">2. Literature Review</h2><p>Being part of a broader view.</p>
 <p>Engage with other researcher, find their strength and weakness. Add value and contribute to the argument</p>
 <hr>
 <p>Ensure you have a deep understanding on the current problem.</p>
@@ -966,7 +966,7 @@
 <li>Pragmatism, real-world practice oriented</li>
 </ol>
 </blockquote>
-<h2 id="Management-and-Planning"><a href="#Management-and-Planning" class="headerlink" title="Management and Planning"></a>Management and Planning</h2><p>What skills？Soft-skills</p>
+<h2 id="Management-and-Planning">3. Management and Planning</h2><p>What skills？Soft-skills</p>
 <ul>
 <li>Management skills</li>
 <li>Communication skills</li>
@@ -977,7 +977,7 @@
 <p>Make progress everyday</p>
 <hr>
 <p>时间很重要，做重要的事</p>
-<h2 id="How-to-Know-the-Situation"><a href="#How-to-Know-the-Situation" class="headerlink" title="How to Know the Situation"></a>How to Know the Situation</h2><p>Test? Re-read the material wrote before</p>
+<h2 id="How-to-Know-the-Situation">4. How to Know the Situation</h2><p>Test? Re-read the material wrote before</p>
 <p>Confident and rationale</p>
 <p>Validity and reliablity.</p>
 
@@ -1061,7 +1061,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>目的：快速制造原型</p>
+          <h2 id="基础">1. 基础</h2><p>目的：快速制造原型</p>
 <p>工艺：FDM（fused deposition modeling）</p>
 <p>大小：越大越好，通常来说6-9inch(15cm-23cm)</p>
 <p>材质：塑料丝热熔堆积</p>
@@ -1078,14 +1078,14 @@
 <ul>
 <li>闭合的更安全、更安静、更无味</li>
 </ul>
-<h2 id="本次打印目标"><a href="#本次打印目标" class="headerlink" title="本次打印目标"></a>本次打印目标</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-18-45.png" alt="image-20220521101845583" style="zoom:20%;" />
+<h2 id="本次打印目标">2. 本次打印目标</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-18-45.png" alt="image-20220521101845583" style="zoom:20%;">
 
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-30-43.png" alt="image-20220521103043098" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-30-43.png" alt="image-20220521103043098" style="zoom:25%;">
 
 <p>多角度相机测试平台</p>
 <p>大小：200x200x100mm</p>
 <p>材料：ABS、PLA</p>
-<h2 id="备选"><a href="#备选" class="headerlink" title="备选"></a>备选</h2><table>
+<h2 id="备选">3. 备选</h2><table>
 <thead>
 <tr>
 <th>名称</th>
@@ -1101,7 +1101,7 @@
 <td>259</td>
 <td>220x220x250</td>
 <td>0.1mm</td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-20-17-28-11.png" alt="image-20220520172811076" style="zoom:5%;" /></td>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-20-17-28-11.png" alt="image-20220520172811076" style="zoom:5%;"></td>
 <td>便宜，用户多，可扩展性强</td>
 </tr>
 <tr>
@@ -1109,7 +1109,7 @@
 <td>389</td>
 <td>150x150x150</td>
 <td>0.05mm</td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-11-09-12.png" alt="image-20220521110911886" style="zoom:10%;" /></td>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-11-09-12.png" alt="image-20220521110911886" style="zoom:10%;"></td>
 <td>全封闭打印，体积较小</td>
 </tr>
 <tr>
@@ -1117,7 +1117,7 @@
 <td>399</td>
 <td>220x220x270</td>
 <td>0.1mm</td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-58-00.png" alt="image-20220521105800019" style="zoom:10%;" /></td>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-10-58-00.png" alt="image-20220521105800019" style="zoom:10%;"></td>
 <td>用户多，自动调平底板，容易组装，</td>
 </tr>
 <tr>
@@ -1125,7 +1125,7 @@
 <td>799</td>
 <td>220x200x250</td>
 <td>0.1mm</td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-11-04-46.png" alt="image-20220521110446042" style="zoom:10%;" /></td>
+<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-21-11-04-46.png" alt="image-20220521110446042" style="zoom:10%;"></td>
 <td>全封闭打印</td>
 </tr>
 </tbody></table>
@@ -1214,23 +1214,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="什么是异常点（outliers）"><a href="#什么是异常点（outliers）" class="headerlink" title="什么是异常点（outliers）"></a>什么是异常点（outliers）</h2><p>From wikipedia:</p>
+          <h2 id="什么是异常点（outliers）">1. 什么是异常点（outliers）</h2><p>From wikipedia:</p>
 <blockquote>
 <p><em>In statistics, an</em> <strong>outlier</strong> <em>is an observation point that is distant from other observations.</em></p>
 </blockquote>
 <p>关键是observation，或者先验，通过人的知识来去除异常点</p>
-<h2 id="数据分布（先验）"><a href="#数据分布（先验）" class="headerlink" title="数据分布（先验）"></a>数据分布（先验）</h2><p>茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内</p>
+<h2 id="数据分布（先验）">2. 数据分布（先验）</h2><p>茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内</p>
 <p>所以我们的预期是：</p>
 <ul>
 <li>大部分点在5cm以内，假设下限low，$low&lt;x&lt;low+5$</li>
 <li>超过范围，$x&lt;low$ or $x&gt;low+5$，判定为outliers</li>
 </ul>
 <p>问题归结于如何找到low，或者平均值，或者low+5</p>
-<h2 id="编程实现"><a href="#编程实现" class="headerlink" title="编程实现"></a>编程实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">d=np.asarray([<span class="number">0.1</span>,<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">0.13</span>,<span class="number">0.14</span>,<span class="number">0.5</span>])</span><br><span class="line"></span><br><span class="line">mean=np.mean(d)</span><br><span class="line">var=np.var(d)</span><br><span class="line">std=np.std(d)</span><br><span class="line">d=d[d&gt;(mean-std)]</span><br><span class="line">d=d[d&lt;(mean+std)]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;mean: <span class="subst">&#123;mean&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;var: <span class="subst">&#123;var&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;std: <span class="subst">&#123;std&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<h2 id="编程实现">3. 编程实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">d=np.asarray([<span class="number">0.1</span>,<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">0.13</span>,<span class="number">0.14</span>,<span class="number">0.5</span>])</span><br><span class="line"></span><br><span class="line">mean=np.mean(d)</span><br><span class="line">var=np.var(d)</span><br><span class="line">std=np.std(d)</span><br><span class="line">d=d[d&gt;(mean-std)]</span><br><span class="line">d=d[d&lt;(mean+std)]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;mean: <span class="subst">&#123;mean&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;var: <span class="subst">&#123;var&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;std: <span class="subst">&#123;std&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA">https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA</a></p>
+<h2 id="Ref">4. Ref</h2><p><a target="_blank" rel="noopener" href="https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA">https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA</a></p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-17-12-24-05.png" alt="image-20220517122404962"></p>
 
       
@@ -1313,14 +1313,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>首先，明确为什么要（新）买一个屏幕。</p>
+          <h2 id="Why">1. Why</h2><p>首先，明确为什么要（新）买一个屏幕。</p>
 <ul>
 <li>很简单，因为现在的屏幕不舒服</li>
 <li>怎么不舒服？不清晰。</li>
 <li>原因：分辨率低</li>
 </ul>
 <p>所以目标就是，寻找一把能够支撑高分辨率的显示器</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Learn from the best. 没时间学习如何做一个显示器，直接来看最好的显示器制造公司是如何设计产品的</p>
+<h2 id="How">2. How</h2><p>Learn from the best. 没时间学习如何做一个显示器，直接来看最好的显示器制造公司是如何设计产品的</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-06-01-02-30.jpg" alt="显示器推荐"></p>
 <p><a target="_blank" rel="noopener" href="https://www.google.com/">Fig</a>生产的<a target="_blank" rel="noopener" href="https://www.baidu.com/">Super Monitor</a>，久负盛名。根据其官网的描述，主要是有以下几点特征</p>
 <ul>
@@ -1341,39 +1341,39 @@
 </ul>
 <p>因为每个显示器的重量不同，在同样的材料上产生的压力分布也不同，因此材料应该具有延展性，根据体重和体态能发生形变。下图右边为佳，尽量面积大得分布压力</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-06-01-05-16.jpeg" alt="外接显示器"></p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>基于以上的研究，在挑选显示器时，主要考虑以下几点</p>
+<h2 id="Conclusion">3. Conclusion</h2><p>基于以上的研究，在挑选显示器时，主要考虑以下几点</p>
 <ul>
-<li><input disabled="" type="checkbox"> 高度调节</li>
+<li><input disabled type="checkbox"> 高度调节</li>
 </ul>
 <ul>
 <li>Easy，大部分都有</li>
 </ul>
 <ul>
-<li><input disabled="" type="checkbox"> 可调节亮度</li>
+<li><input disabled type="checkbox"> 可调节亮度</li>
 </ul>
 <ul>
 <li>Easy，大部分都有</li>
 </ul>
 <ul>
-<li><input disabled="" type="checkbox"> 稳定情绪（每个人心情不一样，需可调节）</li>
+<li><input disabled type="checkbox"> 稳定情绪（每个人心情不一样，需可调节）</li>
 </ul>
 <ul>
 <li>Hard，极为少见</li>
 </ul>
 <ul>
-<li><input disabled="" type="checkbox"> 支撑学业（每个人成绩不一样，需可调节）</li>
+<li><input disabled type="checkbox"> 支撑学业（每个人成绩不一样，需可调节）</li>
 </ul>
 <ul>
 <li>Mid，虽然大部分都有，但可调节的不多</li>
 </ul>
 <ul>
-<li><input disabled="" type="checkbox"> 可延展性材料</li>
+<li><input disabled type="checkbox"> 可延展性材料</li>
 </ul>
 <ul>
 <li>Easy，大部分显示器都使用硬的材料</li>
 </ul>
-<h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><p>摸鱼是人的天性，多坐下来看看电影也是非常重要的</p>
-<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><p>眼球示意图</p>
+<h2 id="More">4. More</h2><p>摸鱼是人的天性，多坐下来看看电影也是非常重要的</p>
+<h2 id="Appendix">5. Appendix</h2><p>眼球示意图</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-06-01-07-35.jpg" alt="eyeball | anatomy | Britannica"></p>
 
       
@@ -1463,7 +1463,7 @@
 <li>Miscellaneous</li>
 <li>Business</li>
 </ul>
-<h2 id="创作主要原则"><a href="#创作主要原则" class="headerlink" title="创作主要原则"></a>创作主要原则</h2><p>主要是给审查员看，所以从审查员视角看</p>
+<h2 id="创作主要原则">1. 创作主要原则</h2><p>主要是给审查员看，所以从审查员视角看</p>
 <p>重点：<strong>创造性</strong>，与现有技术相比，该发明的</p>
 <ul>
 <li>实质性特点。相对于现有技术领域的人来说，发明并不是显而易见的。（<strong>有独特的见解</strong>）</li>
@@ -1479,7 +1479,7 @@
 <ul>
 <li>有不一样的内容</li>
 </ul>
-<h2 id="修复与回复"><a href="#修复与回复" class="headerlink" title="修复与回复"></a>修复与回复</h2><p>意见主要有两种</p>
+<h2 id="修复与回复">2. 修复与回复</h2><p>意见主要有两种</p>
 <ul>
 <li>对比文件给出了启示</li>
 <li>区别特征属于公知常识</li>
@@ -1496,7 +1496,7 @@
 <li>有较强的理论创新</li>
 <li>专利在论文之前</li>
 </ul>
-<h2 id="写作反馈"><a href="#写作反馈" class="headerlink" title="写作反馈"></a>写作反馈</h2><p>和论文类似，有主论点，分论点，分步论证</p>
+<h2 id="写作反馈">3. 写作反馈</h2><p>和论文类似，有主论点，分论点，分步论证</p>
 
       
     </div>
@@ -1590,12 +1590,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>两个子任务</p>
+          <h2 id="背景">1. 背景</h2><p>两个子任务</p>
 <ul>
 <li>分类</li>
 <li>定位</li>
 </ul>
-<h2 id="发展脉络"><a href="#发展脉络" class="headerlink" title="发展脉络"></a>发展脉络</h2><ol>
+<h2 id="发展脉络">2. 发展脉络</h2><ol>
 <li>传统：HOG，DPM。速度慢、准确率不高</li>
 <li>Anchor based，计算Anchor比较耗时，且固定anchor降低了普适性</li>
 <li>two stage：RCNN，选框、resize、CNN、SVM $\to$ SPPNET提高了速度$\to$ faster RCNN 提取一个ROI来做处理，再选择候选框 $\to$ FPN，在不同尺度上效果更好</li>
@@ -1604,25 +1604,25 @@
 <li>CornerNet，将网络对边界框的检测转化为左上角、右上角的检测 $\to$ CenterNet, 检测目标中心点</li>
 <li>FCOS，不训练Anchor、不提Proposal</li>
 </ol>
-<h2 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h2><p>IOU</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-25-50.png" alt="image-20220424172550611" style="zoom:25%;" />
+<h2 id="评价方法">3. 评价方法</h2><p>IOU</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-25-50.png" alt="image-20220424172550611" style="zoom:25%;">
 
 <p>Precision-Recall曲线</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-26-49.png" alt="image-20220424172649320"></p>
 <p>面积越大，性能越好</p>
 <p>mAP：越大越好，Mean Average Precision，考察了所有类的精度</p>
-<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ul>
+<h2 id="难点">4. 难点</h2><ul>
 <li>尺寸小</li>
 <li>背景复杂</li>
 <li>颜色对比度低</li>
 </ul>
-<h2 id="五大技术"><a href="#五大技术" class="headerlink" title="五大技术"></a>五大技术</h2><ul>
+<h2 id="五大技术">5. 五大技术</h2><ul>
 <li>Multi-scale</li>
 <li>Bounding Box regression</li>
 <li>Context Prime</li>
 <li>NMS</li>
 </ul>
-<h2 id="模型加速"><a href="#模型加速" class="headerlink" title="模型加速"></a>模型加速</h2><ul>
+<h2 id="模型加速">6. 模型加速</h2><ul>
 <li>轻量化网络</li>
 <li>卷积分解、bottle-neck、神经架构搜索</li>
 <li>模型压缩</li>
@@ -1631,7 +1631,7 @@
 <li>知识蒸馏</li>
 <li>数值加速</li>
 </ul>
-<h2 id="提高精度"><a href="#提高精度" class="headerlink" title="提高精度"></a>提高精度</h2><ul>
+<h2 id="提高精度">7. 提高精度</h2><ul>
 <li>特征提取网络，对于性能非常重要</li>
 <li>Backbone</li>
 <li>特征融合</li>

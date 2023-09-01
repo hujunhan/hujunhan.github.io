@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="电子电路前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计 1 背景知识电流, 电压, 怎么根据回路列方程 2 运算放大器动机电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流 通过引入运放作为Buffer, 元素之间的影响(interaction)被减小甚至消除了 可以把">
+  <meta name="description" content="1. 电子电路前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计 2. 1 背景知识电流, 电压, 怎么根据回路列方程 3. 2 运算放大器3.1. 动机电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流 通过引入运放作为Buffer, 元素之间的影响(interactio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIT EECS 导论课 4">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/EECS-4/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="电子电路前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计 1 背景知识电流, 电压, 怎么根据回路列方程 2 运算放大器动机电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流 通过引入运放作为Buffer, 元素之间的影响(interaction)被减小甚至消除了 可以把">
+<meta property="og:description" content="1. 电子电路前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计 2. 1 背景知识电流, 电压, 怎么根据回路列方程 3. 2 运算放大器3.1. 动机电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流 通过引入运放作为Buffer, 元素之间的影响(interactio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-19T22:08:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.044Z">
@@ -259,9 +259,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="电子电路"><a href="#电子电路" class="headerlink" title="电子电路"></a>电子电路</h1><p>前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计</p>
-<h2 id="1-背景知识"><a href="#1-背景知识" class="headerlink" title="1 背景知识"></a>1 背景知识</h2><p>电流, 电压, 怎么根据回路列方程</p>
-<h2 id="2-运算放大器"><a href="#2-运算放大器" class="headerlink" title="2 运算放大器"></a>2 运算放大器</h2><h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流</p>
+        <h1 id="电子电路">1. 电子电路</h1><p>前面2个内容分别介绍了抽象和模块的能力以及如何对信号系统建模, 这一章将更加基本, 涉及到底层的电路(还不是最底层), 并且也会用到模块化的思想来简化设计</p>
+<h2 id="1-背景知识">2. 1 背景知识</h2><p>电流, 电压, 怎么根据回路列方程</p>
+<h2 id="2-运算放大器">3. 2 运算放大器</h2><h3 id="动机">3.1. 动机</h3><p>电路的设计是复杂的, 因为你随便加一个原件就会影响整个电路的电压或者电流</p>
 <p>通过引入运放作为<strong>Buffer</strong>, 元素之间的影响(interaction)被减小甚至消除了</p>
 <p>可以把运放看成是<strong>由电压控制的电压源</strong> $V_o&#x3D;K(V_+-V_-)$</p>
 <ul>
@@ -269,7 +269,7 @@
 <li>感受两端的差距, 通过正反馈不断放大</li>
 <li>给$V_+$的负反馈是不稳定的</li>
 </ul>
-<h2 id="3-抽象电路"><a href="#3-抽象电路" class="headerlink" title="3 抽象电路"></a>3 抽象电路</h2><p>戴维南定理: 通过计算开路电压和短路电流, 一个电路中两个变量的关系可以用平面上的直线表示, 这意味着我们可以用其他的元件来完成同样的功能</p>
+<h2 id="3-抽象电路">4. 3 抽象电路</h2><p>戴维南定理: 通过计算开路电压和短路电流, 一个电路中两个变量的关系可以用平面上的直线表示, 这意味着我们可以用其他的元件来完成同样的功能</p>
 <ul>
 <li>有一个复杂的电路, 计算开路电压, 短路电路, 画出他的直线图, 找到和坐标轴的交点以及直线的斜率</li>
 <li>用简单的电路实现</li>
@@ -359,7 +359,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">电子电路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">1 背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2 运算放大器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">动机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8A%BD%E8%B1%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">3 抽象电路</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">1. 电子电路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">2. 1 背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">3. 2 运算放大器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.1. 动机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8A%BD%E8%B1%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">4. 3 抽象电路</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

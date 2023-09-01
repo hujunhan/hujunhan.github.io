@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 目标 问题描述 数据分析 中间结果分析 结果讨论 缺点认识">
+  <meta name="description" content="1. 1. 目标 问题描述 数据分析 中间结果分析 结果讨论 缺点认识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于KNN的花品种分类">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/KNN/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1. 目标 问题描述 数据分析 中间结果分析 结果讨论 缺点认识">
+<meta property="og:description" content="1. 1. 目标 问题描述 数据分析 中间结果分析 结果讨论 缺点认识">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-info.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-info2.png">
@@ -272,7 +272,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h2><ul>
+        <h2 id="1-目标">1. 1. 目标</h2><ul>
 <li>问题描述</li>
 <li>数据分析</li>
 <li>中间结果分析</li>
@@ -281,9 +281,9 @@
 </ul>
 <span id="more"></span>
 
-<h2 id="2-问题描述及数据定义"><a href="#2-问题描述及数据定义" class="headerlink" title="2. 问题描述及数据定义"></a>2. 问题描述及数据定义</h2><h3 id="2-1-问题描述"><a href="#2-1-问题描述" class="headerlink" title="2.1 问题描述"></a>2.1 问题描述</h3><p>利用KNN算法对iris数据集进行分类，并用训练集的训练结果对测试集进行预测，观察预测效果。</p>
+<h2 id="2-问题描述及数据定义">2. 2. 问题描述及数据定义</h2><h3 id="2-1-问题描述">2.1. 2.1 问题描述</h3><p>利用KNN算法对iris数据集进行分类，并用训练集的训练结果对测试集进行预测，观察预测效果。</p>
 <p>因为数据集是有标签的，所以这是一个典型的有监督分类问题</p>
-<h3 id="2-2-数据定义"><a href="#2-2-数据定义" class="headerlink" title="2.2 数据定义"></a>2.2 数据定义</h3><p>数据来源：<a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a></p>
+<h3 id="2-2-数据定义">2.2. 2.2 数据定义</h3><p>数据来源：<a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a></p>
 <p>iris数据集中共有3个种类的花，每种花各有50个<em>样本</em>：</p>
 <ul>
 <li>其中一个样本与另外两个样本线性可分</li>
@@ -302,7 +302,7 @@
 <li>versicolor</li>
 <li>virginica</li>
 </ul>
-<h3 id="2-3-计划流程"><a href="#2-3-计划流程" class="headerlink" title="2.3 计划流程"></a>2.3 计划流程</h3><ol>
+<h3 id="2-3-计划流程">2.3. 2.3 计划流程</h3><ol>
 <li>读取、处理数据</li>
 <li>实现KNN</li>
 <li>计算相似性（使用欧几里得距离）</li>
@@ -310,8 +310,8 @@
 <li>生成预测</li>
 <li>观察结果（预测准确性）</li>
 </ol>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><p>具体代码见<code>notebooks/knn-iris.ipynb</code> 或者<code>notebooks/knn-iris.html</code></p>
-<h3 id="3-1-读取、处理数据"><a href="#3-1-读取、处理数据" class="headerlink" title="3.1 读取、处理数据"></a>3.1 读取、处理数据</h3><p>首先通过读取iris.data可以得到这样的信息</p>
+<h2 id="3-代码实现">3. 3 代码实现</h2><p>具体代码见<code>notebooks/knn-iris.ipynb</code> 或者<code>notebooks/knn-iris.html</code></p>
+<h3 id="3-1-读取、处理数据">3.1. 3.1 读取、处理数据</h3><p>首先通过读取iris.data可以得到这样的信息</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-info.png"></p>
 <p>通过统计可以发现petal-length的标准差最大，猜测可能含有最多信息</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-info2.png"></p>
@@ -319,7 +319,7 @@
 <p>之后为了排除数据大小的干扰，再将数据标准化</p>
 <p><img src="/KNN/pairplot.svg" alt="pairplot"></p>
 <p>通过可视化可以看出在二维平面上也能大概分出3种花</p>
-<h3 id="3-2-实现KNN"><a href="#3-2-实现KNN" class="headerlink" title="3.2 实现KNN"></a>3.2 实现KNN</h3><p>KNN算法有不同的形式</p>
+<h3 id="3-2-实现KNN">3.2. 3.2 实现KNN</h3><p>KNN算法有不同的形式</p>
 <ul>
 <li>无监督学习：</li>
 <li>聚类</li>
@@ -340,7 +340,7 @@
 <li>计算获取最近邻</li>
 <li>输出预测结果</li>
 </ul>
-<h3 id="3-3-预测结果"><a href="#3-3-预测结果" class="headerlink" title="3.3 预测结果"></a>3.3 预测结果</h3><p>因为在KNN算法中只有一个K值是可以改变的变量，因此我改变K值来观察预测效果，但是发现预测结果会不断变化。</p>
+<h3 id="3-3-预测结果">3.3. 3.3 预测结果</h3><p>因为在KNN算法中只有一个K值是可以改变的变量，因此我改变K值来观察预测效果，但是发现预测结果会不断变化。</p>
 <p>测试条件：K取1-90</p>
 <p>大部分情况下预测精度随K值的变化规律是这样的</p>
 <p><img src="/KNN/accuracy2.svg" alt="accuracy2"></p>
@@ -348,18 +348,18 @@
 <p>但是在测试过程中也出现过以下情况的变化规律</p>
 <p><img src="/KNN/accuracy1-1556177038111.svg" alt="accuracy1-1556177038111"></p>
 <p>这种情况比较反常，也即是K稍大时预测结果较好，K偏小或偏大时效果都不佳。</p>
-<h2 id="4-分析"><a href="#4-分析" class="headerlink" title="4 分析"></a>4 分析</h2><h3 id="4-1-异常测试结果分析"><a href="#4-1-异常测试结果分析" class="headerlink" title="4.1 异常测试结果分析"></a>4.1 异常测试结果分析</h3><p>在3.3 中出现的问题，经过分析我认为是以下原因造成的</p>
+<h2 id="4-分析">4. 4 分析</h2><h3 id="4-1-异常测试结果分析">4.1. 4.1 异常测试结果分析</h3><p>在3.3 中出现的问题，经过分析我认为是以下原因造成的</p>
 <ul>
 <li>样本较少。因为一共只有150个样本，还有分成训练集和测试集，所以效果不好。</li>
 <li>随即采样。对于有着很多样本的数据来说，这样采样方式可能没有什么问题，但是因为这个数据集样本太少，导致采样结果不再能反应数据的真是分布。</li>
 <li>KNN算法的原理。自己实现过KNN之后我发现，其实对于KNN算法来说，分成测试集和训练集的意义和一般的机器学习算法不同：KNN的模型就是数据本身（训练集），所以数据的多少和分布是否有效（能代表真实分布）会很大程度上影响预测效果。所以因为前两点原因加上KNN自身的算法，导致了预测结果的不稳定</li>
 </ul>
-<h3 id="4-2-K值选取"><a href="#4-2-K值选取" class="headerlink" title="4.2 K值选取"></a>4.2 K值选取</h3><p>在KNN算法中，K是唯一一个超参数(hyper parameter)，因此要想达到好的预测效果，选择一个合适的K是非常重要的。</p>
+<h3 id="4-2-K值选取">4.2. 4.2 K值选取</h3><p>在KNN算法中，K是唯一一个超参数(hyper parameter)，因此要想达到好的预测效果，选择一个合适的K是非常重要的。</p>
 <p>从图像上看，K控制的是分割平面的边界。比如说当K较小时，这个区间就会较小，直观上理解就是K仅仅观察临近的几个样本，而没有全局意识，哪怕它的旁边有一个异常点，它也把异常当成同类</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-map1.png"></p>
 <p>另一方面，当K较大时，预测值更加关注的是全局的情况，所以这时它就会忽略一些异常值，这使得边界更加平滑</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/knn-map2.png"></p>
-<h3 id="4-3-KNN算法的优缺点"><a href="#4-3-KNN算法的优缺点" class="headerlink" title="4.3 KNN算法的优缺点"></a>4.3 KNN算法的优缺点</h3><p>优点：</p>
+<h3 id="4-3-KNN算法的优缺点">4.3. 4.3 KNN算法的优缺点</h3><p>优点：</p>
 <ul>
 <li>容易理解，容易实现(核心代码不足百行)</li>
 <li>计算速度快，最耗时的操作也不过是计算距离</li>
@@ -370,13 +370,13 @@
 <li>对数据集要求较高，在合适的数据集（样本量大，分布均匀，样本平衡）上能狗取得不错的效果，但是一旦数据集不佳，效果会大打折扣</li>
 <li>在维数较高的场合效果不佳，因为计算的是欧氏距离，所以距离是平方和，因此无法体现出各个维度的区别</li>
 </ul>
-<h3 id="4-4-改进方法"><a href="#4-4-改进方法" class="headerlink" title="4.4 改进方法"></a>4.4 改进方法</h3><ul>
+<h3 id="4-4-改进方法">4.4. 4.4 改进方法</h3><ul>
 <li>使用不同的相似性度量，而不是简单的欧氏距离</li>
 <li>在高维数据上使用时可以采用<strong>数据降维</strong>，使用PCA等算法降低维数，改善效果</li>
 <li>使用K-D tree等方法存储数据，减小计算量</li>
 </ul>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p>在这个项目中，我学习了KNN算法，包括它的工作原理和如何编写KNN算法、如何使用KNN算法。我使用KNN算法对iris数据集进行测试，得到的效果还不错。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://seaborn.pydata.org/generated/seaborn.pairplot.html">Pairplot</a></p>
+<h2 id="5-总结">5. 5 总结</h2><p>在这个项目中，我学习了KNN算法，包括它的工作原理和如何编写KNN算法、如何使用KNN算法。我使用KNN算法对iris数据集进行测试，得到的效果还不错。</p>
+<h2 id="参考资料">6. 参考资料</h2><p><a target="_blank" rel="noopener" href="https://seaborn.pydata.org/generated/seaborn.pairplot.html">Pairplot</a></p>
 <p><a target="_blank" rel="noopener" href="https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/">A Complete Guide to K-Nearest-Neighbors with Applications in Python and R</a></p>
 <p><a target="_blank" rel="noopener" href="https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/">Tutorial To Implement k-Nearest Neighbors in Python From Scratch</a></p>
 
@@ -463,7 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">2. 问题描述及数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%AE%A1%E5%88%92%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 计划流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">3 代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E8%AF%BB%E5%8F%96%E3%80%81%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 读取、处理数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AE%9E%E7%8E%B0KNN"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 实现KNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">4 分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 异常测试结果分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-K%E5%80%BC%E9%80%89%E5%8F%96"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 K值选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-KNN%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 KNN算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%94%B9%E8%BF%9B%E6%96%B9%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 改进方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">5 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 1. 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">2. 2. 问题描述及数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 2.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 2.2 数据定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%AE%A1%E5%88%92%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 2.3 计划流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">3. 3 代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E8%AF%BB%E5%8F%96%E3%80%81%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 3.1 读取、处理数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AE%9E%E7%8E%B0KNN"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 3.2 实现KNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 3.3 预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">4. 4 分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 4.1 异常测试结果分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-K%E5%80%BC%E9%80%89%E5%8F%96"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 4.2 K值选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-KNN%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. 4.3 KNN算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%94%B9%E8%BF%9B%E6%96%B9%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">4.4. 4.4 改进方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">5. 5 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">6. 参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

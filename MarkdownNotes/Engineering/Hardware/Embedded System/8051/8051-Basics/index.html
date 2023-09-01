@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1 Embedded System Introduction An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
+  <meta name="description" content="1. 1 Embedded System Introduction An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8051 Basics">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Embedded%20System/8051/8051-Basics/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1 Embedded System Introduction An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
+<meta property="og:description" content="1. 1 Embedded System Introduction An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/address-Immediate.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/address-direct.png">
@@ -270,20 +270,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Embedded-System-Introduction"><a href="#1-Embedded-System-Introduction" class="headerlink" title="1 Embedded System Introduction"></a>1 Embedded System Introduction</h2><blockquote>
+        <h2 id="1-Embedded-System-Introduction">1. 1 Embedded System Introduction</h2><blockquote>
 <p>An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task</p>
 </blockquote>
 <span id="more"></span>
 
-<h3 id="1-1-Architecture"><a href="#1-1-Architecture" class="headerlink" title="1.1 Architecture"></a>1.1 Architecture</h3><ul>
+<h3 id="1-1-Architecture">1.1. 1.1 Architecture</h3><ul>
 <li><strong>Von Neumann</strong>: data and code lie in the <strong>same</strong> memory blocks</li>
 <li><strong>Harvard</strong>:             data and code lie in <strong>different</strong> memory blocks</li>
 </ul>
-<h3 id="1-2-Instruction-Set"><a href="#1-2-Instruction-Set" class="headerlink" title="1.2 Instruction Set"></a>1.2 Instruction Set</h3><ul>
+<h3 id="1-2-Instruction-Set">1.2. 1.2 Instruction Set</h3><ul>
 <li>CISC: Easy to use, higher clock cycle</li>
 <li>RISC: Hard to use, lower clock cycle</li>
 </ul>
-<h2 id="2-8051-Introduction"><a href="#2-8051-Introduction" class="headerlink" title="2 8051 Introduction"></a>2 8051 Introduction</h2><p>In 1981, Intel introduced an <strong>8-bit</strong> microcontroller called the <strong>8051</strong>.</p>
+<h2 id="2-8051-Introduction">2. 2 8051 Introduction</h2><p>In 1981, Intel introduced an <strong>8-bit</strong> microcontroller called the <strong>8051</strong>.</p>
 <ul>
 <li>128 bytes of <strong>RAM</strong></li>
 <li>4K byte of on-chip <strong>ROM</strong></li>
@@ -295,7 +295,7 @@
 <li>8052: 8K ROM, 256 byte RAM, 3 Timer</li>
 <li>8031: 0K ROM, 128 byte RAM, 2 Timer</li>
 </ul>
-<h3 id="2-1-Registers"><a href="#2-1-Registers" class="headerlink" title="2.1 Registers"></a>2.1 Registers</h3><table>
+<h3 id="2-1-Registers">2.1. 2.1 Registers</h3><table>
 <thead>
 <tr>
 <th align="center">Registers</th>
@@ -339,7 +339,7 @@
 <td align="center">odd number of 1’s in <code>A</code> register, then P &#x3D; 1</td>
 </tr>
 </tbody></table>
-<h3 id="2-2-Addressing-Modes"><a href="#2-2-Addressing-Modes" class="headerlink" title="2.2 Addressing Modes"></a>2.2 Addressing Modes</h3><ul>
+<h3 id="2-2-Addressing-Modes">2.2. 2.2 Addressing Modes</h3><ul>
 <li>Immediate</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/address-Immediate.png" alt="address-Immediate"></p>
@@ -359,26 +359,26 @@
 <li>Indexed</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/index-address.png" alt="index-address"></p>
-<h3 id="2-3-Hardware"><a href="#2-3-Hardware" class="headerlink" title="2.3 Hardware"></a>2.3 Hardware</h3><p>Totally 40 pins</p>
+<h3 id="2-3-Hardware">2.3. 2.3 Hardware</h3><p>Totally 40 pins</p>
 <ul>
 <li>$4\times8$ ports</li>
 <li>$8$ : <code>Vcc</code> ,<code>GND</code>, <code>XTAL1</code>, <code>XTAL2</code>, <code>EA</code>, <code>ALE</code>, <code>PSEN</code></li>
 <li>default: input.  0 written to a port $\to$ output; 1 written to a port $\to$ input</li>
 </ul>
-<h4 id="2-3-1-Port-0"><a href="#2-3-1-Port-0" class="headerlink" title="2.3.1 Port 0"></a>2.3.1 Port 0</h4><p>An open drain:</p>
+<h4 id="2-3-1-Port-0">2.3.1. 2.3.1 Port 0</h4><p>An open drain:</p>
 <ul>
 <li>we normally connect P0 to 10K-ohm <strong>pull-up resistors</strong> to use it as an <strong>input or outpu</strong>t port</li>
 <li>be used as both address and data, designated as AD0-AD7</li>
 </ul>
-<h4 id="2-3-2-Port-1"><a href="#2-3-2-Port-1" class="headerlink" title="2.3.2 Port 1"></a>2.3.2 Port 1</h4><p>Can be used either as input or output</p>
+<h4 id="2-3-2-Port-1">2.3.2. 2.3.2 Port 1</h4><p>Can be used either as input or output</p>
 <ul>
 <li>It <strong>doesn’t require</strong> pull-up resistors because they are <strong>already</strong> connected internally</li>
 </ul>
-<h4 id="2-3-3-Port-2"><a href="#2-3-3-Port-2" class="headerlink" title="2.3.3 Port 2"></a>2.3.3 Port 2</h4><p>Similar to Port 1</p>
+<h4 id="2-3-3-Port-2">2.3.3. 2.3.3 Port 2</h4><p>Similar to Port 1</p>
 <ul>
 <li>It must be used <strong>along with P0</strong> to provide the 16-bit address for the external memory. Port 2 is used for upper 8-bit of the 16 bits address</li>
 </ul>
-<h4 id="2-3-4-Port-3"><a href="#2-3-4-Port-3" class="headerlink" title="2.3.4 Port 3"></a>2.3.4 Port 3</h4><p>Similar to Port 1</p>
+<h4 id="2-3-4-Port-3">2.3.4. 2.3.4 Port 3</h4><p>Similar to Port 1</p>
 <table>
 <thead>
 <tr>
@@ -419,7 +419,7 @@
 <td align="center">Complement of RD</td>
 </tr>
 </tbody></table>
-<h4 id="2-3-5-Other"><a href="#2-3-5-Other" class="headerlink" title="2.3.5 Other"></a>2.3.5 Other</h4><ul>
+<h4 id="2-3-5-Other">2.3.5. 2.3.5 Other</h4><ul>
 <li><p><code>RST</code>: <strong>Power-On Reset</strong> To ensure a valid input of Reset, the high pulse must be <strong>high</strong> for a <strong>minimum of two machine cycles</strong></p>
 </li>
 <li><p><code>EA</code>: (<strong>External Access</strong>) Applying a <strong>low pulse</strong>, it gets activated</p>
@@ -431,12 +431,12 @@
 <li><p>SETB\CLR\CPL\JB\JNB\JBC</p>
 </li>
 </ul>
-<h3 id="2-4-Timers"><a href="#2-4-Timers" class="headerlink" title="2.4 Timers"></a>2.4 Timers</h3><p>8051 has 2 timers, <code>Timer 0</code> and <code>Timer 1</code></p>
+<h3 id="2-4-Timers">2.4. 2.4 Timers</h3><p>8051 has 2 timers, <code>Timer 0</code> and <code>Timer 1</code></p>
 <ul>
 <li>Both <code>Timer 0 and 1</code> are 16-bit wide</li>
 <li>2 separate 8-bit registers <code>TH0\1</code> and <code>TL0\1</code></li>
 </ul>
-<h4 id="2-4-1-TMOD"><a href="#2-4-1-TMOD" class="headerlink" title="2.4.1 TMOD"></a>2.4.1 TMOD</h4><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/tmod.png" alt="tmod"></p>
+<h4 id="2-4-1-TMOD">2.4.1. 2.4.1 TMOD</h4><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/tmod.png" alt="tmod"></p>
 <ul>
 <li><p><code>Gate</code>: the timer only runs while INT(0,1) is high. Control the on\off of the timers</p>
 </li>
@@ -459,13 +459,13 @@
 <li>1: <strong>16-bit</strong> timer mode</li>
 <li>2: <strong>8-bit Auto Reload</strong> : Overflow form <code>TL1</code> set <code>TF1</code>(1) and reload <code>TL1</code> with <code>TH1</code></li>
 </ul>
-<h3 id="2-5-Interrupts"><a href="#2-5-Interrupts" class="headerlink" title="2.5 Interrupts"></a>2.5 Interrupts</h3><p>For every interrupt, there must be an interrupt service routine (ISR), or <strong>interrupt handler</strong></p>
-<h4 id="2-5-1-Process"><a href="#2-5-1-Process" class="headerlink" title="2.5.1 Process"></a>2.5.1 Process</h4><ol>
+<h3 id="2-5-Interrupts">2.5. 2.5 Interrupts</h3><p>For every interrupt, there must be an interrupt service routine (ISR), or <strong>interrupt handler</strong></p>
+<h4 id="2-5-1-Process">2.5.1. 2.5.1 Process</h4><ol>
 <li><strong>Close</strong> currently executing instruction and <strong>save</strong> the PC in stack</li>
 <li><strong>Jump</strong> to memory location of the interrupt vector table and <strong>execute</strong> ISR</li>
 <li><strong>Get</strong> PC from stack, <strong>execute</strong> from that address</li>
 </ol>
-<h4 id="2-5-2-Priority"><a href="#2-5-2-Priority" class="headerlink" title="2.5.2 Priority"></a>2.5.2 Priority</h4><p>We can alter the priority by programming a register called <code>IP</code> (8-bit)(interrupt priority).</p>
+<h4 id="2-5-2-Priority">2.5.2. 2.5.2 Priority</h4><p>We can alter the priority by programming a register called <code>IP</code> (8-bit)(interrupt priority).</p>
 <p>default:</p>
 <table>
 <thead>
@@ -496,7 +496,7 @@
 <td align="center">Defines the External Interrupt 0 priority level.</td>
 </tr>
 </tbody></table>
-<h4 id="2-5-3-Enabling"><a href="#2-5-3-Enabling" class="headerlink" title="2.5.3 Enabling"></a>2.5.3 Enabling</h4><p>We can enable interrupt by programming a register called <code>IE</code>(8-bit)(interrupt enable).</p>
+<h4 id="2-5-3-Enabling">2.5.3. 2.5.3 Enabling</h4><p>We can enable interrupt by programming a register called <code>IE</code>(8-bit)(interrupt enable).</p>
 <table>
 <thead>
 <tr>
@@ -604,7 +604,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Embedded-System-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Embedded System Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Architecture"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Instruction-Set"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Instruction Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8051-Introduction"><span class="nav-number">2.</span> <span class="nav-text">2 8051 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Registers"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Addressing-Modes"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Addressing Modes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Hardware"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-Port-0"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 Port 0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-Port-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 Port 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-Port-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 Port 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-Port-3"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 Port 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-Other"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5 Other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Timers"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Timers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-TMOD"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 TMOD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Interrupts"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Interrupts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-Process"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1 Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-Priority"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2 Priority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-Enabling"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3 Enabling</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Embedded-System-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. 1 Embedded System Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Architecture"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 1.1 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Instruction-Set"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 1.2 Instruction Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8051-Introduction"><span class="nav-number">2.</span> <span class="nav-text">2. 2 8051 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Registers"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 2.1 Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Addressing-Modes"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 2.2 Addressing Modes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Hardware"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 2.3 Hardware</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-Port-0"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1. 2.3.1 Port 0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-Port-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2. 2.3.2 Port 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-Port-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3. 2.3.3 Port 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-Port-3"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4. 2.3.4 Port 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-Other"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5. 2.3.5 Other</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Timers"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 2.4 Timers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-TMOD"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1. 2.4.1 TMOD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Interrupts"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. 2.5 Interrupts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-Process"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1. 2.5.1 Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-Priority"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2. 2.5.2 Priority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-Enabling"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3. 2.5.3 Enabling</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

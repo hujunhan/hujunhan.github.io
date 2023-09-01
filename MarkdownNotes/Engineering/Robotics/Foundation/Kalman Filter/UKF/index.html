@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Why既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？ 性能：在扩展卡尔曼滤波中，我们只使用了一个点展开来线性化，这就导致了这种估计方法的效果不佳 更好的方法：用许多点来近似 Trade-Off： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度 How选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就">
+  <meta name="description" content="1. Why既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？ 性能：在扩展卡尔曼滤波中，我们只使用了一个点展开来线性化，这就导致了这种估计方法的效果不佳 更好的方法：用许多点来近似 Trade-Off： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度 2. How选择Sigma Points：用少数几个点来表示整个分布，用的点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无迹卡尔曼滤波">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Why既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？ 性能：在扩展卡尔曼滤波中，我们只使用了一个点展开来线性化，这就导致了这种估计方法的效果不佳 更好的方法：用许多点来近似 Trade-Off： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度 How选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就">
+<meta property="og:description" content="1. Why既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？ 性能：在扩展卡尔曼滤波中，我们只使用了一个点展开来线性化，这就导致了这种估计方法的效果不佳 更好的方法：用许多点来近似 Trade-Off： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度 2. How选择Sigma Points：用少数几个点来表示整个分布，用的点">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-18T21:00:21.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.045Z">
@@ -263,11 +263,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？</p>
+        <h2 id="Why">1. Why</h2><p>既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？</p>
 <p><strong>性能</strong>：在扩展卡尔曼滤波中，我们只使用了<strong>一个点</strong>展开来线性化，这就导致了这种估计方法的效果不佳</p>
 <p><strong>更好的方法</strong>：用许多点来近似</p>
 <p><strong>Trade-Off</strong>： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度</p>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就越精确</p>
+<h2 id="How">2. How</h2><p>选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就越精确</p>
 <p>高斯分布在经过一个非线性变换之后就不再是高斯分布了，所以在这里引入一个Unscented Transform来完成这个变换任务</p>
 <ol>
 <li>计算一个Sigma Point的集合</li>
@@ -284,11 +284,11 @@
 <li><p>计算新分布的均值和方差<br>$$<br>\begin{aligned}<br>\mu^{\prime} &amp;&#x3D;\sum_{i&#x3D;0}^{2 n} w^{[i]} g\left( X ^{[i]}\right) \<br>\Sigma^{\prime} &amp;&#x3D;\sum_{i&#x3D;0}^{2 n} w^{[i]}\left(g\left( X ^{[i]}\right)-\mu^{\prime}\right)\left(g\left( X ^{[i]}\right)-\mu^{\prime}\right)^{T}<br>\end{aligned}<br>$$</p>
 </li>
 </ol>
-<h2 id="卡尔曼滤波框架"><a href="#卡尔曼滤波框架" class="headerlink" title="卡尔曼滤波框架"></a>卡尔曼滤波框架</h2><ol>
+<h2 id="卡尔曼滤波框架">3. 卡尔曼滤波框架</h2><ol>
 <li>预测步骤：用上一节提到的几个公式计算新的期望和方差</li>
 <li>更新步骤：我们可以选择采用之前生成的Sigma Point</li>
 </ol>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d">https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d</a></p>
+<h2 id="Ref">4. Ref</h2><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d">https://towardsdatascience.com/the-unscented-kalman-filter-anything-ekf-can-do-i-can-do-it-better-ce7c773cf88d</a></p>
 
     </div>
 
@@ -372,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">1.</span> <span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">卡尔曼滤波框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">4.</span> <span class="nav-text">Ref</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">1.</span> <span class="nav-text">1. Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">2. How</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">3. 卡尔曼滤波框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">4.</span> <span class="nav-text">4. Ref</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

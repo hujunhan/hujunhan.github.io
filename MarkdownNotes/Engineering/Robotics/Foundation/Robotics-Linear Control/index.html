@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution">
+  <meta name="description" content="1. 1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Soluti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robotics-Linear Control">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Robotics-Linear%20Control/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Solution">
+<meta property="og:description" content="1. 1 IntroductionPremise:  Know the means to calculate joint-position correspond to desired end-effector motions. Problem: How to cause the manipulator acually to perform these desired motions. Soluti">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/robotics-linear-control.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/robotics-lin-con-easier.png">
@@ -263,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p><strong>Premise</strong>:  Know the means to calculate joint-position correspond to desired end-effector motions.</p>
+        <h2 id="1-Introduction">1. 1 Introduction</h2><p><strong>Premise</strong>:  Know the means to calculate joint-position correspond to desired end-effector motions.</p>
 <p><strong>Problem</strong>: How to cause the manipulator acually to perform these desired motions.</p>
 <p><strong>Solution 1</strong>: Linear control system.</p>
 <ul>
@@ -273,7 +273,7 @@
 </ul>
 <span id="more"></span>
 
-<h2 id="2-Control-Law-Partitioning"><a href="#2-Control-Law-Partitioning" class="headerlink" title="2 Control-Law Partitioning"></a>2 Control-Law Partitioning</h2><p>Partitioning Method (2 parts):</p>
+<h2 id="2-Control-Law-Partitioning">2. 2 Control-Law Partitioning</h2><p>Partitioning Method (2 parts):</p>
 <ul>
 <li>model-based portion: make use of supposed knowledge of <em><strong>m,b,k</strong></em>, to make the system appear as a unit mass$\to$ servo portion simple.</li>
 <li>servo portion: make use of <em><strong>feedback</strong></em> to modify the behavior of the system</li>
@@ -285,12 +285,12 @@
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/robotics-lin-con-easier.png" alt="easier-system"></p>
 <p>What we need to do is design a  control law to compute $f ^ { \prime } &#x3D; - k _ { v } \dot { x } - k _ { p } x$</p>
 <p>so it yields<br>$$<br>\ddot { x } + k _ { v } \dot { x } + k _ { p } x &#x3D; 0<br>$$</p>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><ol>
+<h3 id="Conclusion">2.1. Conclusion</h3><ol>
 <li>get the system‘s parameters</li>
 <li>find $\alpha ,\beta$</li>
 <li>calculate $k_v,k_p$ depend on the requirement</li>
 </ol>
-<h3 id="3-Trajectory-Following-Control"><a href="#3-Trajectory-Following-Control" class="headerlink" title="3. Trajectory-Following Control"></a>3. Trajectory-Following Control</h3><p>Know: trajectory, a funciton of time $x_d(t)$ and we can get $\dot x_d, \ddot x_d $as well</p>
+<h3 id="3-Trajectory-Following-Control">2.2. 3. Trajectory-Following Control</h3><p>Know: trajectory, a funciton of time $x_d(t)$ and we can get $\dot x_d, \ddot x_d $as well</p>
 <p>Define: $e&#x3D;x_d-x$</p>
 <p>Design $f ^ { \prime } &#x3D; \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e$</p>
 <p>Get: $\ddot { x } &#x3D; \ddot { x } _ { d } + k _ { v } \dot { e } + k _ { p } e$</p>
@@ -379,7 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Control-Law-Partitioning"><span class="nav-number">2.</span> <span class="nav-text">2 Control-Law Partitioning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">2.1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Trajectory-Following-Control"><span class="nav-number">2.2.</span> <span class="nav-text">3. Trajectory-Following Control</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. 1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Control-Law-Partitioning"><span class="nav-number">2.</span> <span class="nav-text">2. 2 Control-Law Partitioning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Trajectory-Following-Control"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 3. Trajectory-Following Control</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

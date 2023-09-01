@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1 IntroductionHow machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
+  <meta name="description" content="1. 1 IntroductionHow machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ML:First Step">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-ConceptLearning/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1 IntroductionHow machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
+<meta property="og:description" content="1. 1 IntroductionHow machine can learn from data? First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-16T19:50:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.044Z">
@@ -259,12 +259,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p><strong>How</strong> machine can learn from data?</p>
+        <h2 id="1-Introduction">1. 1 Introduction</h2><p><strong>How</strong> machine can learn from data?</p>
 <p>First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.</p>
 <span id="more"></span>
 
 <p><strong>Most</strong> simple algorithms: <strong>Find-S</strong></p>
-<h2 id="2-What-is-Concept-Learning"><a href="#2-What-is-Concept-Learning" class="headerlink" title="2 What is Concept Learning"></a>2 What is Concept Learning</h2><blockquote>
+<h2 id="2-What-is-Concept-Learning">2. 2 What is Concept Learning</h2><blockquote>
 <p>“The problem of searching through a predefined space of potential hypotheses for the hypothesis that best fits the training examples.”</p>
 <p>​       — Tom Michell</p>
 </blockquote>
@@ -282,13 +282,13 @@
 <p>Good hypothesis fit <strong>large set</strong> of training example well</p>
 <p>$\to$ the hypothesis fit <strong>unobserved</strong> example well</p>
 </blockquote>
-<h2 id="3-Find-S"><a href="#3-Find-S" class="headerlink" title="3 Find-S"></a>3 Find-S</h2><h3 id="3-1-Hypothesis-Notations"><a href="#3-1-Hypothesis-Notations" class="headerlink" title="3.1 Hypothesis Notations"></a>3.1 Hypothesis Notations</h3><ol>
+<h2 id="3-Find-S">3. 3 Find-S</h2><h3 id="3-1-Hypothesis-Notations">3.1. 3.1 Hypothesis Notations</h3><ol>
 <li>$\varnothing$ :a hypothesis that <strong>rejects all</strong></li>
 <li>$&lt; ? , ? , ? , ? &gt;$ :<strong>accepts all</strong></li>
 <li>$&lt; \text { true, false, } ? , ? &gt;$ :<strong>accepts some</strong></li>
 </ol>
 <p>Total number of the possible hypothesis $N&#x3D;(3<em>3</em>3*3)+1&#x3D;82$</p>
-<h3 id="3-2-Specific-to-General"><a href="#3-2-Specific-to-General" class="headerlink" title="3.2 Specific to General"></a>3.2 Specific to General</h3><ol>
+<h3 id="3-2-Specific-to-General">3.2. 3.2 Specific to General</h3><ol>
 <li>Start with the most specific hypothesis $\mathbf { h } \leftarrow &lt; \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } , \boldsymbol { \varnothing } &gt;$</li>
 <li>Pick up a sample</li>
 <li>if sample is <strong>negative</strong> $\to​$ unchanged</li>
@@ -300,23 +300,23 @@
 <ol start="3">
 <li>repetition of Step 2</li>
 </ol>
-<h3 id="3-3-Limitations"><a href="#3-3-Limitations" class="headerlink" title="3.3 Limitations"></a>3.3 Limitations</h3><ul>
+<h3 id="3-3-Limitations">3.3. 3.3 Limitations</h3><ul>
 <li>No way to determine if result is consistent with the data</li>
 <li>Inconsistent sets will mislead the result</li>
 <li>No backtrack</li>
 </ul>
-<h2 id="4-Candidate-elimination"><a href="#4-Candidate-elimination" class="headerlink" title="4 Candidate-elimination"></a>4 Candidate-elimination</h2><h3 id="4-1-Chrarcters"><a href="#4-1-Chrarcters" class="headerlink" title="4.1 Chrarcters"></a>4.1 Chrarcters</h3><p>Maintain 2 hypothesis</p>
+<h2 id="4-Candidate-elimination">4. 4 Candidate-elimination</h2><h3 id="4-1-Chrarcters">4.1. 4.1 Chrarcters</h3><p>Maintain 2 hypothesis</p>
 <ul>
 <li>$S_0$ most specific</li>
 <li>$G_0$ most general</li>
 </ul>
-<h3 id="4-2-Algorithm"><a href="#4-2-Algorithm" class="headerlink" title="4.2 Algorithm"></a>4.2 Algorithm</h3><p>Pick up a sample</p>
+<h3 id="4-2-Algorithm">4.2. 4.2 Algorithm</h3><p>Pick up a sample</p>
 <ul>
 <li>if sample is <strong>negative</strong> $\to$ specificalize $G_0$</li>
 <li>if sample is <strong>positive</strong>  $\to$  generalize $S_0$</li>
 </ul>
-<h3 id="4-3-Limitations"><a href="#4-3-Limitations" class="headerlink" title="4.3 Limitations"></a>4.3 Limitations</h3><p>Low fault tolerance</p>
-<h2 id="5-Inductive-Bias"><a href="#5-Inductive-Bias" class="headerlink" title="5 Inductive Bias"></a>5 Inductive Bias</h2><p>Stronger the bias is, more powerful the generaliztion is.</p>
+<h3 id="4-3-Limitations">4.3. 4.3 Limitations</h3><p>Low fault tolerance</p>
+<h2 id="5-Inductive-Bias">5. 5 Inductive Bias</h2><p>Stronger the bias is, more powerful the generaliztion is.</p>
 <p>indicate that: If there is no assumption, the learner can learn <strong>nothing</strong> but the <strong>data</strong></p>
 <p>Common biases:</p>
 <ul>
@@ -408,7 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-What-is-Concept-Learning"><span class="nav-number">2.</span> <span class="nav-text">2 What is Concept Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Find-S"><span class="nav-number">3.</span> <span class="nav-text">3 Find-S</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Hypothesis-Notations"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Hypothesis Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Specific-to-General"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Specific to General</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Limitations"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Candidate-elimination"><span class="nav-number">4.</span> <span class="nav-text">4 Candidate-elimination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Chrarcters"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Chrarcters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Algorithm"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Limitations"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Inductive-Bias"><span class="nav-number">5.</span> <span class="nav-text">5 Inductive Bias</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. 1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-What-is-Concept-Learning"><span class="nav-number">2.</span> <span class="nav-text">2. 2 What is Concept Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Find-S"><span class="nav-number">3.</span> <span class="nav-text">3. 3 Find-S</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Hypothesis-Notations"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 3.1 Hypothesis Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Specific-to-General"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 3.2 Specific to General</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Limitations"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 3.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Candidate-elimination"><span class="nav-number">4.</span> <span class="nav-text">4. 4 Candidate-elimination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Chrarcters"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 4.1 Chrarcters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Algorithm"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 4.2 Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Limitations"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. 4.3 Limitations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Inductive-Bias"><span class="nav-number">5.</span> <span class="nav-text">5. 5 Inductive Bias</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

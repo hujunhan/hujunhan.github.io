@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SystemMacOS: Apple has implemented the HDR display. We need to first match that (hard task) Programming LanguagePython C++ High-Level System Components: Input Module: Accepts and validates the RAW ima">
+  <meta name="description" content="1. SystemMacOS: Apple has implemented the HDR display. We need to first match that (hard task) 2. Programming LanguagePython C++ 3. High-Level System Components: Input Module: Accepts and validates th">
 <meta property="og:type" content="article">
 <meta property="og:title" content="System Design for RawShines Project">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/RawShines/2-system-design/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="SystemMacOS: Apple has implemented the HDR display. We need to first match that (hard task) Programming LanguagePython C++ High-Level System Components: Input Module: Accepts and validates the RAW ima">
+<meta property="og:description" content="1. SystemMacOS: Apple has implemented the HDR display. We need to first match that (hard task) 2. Programming LanguagePython C++ 3. High-Level System Components: Input Module: Accepts and validates th">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-17T06:57:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.042Z">
@@ -256,10 +256,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="System"><a href="#System" class="headerlink" title="System"></a>System</h2><p>MacOS: Apple has implemented the HDR display. We need to first match that (hard task)</p>
-<h2 id="Programming-Language"><a href="#Programming-Language" class="headerlink" title="Programming Language"></a>Programming Language</h2><p>Python</p>
+        <h2 id="System">1. System</h2><p>MacOS: Apple has implemented the HDR display. We need to first match that (hard task)</p>
+<h2 id="Programming-Language">2. Programming Language</h2><p>Python</p>
 <p><strong>C++</strong></p>
-<h2 id="High-Level-System-Components"><a href="#High-Level-System-Components" class="headerlink" title="High-Level System Components:"></a>High-Level System Components:</h2><ul>
+<h2 id="High-Level-System-Components">3. High-Level System Components:</h2><ul>
 <li><strong>Input Module</strong>: Accepts and validates the RAW image files.</li>
 <li><strong>Metadata Extraction Module</strong>: Extracts and temporarily stores metadata from the RAW file.</li>
 <li><strong>Image Processing Engine</strong>: Prepares RAW images for manipulations by converting them into an intermediate format.</li>
@@ -267,7 +267,7 @@
 <li><strong>HEIC Converter</strong>: Converts the manipulated image into the HEIC format.</li>
 <li><strong>Output Module</strong>: Outputs the processed HEIC image, complete with options for subsequent actions such as saving or sharing.</li>
 </ul>
-<h2 id="Detailed-Design"><a href="#Detailed-Design" class="headerlink" title="Detailed Design:"></a>Detailed Design:</h2><ul>
+<h2 id="Detailed-Design">4. Detailed Design:</h2><ul>
 <li><strong>a. Input Module</strong>:</li>
 <li><strong>File Selection</strong>: Facilitates selection or drag-and-drop of RAW files.</li>
 <li><strong>File Validation</strong>: Ensures files adhere to supported RAW formats.</li>
@@ -292,13 +292,13 @@
 <li><strong>Metadata Preservation</strong>: Original metadata remains intact in the converted image.</li>
 <li><strong>Sharing Options</strong>: Direct integration for cloud, social media, or email sharing.</li>
 </ul>
-<h2 id="System-Architecture-amp-Technologies"><a href="#System-Architecture-amp-Technologies" class="headerlink" title="System Architecture &amp; Technologies:"></a>System Architecture &amp; Technologies:</h2><ul>
+<h2 id="System-Architecture-amp-Technologies">5. System Architecture &amp; Technologies:</h2><ul>
 <li><strong>Platform</strong>: Choices include Electron or Qt, based on target audience.</li>
 <li><strong>Programming Language</strong>: Choose between JavaScript (Electron) or C++ (Qt).</li>
 <li><strong>External Libraries</strong>: Utilize <code>libraw</code> and <code>libheif</code>.</li>
 <li><strong>Database</strong>: Integrate SQLite for efficient storage and retrieval.</li>
 </ul>
-<h2 id="Non-functional-Considerations"><a href="#Non-functional-Considerations" class="headerlink" title="Non-functional Considerations:"></a>Non-functional Considerations:</h2><ul>
+<h2 id="Non-functional-Considerations">6. Non-functional Considerations:</h2><ul>
 <li><strong>Performance</strong>: Prioritize fast processing, especially for high-res RAW images.</li>
 <li><strong>Usability</strong>: Ensure an intuitive experience, especially for non-tech-savvy photographers.</li>
 <li><strong>Scalability</strong>: Plan for potential growth or feature additions.</li>
@@ -306,7 +306,7 @@
 <li><strong>Extensibility</strong>: A modular architecture facilitates future feature additions.</li>
 <li><strong>Error Handling</strong>: Users receive clear messages for unsupported formats or other issues.</li>
 </ul>
-<h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing:"></a>Testing:</h2><ul>
+<h2 id="Testing">7. Testing:</h2><ul>
 <li><strong>Unit Testing</strong>: Individual components are rigorously tested.</li>
 <li><strong>Integration Testing</strong>: Modules are tested for seamless interactions.</li>
 <li><strong>Usability Testing</strong>: Gather feedback from photographers on GUI and workflows.</li>
@@ -396,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#System"><span class="nav-number">1.</span> <span class="nav-text">System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programming-Language"><span class="nav-number">2.</span> <span class="nav-text">Programming Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-Level-System-Components"><span class="nav-number">3.</span> <span class="nav-text">High-Level System Components:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-Design"><span class="nav-number">4.</span> <span class="nav-text">Detailed Design:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Architecture-amp-Technologies"><span class="nav-number">5.</span> <span class="nav-text">System Architecture &amp; Technologies:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-functional-Considerations"><span class="nav-number">6.</span> <span class="nav-text">Non-functional Considerations:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing"><span class="nav-number">7.</span> <span class="nav-text">Testing:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#System"><span class="nav-number">1.</span> <span class="nav-text">1. System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programming-Language"><span class="nav-number">2.</span> <span class="nav-text">2. Programming Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-Level-System-Components"><span class="nav-number">3.</span> <span class="nav-text">3. High-Level System Components:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-Design"><span class="nav-number">4.</span> <span class="nav-text">4. Detailed Design:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Architecture-amp-Technologies"><span class="nav-number">5.</span> <span class="nav-text">5. System Architecture &amp; Technologies:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-functional-Considerations"><span class="nav-number">6.</span> <span class="nav-text">6. Non-functional Considerations:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing"><span class="nav-number">7.</span> <span class="nav-text">7. Testing:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

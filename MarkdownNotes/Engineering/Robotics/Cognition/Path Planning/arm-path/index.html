@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Math Formulation目标：生成一条符合要求的轨迹（点的集合）  目标是根据需求来选择的，一般的会有的需求 时间 joint constraints 避障 点：在三维空间中  LibraryOMPL (Open Motion Planning Library)  sampling based and optimization based How: PRM (Probabilistic R">
+  <meta name="description" content="1. Math Formulation目标：生成一条符合要求的轨迹（点的集合）  目标是根据需求来选择的，一般的会有的需求 时间 joint constraints 避障 点：在三维空间中  2. LibraryOMPL (Open Motion Planning Library)  sampling based and optimization based How: PRM (Probabili">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Path Planning for Robot Arm">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/arm-path/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Math Formulation目标：生成一条符合要求的轨迹（点的集合）  目标是根据需求来选择的，一般的会有的需求 时间 joint constraints 避障 点：在三维空间中  LibraryOMPL (Open Motion Planning Library)  sampling based and optimization based How: PRM (Probabilistic R">
+<meta property="og:description" content="1. Math Formulation目标：生成一条符合要求的轨迹（点的集合）  目标是根据需求来选择的，一般的会有的需求 时间 joint constraints 避障 点：在三维空间中  2. LibraryOMPL (Open Motion Planning Library)  sampling based and optimization based How: PRM (Probabili">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181351.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181414.png">
@@ -266,7 +266,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Math-Formulation"><a href="#Math-Formulation" class="headerlink" title="Math Formulation"></a>Math Formulation</h2><p>目标：生成一条符合<strong>要求</strong>的轨迹（<strong>点</strong>的集合）</p>
+        <h2 id="Math-Formulation">1. Math Formulation</h2><p>目标：生成一条符合<strong>要求</strong>的轨迹（<strong>点</strong>的集合）</p>
 <ul>
 <li>目标是根据需求来选择的，一般的会有的需求</li>
 <li>时间</li>
@@ -274,7 +274,7 @@
 <li>避障</li>
 <li>点：在三维空间中</li>
 </ul>
-<h2 id="Library"><a href="#Library" class="headerlink" title="Library"></a>Library</h2><p>OMPL (Open Motion Planning Library)</p>
+<h2 id="Library">2. Library</h2><p>OMPL (Open Motion Planning Library)</p>
 <ul>
 <li>sampling based and optimization based</li>
 <li>How: PRM (Probabilistic Roadmaps ), RRT, BIT( Batch Informed Trees)</li>
@@ -300,21 +300,21 @@
 <li>optimization based</li>
 <li>How:  based on the Hamiltonian formulation of mechanics and optimizes the Hamiltonian of the system subject to constraints.</li>
 </ul>
-<h2 id="Math-Basis"><a href="#Math-Basis" class="headerlink" title="Math Basis"></a>Math Basis</h2><p>RPM, RRT, BIT, Search, Optmization</p>
-<h3 id="Cell-Decomposition"><a href="#Cell-Decomposition" class="headerlink" title="Cell Decomposition"></a>Cell Decomposition</h3><p>Sample the space into grid, so the problem degrade to a classic search problem</p>
+<h2 id="Math-Basis">3. Math Basis</h2><p>RPM, RRT, BIT, Search, Optmization</p>
+<h3 id="Cell-Decomposition">3.1. Cell Decomposition</h3><p>Sample the space into grid, so the problem degrade to a classic search problem</p>
 <ul>
 <li>Bad for high-dimensional situation</li>
 </ul>
-<h3 id="Control-based"><a href="#Control-based" class="headerlink" title="Control based"></a>Control based</h3><ul>
+<h3 id="Control-based">3.2. Control based</h3><ul>
 <li>Fast, can be done in online with minimal error</li>
 <li>Difficult to compute with  complex dynamics</li>
 </ul>
-<h3 id="Potential-Fields"><a href="#Potential-Fields" class="headerlink" title="Potential Fields"></a>Potential Fields</h3><p>Simple and intuitive</p>
+<h3 id="Potential-Fields">3.3. Potential Fields</h3><p>Simple and intuitive</p>
 <ul>
 <li>Real time speed</li>
 <li>Fail in local minima</li>
 </ul>
-<h3 id="Sample-Based"><a href="#Sample-Based" class="headerlink" title="Sample Based"></a>Sample Based</h3><ul>
+<h3 id="Sample-Based">3.4. Sample Based</h3><ul>
 <li>If the solution exist, the method would find it</li>
 </ul>
 <p>Some idea: workspace, state space, free state space, ppath</p>
@@ -415,7 +415,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Formulation"><span class="nav-number">1.</span> <span class="nav-text">Math Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Library"><span class="nav-number">2.</span> <span class="nav-text">Library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Basis"><span class="nav-number">3.</span> <span class="nav-text">Math Basis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cell-Decomposition"><span class="nav-number">3.1.</span> <span class="nav-text">Cell Decomposition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Control-based"><span class="nav-number">3.2.</span> <span class="nav-text">Control based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Potential-Fields"><span class="nav-number">3.3.</span> <span class="nav-text">Potential Fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Based"><span class="nav-number">3.4.</span> <span class="nav-text">Sample Based</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Formulation"><span class="nav-number">1.</span> <span class="nav-text">1. Math Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Library"><span class="nav-number">2.</span> <span class="nav-text">2. Library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math-Basis"><span class="nav-number">3.</span> <span class="nav-text">3. Math Basis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cell-Decomposition"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Cell Decomposition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Control-based"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Control based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Potential-Fields"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Potential Fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Based"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. Sample Based</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

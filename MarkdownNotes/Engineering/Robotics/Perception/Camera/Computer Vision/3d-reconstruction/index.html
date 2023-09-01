@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Meshroom Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D">
+  <meta name="description" content="1. Meshroom Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3D Reconstruction with Meshroom">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/3d-reconstruction/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Meshroom Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D">
+<meta property="og:description" content="1. Meshroom Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif">
@@ -269,11 +269,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Meshroom"><a href="#Meshroom" class="headerlink" title="Meshroom"></a>Meshroom</h2><blockquote>
+        <h2 id="Meshroom">1. Meshroom</h2><blockquote>
 <p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
 <p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
 </blockquote>
-<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ol>
+<h2 id="Pipeline">2. Pipeline</h2><ol>
 <li>Feature extraction</li>
 <li>Goal: extract feature points</li>
 <li>Method: SIFT</li>
@@ -306,7 +306,7 @@
 <li>Compute UV maps</li>
 <li>For each triangle, use the color of each candidate to estimate</li>
 </ol>
-<h2 id="Data-Acquisition"><a href="#Data-Acquisition" class="headerlink" title="Data Acquisition"></a>Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<h2 id="Data-Acquisition">3. Data Acquisition</h2><p>Goal: Clear images from different angles</p>
 <p>Camera setting</p>
 <ul>
 <li>Fixed <strong>low</strong> ISO (low noise)</li>
@@ -332,13 +332,13 @@
 </ul>
 <p>Illustration:</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
-<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<h2 id="Results">4. Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
 <p>The final results of Meshroom is pretty unstable</p>
 <ul>
 <li>In many cases, even high quality images dataset can not generate satisfied results</li>
 <li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
 </ul>
-<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Why performs bad?</p>
+<h2 id="Discussion">5. Discussion</h2><p>Why performs bad?</p>
 <p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
 <ul>
 <li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
@@ -430,7 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Meshroom"><span class="nav-number">1.</span> <span class="nav-text">Meshroom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-number">2.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Acquisition"><span class="nav-number">3.</span> <span class="nav-text">Data Acquisition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">4.</span> <span class="nav-text">Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discussion"><span class="nav-number">5.</span> <span class="nav-text">Discussion</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Meshroom"><span class="nav-number">1.</span> <span class="nav-text">1. Meshroom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-number">2.</span> <span class="nav-text">2. Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Acquisition"><span class="nav-number">3.</span> <span class="nav-text">3. Data Acquisition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">4.</span> <span class="nav-text">4. Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discussion"><span class="nav-number">5.</span> <span class="nav-text">5. Discussion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

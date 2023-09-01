@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Why PCA?We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions Application: Background Removal  There is a video, we want to remove the background Load the DataW">
+  <meta name="description" content="1. Why PCA?We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions 2. Application: Background Removal  There is a video, we want to remove the background 2.1. Loa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Practical Linear Algebra -- Robust PCA">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Algebra/practical-algebra-2-PCA/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Why PCA?We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions Application: Background Removal  There is a video, we want to remove the background Load the DataW">
+<meta property="og:description" content="1. Why PCA?We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions 2. Application: Background Removal  There is a video, we want to remove the background 2.1. Loa">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175701.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175717.png">
@@ -266,21 +266,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Why-PCA"><a href="#Why-PCA" class="headerlink" title="Why PCA?"></a>Why PCA?</h2><p>We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions</p>
-<h2 id="Application-Background-Removal"><a href="#Application-Background-Removal" class="headerlink" title="Application: Background Removal"></a>Application: Background Removal</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175701.png" alt="img" style="zoom:150%;" />
+        <h2 id="Why-PCA">1. Why PCA?</h2><p>We often deal with high-dimentional data sets. Using PCA is handy for eliminating dimenstions</p>
+<h2 id="Application-Background-Removal">2. Application: Background Removal</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175701.png" alt="img" style="zoom:150%;">
 
 <p>There is a video, we want to remove the background</p>
-<h3 id="Load-the-Data"><a href="#Load-the-Data" class="headerlink" title="Load the Data"></a>Load the Data</h3><p>We can scale the image to $60\times 80$, and stack the image to a tall column $1\times 4800$</p>
+<h3 id="Load-the-Data">2.1. Load the Data</h3><p>We can scale the image to $60\times 80$, and stack the image to a tall column $1\times 4800$</p>
 <p>If the video contains $11300$ images, then the video can be represented as a $11300\times 4800$ matrix</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175717.png" alt="img"></p>
-<h2 id="First-Attempt-SVD"><a href="#First-Attempt-SVD" class="headerlink" title="First Attempt: SVD"></a>First Attempt: SVD</h2><p>Preserver only 2 feature</p>
+<h2 id="First-Attempt-SVD">3. First Attempt: SVD</h2><p>Preserver only 2 feature</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> decomposition</span><br><span class="line">u, s, v = decomposition.randomized_svd(M, <span class="number">2</span>)</span><br><span class="line">u.shape, s.shape, v.shape</span><br><span class="line"><span class="comment">#((4800, 2), (2,), (2, 11300))</span></span><br><span class="line">low_rank = u @ np.diag(s) @ v</span><br><span class="line">low_rank.shape</span><br><span class="line"><span class="comment">#(4800, 11300)</span></span><br><span class="line">plt.imshow(low_rank, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.imshow(np.reshape(low_rank[:,<span class="number">140</span>], dims), cmap=<span class="string">&#x27;gray&#x27;</span>);<span class="comment">#get one image from the video</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175724.png" alt="img"></p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175731.png" alt="img" style="zoom:150%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175731.png" alt="img" style="zoom:150%;">
 
 <p>Great, we got a good result</p>
-<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><ul>
+<h2 id="PCA">4. PCA</h2><ul>
 <li><p>Classical PCA (SVD) : seeks the best rank-$k$ estiamte $L$ (Low Rank) of $M$, this is what we do <strong>above</strong></p>
 </li>
 <li><p>Minimizing $||M-L||$</p>
@@ -294,7 +294,7 @@
 <li><p>Sparse: without the background, only people in the image, that means most of the elements in $S$ would be <strong>zero</strong></p>
 </li>
 </ul>
-<h3 id="Robust-PCA"><a href="#Robust-PCA" class="headerlink" title="Robust PCA"></a>Robust PCA</h3><p>Goal:<br>$$<br>minimize ||L|<em>{*}+\lambda|S|</em>{1} \<br>subject\ to \ L+S&#x3D;M<br>$$</p>
+<h3 id="Robust-PCA">4.1. Robust PCA</h3><p>Goal:<br>$$<br>minimize ||L|<em>{*}+\lambda|S|</em>{1} \<br>subject\ to \ L+S&#x3D;M<br>$$</p>
 <ul>
 <li>$||\space||_1$ is the <strong>L1 norm</strong>, for a matrix, L1 norm equals to the maximum absolute column norm</li>
 <li><strong>Why</strong> L1 norm? we need $S$ to be sparse, and L1 norm would lead to <strong>better sparsity</strong></li>
@@ -386,7 +386,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-PCA"><span class="nav-number">1.</span> <span class="nav-text">Why PCA?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Background-Removal"><span class="nav-number">2.</span> <span class="nav-text">Application: Background Removal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Load-the-Data"><span class="nav-number">2.1.</span> <span class="nav-text">Load the Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Attempt-SVD"><span class="nav-number">3.</span> <span class="nav-text">First Attempt: SVD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-number">4.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-PCA"><span class="nav-number">4.1.</span> <span class="nav-text">Robust PCA</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-PCA"><span class="nav-number">1.</span> <span class="nav-text">1. Why PCA?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Background-Removal"><span class="nav-number">2.</span> <span class="nav-text">2. Application: Background Removal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Load-the-Data"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Load the Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Attempt-SVD"><span class="nav-number">3.</span> <span class="nav-text">3. First Attempt: SVD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-number">4.</span> <span class="nav-text">4. PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-PCA"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Robust PCA</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

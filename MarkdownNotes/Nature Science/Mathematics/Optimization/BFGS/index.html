@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="WhatBroyden-Fletcher-Goldfarb-Shanno  Quasi-Newton optimization algorithm Gradient based: use first derivative of th objective function to improve the solution differnce of different algorithm: how to">
+  <meta name="description" content="1. WhatBroyden-Fletcher-Goldfarb-Shanno  Quasi-Newton optimization algorithm Gradient based: use first derivative of th objective function to improve the solution differnce of different algorithm: how">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BFGS in Optimization">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Optimization/BFGS/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="WhatBroyden-Fletcher-Goldfarb-Shanno  Quasi-Newton optimization algorithm Gradient based: use first derivative of th objective function to improve the solution differnce of different algorithm: how to">
+<meta property="og:description" content="1. WhatBroyden-Fletcher-Goldfarb-Shanno  Quasi-Newton optimization algorithm Gradient based: use first derivative of th objective function to improve the solution differnce of different algorithm: how">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-05T05:39:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.045Z">
@@ -259,7 +259,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Broyden-Fletcher-Goldfarb-Shanno</p>
+        <h2 id="What">1. What</h2><p>Broyden-Fletcher-Goldfarb-Shanno</p>
 <ul>
 <li>Quasi-Newton optimization algorithm</li>
 <li><strong>Gradient based</strong>: use first derivative of th objective function to improve the solution</li>
@@ -268,10 +268,10 @@
 <li>hessian matrix – BFGS</li>
 <li>Maintain an approximation of the Hessian</li>
 </ul>
-<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>Find the minimum, the gradient is known or calculated<br>$$<br>B_{k+1} &#x3D; B_k + \frac{(\Delta \theta_k)(\Delta \theta_k)^T}{(\Delta \theta_k)^T \Delta g_k} - \frac{B_k \Delta g_k (\Delta g_k)^T B_k}{(\Delta g_k)^T B_k \Delta g_k}<br>$$</p>
+<h2 id="How">2. How</h2><p>Find the minimum, the gradient is known or calculated<br>$$<br>B_{k+1} &#x3D; B_k + \frac{(\Delta \theta_k)(\Delta \theta_k)^T}{(\Delta \theta_k)^T \Delta g_k} - \frac{B_k \Delta g_k (\Delta g_k)^T B_k}{(\Delta g_k)^T B_k \Delta g_k}<br>$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bfgs</span>(<span class="params">f, grad_f, x0, epsilon=<span class="number">1e-6</span>, max_iter=<span class="number">1000</span></span>):</span><br><span class="line">n = <span class="built_in">len</span>(x0)</span><br><span class="line">Bk = np.eye(n) <span class="comment"># initialize Hessian approximation</span></span><br><span class="line">xk = x0</span><br><span class="line">gk = grad_f(xk)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line"><span class="keyword">if</span> np.linalg.norm(gk) &lt; epsilon:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">pk = -np.dot(Bk, gk)</span><br><span class="line">alpha = backtracking_line_search(f, grad_f, xk, pk)</span><br><span class="line">xk_next = xk + alpha*pk</span><br><span class="line">sk = xk_next - xk</span><br><span class="line">yk = grad_f(xk_next) - gk <span class="comment"># update the second order derivative</span></span><br><span class="line">Bk_next = Bk + np.outer(yk, yk)/np.dot(yk, sk) - np.outer(np.dot(Bk, sk), np.dot(Bk, sk))/np.dot(sk, np.dot(Bk, sk))</span><br><span class="line">xk, gk, Bk = xk_next, grad_f(xk_next), Bk_next</span><br><span class="line"><span class="keyword">return</span> xk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">Wiki</a></p>
+<h2 id="Ref">3. Ref</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">Wiki</a></p>
 <p>ChatGPT</p>
 
     </div>
@@ -356,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">1.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">3.</span> <span class="nav-text">Ref</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">1.</span> <span class="nav-text">1. What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">2. How</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">3.</span> <span class="nav-text">3. Ref</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

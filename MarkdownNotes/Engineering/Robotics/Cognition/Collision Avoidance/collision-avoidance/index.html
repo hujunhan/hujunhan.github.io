@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="GoalAvoid harm General step:  Create 3D model for robot (from URDF) Define workspace and trajectory (to detect the potential collision) Detection Avoidance Test  DetectionSeparating Axis Theorem (SAT)">
+  <meta name="description" content="1. GoalAvoid harm General step:  Create 3D model for robot (from URDF) Define workspace and trajectory (to detect the potential collision) Detection Avoidance Test  2. DetectionSeparating Axis Theorem">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collision Avoidance">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Cognition/Collision%20Avoidance/collision-avoidance/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="GoalAvoid harm General step:  Create 3D model for robot (from URDF) Define workspace and trajectory (to detect the potential collision) Detection Avoidance Test  DetectionSeparating Axis Theorem (SAT)">
+<meta property="og:description" content="1. GoalAvoid harm General step:  Create 3D model for robot (from URDF) Define workspace and trajectory (to detect the potential collision) Detection Avoidance Test  2. DetectionSeparating Axis Theorem">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-28T18:31:00.000Z">
 <meta property="article:modified_time" content="2023-08-30T06:22:29.046Z">
@@ -263,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Avoid harm</p>
+        <h2 id="Goal">1. Goal</h2><p>Avoid harm</p>
 <p>General step:</p>
 <ol>
 <li>Create 3D model for robot (from URDF)</li>
@@ -272,7 +272,7 @@
 <li>Avoidance</li>
 <li>Test</li>
 </ol>
-<h2 id="Detection"><a href="#Detection" class="headerlink" title="Detection"></a>Detection</h2><p>Separating Axis Theorem (SAT): Simple but computationally expensive</p>
+<h2 id="Detection">2. Detection</h2><p>Separating Axis Theorem (SAT): Simple but computationally expensive</p>
 <ul>
 <li>Pros:</li>
 <li>Suitable for detecting collisions between convex polyhedra.</li>
@@ -314,7 +314,7 @@
 <li>Can be less accurate than some other methods.</li>
 <li>May produce false positives if the bounding volumes are too large or not well-optimized.</li>
 </ul>
-<h3 id="False-Negative"><a href="#False-Negative" class="headerlink" title="False Negative"></a>False Negative</h3><p>Fails to detect a collision that actually exists.</p>
+<h3 id="False-Negative">2.1. False Negative</h3><p>Fails to detect a collision that actually exists.</p>
 <p>Cause</p>
 <ul>
 <li>Insufficient solution</li>
@@ -323,14 +323,14 @@
 <li>Algorithm limitation</li>
 </ul>
 <p>You can never eliminate it</p>
-<h3 id="Robot-Arm"><a href="#Robot-Arm" class="headerlink" title="Robot Arm"></a>Robot Arm</h3><ul>
+<h3 id="Robot-Arm">2.2. Robot Arm</h3><ul>
 <li>For convex shape, SAT and GJK are good choices</li>
 <li>SAT more simple</li>
 <li>GJK more robust</li>
 <li>For non-convex shapes or has narrow tunnels, MPR is good choice</li>
 <li>If has complex shapes with many faces or vertices, BVH is a good choice</li>
 </ul>
-<h2 id="Avoidance"><a href="#Avoidance" class="headerlink" title="Avoidance"></a>Avoidance</h2>
+<h2 id="Avoidance">3. Avoidance</h2>
     </div>
 
     
@@ -413,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detection"><span class="nav-number">2.</span> <span class="nav-text">Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#False-Negative"><span class="nav-number">2.1.</span> <span class="nav-text">False Negative</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robot-Arm"><span class="nav-number">2.2.</span> <span class="nav-text">Robot Arm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avoidance"><span class="nav-number">3.</span> <span class="nav-text">Avoidance</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.</span> <span class="nav-text">1. Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detection"><span class="nav-number">2.</span> <span class="nav-text">2. Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#False-Negative"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. False Negative</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robot-Arm"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Robot Arm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avoidance"><span class="nav-number">3.</span> <span class="nav-text">3. Avoidance</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

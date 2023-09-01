@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="MotivationWe want to decompose a matrix using an outer product of two vectors SVD Singular Value DecompositionMotivationwe except the topics to be orthogonal, so it can express most information Idea">
+  <meta name="description" content="1. MotivationWe want to decompose a matrix using an outer product of two vectors 2. SVD Singular Value Decomposition2.1. Motivationwe except the topics to be orthogonal, so it can express most informa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Practical Linear Algebra -- NFM &amp; SVD">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Algebra/practical-algebra-1-SVD/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="MotivationWe want to decompose a matrix using an outer product of two vectors SVD Singular Value DecompositionMotivationwe except the topics to be orthogonal, so it can express most information Idea">
+<meta property="og:description" content="1. MotivationWe want to decompose a matrix using an outer product of two vectors 2. SVD Singular Value Decomposition2.1. Motivationwe except the topics to be orthogonal, so it can express most informa">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://nbviewer.jupyter.org/github/fastai/numerical-linear-algebra/blob/master/nbs/images/svd_fb.png">
 <meta property="article:published_time" content="2020-03-11T04:29:00.000Z">
@@ -263,29 +263,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>We want to decompose a matrix using an outer <strong>product of two vectors</strong></p>
-<h2 id="SVD-Singular-Value-Decomposition"><a href="#SVD-Singular-Value-Decomposition" class="headerlink" title="SVD Singular Value Decomposition"></a>SVD Singular Value Decomposition</h2><h3 id="Motivation-1"><a href="#Motivation-1" class="headerlink" title="Motivation"></a>Motivation</h3><p>we except the topics to be <strong>orthogonal</strong>, so it can express most information</p>
-<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><p><img src="https://nbviewer.jupyter.org/github/fastai/numerical-linear-algebra/blob/master/nbs/images/svd_fb.png" alt="img"></p>
+        <h2 id="Motivation">1. Motivation</h2><p>We want to decompose a matrix using an outer <strong>product of two vectors</strong></p>
+<h2 id="SVD-Singular-Value-Decomposition">2. SVD Singular Value Decomposition</h2><h3 id="Motivation-1">2.1. Motivation</h3><p>we except the topics to be <strong>orthogonal</strong>, so it can express most information</p>
+<h3 id="Idea">2.2. Idea</h3><p><img src="https://nbviewer.jupyter.org/github/fastai/numerical-linear-algebra/blob/master/nbs/images/svd_fb.png" alt="img"></p>
 <span id="more"></span>
 
-<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><ul>
+<h3 id="Application">2.3. Application</h3><ul>
 <li>recommendation</li>
 <li>calculate pseudoinverse</li>
 <li>data compression</li>
 <li>PCA</li>
 </ul>
-<h2 id="NMF-Non-negative-Matrix-Factorization"><a href="#NMF-Non-negative-Matrix-Factorization" class="headerlink" title="NMF Non-negative Matrix Factorization"></a>NMF Non-negative Matrix Factorization</h2><h3 id="Motivation-2"><a href="#Motivation-2" class="headerlink" title="Motivation"></a>Motivation</h3><p>It’s hard to explain face image while using PCA since there is <strong>negative</strong> value</p>
+<h2 id="NMF-Non-negative-Matrix-Factorization">3. NMF Non-negative Matrix Factorization</h2><h3 id="Motivation-2">3.1. Motivation</h3><p>It’s hard to explain face image while using PCA since there is <strong>negative</strong> value</p>
 <p>So this method avoid negative value</p>
 <p>Benefits: fast and easy to use</p>
-<h3 id="Idea-1"><a href="#Idea-1" class="headerlink" title="Idea"></a>Idea</h3><p>Deprecate orthogonal idea, another idea: constrain them to be non-negative</p>
+<h3 id="Idea-1">3.2. Idea</h3><p>Deprecate orthogonal idea, another idea: constrain them to be non-negative</p>
 <p>Goal: Do decomposition<br>$$<br>V \approx W H<br>$$<br>Approach: add <strong>penalty</strong> to punish negative elements, that means the result will be just a <strong>approximation</strong>, and <strong>not-unique</strong></p>
 <p>Using SGD(Stochastic Gradient Descent), add</p>
-<h3 id="Application-1"><a href="#Application-1" class="headerlink" title="Application"></a>Application</h3><ul>
+<h3 id="Application-1">3.3. Application</h3><ul>
 <li>Face decomposition</li>
 <li>bioinformatics</li>
 <li>Topic modeling</li>
 </ul>
-<h2 id="Faster-SVD"><a href="#Faster-SVD" class="headerlink" title="Faster SVD"></a>Faster SVD</h2><h3 id="Motivation-3"><a href="#Motivation-3" class="headerlink" title="Motivation"></a>Motivation</h3><ul>
+<h2 id="Faster-SVD">4. Faster SVD</h2><h3 id="Motivation-3">4.1. Motivation</h3><ul>
 <li>Normal SVD is pretty <strong>slow</strong>, we need to speed it up</li>
 <li>Data are often <strong>missing</strong> or <strong>inaccurate</strong></li>
 <li>Take advantage if <strong>GPUs</strong></li>
@@ -297,7 +297,7 @@
 <li>needed matrix-vector products can be done in parallel</li>
 <li>performance guaranteed</li>
 </ul>
-<h3 id="Idea-2"><a href="#Idea-2" class="headerlink" title="Idea"></a>Idea</h3><p>Use a smaller matrix</p>
+<h3 id="Idea-2">4.2. Idea</h3><p>Use a smaller matrix</p>
 <ol>
 <li><p>Before: calculate SVD of $A(m\times n)$</p>
 </li>
@@ -310,7 +310,7 @@
 <ol start="3">
 <li>After: calculate SCD of $B(m,r)&#x3D;AQ\space,\space r&lt;&lt;n$</li>
 </ol>
-<h3 id="Computation"><a href="#Computation" class="headerlink" title="Computation"></a>Computation</h3><ol>
+<h3 id="Computation">4.3. Computation</h3><ol>
 <li>Find an approximation $Q$ to the <strong>range</strong> of $A$, here range means linear combination.</li>
 </ol>
 <p>That means $Q$ has similar column space with $A$ but fewer columns<br>$$<br>A\approx Q Q^tA<br>$$</p>
@@ -416,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-Singular-Value-Decomposition"><span class="nav-number">2.</span> <span class="nav-text">SVD Singular Value Decomposition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-1"><span class="nav-number">2.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea"><span class="nav-number">2.2.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">2.3.</span> <span class="nav-text">Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NMF-Non-negative-Matrix-Factorization"><span class="nav-number">3.</span> <span class="nav-text">NMF Non-negative Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-2"><span class="nav-number">3.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-1"><span class="nav-number">3.2.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-1"><span class="nav-number">3.3.</span> <span class="nav-text">Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-SVD"><span class="nav-number">4.</span> <span class="nav-text">Faster SVD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-3"><span class="nav-number">4.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-2"><span class="nav-number">4.2.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Computation"><span class="nav-number">4.3.</span> <span class="nav-text">Computation</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">1. Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-Singular-Value-Decomposition"><span class="nav-number">2.</span> <span class="nav-text">2. SVD Singular Value Decomposition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-1"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NMF-Non-negative-Matrix-Factorization"><span class="nav-number">3.</span> <span class="nav-text">3. NMF Non-negative Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-2"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-1"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-1"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-SVD"><span class="nav-number">4.</span> <span class="nav-text">4. Faster SVD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-3"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea-2"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Computation"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. Computation</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

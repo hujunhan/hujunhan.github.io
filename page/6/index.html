@@ -268,7 +268,7 @@
 <li>Foundation</li>
 <li>MobileRobots</li>
 </ul>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Path tracking for car-like robot</p>
+<h2 id="Intro">1. Intro</h2><p>Path tracking for car-like robot</p>
 <p>Or can be called as vehicle lateral control</p>
 <p>Some most common method</p>
 <ul>
@@ -278,7 +278,7 @@
 <li>Model predictive control(MPC), use a model of the vehicle dynamics to predict the future behavior, then optimize the control input</li>
 <li>Linear Quadratic Regulator (LQR), use a linearized model to calculate the optimal control input</li>
 </ul>
-<h2 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h2><table>
+<h2 id="Compare">2. Compare</h2><table>
 <thead>
 <tr>
 <th>Method</th>
@@ -288,17 +288,17 @@
 </thead>
 <tbody><tr>
 <td>PID</td>
-<td>simple<br />good for linear system</td>
+<td>simple<br>good for linear system</td>
 <td>stability issue</td>
 </tr>
 <tr>
 <td>Stanley</td>
-<td>simple<br />capable</td>
-<td>sensitive to parameter tuning<br />not good with sharp turn</td>
+<td>simple<br>capable</td>
+<td>sensitive to parameter tuning<br>not good with sharp turn</td>
 </tr>
 <tr>
 <td>Pure Pursuit</td>
-<td>simple<br />good for low speed</td>
+<td>simple<br>good for low speed</td>
 <td>suffer from oscillation</td>
 </tr>
 <tr>
@@ -312,13 +312,13 @@
 <td>linearized model</td>
 </tr>
 </tbody></table>
-<h2 id="Pure-Pursuit"><a href="#Pure-Pursuit" class="headerlink" title="Pure Pursuit"></a>Pure Pursuit</h2><p>Geometric path tracking controller</p>
+<h2 id="Pure-Pursuit">3. Pure Pursuit</h2><p>Geometric path tracking controller</p>
 <p>Look ahead point: A fixed distance on the reference path ahead of the vehicle</p>
 <p>Reference point of vehicle: the center of rear axle</p>
 <p>Target point:</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419220100_Cnb8GC.png" alt="img" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419220100_Cnb8GC.png" alt="img" style="zoom:33%;">
 
-<h2 id="Stanley-Controller"><a href="#Stanley-Controller" class="headerlink" title="Stanley Controller"></a>Stanley Controller</h2><p>CTE: cross-track error</p>
+<h2 id="Stanley-Controller">4. Stanley Controller</h2><p>CTE: cross-track error</p>
 <p>Reference point of vehicle: the center of front axle</p>
 <p>Cost: heading error + cross-track error</p>
 <p>Control logic</p>
@@ -327,7 +327,7 @@
 <li>Eliminating the cross-track error</li>
 <li>Clip the steering to bond</li>
 </ol>
-<h2 id="MPC"><a href="#MPC" class="headerlink" title="MPC"></a>MPC</h2><p>Define the cost function</p>
+<h2 id="MPC">5. MPC</h2><p>Define the cost function</p>
 <ul>
 <li>deviation from the reference path</li>
 <li>control command magnitude</li>
@@ -437,7 +437,7 @@
 <li>Foundation</li>
 <li>MobileRobots</li>
 </ul>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Feedback control</p>
+<h2 id="Intro">1. Intro</h2><p>Feedback control</p>
 <ul>
 <li>Use the model of the system to predict its behavior</li>
 <li>Compute an optimal control input that minimize a given cost function</li>
@@ -457,11 +457,11 @@
 <li>Handle multivariable system</li>
 <li>Handle time-varying parameters</li>
 </ul>
-<h2 id="For-Car-like-Control"><a href="#For-Car-like-Control" class="headerlink" title="For Car-like Control"></a>For Car-like Control</h2><p>Trajectory</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230321210501.png" alt="image-20230321210500789" style="zoom:33%;" />
+<h2 id="For-Car-like-Control">2. For Car-like Control</h2><p>Trajectory</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230321210501.png" alt="image-20230321210500789" style="zoom:33%;">
 
 <p>yaw</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230321210639.png" alt="image-20230321210639873" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230321210639.png" alt="image-20230321210639873" style="zoom:33%;">
 
 <ol>
 <li><p>init, find the closet point</p>
@@ -485,7 +485,7 @@
 <li><p>Update car state</p>
 </li>
 </ol>
-<h2 id="Wheel-Steer"><a href="#Wheel-Steer" class="headerlink" title="Wheel Steer"></a>Wheel Steer</h2><p>In the MPC, we used a simplified car model (bicycle model), there are only two wheels (front and back) in the car. Here is the problem</p>
+<h2 id="Wheel-Steer">3. Wheel Steer</h2><p>In the MPC, we used a simplified car model (bicycle model), there are only two wheels (front and back) in the car. Here is the problem</p>
 <ul>
 <li>Given front and back steer, how to calcualte the real steer the car should go?</li>
 </ul>
@@ -581,7 +581,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Basic Method</p>
+          <h2 id="Intro">1. Intro</h2><p>Basic Method</p>
 <ul>
 <li>Graph-based: A*, D*</li>
 <li>Anytime Sampling: RRT, RPM</li>
@@ -595,12 +595,12 @@
 <li>Completeness: can always find a solution from start to goal (if exist)</li>
 <li>Almost-sure Asymptotic optimality</li>
 </ul>
-<h2 id="Unknown-Term"><a href="#Unknown-Term" class="headerlink" title="Unknown Term"></a>Unknown Term</h2><p>RGG: random geometry graph</p>
+<h2 id="Unknown-Term">2. Unknown Term</h2><p>RGG: random geometry graph</p>
 <ul>
 <li>A type of mathematical graph</li>
 <li>Node is randomly distributed in geometric space</li>
 </ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419212646_mcBhbd.png" alt="A random geometric graph. | Download Scientific Diagram" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419212646_mcBhbd.png" alt="A random geometric graph. | Download Scientific Diagram" style="zoom:50%;">
 
 <p>Lebesgue Measure</p>
 <ul>
@@ -619,7 +619,7 @@
 <li>g: the actual cost</li>
 <li>rhs: the heuristic estimate</li>
 </ul>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>Idea:</p>
+<h2 id="Algorithm">3. Algorithm</h2><p>Idea:</p>
 <ul>
 <li>Find a solution from start to goal, form a batch</li>
 <li>In the next batch, form denser RGG</li>
@@ -713,8 +713,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Choose the most suitable path planning algorithm for mobile robot</p>
-<h3 id="Graph-Search"><a href="#Graph-Search" class="headerlink" title="Graph-Search"></a>Graph-Search</h3><p>Discrete approximation</p>
+          <h2 id="Goal">1. Goal</h2><p>Choose the most suitable path planning algorithm for mobile robot</p>
+<h3 id="Graph-Search">1.1. Graph-Search</h3><p>Discrete approximation</p>
 <ul>
 <li>Optimally efficient</li>
 </ul>
@@ -723,13 +723,13 @@
 <li>quality depends on discretization</li>
 <li>Suffer in high-dimensional spaces</li>
 </ul>
-<h3 id="Sampling-Based"><a href="#Sampling-Based" class="headerlink" title="Sampling-Based"></a>Sampling-Based</h3><p>No discretization</p>
+<h3 id="Sampling-Based">1.2. Sampling-Based</h3><p>No discretization</p>
 <p>Scale well in higher dimensions</p>
 <p>Con:</p>
 <ul>
 <li>random lead to long computation times</li>
 </ul>
-<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><ul>
+<h2 id="Timeline">2. Timeline</h2><ul>
 <li>Dijkstra: 1956</li>
 <li>A*: 1968</li>
 <li>RRT: 1998</li>
@@ -738,7 +738,7 @@
 <li>Tree would be rewired</li>
 <li>CHOMP: 2013</li>
 </ul>
-<h2 id="Some-New-Algorithm"><a href="#Some-New-Algorithm" class="headerlink" title="Some New Algorithm"></a>Some New Algorithm</h2><ul>
+<h2 id="Some-New-Algorithm">3. Some New Algorithm</h2><ul>
 <li>FMT</li>
 <li>Informed RRT*</li>
 <li>Narrow search space</li>
@@ -746,7 +746,7 @@
 <li>BIT: find a balance between graph and sample</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230404133448.png" alt="image-20230404133447946"></p>
-<h2 id="BIT-Algorithm"><a href="#BIT-Algorithm" class="headerlink" title="BIT Algorithm"></a>BIT Algorithm</h2><ol>
+<h2 id="BIT-Algorithm">4. BIT Algorithm</h2><ol>
 <li>Init the tree with start point</li>
 <li>Batch creation, create new sample</li>
 <li>Edge selection, processing the $Q_E$, find the best edge</li>
@@ -759,14 +759,14 @@
 <li>Graph Pruning</li>
 <li>remove states that cannot provide a solution better than the given cost</li>
 </ol>
-<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/songyunli1111/article/details/102808704">Python实现-BIT*-Batch Informed Tree 运动规划算法_海晨威的博客-CSDN博客</a></p>
+<h3 id="Ref">4.1. Ref</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/songyunli1111/article/details/102808704">Python实现-BIT*-Batch Informed Tree 运动规划算法_海晨威的博客-CSDN博客</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> self.BestVertexQueueValue() &lt;= self.BestEdgeQueueValue():</span><br><span class="line">result = self.BestInVertexQueue()</span><br><span class="line">self.ExpandVertex(result)</span><br></pre></td></tr></table></figure>
 
 <p>Only expand when current point’s value is better than the point in the current tree</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (</span><br><span class="line">self.g_T[vm] + self.calc_dist(vm, xm) + self.h_estimated(xm)</span><br><span class="line">&lt; self.g_T[self.x_goal]</span><br><span class="line">):</span><br><span class="line">actual_cost = self.cost(vm, xm)</span><br><span class="line"><span class="keyword">if</span> (</span><br><span class="line">self.g_estimated(vm) + actual_cost + self.h_estimated(xm)</span><br><span class="line">&lt; self.g_T[self.x_goal]</span><br><span class="line">):</span><br><span class="line"><span class="keyword">if</span> self.g_T[vm] + actual_cost &lt; self.g_T[xm]:</span><br></pre></td></tr></table></figure>
 
 <p>Check the vvalue of a edge, should add it to tree or not</p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><h3 id="Empty-QV"><a href="#Empty-QV" class="headerlink" title="Empty QV"></a>Empty QV</h3><p>Too little sample point, increase the sample size solve the problem</p>
+<h2 id="Problem">5. Problem</h2><h3 id="Empty-QV">5.1. Empty QV</h3><p>Too little sample point, increase the sample size solve the problem</p>
 
       
     </div>
@@ -852,7 +852,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>For a IMU, it can measure</p>
+          <h2 id="What">1. What</h2><p>For a IMU, it can measure</p>
 <ul>
 <li>linear acceleration</li>
 <li>angular velocity</li>
@@ -869,7 +869,7 @@
 <li>drift rate</li>
 <li>Noise</li>
 </ul>
-<h2 id="Basic-Math"><a href="#Basic-Math" class="headerlink" title="Basic Math"></a>Basic Math</h2><p><a target="_blank" rel="noopener" href="http://www.starlino.com/imu_guide.html">Ref</a></p>
+<h2 id="Basic-Math">2. Basic Math</h2><p><a target="_blank" rel="noopener" href="http://www.starlino.com/imu_guide.html">Ref</a></p>
 <p>How accelerator works: MEMS</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230409212510.png" alt="accelerometer model"></p>
 <p>The basic is: detect <strong>force</strong></p>
@@ -877,7 +877,7 @@
 <ul>
 <li>get 3 (xyz) axis voltage $\to$ ADC to digital signal (in a range) $\to$ convert into real acc, $(V_x-V_{x_0})&#x2F;Sensitivity$</li>
 </ul>
-<h2 id="Calibration"><a href="#Calibration" class="headerlink" title="Calibration"></a>Calibration</h2><p>What to Calibrate?</p>
+<h2 id="Calibration">3. Calibration</h2><p>What to Calibrate?</p>
 <ul>
 <li>Scaling</li>
 <li>Misalignment</li>
@@ -995,13 +995,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Collision Testing algorithm</p>
+          <h2 id="What">1. What</h2><p>Collision Testing algorithm</p>
 <ul>
 <li>Very general, works with any combination of convex shape</li>
 <li>Fast</li>
 </ul>
 <p>Useful in physics simulation and video games</p>
-<h2 id="Math-Foundations"><a href="#Math-Foundations" class="headerlink" title="Math Foundations"></a>Math Foundations</h2><p>Define a <strong>shape</strong></p>
+<h2 id="Math-Foundations">2. Math Foundations</h2><p>Define a <strong>shape</strong></p>
 <ul>
 <li>A set of points that are infinitely dense</li>
 </ul>
@@ -1011,21 +1011,21 @@
 <li>then a-b&#x3D;0</li>
 </ul>
 <p>If there are infinite number of points, it fails</p>
-<h3 id="Minkowski-Sum"><a href="#Minkowski-Sum" class="headerlink" title="Minkowski Sum"></a>Minkowski Sum</h3><p>Sum of two shape, a shape travel along another shape’s outliers</p>
+<h3 id="Minkowski-Sum">2.1. Minkowski Sum</h3><p>Sum of two shape, a shape travel along another shape’s outliers</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328213559.png" alt="image-20230328213559449"></p>
 <p>Blue + Pink&#x3D; Purple</p>
 <p>The center is located at the sum of the original shape center</p>
-<h3 id="Minkowski-Difference"><a href="#Minkowski-Difference" class="headerlink" title="Minkowski Difference"></a>Minkowski Difference</h3><p>Just like the sum, but the position are define as differences rather than sum</p>
+<h3 id="Minkowski-Difference">2.2. Minkowski Difference</h3><p>Just like the sum, but the position are define as differences rather than sum</p>
 <p>Key point:</p>
 <ul>
 <li>When the shape intersect, the difference always contains the origin</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328214717.png" alt="image-20230328214716877"></p>
 <p>Takeaway: We only need to test if the origin is in the Minkowski difference</p>
-<h3 id="Simplify"><a href="#Simplify" class="headerlink" title="Simplify"></a>Simplify</h3><p>Instead of working with infinite points, we find <strong>useful points</strong> and calculate the difference of these points</p>
+<h3 id="Simplify">2.3. Simplify</h3><p>Instead of working with infinite points, we find <strong>useful points</strong> and calculate the difference of these points</p>
 <p>The convex hull is a good approximation of the entire difference</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230328220242.png" alt="image-20230328220242147"></p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Initialization:</span><br><span class="line"></span><br><span class="line">1. Pick an arbitrary starting direction.</span><br><span class="line"></span><br><span class="line">2. Find a point in the Minkowski difference using the support function.</span><br><span class="line"></span><br><span class="line">3. Add this point to a Simplex, a shape created using the minimum number of</span><br><span class="line">points in a given dimension. For example, a point in 0 dimensions, a</span><br><span class="line">line in 2, a triangle in 3, and a tetrahedron in 4.</span><br><span class="line"></span><br><span class="line">These shapes are easy to test for intersection, so we will find simplex</span><br><span class="line">subsets of the convex hull and perform the intersection tests on them.</span><br><span class="line"></span><br><span class="line">Main Loop:</span><br><span class="line"></span><br><span class="line">4. Choose a new direction from the simplex towards the origin.</span><br><span class="line"></span><br><span class="line">5. Get a point with the support function using the direction.</span><br><span class="line"></span><br><span class="line">6. If the point didn&#x27;t pass the origin, then the origin must be outside the</span><br><span class="line">convex hull. Terminate and return false.</span><br><span class="line"></span><br><span class="line">7. Add the new point to the simplex.</span><br><span class="line"></span><br><span class="line">8. Test to see if the origin intersects the simplex.</span><br><span class="line"></span><br><span class="line">If it does, keep the entire simplex.</span><br><span class="line"></span><br><span class="line">If it does not, reduce to the closest, largest simplex that surrounds</span><br><span class="line">the origin when it is mapped onto the simplex&#x27;s dimension.</span><br><span class="line"></span><br><span class="line">9. If we found a simplex of the maximum dimension that surrounds the origin,</span><br><span class="line">terminate and return true. Otherwise, return to step 4.</span><br></pre></td></tr></table></figure>
+<h2 id="Algorithm">3. Algorithm</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Initialization:</span><br><span class="line"></span><br><span class="line">1. Pick an arbitrary starting direction.</span><br><span class="line"></span><br><span class="line">2. Find a point in the Minkowski difference using the support function.</span><br><span class="line"></span><br><span class="line">3. Add this point to a Simplex, a shape created using the minimum number of</span><br><span class="line">points in a given dimension. For example, a point in 0 dimensions, a</span><br><span class="line">line in 2, a triangle in 3, and a tetrahedron in 4.</span><br><span class="line"></span><br><span class="line">These shapes are easy to test for intersection, so we will find simplex</span><br><span class="line">subsets of the convex hull and perform the intersection tests on them.</span><br><span class="line"></span><br><span class="line">Main Loop:</span><br><span class="line"></span><br><span class="line">4. Choose a new direction from the simplex towards the origin.</span><br><span class="line"></span><br><span class="line">5. Get a point with the support function using the direction.</span><br><span class="line"></span><br><span class="line">6. If the point didn&#x27;t pass the origin, then the origin must be outside the</span><br><span class="line">convex hull. Terminate and return false.</span><br><span class="line"></span><br><span class="line">7. Add the new point to the simplex.</span><br><span class="line"></span><br><span class="line">8. Test to see if the origin intersects the simplex.</span><br><span class="line"></span><br><span class="line">If it does, keep the entire simplex.</span><br><span class="line"></span><br><span class="line">If it does not, reduce to the closest, largest simplex that surrounds</span><br><span class="line">the origin when it is mapped onto the simplex&#x27;s dimension.</span><br><span class="line"></span><br><span class="line">9. If we found a simplex of the maximum dimension that surrounds the origin,</span><br><span class="line">terminate and return true. Otherwise, return to step 4.</span><br></pre></td></tr></table></figure>
 
 <p>Keypoint:</p>
 <ul>
@@ -1127,7 +1127,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Avoid harm</p>
+          <h2 id="Goal">1. Goal</h2><p>Avoid harm</p>
 <p>General step:</p>
 <ol>
 <li>Create 3D model for robot (from URDF)</li>
@@ -1136,7 +1136,7 @@
 <li>Avoidance</li>
 <li>Test</li>
 </ol>
-<h2 id="Detection"><a href="#Detection" class="headerlink" title="Detection"></a>Detection</h2><p>Separating Axis Theorem (SAT): Simple but computationally expensive</p>
+<h2 id="Detection">2. Detection</h2><p>Separating Axis Theorem (SAT): Simple but computationally expensive</p>
 <ul>
 <li>Pros:</li>
 <li>Suitable for detecting collisions between convex polyhedra.</li>
@@ -1178,7 +1178,7 @@
 <li>Can be less accurate than some other methods.</li>
 <li>May produce false positives if the bounding volumes are too large or not well-optimized.</li>
 </ul>
-<h3 id="False-Negative"><a href="#False-Negative" class="headerlink" title="False Negative"></a>False Negative</h3><p>Fails to detect a collision that actually exists.</p>
+<h3 id="False-Negative">2.1. False Negative</h3><p>Fails to detect a collision that actually exists.</p>
 <p>Cause</p>
 <ul>
 <li>Insufficient solution</li>
@@ -1187,14 +1187,14 @@
 <li>Algorithm limitation</li>
 </ul>
 <p>You can never eliminate it</p>
-<h3 id="Robot-Arm"><a href="#Robot-Arm" class="headerlink" title="Robot Arm"></a>Robot Arm</h3><ul>
+<h3 id="Robot-Arm">2.2. Robot Arm</h3><ul>
 <li>For convex shape, SAT and GJK are good choices</li>
 <li>SAT more simple</li>
 <li>GJK more robust</li>
 <li>For non-convex shapes or has narrow tunnels, MPR is good choice</li>
 <li>If has complex shapes with many faces or vertices, BVH is a good choice</li>
 </ul>
-<h2 id="Avoidance"><a href="#Avoidance" class="headerlink" title="Avoidance"></a>Avoidance</h2>
+<h2 id="Avoidance">3. Avoidance</h2>
       
     </div>
 
@@ -1279,22 +1279,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Highlight some of the progress in 2022 and vision for 2023</p>
-<h2 id="Language-Vision-and-Generative-models"><a href="#Language-Vision-and-Generative-models" class="headerlink" title="Language Vision and Generative models"></a>Language Vision and Generative models</h2><h3 id="Language"><a href="#Language" class="headerlink" title="Language"></a>Language</h3><p>Language model, although the simple objective is to predict the next word, the results are quite amazing</p>
+          <h2 id="Goal">1. Goal</h2><p>Highlight some of the progress in 2022 and vision for 2023</p>
+<h2 id="Language-Vision-and-Generative-models">2. Language Vision and Generative models</h2><h3 id="Language">2.1. Language</h3><p>Language model, although the simple objective is to predict the next word, the results are quite amazing</p>
 <p>Chain of Thought prompting, help the language model follow logical chain of thought</p>
 <p>Trained on multi-language model, it shows translation ability</p>
 <p>Scaling give new power</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215402_qAWY1T.png" alt="img"></p>
-<h3 id="Vision"><a href="#Vision" class="headerlink" title="Vision"></a>Vision</h3><p>Use transformer architecture rather than CNN to utilize both local and non-local information</p>
+<h3 id="Vision">2.2. Vision</h3><p>Use transformer architecture rather than CNN to utilize both local and non-local information</p>
 <p>Understand 3D structure from one or few 2D images</p>
-<h3 id="Multimodal-Models"><a href="#Multimodal-Models" class="headerlink" title="Multimodal Models"></a>Multimodal Models</h3><p>Key questions:</p>
+<h3 id="Multimodal-Models">2.3. Multimodal Models</h3><p>Key questions:</p>
 <ul>
 <li>How much modality-specific processing should be done before merge?</li>
 <li>A few layer</li>
 <li>How to mix the representation the most effective?</li>
 <li>Through bottleneck</li>
 </ul>
-<h3 id="Generative-Models"><a href="#Generative-Models" class="headerlink" title="Generative Models"></a>Generative Models</h3><p>GAN developed in 2014, two part</p>
+<h3 id="Generative-Models">2.4. Generative Models</h3><p>GAN developed in 2014, two part</p>
 <ul>
 <li>Generator</li>
 <li>Discriminator</li>
@@ -1309,19 +1309,19 @@
 <li>video</li>
 <li>audio: larger data, and one-to-many relationship</li>
 </ul>
-<h2 id="ML-and-Computer-System"><a href="#ML-and-Computer-System" class="headerlink" title="ML and Computer System"></a>ML and Computer System</h2><h3 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h3><p>Distributed systems: Pathway</p>
+<h2 id="ML-and-Computer-System">3. ML and Computer System</h2><h3 id="Software">3.1. Software</h3><p>Distributed systems: Pathway</p>
 <ul>
 <li>AI model</li>
 <li>Sparse and efficient</li>
 </ul>
 <p>TensorStore, partular useful for LLM</p>
 <p>Jax related libraries, Rax, T5X</p>
-<h3 id="Hardware"><a href="#Hardware" class="headerlink" title="Hardware"></a>Hardware</h3><p>TPU and GPU</p>
+<h3 id="Hardware">3.2. Hardware</h3><p>TPU and GPU</p>
 <p>Use ML in hardware design, use a approximation level</p>
-<h2 id="Aglorithm-Advances"><a href="#Aglorithm-Advances" class="headerlink" title="Aglorithm Advances"></a>Aglorithm Advances</h2><p>Scalable algorithm, using graphs, clustering and optimization</p>
+<h2 id="Aglorithm-Advances">4. Aglorithm Advances</h2><p>Scalable algorithm, using graphs, clustering and optimization</p>
 <p>Privacy and federated learning</p>
 <p>Maket algorithm and causal inference:</p>
-<h2 id="Robotics"><a href="#Robotics" class="headerlink" title="Robotics"></a>Robotics</h2><p>More helpful?</p>
+<h2 id="Robotics">5. Robotics</h2><p>More helpful?</p>
 <ul>
 <li>Communicate more efficient</li>
 <li>Understand common sense in real world</li>
@@ -1343,7 +1343,7 @@
 <li>still gap between simulation and real world</li>
 <li>collect training data</li>
 </ul>
-<h2 id="Natural-Science"><a href="#Natural-Science" class="headerlink" title="Natural Science"></a>Natural Science</h2><p>ML to act on curiosity</p>
+<h2 id="Natural-Science">6. Natural Science</h2><p>ML to act on curiosity</p>
 <p>Complexity of biology</p>
 <ul>
 <li>brain</li>
@@ -1353,7 +1353,7 @@
 <li>genome</li>
 </ul>
 <p>Quantum computing for new physics discoveries</p>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>Common sense in LLM?</p>
+<h2 id="TODO">7. TODO</h2><p>Common sense in LLM?</p>
 <p>huam <a target="_blank" rel="noopener" href="https://ai.googleblog.com/2021/06/a-browsable-petascale-reconstruction-of.html">cortex</a></p>
 <p>fruit fly <a target="_blank" rel="noopener" href="https://ai.googleblog.com/2020/01/releasing-drosophila-hemibrain.html">brain</a></p>
 
@@ -1441,27 +1441,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="GPT3"><a href="#GPT3" class="headerlink" title="GPT3"></a>GPT3</h2><p>三个重要能力</p>
+          <h2 id="GPT3">1. GPT3</h2><p>三个重要能力</p>
 <ul>
 <li>Text Generation, using prompt</li>
 <li>In-Context learning</li>
 <li>World knowledge, factual knowledge and common sense</li>
 </ul>
 <p>来源：大量的数据</p>
-<h2 id="From-GPT3-to-ChatGPT"><a href="#From-GPT3-to-ChatGPT" class="headerlink" title="From GPT3 to ChatGPT"></a>From GPT3 to ChatGPT</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230327001912.png" alt="图片"></p>
+<h2 id="From-GPT3-to-ChatGPT">2. From GPT3 to ChatGPT</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230327001912.png" alt="图片"></p>
 <p>不同的微调指令激发出了不同的能力，这些能力本来就已经有了</p>
 <ul>
 <li>上下文学习</li>
 <li>对话</li>
 <li>代码</li>
 </ul>
-<h2 id="Code-Davinci"><a href="#Code-Davinci" class="headerlink" title="Code-Davinci"></a>Code-Davinci</h2><p>通过指令微调，直接产物是能够响应人类指令</p>
+<h2 id="Code-Davinci">3. Code-Davinci</h2><p>通过指令微调，直接产物是能够响应人类指令</p>
 <p>泛化能力：指令数量超过一定范围自动出现</p>
 <ul>
 <li>复杂推理能力是<strong>训练代码</strong>的神奇副产物</li>
 <li>面向对象和面向过程</li>
 </ul>
-<h2 id="Text-Davinci-RLHF"><a href="#Text-Davinci-RLHF" class="headerlink" title="Text-Davinci, RLHF"></a>Text-Davinci, RLHF</h2><p><strong>人类反馈</strong>（一种训练手段）带来的能力：</p>
+<h2 id="Text-Davinci-RLHF">4. Text-Davinci, RLHF</h2><p><strong>人类反馈</strong>（一种训练手段）带来的能力：</p>
 <ul>
 <li>更长的回答</li>
 <li>公正的回应</li>
@@ -1469,7 +1469,7 @@
 <li>拒绝知识范围之外的问题</li>
 </ul>
 <p>能力是模型本来就有的，RLHF（人类反馈）触发了新的能力</p>
-<h2 id="Can’t-Do"><a href="#Can’t-Do" class="headerlink" title="Can’t Do"></a>Can’t Do</h2><p>非常严谨的数学推导</p>
+<h2 id="Can’t-Do">5. Can’t Do</h2><p>非常严谨的数学推导</p>
 <p>纠正错误的事实</p>
 
       
@@ -1556,12 +1556,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h2><ol>
+          <h2 id="测试流程">1. 测试流程</h2><ol>
 <li>Windows上用上位机查看数据，确保能获取IMU数据</li>
 <li>ROS包安装，录制数据</li>
 <li>校准</li>
 </ol>
-<h2 id="ROS"><a href="#ROS" class="headerlink" title="ROS"></a>ROS</h2><p>Lidar, IMU ROS package</p>
+<h2 id="ROS">2. ROS</h2><p>Lidar, IMU ROS package</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-XXX-serial</span><br></pre></td></tr></table></figure>
 
 <p>Fix the port name for IMU</p>

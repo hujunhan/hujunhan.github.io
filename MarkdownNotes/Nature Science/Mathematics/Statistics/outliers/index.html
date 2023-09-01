@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="什么是异常点（outliers）From wikipedia:  In statistics, an outlier is an observation point that is distant from other observations.  关键是observation，或者先验，通过人的知识来去除异常点 数据分布（先验）茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内 所以我们">
+  <meta name="description" content="1. 什么是异常点（outliers）From wikipedia:  In statistics, an outlier is an observation point that is distant from other observations.  关键是observation，或者先验，通过人的知识来去除异常点 2. 数据分布（先验）茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异常点检测">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/outliers/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="什么是异常点（outliers）From wikipedia:  In statistics, an outlier is an observation point that is distant from other observations.  关键是observation，或者先验，通过人的知识来去除异常点 数据分布（先验）茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内 所以我们">
+<meta property="og:description" content="1. 什么是异常点（outliers）From wikipedia:  In statistics, an outlier is an observation point that is distant from other observations.  关键是observation，或者先验，通过人的知识来去除异常点 2. 数据分布（先验）茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-17-12-24-05.png">
 <meta property="article:published_time" content="2022-05-17T18:01:00.000Z">
@@ -261,23 +261,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="什么是异常点（outliers）"><a href="#什么是异常点（outliers）" class="headerlink" title="什么是异常点（outliers）"></a>什么是异常点（outliers）</h2><p>From wikipedia:</p>
+        <h2 id="什么是异常点（outliers）">1. 什么是异常点（outliers）</h2><p>From wikipedia:</p>
 <blockquote>
 <p><em>In statistics, an</em> <strong>outlier</strong> <em>is an observation point that is distant from other observations.</em></p>
 </blockquote>
 <p>关键是observation，或者先验，通过人的知识来去除异常点</p>
-<h2 id="数据分布（先验）"><a href="#数据分布（先验）" class="headerlink" title="数据分布（先验）"></a>数据分布（先验）</h2><p>茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内</p>
+<h2 id="数据分布（先验）">2. 数据分布（先验）</h2><p>茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内</p>
 <p>所以我们的预期是：</p>
 <ul>
 <li>大部分点在5cm以内，假设下限low，$low&lt;x&lt;low+5$</li>
 <li>超过范围，$x&lt;low$ or $x&gt;low+5$，判定为outliers</li>
 </ul>
 <p>问题归结于如何找到low，或者平均值，或者low+5</p>
-<h2 id="编程实现"><a href="#编程实现" class="headerlink" title="编程实现"></a>编程实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">d=np.asarray([<span class="number">0.1</span>,<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">0.13</span>,<span class="number">0.14</span>,<span class="number">0.5</span>])</span><br><span class="line"></span><br><span class="line">mean=np.mean(d)</span><br><span class="line">var=np.var(d)</span><br><span class="line">std=np.std(d)</span><br><span class="line">d=d[d&gt;(mean-std)]</span><br><span class="line">d=d[d&lt;(mean+std)]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;mean: <span class="subst">&#123;mean&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;var: <span class="subst">&#123;var&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;std: <span class="subst">&#123;std&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<h2 id="编程实现">3. 编程实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">d=np.asarray([<span class="number">0.1</span>,<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">0.13</span>,<span class="number">0.14</span>,<span class="number">0.5</span>])</span><br><span class="line"></span><br><span class="line">mean=np.mean(d)</span><br><span class="line">var=np.var(d)</span><br><span class="line">std=np.std(d)</span><br><span class="line">d=d[d&gt;(mean-std)]</span><br><span class="line">d=d[d&lt;(mean+std)]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;mean: <span class="subst">&#123;mean&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;var: <span class="subst">&#123;var&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;std: <span class="subst">&#123;std&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA">https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA</a></p>
+<h2 id="Ref">4. Ref</h2><p><a target="_blank" rel="noopener" href="https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA">https://journals.sagepub.com/doi/pdf/10.1177/1094428112470848?casa_token=TRmPuCORiVsAAAAA:I8uslVeIpxILg8b5CK0eVAsFO3q6vgntik8xNM4esP_4jETnXM6x0Luxuqn1RWK9g8EaGQGbn9bqVA</a></p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-17-12-24-05.png" alt="image-20220517122404962"></p>
 
     </div>
@@ -362,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8%E7%82%B9%EF%BC%88outliers%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">什么是异常点（outliers）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83%EF%BC%88%E5%85%88%E9%AA%8C%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">数据分布（先验）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">编程实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">4.</span> <span class="nav-text">Ref</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8%E7%82%B9%EF%BC%88outliers%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是异常点（outliers）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83%EF%BC%88%E5%85%88%E9%AA%8C%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 数据分布（先验）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">3. 编程实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">4.</span> <span class="nav-text">4. Ref</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

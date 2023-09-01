@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Intro深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式 Principe和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置  利用三角关系求出真实深度 Requirement需要对左右两侧相机进行校准  单目校准，估计内参">
+  <meta name="description" content="1. Intro深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式 2. Principe和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置  利用三角关系求出真实深度 3. Requirement需要对左右两侧相机进行校准">
 <meta property="og:type" content="article">
 <meta property="og:title" content="双目深度估计">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/depth-estimation/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Intro深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式 Principe和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置  利用三角关系求出真实深度 Requirement需要对左右两侧相机进行校准  单目校准，估计内参">
+<meta property="og:description" content="1. Intro深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式 2. Principe和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置  利用三角关系求出真实深度 3. Requirement需要对左右两侧相机进行校准">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-14-21-52.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-35-40.png">
@@ -270,16 +270,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式</p>
-<h2 id="Principe"><a href="#Principe" class="headerlink" title="Principe"></a>Principe</h2><p>和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置</p>
+        <h2 id="Intro">1. Intro</h2><p>深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式</p>
+<h2 id="Principe">2. Principe</h2><p>和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-14-21-52.png" alt="image-20220413142151851"></p>
 <p>利用三角关系求出真实深度</p>
-<h2 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h2><p>需要对左右两侧相机进行校准</p>
+<h2 id="Requirement">3. Requirement</h2><p>需要对左右两侧相机进行校准</p>
 <ul>
 <li>单目校准，估计内参和畸变</li>
 <li>双目校准，估计两个相机的相对位置，rectify之后确保同一基线</li>
 </ul>
-<h2 id="ROI"><a href="#ROI" class="headerlink" title="ROI"></a>ROI</h2><p>一般情况下，不会对整张图片都进行深度估计，只在感兴趣的区域进行估计，和其他的工具进行合作，完成这个工作</p>
+<h2 id="ROI">4. ROI</h2><p>一般情况下，不会对整张图片都进行深度估计，只在感兴趣的区域进行估计，和其他的工具进行合作，完成这个工作</p>
 <ol>
 <li>Object Detection，在左侧图像找到ROI</li>
 <li>Feature Extraction，找到特征点</li>
@@ -287,8 +287,8 @@
 <li>约束，将不合格的特征点匹配去掉</li>
 <li>深度估计，套用公式，根据时差估计深度，求平均、中值</li>
 </ol>
-<h2 id="Active-Sensing"><a href="#Active-Sensing" class="headerlink" title="Active Sensing"></a>Active Sensing</h2><p>主动测距，把双目相机的其中一个替换成projecter</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-35-40.png" alt="image-20220702113540329" style="zoom:33%;" />
+<h2 id="Active-Sensing">5. Active Sensing</h2><p>主动测距，把双目相机的其中一个替换成projecter</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-35-40.png" alt="image-20220702113540329" style="zoom:33%;">
 
 <p>本质上就是更加容易地做匹配</p>
 
@@ -374,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Principe"><span class="nav-number">2.</span> <span class="nav-text">Principe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirement"><span class="nav-number">3.</span> <span class="nav-text">Requirement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROI"><span class="nav-number">4.</span> <span class="nav-text">ROI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-Sensing"><span class="nav-number">5.</span> <span class="nav-text">Active Sensing</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">1. Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Principe"><span class="nav-number">2.</span> <span class="nav-text">2. Principe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirement"><span class="nav-number">3.</span> <span class="nav-text">3. Requirement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROI"><span class="nav-number">4.</span> <span class="nav-text">4. ROI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-Sensing"><span class="nav-number">5.</span> <span class="nav-text">5. Active Sensing</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

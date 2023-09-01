@@ -279,7 +279,7 @@
 <li>Design $u$ as if we had $x$</li>
 <li>Figure out $x$ from $y$</li>
 </ul>
-<h2 id="Assume-We-Got-x"><a href="#Assume-We-Got-x" class="headerlink" title="Assume We Got $x$"></a>Assume We Got $x$</h2><p>We can design the $k_1$ and $k_2$ to make the <strong>eigenvalue</strong> of the closed-loop system to be <strong>desired</strong> (<strong>negative</strong>)</p>
+<h2 id="Assume-We-Got-x">1. Assume We Got $x$</h2><p>We can design the $k_1$ and $k_2$ to make the <strong>eigenvalue</strong> of the closed-loop system to be <strong>desired</strong> (<strong>negative</strong>)</p>
 <blockquote>
 <p>e.g. If we want to the eigen value of the $-1$, then, $\varphi(\lambda)&#x3D;(\lambda+1)(\lambda+1)&#x3D;\lambda^{2}+2 \lambda+1$</p>
 <p>and we got $\chi_{A-B K}&#x3D;\lambda^{2}+k_{2} \lambda+k_{1}$</p>
@@ -295,7 +295,7 @@
 </ul>
 <span id="more"></span>
 
-<h2 id="Controllability"><a href="#Controllability" class="headerlink" title="Controllability"></a>Controllability</h2><p>The key matter here is the $B$ matrix, how <em>rich</em> is $B$ that we can control the system.</p>
+<h2 id="Controllability">2. Controllability</h2><p>The key matter here is the $B$ matrix, how <em>rich</em> is $B$ that we can control the system.</p>
 <p>If we write the system this way<br>$$<br>\begin{aligned}<br>\begin{array}{l}<br>x_{1}&#x3D;A x_{0}+B u_{0}&#x3D;B u_{0}\</p>
 <p>x_{2}&#x3D;A x_{1}+B u_{1}&#x3D;A B u_{0}+B u_{1} \<br>x_{3}&#x3D;A x_{2}+B u_{2}&#x3D;A^{2} B u_{0}+A B u_{1}+B u_{2}<br>\end{array}<br>\end{aligned}<br>$$<br>Then we can transform the system into<br>$$<br>x&#x3D;\Gamma u&#x3D;[B \ AB \ …\ A^{n-1}B]u<br>$$<br>if $Rank(\Gamma)&#x3D;n$, it’s possible to <strong>fully control</strong> the system</p>
 <p>if the system can be <strong>fully controlled</strong>, then we can put <strong>arbitrary pole</strong><br>$$<br>Rank(\Gamma)\to Fully \ Control \to Arbitrary\ Pole<br>$$</p>
@@ -310,7 +310,7 @@
 <li>In this way, we only control the <strong>curvature</strong> of the path</li>
 </ul>
 </blockquote>
-<h2 id="Observability"><a href="#Observability" class="headerlink" title="Observability"></a>Observability</h2><p>Actually, we don’t the real value of $x$, so we need sensor or observer to estimate $x$</p>
+<h2 id="Observability">3. Observability</h2><p>Actually, we don’t the real value of $x$, so we need sensor or observer to estimate $x$</p>
 <p>Luenberger observer: predictor + corrector<br>$$<br>\dot{ \hat{x}}&#x3D;A\hat x+L(y-C \hat x)<br>$$<br>predictor + corrector</p>
 <ul>
 <li><p>Does it work?</p>
@@ -321,7 +321,7 @@
 <p>We want to stabilize the estimation error, $e&#x3D;x-\hat x$<br>$$<br>\dot e&#x3D;(A-LC)e<br>$$<br>so the it should be $Re(eig(A-LC))&lt;0$</p>
 <p>The system is completely observable if it is possible to recover the initial state from the output<br>$$<br>\Omega&#x3D;\left[\begin{array}{c}<br>C \<br>C A \<br>\vdots \<br>C A^{n-1}<br>\end{array}\right]<br>$$</p>
 <p>$$<br>rank(\Omega)&#x3D;n<br>$$</p>
-<h2 id="Put-it-Together"><a href="#Put-it-Together" class="headerlink" title="Put it Together!"></a>Put it Together!</h2><p>Now we have good building blocks</p>
+<h2 id="Put-it-Together">4. Put it Together!</h2><p>Now we have good building blocks</p>
 <ul>
 <li>controllability, observability, state feedback, observers, pole-placement</li>
 </ul>
@@ -344,7 +344,7 @@
 <p>Then $\dot{x}&#x3D;A x-B K \hat{x}&#x3D;A x-B K(x-e)&#x3D;(A-B K) x+B K e$</p>
 <p>now we want $x$ and $e$ both go to zero<br>$$<br>\left[\begin{array}{c}<br>\dot{x} \<br>\dot{e}<br>\end{array}\right]&#x3D;\left[\begin{array}{cc}<br>A-B K &amp; B K \<br>0 &amp; A-L C<br>\end{array}\right]\left[\begin{array}{c}<br>x \<br>e<br>\end{array}\right]<br>$$<br>Since this is an upper triangular block-matrix. So the eigenvalues are given by the <strong>diagonal blocks</strong></p>
 <p><strong>EVERYTHING WORKS</strong> because they are <strong>separated</strong></p>
-<h2 id="Practical-Considerations"><a href="#Practical-Considerations" class="headerlink" title="Practical Considerations"></a>Practical Considerations</h2><ul>
+<h2 id="Practical-Considerations">5. Practical Considerations</h2><ul>
 <li>Eigenvalue Selection</li>
 </ul>
 <ol>
@@ -367,7 +367,7 @@
 </li>
 </ul>
 <p>$L$ could be calculated by using the Kalman Filter</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="Part-1-Design"><a href="#Part-1-Design" class="headerlink" title="Part 1: Design"></a>Part 1: Design</h3><p>We have a system $\dot x&#x3D;Ax$, and $eig(A)&#x3D;0$, so the system is unstable.</p>
+<h2 id="Example">6. Example</h2><h3 id="Part-1-Design">6.1. Part 1: Design</h3><p>We have a system $\dot x&#x3D;Ax$, and $eig(A)&#x3D;0$, so the system is unstable.</p>
 <p>Hence we introduce control.</p>
 <ol>
 <li>See what we can control, and write down the $B$ matrix to check is this system controllable by checking the $\Gamma$ Matrix</li>
@@ -385,7 +385,7 @@
 <li>Choose what we can “see”, what we can sensor, measure. In this we get our $C$ matrix to check is this system observable by checking the $\Omega$ matrix</li>
 <li>Design the estimator $\dot {\hat {x}}&#x3D;A \hat{x}+B u+L(y-C \hat{x})$<br>we get $\dot e&#x3D;(A-LC)e $ and calculate $L$</li>
 </ol>
-<h3 id="Part-2-Executing"><a href="#Part-2-Executing" class="headerlink" title="Part 2: Executing"></a>Part 2: Executing</h3><p>Loop</p>
+<h3 id="Part-2-Executing">6.2. Part 2: Executing</h3><p>Loop</p>
 <ol>
 <li>Initialize $t&#x3D;t_0 ,x&#x3D;x_o,\hat x&#x3D;\hat{x_0}$</li>
 <li>Start Loop (dt increments)</li>
@@ -475,7 +475,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Assume-We-Got-x"><span class="nav-number">1.</span> <span class="nav-text">Assume We Got $x$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controllability"><span class="nav-number">2.</span> <span class="nav-text">Controllability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observability"><span class="nav-number">3.</span> <span class="nav-text">Observability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Put-it-Together"><span class="nav-number">4.</span> <span class="nav-text">Put it Together!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practical-Considerations"><span class="nav-number">5.</span> <span class="nav-text">Practical Considerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">6.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-1-Design"><span class="nav-number">6.1.</span> <span class="nav-text">Part 1: Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-2-Executing"><span class="nav-number">6.2.</span> <span class="nav-text">Part 2: Executing</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Assume-We-Got-x"><span class="nav-number">1.</span> <span class="nav-text">1. Assume We Got $x$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controllability"><span class="nav-number">2.</span> <span class="nav-text">2. Controllability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observability"><span class="nav-number">3.</span> <span class="nav-text">3. Observability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Put-it-Together"><span class="nav-number">4.</span> <span class="nav-text">4. Put it Together!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practical-Considerations"><span class="nav-number">5.</span> <span class="nav-text">5. Practical Considerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">6.</span> <span class="nav-text">6. Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-1-Design"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. Part 1: Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-2-Executing"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. Part 2: Executing</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

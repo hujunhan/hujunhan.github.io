@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
+  <meta name="description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="直流电机的控制">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/TB6612motor/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
+<meta property="og:description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/motor.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/encoder.png">
@@ -264,7 +264,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="直流电机的结构与原理"><a href="#直流电机的结构与原理" class="headerlink" title="直流电机的结构与原理"></a>直流电机的结构与原理</h2><p>(编码器)+定子+转子+电刷+(减速器)</p>
+        <h2 id="直流电机的结构与原理">1. 直流电机的结构与原理</h2><p>(编码器)+定子+转子+电刷+(减速器)</p>
 <p>在电刷上施加直流电压U，施加洛伦兹力，不断重复</p>
 <p>一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。</p>
 <p>减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩</p>
@@ -276,7 +276,7 @@
 <li>因此控制施加在两边的电压大小和极性就可以实现调试和换向</li>
 <li>中间四根线都是编码器测速用的</li>
 </ul>
-<h2 id="编码器的使用"><a href="#编码器的使用" class="headerlink" title="编码器的使用"></a>编码器的使用</h2><p>编码器是将角位移或者角速度转换成一连串电数字脉冲的<strong>旋转式传感器</strong></p>
+<h2 id="编码器的使用">2. 编码器的使用</h2><p>编码器是将角位移或者角速度转换成一连串电数字脉冲的<strong>旋转式传感器</strong></p>
 <p>根据输出类型分类</p>
 <ul>
 <li>增量式</li>
@@ -286,23 +286,23 @@
 <ul>
 <li>光学（光电编码器）、磁式（霍尔编码器）、感应式、电容式</li>
 </ul>
-<h3 id="编码器的原理（光电、霍尔）"><a href="#编码器的原理（光电、霍尔）" class="headerlink" title="编码器的原理（光电、霍尔）"></a>编码器的原理（光电、霍尔）</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/encoder.png"></p>
+<h3 id="编码器的原理（光电、霍尔）">2.1. 编码器的原理（光电、霍尔）</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/encoder.png"></p>
 <p>目的：获取AB相输出的方波信号</p>
-<h3 id="编码器倍频技术"><a href="#编码器倍频技术" class="headerlink" title="编码器倍频技术"></a>编码器倍频技术</h3><p>目的：真正把编码器的精度提高4倍</p>
+<h3 id="编码器倍频技术">2.2. 编码器倍频技术</h3><p>目的：真正把编码器的精度提高4倍</p>
 <p>常规办法：只测量信号A<strong>或者</strong>信号B的上升沿<strong>或者</strong>下降沿</p>
 <p>四倍频方法：测量信号A<strong>和</strong>信号B的上升沿<strong>和</strong>下降沿</p>
-<h3 id="编码器信号的采集"><a href="#编码器信号的采集" class="headerlink" title="编码器信号的采集"></a>编码器信号的采集</h3><p>编码器的输出是标准的方波，通过单片机直接读取</p>
+<h3 id="编码器信号的采集">2.3. 编码器信号的采集</h3><p>编码器的输出是标准的方波，通过单片机直接读取</p>
 <p>软件中的处理方法</p>
 <ul>
 <li>STM32，硬件计数</li>
 <li>51，通过外部中断读取</li>
 </ul>
-<h2 id="直流电机的控制"><a href="#直流电机的控制" class="headerlink" title="直流电机的控制"></a>直流电机的控制</h2><p>使用PID控制器，因为我们是软件实现，所以是离散式的PID控制器，在采样时间很短的情况下，可以考虑</p>
+<h2 id="直流电机的控制">3. 直流电机的控制</h2><p>使用PID控制器，因为我们是软件实现，所以是离散式的PID控制器，在采样时间很短的情况下，可以考虑</p>
 <ul>
 <li>一阶差分代替一阶微分</li>
 <li>累加代替积分</li>
 </ul>
-<h3 id="位置的闭环控制"><a href="#位置的闭环控制" class="headerlink" title="位置的闭环控制"></a>位置的闭环控制</h3><h3 id="速度的闭环控制"><a href="#速度的闭环控制" class="headerlink" title="速度的闭环控制"></a>速度的闭环控制</h3>
+<h3 id="位置的闭环控制">3.1. 位置的闭环控制</h3><h3 id="速度的闭环控制">3.2. 速度的闭环控制</h3>
     </div>
 
     
@@ -387,7 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">直流电机的结构与原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">编码器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%88%E5%85%89%E7%94%B5%E3%80%81%E9%9C%8D%E5%B0%94%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">编码器的原理（光电、霍尔）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E5%80%8D%E9%A2%91%E6%8A%80%E6%9C%AF"><span class="nav-number">2.2.</span> <span class="nav-text">编码器倍频技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%87%87%E9%9B%86"><span class="nav-number">2.3.</span> <span class="nav-text">编码器信号的采集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">直流电机的控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%9A%84%E9%97%AD%E7%8E%AF%E6%8E%A7%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">位置的闭环控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6%E7%9A%84%E9%97%AD%E7%8E%AF%E6%8E%A7%E5%88%B6"><span class="nav-number">3.2.</span> <span class="nav-text">速度的闭环控制</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">1. 直流电机的结构与原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. 编码器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%88%E5%85%89%E7%94%B5%E3%80%81%E9%9C%8D%E5%B0%94%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 编码器的原理（光电、霍尔）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E5%80%8D%E9%A2%91%E6%8A%80%E6%9C%AF"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 编码器倍频技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%87%87%E9%9B%86"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 编码器信号的采集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">3. 直流电机的控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%9A%84%E9%97%AD%E7%8E%AF%E6%8E%A7%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 位置的闭环控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6%E7%9A%84%E9%97%AD%E7%8E%AF%E6%8E%A7%E5%88%B6"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 速度的闭环控制</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

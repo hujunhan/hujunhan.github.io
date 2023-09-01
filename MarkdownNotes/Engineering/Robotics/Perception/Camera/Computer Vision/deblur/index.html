@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="图片模糊有多种原因会造成图片的模糊，主要有以下两种  运动模糊，因为在曝光时间内相机或者被摄对象运动造成 失焦模糊，因为对焦失败，被摄物体不在景深范围内造成  运动模糊首先考虑运动模糊   本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数 难点  卷积核难以获取，和远近、运动速度和方向都有关 背景分割 卷积核丢失了高频信息，恢复之后信噪比低  做一些假设，降">
+  <meta name="description" content="1. 图片模糊有多种原因会造成图片的模糊，主要有以下两种  运动模糊，因为在曝光时间内相机或者被摄对象运动造成 失焦模糊，因为对焦失败，被摄物体不在景深范围内造成  2. 运动模糊首先考虑运动模糊   本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数 难点  卷积核难以获取，和远近、运动速度和方向都有关 背景分割 卷积核丢失了高频信息，恢复之后信噪比低  做">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Image Deblur">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/deblur/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="图片模糊有多种原因会造成图片的模糊，主要有以下两种  运动模糊，因为在曝光时间内相机或者被摄对象运动造成 失焦模糊，因为对焦失败，被摄物体不在景深范围内造成  运动模糊首先考虑运动模糊   本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数 难点  卷积核难以获取，和远近、运动速度和方向都有关 背景分割 卷积核丢失了高频信息，恢复之后信噪比低  做一些假设，降">
+<meta property="og:description" content="1. 图片模糊有多种原因会造成图片的模糊，主要有以下两种  运动模糊，因为在曝光时间内相机或者被摄对象运动造成 失焦模糊，因为对焦失败，被摄物体不在景深范围内造成  2. 运动模糊首先考虑运动模糊   本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数 难点  卷积核难以获取，和远近、运动速度和方向都有关 背景分割 卷积核丢失了高频信息，恢复之后信噪比低  做">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-01-19-16-31-01.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-01-19-18-24-49.png">
@@ -271,13 +271,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="图片模糊"><a href="#图片模糊" class="headerlink" title="图片模糊"></a>图片模糊</h2><p>有多种原因会造成图片的模糊，主要有以下两种</p>
+        <h2 id="图片模糊">1. 图片模糊</h2><p>有多种原因会造成图片的模糊，主要有以下两种</p>
 <ul>
 <li>运动模糊，因为在曝光时间内相机或者被摄对象运动造成</li>
 <li>失焦模糊，因为对焦失败，被摄物体不在景深范围内造成</li>
 </ul>
-<h2 id="运动模糊"><a href="#运动模糊" class="headerlink" title="运动模糊"></a>运动模糊</h2><p>首先考虑运动模糊</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-01-19-16-31-01.png" alt="2022-01-19-16-31-01" style="zoom:33%;" />
+<h2 id="运动模糊">2. 运动模糊</h2><p>首先考虑运动模糊</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-01-19-16-31-01.png" alt="2022-01-19-16-31-01" style="zoom:33%;">
 
 <p>本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数</p>
 <p>难点</p>
@@ -296,7 +296,7 @@
 <li>直接逆变换，求模糊核的频域逆变换再和模糊图像卷积</li>
 <li>维纳滤波，基于均方差最小的原则重新设计的滤波器</li>
 </ul>
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>取一张清晰图片，人为加上一个方向的运动模糊，尝试去噪</p>
+<h3 id="实验">2.1. 实验</h3><p>取一张清晰图片，人为加上一个方向的运动模糊，尝试去噪</p>
 <ul>
 <li>在运动较小时，两者都能恢复结果，直接逆变换的效果更好</li>
 </ul>
@@ -390,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%A8%A1%E7%B3%8A"><span class="nav-number">1.</span> <span class="nav-text">图片模糊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A"><span class="nav-number">2.</span> <span class="nav-text">运动模糊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.1.</span> <span class="nav-text">实验</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%A8%A1%E7%B3%8A"><span class="nav-number">1.</span> <span class="nav-text">1. 图片模糊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A"><span class="nav-number">2.</span> <span class="nav-text">2. 运动模糊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 实验</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

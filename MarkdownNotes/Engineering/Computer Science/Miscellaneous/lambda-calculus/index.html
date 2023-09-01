@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="0 介绍图灵机可以解决计算所有的问题. 有些问题无法通过计算解决. 对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考 $\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录 1 历史发明者: Alonzo Church. 美国逻辑学家 发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论 作用: 系统中的$\lambda$演">
+  <meta name="description" content="1. 0 介绍图灵机可以解决计算所有的问题. 有些问题无法通过计算解决. 对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考 $\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录 2. 1 历史发明者: Alonzo Church. 美国逻辑学家 发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论 作用: 系统中的$\la">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$\lambda$演算">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/lambda-calculus/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="0 介绍图灵机可以解决计算所有的问题. 有些问题无法通过计算解决. 对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考 $\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录 1 历史发明者: Alonzo Church. 美国逻辑学家 发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论 作用: 系统中的$\lambda$演">
+<meta property="og:description" content="1. 0 介绍图灵机可以解决计算所有的问题. 有些问题无法通过计算解决. 对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考 $\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录 2. 1 历史发明者: Alonzo Church. 美国逻辑学家 发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论 作用: 系统中的$\la">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011805.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011811.png">
@@ -263,14 +263,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="0-介绍"><a href="#0-介绍" class="headerlink" title="0 介绍"></a>0 介绍</h2><p>图灵机可以解决计算所有的问题. 有些问题无法通过计算解决.</p>
+        <h2 id="0-介绍">1. 0 介绍</h2><p>图灵机可以解决计算所有的问题. 有些问题无法通过计算解决.</p>
 <p>对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考</p>
 <p>$\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录</p>
-<h2 id="1-历史"><a href="#1-历史" class="headerlink" title="1 历史"></a>1 历史</h2><p>发明者: Alonzo Church. 美国逻辑学家</p>
+<h2 id="1-历史">2. 1 历史</h2><p>发明者: Alonzo Church. 美国逻辑学家</p>
 <p>发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论</p>
 <p>作用: 系统中的$\lambda$演算具有良好的性质, 可以等价地定义出<strong>可计算函数</strong>. 用$\lambda$演算证明了判定性问题不可答, 比<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7TycxwFmdB0&list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&index=16">图灵证明停机问题不可判</a>更早</p>
 <p>发展: 计算机出现后, 有研究者发现$\lambda$演算可以看成是一种程序设计语言(如Lisp). 因为它既可以描述计算过程, 也可以看成一个数学对象, 用于推导证明命题</p>
-<h2 id="2-解释"><a href="#2-解释" class="headerlink" title="2 解释"></a>2 解释</h2><p>所有的操作就是</p>
+<h2 id="2-解释">3. 2 解释</h2><p>所有的操作就是</p>
 <ol>
 <li>读取一行符号或字符</li>
 <li>剪切和粘贴</li>
@@ -284,12 +284,12 @@
 <li>$\lambda$, 用它和$.$ 我们用来表示一个<strong>函数</strong>, 表示函数的开始. 也成为<strong>head</strong></li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011805.png" alt="image-20200503160104175"></p>
-<h3 id="剪切和粘贴"><a href="#剪切和粘贴" class="headerlink" title="剪切和粘贴"></a>剪切和粘贴</h3><p>如果一个函数后面跟着一个表达式, 那么我们可以解析这些函数</p>
+<h3 id="剪切和粘贴">3.1. 剪切和粘贴</h3><p>如果一个函数后面跟着一个表达式, 那么我们可以解析这些函数</p>
 <p>解析的方式：获取头部中提到的变量, 将其在正文中出现的所有内容替换为函数后面的表达式</p>
 <p>所以说函数就是告诉我们要在哪里替换变量</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011811.png" alt="image-20200503161012145"></p>
-<h2 id="3-例子-数字"><a href="#3-例子-数字" class="headerlink" title="3 例子:数字"></a>3 例子:数字</h2><p>数字是我们最常计算的东西.</p>
-<h3 id="3-1-所有的自然数"><a href="#3-1-所有的自然数" class="headerlink" title="3.1 所有的自然数"></a>3.1 所有的自然数</h3><p>我们首先来定义所有的自然数, 方法是: 定义0,然后定义递增的操作<br>$$<br>0: \Leftrightarrow \lambda \ sz .z<br>$$<br>类似的, 我们定义</p>
+<h2 id="3-例子-数字">4. 3 例子:数字</h2><p>数字是我们最常计算的东西.</p>
+<h3 id="3-1-所有的自然数">4.1. 3.1 所有的自然数</h3><p>我们首先来定义所有的自然数, 方法是: 定义0,然后定义递增的操作<br>$$<br>0: \Leftrightarrow \lambda \ sz .z<br>$$<br>类似的, 我们定义</p>
 <ul>
 <li>这种定义看起来确实非常奇怪, 但是从数学角度上来说是和我们用$1,2,3…$或者<strong>一二三四五</strong>没什么区别的,都是用符号来表示一个数. 和人类的名字一样, 我们只是用其来表示这个人, 就算换一个名字, 这个人还是这个人</li>
 </ul>
@@ -298,7 +298,7 @@
 <p>$$<br>S: \leftrightarrow \ \lambda \ abc.b(abc)<br>$$</p>
 <p>$$<br>\begin{aligned}<br>S 0 &amp;&#x3D;(\lambda abc \cdot b ( abc ))(\lambda s z \cdot z ) \<br>&amp;&#x3D;\lambda bc \cdot b ((\lambda s z \cdot z ) bc ) \<br>&amp;&#x3D;\lambda bc \cdot b ((\lambda z \cdot z ) c ) \<br>&amp;&#x3D;\lambda bc \cdot b ( c )<br>\end{aligned}<br>$$</p>
 <p>根绝我们的定义, 这就是$1$</p>
-<h3 id="3-2-算数"><a href="#3-2-算数" class="headerlink" title="3.2 算数"></a>3.2 算数</h3><p>加法可以非常自然地用到我们上面所用的定义, 比如说$1+2$, 就是在$1$上做两次递增操作, 可以表达成$1S2$<br>$$<br>1+2&#x3D;3S5<br>$$<br>乘法我们需要新的定义, $\lambda \ abc.a(bc)$</p>
+<h3 id="3-2-算数">4.2. 3.2 算数</h3><p>加法可以非常自然地用到我们上面所用的定义, 比如说$1+2$, 就是在$1$上做两次递增操作, 可以表达成$1S2$<br>$$<br>1+2&#x3D;3S5<br>$$<br>乘法我们需要新的定义, $\lambda \ abc.a(bc)$</p>
 <ul>
 <li>通过验算可以证明其正确性</li>
 </ul>
@@ -388,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">0 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%86%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">1 历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E9%87%8A"><span class="nav-number">3.</span> <span class="nav-text">2 解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AA%E5%88%87%E5%92%8C%E7%B2%98%E8%B4%B4"><span class="nav-number">3.1.</span> <span class="nav-text">剪切和粘贴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BE%8B%E5%AD%90-%E6%95%B0%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">3 例子:数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%89%80%E6%9C%89%E7%9A%84%E8%87%AA%E7%84%B6%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 所有的自然数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%AE%97%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 算数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">1. 0 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%86%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">2. 1 历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E9%87%8A"><span class="nav-number">3.</span> <span class="nav-text">3. 2 解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AA%E5%88%87%E5%92%8C%E7%B2%98%E8%B4%B4"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 剪切和粘贴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BE%8B%E5%AD%90-%E6%95%B0%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">4. 3 例子:数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%89%80%E6%9C%89%E7%9A%84%E8%87%AA%E7%84%B6%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 3.1 所有的自然数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%AE%97%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 3.2 算数</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="BehaviorUse control theory to describe the problem  We need a model$$\dot x&#x3D;u$$  We need 2 basic behaviors    Go-To-Goal: $e&#x3D;x_g-x$, $u&#x3D;Ke$, $\dot e&#x3D;-\dot x&#x3D;-Ke$  A concern: T">
+  <meta name="description" content="1. BehaviorUse control theory to describe the problem  We need a model$$\dot x&#x3D;u$$  We need 2 basic behaviors    Go-To-Goal: $e&#x3D;x_g-x$, $u&#x3D;Ke$, $\dot e&#x3D;-\dot x&#x3D;-Ke$  A concern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Navigation Problem">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/6-navigation-problem/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="BehaviorUse control theory to describe the problem  We need a model$$\dot x&#x3D;u$$  We need 2 basic behaviors    Go-To-Goal: $e&#x3D;x_g-x$, $u&#x3D;Ke$, $\dot e&#x3D;-\dot x&#x3D;-Ke$  A concern: T">
+<meta property="og:description" content="1. BehaviorUse control theory to describe the problem  We need a model$$\dot x&#x3D;u$$  We need 2 basic behaviors    Go-To-Goal: $e&#x3D;x_g-x$, $u&#x3D;Ke$, $\dot e&#x3D;-\dot x&#x3D;-Ke$  A concern">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200509170004.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200509170011.png">
@@ -268,7 +268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Use control theory to describe the problem</p>
+        <h2 id="Behavior">1. Behavior</h2><p>Use control theory to describe the problem</p>
 <ol>
 <li><p>We need a model<br>$$<br>\dot x&#x3D;u<br>$$</p>
 </li>
@@ -290,7 +290,7 @@
 </ol>
 <span id="more"></span>
 
-<h3 id="Hard-Switch-vs-Blending"><a href="#Hard-Switch-vs-Blending" class="headerlink" title="Hard Switch vs. Blending"></a>Hard Switch vs. Blending</h3><p>This is actually a philosophical question: can robots do two thing at the same time?</p>
+<h3 id="Hard-Switch-vs-Blending">1.1. Hard Switch vs. Blending</h3><p>This is actually a philosophical question: can robots do two thing at the same time?</p>
 <p>Hard Switch</p>
 <ul>
 <li>Pro: performance guarantees</li>
@@ -301,7 +301,7 @@
 <li>Pro: smooth ride</li>
 <li>Con: no guarantees</li>
 </ul>
-<h2 id="Boundary-Following"><a href="#Boundary-Following" class="headerlink" title="Boundary Following"></a>Boundary Following</h2><p>What is convex: A set is convex if every line in-between two points in the set lies in the set</p>
+<h2 id="Boundary-Following">2. Boundary Following</h2><p>What is convex: A set is convex if every line in-between two points in the set lies in the set</p>
 <p>Non-Convex situation is worse!</p>
 <p>How to follow the wall? Maintain a <strong>constant</strong> distance to the obstacle<br>$$<br>u_{FW}&#x3D;\alpha R(\pi&#x2F;2)u_{AO}<br>$$<br>Which direction to choose? Clockwise or Counter-Clockwise?</p>
 <ul>
@@ -314,7 +314,7 @@
 <p>Design<br>$$<br>g(x)&#x3D;\frac{1}{2}\left(\left|x-x_{o}\right|^{2}-\Delta^{2}\right)&#x3D;0<br>$$<br>And use the induced mode method in Chapter 5 to calculate what $\dot x$ should be</p>
 <p>In fact, the calculation give the same result as we mentioned in Boundary Following</p>
 <p>Now the problem is that when should we <strong>stop</strong> following the wall?</p>
-<h2 id="Complete-System"><a href="#Complete-System" class="headerlink" title="Complete System"></a>Complete System</h2><p>Enough progress $||x-x_g||&lt;||x(\tau)-x_g)||$</p>
+<h2 id="Complete-System">3. Complete System</h2><p>Enough progress $||x-x_g||&lt;||x(\tau)-x_g)||$</p>
 <ul>
 <li>where $\tau&#x3D;$ time that last switch</li>
 </ul>
@@ -416,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Behavior"><span class="nav-number">1.</span> <span class="nav-text">Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hard-Switch-vs-Blending"><span class="nav-number">1.1.</span> <span class="nav-text">Hard Switch vs. Blending</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Following"><span class="nav-number">2.</span> <span class="nav-text">Boundary Following</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complete-System"><span class="nav-number">3.</span> <span class="nav-text">Complete System</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Behavior"><span class="nav-number">1.</span> <span class="nav-text">1. Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hard-Switch-vs-Blending"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. Hard Switch vs. Blending</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boundary-Following"><span class="nav-number">2.</span> <span class="nav-text">2. Boundary Following</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complete-System"><span class="nav-number">3.</span> <span class="nav-text">3. Complete System</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IntroUsing the Webots to do the simulation of general mobile arm robot Current, the simulation have following task to do (in high level)  Build a simulation world (Place something) Obstacles Object Ro">
+  <meta name="description" content="1. IntroUsing the Webots to do the simulation of general mobile arm robot Current, the simulation have following task to do (in high level)  Build a simulation world (Place something) Obstacles Object">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webots Simulation for Tea Robot">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/webots-tea/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="IntroUsing the Webots to do the simulation of general mobile arm robot Current, the simulation have following task to do (in high level)  Build a simulation world (Place something) Obstacles Object Ro">
+<meta property="og:description" content="1. IntroUsing the Webots to do the simulation of general mobile arm robot Current, the simulation have following task to do (in high level)  Build a simulation world (Place something) Obstacles Object">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230212225320.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230213225558.png">
@@ -263,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Using the Webots to do the simulation of general mobile arm robot</p>
+        <h2 id="Intro">1. Intro</h2><p>Using the Webots to do the simulation of general mobile arm robot</p>
 <p>Current, the simulation have following task to do (in high level)</p>
 <ul>
 <li>Build a simulation world (Place something)</li>
@@ -272,17 +272,17 @@
 <li>Robot base movement simulation (SLAM)</li>
 <li>Robot arm manipulation simulation (Kinematics and Inverse)</li>
 </ul>
-<h2 id="Roadmap"><a href="#Roadmap" class="headerlink" title="Roadmap"></a>Roadmap</h2><h3 id="Build-the-World"><a href="#Build-the-World" class="headerlink" title="Build the World"></a>Build the World</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230212225320.png" alt="image-20230212225320373"></p>
+<h2 id="Roadmap">2. Roadmap</h2><h3 id="Build-the-World">2.1. Build the World</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230212225320.png" alt="image-20230212225320373"></p>
 <ul>
 <li>The big box simulate the tea tree</li>
 <li>The small box simulate the tea leaf</li>
 <li>The YouBot simulate our robot</li>
 </ul>
-<h3 id="Migrate-from-Matlab-to-Python"><a href="#Migrate-from-Matlab-to-Python" class="headerlink" title="Migrate from Matlab to Python"></a>Migrate from Matlab to Python</h3><p>Control robot move by control the wheel directly</p>
+<h3 id="Migrate-from-Matlab-to-Python">2.2. Migrate from Matlab to Python</h3><p>Control robot move by control the wheel directly</p>
 <p>step is important to update and sync the robot and world</p>
-<h4 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h4><p>Movement. Turn. Go through location</p>
-<h4 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h4><p>ik</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Using Python as the controller</p>
+<h4 id="Base">2.2.1. Base</h4><p>Movement. Turn. Go through location</p>
+<h4 id="Arm">2.2.2. Arm</h4><p>ik</p>
+<h2 id="Setup">3. Setup</h2><p>Using Python as the controller</p>
 <ul>
 <li><del>Change the preference</del></li>
 <li><del>Recompile the wrapper</del></li>
@@ -292,7 +292,7 @@
 <p>in the Python path</p>
 <p>And set the robot controller to extern</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230213225558.png" alt="image-20230213225557838"></p>
-<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><p>Learn from the youbot design</p>
+<h2 id="Design">4. Design</h2><p>Learn from the youbot design</p>
 <p>4 Part</p>
 <ul>
 <li>Arm</li>
@@ -387,7 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Roadmap"><span class="nav-number">2.</span> <span class="nav-text">Roadmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-the-World"><span class="nav-number">2.1.</span> <span class="nav-text">Build the World</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Migrate-from-Matlab-to-Python"><span class="nav-number">2.2.</span> <span class="nav-text">Migrate from Matlab to Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Base"><span class="nav-number">2.2.1.</span> <span class="nav-text">Base</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arm"><span class="nav-number">2.2.2.</span> <span class="nav-text">Arm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">3.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design"><span class="nav-number">4.</span> <span class="nav-text">Design</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">1. Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Roadmap"><span class="nav-number">2.</span> <span class="nav-text">2. Roadmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-the-World"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Build the World</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Migrate-from-Matlab-to-Python"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Migrate from Matlab to Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Base"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1. Base</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arm"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2. Arm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">3.</span> <span class="nav-text">3. Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design"><span class="nav-number">4.</span> <span class="nav-text">4. Design</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

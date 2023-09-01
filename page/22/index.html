@@ -258,7 +258,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Python类"><a href="#Python类" class="headerlink" title="Python类"></a>Python类</h2><p>Python有风格指南PEP8，类命名使用驼峰格式，大写字母开头，任意后续单词都以大写字母开头</p>
+          <h2 id="Python类">1. Python类</h2><p>Python有风格指南PEP8，类命名使用驼峰格式，大写字母开头，任意后续单词都以大写字母开头</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TwoPoint</span>:</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reset</span>(<span class="params">self</span>):</span><br><span class="line">self.x=<span class="number">0</span></span><br><span class="line">self.y=<span class="number">0</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,x=<span class="number">0</span>,y=<span class="number">0</span></span>):</span><br><span class="line">self.x=x</span><br><span class="line">self.y=y</span><br></pre></td></tr></table></figure>
 
 
@@ -279,7 +279,7 @@
 </li>
 </ul>
 <p>在每个类、函数的定义语句（冒号结尾的那一行）添加标准字符串作为第一行</p>
-<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><p>通过import语句可以导入模块或者模块中特定的类、函数。</p>
+<h2 id="模块和包">2. 模块和包</h2><p>通过import语句可以导入模块或者模块中特定的类、函数。</p>
 <ul>
 <li>永远不要用 from database import *这种语法，因为不利于后期的代码维护</li>
 </ul>
@@ -289,7 +289,7 @@
 <li>相对导入，在处理同一个包下的相关模块时，用相对导入 from .database import Database</li>
 <li>..上一级，.当前级</li>
 </ul>
-<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2>
+<h2 id="权限">3. 权限</h2>
       
     </div>
 
@@ -378,7 +378,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>主要分成四个部分</p>
+          <h2 id="Overview">1. Overview</h2><p>主要分成四个部分</p>
 <ol>
 <li>面向对象的准则</li>
 </ol>
@@ -553,7 +553,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Abstractions-and-Approximations"><a href="#Abstractions-and-Approximations" class="headerlink" title="Abstractions and Approximations"></a>Abstractions and Approximations</h2><p>We have made some assumptions so far</p>
+          <h2 id="Abstractions-and-Approximations">1. Abstractions and Approximations</h2><p>We have made some assumptions so far</p>
 <ul>
 <li>Dynamics, $\dot x&#x3D;u$, <strong>NOT even close to being reasonable!</strong></li>
 <li>Sensors, we can measure distance and angle</li>
@@ -567,7 +567,7 @@
 <li>Operational Level: which direction to move (go-to-goal and avoid-obstacles)</li>
 <li>Tactical Level: How to make the robot move in those direction (control design)</li>
 </ul>
-<h2 id="Transforming-the-Unicycle"><a href="#Transforming-the-Unicycle" class="headerlink" title="Transforming the Unicycle"></a>Transforming the Unicycle</h2><p>The unicycle model<br>$$<br>\begin{array}{l}<br>\dot{x}&#x3D;v \cos \phi \<br>\dot{y}&#x3D;v \sin \phi \<br>\dot{\phi}&#x3D;\omega<br>\end{array}<br>$$<br>What if we ignored the orientation and picked a different point on the robot as the point we care about</p>
+<h2 id="Transforming-the-Unicycle">2. Transforming the Unicycle</h2><p>The unicycle model<br>$$<br>\begin{array}{l}<br>\dot{x}&#x3D;v \cos \phi \<br>\dot{y}&#x3D;v \sin \phi \<br>\dot{\phi}&#x3D;\omega<br>\end{array}<br>$$<br>What if we ignored the orientation and picked a different point on the robot as the point we care about</p>
 <p>And now the $u_1,u_2$ would directly related to $v$ and $w$</p>
 <p>Before: Use a Planner and Tracker</p>
 <p>After: Use a Planner and Transformer and DO NOT need a PID controller for lower control</p>
@@ -580,11 +580,11 @@
 <li>Heading</li>
 </ul>
 <p>Almost everything with pose is almost a unicycle</p>
-<h2 id="Further"><a href="#Further" class="headerlink" title="Further"></a>Further</h2><p>Nonlinear system, Optimal Control minimize some specific cost</p>
+<h2 id="Further">3. Further</h2><p>Nonlinear system, Optimal Control minimize some specific cost</p>
 <p>Machine Learning. good for optimal control</p>
 <p>Perception and Mapping</p>
 <p>High-Level AI</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Punchline</p>
+<h2 id="Conclusion">4. Conclusion</h2><p>Punchline</p>
 <ol>
 <li>We need a <strong>model</strong>, it should be rich enough to be relevant yet simple enough to be useful</li>
 <li><strong>Feedback</strong> control should be used to guarantee stability, tracking and robustness</li>
@@ -679,7 +679,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Use control theory to describe the problem</p>
+          <h2 id="Behavior">1. Behavior</h2><p>Use control theory to describe the problem</p>
 <ol>
 <li><p>We need a model<br>$$<br>\dot x&#x3D;u<br>$$</p>
 </li>
@@ -795,7 +795,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Switches-Everywhere"><a href="#Switches-Everywhere" class="headerlink" title="Switches Everywhere"></a>Switches Everywhere</h2><p>Why should we switch? The robotics world is very complicated, so we should <strong>change</strong> our model and control method when situation changes.</p>
+          <h2 id="Switches-Everywhere">1. Switches Everywhere</h2><p>Why should we switch? The robotics world is very complicated, so we should <strong>change</strong> our model and control method when situation changes.</p>
 <ul>
 <li>By necessity: the dynamics change</li>
 <li>By design: we want the robots to behave differently</li>
@@ -899,14 +899,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="0-介绍"><a href="#0-介绍" class="headerlink" title="0 介绍"></a>0 介绍</h2><p>图灵机可以解决计算所有的问题. 有些问题无法通过计算解决.</p>
+          <h2 id="0-介绍">1. 0 介绍</h2><p>图灵机可以解决计算所有的问题. 有些问题无法通过计算解决.</p>
 <p>对于人工智能来说, 可计算性是一个非常重要的议题, 值得学习与思考</p>
 <p>$\lambda$运算 是与图灵机类似的一种工具, 听说比图灵机更加简洁. 因此学习并记录</p>
-<h2 id="1-历史"><a href="#1-历史" class="headerlink" title="1 历史"></a>1 历史</h2><p>发明者: Alonzo Church. 美国逻辑学家</p>
+<h2 id="1-历史">2. 1 历史</h2><p>发明者: Alonzo Church. 美国逻辑学家</p>
 <p>发明初衷: 给逻辑学提供一个基础, 代替罗素的类型理论和策梅洛的集合理论</p>
 <p>作用: 系统中的$\lambda$演算具有良好的性质, 可以等价地定义出<strong>可计算函数</strong>. 用$\lambda$演算证明了判定性问题不可答, 比<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7TycxwFmdB0&list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&index=16">图灵证明停机问题不可判</a>更早</p>
 <p>发展: 计算机出现后, 有研究者发现$\lambda$演算可以看成是一种程序设计语言(如Lisp). 因为它既可以描述计算过程, 也可以看成一个数学对象, 用于推导证明命题</p>
-<h2 id="2-解释"><a href="#2-解释" class="headerlink" title="2 解释"></a>2 解释</h2><p>所有的操作就是</p>
+<h2 id="2-解释">3. 2 解释</h2><p>所有的操作就是</p>
 <ol>
 <li>读取一行符号或字符</li>
 <li>剪切和粘贴</li>
@@ -920,12 +920,12 @@
 <li>$\lambda$, 用它和$.$ 我们用来表示一个<strong>函数</strong>, 表示函数的开始. 也成为<strong>head</strong></li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011805.png" alt="image-20200503160104175"></p>
-<h3 id="剪切和粘贴"><a href="#剪切和粘贴" class="headerlink" title="剪切和粘贴"></a>剪切和粘贴</h3><p>如果一个函数后面跟着一个表达式, 那么我们可以解析这些函数</p>
+<h3 id="剪切和粘贴">3.1. 剪切和粘贴</h3><p>如果一个函数后面跟着一个表达式, 那么我们可以解析这些函数</p>
 <p>解析的方式：获取头部中提到的变量, 将其在正文中出现的所有内容替换为函数后面的表达式</p>
 <p>所以说函数就是告诉我们要在哪里替换变量</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011811.png" alt="image-20200503161012145"></p>
-<h2 id="3-例子-数字"><a href="#3-例子-数字" class="headerlink" title="3 例子:数字"></a>3 例子:数字</h2><p>数字是我们最常计算的东西.</p>
-<h3 id="3-1-所有的自然数"><a href="#3-1-所有的自然数" class="headerlink" title="3.1 所有的自然数"></a>3.1 所有的自然数</h3><p>我们首先来定义所有的自然数, 方法是: 定义0,然后定义递增的操作<br>$$<br>0: \Leftrightarrow \lambda \ sz .z<br>$$<br>类似的, 我们定义</p>
+<h2 id="3-例子-数字">4. 3 例子:数字</h2><p>数字是我们最常计算的东西.</p>
+<h3 id="3-1-所有的自然数">4.1. 3.1 所有的自然数</h3><p>我们首先来定义所有的自然数, 方法是: 定义0,然后定义递增的操作<br>$$<br>0: \Leftrightarrow \lambda \ sz .z<br>$$<br>类似的, 我们定义</p>
 <ul>
 <li>这种定义看起来确实非常奇怪, 但是从数学角度上来说是和我们用$1,2,3…$或者<strong>一二三四五</strong>没什么区别的,都是用符号来表示一个数. 和人类的名字一样, 我们只是用其来表示这个人, 就算换一个名字, 这个人还是这个人</li>
 </ul>
@@ -934,7 +934,7 @@
 <p>$$<br>S: \leftrightarrow \ \lambda \ abc.b(abc)<br>$$</p>
 <p>$$<br>\begin{aligned}<br>S 0 &amp;&#x3D;(\lambda abc \cdot b ( abc ))(\lambda s z \cdot z ) \<br>&amp;&#x3D;\lambda bc \cdot b ((\lambda s z \cdot z ) bc ) \<br>&amp;&#x3D;\lambda bc \cdot b ((\lambda z \cdot z ) c ) \<br>&amp;&#x3D;\lambda bc \cdot b ( c )<br>\end{aligned}<br>$$</p>
 <p>根绝我们的定义, 这就是$1$</p>
-<h3 id="3-2-算数"><a href="#3-2-算数" class="headerlink" title="3.2 算数"></a>3.2 算数</h3><p>加法可以非常自然地用到我们上面所用的定义, 比如说$1+2$, 就是在$1$上做两次递增操作, 可以表达成$1S2$<br>$$<br>1+2&#x3D;3S5<br>$$<br>乘法我们需要新的定义, $\lambda \ abc.a(bc)$</p>
+<h3 id="3-2-算数">4.2. 3.2 算数</h3><p>加法可以非常自然地用到我们上面所用的定义, 比如说$1+2$, 就是在$1$上做两次递增操作, 可以表达成$1S2$<br>$$<br>1+2&#x3D;3S5<br>$$<br>乘法我们需要新的定义, $\lambda \ abc.a(bc)$</p>
 <ul>
 <li>通过验算可以证明其正确性</li>
 </ul>
@@ -1021,15 +1021,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Science-Past-and-Present"><a href="#Science-Past-and-Present" class="headerlink" title="Science: Past and Present"></a>Science: Past and Present</h2><p>科学家如何获取知识? 怎么验证他们获得的知识是可靠的?</p>
+          <h2 id="Science-Past-and-Present">1. Science: Past and Present</h2><p>科学家如何获取知识? 怎么验证他们获得的知识是可靠的?</p>
 <p>目前国家和机构花了很多钱在科研上, 那么科研的产出是什么呢?</p>
 <ul>
 <li>物理\天文\基因\环境\生物</li>
 </ul>
 <p>有多种多样的问题, 这些问题的共性是什么呢? 我们只有科研的方式才能解决这些问题吗?</p>
-<h3 id="例1-进化论"><a href="#例1-进化论" class="headerlink" title="例1:进化论"></a>例1:进化论</h3><p>生物方面</p>
-<h3 id="例2-宇宙时间"><a href="#例2-宇宙时间" class="headerlink" title="例2: 宇宙时间"></a>例2: 宇宙时间</h3><p>爱因斯坦, 宇宙扩张, NASA天文观察, 这是一个很大的工程项目</p>
-<h3 id="例3-气候变化"><a href="#例3-气候变化" class="headerlink" title="例3: 气候变化"></a>例3: 气候变化</h3><h3 id="例4-大脑理论"><a href="#例4-大脑理论" class="headerlink" title="例4: 大脑理论"></a>例4: 大脑理论</h3><p>我们如何进行推理? 成年人和儿童的大脑工作方式. 就算我们有了一个结果, 我们如何解释也是一个很大的问题</p>
+<h3 id="例1-进化论">1.1. 例1:进化论</h3><p>生物方面</p>
+<h3 id="例2-宇宙时间">1.2. 例2: 宇宙时间</h3><p>爱因斯坦, 宇宙扩张, NASA天文观察, 这是一个很大的工程项目</p>
+<h3 id="例3-气候变化">1.3. 例3: 气候变化</h3><h3 id="例4-大脑理论">1.4. 例4: 大脑理论</h3><p>我们如何进行推理? 成年人和儿童的大脑工作方式. 就算我们有了一个结果, 我们如何解释也是一个很大的问题</p>
 <hr>
 <p>不同的领域研究(时间\空间\对象)是非常不同的. 显然也不会有一种特别通用的方法能够适用于所有的领域, <strong>但是</strong>他们还是包含了一些共性</p>
 <ul>
@@ -1221,13 +1221,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Motication"><a href="#Motication" class="headerlink" title="Motication"></a>Motication</h2><ul>
+          <h2 id="Motication">1. Motication</h2><ul>
 <li>have some idea about how brain works</li>
 <li>run a experiment and make neural recordings</li>
 <li>get a buch of data</li>
 </ul>
 <p><strong>convert data into answers</strong></p>
-<h2 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding?"></a>Decoding?</h2><p>Alternative name: readout MVPA</p>
+<h2 id="Decoding">2. Decoding?</h2><p>Alternative name: readout MVPA</p>
 <p>predict stimulus&#x2F;behavior from neural activity</p>
 <p>Classifier:</p>
 <ol>
@@ -1236,9 +1236,9 @@
 <li>predict</li>
 </ol>
 <p>this a analog to the real brain</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200406185819.png" alt="image-20200406185816001" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200406185819.png" alt="image-20200406185816001" style="zoom:50%;">
 
-<h2 id="Neural-Content"><a href="#Neural-Content" class="headerlink" title="Neural Content"></a>Neural Content</h2><p>Start with a simply experiment</p>
+<h2 id="Neural-Content">3. Neural Content</h2><p>Start with a simply experiment</p>
 <p>Confusion Matrices, predict pretty well</p>
 <p>different classifiers? both good</p>
 <ul>
@@ -1246,13 +1246,13 @@
 <li>EDist(good)</li>
 <li>SVM</li>
 </ul>
-<h3 id="Abstract-representations"><a href="#Abstract-representations" class="headerlink" title="Abstract representations"></a>Abstract representations</h3><p>Different angles&#x2F;language&#x2F;color, we can still tell</p>
+<h3 id="Abstract-representations">3.1. Abstract representations</h3><p>Different angles&#x2F;language&#x2F;color, we can still tell</p>
 <p>Example: position invariance experiment</p>
 <ul>
 <li>train upper, better accuracy upper, but not bad at middle and lower</li>
 <li>different pose ML&#x2F;MF&#x2F;AL&#x2F;AM</li>
 </ul>
-<h2 id="Data-analsis"><a href="#Data-analsis" class="headerlink" title="Data analsis"></a>Data analsis</h2><p>neural content: what information</p>
+<h2 id="Data-analsis">4. Data analsis</h2><p>neural content: what information</p>
 <p>coding: what feature does brain process</p>
 
       
@@ -1339,7 +1339,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Neural-Circuits"><a href="#Neural-Circuits" class="headerlink" title="Neural Circuits"></a>Neural Circuits</h2><p>What they want to do?</p>
+          <h2 id="Neural-Circuits">1. Neural Circuits</h2><p>What they want to do?</p>
 <p>Learn some algorithm from our brain and translate them into computer code</p>
 <p>Some feature of brain-based computations</p>
 <ul>
@@ -1375,7 +1375,7 @@
 <li><strong>physiology</strong>, visually selective responses to complex shapes within ~150ms</li>
 <li><strong>computation</strong>, bottom-up computational models (maybe inspire deep learning)</li>
 </ul>
-<h2 id="Feedback-Signal"><a href="#Feedback-Signal" class="headerlink" title="Feedback Signal"></a>Feedback Signal</h2><h3 id="Basic-Mechanisms-in-V1"><a href="#Basic-Mechanisms-in-V1" class="headerlink" title="Basic Mechanisms in V1"></a>Basic Mechanisms in V1</h3><p><strong>Feedback signal enhance surround suppression</strong></p>
+<h2 id="Feedback-Signal">2. Feedback Signal</h2><h3 id="Basic-Mechanisms-in-V1">2.1. Basic Mechanisms in V1</h3><p><strong>Feedback signal enhance surround suppression</strong></p>
 <p>signals from higher part</p>
 <p>visual cortex orientation tuning, there is a Gabor function can describe the system</p>
 <p>There are so many models can explain the situation</p>
@@ -1383,7 +1383,7 @@
 <li>feed-forward model</li>
 <li>feed-back? (by cooling v2&#x2F;v3 cortex) NO</li>
 </ul>
-<h3 id="Visual-Search"><a href="#Visual-Search" class="headerlink" title="Visual Search"></a>Visual Search</h3><p><strong>Tuned feedback signals can instantiate visual search and feature-based attention</strong></p>
+<h3 id="Visual-Search">2.2. Visual Search</h3><p><strong>Tuned feedback signals can instantiate visual search and feature-based attention</strong></p>
 <p>to see particular face&#x2F;color</p>
 <p>go through some linear and non-linear computation</p>
 <ol>
@@ -1393,7 +1393,7 @@
 <li>filter</li>
 <li>comparison</li>
 </ol>
-<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><p>Reasons for optimism</p>
+<h2 id="Questions">3. Questions</h2><p>Reasons for optimism</p>
 <ul>
 <li>Wiring diagram</li>
 <li>Strength in numbers</li>

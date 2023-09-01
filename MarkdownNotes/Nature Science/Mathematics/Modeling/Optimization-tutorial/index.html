@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="OverviewWhat is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We need to def">
+  <meta name="description" content="1. Overview1.1. What is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We nee">
 <meta property="og:type" content="article">
 <meta property="og:title" content="First Step to Optimization">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Modeling/Optimization-tutorial/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="OverviewWhat is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We need to def">
+<meta property="og:description" content="1. Overview1.1. What is an optimization problemGoal: Find the best solution to a problem out of a large set of possible solutions Elements:  objective: the goal, the value you want to optimize  We nee">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-routing.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-assi.png">
@@ -263,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><h3 id="What-is-an-optimization-problem"><a href="#What-is-an-optimization-problem" class="headerlink" title="What is an optimization problem"></a>What is an optimization problem</h3><p>Goal: Find the <em>best</em> solution to a problem out of a large set of possible solutions</p>
+        <h2 id="Overview">1. Overview</h2><h3 id="What-is-an-optimization-problem">1.1. What is an optimization problem</h3><p>Goal: Find the <em>best</em> solution to a problem out of a large set of possible solutions</p>
 <p>Elements:</p>
 <ul>
 <li>objective: the goal, the value you want to optimize</li>
@@ -272,11 +272,11 @@
 <ul>
 <li>constrains: the restrictions on the set of possible solution</li>
 </ul>
-<h2 id="Linear-Optimization"><a href="#Linear-Optimization" class="headerlink" title="Linear Optimization"></a>Linear Optimization</h2><p>Computing the best solution to a problem modeled as a set of linear relationships</p>
+<h2 id="Linear-Optimization">2. Linear Optimization</h2><p>Computing the best solution to a problem modeled as a set of linear relationships</p>
 <p>These problems often arise in engineering disciplines</p>
 <span id="more"></span>
 
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Goal: minimize $3x+4y$ with following constrains</p>
+<h3 id="Example">2.1. Example</h3><p>Goal: minimize $3x+4y$ with following constrains</p>
 <table>
 <thead>
 <tr>
@@ -296,9 +296,9 @@
 <td align="center">2</td>
 </tr>
 </tbody></table>
-<h2 id="Constraint-Optimization"><a href="#Constraint-Optimization" class="headerlink" title="Constraint Optimization"></a>Constraint Optimization</h2><p>Identifying feasible solutions out of a large set of candidates, where problem can be  modeled in terms of <strong>arbitrary constrains</strong></p>
+<h2 id="Constraint-Optimization">3. Constraint Optimization</h2><p>Identifying feasible solutions out of a large set of candidates, where problem can be  modeled in terms of <strong>arbitrary constrains</strong></p>
 <p>This optimization <strong>focus on the constraints and variable</strong>s rather than the objective function. It just want to find out a <strong>feasible solution</strong>, not a optimal solution</p>
-<h3 id="Example-1-Employee-Scheduling"><a href="#Example-1-Employee-Scheduling" class="headerlink" title="Example 1 Employee Scheduling"></a>Example 1 Employee Scheduling</h3><p>Problem: employee scheduling</p>
+<h3 id="Example-1-Employee-Scheduling">3.1. Example 1 Employee Scheduling</h3><p>Problem: employee scheduling</p>
 <p>Background: create weekly schedules for their employees.</p>
 <blockquote>
 <p>e.g.  a company runs three 8-hour shifts per day and assigns three of its four employees to different shifts each day, while giving the fourth the day off</p>
@@ -306,7 +306,7 @@
 <p>possible schedules in a week: $24^7$</p>
 <p>So we need to narrow down the solution space</p>
 </blockquote>
-<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>Find efficient paths for transporting items through a complex network.</p>
+<h2 id="Routing">4. Routing</h2><p>Find efficient paths for transporting items through a complex network.</p>
 <p>The network usually represented by a graph like the one below</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-routing.png"></p>
 <p>There are mainly 2 types of routing problem:</p>
@@ -319,7 +319,7 @@
 <p>e.g.1 Google Map’s Street view: Google need to construct the shortest route for the team to reduce the travel length. This is a <strong>arc-routing problem</strong></p>
 <p>e.g.2 A company needs to deliver packages to various locations using a fleet of vehicles. Each arc has a weight, the problem is to find a set of paths that <strong>include every destination while minimizing the total cost</strong>. This is a node-routing problem</p>
 <p>TODO: ADD MORE DETAILS</p>
-<h2 id="Pack"><a href="#Pack" class="headerlink" title="Pack"></a>Pack</h2><p>The goal is to find the best way to pack a set of items of given sizes into containers with fixed capacities</p>
+<h2 id="Pack">5. Pack</h2><p>The goal is to find the best way to pack a set of items of given sizes into containers with fixed capacities</p>
 <p>There are mainly 2 packing problems:</p>
 <ul>
 <li>Knapack problems</li>
@@ -331,10 +331,10 @@
 </ul>
 <p>multiple containers (called bin) with equal capacity.</p>
 <p>goal: minimizing the number of bins</p>
-<h2 id="Assignment-Problem"><a href="#Assignment-Problem" class="headerlink" title="Assignment Problem"></a>Assignment Problem</h2><p>A group of workers  has to perform a set of tasks. For each worker and task, there is a fixed cost for that worker to perform the task. The goal is to minimize the total cost.</p>
+<h2 id="Assignment-Problem">6. Assignment Problem</h2><p>A group of workers  has to perform a set of tasks. For each worker and task, there is a fixed cost for that worker to perform the task. The goal is to minimize the total cost.</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/opti-assi.png"></p>
 <p>And there will be a cost matrix</p>
-<h2 id="Scheduling"><a href="#Scheduling" class="headerlink" title="Scheduling"></a>Scheduling</h2><h3 id="The-Job-Shop-Problem"><a href="#The-Job-Shop-Problem" class="headerlink" title="The Job Shop Problem"></a>The Job Shop Problem</h3><p>Multiple jobs are processed on several machines. Each job consists of a sequence of tasks, which must be performed in a given order, and each task must be processed on a specific machine.</p>
+<h2 id="Scheduling">7. Scheduling</h2><h3 id="The-Job-Shop-Problem">7.1. The Job Shop Problem</h3><p>Multiple jobs are processed on several machines. Each job consists of a sequence of tasks, which must be performed in a given order, and each task must be processed on a specific machine.</p>
 <p>Several constraints :</p>
 <ul>
 <li>No task for a job can be started until the previous task for that job is completed.</li>
@@ -433,7 +433,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-an-optimization-problem"><span class="nav-number">1.1.</span> <span class="nav-text">What is an optimization problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Optimization"><span class="nav-number">2.</span> <span class="nav-text">Linear Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constraint-Optimization"><span class="nav-number">3.</span> <span class="nav-text">Constraint Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1-Employee-Scheduling"><span class="nav-number">3.1.</span> <span class="nav-text">Example 1 Employee Scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">4.</span> <span class="nav-text">Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pack"><span class="nav-number">5.</span> <span class="nav-text">Pack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assignment-Problem"><span class="nav-number">6.</span> <span class="nav-text">Assignment Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduling"><span class="nav-number">7.</span> <span class="nav-text">Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Job-Shop-Problem"><span class="nav-number">7.1.</span> <span class="nav-text">The Job Shop Problem</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">1. Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-an-optimization-problem"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. What is an optimization problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Optimization"><span class="nav-number">2.</span> <span class="nav-text">2. Linear Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constraint-Optimization"><span class="nav-number">3.</span> <span class="nav-text">3. Constraint Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1-Employee-Scheduling"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Example 1 Employee Scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">4.</span> <span class="nav-text">4. Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pack"><span class="nav-number">5.</span> <span class="nav-text">5. Pack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assignment-Problem"><span class="nav-number">6.</span> <span class="nav-text">6. Assignment Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduling"><span class="nav-number">7.</span> <span class="nav-text">7. Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Job-Shop-Problem"><span class="nav-number">7.1.</span> <span class="nav-text">7.1. The Job Shop Problem</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

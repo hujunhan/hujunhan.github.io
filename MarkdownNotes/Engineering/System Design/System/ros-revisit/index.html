@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="title: ROS Re-visitauthor: Junhan Hutags:  ros softwaremathjax: truedate: 2023-07-24 22:13:00categories: Engineering System-Design System  IntroROS is too heavy for new project with little dependence">
+  <meta name="description" content="title: ROS Re-visitauthor: Junhan Hutags:  ros softwaremathjax: truedate: 2023-07-24 22:13:00categories: Engineering System-Design System  1. IntroROS is too heavy for new project with little depende">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Only Truth Matters">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/System/ros-revisit/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="title: ROS Re-visitauthor: Junhan Hutags:  ros softwaremathjax: truedate: 2023-07-24 22:13:00categories: Engineering System-Design System  IntroROS is too heavy for new project with little dependence">
+<meta property="og:description" content="title: ROS Re-visitauthor: Junhan Hutags:  ros softwaremathjax: truedate: 2023-07-24 22:13:00categories: Engineering System-Design System  1. IntroROS is too heavy for new project with little depende">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725223812_NDEQ4C.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725222521_mizr90.png">
@@ -271,9 +271,9 @@
 <li>System-Design</li>
 <li>System</li>
 </ul>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>ROS is too heavy for new project with little dependence on open-source project.</p>
+<h2 id="Intro">1. Intro</h2><p>ROS is too heavy for new project with little dependence on open-source project.</p>
 <p>Plan: Understand the design and philosophy of ROS1 and ROS2, design my own robotics stack</p>
-<h2 id="ROS1"><a href="#ROS1" class="headerlink" title="ROS1"></a>ROS1</h2><h3 id="Philosophy-and-Design-Principles"><a href="#Philosophy-and-Design-Principles" class="headerlink" title="Philosophy and Design Principles"></a>Philosophy and Design Principles</h3><p>Goal: to support code reuse in robotics</p>
+<h2 id="ROS1">2. ROS1</h2><h3 id="Philosophy-and-Design-Principles">2.1. Philosophy and Design Principles</h3><p>Goal: to support code reuse in robotics</p>
 <ul>
 <li>as thin as possible? Really?</li>
 <li>ROS-agnostic</li>
@@ -281,7 +281,7 @@
 <li>Test, Language</li>
 </ul>
 <p>How: Node for executables to be run individually</p>
-<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p><a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/Introduction">Ref</a></p>
+<h3 id="Architecture">2.2. Architecture</h3><p><a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/Introduction">Ref</a></p>
 <p>Two concepts</p>
 <p>Filesystem:</p>
 <ol>
@@ -302,7 +302,7 @@
 <li>Services: good for request reply interaction</li>
 <li>Bags: storing data</li>
 </ul>
-<h3 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h3><ul>
+<h3 id="Middleware">2.3. Middleware</h3><ul>
 <li>Master is implemented via XMLRPC, HTTP based protocal</li>
 <li>Node</li>
 <li>Slave API: XMLRPC API, receiving callbacks</li>
@@ -311,7 +311,7 @@
 <li>Topic: TCP, UDP</li>
 <li>Message serialization:</li>
 </ul>
-<h2 id="ROS2"><a href="#ROS2" class="headerlink" title="ROS2"></a>ROS2</h2><p><a target="_blank" rel="noopener" href="https://design.ros2.org/">Ref</a></p>
+<h2 id="ROS2">3. ROS2</h2><p><a target="_blank" rel="noopener" href="https://design.ros2.org/">Ref</a></p>
 <p>Why?</p>
 <ul>
 <li>Multiple Robots</li>
@@ -324,21 +324,21 @@
 <li>Use open-source middleware</li>
 </ul>
 <p>Most important change: use DDS as middleware</p>
-<h2 id="New"><a href="#New" class="headerlink" title="New"></a>New</h2><p>new middleware</p>
+<h2 id="New">4. New</h2><p>new middleware</p>
 <p>new build (ament)</p>
 <p>c++11</p>
-<h3 id="Philosophy-and-Design-Principles-1"><a href="#Philosophy-and-Design-Principles-1" class="headerlink" title="Philosophy and Design Principles"></a>Philosophy and Design Principles</h3><p>De-centralized nature</p>
-<h3 id="Architecture-1"><a href="#Architecture-1" class="headerlink" title="Architecture"></a>Architecture</h3><p>Very similar with ROS1, but add discovery</p>
+<h3 id="Philosophy-and-Design-Principles-1">4.1. Philosophy and Design Principles</h3><p>De-centralized nature</p>
+<h3 id="Architecture-1">4.2. Architecture</h3><p>Very similar with ROS1, but add discovery</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725223812_NDEQ4C.jpg" alt="ros-architecture"></p>
-<h3 id="Middleware-1"><a href="#Middleware-1" class="headerlink" title="Middleware"></a>Middleware</h3><p>Apply open-source software</p>
+<h3 id="Middleware-1">4.3. Middleware</h3><p>Apply open-source software</p>
 <p>Has a abstract middleware interface</p>
 <p>DDS: end2end middleware</p>
 <ul>
 <li>Publish, subscribe transport</li>
 </ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725222521_mizr90.png" alt="api_levels" style="zoom:38%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725222521_mizr90.png" alt="api_levels" style="zoom:38%;">
 
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725223717_BphaUG.png" alt="img" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230725223717_BphaUG.png" alt="img" style="zoom:33%;">
 
     </div>
 
@@ -419,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS1"><span class="nav-number">2.</span> <span class="nav-text">ROS1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophy-and-Design-Principles"><span class="nav-number">2.1.</span> <span class="nav-text">Philosophy and Design Principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware"><span class="nav-number">2.3.</span> <span class="nav-text">Middleware</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS2"><span class="nav-number">3.</span> <span class="nav-text">ROS2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New"><span class="nav-number">4.</span> <span class="nav-text">New</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophy-and-Design-Principles-1"><span class="nav-number">4.1.</span> <span class="nav-text">Philosophy and Design Principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-1"><span class="nav-number">4.2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware-1"><span class="nav-number">4.3.</span> <span class="nav-text">Middleware</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">1. Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS1"><span class="nav-number">2.</span> <span class="nav-text">2. ROS1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophy-and-Design-Principles"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Philosophy and Design Principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Middleware</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS2"><span class="nav-number">3.</span> <span class="nav-text">3. ROS2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New"><span class="nav-number">4.</span> <span class="nav-text">4. New</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Philosophy-and-Design-Principles-1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Philosophy and Design Principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware-1"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. Middleware</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

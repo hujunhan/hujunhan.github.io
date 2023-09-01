@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1 IntroductionThis project was brought to make a flight controller from scratch. I want to learn from the process so the flight controller will be more general. However the model of the flight and sel">
+  <meta name="description" content="1. 1 IntroductionThis project was brought to make a flight controller from scratch. I want to learn from the process so the flight controller will be more general. However the model of the flight and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flight Controller">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/flight-controller/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1 IntroductionThis project was brought to make a flight controller from scratch. I want to learn from the process so the flight controller will be more general. However the model of the flight and sel">
+<meta property="og:description" content="1. 1 IntroductionThis project was brought to make a flight controller from scratch. I want to learn from the process so the flight controller will be more general. However the model of the flight and">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20190419122228.png">
 <meta property="article:published_time" content="2019-04-13T21:56:00.000Z">
@@ -262,13 +262,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>This project was brought to make a flight controller from scratch.</p>
+        <h2 id="1-Introduction">1. 1 Introduction</h2><p>This project was brought to make a flight controller from scratch.</p>
 <p>I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32&#x2F;Arduino&#x2F;Linux ) will make the general task more difficult.</p>
 <span id="more"></span>
 
 <p>Before the program, I have no experience in flight controller programming. So I would learn from other project shared on Github.com.</p>
-<h2 id="2-Learning-from-Others"><a href="#2-Learning-from-Others" class="headerlink" title="2 Learning from Others"></a>2 Learning from Others</h2><h3 id="2-1-HackFlight"><a href="#2-1-HackFlight" class="headerlink" title="2.1 HackFlight"></a>2.1 HackFlight</h3><p>As a education oriented project, <em><a target="_blank" rel="noopener" href="https://github.com/simondlevy/Hackflight">Hackflight</a> is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators</em></p>
-<h4 id="2-1-1-Unit"><a href="#2-1-1-Unit" class="headerlink" title="2.1.1 Unit"></a>2.1.1 Unit</h4><p>First of all, HackFlight defined some standard units to write simpler code.</p>
+<h2 id="2-Learning-from-Others">2. 2 Learning from Others</h2><h3 id="2-1-HackFlight">2.1. 2.1 HackFlight</h3><p>As a education oriented project, <em><a target="_blank" rel="noopener" href="https://github.com/simondlevy/Hackflight">Hackflight</a> is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators</em></p>
+<h4 id="2-1-1-Unit">2.1.1. 2.1.1 Unit</h4><p>First of all, HackFlight defined some standard units to write simpler code.</p>
 <ul>
 <li>Distance $ m&#x2F;s $</li>
 <li>Time $ s $</li>
@@ -277,7 +277,7 @@
 <li>Motor demands $ [0,1] $</li>
 <li>Quaternions interval $ [-1,1] $</li>
 </ul>
-<h4 id="2-1-2-Programming-Structure"><a href="#2-1-2-Programming-Structure" class="headerlink" title="2.1.2 Programming Structure"></a>2.1.2 Programming Structure</h4><p>This project is a practice of C++ for it’s speed and object-oriented features</p>
+<h4 id="2-1-2-Programming-Structure">2.1.2. 2.1.2 Programming Structure</h4><p>This project is a practice of C++ for it’s speed and object-oriented features</p>
 <p>HackFlight build several separate class to provide basic function of a controller.</p>
 <ul>
 <li>Board class, specifies 4 abstract method a flight must implement</li>
@@ -289,7 +289,7 @@
 <li>Mixer class that can be subclassed by specific mixer like QuadX &#x2F; Bicopter</li>
 <li>PID_Controller class specific the PID value appropriate for your model</li>
 </ul>
-<h4 id="2-1-3-Design-Principle"><a href="#2-1-3-Design-Principle" class="headerlink" title="2.1.3 Design Principle"></a>2.1.3 Design Principle</h4><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20190419122228.png" alt="hackflight-dataflow"></p>
+<h4 id="2-1-3-Design-Principle">2.1.3. 2.1.3 Design Principle</h4><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20190419122228.png" alt="hackflight-dataflow"></p>
 <p>There are 2 basic data type:</p>
 <ul>
 <li>State: State is updated by sensors which read IMU sensors and calculate <strong>quaternion</strong></li>
@@ -384,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Learning-from-Others"><span class="nav-number">2.</span> <span class="nav-text">2 Learning from Others</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-HackFlight"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 HackFlight</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-Unit"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 Unit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Programming-Structure"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Programming Structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Design-Principle"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Design Principle</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. 1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Learning-from-Others"><span class="nav-number">2.</span> <span class="nav-text">2. 2 Learning from Others</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-HackFlight"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 2.1 HackFlight</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-Unit"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1. 2.1.1 Unit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Programming-Structure"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2. 2.1.2 Programming Structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Design-Principle"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3. 2.1.3 Design Principle</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 目标 选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
+  <meta name="description" content="1. 1. 目标 选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SECOM数据分析与预测">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1. 目标 选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
+<meta property="og:description" content="1. 1. 目标 选择一个侧重工业领域的数据集 分析数据 分析问题，分析结果">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hujunhan.github.io/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/normal-accu.svg">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix5.png">
@@ -278,20 +278,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h2><ul>
+        <h2 id="1-目标">1. 1. 目标</h2><ul>
 <li>选择一个侧重工业领域的数据集</li>
 <li>分析数据</li>
 <li>分析问题，分析结果</li>
 </ul>
 <span id="more"></span>
 
-<h2 id="2-问题分析"><a href="#2-问题分析" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h2><h3 id="2-1-问题"><a href="#2-1-问题" class="headerlink" title="2.1 问题"></a>2.1 问题</h3><blockquote>
+<h2 id="2-问题分析">2. 2. 问题分析</h2><h3 id="2-1-问题">2.1. 2.1 问题</h3><blockquote>
 <p>A complex modern semi-conductor manufacturing process is normally under consistent surveillance via the monitoring of signals&#x2F;variables collected from sensors and or process measurement points. However, not all of these signals are equally valuable in a specific monitoring system. The measured signals contain a combination of useful information, irrelevant information as well as noise. It is often the case that useful information is buried in the latter two. Engineers typically have a much larger number of signals than are actually required. If we consider each type of signal as a feature, then feature selection may be applied to identify the most relevant signals. The Process Engineers may then use these signals to determine key factors contributing to yield excursions downstream in the process. This will enable an increase in process throughput, decreased time to learning and reduce the per unit production costs.</p>
 </blockquote>
 <p>简单来说，在半导体加工行业中，我们希望通过流水线上各个传感器的信号来预先判断最后产品合格与否。</p>
 <p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析</p>
 <p>数据来源： <a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/secom">SECOM Data Set</a></p>
-<h3 id="2-2-数据格式定义"><a href="#2-2-数据格式定义" class="headerlink" title="2.2 数据格式定义"></a>2.2 数据格式定义</h3><p>数据来自半导体加工工厂，数据来自半导体生产线上的传感器，整体数据已经经过了脱敏的处理，因此无法得知每个属性数据来自哪种，哪一个传感器。数据按时间点记录，1567条数据代表着1567个时间点上生产线上传感器所记录的数据。</p>
+<h3 id="2-2-数据格式定义">2.2. 2.2 数据格式定义</h3><p>数据来自半导体加工工厂，数据来自半导体生产线上的传感器，整体数据已经经过了脱敏的处理，因此无法得知每个属性数据来自哪种，哪一个传感器。数据按时间点记录，1567条数据代表着1567个时间点上生产线上传感器所记录的数据。</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/machine-learning-databases/secom/secom.data">secom.data</a></li>
 <li>$1567\times961$ 说明有1567个数据样本，961个特征，都是数值</li>
@@ -304,35 +304,35 @@
 <p>实际中的NaN是由什么产生的呢</p>
 <p>As with any real life data situations this data contains null values varying in intensity depending on the individuals features. This needs to be taken into consideration when investigating the data either through pre-processing or within the technique applied.</p>
 </blockquote>
-<h3 id="2-3-从数据到问题"><a href="#2-3-从数据到问题" class="headerlink" title="2.3 从数据到问题"></a>2.3 从数据到问题</h3><p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析。同时由于数据提供的结果数据是用1和-1代表的质量数据，所以我们要解决的生产质量预测问题可以转化为一个二分类的问题。即利用生产线上的传感器数据来将产品进行质量合格和质量不合格的二分类。</p>
-<h3 id="2-3-计划流程"><a href="#2-3-计划流程" class="headerlink" title="2.3 计划流程"></a>2.3 计划流程</h3><ol>
+<h3 id="2-3-从数据到问题">2.3. 2.3 从数据到问题</h3><p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析。同时由于数据提供的结果数据是用1和-1代表的质量数据，所以我们要解决的生产质量预测问题可以转化为一个二分类的问题。即利用生产线上的传感器数据来将产品进行质量合格和质量不合格的二分类。</p>
+<h3 id="2-3-计划流程">2.4. 2.3 计划流程</h3><ol>
 <li>加载数据</li>
 <li>空缺数据填补</li>
 <li>特征选择</li>
 <li>尝试不同分类模型</li>
 <li>验证模型效果</li>
 </ol>
-<h2 id="3-数据预处理"><a href="#3-数据预处理" class="headerlink" title="3. 数据预处理"></a>3. 数据预处理</h2><h3 id="3-1-可视化分析"><a href="#3-1-可视化分析" class="headerlink" title="3.1 可视化分析"></a>3.1 可视化分析</h3><h3 id="3-2-数据清洗"><a href="#3-2-数据清洗" class="headerlink" title="3.2 数据清洗"></a>3.2 数据清洗</h3><p>首先，961个特征中不能每个特征都对最后的结果都有可观的影响。因此遵从一般的原则，我们可以将其中一些特征删除。这些特征应该满足以下条件：</p>
+<h2 id="3-数据预处理">3. 3. 数据预处理</h2><h3 id="3-1-可视化分析">3.1. 3.1 可视化分析</h3><h3 id="3-2-数据清洗">3.2. 3.2 数据清洗</h3><p>首先，961个特征中不能每个特征都对最后的结果都有可观的影响。因此遵从一般的原则，我们可以将其中一些特征删除。这些特征应该满足以下条件：</p>
 <ul>
 <li>是一个常数</li>
 <li>不是常数，但是方差很小，可以认为是一个常数</li>
 </ul>
 <p>我们首先观察<em>Secom_labels.data</em>中的数据，将两个数据表中质量标签缺失的数据从我们的整体数据中清洗掉。</p>
 <p>但是在这一步中我们并没有进行离群点的筛查。一是质量表征的数据过于复杂，二是作为工业生产线上的数据，突变的离群点很大可能是质量不合格的原因。因此在这里我们并没有进行离群点的筛查。</p>
-<h3 id="3-3-数据填补"><a href="#3-3-数据填补" class="headerlink" title="3.3 数据填补"></a>3.3 数据填补</h3><p>我们研究数据可以发现，许多特征并不是完整的，也就是说他们没有1567个样本，缺少的数据以<code>NaN</code>体现。</p>
+<h3 id="3-3-数据填补">3.3. 3.3 数据填补</h3><p>我们研究数据可以发现，许多特征并不是完整的，也就是说他们没有1567个样本，缺少的数据以<code>NaN</code>体现。</p>
 <p>我们选择的方法可以是：</p>
 <ul>
 <li>平均值填补</li>
 <li>IN-painting KNN (from paper BDCC)</li>
 </ul>
 <p>注意到我们的数据几乎都离0值较远，因此我们选用0来对我们的数据进行填补。</p>
-<h3 id="3-4-特征选择"><a href="#3-4-特征选择" class="headerlink" title="3.4 特征选择"></a>3.4 特征选择</h3><p>在填补了缺失的数据之后，我们还要进行特征选择，来精简掉一些不重要的信息，提高我们算法的运算速度</p>
+<h3 id="3-4-特征选择">3.4. 3.4 特征选择</h3><p>在填补了缺失的数据之后，我们还要进行特征选择，来精简掉一些不重要的信息，提高我们算法的运算速度</p>
 <p>其中包含的方法有数据降维PCA、通过模型计算各个参数的重要性并排序</p>
-<h3 id="3-5-数据平衡化"><a href="#3-5-数据平衡化" class="headerlink" title="3.5 数据平衡化"></a>3.5 数据平衡化</h3><p>在观察数据的过程中，我们发现SECOM这个数据集是imbalance的：也就是说数据集中的正样本数和负样本数是不匹配的。通过的(-1)的样本数要远远多于不通过的样本数(1)。<em>这在实际生产中是非常常见的，因为一个工厂的良品率肯定是要比较高的，不然生产的产品一大半不合格的话，成本太高了。</em></p>
+<h3 id="3-5-数据平衡化">3.5. 3.5 数据平衡化</h3><p>在观察数据的过程中，我们发现SECOM这个数据集是imbalance的：也就是说数据集中的正样本数和负样本数是不匹配的。通过的(-1)的样本数要远远多于不通过的样本数(1)。<em>这在实际生产中是非常常见的，因为一个工厂的良品率肯定是要比较高的，不然生产的产品一大半不合格的话，成本太高了。</em></p>
 <p>然而不均衡的样本会导致不均衡的数据分布，这样就会使得各个分类算法的效果大大降低。(from learning from imbalanced data)</p>
 <p>那么要使数据平衡有两种方法，一种是对少的那部分样本进行过采样使得样本数量和多的样本接近，或者对多的那种样本进行欠采样。</p>
 <p>我们选择的是过采样方法，SMOTE （Synthetic Minority Oversampling Technique），这种方法会根据插值来产生新的数据</p>
-<h2 id="4-使用不同模型进行预测"><a href="#4-使用不同模型进行预测" class="headerlink" title="4. 使用不同模型进行预测"></a>4. 使用不同模型进行预测</h2><h3 id="4-1-可用的算法"><a href="#4-1-可用的算法" class="headerlink" title="4.1 可用的算法"></a>4.1 可用的算法</h3><p>回顾我们的问题，我们要根据所拥有的传感器信息判断这个产品是好还是坏，搜易最后的结果只有两种可能， 这是一个典型的二分类问题。又因为这是一个有标签的有监督学习，所以我们可以将整个问题归纳为<strong>有监督的二分类学习</strong></p>
+<h2 id="4-使用不同模型进行预测">4. 4. 使用不同模型进行预测</h2><h3 id="4-1-可用的算法">4.1. 4.1 可用的算法</h3><p>回顾我们的问题，我们要根据所拥有的传感器信息判断这个产品是好还是坏，搜易最后的结果只有两种可能， 这是一个典型的二分类问题。又因为这是一个有标签的有监督学习，所以我们可以将整个问题归纳为<strong>有监督的二分类学习</strong></p>
 <p>二分类学习算法有很多，常见的有以下几种</p>
 <ul>
 <li><p>朴素贝叶斯</p>
@@ -368,8 +368,8 @@
 <li><p>随机森林</p>
 </li>
 </ul>
-<h3 id="4-2-需要注意的问题"><a href="#4-2-需要注意的问题" class="headerlink" title="4.2 需要注意的问题"></a>4.2 需要注意的问题</h3><p>因为我们的数据是典型的不平衡数据，也就是说正样本的数量要远远多于负样本，这就导致我们不能用一般的分析方法来观察结果的好坏，比如说<em>准确率</em>，判断正确的占所有判断的比值，这样会造成的问题就是即使我们的算法把所有的样本都判断为正，最后得到的<em>准确率</em>依然很高，因为正样本太多了，所以我们在分析时要使用其他不同的评判标准。</p>
-<h3 id="4-3-预测结果"><a href="#4-3-预测结果" class="headerlink" title="4.3 预测结果"></a>4.3 预测结果</h3><p>为了让实验结果更加完整，我们对比了不同方法下的预测效果：</p>
+<h3 id="4-2-需要注意的问题">4.2. 4.2 需要注意的问题</h3><p>因为我们的数据是典型的不平衡数据，也就是说正样本的数量要远远多于负样本，这就导致我们不能用一般的分析方法来观察结果的好坏，比如说<em>准确率</em>，判断正确的占所有判断的比值，这样会造成的问题就是即使我们的算法把所有的样本都判断为正，最后得到的<em>准确率</em>依然很高，因为正样本太多了，所以我们在分析时要使用其他不同的评判标准。</p>
+<h3 id="4-3-预测结果">4.3. 4.3 预测结果</h3><p>为了让实验结果更加完整，我们对比了不同方法下的预测效果：</p>
 <ul>
 <li>数据处理上</li>
 <li>原数据</li>
@@ -384,14 +384,14 @@
 <li>XGBoost</li>
 <li>KNN</li>
 </ul>
-<h4 id="4-3-1-原数据"><a href="#4-3-1-原数据" class="headerlink" title="4.3.1 原数据"></a>4.3.1 原数据</h4><p>从准确度角度看，不进行采样直接使用各种算法的预测结果如下</p>
+<h4 id="4-3-1-原数据">4.3.1. 4.3.1 原数据</h4><p>从准确度角度看，不进行采样直接使用各种算法的预测结果如下</p>
 <p><img src="/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/normal-accu.svg" alt="normal-accu"></p>
 <p>看上去效果还可以，但是仔细思考的话，就会发现这样的准确率是没有什么意义的，因为正样本太多，所以哪怕算法将所有的样本都判断为正样本，最后也能得到非常高的预测准确度。</p>
 <p>这一点我们可以从观察算法的混淆矩阵看出来，下面展示的两张混淆矩阵代表了大部分算法的混淆矩阵情况</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix5.png"></p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix6.png"></p>
 <p>可以看到正如我们之前所猜测的那样，模型的预测效果很差，将大部分样本呢都标定为正样本</p>
-<h4 id="4-3-2-欠采样"><a href="#4-3-2-欠采样" class="headerlink" title="4.3.2 欠采样"></a>4.3.2 欠采样</h4><p>既然样本不平衡时会出现这样严重的问题，我们就需要对样本进行平滑化处理，首先我们测试的方法是使用欠采样。</p>
+<h4 id="4-3-2-欠采样">4.3.2. 4.3.2 欠采样</h4><p>既然样本不平衡时会出现这样严重的问题，我们就需要对样本进行平滑化处理，首先我们测试的方法是使用欠采样。</p>
 <p>欠采样的方法比较简单直观，我们只需要将数据量多的样本（在这里是正样本）随机的删除掉一些，最后让正负样本量相同即可</p>
 <p>这样的情况下，再使用7种算法进行预测得到的结果如下</p>
 <p><img src="/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/under-accu.svg" alt="under-accu"></p>
@@ -401,7 +401,7 @@
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix2.png"></p>
 <p>从混淆矩阵可以看出，各个情况下的数据都差不多，也证实了我们的猜想，算法在欠采样的情况下没有了基本的判断能力，判断结果和随机类似。</p>
 <p>为什么会出现这样的情况呢？其实从欠采样的工作原理就能大概猜到了，那就是数据量太小，由于本身负样本的数量就很少，只有一百多，现在将正样本的数量缩减到和负样本相同的情况下，总共的样本数也就只有两百多，在这么少的训练样本情况下，训练效果不佳也是可以预见的。</p>
-<h4 id="4-3-3-过采样"><a href="#4-3-3-过采样" class="headerlink" title="4.3.3 过采样"></a>4.3.3 过采样</h4><p>既然不采样和欠采样都没有很好的效果，我们只能使用另外的方法来解决数据不平衡问题，那就是——过采样</p>
+<h4 id="4-3-3-过采样">4.3.3. 4.3.3 过采样</h4><p>既然不采样和欠采样都没有很好的效果，我们只能使用另外的方法来解决数据不平衡问题，那就是——过采样</p>
 <p>我们采样的方法是SMOTE （Synthetic Minority Oversampling Technique），这种方法会根据插值来产生新的数据。</p>
 <p>预测效果如下：</p>
 <p><img src="/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/over-accu.svg" alt="over-accu"></p>
@@ -410,7 +410,7 @@
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix4.png"></p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/fusematrix3.png"></p>
 <p>可以看到效果还是非常不错的，能够将大部分的正负样本预测出来。</p>
-<h3 id="4-4-结果分析"><a href="#4-4-结果分析" class="headerlink" title="4.4 结果分析"></a>4.4 结果分析</h3><p>我们最终的目的是要寻找一个优秀的算法能够较好地预测结果，所以我们需要算法</p>
+<h3 id="4-4-结果分析">4.4. 4.4 结果分析</h3><p>我们最终的目的是要寻找一个优秀的算法能够较好地预测结果，所以我们需要算法</p>
 <ul>
 <li>能够在所有的故障中尽量将故障选择出来，这是最重要的部分，因为将一部分正常产品检测为故障问题不是特别大，无非是提高一点成本。但是一旦故障检测率太低，就会造成产品有重大缺陷，对于下游厂商来说是不可接受的。</li>
 <li>能够将所有的正常产品尽量多地通过，虽然在上一点说过故障检测率是最重要，但是正常产品的检测效果一样重要，因为如果这样检测率太低就有可能导致将许多正常产品都标定为故障，这样的话会大幅提高生产成本和二次检查的成本，对于厂商来说也是不可接受的。</li>
@@ -430,7 +430,7 @@
 <li>表现优秀的几种算法都是基于决策树的，而决策树的优势就在于能够在数据有很强相关性的情况下进行分类，因此这样的算法和我们的数据集比较吻合，达到了较好的效果</li>
 <li>其他的一些算法比如朴素贝叶斯则假设的是各个特征之间相互独立，明显和我们的数据不吻合，因此效果很差。</li>
 </ol>
-<h2 id="5-总结与展望"><a href="#5-总结与展望" class="headerlink" title="5.总结与展望"></a>5.总结与展望</h2><p>我们利用了一般的数据分析流程对半导体加工数据进行了数据填补、数据清理、特征工程、样本平衡化和建模预测，最终结果表明在过采样情况下，随机森林和XGBoost这两种算法的效果是最好的。</p>
+<h2 id="5-总结与展望">5. 5.总结与展望</h2><p>我们利用了一般的数据分析流程对半导体加工数据进行了数据填补、数据清理、特征工程、样本平衡化和建模预测，最终结果表明在过采样情况下，随机森林和XGBoost这两种算法的效果是最好的。</p>
 <p>后续工作：</p>
 <ul>
 <li><p>更加细致的特征工程</p>
@@ -543,7 +543,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">2. 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据格式定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%88%B0%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 从数据到问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%AE%A1%E5%88%92%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">2.3 计划流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">3. 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 可视化分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 数据清洗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%95%B0%E6%8D%AE%E5%A1%AB%E8%A1%A5"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 数据填补</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 特征选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E6%95%B0%E6%8D%AE%E5%B9%B3%E8%A1%A1%E5%8C%96"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 数据平衡化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="nav-number">4.</span> <span class="nav-text">4. 使用不同模型进行预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%8F%AF%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 可用的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 需要注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 预测结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E5%8E%9F%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 原数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E6%AC%A0%E9%87%87%E6%A0%B7"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 欠采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E8%BF%87%E9%87%87%E6%A0%B7"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3 过采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">5.总结与展望</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 1. 目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">2. 2. 问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 2.1 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 2.2 数据格式定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%88%B0%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 2.3 从数据到问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%AE%A1%E5%88%92%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 2.3 计划流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">3. 3. 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 3.1 可视化分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 3.2 数据清洗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%95%B0%E6%8D%AE%E5%A1%AB%E8%A1%A5"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 3.3 数据填补</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 3.4 特征选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E6%95%B0%E6%8D%AE%E5%B9%B3%E8%A1%A1%E5%8C%96"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. 3.5 数据平衡化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="nav-number">4.</span> <span class="nav-text">4. 4. 使用不同模型进行预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%8F%AF%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 4.1 可用的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 4.2 需要注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. 4.3 预测结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E5%8E%9F%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1. 4.3.1 原数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E6%AC%A0%E9%87%87%E6%A0%B7"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2. 4.3.2 欠采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E8%BF%87%E9%87%87%E6%A0%B7"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3. 4.3.3 过采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.4.</span> <span class="nav-text">4.4. 4.4 结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">5. 5.总结与展望</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

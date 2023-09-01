@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IntroductionTop-down teaching method Why study numerical linear algebra?  important in computer science  4 things need consideration  memory speed accuracy scalability  That means there will be trade-">
+  <meta name="description" content="1. IntroductionTop-down teaching method Why study numerical linear algebra?  important in computer science  4 things need consideration  memory speed accuracy scalability  That means there will be tra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Practical Linear Algebra -- Overview">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Algebra/practical-algebra-0-intro/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="IntroductionTop-down teaching method Why study numerical linear algebra?  important in computer science  4 things need consideration  memory speed accuracy scalability  That means there will be trade-">
+<meta property="og:description" content="1. IntroductionTop-down teaching method Why study numerical linear algebra?  important in computer science  4 things need consideration  memory speed accuracy scalability  That means there will be tra">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175825.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200319175832.png">
@@ -265,7 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Top-down teaching method</p>
+        <h2 id="Introduction">1. Introduction</h2><p>Top-down teaching method</p>
 <p>Why study numerical linear algebra?</p>
 <ul>
 <li>important in computer science</li>
@@ -280,7 +280,7 @@
 <p>That means there will be trade-off while designing</p>
 <span id="more"></span>
 
-<h2 id="Matrix-Computations"><a href="#Matrix-Computations" class="headerlink" title="Matrix Computations"></a>Matrix Computations</h2><p>mainly 2 type of computation</p>
+<h2 id="Matrix-Computations">2. Matrix Computations</h2><p>mainly 2 type of computation</p>
 <ul>
 <li><p>Matrix products</p>
 </li>
@@ -306,7 +306,7 @@
 <li><p>PageRank algorithm</p>
 </li>
 </ul>
-<h2 id="Accuracy-—-How-Computer-Store-Numbers"><a href="#Accuracy-—-How-Computer-Store-Numbers" class="headerlink" title="Accuracy — How Computer Store Numbers"></a>Accuracy — How Computer Store <strong>Numbers</strong></h2><p>Why accuracy is a problem?</p>
+<h2 id="Accuracy-—-How-Computer-Store-Numbers">3. Accuracy — How Computer Store Numbers</h2><p>Why accuracy is a problem?</p>
 <ul>
 <li>Since computer store numbers <strong>finite</strong> and <strong>discrete</strong></li>
 <li>Big problem while repeating an operation since each operation could <strong>multiply</strong> the error</li>
@@ -318,7 +318,7 @@
 <li>defined by IEEE standards</li>
 <li>$\varepsilon_{\text {machine}}&#x3D;2^{-53} \approx 1.11 \times 10^{-16}$</li>
 </ul>
-<h3 id="Conditioning-and-Stability"><a href="#Conditioning-and-Stability" class="headerlink" title="Conditioning and Stability"></a>Conditioning and Stability</h3><p><strong>We need to know how small change in input will influence the output</strong></p>
+<h3 id="Conditioning-and-Stability">3.1. Conditioning and Stability</h3><p><strong>We need to know how small change in input will influence the output</strong></p>
 <blockquote>
 <p><strong>“A stable algorithm gives nearly the right answer to nearly the right question.”</strong> –Trefethen</p>
 <p>since we can not tell the computer the “right” number</p>
@@ -328,21 +328,21 @@
 <ul>
 <li>e.g. while calculating eigen value, a <strong>small</strong> change in the input will get totally wrong answer</li>
 </ul>
-<h3 id="Approximation-accuracy"><a href="#Approximation-accuracy" class="headerlink" title="Approximation accuracy"></a>Approximation accuracy</h3><p>Most of the time, we just <strong>don’t need</strong> to do highly matrix computations at scale,</p>
+<h3 id="Approximation-accuracy">3.2. Approximation accuracy</h3><p>Most of the time, we just <strong>don’t need</strong> to do highly matrix computations at scale,</p>
 <ul>
 <li>machine learning, more <strong>efficient</strong></li>
 <li>Bloom filter algorithm, <strong>AdBlock</strong>, would give false positives, <strong>reduction</strong> in <strong>memory</strong> use of thousands of times</li>
 </ul>
-<h2 id="Memory-Use-–-How-Computer-Store-Matrices"><a href="#Memory-Use-–-How-Computer-Store-Matrices" class="headerlink" title="Memory Use – How Computer Store Matrices"></a>Memory Use – How Computer Store <strong>Matrices</strong></h2><p>A key way to save memory: just store the <strong>non-zero elements</strong>, this is called <strong>sparse</strong> storage. This is suited to sparse matrices that most elements are zero</p>
+<h2 id="Memory-Use-–-How-Computer-Store-Matrices">4. Memory Use – How Computer Store Matrices</h2><p>A key way to save memory: just store the <strong>non-zero elements</strong>, this is called <strong>sparse</strong> storage. This is suited to sparse matrices that most elements are zero</p>
 <p>The opposite, is <strong>dense</strong> storage, store every elements</p>
-<h2 id="Speed-–-How-Computer-Compute-Matrices"><a href="#Speed-–-How-Computer-Compute-Matrices" class="headerlink" title="Speed – How Computer Compute Matrices"></a>Speed – How Computer Compute Matrices</h2><p>Some key points to be considerd</p>
+<h2 id="Speed-–-How-Computer-Compute-Matrices">5. Speed – How Computer Compute Matrices</h2><p>Some key points to be considerd</p>
 <ul>
 <li>Computational complexity: the big O notation, <strong>algorithm</strong></li>
 <li>Vectorization: Modern GPU and CPU, use low-level APIs: BLAS, LAPACK, <strong>hardware</strong></li>
 <li>Scaling to multiple cores and nodes</li>
 <li>Locality: move data around, <strong>hardware</strong></li>
 </ul>
-<h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><p>Use multiple core and machine</p>
+<h2 id="Scalability">6. Scalability</h2><p>Use multiple core and machine</p>
 
     </div>
 
@@ -428,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-Computations"><span class="nav-number">2.</span> <span class="nav-text">Matrix Computations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy-%E2%80%94-How-Computer-Store-Numbers"><span class="nav-number">3.</span> <span class="nav-text">Accuracy — How Computer Store Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditioning-and-Stability"><span class="nav-number">3.1.</span> <span class="nav-text">Conditioning and Stability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Approximation-accuracy"><span class="nav-number">3.2.</span> <span class="nav-text">Approximation accuracy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Use-%E2%80%93-How-Computer-Store-Matrices"><span class="nav-number">4.</span> <span class="nav-text">Memory Use – How Computer Store Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Speed-%E2%80%93-How-Computer-Compute-Matrices"><span class="nav-number">5.</span> <span class="nav-text">Speed – How Computer Compute Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scalability"><span class="nav-number">6.</span> <span class="nav-text">Scalability</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-Computations"><span class="nav-number">2.</span> <span class="nav-text">2. Matrix Computations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy-%E2%80%94-How-Computer-Store-Numbers"><span class="nav-number">3.</span> <span class="nav-text">3. Accuracy — How Computer Store Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditioning-and-Stability"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Conditioning and Stability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Approximation-accuracy"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Approximation accuracy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Use-%E2%80%93-How-Computer-Store-Matrices"><span class="nav-number">4.</span> <span class="nav-text">4. Memory Use – How Computer Store Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Speed-%E2%80%93-How-Computer-Compute-Matrices"><span class="nav-number">5.</span> <span class="nav-text">5. Speed – How Computer Compute Matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scalability"><span class="nav-number">6.</span> <span class="nav-text">6. Scalability</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IntroGoal: calibrate between leishen lidar C16 and 6 axis IMU Ref: unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com) TheoryRef Goal: estim">
+  <meta name="description" content="1. IntroGoal: calibrate between leishen lidar C16 and 6 axis IMU Ref: unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com) 2. TheoryRef Goal:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Calibration Between Lidar and IMU">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/imu-lidar-calibration/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="IntroGoal: calibrate between leishen lidar C16 and 6 axis IMU Ref: unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com) TheoryRef Goal: estim">
+<meta property="og:description" content="1. IntroGoal: calibrate between leishen lidar C16 and 6 axis IMU Ref: unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com) 2. TheoryRef Goal:">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162339_DjJ4cJ.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png">
@@ -272,16 +272,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Goal: calibrate between leishen lidar C16 and 6 axis IMU</p>
+        <h2 id="Intro">1. Intro</h2><p>Goal: calibrate between leishen lidar C16 and 6 axis IMU</p>
 <p>Ref: <a target="_blank" rel="noopener" href="https://github.com/unmannedlab/imu_lidar_calibration">unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com)</a></p>
-<h2 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VIc8XxNrymQ">Ref</a></p>
+<h2 id="Theory">2. Theory</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VIc8XxNrymQ">Ref</a></p>
 <p>Goal: estimate the extrinsic<br>$$<br>T_L^I&#x3D;\left[\begin{array}{cc}<br>R_L^I &amp; { }^I \mathrm{P}_{\mathrm{L}} \<br>0 &amp; 1<br>\end{array}\right]<br>$$<br>Step:</p>
 <ul>
 <li>Rotation Estimation</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162339_DjJ4cJ.png" alt="image-20230527162339584"></p>
 <p>Motion of Lidar &#x3D; Motion of IMU</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png" alt="image-20230527162708340" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png" alt="image-20230527162708340" style="zoom:50%;">
 
 <ul>
 <li>Tranlation Estimation</li>
@@ -291,16 +291,16 @@
 <p>the key state is from Lidar data</p>
 <p>Minimize the data in a EKF process</p>
 <p>System design</p>
-<h2 id="Data-Analysis"><a href="#Data-Analysis" class="headerlink" title="Data Analysis"></a>Data Analysis</h2><p>The data sample</p>
+<h2 id="Data-Analysis">3. Data Analysis</h2><p>The data sample</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172131_SoemvE.png" alt="image-20230527172131502"></p>
 <p>Ours</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172251_cSXtgc.png" alt="image-20230527172251129"></p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527174240_VWkk67.png" alt="image-20230527174240241"></p>
 <p>roll, pitch, azimuth</p>
-<h3 id="difference-between-azimuth-and-yaw"><a href="#difference-between-azimuth-and-yaw" class="headerlink" title="difference between azimuth and yaw"></a>difference between azimuth and yaw</h3><p>while the yaw is turn from current orientaion</p>
+<h3 id="difference-between-azimuth-and-yaw">3.1. difference between azimuth and yaw</h3><p>while the yaw is turn from current orientaion</p>
 <p>the azimuth is the absolute heading</p>
 <p><a target="_blank" rel="noopener" href="https://novatel.com/solutions/attitude">Ref</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id>4. </h2>
     </div>
 
     
@@ -385,7 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory"><span class="nav-number">2.</span> <span class="nav-text">Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Analysis"><span class="nav-number">3.</span> <span class="nav-text">Data Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#difference-between-azimuth-and-yaw"><span class="nav-number">3.1.</span> <span class="nav-text">difference between azimuth and yaw</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">1. Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory"><span class="nav-number">2.</span> <span class="nav-text">2. Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Analysis"><span class="nav-number">3.</span> <span class="nav-text">3. Data Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#difference-between-azimuth-and-yaw"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. difference between azimuth and yaw</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">4. </span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

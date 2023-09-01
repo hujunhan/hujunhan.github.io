@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of robot">
+  <meta name="description" content="1. IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of rob">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Build A Mobile Robot from Scratch —— Part I">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of robot">
+<meta property="og:description" content="1. IntroWhy this project? I wanna build a robot from scratch to fill the gap between theory and reality. To build the robot, usually need following knowledge base  Mechanics, the build the body of rob">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-19-40-18.png">
@@ -269,14 +269,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Why this project? I wanna build a robot from scratch to fill the gap between theory and reality.</p>
+        <h2 id="Intro">1. Intro</h2><p>Why this project? I wanna build a robot from scratch to fill the gap between theory and reality.</p>
 <p>To build the robot, usually need following knowledge base</p>
 <ul>
 <li>Mechanics, the build the body of robot</li>
 <li>Electronic, the power of the robot</li>
 <li>Computer, the brain of the robot</li>
 </ul>
-<h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>For the robot, I would like to focus on the mobile robot platform</p>
+<h2 id="Goal">2. Goal</h2><p>For the robot, I would like to focus on the mobile robot platform</p>
 <p>Two level goals:</p>
 <ol>
 <li>Basic level, the robot can move, and use the lidar as a SLAM  sensor, can track something using camera</li>
@@ -289,7 +289,7 @@
 <li>Navigation, get the high-level command and go to desired position</li>
 </ol>
 <p>Communication Ethernet</p>
-<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p>Motor</p>
+<h2 id="Path">3. Path</h2><p>Motor</p>
 <ul>
 <li>Control how it works</li>
 <li>feedback control</li>
@@ -297,11 +297,11 @@
 <li>speed control</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png" alt="image-20221113154430236"></p>
-<h2 id="Chassis"><a href="#Chassis" class="headerlink" title="Chassis"></a>Chassis</h2><p>Design</p>
+<h2 id="Chassis">4. Chassis</h2><p>Design</p>
 <p>34cm  30cm  23cm</p>
 <p>Front x2</p>
 <p>Rear x2</p>
-<h2 id="New-Thing"><a href="#New-Thing" class="headerlink" title="New Thing"></a>New Thing</h2><h3 id="Motor-Driver"><a href="#Motor-Driver" class="headerlink" title="Motor Driver"></a>Motor Driver</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ygrsIqWOh3Y">Ref</a></p>
+<h2 id="New-Thing">5. New Thing</h2><h3 id="Motor-Driver">5.1. Motor Driver</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ygrsIqWOh3Y">Ref</a></p>
 <p>Working with DC motor</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-19-40-18.png" alt="image-20221113194018459"></p>
 <ul>
@@ -323,7 +323,7 @@
 <li>DBH-12，20A, peak 30A</li>
 <li>IBT2, single channel, 30A, peak 43A</li>
 </ul>
-<h3 id="Micro-Controller"><a href="#Micro-Controller" class="headerlink" title="Micro Controller"></a>Micro Controller</h3><p>UNO or raspberry pi PICO</p>
+<h3 id="Micro-Controller">5.2. Micro Controller</h3><p>UNO or raspberry pi PICO</p>
 <p>Pico should be a better choice in 2022 (introduced in 2021)</p>
 <ul>
 <li>Much faster (133MHz vs 16MHz)</li>
@@ -331,7 +331,7 @@
 <li>Lower power DC (1.8v-5.5v)</li>
 <li>More port (Analog and Digital)</li>
 </ul>
-<h3 id="Battery"><a href="#Battery" class="headerlink" title="Battery"></a>Battery</h3><p>LIPO battery, high capacity in lightweight</p>
+<h3 id="Battery">5.3. Battery</h3><p>LIPO battery, high capacity in lightweight</p>
 <p>Con: easily damaged</p>
 <p>Lithium-Ion Polymer (锂离子聚合物电池)</p>
 <ul>
@@ -358,7 +358,7 @@
 <li>XT60</li>
 <li>EC3</li>
 </ul>
-<h3 id="Base-Material"><a href="#Base-Material" class="headerlink" title="Base Material"></a>Base Material</h3><p>Consider: strength to weight</p>
+<h3 id="Base-Material">5.4. Base Material</h3><p>Consider: strength to weight</p>
 <p>Aluminum</p>
 <ul>
 <li>lightweight</li>
@@ -368,11 +368,11 @@
 <li>lightweight</li>
 <li>drilled</li>
 </ul>
-<h3 id="Channeling-System"><a href="#Channeling-System" class="headerlink" title="Channeling System"></a>Channeling System</h3><p>Actobotics system: good availablity</p>
+<h3 id="Channeling-System">5.5. Channeling System</h3><p>Actobotics system: good availablity</p>
 <p><strong><a target="_blank" rel="noopener" href="https://www.gobilda.com/structure/">GoBilda system</a>:</strong> good quality, successor to the Actobotics</p>
 <p>Vex system</p>
 <p>Lynxmotion</p>
-<h3 id="Motor-Selection"><a href="#Motor-Selection" class="headerlink" title="Motor Selection"></a>Motor Selection</h3><p>DC Gear motor</p>
+<h3 id="Motor-Selection">5.6. Motor Selection</h3><p>DC Gear motor</p>
 <ul>
 <li>Planetary: a bit expensive, but quiet</li>
 <li>Spur: cheap, but noise</li>
@@ -411,7 +411,7 @@
 <li><strong>Bearing</strong> is quite important since the whole load is on the wheel</li>
 <li>if there are no bearings, the motor would load all the pressure</li>
 </ul>
-<h3 id="Wheel"><a href="#Wheel" class="headerlink" title="Wheel"></a>Wheel</h3><p>Parameter for wheel:</p>
+<h3 id="Wheel">5.7. Wheel</h3><p>Parameter for wheel:</p>
 <ul>
 <li>Wheel size, determine the speed</li>
 <li>Wheel width, determine the traction and maximum load</li>
@@ -432,7 +432,7 @@
 <li>harder or softer？</li>
 <li>30A maybe too soft</li>
 </ul>
-<h3 id="Electronics"><a href="#Electronics" class="headerlink" title="Electronics"></a>Electronics</h3><p>Motor driving</p>
+<h3 id="Electronics">5.8. Electronics</h3><p>Motor driving</p>
 <p>Power distribution board</p>
 <p>Motor controller</p>
 <p>Fuses: (保险丝)</p>
@@ -440,7 +440,7 @@
 <li>if the current is too big, would case heat, may lead fire</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-15-21-13-17.png" alt="image-20221115211317451"></p>
-<h3 id="Power-Source"><a href="#Power-Source" class="headerlink" title="Power Source"></a>Power Source</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IT19dg73nKU">Ref</a></p>
+<h3 id="Power-Source">5.9. Power Source</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IT19dg73nKU">Ref</a></p>
 <p>Regulator and Convertor</p>
 <p>Logic voltage, 5V(4.7-5.2), 3.3V.</p>
 <p>Motor: 6V, 12V</p>
@@ -458,9 +458,9 @@
 <li>From any to any</li>
 <li>Buck boost converter, S9V11F5 (from 2-16 to 5)</li>
 </ul>
-<h3 id="Motor-Controller"><a href="#Motor-Controller" class="headerlink" title="Motor Controller"></a>Motor Controller</h3><h3 id="Weight-Consideration"><a href="#Weight-Consideration" class="headerlink" title="Weight Consideration"></a>Weight Consideration</h3><p>If the robot is too lightweight, there would be not enough traction for the robot to move.</p>
-<h3 id="Connector"><a href="#Connector" class="headerlink" title="Connector"></a>Connector</h3><p>JST</p>
-<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><table>
+<h3 id="Motor-Controller">5.10. Motor Controller</h3><h3 id="Weight-Consideration">5.11. Weight Consideration</h3><p>If the robot is too lightweight, there would be not enough traction for the robot to move.</p>
+<h3 id="Connector">5.12. Connector</h3><p>JST</p>
+<h2 id="BOM">6. BOM</h2><table>
 <thead>
 <tr>
 <th>Part</th>
@@ -530,7 +530,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="Omni-wheel"><a href="#Omni-wheel" class="headerlink" title="Omni wheel"></a>Omni wheel</h3><table>
+<h3 id="Omni-wheel">6.1. Omni wheel</h3><table>
 <thead>
 <tr>
 <th>Name</th>
@@ -584,17 +584,17 @@
 <td></td>
 </tr>
 </tbody></table>
-<h2 id="Progress"><a href="#Progress" class="headerlink" title="Progress"></a>Progress</h2><p>11.21</p>
+<h2 id="Progress">7. Progress</h2><p>11.21</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-21-23-12-05.png" alt="image-20221121231205713"></p>
 <p>12.5 Test Robot Motor</p>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> Full Speed</li>
-<li><input checked="" disabled="" type="checkbox"> Arduino PWM</li>
-<li><input checked="" disabled="" type="checkbox"> 20%</li>
-<li><input checked="" disabled="" type="checkbox"> 50%</li>
-<li><input checked="" disabled="" type="checkbox"> 100%</li>
-<li><input checked="" disabled="" type="checkbox"> Encoder</li>
-<li><input checked="" disabled="" type="checkbox"> Each rotation</li>
+<li><input checked disabled type="checkbox"> Full Speed</li>
+<li><input checked disabled type="checkbox"> Arduino PWM</li>
+<li><input checked disabled type="checkbox"> 20%</li>
+<li><input checked disabled type="checkbox"> 50%</li>
+<li><input checked disabled type="checkbox"> 100%</li>
+<li><input checked disabled type="checkbox"> Encoder</li>
+<li><input checked disabled type="checkbox"> Each rotation</li>
 </ul>
 <p>TODO:</p>
 <ul>
@@ -609,19 +609,19 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">pinMode(<span class="number">8</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">7</span>,OUTPUT);</span><br><span class="line">digitalWrite(<span class="number">8</span>, HIGH);</span><br><span class="line">digitalWrite(<span class="number">7</span>, HIGH);</span><br><span class="line"></span><br><span class="line"><span class="comment">//PWM output</span></span><br><span class="line">pinMode(<span class="number">6</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">5</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="Update-Dec-10"><a href="#Update-Dec-10" class="headerlink" title="Update Dec.10"></a>Update Dec.10</h3><p>Currently the robot works great on open-loop rotate and move forward, backward</p>
+<h3 id="Update-Dec-10">7.1. Update Dec.10</h3><p>Currently the robot works great on open-loop rotate and move forward, backward</p>
 <p>Next</p>
 <ol>
 <li>Close-loop control on the RPM</li>
 </ol>
 <p>Test how linear the motor is. That is the relation between the PWM  duty rate and the RPM</p>
-<h3 id="Update-Dec-13"><a href="#Update-Dec-13" class="headerlink" title="Update Dec.13"></a>Update Dec.13</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-45.png" alt="image-20221213223345245"></p>
+<h3 id="Update-Dec-13">7.2. Update Dec.13</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-45.png" alt="image-20221213223345245"></p>
 <p>Re-organize the wire and hide the wire in the alumni channel</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-58.png" alt="image-20221213223358163"></p>
 <p>Currently the robot’s speed control is under PID control</p>
 <p>To make the position control closed-loop, still need encoder+IMU</p>
 <p>And localization system should be added (SLAM)</p>
-<h3 id="Update-Dec-15"><a href="#Update-Dec-15" class="headerlink" title="Update Dec.15"></a>Update Dec.15</h3><p>Use DC jack to power the Jetson and Arduino</p>
+<h3 id="Update-Dec-15">7.3. Update Dec.15</h3><p>Use DC jack to power the Jetson and Arduino</p>
 <p>Given the hardware and electronic elements I have, followed step</p>
 <ul>
 <li><del>Arduino Remote Control</del></li>
@@ -631,19 +631,19 @@
 <li><del>Read IMU data</del></li>
 <li><del>Install Lidar and read lidar data</del></li>
 </ul>
-<h3 id="Update-Dec-17"><a href="#Update-Dec-17" class="headerlink" title="Update Dec.17"></a>Update Dec.17</h3><ol>
+<h3 id="Update-Dec-17">7.4. Update Dec.17</h3><ol>
 <li><del>Rewire the arduino</del></li>
 <li><del>Power Arduino with Jetson Nano</del></li>
 <li><del>Communicate between arduino and jetson nano</del></li>
 </ol>
-<h3 id="Update-Dec-19"><a href="#Update-Dec-19" class="headerlink" title="Update Dec.19"></a>Update Dec.19</h3><p><del>Add IR remote in arduino</del></p>
+<h3 id="Update-Dec-19">7.5. Update Dec.19</h3><p><del>Add IR remote in arduino</del></p>
 <p>TODO:</p>
 <ul>
 <li><del>Remote control move forward&#x2F;reverse&#x2F;rotate</del></li>
 <li>Use the lidar to build the map</li>
 </ul>
-<h3 id="Update-Dec-21"><a href="#Update-Dec-21" class="headerlink" title="Update Dec.21"></a>Update Dec.21</h3><p>Remote speed control and stop done</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png" alt="image-20221221223618322" style="zoom: 15%;" />
+<h3 id="Update-Dec-21">7.6. Update Dec.21</h3><p>Remote speed control and stop done</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png" alt="image-20221221223618322" style="zoom: 15%;">
 
 <p>TODO:</p>
 <ul>
@@ -656,7 +656,7 @@
 <li>3D print a level for lidar</li>
 <li>SLAM</li>
 </ul>
-<h2 id="Takeout"><a href="#Takeout" class="headerlink" title="Takeout"></a>Takeout</h2><p>Low frequency PWM would cause the motor hauling, by increasing the frequency (like 3k) the hauling would disappear. In some MCU, by playing with the register, we might change the default frequency.</p>
+<h2 id="Takeout">8. Takeout</h2><p>Low frequency PWM would cause the motor hauling, by increasing the frequency (like 3k) the hauling would disappear. In some MCU, by playing with the register, we might change the default frequency.</p>
 <p>While selecting the MCU, checkout how many interrupt are needed and how many interrupt can the MCU provide.</p>
 <p>By using encoder’s both channel and both rising and falling, we can maximize the accuracy of the motor</p>
 <p>A good motor is almost linear between RPM and PWM</p>
@@ -746,7 +746,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">2.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-number">3.</span> <span class="nav-text">Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chassis"><span class="nav-number">4.</span> <span class="nav-text">Chassis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Thing"><span class="nav-number">5.</span> <span class="nav-text">New Thing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Driver"><span class="nav-number">5.1.</span> <span class="nav-text">Motor Driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Micro-Controller"><span class="nav-number">5.2.</span> <span class="nav-text">Micro Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Battery"><span class="nav-number">5.3.</span> <span class="nav-text">Battery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base-Material"><span class="nav-number">5.4.</span> <span class="nav-text">Base Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channeling-System"><span class="nav-number">5.5.</span> <span class="nav-text">Channeling System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Selection"><span class="nav-number">5.6.</span> <span class="nav-text">Motor Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wheel"><span class="nav-number">5.7.</span> <span class="nav-text">Wheel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Electronics"><span class="nav-number">5.8.</span> <span class="nav-text">Electronics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Power-Source"><span class="nav-number">5.9.</span> <span class="nav-text">Power Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Controller"><span class="nav-number">5.10.</span> <span class="nav-text">Motor Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight-Consideration"><span class="nav-number">5.11.</span> <span class="nav-text">Weight Consideration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector"><span class="nav-number">5.12.</span> <span class="nav-text">Connector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-number">6.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Omni-wheel"><span class="nav-number">6.1.</span> <span class="nav-text">Omni wheel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Progress"><span class="nav-number">7.</span> <span class="nav-text">Progress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-10"><span class="nav-number">7.1.</span> <span class="nav-text">Update Dec.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-13"><span class="nav-number">7.2.</span> <span class="nav-text">Update Dec.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-15"><span class="nav-number">7.3.</span> <span class="nav-text">Update Dec.15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-17"><span class="nav-number">7.4.</span> <span class="nav-text">Update Dec.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-19"><span class="nav-number">7.5.</span> <span class="nav-text">Update Dec.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-21"><span class="nav-number">7.6.</span> <span class="nav-text">Update Dec.21</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeout"><span class="nav-number">8.</span> <span class="nav-text">Takeout</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">1. Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">2.</span> <span class="nav-text">2. Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-number">3.</span> <span class="nav-text">3. Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chassis"><span class="nav-number">4.</span> <span class="nav-text">4. Chassis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-Thing"><span class="nav-number">5.</span> <span class="nav-text">5. New Thing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Driver"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Motor Driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Micro-Controller"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. Micro Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Battery"><span class="nav-number">5.3.</span> <span class="nav-text">5.3. Battery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base-Material"><span class="nav-number">5.4.</span> <span class="nav-text">5.4. Base Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channeling-System"><span class="nav-number">5.5.</span> <span class="nav-text">5.5. Channeling System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Selection"><span class="nav-number">5.6.</span> <span class="nav-text">5.6. Motor Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wheel"><span class="nav-number">5.7.</span> <span class="nav-text">5.7. Wheel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Electronics"><span class="nav-number">5.8.</span> <span class="nav-text">5.8. Electronics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Power-Source"><span class="nav-number">5.9.</span> <span class="nav-text">5.9. Power Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motor-Controller"><span class="nav-number">5.10.</span> <span class="nav-text">5.10. Motor Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight-Consideration"><span class="nav-number">5.11.</span> <span class="nav-text">5.11. Weight Consideration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector"><span class="nav-number">5.12.</span> <span class="nav-text">5.12. Connector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-number">6.</span> <span class="nav-text">6. BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Omni-wheel"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. Omni wheel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Progress"><span class="nav-number">7.</span> <span class="nav-text">7. Progress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-10"><span class="nav-number">7.1.</span> <span class="nav-text">7.1. Update Dec.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-13"><span class="nav-number">7.2.</span> <span class="nav-text">7.2. Update Dec.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-15"><span class="nav-number">7.3.</span> <span class="nav-text">7.3. Update Dec.15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-17"><span class="nav-number">7.4.</span> <span class="nav-text">7.4. Update Dec.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-19"><span class="nav-number">7.5.</span> <span class="nav-text">7.5. Update Dec.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Dec-21"><span class="nav-number">7.6.</span> <span class="nav-text">7.6. Update Dec.21</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeout"><span class="nav-number">8.</span> <span class="nav-text">8. Takeout</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

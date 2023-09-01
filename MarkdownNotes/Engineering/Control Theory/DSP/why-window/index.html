@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在数字信号处理中，我们经常会对一段信号进行加窗的处理，为什么要这样做呢？这里采用自上而下的方式来考虑 FFT当我们要考量信号的频域特征时，我们就要做傅里叶变换。 FFT的对象只能是两种  从负无穷到正无穷 有限长度的周期信号  在实际中，FFT的对象肯定是有限长度的时域信号，所以会对信号进行截断。如果截断的长度不是周期的整数倍就会存在泄露，如下所示  如果是周期性的截断，那么截断之后的信号还是保留">
+  <meta name="description" content="在数字信号处理中，我们经常会对一段信号进行加窗的处理，为什么要这样做呢？这里采用自上而下的方式来考虑 1. FFT当我们要考量信号的频域特征时，我们就要做傅里叶变换。 FFT的对象只能是两种  从负无穷到正无穷 有限长度的周期信号  在实际中，FFT的对象肯定是有限长度的时域信号，所以会对信号进行截断。如果截断的长度不是周期的整数倍就会存在泄露，如下所示  如果是周期性的截断，那么截断之后的信号还">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why We Need Window Function">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/DSP/why-window/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="在数字信号处理中，我们经常会对一段信号进行加窗的处理，为什么要这样做呢？这里采用自上而下的方式来考虑 FFT当我们要考量信号的频域特征时，我们就要做傅里叶变换。 FFT的对象只能是两种  从负无穷到正无穷 有限长度的周期信号  在实际中，FFT的对象肯定是有限长度的时域信号，所以会对信号进行截断。如果截断的长度不是周期的整数倍就会存在泄露，如下所示  如果是周期性的截断，那么截断之后的信号还是保留">
+<meta property="og:description" content="在数字信号处理中，我们经常会对一段信号进行加窗的处理，为什么要这样做呢？这里采用自上而下的方式来考虑 1. FFT当我们要考量信号的频域特征时，我们就要做傅里叶变换。 FFT的对象只能是两种  从负无穷到正无穷 有限长度的周期信号  在实际中，FFT的对象肯定是有限长度的时域信号，所以会对信号进行截断。如果截断的长度不是周期的整数倍就会存在泄露，如下所示  如果是周期性的截断，那么截断之后的信号还">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231116.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231219.png">
@@ -264,7 +264,7 @@
 
       
         <p>在数字信号处理中，我们经常会对一段信号进行加窗的处理，为什么要这样做呢？这里采用自上而下的方式来考虑</p>
-<h2 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h2><p>当我们要考量信号的频域特征时，我们就要做傅里叶变换。</p>
+<h2 id="FFT">1. FFT</h2><p>当我们要考量信号的频域特征时，我们就要做傅里叶变换。</p>
 <p>FFT的对象只能是两种</p>
 <ul>
 <li>从负无穷到正无穷</li>
@@ -274,17 +274,17 @@
 <ul>
 <li>如果是周期性的截断，那么截断之后的信号还是保留了原来信号的信息，可以还原出来的信号</li>
 </ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231116.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231116.png" style="zoom:50%;">
 
 <ul>
 <li>如果是非周期性截断，起始和结束时刻的赋值不等，这样就是非连续的了</li>
 </ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231219.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329231219.png" style="zoom:50%;">
 
 <p>对截断后的信号做频谱分析显然会导致频谱复杂，只会在正确的频率上出现一个峰值，其他地方会存在<strong>泄露</strong></p>
 <p>窗函数就是为了减少泄露，使得时域信号变化之后更好地满足周期性，<strong>减少泄露</strong></p>
-<h2 id="窗函数？"><a href="#窗函数？" class="headerlink" title="窗函数？"></a>窗函数？</h2><p>由上一节得知，我们可以通过窗函数来减少泄露，尽量使得截断的信号能够更加真实地反应原信号的频谱</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329232804.png" style="zoom:50%;" />
+<h2 id="窗函数？">2. 窗函数？</h2><p>由上一节得知，我们可以通过窗函数来减少泄露，尽量使得截断的信号能够更加真实地反应原信号的频谱</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200329232804.png" style="zoom:50%;">
 
 <p>理想情况是<strong>左图</strong>，能够准确还原出原来信号的频谱信息</p>
 <p>不加窗的实际情况大致如<strong>中间图</strong>，存在很多不相关的频率信息，这就是泄露</p>
@@ -379,7 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FFT"><span class="nav-number">1.</span> <span class="nav-text">FFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">窗函数？</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FFT"><span class="nav-number">1.</span> <span class="nav-text">1. FFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2. 窗函数？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

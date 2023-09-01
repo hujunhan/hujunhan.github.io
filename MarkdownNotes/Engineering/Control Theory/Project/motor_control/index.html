@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Method Identity the behavior of the object to be controlled. In theory, analyze the response, the more linear, the easier to control Design Controller Check the result and tune  BehaviorCollect the da">
+  <meta name="description" content="1. Method Identity the behavior of the object to be controlled. In theory, analyze the response, the more linear, the easier to control Design Controller Check the result and tune  2. BehaviorCollect">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Motor Control for Autonomous Robot">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/Project/motor_control/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="Method Identity the behavior of the object to be controlled. In theory, analyze the response, the more linear, the easier to control Design Controller Check the result and tune  BehaviorCollect the da">
+<meta property="og:description" content="1. Method Identity the behavior of the object to be controlled. In theory, analyze the response, the more linear, the easier to control Design Controller Check the result and tune  2. BehaviorCollect">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-21-40-34.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-22-52-30.png">
@@ -263,13 +263,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><ol>
+        <h2 id="Method">1. Method</h2><ol>
 <li>Identity the behavior of the object to be controlled.</li>
 <li>In theory, analyze the response, the more linear, the easier to control</li>
 <li>Design Controller</li>
 <li>Check the result and tune</li>
 </ol>
-<h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Collect the data by giving the motor PWM from 0 to 255, record the RPM and see whats going on</p>
+<h2 id="Behavior">2. Behavior</h2><p>Collect the data by giving the motor PWM from 0 to 255, record the RPM and see whats going on</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-21-40-34.png" alt="image-20221210214034055"></p>
 <p>We can see that the relation is almost linear</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-10-22-52-30.png" alt="image-20221210225230532"></p>
@@ -280,13 +280,13 @@
 <li>Error introduced while manufacturing the two motor</li>
 <li>Error while installing the two motor</li>
 </ol>
-<h3 id="Response-Time"><a href="#Response-Time" class="headerlink" title="Response Time"></a>Response Time</h3><p>We need to see how quickly the encoder can calculate a accurate RPM</p>
+<h3 id="Response-Time">2.1. Response Time</h3><p>We need to see how quickly the encoder can calculate a accurate RPM</p>
 <p>How much pulse the system need? We need to be accurate in slowest situation</p>
 <p>From the data, the RPM start to be normal from 10 RPM while given PWM around 20.</p>
 <p>Let’s see 10RPM, means 10&#x2F;60 per seconds, times 187, around 30 pulse, not enough, if we use both RISING and FALLING signal and use two signal, it would be around 120 pulse in a second, then 200ms (24 count) would be enough.</p>
 <p>Conclusion: 200ms (4% error max), 100ms (10% error max)</p>
 <p>Use 100ms</p>
-<h3 id="PID"><a href="#PID" class="headerlink" title="PID"></a>PID</h3><ol>
+<h3 id="PID">2.2. PID</h3><ol>
 <li>Add fraction, the RPM should be smaller</li>
 <li>We need to increase PWM to maintain the desired RPM</li>
 </ol>
@@ -382,7 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behavior"><span class="nav-number">2.</span> <span class="nav-text">Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Time"><span class="nav-number">2.1.</span> <span class="nav-text">Response Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PID"><span class="nav-number">2.2.</span> <span class="nav-text">PID</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.</span> <span class="nav-text">1. Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behavior"><span class="nav-number">2.</span> <span class="nav-text">2. Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Time"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Response Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PID"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. PID</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

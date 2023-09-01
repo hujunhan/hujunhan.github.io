@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽象是多层次的，从">
+  <meta name="description" content="1. 0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 1.1. Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽">
 <meta property="og:type" content="article">
 <meta property="og:title" content="依据基本原理构建线代计算机--硬件部分">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/build-cs-hardware/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽象是多层次的，从">
+<meta property="og:description" content="1. 0 Introduction从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件 这门课专注于硬件部分 1.1. Background最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容 当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。  这样的抽">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/nand-mux-demux.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu.png">
@@ -271,9 +271,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="0-Introduction"><a href="#0-Introduction" class="headerlink" title="0 Introduction"></a>0 Introduction</h2><p>从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件</p>
+        <h2 id="0-Introduction">1. 0 Introduction</h2><p>从与非门到俄罗斯方块的建立，课程分为两个独立的部分，硬件和软件</p>
 <p>这门课专注于硬件部分</p>
-<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容</p>
+<h3 id="Background">1.1. Background</h3><p>最简单的Hello World背后也隐藏着很多神奇的事。比如你写一句printf，最后就在显示器上显示出了内容</p>
 <p>当然这也是计算机科学中最重要的抽象过程，你不需要知道how，你只需要知道what，只需要关注高一层的逻辑就能实现你想要的功能。</p>
 <ul>
 <li>这样的抽象是多层次的，从最简单的电子元器件到CPU到计算机到编程语言</li>
@@ -287,14 +287,14 @@
 </ul>
 <span id="more"></span>
 
-<h3 id="This-Course"><a href="#This-Course" class="headerlink" title="This Course"></a>This Course</h3><p>构建一个Hack计算机，能够沟通ROM,CPU和RAM</p>
+<h3 id="This-Course">1.2. This Course</h3><p>构建一个Hack计算机，能够沟通ROM,CPU和RAM</p>
 <p>学习的方式：从下到上，从EE到CS</p>
 <ul>
 <li>怎么建立一个芯片：使用模拟器仿真</li>
 </ul>
 <p>设计：知道了一个芯片的抽象功能，然后设计硬件图，然后转化为硬件描述语言，最后用在仿真软件里看效果</p>
-<h3 id="Next-Course"><a href="#Next-Course" class="headerlink" title="Next Course"></a>Next Course</h3><p>之前的课程中已经建立了可以运行汇编语言的电脑，在下一节课中，我们会建立更加高级的编程语言，并且建立相应的编译器、基础系统库</p>
-<h2 id="1-Boolean-Functions-and-Gate-Logic"><a href="#1-Boolean-Functions-and-Gate-Logic" class="headerlink" title="1 Boolean Functions and Gate Logic"></a>1 Boolean Functions and Gate Logic</h2><h3 id="Boolean-Functions"><a href="#Boolean-Functions" class="headerlink" title="Boolean Functions"></a>Boolean Functions</h3><p>我们可以对布尔值进行的操作</p>
+<h3 id="Next-Course">1.3. Next Course</h3><p>之前的课程中已经建立了可以运行汇编语言的电脑，在下一节课中，我们会建立更加高级的编程语言，并且建立相应的编译器、基础系统库</p>
+<h2 id="1-Boolean-Functions-and-Gate-Logic">2. 1 Boolean Functions and Gate Logic</h2><h3 id="Boolean-Functions">2.1. Boolean Functions</h3><p>我们可以对布尔值进行的操作</p>
 <ul>
 <li>AND</li>
 <li>OR</li>
@@ -318,12 +318,12 @@
 </ul>
 <p>这是因为：$(\mathrm{x} \mathrm{NAND} \mathrm{y})&#x3D;\mathrm{NOT}(\mathrm{x} \mathrm{AND} \mathrm{y})$</p>
 <p>证明：AND和NOT都可以用NAND表示<br>$$<br>\begin{array}{l}{\text { 1) } \operatorname{NOT}(x)&#x3D;(x \text { NAND } x)} \ {\text { 2) }(x A N D y)&#x3D;\operatorname{NOT}(x \text { NAND } y)}\end{array}<br>$$</p>
-<h3 id="Logic-Gates"><a href="#Logic-Gates" class="headerlink" title="Logic Gates"></a>Logic Gates</h3><p>基础逻辑门：NAND、AND、OR、NOT</p>
+<h3 id="Logic-Gates">2.2. Logic Gates</h3><p>基础逻辑门：NAND、AND、OR、NOT</p>
 <p>复合逻辑门：三个输入的AND</p>
 <ul>
 <li>也是一种抽象，每种门的表达是一样的，但是实现可以不同（EE做的事）</li>
 </ul>
-<h3 id="Hardware-Description-Language"><a href="#Hardware-Description-Language" class="headerlink" title="Hardware Description Language"></a>Hardware Description Language</h3><p>HDL只是一种描述语言，还需要一个模拟器来将所描述的结构运行起来</p>
+<h3 id="Hardware-Description-Language">2.3. Hardware Description Language</h3><p>HDL只是一种描述语言，还需要一个模拟器来将所描述的结构运行起来</p>
 <ul>
 <li>所以描述的顺序是没有关系的，但是推荐从左到右，调高程序的可读性</li>
 <li>有许多不同的HDL</li>
@@ -356,7 +356,7 @@
 <p>Multi-Bit Buses</p>
 <p>我们需要对一排bit进行操作，所以，使用数组进行描述</p>
 </blockquote>
-<h3 id="Project-1"><a href="#Project-1" class="headerlink" title="Project 1"></a>Project 1</h3><p>我们要实现的是一共<strong>15个</strong>门电路</p>
+<h3 id="Project-1">2.4. Project 1</h3><p>我们要实现的是一共<strong>15个</strong>门电路</p>
 <p>除了常见的AND\NOT\OR，还有</p>
 <ul>
 <li>MUX\DEMUX</li>
@@ -368,7 +368,7 @@
 <li>先用NAND实现AND\NOT\OR</li>
 <li>然后用AND\NOT\OR实现其他逻辑</li>
 </ol>
-<h2 id="2-Boolean-Arithmetic-and-ALU"><a href="#2-Boolean-Arithmetic-and-ALU" class="headerlink" title="2 Boolean Arithmetic and ALU"></a>2 Boolean Arithmetic and ALU</h2><h3 id="Binary-Numbers"><a href="#Binary-Numbers" class="headerlink" title="Binary Numbers"></a>Binary Numbers</h3><p>我们可以用01来表示数，不管是二进制还是十进制</p>
+<h2 id="2-Boolean-Arithmetic-and-ALU">3. 2 Boolean Arithmetic and ALU</h2><h3 id="Binary-Numbers">3.1. Binary Numbers</h3><p>我们可以用01来表示数，不管是二进制还是十进制</p>
 <p>对于二进制数的操作，虽然看上去有很多，包括加减乘除比大小。但是其实我们只要能够实现<strong>加法</strong>，其他的一些操作都能够简单的实现</p>
 <ul>
 <li><p>减法和比大小显然能够轻松达成</p>
@@ -400,7 +400,7 @@
 <li><p>这就是<strong>补码的背后思路</strong>：取反+1</p>
 </li>
 </ul>
-<h3 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu.png"></p>
+<h3 id="ALU">3.2. ALU</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-alu.png"></p>
 <p>ALU接受两个输入和一个函数$f$，输出值</p>
 <ul>
 <li>$f$是一堆已经事先定义好的函数中的一个</li>
@@ -429,7 +429,7 @@
 </li>
 </ul>
 </blockquote>
-<h3 id="Project-2"><a href="#Project-2" class="headerlink" title="Project 2"></a>Project 2</h3><p>给定：在Project 1中已经实现的所有芯片</p>
+<h3 id="Project-2">3.3. Project 2</h3><p>给定：在Project 1中已经实现的所有芯片</p>
 <p>目标：构建以下新的芯片</p>
 <ul>
 <li>半加器：XOR+AND</li>
@@ -437,7 +437,7 @@
 <li>ALU</li>
 <li>…</li>
 </ul>
-<h2 id="3-Memory"><a href="#3-Memory" class="headerlink" title="3 Memory"></a>3 Memory</h2><blockquote>
+<h2 id="3-Memory">4. 3 Memory</h2><blockquote>
 <p>Cache memory: RAM is very expensive, so there are trade-offs in the situation</p>
 <ul>
 <li>Use large and cheap RAM with low quality</li>
@@ -450,7 +450,7 @@
 <li>记住系统的状态</li>
 <li>协调速度</li>
 </ul>
-<h3 id="Clock"><a href="#Clock" class="headerlink" title="Clock"></a>Clock</h3><p>在一个时钟周期内，系统的状态是一样的</p>
+<h3 id="Clock">4.1. Clock</h3><p>在一个时钟周期内，系统的状态是一样的</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-clock.png"></p>
 <p>当然在物理层面，系统状态的变化不会是瞬间的，就如图中所示灰色的部分一样</p>
 <ul>
@@ -459,7 +459,7 @@
 </ul>
 <p><strong>时序逻辑</strong>：下一时刻的输出由上一时刻的输入决定</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-seq-logic.png"></p>
-<h3 id="Data-Flip-Flop"><a href="#Data-Flip-Flop" class="headerlink" title="Data Flip Flop"></a>Data Flip Flop</h3><p>我们需要一个电路（1-Bit），能够记住一个状态</p>
+<h3 id="Data-Flip-Flop">4.2. Data Flip Flop</h3><p>我们需要一个电路（1-Bit），能够记住一个状态</p>
 <ul>
 <li>这个电路（1-Bit）能够永远记住一个状态，除非来了新的数据</li>
 </ul>
@@ -473,7 +473,7 @@
 <p>DFF的电路实现</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-dff-ee.png"></p>
 </blockquote>
-<h3 id="Memory-Units"><a href="#Memory-Units" class="headerlink" title="Memory Units"></a>Memory Units</h3><p>基本电路就是上一节提到的（1-Bit）电路，通过把许多的（1-Bit）电路顺序地连接在一起，就变成了一个<strong>寄存器</strong>，寄存器的长度w，可以是16、32、64</p>
+<h3 id="Memory-Units">4.3. Memory Units</h3><p>基本电路就是上一节提到的（1-Bit）电路，通过把许多的（1-Bit）电路顺序地连接在一起，就变成了一个<strong>寄存器</strong>，寄存器的长度w，可以是16、32、64</p>
 <p><strong>RAM unit</strong></p>
 <ul>
 <li>就是一堆有地址的寄存器叠加起来</li>
@@ -481,7 +481,7 @@
 <li>地址的长度$\log_2{n}$</li>
 </ul>
 <p>在这节课中，会建立一些不同长度、大小的RAM</p>
-<h3 id="Counters"><a href="#Counters" class="headerlink" title="Counters"></a>Counters</h3><p>计数器的作用：递增地址，使得程序能够顺序执行</p>
+<h3 id="Counters">4.4. Counters</h3><p>计数器的作用：递增地址，使得程序能够顺序执行</p>
 <p>所以需要的功能有</p>
 <ul>
 <li>Reset，PC&#x3D;0</li>
@@ -489,7 +489,7 @@
 <li>Goto，PC&#x3D;n</li>
 </ul>
 <p>计数器在硬件上抽象地实现了上述功能</p>
-<h3 id="Project-3"><a href="#Project-3" class="headerlink" title="Project 3"></a>Project 3</h3><p>给定：Project 2中所实现的所有芯片</p>
+<h3 id="Project-3">4.5. Project 3</h3><p>给定：Project 2中所实现的所有芯片</p>
 <p>目标：构建以下芯片</p>
 <ul>
 <li><p>Bit</p>
@@ -510,7 +510,7 @@
 <li><p>好几个MUX选择</p>
 </li>
 </ul>
-<h2 id="4-Machine-Language"><a href="#4-Machine-Language" class="headerlink" title="4 Machine Language"></a>4 Machine Language</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>How is it possible that  we can do all different things with a single hardware</p>
+<h2 id="4-Machine-Language">5. 4 Machine Language</h2><h3 id="Overview">5.1. Overview</h3><p>How is it possible that  we can do all different things with a single hardware</p>
 <ul>
 <li>theory from Turing: one machine can simulate all other machine</li>
 <li>practice from Von Neumann: architect</li>
@@ -526,8 +526,8 @@
 <p>a instruction 010001000110010</p>
 <p>in fact it can be view as 3 part: <code>0100010</code> <code>0011</code> <code>0010</code> ADD R3 R2</p>
 </blockquote>
-<h3 id="Elements"><a href="#Elements" class="headerlink" title="Elements"></a>Elements</h3><p>Machine language is the interface beteween hardware and software</p>
-<h4 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h4><ul>
+<h3 id="Elements">5.2. Elements</h3><p>Machine language is the interface beteween hardware and software</p>
+<h4 id="Operations">5.2.1. Operations</h4><ul>
 <li>Arithmetic: add, subtract</li>
 <li>Logical: and, or</li>
 <li>Flow control: goto, if</li>
@@ -537,14 +537,14 @@
 <li>richness of the set of operations</li>
 <li>data types</li>
 </ul>
-<h4 id="Addressing"><a href="#Addressing" class="headerlink" title="Addressing"></a>Addressing</h4><p>Accessing a memory location is expensive</p>
+<h4 id="Addressing">5.2.2. Addressing</h4><p>Accessing a memory location is expensive</p>
 <p>Solution: Memory Hierarchy</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/n2t-mem-hier.png"></p>
 <ul>
 <li><strong>Registers’ number and functions are a center part of the machine language</strong></li>
 </ul>
 <p>这部分基本都是微机原理所涉及的内容</p>
-<h3 id="Hack-Computer"><a href="#Hack-Computer" class="headerlink" title="Hack Computer"></a>Hack Computer</h3><p>课程所要设计的电脑</p>
+<h3 id="Hack-Computer">5.3. Hack Computer</h3><p>课程所要设计的电脑</p>
 <ul>
 <li>硬件部分</li>
 <li>16位计算机，意味着RAM里有一堆寄存器，每个寄存器都是16位的，CPU也都能处理16位的数据指令</li>
@@ -635,7 +635,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Introduction"><span class="nav-number">1.</span> <span class="nav-text">0 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-Course"><span class="nav-number">1.2.</span> <span class="nav-text">This Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-Course"><span class="nav-number">1.3.</span> <span class="nav-text">Next Course</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boolean-Functions-and-Gate-Logic"><span class="nav-number">2.</span> <span class="nav-text">1 Boolean Functions and Gate Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-Functions"><span class="nav-number">2.1.</span> <span class="nav-text">Boolean Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Gates"><span class="nav-number">2.2.</span> <span class="nav-text">Logic Gates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hardware-Description-Language"><span class="nav-number">2.3.</span> <span class="nav-text">Hardware Description Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-1"><span class="nav-number">2.4.</span> <span class="nav-text">Project 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Boolean-Arithmetic-and-ALU"><span class="nav-number">3.</span> <span class="nav-text">2 Boolean Arithmetic and ALU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Numbers"><span class="nav-number">3.1.</span> <span class="nav-text">Binary Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALU"><span class="nav-number">3.2.</span> <span class="nav-text">ALU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-2"><span class="nav-number">3.3.</span> <span class="nav-text">Project 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Memory"><span class="nav-number">4.</span> <span class="nav-text">3 Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock"><span class="nav-number">4.1.</span> <span class="nav-text">Clock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Flip-Flop"><span class="nav-number">4.2.</span> <span class="nav-text">Data Flip Flop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Units"><span class="nav-number">4.3.</span> <span class="nav-text">Memory Units</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counters"><span class="nav-number">4.4.</span> <span class="nav-text">Counters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-3"><span class="nav-number">4.5.</span> <span class="nav-text">Project 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Machine-Language"><span class="nav-number">5.</span> <span class="nav-text">4 Machine Language</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">5.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements"><span class="nav-number">5.2.</span> <span class="nav-text">Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Operations"><span class="nav-number">5.2.1.</span> <span class="nav-text">Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing"><span class="nav-number">5.2.2.</span> <span class="nav-text">Addressing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hack-Computer"><span class="nav-number">5.3.</span> <span class="nav-text">Hack Computer</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. 0 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-Course"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. This Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-Course"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. Next Course</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boolean-Functions-and-Gate-Logic"><span class="nav-number">2.</span> <span class="nav-text">2. 1 Boolean Functions and Gate Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean-Functions"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Boolean Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logic-Gates"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Logic Gates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hardware-Description-Language"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Hardware Description Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-1"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. Project 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Boolean-Arithmetic-and-ALU"><span class="nav-number">3.</span> <span class="nav-text">3. 2 Boolean Arithmetic and ALU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Numbers"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Binary Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALU"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. ALU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-2"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Project 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Memory"><span class="nav-number">4.</span> <span class="nav-text">4. 3 Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Clock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Flip-Flop"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Data Flip Flop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Units"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. Memory Units</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counters"><span class="nav-number">4.4.</span> <span class="nav-text">4.4. Counters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project-3"><span class="nav-number">4.5.</span> <span class="nav-text">4.5. Project 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Machine-Language"><span class="nav-number">5.</span> <span class="nav-text">5. 4 Machine Language</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Operations"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1. Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2. Addressing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hack-Computer"><span class="nav-number">5.3.</span> <span class="nav-text">5.3. Hack Computer</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
