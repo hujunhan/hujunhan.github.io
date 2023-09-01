@@ -188,6 +188,361 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/map/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 16:27:00" itemprop="dateCreated datePublished" datetime="2021-03-29T16:27:00-07:00">2021-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: 机器人建图技术（位置已知）<br>author: Junhan Hu<br>tags:</p>
+<ul>
+<li>maps<br>mathjax: true<br>date: 2020-7-23<br>categories:</li>
+<li>Engineering</li>
+<li>Robotics</li>
+<li>Perception</li>
+</ul>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>为什么要建图：</p>
+<ul>
+<li>学习地图是基本任务</li>
+<li>有了地图可以方便其他任务</li>
+<li>其他任务依赖正确的地图</li>
+</ul>
+<p>基本问题：环境是怎么样的</p>
+<p>已知的：环境数据和状态数据 $d&#x3D;{u_1,z1,u_2,z2,…u_t,z_t}$</p>
+<p>要计算的$m^*&#x3D;argmax_mP(m|d)$</p>
+<h2 id="地图种类"><a href="#地图种类" class="headerlink" title="地图种类"></a>地图种类</h2><ul>
+<li>Grid Maps</li>
+</ul>
+<p>世界离散化，结构是固定的，每个cell可以是被占据或者free的，这个模型是没有参数的，不需要识别特征</p>
+<ul>
+<li>每个cell的状态用概率来描述</li>
+<li>每个cell之间都是相互独立的</li>
+</ul>
+<p>更新同样是用贝叶斯滤波</p>
+<p>利用上述工具，可以使用Occupancy Grid Mapping技术，最早是为了解决传感器噪声问题，根据传感器的数据来判断是障碍物的距离</p>
+<p>或者也可以使用反射概率波形，根据统计次数来生成最大似然模型</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/3-linear-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/3-linear-system/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 16:27:00" itemprop="dateCreated datePublished" datetime="2021-03-29T16:27:00-07:00">2021-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/" itemprop="url" rel="index"><span itemprop="name">MobileRobots</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: Linear System<br>author: Junhan Hu<br>tags:</p>
+<ul>
+<li>robotics</li>
+<li>control<br>mathjax: true<br>date: 2020-4-21<br>categories:</li>
+<li>Engineering</li>
+<li>Robotics</li>
+<li>Foundation</li>
+<li>MobileRobots</li>
+</ul>
+<h2 id="Simple-Robot"><a href="#Simple-Robot" class="headerlink" title="Simple Robot"></a>Simple Robot</h2><p>We need a more systematic way in discussion</p>
+<p>Give a point mass on a line whose acceleration is directly controlled:</p>
+<p>Translate the physics model into state space form, 3 steps</p>
+<ol>
+<li>Pick the state variables</li>
+<li>High order to low order</li>
+<li>Put these in terms of state, input and output</li>
+</ol>
+<p>$$<br>\dot{x}&#x3D;\left[\begin{array}{c}<br>\dot{x}<em>{1} \<br>\dot{x}</em>{2}<br>\end{array}\right]&#x3D;\left[\begin{array}{c}<br>x_{2} \<br>u<br>\end{array}\right]&#x3D;\left[\begin{array}{cc}<br>0 &amp; 1 \<br>0 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>x_{1} \<br>x_{2}<br>\end{array}\right]+\left[\begin{array}{c}<br>0 \<br>1<br>\end{array}\right] u<br>$$</p>
+<p>$$<br>y&#x3D;p&#x3D;x_1&#x3D;[1 \space0]x<br>$$</p>
+<p>Write in a more <strong>general</strong> form<br>$$<br>\begin{aligned}<br>&amp;\dot{x}&#x3D;A x+B u\<br>&amp;y&#x3D;C x<br>\end{aligned}<br>$$<br>Here, $A$ is given by physics. What we can design is $B$ (how we control the system) and $C$ (how we sensor the system)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/3-linear-system/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 16:27:00" itemprop="dateCreated datePublished" datetime="2021-03-29T16:27:00-07:00">2021-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/" itemprop="url" rel="index"><span itemprop="name">MobileRobots</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: Design Contrl<br>author: Junhan Hu<br>tags:</p>
+<ul>
+<li>robotics</li>
+<li>control<br>mathjax: true<br>date: 2020-4-27<br>categories:</li>
+<li>Engineering</li>
+<li>Robotics</li>
+<li>Foundation</li>
+<li>MobileRobots</li>
+</ul>
+<p>We need $x$ but we do have is only $y$. What can we do?</p>
+<ul>
+<li>Design $u$ as if we had $x$</li>
+<li>Figure out $x$ from $y$</li>
+</ul>
+<h2 id="Assume-We-Got-x"><a href="#Assume-We-Got-x" class="headerlink" title="Assume We Got $x$"></a>Assume We Got $x$</h2><p>We can design the $k_1$ and $k_2$ to make the <strong>eigenvalue</strong> of the closed-loop system to be <strong>desired</strong> (<strong>negative</strong>)</p>
+<blockquote>
+<p>e.g. If we want to the eigen value of the $-1$, then, $\varphi(\lambda)&#x3D;(\lambda+1)(\lambda+1)&#x3D;\lambda^{2}+2 \lambda+1$</p>
+<p>and we got $\chi_{A-B K}&#x3D;\lambda^{2}+k_{2} \lambda+k_{1}$</p>
+<p>so just let $k_2&#x3D;2$ and $k_1&#x3D;1$, the system would be stable</p>
+</blockquote>
+<p>To say it in another way, we place the <strong>pole</strong> of the system on the desired position</p>
+<p>Still, we have some question about the method?</p>
+<ul>
+<li>This method is not always <strong>possible</strong></li>
+<li>The system needs to be controllable</li>
+<li>It’s a science and art of <strong>picking</strong> the eigenvalue</li>
+<li>No clear-cut answer</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/equality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1034,349 +1389,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Real/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Real/" class="post-title-link" itemprop="url">真善美</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 20:56:00" itemprop="dateCreated datePublished" datetime="2020-06-26T20:56:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是真？"><a href="#什么是真？" class="headerlink" title="什么是真？"></a>什么是真？</h2><blockquote>
-<p>第一遍看书时仔细看过，这里就简单摘一些观点</p>
-</blockquote>
-<p>按照排除法排除那些显然不合理的答案</p>
-<ul>
-<li>极端怀疑论者：我们无法获得任何知识。如果接受这种观点，我们的生活就很难协调</li>
-<li>主观主义怀疑论</li>
-<li>相对主义怀疑论</li>
-<li>说谎者：说的和自己所想的不一样</li>
-</ul>
-<h2 id="善"><a href="#善" class="headerlink" title="善"></a>善</h2><ul>
-<li>实然的善是主观的，喜欢的就是善，憎恨的就是恶，因而对每个人来说善是不同的</li>
-</ul>
-<p>但这种说法并不会给我们任何新的信息，属于文字游戏。亚里士多德的观点是我们可以从本能出发，寻找天生的欲求。</p>
-<p>于是我们将善和追求联系在一起。我们可以沿用伊比鸠鲁的分析观点，将追求分成必须的和非必须的</p>
-<p>我们应该<strong>想要</strong>我们<strong>需要</strong>的，而不应该想要我们不需要的</p>
-<p>善也可以分为不同的善吗？</p>
-<ul>
-<li>想得到的善</li>
-<li>财产：外在的善，朋友、所爱、外在环境</li>
-<li>完美特质：内在的善，健康、感官快乐、美的享受、知识、技巧</li>
-<li>选择的善：完全在自愿参加的活动中得到的善</li>
-<li>机遇的善：一切外在的善</li>
-</ul>
-<p>从表面来看，只要一个人获得了自己想要的东西，那么这个人就可以说是幸福的。然而，每个人所追求的东西是不同的，有的善是实在的，有的善是表观的。守财奴、花花公子所获得幸福是一个幸福的假象，而不是实在的幸福。</p>
-<p><strong>如果</strong>幸福对所有的人来说都是一样的，那么这就是终极的善。生活中，人追求幸福的过程可能由于不幸而遭受挫折或者个人的错误选择导致幸福破灭。</p>
-<h2 id="美"><a href="#美" class="headerlink" title="美"></a>美</h2><p>对于美，有没有道理可以遵循是我们在考虑美时主要考虑的问题</p>
-<ul>
-<li><p>从<strong>纯粹感官快活</strong>上来说，每个人的审美都是不同的。</p>
-</li>
-<li><p>但是我们从纯粹感官快活转向<strong>可享用美的情趣差异</strong>时，某一领域内专家对研究对象美的价值判断比一般人要好</p>
-</li>
-</ul>
-<p>为什么呢？因为专家因为某些因素（经常接触、经验丰富、对成分了解、对生产技术了解）而获得了较高的鉴赏力。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/six-great-ideas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/six-great-ideas/" class="post-title-link" itemprop="url">六大观念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 19:38:00" itemprop="dateCreated datePublished" datetime="2020-06-26T19:38:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>第一次读这本书是在大二的时候，我在马原老师提供的参考书目中看到了这本书的名字，图书馆上一查还在架上，下了课马上就去图书馆取了书开始看。一开始看的还是很开心的，把<strong>真</strong>这部分看完了，感觉收获许多。后来其他课程过于繁忙就没继续看下去了。这段时间看了西方哲学史，希望再完整看一遍。</p>
-<p>在阅读西方哲学史的时候我就感觉概念实在太多，不同时期不同的哲学家都会提出自己的一些新概念新想法，对于我这样的入门者来说很容易失去辩论的焦点。艾德勒的这本六大观念属于哲学范畴史的研究范围，他从整个哲学史中归纳了120个观念，浓缩成64个，最后又精简成6个，可以说是最重要的一些点了。</p>
-<h2 id="大观念"><a href="#大观念" class="headerlink" title="大观念"></a>大观念</h2><p>真善美、公平正义平等，我们日常生活中都会用到这些词，但是我们真的明白这些词意味着什么吗？不是每个人都能对这些观念进行仔细的思考。我也想搞明白这些观念背后意味着什么，那么这本书可以提供<strong>探索答案这个过程的指导</strong></p>
-<p>读这本书可以获得的结果</p>
-<ul>
-<li>对这些观念的意义有所了解</li>
-<li>了解关于这些观念背后哲学家们已经进行过的讨论</li>
-<li>知道这些观念和其他观念之间的联系</li>
-</ul>
-<p>首先我们需要思考我们所说的<strong>观念到底是什么东西</strong>，在日常语境中，观念的定义有两种</p>
-<ul>
-<li><p>主观的，只有自己能体会到的，比如说某人正在经历的疼痛</p>
-</li>
-<li><p>客观的，同时存在于不同人心中的概念。</p>
-</li>
-</ul>
-<p>比如说正义，虽然我们对正义的概念可能是不同的，但我们思考的是同一对象。</p>
-<blockquote>
-<p>真的吗，我觉得如果概念不同，可能就不是同一个东西，这是语言上的陷阱？</p>
-<p>语言是递归的，我们总能用其他的词语来解释某一个词语，最后我们真的能在某一点上达成一致吗？我很怀疑，持悲观态度</p>
-</blockquote>
-<p>在这个程度上，我们讨论的就是类似柏拉图的观念，在我们讨论时是客观的，但脱离了人类的范畴，所谓的观念就是不存在的。</p>
-<p>本书作者阿德勒曾经整理过西方的大观念，多达120个或者64个，这本书只选择了其中6个</p>
-<ul>
-<li>真善美。<strong>真</strong>占主导。我们用来做判断的观念。</li>
-</ul>
-<p>前提：在人类社会。</p>
-<ul>
-<li>自由平等正义。<strong>正义</strong>占主导。指导着我们如何做，如何生活</li>
-</ul>
-<p>前提：在共同合作与互相竞争的人类社会中生存。这三个观念所代表的理想是绝大多数的人类为自己及下一代而努力实现的目标</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/6-After-Kant/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/6-After-Kant/" class="post-title-link" itemprop="url">康德之后的英国和大陆哲学</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 16:01:00" itemprop="dateCreated datePublished" datetime="2020-06-26T16:01:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>在阅读到这一章的时候，我已经有点烦躁了，我逐渐无法忍受那时候哲学家们对与语言的运用，各种新创造的词汇却没有精确的定义，对我来说仿佛就是一段段的文字游戏，无法理解。</p>
-</blockquote>
-<h2 id="黑格尔"><a href="#黑格尔" class="headerlink" title="黑格尔"></a>黑格尔</h2><p>将理性等同于神。</p>
-<p>黑格尔是绝对的唯心主义：世界历史是理念的历史</p>
-<p>辩证法</p>
-<h2 id="叔本华"><a href="#叔本华" class="headerlink" title="叔本华"></a>叔本华</h2><p>目标：回到康德</p>
-<p>两个世界</p>
-<ul>
-<li>作为表象的世界：我们不能直接认识终极实在；</li>
-<li>作为意志的世界：表象世界中的线索表明<strong>终极实在</strong>是非理性力量</li>
-</ul>
-<p>人类文明只不过是意志的升华</p>
-<h2 id="克尔凯郭尔"><a href="#克尔凯郭尔" class="headerlink" title="克尔凯郭尔"></a>克尔凯郭尔</h2><p>目标：通过描绘严酷的严苛场景来攻击他那个时代索然无味的基督教徒</p>
-<h2 id="马克思"><a href="#马克思" class="headerlink" title="马克思"></a>马克思</h2><p>目标：不要对世界进行哲学解释，而是要改造他</p>
-<p>继承黑格尔的学说，将辩证唯心主义改造成辩证唯物主义。</p>
-<p>将社会分析为基础和上层建筑</p>
-<ul>
-<li>控制了基础就控制了社会</li>
-<li>上层建筑是由“意识形态“所发动的</li>
-</ul>
-<h2 id="尼采"><a href="#尼采" class="headerlink" title="尼采"></a>尼采</h2><p>目标：教导一种全新的主体性形式，这种主体性会破坏以前的所有思想和语言形式</p>
-<p>权力意志：一切活动都是权力意志，无论是身体活动还是语言活动</p>
-<p>上帝之死：新人类解除了所有传统的权威形式的束缚，因而解除了所有形式的心理和情感暴政的束缚</p>
-<h2 id="功利主义"><a href="#功利主义" class="headerlink" title="功利主义"></a>功利主义</h2><p>目标：把伦理学建立在一个稳固的、客观的经验基础之上</p>
-<p>边沁：最大多数人的最大幸福、一人一票</p>
-<p>密尔：将边沁功利主义做的更加周密，不同的快乐质量是不一样的</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1446,7 +1458,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

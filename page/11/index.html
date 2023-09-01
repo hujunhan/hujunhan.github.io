@@ -188,6 +188,313 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/BNO055/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/BNO055/" class="post-title-link" itemprop="url">IMU:BNO-055</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-22 00:07:00" itemprop="dateCreated datePublished" datetime="2022-12-22T00:07:00-08:00">2022-12-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>BNO-055 is a 9-DOF IMU that can output absolute orientation (a hard problem to solve)</p>
+<ul>
+<li>The fusion algorithm is in the chip already</li>
+<li>Can output</li>
+<li>Absolute orientation (Quaterion)</li>
+<li>Linear acceleration</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-22-00-13-15.jpg" alt="sensors_pinout.jpg"></p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Communicate with a board by I2C&#x2F;IIC</p>
+<ul>
+<li>SDA: data</li>
+<li>SCL: clock</li>
+</ul>
+<p>Check if the system detected</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span> <span class="comment">//include Wire.h library</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Wire.<span class="built_in">begin</span>(); <span class="comment">// Wire communication begin</span></span><br><span class="line">Serial.<span class="built_in">begin</span>(<span class="number">9600</span>); <span class="comment">// The baudrate of Serial monitor is set in 9600</span></span><br><span class="line"><span class="keyword">while</span> (!Serial); <span class="comment">// Waiting for Serial Monitor</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;\nI2C Scanner&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">byte error, address; <span class="comment">//variable for error and I2C address</span></span><br><span class="line"><span class="type">int</span> nDevices;</span><br><span class="line"></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;Scanning...&quot;</span>);</span><br><span class="line"></span><br><span class="line">nDevices = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (address = <span class="number">1</span>; address &lt; <span class="number">127</span>; address++ )</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// The i2c_scanner uses the return value of</span></span><br><span class="line"><span class="comment">// the Write.endTransmisstion to see if</span></span><br><span class="line"><span class="comment">// a device did acknowledge to the address.</span></span><br><span class="line">Wire.<span class="built_in">beginTransmission</span>(address);</span><br><span class="line">error = Wire.<span class="built_in">endTransmission</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;I2C device found at address 0x&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (address &lt; <span class="number">16</span>)</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">Serial.<span class="built_in">print</span>(address, HEX);</span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;  !&quot;</span>);</span><br><span class="line">nDevices++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (error == <span class="number">4</span>)</span><br><span class="line">&#123;</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;Unknown error at address 0x&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (address &lt; <span class="number">16</span>)</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">Serial.<span class="built_in">println</span>(address, HEX);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (nDevices == <span class="number">0</span>)</span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;No I2C devices found\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot;done\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">delay</span>(<span class="number">5000</span>); <span class="comment">// wait 5 seconds for the next I2C scan</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The address should be 0x28</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>Use Adafruit library</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/ir-sensor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/ir-sensor/" class="post-title-link" itemprop="url">IR Remote</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-19 21:39:00" itemprop="dateCreated datePublished" datetime="2022-12-19T21:39:00-08:00">2022-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>IR use light to transmit data</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-21-39-27.png" alt="image-20221219213927203"></p>
+<p>Light used is infrared</p>
+<ul>
+<li>inexpensive</li>
+<li>subject to interference</li>
+<li>Sunlight would interference the IR</li>
+</ul>
+<p>Data are modulated in 38K Hz (usually)</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-21-41-12.png" alt="image-20221219214112137"></p>
+<p>Each button sends a unique code</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><h3 id="Sender"><a href="#Sender" class="headerlink" title="Sender"></a>Sender</h3><p>How to see if the controller works？</p>
+<ul>
+<li>Human eye can’t see the light</li>
+<li>Camera can see it (phone)</li>
+</ul>
+<h3 id="Receiver"><a href="#Receiver" class="headerlink" title="Receiver"></a>Receiver</h3><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-19-22-16-09.png" alt="image-20221219221609056" style="zoom:33%;" />
+
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> RECV_PIN = <span class="number">11</span>; <span class="comment">// the pin where you connect the output pin of IR sensor</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;</span><br><span class="line">decode_results results;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">irrecv.<span class="built_in">enableIRIn</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (irrecv.<span class="built_in">decode</span>(&amp;results))<span class="comment">// Returns 0 if no data ready, 1 if data ready.</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//int value = results.value; ;// Results of decoding are stored in result.value</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">Serial.<span class="built_in">print</span>(<span class="string">&quot;Code: &quot;</span>);</span><br><span class="line">Serial.<span class="built_in">println</span>(results.value,HEX); <span class="comment">//prints the value a a button press</span></span><br><span class="line">Serial.<span class="built_in">println</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">irrecv.<span class="built_in">resume</span>(); <span class="comment">// Restart the ISR state machine and Receive the next value</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/mpu6050/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/mpu6050/" class="post-title-link" itemprop="url">IMU:MPU6050</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-17 23:04:00" itemprop="dateCreated datePublished" datetime="2022-12-17T23:04:00-08:00">2022-12-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>MPU6050 is a IMU that can measure acceleration and orientation</p>
+<p>This is part of the localization system, could be combined with encoder and lidar to provide robot a high-accuracy localization system</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-17-23-07-13.jpeg" alt="IMG_7084"></p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Communicate with a board by I2C&#x2F;IIC</p>
+<ul>
+<li>SDA: data</li>
+<li>SCL: clock</li>
+</ul>
+<p>Check if the system detected</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo i2cdetect -r -y 1</span><br><span class="line"><span class="comment">## output</span></span><br><span class="line">0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span><br><span class="line">00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --</span><br><span class="line">70: -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
+
+<p>Which means the MPU6050’s address is 68</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># read_word and read_word_2c from http://blog.bitify.co.uk/2013/11/reading-data-from-mpu-6050-on-raspberry.html</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_word</span>(<span class="params">adr</span>):</span><br><span class="line">high = bus.read_byte_data(ADDR, adr)</span><br><span class="line">low = bus.read_byte_data(ADDR, adr+<span class="number">1</span>)</span><br><span class="line">val = (high &lt;&lt; <span class="number">8</span>) + low</span><br><span class="line"><span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_word_2c</span>(<span class="params">adr</span>):</span><br><span class="line">val = read_word(adr)</span><br><span class="line"><span class="keyword">if</span> (val &gt;= <span class="number">0x8000</span>):</span><br><span class="line"><span class="keyword">return</span> -((<span class="number">65535</span> - val) + <span class="number">1</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"><span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the acceleration vals</span></span><br><span class="line">accel_x = read_word_2c(ACCEL_XOUT_H) / <span class="number">16384.0</span></span><br><span class="line">accel_y = read_word_2c(ACCEL_YOUT_H) / <span class="number">16384.0</span></span><br><span class="line">accel_z = read_word_2c(ACCEL_ZOUT_H) / <span class="number">16384.0</span></span><br><span class="line"><span class="comment"># Read the gyro vals</span></span><br><span class="line">gyro_x = read_word_2c(GYRO_XOUT_H) / <span class="number">131.0</span></span><br><span class="line">gyro_y = read_word_2c(GYRO_YOUT_H) / <span class="number">131.0</span></span><br><span class="line">gyro_z = read_word_2c(GYRO_ZOUT_H) / <span class="number">131.0</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/Mount-in-linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1396,375 +1703,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/motor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Hardware/Actuator/motor/" class="post-title-link" itemprop="url">Motor In Robots</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-11-07 22:06:00" itemprop="dateCreated datePublished" datetime="2022-11-07T22:06:00-08:00">2022-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Actuator/" itemprop="url" rel="index"><span itemprop="name">Actuator</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>Method: test the single motor first and then deploy it to real robot</p>
-<p>Any problem can be solved using a layered abstraction</p>
-<h2 id="Motor-Types"><a href="#Motor-Types" class="headerlink" title="Motor Types"></a>Motor Types</h2><p>AC Motor, taken from AC, application in industrial</p>
-<ul>
-<li>Higher power, higher torque</li>
-</ul>
-<p><strong>Brushed and Brushless DC</strong></p>
-<ul>
-<li>Brushed</li>
-<li>Brushless: smooth, no noise, efficient, high speed</li>
-</ul>
-<p>Geared-: Speed reduction</p>
-<p><strong>Stepper&#x2F;Servo</strong>: highest precision</p>
-<h2 id="Control-the-Motor"><a href="#Control-the-Motor" class="headerlink" title="Control the Motor"></a>Control the Motor</h2><ol>
-<li>Motor, can’t de anything</li>
-<li>Supply Voltage, the motor can move</li>
-<li>Motor Driver, take low voltage and output high voltage</li>
-<li>Motor Controller, take practical input and output real signal</li>
-<li>Open-loop control, feedback control, encoder, at a precise speed</li>
-<li>Communication layer, serial</li>
-<li>Robot controller</li>
-<li>Driver software,</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-07-22-25-39.png" alt="image-20221107222539340"></p>
-<p>Keep the system more modularity, easier to swap the components</p>
-<hr>
-<h2 id="For-Robot"><a href="#For-Robot" class="headerlink" title="For Robot"></a>For Robot</h2><p>How to choose?</p>
-<ul>
-<li>Torque, know the load of your robot</li>
-<li>Speed, on mobile robot, trade off between torque and speed</li>
-<li>Accuracy,</li>
-<li>Voltage, check the nominal volt, the mainstream</li>
-</ul>
-<h2 id="How-to-Master-Robotics"><a href="#How-to-Master-Robotics" class="headerlink" title="How to Master Robotics"></a>How to Master Robotics</h2><p>Stage 1</p>
-<ul>
-<li>Programming</li>
-<li>Assembly</li>
-<li>Electronics</li>
-</ul>
-<p>Stage 2</p>
-<ul>
-<li>OO-programming</li>
-<li>Math and Physics</li>
-<li>Linux</li>
-<li>Embedded System</li>
-</ul>
-<p>Stage 3</p>
-<ul>
-<li>Algorithm</li>
-<li>Library</li>
-<li>ROS</li>
-<li>Design：need a mechanical expert</li>
-</ul>
-<p>Stage 4</p>
-<ul>
-<li>Technology that fascinating</li>
-<li>Work on various tool</li>
-<li>Work with as many single board as  possible</li>
-<li>Maintain the project gut hub</li>
-</ul>
-<h2 id="Speed-Torque-Current"><a href="#Speed-Torque-Current" class="headerlink" title="Speed, Torque, Current"></a>Speed, Torque, Current</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=STdONYFI2C4&t=266s">Ref</a></p>
-<p>First, there is current, the current in the magefield would generate force</p>
-<p>If there is movement, it would generate a oppose voltage (current)</p>
-<ul>
-<li>Faster, the current would be less</li>
-<li>Stall, the largest current</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-19-21-47-01.png" alt="image-20221119214701264"></p>
-<p>Try to keep in the left half</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Health/office-health/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Health/office-health/" class="post-title-link" itemprop="url">Office Health Tips</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-26 16:40:00" itemprop="dateCreated datePublished" datetime="2022-10-26T16:40:00-07:00">2022-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Health/" itemprop="url" rel="index"><span itemprop="name">Health</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Common health problem</p>
-<h2 id="Eye-problem-amp-Migraines"><a href="#Eye-problem-amp-Migraines" class="headerlink" title="Eye problem &amp; Migraines"></a>Eye problem &amp; Migraines</h2><p>headache, dizziness, computer vision syndrome</p>
-<p>Suggestion:</p>
-<ol>
-<li>20-20-20</li>
-<li>Good lighting</li>
-<li>Blue light blocking glasses</li>
-<li>Adjust monitor</li>
-</ol>
-<h2 id="Back-neck-and-shoulder"><a href="#Back-neck-and-shoulder" class="headerlink" title="Back, neck and shoulder"></a>Back, neck and shoulder</h2><p>pain, stiff, spinal</p>
-<p>Suggestion:</p>
-<ol>
-<li>sit&#x2F;stand</li>
-<li>stretch break</li>
-<li>good posture&#x2F;chair</li>
-</ol>
-<h2 id="Carpal-Tunnel"><a href="#Carpal-Tunnel" class="headerlink" title="Carpal Tunnel"></a>Carpal Tunnel</h2><p>nerves, burning, pain</p>
-<p>Suggestion:</p>
-<ol>
-<li>Stretch wrist regularly</li>
-<li>Ergonomically</li>
-</ol>
-<h2 id="Lack-of-exercise-amp-sleep"><a href="#Lack-of-exercise-amp-sleep" class="headerlink" title="Lack of exercise &amp; sleep"></a>Lack of exercise &amp; sleep</h2><p>weight, heart, diabetes, lethargic</p>
-<p>Suggestion:</p>
-<ol>
-<li>move around</li>
-<li>walk, jog, run</li>
-<li>aim for 8-hours sleep</li>
-</ol>
-<h2 id="Mental-health"><a href="#Mental-health" class="headerlink" title="Mental health"></a>Mental health</h2><p>Anxiety, depression, isolation, ADHD</p>
-<p>Suggestion:</p>
-<ol>
-<li>One thing at a time</li>
-<li>Enough sleep</li>
-<li>Relaxation</li>
-<li>Focus on the positive</li>
-<li>Hobby</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/Finance/f1-job/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/Finance/f1-job/" class="post-title-link" itemprop="url">F1 Visa Job</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-25 23:59:00" itemprop="dateCreated datePublished" datetime="2022-10-25T23:59:00-07:00">2022-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Current status:</p>
-<ul>
-<li>F1 Visa</li>
-<li>OPT</li>
-</ul>
-<p>Multiple Job:</p>
-<ul>
-<li>F1 still could do multiple job</li>
-<li>How to add a new employer</li>
-<li>How many jobs can you do? at least 20 hours per week for each employer</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1834,7 +1772,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

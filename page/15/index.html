@@ -188,6 +188,614 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Action/Manipulation/Manipulation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Action/Manipulation/Manipulation/" class="post-title-link" itemprop="url">Manipulation Notes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-01 12:25:00" itemprop="dateCreated datePublished" datetime="2022-07-01T12:25:00-07:00">2022-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:23:49" itemprop="dateModified" datetime="2023-08-29T23:23:49-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Action/" itemprop="url" rel="index"><span itemprop="name">Action</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Action/Manipulation/" itemprop="url" rel="index"><span itemprop="name">Manipulation</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hard problem: need strong ability in so many technical areas</p>
+<ul>
+<li>Perception</li>
+<li>Planning</li>
+<li>Control</li>
+</ul>
+<h3 id="More-Than-Pick-and-Place"><a href="#More-Than-Pick-and-Place" class="headerlink" title="More Than Pick-and-Place"></a>More Than Pick-and-Place</h3><p>The task a human can do is so remarkable.</p>
+<p>Making salad? Grasping? Much more!</p>
+<h3 id="Open-world-Manipulation"><a href="#Open-world-Manipulation" class="headerlink" title="Open-world Manipulation"></a>Open-world Manipulation</h3><p>Challenge: very diverse world, and we have high expectation</p>
+<p>Maybe it also is a chance that diversity would make the problem easier, since we would never ask for a optimal solution</p>
+<h3 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h3><p>Perception and physics</p>
+<h3 id="Model-Based-Design-and-Analysis"><a href="#Model-Based-Design-and-Analysis" class="headerlink" title="Model-Based Design and Analysis"></a>Model-Based Design and Analysis</h3><p>More accurate and informative messages</p>
+<p>How to model? Diagrams</p>
+<h2 id="Get-a-robot"><a href="#Get-a-robot" class="headerlink" title="Get a robot"></a>Get a robot</h2><h3 id="Arm"><a href="#Arm" class="headerlink" title="Arm"></a>Arm</h3><h4 id="Position-control"><a href="#Position-control" class="headerlink" title="Position-control"></a>Position-control</h4><p>Most are position controlled</p>
+<p>Torque control is not widely used since the $\tau_{motor}&#x3D;k_t i$ doesn’t hold in real life</p>
+<p>How: use position sensor to do a PID control, we are controlling torque but in reality we are ouputing voltage by PWM</p>
+<blockquote>
+<p>Though the control objects are always different, the gains are surprisingly not that different</p>
+</blockquote>
+<h4 id="Torque-control"><a href="#Torque-control" class="headerlink" title="Torque-control"></a>Torque-control</h4><p>Not common</p>
+<ul>
+<li>Direct control to electrical motor with small gear reduction (&lt;10:1)</li>
+<li>Hydraulic actuators</li>
+<li>Keep large gear-ratio motors, add sensors to measure the torque</li>
+</ul>
+<p>The cost is going down</p>
+<h4 id="Simulation-1"><a href="#Simulation-1" class="headerlink" title="Simulation"></a>Simulation</h4><p>Drake</p>
+<ul>
+<li>MultibodyPlant, represent the physical system, in control field</li>
+<li>SceneGraph, handle the geometry of the scene</li>
+</ul>
+<p>For the torque, we need to specify even the controller is off</p>
+<p>To simulate the arm well, we need to implement  a low-level controller</p>
+<h3 id="Hand"><a href="#Hand" class="headerlink" title="Hand"></a>Hand</h3><p>Different camps</p>
+<ul>
+<li>Dexterous hands, just like human’s hands, sensor rich. We are not there yet</li>
+<li>Simple grippers, can also do amazing useful job. Why we need a dexterous hand?</li>
+<li>Soft hands, good at something but not general.</li>
+</ul>
+<h3 id="Sensor"><a href="#Sensor" class="headerlink" title="Sensor"></a>Sensor</h3><p>Perception, tactile sensing is important. Now, we only need to focus on joint sensor.</p>
+<ul>
+<li>reliable: position, velocity, torque</li>
+<li>unreliable: acceleration</li>
+</ul>
+<h2 id="Pick-and-Place"><a href="#Pick-and-Place" class="headerlink" title="Pick and Place"></a>Pick and Place</h2><p>Naturally, we can start from <strong>geometry</strong> and <strong>kinematics</strong></p>
+<h3 id="Notion"><a href="#Notion" class="headerlink" title="Notion"></a>Notion</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-02-11-32-06.png" alt="image-20220701000523016"></p>
+<p>very powerful</p>
+<h3 id="Pick-Transform"><a href="#Pick-Transform" class="headerlink" title="Pick Transform"></a>Pick Transform</h3><p>Object $O$, Gripper $G$，Sensor tell us $^WX^O$, Desired $^WX^{O_d}$</p>
+<p>goal: make $X^O&#x3D;X^{O_d}$</p>
+<blockquote>
+<p>Example: camera frame to world frame<br>$$<br>p^{P_i}&#x3D;X^{CC}p^{P_i}<br>$$</p>
+</blockquote>
+<h3 id="FK"><a href="#FK" class="headerlink" title="FK"></a>FK</h3><p>In real life, we give command for the joint position, so we need to convert from <strong>joint angles</strong> to <strong>cartesian frames</strong></p>
+<p>Define 3 element in every joint</p>
+<ul>
+<li>transform from children joint frame to parent joint frame $^{J_P}X^{J_C}(q)$</li>
+<li>transform from children joint frame to children body frame $^{C}X^{J_C}$</li>
+<li>transform from parent joint frame to parent body frame $^{P}X^{J_C}$</li>
+</ul>
+<p>All in all, we can compute the transform<br>$$<br>^PX^C(q)&#x3D;^{P}X^{J_CJ_P}X^{J_C}(q)^{J_C}X^{C}<br>$$<br>In short, we get a map<br>$$<br>X^G&#x3D;f^G_{kin}(q)<br>$$</p>
+<h3 id="Jacobians"><a href="#Jacobians" class="headerlink" title="Jacobians"></a>Jacobians</h3><p>If the goal is to move the gripper, then we should how <strong>change in joint</strong> relate to <strong>change in pose</strong></p>
+<p>Straightforward to compute the partial derivative<br>$$<br>dX^B&#x3D;J^B(q)dq<br>$$</p>
+<p>To represent a 6D velocity more clearly, we use the following<br>$$<br>{ }^{A} V_{C}^{B}&#x3D;\left[\begin{array}{c}<br>{ }^{A} \omega_{C}^{B} \<br>A_{\mathrm{V}_{C}^{B}}^{B}<br>\end{array}\right]<br>$$</p>
+<ul>
+<li>$w$ is the angular velocity</li>
+<li>$v$ is the translational velocity</li>
+</ul>
+<h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>If we have a desired a gripper velocity $V^{G_d}$, may be we could do $v&#x3D;\left[J^{G}(q)\right]^{-1} V^{G_{d}}$?</p>
+<h4 id="Pseudo-inverse"><a href="#Pseudo-inverse" class="headerlink" title="Pseudo-inverse"></a>Pseudo-inverse</h4><p>First consider is the matrix invertible? E.g. the dimension is $6\times7$, it’s more than required</p>
+<p>Moore-Penrose pseudo inverse<br>$$<br>v&#x3D;\left[J^{G}(q)\right]^{+} V^{G_{d}}<br>$$<br>This would give the solution with minimum-norm</p>
+<h3 id="Trajectory"><a href="#Trajectory" class="headerlink" title="Trajectory"></a>Trajectory</h3><p>Define the keyframe pose we wish the gripper to travel</p>
+<p>What kind of trajectory? splines is a good way</p>
+<p>Interpolation</p>
+<ul>
+<li>Position: simply linear interpolation</li>
+<li>Rotation: Spherical linear interpolation or slerp</li>
+</ul>
+<h3 id="Constrains"><a href="#Constrains" class="headerlink" title="Constrains"></a>Constrains</h3><p>Pseudo-inverse solution might lead to large velocity (beyond robot limits) which we don’t want</p>
+<p>Regard the inverse as a optimization problem<br>$$<br>\min <em>{v}\left|J^{G}(q) v-V^{G</em>{d}}\right|<em>{2}^{2}<br>$$<br>and we have constrains in positions, speed and acceleration<br>$$<br>\begin{array}{ll}<br>\min</em>{v_{n}} &amp; \left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2} \<br>\text { subject to } &amp; v</em>{\min } \leq v_{n} \leq v_{\max } \<br>&amp; q_{\min } \leq q+h v_{n} \leq q_{\max } \<br>&amp; \dot{v}<em>{\min } \leq \frac{v</em>{n}-v}{h} \leq \dot{v}_{\max }<br>\end{array}<br>$$</p>
+<h4 id="Joint-Centering"><a href="#Joint-Centering" class="headerlink" title="Joint Centering"></a>Joint Centering</h4><p>In robotics, we could add a secondary control<br>$$<br>\min <em>{v</em>{n}}\left|J^{G}(q) v_{n}-V^{G_{d}}\right|<em>{2}^{2}+\epsilon\left|P(q)\left(v</em>{n}-K\left(q_{0}-q\right)\right)\right|_{2}^{2}<br>\<br>subject \ to \  constraints.<br>$$</p>
+<h2 id="Pose-Estimation"><a href="#Pose-Estimation" class="headerlink" title="Pose Estimation"></a>Pose Estimation</h2><p>Assumption: we know the object and have depth camera</p>
+<p>Two trends:</p>
+<ul>
+<li>deep learning</li>
+<li>geometric reasoning</li>
+</ul>
+<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><p>In practice, <strong>camera</strong> or <strong>range</strong> sensor are more important</p>
+<h4 id="Depth-sensor"><a href="#Depth-sensor" class="headerlink" title="Depth sensor"></a>Depth sensor</h4><p>RGBD (ToF and structured light)</p>
+<p>There are noise in real life, and dependent to lighting conditions, surface normals and other properties.</p>
+<h3 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h3><ul>
+<li>depth image</li>
+<li>color image</li>
+<li>camera pose</li>
+</ul>
+<p>Combine, we can get a point cloud</p>
+<h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>Point cloud registration</p>
+<ul>
+<li>given two point clouds</li>
+<li>find the transform</li>
+</ul>
+<p>In two strong assumption:</p>
+<ol>
+<li>knowing the camera pose</li>
+<li>known correspondences. Each point in the scene correspond with one model point</li>
+</ol>
+<p>In this situation, it becomes a optimization problem<br>$$<br>\begin{array}{ll}<br>\min <em>{p, R} &amp; \sum</em>{i&#x3D;1}^{N_{s}} | p+R^{O} p^{m_{c_{i}}}-X^{C C^{s_{i}}} p^{2} \<br>\text { subject to } &amp; R^{T}&#x3D;R^{-1}, \quad \operatorname{det}(R)&#x3D;+1<br>\end{array}<br>$$<br>We can get the rotation first, then get the translation. So we center two point</p>
+<p>Using SVD, we can get the solution</p>
+<h3 id="ICP"><a href="#ICP" class="headerlink" title="ICP"></a>ICP</h3><ol>
+<li>initial guess of the object <strong>pose</strong></li>
+<li>calculate the <strong>correspondence</strong> via closet points</li>
+<li>Use the correspondence update pose</li>
+</ol>
+<p>We have very good numerical solution like FLANN</p>
+<h3 id="Partial-View"><a href="#Partial-View" class="headerlink" title="Partial View"></a>Partial View</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-14-22-11-39.png" alt="image-20220714221135748"></p>
+<p>In real world, the data is not perfect, how to deal with it?</p>
+<h4 id="Detecting-outliers"><a href="#Detecting-outliers" class="headerlink" title="Detecting outliers"></a>Detecting outliers</h4><ul>
+<li>detect outliers need good estimation</li>
+<li>good estimation need detect outliers</li>
+</ul>
+<p>How?</p>
+<ol>
+<li>ICP with RANSAC</li>
+<li>many seed to select a good start (good estimation)</li>
+<li>relative distance (graph theory)</li>
+</ol>
+<h4 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h4><p>Use NN more</p>
+<h4 id="Multiple-object-and-Partial-view"><a href="#Multiple-object-and-Partial-view" class="headerlink" title="Multiple object and Partial view"></a>Multiple object and Partial view</h4><p>Use a correspondence matrix to find the minimum<br>$$<br>\min <em>{X \in \operatorname{SE}(3)} \sum</em>{i&#x3D;1}^{N_{s}} \sum_{j&#x3D;1}^{N_{m}} C_{i j}\left|X^{O} p^{m_{j}}-p^{s_{i}}\right|^{2}<br>$$<br>The main idea behind CPD: relax the strict and let the matrix between 0 and 1</p>
+<p>This make CPD more robust than ICP, but still use SVD</p>
+<h4 id="Non-linear-Optimization"><a href="#Non-linear-Optimization" class="headerlink" title="Non-linear Optimization"></a>Non-linear Optimization</h4><p>Try to estimate the pose and outliers at the same time, make the problem <strong>nonconvex</strong>, but</p>
+<ol>
+<li>the computation time would be saved</li>
+<li>can add more objective function</li>
+</ol>
+<h3 id="Looking-ahead"><a href="#Looking-ahead" class="headerlink" title="Looking ahead"></a>Looking ahead</h3><p>In the discussion, we lost the color, only use the depth.</p>
+<p>In the future, the color should be used more</p>
+<h2 id="Bin-Picking"><a href="#Bin-Picking" class="headerlink" title="Bin Picking"></a>Bin Picking</h2><p>Consider the simplest situation: pick objects from one bin to another bin</p>
+<ul>
+<li>How to simulate the drop and grasping?</li>
+</ul>
+<p>We could refine it to more complicated situation.</p>
+<h3 id="Generate-Scenes"><a href="#Generate-Scenes" class="headerlink" title="Generate Scenes"></a>Generate Scenes</h3><ol>
+<li>Falling</li>
+<li>uniform rotate, place in X,Y</li>
+<li>Frictional Contact</li>
+<li>$M(q) \dot{v}+C(q, v) v&#x3D;\tau_{g}(q)+\sum_{i} J_{i}^{T}(q) F^{c_{i}}$</li>
+<li>static $v&#x3D;\dot v&#x3D;0\to$ $\tau_{g}(q)&#x3D;-\sum_{i} J_{i}^{T}(q) F^{c_{i}}$</li>
+<li>Optimization, consider the constrain</li>
+</ol>
+<p>However, the simulation is not stable in current study, we need more computation source.</p>
+<h3 id="Grasp-Selection"><a href="#Grasp-Selection" class="headerlink" title="Grasp Selection"></a>Grasp Selection</h3><p>The problem is hard: how to choose the right point of grasp</p>
+<ul>
+<li>Still a problem in nowadays</li>
+<li>New approach: by learning method</li>
+</ul>
+<h4 id="Point-cloud"><a href="#Point-cloud" class="headerlink" title="Point cloud"></a>Point cloud</h4><ol>
+<li>crop：delete unwanted points</li>
+<li>estimate: estimate the normal</li>
+<li>merge</li>
+<li>down-sample: using voxel grid</li>
+</ol>
+<h4 id="Normal-and-Curvature"><a href="#Normal-and-Curvature" class="headerlink" title="Normal and Curvature"></a>Normal and Curvature</h4><p>Calculate the normal<br>$$<br>\min <em>{p, n} \sum</em>{i&#x3D;1}^{N}\left|\left(p^{i}-p\right)^{T} n\right|^{2}, \quad \text { subject to } \quad|n|&#x3D;1<br>$$<br>and we can transform it into<br>$$<br>\min <em>{n} n^{T} W n, \quad \text { subject to } \quad|n|&#x3D;1, \quad \text { where } W&#x3D;\left[\sum</em>{i}\left(p^{i}-p^{<em>}\right)\left(p^{i}-p^{</em>}\right)^{T}\right] \text {. }<br>$$<br>By finding the eigenvalue of W, we can find the optimal solution</p>
+<h4 id="Grasp-point"><a href="#Grasp-point" class="headerlink" title="Grasp point"></a>Grasp point</h4><p>two step</p>
+<ol>
+<li>find a cost function</li>
+<li><strong>antipodal grasps</strong>. the most force to fight gravity</li>
+<li>$\text { cost }&#x3D;-\sum_{i}\left(n_{G_{x}}^{i}\right)^{2}$</li>
+<li>find the low cost candidate</li>
+<li>How to find  $X^G$</li>
+<li>local curvature</li>
+<li>find antipodal point pair</li>
+</ol>
+<h2 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h2><p>Geometric method can give good estimate of local minima, but perform bad in complex scene</p>
+<p>Deep learning based method are more powerful</p>
+<h3 id="Big-Data"><a href="#Big-Data" class="headerlink" title="Big Data"></a>Big Data</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-20-00-22-41.png" alt="image-20220720002240961"></p>
+<p>Massive annotated datasets</p>
+<p>Instance segmentation is what we need in manipulation</p>
+<hr>
+<p>What if we met new classes?</p>
+<ul>
+<li>In the dataset, we have data for like plates, forks</li>
+<li>What about the bottles?</li>
+<li>From the backbone</li>
+<li>Finetune</li>
+</ul>
+<h3 id="Simulation-2"><a href="#Simulation-2" class="headerlink" title="Simulation"></a>Simulation</h3><p>Real data is valuable, but we can also use simulation to synthetic data</p>
+<h3 id="Object-Detection-1"><a href="#Object-Detection-1" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>Image recognition:</p>
+<ul>
+<li>input the full image</li>
+<li>output is the probability of the image contain something</li>
+</ul>
+<p>Semantic Segmentation:</p>
+<ul>
+<li>input the full image</li>
+<li>output is another image</li>
+</ul>
+<p>Instance Segmentation: Mask R-CNN</p>
+<h2 id="Force-Control"><a href="#Force-Control" class="headerlink" title="Force Control"></a>Force Control</h2><p>A hard task to grasp something</p>
+<h3 id="Simple-Model"><a href="#Simple-Model" class="headerlink" title="Simple Model"></a>Simple Model</h3><p>To fight against complexity, find a setup as simple as possible.</p>
+<p>Consider the following setup</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-07-23-13-11-33.png" alt="img"></p>
+<p>We have two model to consider</p>
+<ul>
+<li>Dynamic model for simulation</li>
+<li>Robot model for controller</li>
+</ul>
+<hr>
+<p>Direct force control</p>
+<ul>
+<li>Direct means we control the <strong>contact forces</strong></li>
+</ul>
+<p>How to do a flip-up?</p>
+<p>Text version: Apply a moment around the bottom left corner to generate a rotation. also add a force that the corner would not slip</p>
+<p>Math version:<br>$$<br>\begin{aligned}<br>\min <em>{f</em>{W}^{C}} &amp;\left|w f_{C_{x}}^{C}-\operatorname{PID}\left(\theta_{d}, \theta\right)\right|^{2} \<br>\text { subject to } &amp;\left|f_{W_{x}}^{C}\right| \leq \hat{\mu}<em>{A}\left(\hat{m} g-f</em>{W_{z}}^{C}\right) \<br>&amp; f_{C_{z}}^{C} \geq 0, \quad\left|f_{C_{x}}^{C}\right| \leq \hat{\mu}<em>{C} f</em>{C_{z}}^{C} \<br>\text { with } &amp;{ }^{W} R^{C}(\theta)&#x3D;\left[\begin{array}{cc}<br>-\sin \theta &amp; -\cos \theta \<br>\cos \theta &amp; -\sin \theta<br>\end{array}\right] .<br>\end{aligned}<br>$$</p>
+<hr>
+<p>Indirect force control</p>
+<p>Program our robot to act like a mechanical system reacts to the contact forces</p>
+<ul>
+<li>Benefit: we only need to know the robot rather than environments</li>
+<li>Guarantee the robot won’t go unstable</li>
+</ul>
+<h2 id="Motion-Planning"><a href="#Motion-Planning" class="headerlink" title="Motion Planning"></a>Motion Planning</h2><p>Why motion planning?</p>
+<ul>
+<li>Collision between arm and environment</li>
+<li>In different environment, we need more automated robot</li>
+<li>In static environment, we could optimize the manipulation process significantly</li>
+</ul>
+<p>Need MORE brave robot</p>
+<h3 id="IK"><a href="#IK" class="headerlink" title="IK"></a>IK</h3><h3 id="Trajectory-Optimization"><a href="#Trajectory-Optimization" class="headerlink" title="Trajectory Optimization"></a>Trajectory Optimization</h3><h3 id="Sampling-Based-Planning"><a href="#Sampling-Based-Planning" class="headerlink" title="Sampling-Based Planning"></a>Sampling-Based Planning</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/Career-Planning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/Career-Planning/" class="post-title-link" itemprop="url">Career Planning</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-10 00:07:00" itemprop="dateCreated datePublished" datetime="2022-06-10T00:07:00-07:00">2022-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Philosophy-for-the-future-with-Purpose"><a href="#Philosophy-for-the-future-with-Purpose" class="headerlink" title="Philosophy for the future (with Purpose)"></a>Philosophy for the future (with Purpose)</h2><p>Design the future career</p>
+<p>Do the work help others</p>
+<p>Don’t waste time and keep learning</p>
+<h2 id="Career-Exploration"><a href="#Career-Exploration" class="headerlink" title="Career Exploration"></a>Career Exploration</h2><p>How to shape the career path?</p>
+<p>The world is changing soon, so the career path is changing</p>
+<ul>
+<li>aware of the possibilities</li>
+<li>signup project outside fields</li>
+<li>become a subject matter experts in important area</li>
+<li>emotional resistence</li>
+</ul>
+<p>Ask yourself, what is the driven and can you resist when face hard situation</p>
+<ul>
+<li>can be paid for</li>
+<li>what you love</li>
+<li>what you good at</li>
+<li>what the world need</li>
+</ul>
+<p>Transferable skills</p>
+<ul>
+<li>leadership</li>
+<li>interperson</li>
+</ul>
+<h2 id="Technique-for-career-exploration"><a href="#Technique-for-career-exploration" class="headerlink" title="Technique for career exploration"></a>Technique for career exploration</h2><ol>
+<li>Design thinking, choose the value you value most</li>
+<li>Big 5 model</li>
+<li>Make plan</li>
+<li>Current, long-term decision</li>
+<li>Next, alternative</li>
+<li>Final, worst case</li>
+</ol>
+<p>What’s really important? Confidence and Reputation</p>
+<h2 id="Softskills"><a href="#Softskills" class="headerlink" title="Softskills"></a>Softskills</h2><h3 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h3><ul>
+<li>future contacts</li>
+<li>different information</li>
+<li>How</li>
+<li>overcome the anxiety</li>
+<li>Integrate new experience</li>
+<li>Positive, smile and curious</li>
+</ul>
+<h3 id="Character-flaws-personal-imperfections"><a href="#Character-flaws-personal-imperfections" class="headerlink" title="Character flaws, personal imperfections"></a>Character flaws, personal imperfections</h3><ul>
+<li>unstable emotional status</li>
+<li>Develop more self-awareness</li>
+<li>Get feedback</li>
+</ul>
+<h3 id="Changing-career"><a href="#Changing-career" class="headerlink" title="Changing career"></a>Changing career</h3><p>discipline</p>
+<p>confidence</p>
+<p>transferable skills</p>
+<ul>
+<li>Know some tools</li>
+<li>Tools in useful in new career</li>
+<li>Know how to apply in new career</li>
+</ul>
+<hr>
+<p>mid-career crisis</p>
+<h2 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a>Communication</h2><h3 id="Digital-profile"><a href="#Digital-profile" class="headerlink" title="Digital profile"></a>Digital profile</h3><p>Linkedin</p>
+<ul>
+<li>passive candidate</li>
+<li>Professional photo</li>
+<li>Headline contain important information</li>
+<li>Summary, unique, credential</li>
+<li>action, outcome</li>
+</ul>
+<h3 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h3><h2 id="Adapt"><a href="#Adapt" class="headerlink" title="Adapt"></a>Adapt</h2><p>work is more virtual</p>
+<h3 id="Essential-Skill"><a href="#Essential-Skill" class="headerlink" title="Essential Skill"></a>Essential Skill</h3><p>Cultural Frequency</p>
+<ul>
+<li>personal</li>
+<li>organizational</li>
+</ul>
+<hr>
+<ul>
+<li>Work smarter than harder</li>
+<li>Understand Banter</li>
+<li>Articulate goals</li>
+<li>Find allies and mentor</li>
+</ul>
+<h3 id="Stand-Out"><a href="#Stand-Out" class="headerlink" title="Stand Out"></a>Stand Out</h3><ul>
+<li>show up</li>
+<li>Start a blog</li>
+<li>Publish articles on Medium</li>
+<li>Publish in publication</li>
+<li>Add value</li>
+<li>more efficient</li>
+<li>save&#x2F;earn money</li>
+<li>Fix problem</li>
+</ul>
+<h3 id="Personal-Branding"><a href="#Personal-Branding" class="headerlink" title="Personal Branding"></a>Personal Branding</h3><p>Using your strength</p>
+<p>Show the value</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/8000-hours/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/8000-hours/" class="post-title-link" itemprop="url">工作？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-06-09 23:38:00" itemprop="dateCreated datePublished" datetime="2022-06-09T23:38:00-07:00">2022-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="8000-hours"><a href="#8000-hours" class="headerlink" title="8000-hours"></a>8000-hours</h2><h2 id="What-to-do"><a href="#What-to-do" class="headerlink" title="What to do?"></a>What to do?</h2><ul>
+<li>Good at</li>
+<li>Help others</li>
+<li>Good condition</li>
+</ul>
+<h2 id="What-impact"><a href="#What-impact" class="headerlink" title="What impact?"></a>What impact?</h2><p>Not only make difference, but make huge impact</p>
+<p>Impact&#x3D;Number X Level</p>
+<h2 id="How-to-make-differences"><a href="#How-to-make-differences" class="headerlink" title="How to make differences"></a>How to make differences</h2><ul>
+<li>Donations, $1 means more in Kenya than in USA</li>
+<li>political advocacy</li>
+<li>help others become more effective</li>
+</ul>
+<h2 id="Find-the-focus-area"><a href="#Find-the-focus-area" class="headerlink" title="Find the focus area"></a>Find the focus area</h2><ul>
+<li>big in scale</li>
+<li>use number to make comparisons</li>
+<li>number of people</li>
+<li>effects</li>
+<li>long-run benefits</li>
+<li>neglected</li>
+<li>affect neglected groups</li>
+<li>few people know the problem</li>
+<li>solvable</li>
+</ul>
+<h2 id="What’s-important"><a href="#What’s-important" class="headerlink" title="What’s important?"></a>What’s important?</h2><ul>
+<li>global health in poor country</li>
+<li>focusing on future generation</li>
+<li>forecast the problem in the future</li>
+</ul>
+<h2 id="How-to-help-most"><a href="#How-to-help-most" class="headerlink" title="How to help most"></a>How to help most</h2><ul>
+<li>Earning to give</li>
+<li>Advocacy, persuade a friend to give</li>
+<li>Research, if top 10%, highest impact</li>
+<li>Direct work, find a effective organisation</li>
+<li>Entrepreneurship</li>
+</ul>
+<p>Find the career</p>
+<ol>
+<li>decide the problem</li>
+<li>read profile, read career ideas</li>
+<li>go through the 4 approuch</li>
+</ol>
+<h2 id="Change"><a href="#Change" class="headerlink" title="Change"></a>Change</h2><p><a target="_blank" rel="noopener" href="https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today">https://www.bbc.com/worklife/article/20190718-the-101-people-ideas-and-things-changing-how-we-work-today</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/communication/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1046,323 +1654,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/us-tax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/us-tax/" class="post-title-link" itemprop="url">美国税法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-15 14:47:00" itemprop="dateCreated datePublished" datetime="2022-04-15T14:47:00-07:00">2022-04-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>IRS——internal revenue service， tax collection agency</p>
-<p>Tax return——tax form sent to IRS</p>
-<p>W-2——tax form from employer</p>
-<p>1042-s——tax from unversity</p>
-<h2 id="Tax-Residency"><a href="#Tax-Residency" class="headerlink" title="Tax Residency"></a>Tax Residency</h2><p>different residency determines which form you need</p>
-<p>F1-Non-resident alien (within 5 calendar year)</p>
-<h2 id="Tax-Forms"><a href="#Tax-Forms" class="headerlink" title="Tax Forms"></a>Tax Forms</h2><p>May receive if you have income</p>
-<ul>
-<li>Main-W-2, employer in US, document the <strong>wages</strong></li>
-</ul>
-<p>1099-MISC: independent contractor</p>
-<p>1099-INT： bank</p>
-<h2 id="Federal-Tax-Return"><a href="#Federal-Tax-Return" class="headerlink" title="Federal Tax Return"></a>Federal Tax Return</h2><ol>
-<li>receive the W2 and …</li>
-<li>Prepare the tax return</li>
-<li>Print and mail to IRS, send it by April 15</li>
-</ol>
-<h2 id="State-Tax-Return"><a href="#State-Tax-Return" class="headerlink" title="State Tax Return"></a>State Tax Return</h2><p>Two reason：</p>
-<ul>
-<li>made more than some money</li>
-<li>To get some money back</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/design-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Mechanics/design-problem/" class="post-title-link" itemprop="url">零件设计疑惑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-14 22:08:00" itemprop="dateCreated datePublished" datetime="2022-04-14T22:08:00-07:00">2022-04-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>最近开始学习机械画图，但画图不是目的，目的是做出能够工作的机械零部件</p>
-<p>练习项目：相机外壳</p>
-<p>已经有的：PCB和相机</p>
-<p>目标：相机的外壳，分别对PCB和相机，也就是说两个壳体</p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>由于不是机械出身，对于一些设计时候需要经验的地方就无从下手</p>
-<p>相机外壳设计遇到的问题</p>
-<ul>
-<li>设计冗余量怎么确定：</li>
-<li>专业术语叫公差、配合</li>
-<li>壳体厚度怎么确定：</li>
-<li>看设计，和大小有关。这里设计的相机比较小，厚度1.5mm或者2mm就够了</li>
-<li>排线能否在相机段插拔，</li>
-<li>设计时要考虑加工的难易程度，尽量设计简单易加工的。比如说，我本来的想法是给排线设计一个孔，但是加工孔的难度较大，那么应该设计一个槽，加工就容易很多</li>
-<li>什么时候用倒角圆角，0.5</li>
-<li>从安全、美观角度来说应该多使用。比如说直角容易划破排线、对于人来说也很危险，因此要使用倒角。倒角的半径设计：不能太大（大于厚度不行），不能太小（小了没用）</li>
-<li>稳定的连接，一般需要螺丝多长</li>
-<li>看壳体厚度</li>
-</ul>
-<h2 id="Fit-and-Tolerance"><a href="#Fit-and-Tolerance" class="headerlink" title="Fit and Tolerance"></a>Fit and Tolerance</h2><p>设计时我们希望不同的部件是怎么样配合在一起的？紧密的？松垮的？</p>
-<p>公差-告诉加工人员多大的误差是可接受范围。精度要求越高，成本指数上升</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-14-22-50-44.png" alt="image-20220414225044634" style="zoom:10%;" />
-
-<p>根据需求选择合适的配合</p>
-<img src="https://249261-772960-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2021/03/flow-chart-of-the-types-of-fits-.jpg" alt="flow chart of the types of fits" style="zoom:25%;" />
-
-<hr>
-<p>想到的问题</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-14-23-51-24.png" alt="image-20220414235123855" style="zoom:33%;" />
-
-<p>过盈配合，稍微大一点也是可以装配的</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/bp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Miscellaneous/Business/bp/" class="post-title-link" itemprop="url">Business Proposal</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-14 15:19:00" itemprop="dateCreated datePublished" datetime="2022-04-14T15:19:00-07:00">2022-04-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>What: A document outlines ideas and strategies for launching and managing</p>
-<h2 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h2><ol>
-<li>What is the company</li>
-<li>slogan</li>
-<li>Team</li>
-<li>experience</li>
-<li>unique</li>
-<li>Operation</li>
-<li>What is user gonna use</li>
-<li>technology</li>
-<li>Marketplace</li>
-<li>facts, numbers</li>
-<li>Strategy</li>
-<li>When will you make money</li>
-<li>Competition</li>
-<li>Why hasn’t been done</li>
-<li>Revenue</li>
-<li>How are you going to make money</li>
-<li>The cost</li>
-<li>How much do you need</li>
-</ol>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zlrb_X6fYZ0">Business Plan Writing 101: Wharton Entrepreneurship Series</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1432,7 +1723,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-count">334</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
