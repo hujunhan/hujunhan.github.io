@@ -188,6 +188,992 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Seminar/Stanford-robotics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Seminar/Stanford-robotics/" class="post-title-link" itemprop="url">Stanford Robotics Seminar Writeup</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-10 21:18:00" itemprop="dateCreated datePublished" datetime="2023-07-10T21:18:00-07:00">2023-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Seminar/" itemprop="url" rel="index"><span itemprop="name">Seminar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Conclusion">1. Conclusion</h2><ol>
+<li><strong>Robot-Human Interaction &amp; Collaboration</strong>: This theme is prevalent throughout the seminars, emphasizing the need for more natural and efficient interactions between robots and humans. This covers areas like haptic feedback, interaction through touch, remote presence systems, and even the ethical considerations of autonomous systems.</li>
+<li><strong>Autonomous Systems &amp; Self-learning</strong>: There’s a substantial focus on making robots more autonomous and adaptable through the use of learning algorithms. This includes seminars on autonomous vehicles, field-hardened robotic autonomy, self-supervised networks, and machine learning for robots.</li>
+<li><strong>Manipulation &amp; Grasping</strong>: The issue of creating robotic systems that can effectively interact with their physical environment is clearly important. There are numerous seminars focused on designing grippers, in-hand manipulation, and incorporating tactile sensors for better performance in various tasks.</li>
+<li><strong>Robotic Design &amp; Fabrication</strong>: A number of seminars are dedicated to the development and design of novel robotic systems. This includes topics such as designing bioinspired aerial robots, flexible surgical robots, shape-changing displays and robots, as well as pressure-operated soft robotic snakes.</li>
+<li><strong>Safety &amp; Robustness</strong>: There’s a clear emphasis on making robots more robust and safer, whether it’s through perception-based control, modeling, planning, reachability, or learning in uncertain environments. This theme is especially relevant for autonomous vehicles and robots operating in dynamic or challenging environments.</li>
+<li><strong>Perception &amp; Sensing</strong>: Multiple seminars focus on enabling robots to perceive, understand, and make sense of their environments. This includes topics such as spatial perception, tactile sensing, self-supervision for robotic learning, and incorporating semantics into robot perception.</li>
+<li><strong>Software &amp; Simulation</strong>: The transition from open-source to safety-certified software and the use of simulations for testing and training robots are also recurring themes. This also includes discussions on distributive representations and scalable simulations for Real-to-Sim-to-Real with deformables.</li>
+<li><strong>Applications</strong>: There is a range of seminars focusing on specific applications of robotics, from logistics and surgical assistance to ocean exploration and space.</li>
+</ol>
+<h2 id="Control-Oriented-Learning-for-Dynamical-Systems">2. Control-Oriented Learning for Dynamical Systems.</h2><p>The seminar is about “Control-Oriented Learning for Dynamical Systems.” It focuses on the interplay between learning and <strong>control</strong>, particularly in the context of robotics.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address">2.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>Difficulty in modeling robotic systems operating under <strong>different conditions</strong>, such as icy roads, wind conditions, and contact situations.</li>
+<li>The <strong>limitations of naive regression</strong> for closed-loop control tasks that happen over long time horizons.</li>
+<li>The need for a learning approach that is more <strong>adaptable</strong> and efficient for closed-loop control.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works">2.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710220204_pZmZBx.png" alt="image-20230710220204066"></p>
+<ul>
+<li>The speaker proposes “control-oriented learning,” which conditions the model to perform better in closed-loop control.</li>
+<li>This approach involves three different lines of work:</li>
+<li>Translating the concept of <strong>stabilizability into algebraic</strong> conditions used as a regularizer for closed-loop control performance during offline learning.</li>
+<li>Structuring the model appropriately offline to yield a useful control <strong>close-up controller based on Linear Quadratic Regulator</strong> (LQR).</li>
+<li>Using meta-learning to learn a good extension to a nominal model for adaptive control.</li>
+<li>These methods work because they focus on the downstream control objective rather than just the model fitting objective. They also leverage the inherent structure of the systems to enable control design.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers">2.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> Are you testing on like quadcopters throughout and is it dependent on how linear the Dynamics of the Drone is the results you’re showing here?</li>
+<li><strong>Answer:</strong> The method is pretty agnostic to the system. It was tested on a quadcopter for one project, but it can be applied to other systems as well. The difference in performance between the method and baselines increases with the nonlinearity of the system.</li>
+<li><strong>Question:</strong> Are there a certain a priori structure you impose on that class of functions when regressing over models F to learn?</li>
+<li><strong>Answer:</strong> In the first project, the system is assumed to be control affine (f of x plus b of x times U). There are some assumptions about the system that simplify the application of inequality conditions, such as some sparsity in that b of X.</li>
+<li><strong>Question:</strong> What would happen if the Dynamics that you’re trying to learn are not actually controllable or maybe there is some subset of the states that are controllable and some that are uncontrolled?</li>
+<li><strong>Answer:</strong> You would have to find some way of dividing those things out. In linear systems, you can look at ideas like common decomposition where you can break down the controllable states from the uncontrollable states.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway">2.4. Takeaway, the most important takeaway</h3><ul>
+<li>Control-oriented learning can significantly improve the performance of robotic systems operating under different conditions.</li>
+<li>This approach is more adaptable and efficient than traditional methods, focusing on the <strong>downstream control</strong> objective rather than just the model fitting objective.</li>
+<li>The speaker’s work demonstrates that this method outperforms naive and certificate-based methods in terms of sample efficiency and performance, and can even beat the oracle when enough data is available.</li>
+</ul>
+<h2 id="Aligning-Human-and-Robot-Representations">3. Aligning Human and Robot Representations</h2><p>The seminar is about “Aligning Human and Robot Representations.” It focuses on the challenge of aligning the <strong>understanding and interpretation of tasks</strong> between humans and robots, particularly in the context of human-robot interaction.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-1">3.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li><strong>Difficulty in aligning</strong> human and robot representations, leading to misinterpretation of tasks and suboptimal performance.</li>
+<li>The limitations of traditional learning methods that require handcrafted representations or end-to-end deep learning methods that generalize poorly.</li>
+<li>The need for a learning approach that can efficiently learn from human supervision and adapt to different human capabilities and preferences.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-1">3.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a “divide and conquer” approach to robot learning, focusing first on <strong>learning the representation from human input</strong> before learning the downstream task.</li>
+<li>The approach involves learning features one at a time from human supervision, using a method called “feature traces” where the human provides a <strong>sequence of states with monotonically decreasing feature values</strong>.</li>
+<li>The robot can then use these feature traces to learn a <strong>feature function</strong>, and this method has been shown to generalize well to more complex settings, including perceptual features and motion features.</li>
+<li>The speaker also introduces a method for the robot to autonomously detect when its representation is misaligned with the human’s, using a model that estimates the robot’s confidence in explaining the human’s input.</li>
+<li>These methods work because they leverage human input in a structured and efficient way, allowing the robot to <strong>learn and adapt to human preferences</strong> and capabilities.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-1">3.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> Are you learning these features one by one?</li>
+<li><strong>Answer:</strong> Yes, the features are learned one at a time from human supervision using a method called “feature traces.” This allows the robot to focus on learning each feature individually, which can lead to more accurate and generalizable learning.</li>
+<li><strong>Question:</strong> How easy is it to combine these features? Are you assuming that they are starting from the same value?</li>
+<li><strong>Answer:</strong> The features are normalized to be between zero and one, which makes the reward learning easier. However, this is not mandatory and the features do not have to start from the same value. The important thing is that the features need to be positive.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-1">3.4. Takeaway, the most important takeaway</h3><ul>
+<li>The “<strong>divide and conquer</strong>“ approach to robot learning can significantly improve the alignment of human and robot representations, leading to better performance and adaptability in human-robot interaction.</li>
+<li>This approach allows robots to learn from human supervision in a structured and efficient way, and to autonomously detect when their representation is misaligned with the human’s.</li>
+<li>The speaker’s work demonstrates the potential of this method in various applications, including <strong>personal robotics, semi-autonomous driving,</strong> and shared autonomy, and highlights the importance of aligning representations in successful human-robot interaction.</li>
+</ul>
+<h2 id="Connecting-Robotics-and-Foundation-Models">4. Connecting Robotics and Foundation Models</h2><p>The seminar is about the integration of machine learning and robotics, specifically focusing on the use of deep learning for robotic manipulation tasks.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-2">4.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the challenge of <strong>applying machine learning to real-world</strong> robotic tasks. This includes issues such as the <strong>variability</strong> of real-world environments and the difficulty of collecting <strong>sufficient training data.</strong></li>
+<li>The speaker also discusses the problem of <strong>transferring</strong> learned skills from one task or environment to another, which is a major challenge in robotics.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-2">4.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a novel approach that combines deep learning with reinforcement learning. This approach allows the robot to <strong>learn from its own experiences</strong>, rather than relying solely on pre-programmed instructions.</li>
+<li>The speaker’s solution works because it allows the robot to <strong>adapt</strong> to new situations and tasks. It also reduces the amount of training data required, as the robot can learn from its own trial-and-error experiences.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-2">4.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Question:</li>
+</ul>
+<p>How does the robot learn from its own experiences?</p>
+<ul>
+<li><p><strong>Answer:</strong> The robot uses a combination of deep learning and reinforcement learning. It learns to <strong>associate its actions with the resulting changes</strong> in its environment, and it adjusts its behavior based on the outcomes of its actions.</p>
+</li>
+<li><p>Question:</p>
+</li>
+</ul>
+<p>How does the robot handle new tasks or environments?</p>
+<ul>
+<li><strong>Answer:</strong> The robot uses a technique called <strong>transfer learning.</strong> This allows it to apply the skills it has learned in one context to new contexts.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-2">4.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of combining machine learning and robotics. This approach allows robots to learn from their own experiences and adapt to new tasks and environments, which is a major step forward in the field of robotics.</li>
+</ul>
+<h2 id="Robots-in-Dynamic-Tasks-Learning-Risk-and-Safety">5. Robots in Dynamic Tasks: Learning, Risk, and Safety</h2><p>The seminar is about the development and application of <strong>Robotic Manipulation</strong> in real-world scenarios.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-3">5.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li><strong>Complexity of Real-world Manipulation</strong>: The speaker addresses the challenge of designing robots that can manipulate objects in the real world, which is a complex and unpredictable environment.</li>
+<li><strong>Lack of Generalization</strong>: Current robotic systems struggle to generalize their learning to new tasks or environments.</li>
+<li><strong>Safety and Efficiency</strong>: Balancing the need for robots to perform tasks efficiently while ensuring safety, especially when interacting with humans.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-3">5.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li><strong>Deep Reinforcement Learning</strong>: The speaker’s work involves the use of <strong>deep reinforcement learning</strong> to train robots. This approach allows robots to learn from their mistakes and improve their performance over time.</li>
+<li><strong>Sim-to-Real Transfer</strong>: The speaker also discusses the use of <strong>simulation environments</strong> to train robots before deploying them in the real world. This approach reduces the risk of damage to the robot or its environment during the learning process.</li>
+<li><strong>Multi-task Learning</strong>: The speaker’s solution involves training robots on multiple tasks simultaneously. This approach increases the robot’s ability to generalize its learning to new tasks.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-3">5.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q</li>
+</ul>
+<p>: How does deep reinforcement learning work in robotic manipulation?</p>
+<ul>
+<li><p><strong>A</strong>: Deep reinforcement learning involves training a robot to make decisions based on its current state and the reward associated with different actions. The robot learns to improve its performance by maximizing the reward it receives over time.</p>
+</li>
+<li><p>Q</p>
+</li>
+</ul>
+<p>: What is sim-to-real transfer?</p>
+<ul>
+<li><p><strong>A</strong>: Sim-to-real transfer involves training a robot in a simulated environment before deploying it in the real world. This approach allows the robot to learn complex tasks without the risk of causing damage.</p>
+</li>
+<li><p>Q</p>
+</li>
+</ul>
+<p>: How does multi-task learning improve a robot’s performance?</p>
+<ul>
+<li><strong>A</strong>: Multi-task learning involves training a robot on multiple tasks simultaneously. This approach allows the robot to generalize its learning to new tasks, improving its overall performance.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-3">5.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of deep reinforcement learning, sim-to-real transfer, and multi-task learning in advancing the field of robotic manipulation. These approaches allow robots to learn complex tasks, generalize their learning to new tasks, and perform safely and efficiently in real-world environments.</li>
+</ul>
+<h2 id="Open-Source-to-Safety-Certified">6. Open-Source to Safety-Certified</h2><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230710225328_rEgOzh.png" alt="image-20230710225328468" style="zoom: 25%;">
+
+<p>How to speed up?</p>
+<p>Zero-copy memory</p>
+<h2 id="Adaptable-Robotic-Manipulation-Using-Tactile-Sensors">7. Adaptable Robotic Manipulation Using Tactile Sensors</h2><p>The seminar is about adaptable robotic manipulation using tactile sensors. The speaker discusses the challenges of integrating robots into our daily lives, particularly in <strong>contact-rich environments</strong> such as kitchens, healthcare, and e-commerce pipelines. The speaker presents their research on developing tactile sensors for robots to handle contact events better, focusing on two specific projects: in-hand manipulation using <strong>multimodal slip sensing</strong> and <strong>haptic exploration</strong> and grip monitoring of a suction cup gripper.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-4">7.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>Robots struggle in contact-rich environments due to their inability to handle <strong>contact events</strong> well.</li>
+<li>The <strong>unpredictable</strong> nature of contact, including <strong>unknown friction</strong> coefficients and <strong>inertia of objects</strong>, makes adaptive control challenging.</li>
+<li>Tactile sensors, while developed and commercially available, are not often seen in robots due to difficulties in <strong>generalization across different robot hardware,</strong> tasks, and contact physics.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-4">7.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker developed a compact multimodal sensor using a single transducer, called the “<strong>nib array sensor</strong>“, capable of monitoring linear and rotational slip in a more generalizable manner. This sensor can detect normal pressure, shear force, and vibrations, which are useful for estimating slip direction.</li>
+<li>The speaker also developed a “<strong>smart suction cup</strong>“ that can directly measure local contacts without interfering with suction seal formation. This is achieved by redesigning a single bellows suction cup to have internal four chambers connected to pressure sensors. The sensors measure the leakage flow through each chamber, providing valuable information about the contact state.</li>
+<li>The speaker’s solutions work because they directly address the challenges of contact-rich environments. The nib array sensor can adapt to changing contact conditions, while the smart suction cup can find the best contact location and monitor the grip during manipulation.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-4">7.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li><strong>Question:</strong> How does the nib array sensor differentiate between linear and rotational slip?</li>
+<li><strong>Answer:</strong> The sensor measures the capacitance between electrodes and a grounded conductive fabric. When the nib vibrates due to slip, it causes a directional capacitance change. By observing the direction of this change, the sensor can estimate the direction of the slip.</li>
+<li><strong>Question:</strong> How does the smart suction cup work?</li>
+<li><strong>Answer:</strong> The smart suction cup has internal four chambers, each connected to a pressure sensor. These sensors measure the leakage flow through each chamber, providing information about the contact state. This design allows the cup to measure local contacts without interfering with the suction seal formation.</li>
+<li><strong>Question:</strong> What are the main challenges in expanding the use of tactile sensors in robots?</li>
+<li><strong>Answer:</strong> The main challenges include the wiring and processing of large tactile arrays. Current approaches often involve a central processor querying the tactile sensing information, which may not be efficient for large arrays. A shift towards a system more like the human nervous system, where sensors inform the central processor when they have a stimulus, may be more efficient.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-4">7.4. Takeaway, the most important takeaway</h3><p>The most important takeaway from the seminar is the potential of tactile sensors in improving the adaptability and functionality of robots in contact-rich environments. The speaker’s research on the nib array sensor and the smart suction cup demonstrates innovative approaches to overcoming the challenges of contact events in robotics. These developments could pave the way for more widespread integration of robots into our daily lives.</p>
+<h2 id="Multi-Sensory-Neural-Objects-Modeling-Inference-and-Applications-in-Robotics">8. Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics</h2><p>The seminar is about “Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics”. The speaker discusses the development and application of multi-sensory neural objects in the field of robotics, focusing on the challenges and solutions associated with modeling, inference, and practical applications.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-5">8.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The difficulty in integrating multiple sensory inputs into a single, coherent model that can be used effectively in robotics.</li>
+<li>The challenge of creating a model that can infer and predict the behavior of objects in the environment based on sensory inputs.</li>
+<li>The need for more efficient and accurate methods of applying these models in real-world robotics applications.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-5">8.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes the use of neural networks to create a multi-sensory model. This model can integrate inputs from various sensors and generate a unified representation of the environment.</li>
+<li>The model uses machine learning techniques to infer and predict the behavior of objects, improving the robot’s ability to interact with its environment.</li>
+<li>The speaker’s solution works because it leverages the power of neural networks and machine learning, which are capable of handling complex data and making accurate predictions.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-5">8.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Question</li>
+</ul>
+<p>: How does the multi-sensory model integrate different types of sensory data?</p>
+<ul>
+<li><p><strong>Answer</strong>: The model uses neural networks to process and combine the data from different sensors, creating a unified representation of the environment.</p>
+</li>
+<li><p>Question</p>
+</li>
+</ul>
+<p>: How does the model predict the behavior of objects?</p>
+<ul>
+<li><p><strong>Answer</strong>: The model uses machine learning techniques to analyze the sensory data and make predictions about how objects in the environment will behave.</p>
+</li>
+<li><p>Question</p>
+</li>
+</ul>
+<p>: How can this model be applied in real-world robotics applications?</p>
+<ul>
+<li><strong>Answer</strong>: The model can be used to improve a robot’s ability to interact with its environment, for example, by helping it to navigate or manipulate objects more effectively.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-5">8.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of multi-sensory neural objects in robotics. By integrating multiple sensory inputs into a single model and using machine learning to infer and predict object behavior, robots can interact with their environment more effectively and accurately. This approach represents a significant advancement in the field of robotics.</li>
+</ul>
+<h2 id="Why-would-we-want-a-multi-agent-system-unstable">9. Why would we want a multi-agent system unstable</h2><ul>
+<li>The seminar is about the concept and implications of creating unstable multi-agent systems in the field of robotics and AI. The speaker discusses the potential benefits and challenges of such systems.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-6">9.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the problem of stability and predictability in multi-agent systems. Traditional systems aim for stability, but this can limit their adaptability and responsiveness.</li>
+<li>The speaker also discusses the challenge of designing systems that can handle unexpected situations or changes in the environment.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-6">9.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes intentionally designing multi-agent systems to be unstable. <strong>This instability allows the system to adapt and respond to changes more quickly.</strong></li>
+<li>This approach works because it allows each agent in the system to operate independently and make decisions based on its own observations and experiences, rather than relying on a central control system.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-6">9.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Question:</li>
+</ul>
+<p>Why would we want a multi-agent system to be unstable?</p>
+<ul>
+<li><p><strong>Answer:</strong> An <strong>unstable system can adapt and respond to changes more quickly</strong> than a stable one. It allows each agent to operate independently and make decisions based on its own observations and experiences.</p>
+</li>
+<li><p>Question:</p>
+</li>
+</ul>
+<p>Isn’t instability a bad thing in a system?</p>
+<ul>
+<li><strong>Answer:</strong> Not necessarily. While stability is often desirable, it can also limit a system’s adaptability and responsiveness. In some cases, a degree of instability can be beneficial.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-6">9.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the idea that instability in a multi-agent system can be a strength rather than a weakness. This approach can potentially lead to more adaptable and responsive systems, although it also presents new challenges in terms of system design and control.</li>
+</ul>
+<h2 id="Computational-Design-of-Compliant-Dynamical-Robots">10. Computational Design of Compliant, Dynamical Robots</h2><ul>
+<li>The seminar focuses on the computational design of compliant, dynamical robots. The speaker, Cynthia Sung, discusses her research and work in the field of robotics, particularly in the <strong>design and development of robots</strong> that are compliant and dynamic.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-7">10.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The primary research problem addressed in the seminar is the challenge of designing robots that are both <strong>compliant</strong> (flexible in their interactions with the environment) and <strong>dynamic</strong> (capable of complex, high-speed movements).</li>
+<li>The speaker also discusses the difficulties in creating robots that can adapt to a variety of tasks and environments, as well as the challenges in making these robots accessible and usable for non-experts.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-7">10.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker’s approach involves using <strong>computational methods</strong> to design and optimize robots. This includes the use of algorithms and software tools that can automatically generate robot designs based on specified tasks and constraints.</li>
+<li>The speaker also emphasizes the importance of designing robots that are compliant and dynamic, as this allows them to be more versatile and adaptable in their tasks.</li>
+<li>This approach works because it leverages the power of computation to automate and optimize the design process, <strong>making it easier to create complex, high-performance robots</strong>.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-7">10.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How can we design robots that are both compliant and dynamic?</li>
+<li>A: This can be achieved through computational design methods, which can automatically generate and optimize robot designs based on specified tasks and constraints.</li>
+<li>Q: How can we make robots more accessible and usable for non-experts?</li>
+<li>A: One approach is to develop intuitive software tools that allow non-experts to easily design and customize their own robots.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-7">10.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of <strong>computational</strong> design methods in the field of robotics. By using these methods, we can automate and optimize the design process, making it easier to create robots that are compliant, dynamic, and adaptable to a variety of tasks and environments. This not only advances the field of robotics, but also makes robots more accessible and usable for non-experts.</li>
+</ul>
+<h2 id="Deploying-Autonomous-Service-Mobile-Robots-And-Keeping-Them-Autonomous">11. Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous</h2><p>The seminar focuses on the deployment of autonomous service mobile robots and the challenges and solutions to keep them autonomous in real-world environments.</p>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-8">11.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speaker addresses the problem of maintaining the autonomy of service mobile robots in <strong>dynamic and unpredictable environments</strong>.</li>
+<li>The challenge of designing robots that can handle a wide variety of tasks and adapt to changes in their operating environment is also discussed.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-8">11.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speaker proposes a solution that involves the use of machine learning and AI to improve the adaptability and decision-making capabilities of the robots.</li>
+<li>This approach works because it allows the robots to learn from their experiences and adjust their behavior accordingly, thereby improving their performance over time.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-8">11.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How can we ensure that the robots can operate safely in dynamic environments?</li>
+<li>A: This can be achieved by incorporating advanced sensors and AI algorithms that allow the robots to perceive their environment and make decisions in real-time.</li>
+<li>Q: How can the robots adapt to changes in their operating environment?</li>
+<li>A: The robots can be designed to learn from their experiences and adjust their behavior accordingly. This can be achieved through machine learning and AI.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-8">11.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the importance of adaptability in autonomous service mobile robots. By incorporating machine learning and AI, these robots can learn from their experiences and adapt to changes in their environment, thereby improving their performance and autonomy.</li>
+</ul>
+<h2 id="Robot-Manipulation-in-the-Logistics-Industry">12. Robot Manipulation in the Logistics Industry</h2><ul>
+<li>The seminar is about the application of robot manipulation in the logistics industry. The speakers, Samir Menon, Robert Sun, and Kunal Shah, discuss their research and development in this field.</li>
+</ul>
+<h3 id="One-or-more-of-the-research-problems-the-speaker’s-work-address-9">12.1. One or more of the research problems the speaker’s work address</h3><ul>
+<li>The speakers address the problem of efficient and accurate robot manipulation in the logistics industry. They focus on the challenges of <strong>handling a wide variety of objects,</strong> dealing with uncertainties in the environment, and ensuring the safety and efficiency of robotic systems.</li>
+</ul>
+<h3 id="What-is-the-novel-approach-or-idea-behind-the-speaker’s-solution-Why-it-works-9">12.2. What is the novel approach or idea behind the speaker’s solution, Why it works</h3><ul>
+<li>The speakers propose a novel approach that combines machine learning techniques with <strong>traditional control methods</strong>. This approach allows robots to learn from their experiences and improve their performance over time.</li>
+<li>The solution works because it leverages the strengths of both machine learning and control theory. Machine learning allows the robots to adapt to new situations and improve their performance, while control theory ensures <strong>stability and safety</strong>.</li>
+</ul>
+<h3 id="Questions-that-maybe-asked-by-an-unexperienced-robotics-engineer-and-Answers-9">12.3. Questions that maybe asked by an unexperienced robotics engineer and Answers</h3><ul>
+<li>Q: How does the system handle a wide variety of objects?</li>
+<li>A: The system uses machine learning to learn from its experiences and adapt to new situations. It can handle a wide variety of objects by learning from its past interactions with similar objects.</li>
+<li>Q: How does the system deal with uncertainties in the environment?</li>
+<li>A: The system uses a combination of machine learning and control theory to deal with uncertainties. Machine learning allows the system to adapt to new situations, while control theory provides stability and safety.</li>
+<li>Q: How does the system ensure the safety and efficiency of the robotic systems?</li>
+<li>A: The system uses control theory to ensure stability and safety. It also uses machine learning to improve its performance over time, which increases efficiency.</li>
+</ul>
+<h3 id="Takeaway-the-most-important-takeaway-9">12.4. Takeaway, the most important takeaway</h3><ul>
+<li>The most important takeaway from the seminar is the potential of combining machine learning with traditional control methods in robotic manipulation. This approach allows robots to adapt to new situations, handle a wide variety of objects, and improve their performance over time, which is crucial for the logistics industry.</li>
+</ul>
+<h2 id="List">13. List</h2><p>Why would we want a multi-agent system unstable<br>Designing Robotic Grippers for Interaction with Real-World Environments<br>Incorporating Sample Efficient Monitoring into Learned Autonomy<br>From open-source to safety-certified robotic software<br>The Age of Human-Robot Collaboration: OceanOneK Deep-Sea Exploration<br>Towards Shape Changing Displays and Shape Changing Robots<br>Robotics algorithms that take people into account<br>DeXtreme: Transferring Agile In-Hand Manipulation from Simulations to Reality<br>Failure is Not an Option: Our Techniques at the DARPA Subterranean Challenge, Lessons Learned, and Next Steps<br>Robots in Dynamic Tasks: Learning, Risk, and Safety<br>Autonomous NASA robots breaking records on Mars<br>Perceiving, Understanding, and Interacting through Touch<br>Flexible Surgical Robots: Design, Sensing, and Control<br>Multi-Sensory Neural Objects: Modeling, Inference, and Applications in Robotics<br>Towards Generalizable Autonomy: Duality of Discovery &amp; Bias<br>Adaptable Robotic Manipulation Using Tactile Sensors<br>Get in touch: Tactile perception for human-robot systems<br>Democratizing Robot Learning<br>Understanding the Utility of Haptic Feedback in Telerobotic Devices<br>Humanizing Robot Design<br>Representation Learning for Autonomous Robots<br>Robot Manipulation in the Logistics Industry<br>Deploying Autonomous Service Mobile Robots, And Keeping Them Autonomous<br>Distributional Representations and Scalable Simulations for Real-to-Sim-to-Real with Deformables<br>Leveraging Human Input to Enable Robust AI Systems<br>Computational Design of Compliant, Dynamical Robots<br>Using Data for Increased Realism with Haptic Modeling and Devices<br>Modeling and interacting with other agents<br>Towards Complex Language in Partially Observed Environments<br>Interactive Imitation Learning: Planning Alongside Humans<br>Toward Scalable Autonomy<br>Deconfliction, Or How to Keep Fleets of Fast-Flying Robots from Crashing into Each Other<br>Opening the Doors of (Robot) Perception: Towards Certifiable Spatial Perception Algorithms and Systems<br>Objects, Skills, and the Quest for Compositional Robot Autonomy<br>Considerations for Human-Robot Collaboration<br>Towards Robust Human-Robot Interaction: A Quality Diversity Approach<br>Distributed Perception and Learning Between Robots and the Cloud<br>Robotic Autonomy and Perception in Challenging Environments<br>Motion planning of bipedal robots based on Divergent Component of Motion<br>Challenges to Developing Low Cost Robotic Systems<br>Designing More Effective Remote Presence Systems for Human Connection and Exploration<br>Safety-Critical Control of Dynamic Robots<br>Safe and Robust Perception-Based Control<br>Toward robust manipulation in complex environments<br>Designing bioinspired aerial robots with feathered morphing wings<br>Mind the Gap: Bridging model-based and data-driven reasoning for safe human-centered robotics<br>Modeling and Control for Robotic Assistants<br>Self-Supervised Pseudo-Lidar Networks<br>Field-hardened Robotic Autonomy<br>Learning and Predictions in Autonomous Systems<br>Scaled Learning for Autonomous Vehicles<br>Model Predictive Control of Hybrid Dynamical Systems<br>Bay Area Robotics Symposium<br>Hands in the Real World: Grasping Outside the Lab<br>The Next Generation of Robot Learning<br>Practical Challenges of Urban Autonomous Driving<br>Formalizing Teamwork in Human-Robot Interaction<br>Avian Inspired Design<br>How to Make, Sense, and Make Sense of Contact in Robotic Manipulation<br>Crossing the Reality Gap: Coordinating Multirobot Systems in The Physical World<br>Safety Guarantees with Perception and Learning in the Loop<br>Autonomous, Agile, Vision-controlled Drones: from Frame-based to Event-based Vision<br>The Merits of Models in Continuous Reinforcement Learning<br>No Title<br>Paradigm shift of haptic human-machine interaction: Historical perspective and our practice<br>Reachability in Robotics<br>Sub-sampling approaches to mapping and imaging<br>Fabrication via Mobile Robotics and Digital Manufacturing<br>Lagrangian control at large and local scales in mixed autonomy traffic flow: optimization and deep-RL approaches<br>High-Performance Aerial Robotics<br>Fast computation of robust multi-contact behaviors<br>Taking robots to the cloud and other insights on the path to market<br>Conversation with a Robot<br>No Title<br>Learning Dexterity<br>L1 Adaptive Control and Its Transition to Practice<br>Learning Model-free Representations for Fast, Adaptive Robot Control and Motion Planning<br>Attack-Resilient and Verifiable Autonomous Systems: A Satisfiability Modulo Convex Programming Approach<br>The Devil Made Me Do it: Computational Ethics for Robots<br>Making Sense of the Physical World with High-resolution Tactile Sensing<br>Control-Theoretic Regularization for Nonlinear Dynamical Systems Learning<br>Assistance of Walking and Running Using Wearable Robots<br>Learning Representations for Planning<br>A Grand Challenge for E-Commerce: Optimizing Rate, Reliability, and Range for Robot Bin Picking and Related Projects<br>Human-Robot Teaming: From Space Robotics to Self-Driving Cars<br>Recent advances in surgical robotics: some examples through the LIRMM research activities illustrated in minimally invasive surgery and interventional radiology<br>Hopping Rovers for Exploration of Asteroids and Comets: Design, Control, and Autonomy<br>Safety and Efficiency in Autonomous Vehicles through Planning with Uncertainty<br>Planning for Contact<br>Law as Action: Profit-Driven Bias in Autonomous Vehicles<br>The Combinatorics of Multi-contact Feedback Control<br>Autonomous Scheduling of Agile Spacecraft Constellations for Rapid Response Imaging<br>Safety in Autonomy via Reachability<br>Design, Theoretical Modeling, Motion Planning , and Control of a Pressure-operated Modular Soft Robotic Snake<br>The Information Knot Tying Sensing and Control and the Emergence Theory of Deep Representation Learning<br>Biological and Robotic haptics<br>Learning Perception and Control for Agile Off-Road Autonomous Driving<br>Towards Generalizable Imitation in Robotics<br>Designing exoskeletons and prostheses that enhance human performance<br>Value sensitive design for autonomous vehicle motion planning<br>On Quantifying Uncertainty for Robot Planning and Decision Making<br>Self-Supervision for Robotic Learning<br>Numerical methods for modeling, simulation and control for deformable robots.<br>Semantic Understanding for Robot Perception<br>Persistent Coverage Control for Constrained Multi-UAV Systems<br>Recent Advances Enabling Autonomous Transportation<br>Safety-Critical Control for Dynamic Legged and Aerial Robotics<br>No Title<br>Combining learned and analytical models for predicting the effect of contact interaction<br>Combining learned and analytical models for predicting the effect of contact interaction<br>Evolvability and adaptation in robotic systems<br>Continuously Learning Robots<br>Probabilistic Numerics — Uncertainty in Computation</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/small-claim-court/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/small-claim-court/" class="post-title-link" itemprop="url">File Small Court Claim Against Landlord</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-08 12:23:00" itemprop="dateCreated datePublished" datetime="2023-07-08T12:23:00-07:00">2023-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>The apartment charge 2400 for painting</p>
+<p>It’s un-reasonable</p>
+<h2 id="Process">2. Process</h2><ol>
+<li><strong>Determine Who to Sue</strong></li>
+<li><strong>Send a Demand Letter (optional but recommended)</strong></li>
+<li><strong>File Your Case</strong></li>
+<li><strong>Serve the Defendant</strong></li>
+<li><strong>Go to Court</strong></li>
+<li><strong>Collect Your Money</strong></li>
+</ol>
+<p>I hope this email finds you well.</p>
+<p>In accordance with California Civil Code §1950.5, I am formally requesting the return of my security deposit that I believe has been improperly withheld following my vacating the premises at 833 W El Camino Real, Sunnyvale, CA on June 12, 2023.</p>
+<p>Please find attached a letter detailing my concerns regarding an excessive $2400 charge for repainting the apartment, and the lack of an appropriately itemized statement describing the work performed, the time spent, and the reasonable hourly rate charged.</p>
+<p>The letter outlines the steps I am prepared to take if we are unable to resolve this dispute, including pursuing a small claims action.</p>
+<p>I am open to discussion in order to reach a fair resolution to this matter. I kindly ask you to review the attached letter and provide me with your feedback at your earliest convenience.</p>
+<p>I appreciate your prompt attention to this matter.</p>
+<p>Best regards,1</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/HDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Project/HDL/" class="post-title-link" itemprop="url">HDL Localization</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-26 21:42:00" itemprop="dateCreated datePublished" datetime="2023-06-26T21:42:00-07:00">2023-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Building a SLAM system based mainly on Lidar</p>
+<p>3 main different system</p>
+<ul>
+<li>Building point cloud map</li>
+<li>Global localization</li>
+<li>Relative localization</li>
+</ul>
+<h2 id="Building-Map">2. Building Map</h2><p>Graph optimization + loop closure detection</p>
+<h2 id="Global-Localization">3. Global Localization</h2><p>Bound and refine bound</p>
+<h2 id="Relative-Localization">4. Relative Localization</h2><p>NDT (normal distribution transform)</p>
+<p>Or GICP (generalized ICP)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/cheese/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/cheese/" class="post-title-link" itemprop="url">Cheese</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-25 14:44:00" itemprop="dateCreated datePublished" datetime="2023-06-25T14:44:00-07:00">2023-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="History">1. History</h2><p>Fresh milk become sour</p>
+<p>could be stored easily</p>
+<p>Different milk and different process produce different cheese</p>
+<p>Now: 22,000,000,000 KGs cheese every year</p>
+<h2 id="Types">2. Types</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=f25Yqm2ugpU">Ref</a></p>
+<p>Cheesemonger: expert on cheese</p>
+<p>Cheese board</p>
+<ul>
+<li>milk type</li>
+<li>cow</li>
+<li>goat</li>
+<li>sheep</li>
+<li>bufflo</li>
+<li>blend</li>
+<li>texture</li>
+<li>soft</li>
+<li>medium</li>
+<li>hard</li>
+<li>color</li>
+</ul>
+<h2 id="Classic-Cheese">3. Classic Cheese</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Jwu-7wFc4-E">Ref</a></p>
+<ol>
+<li>Mozzarella</li>
+<li>Italy</li>
+<li>Cow</li>
+<li>served with tomato</li>
+<li>inexpensive</li>
+<li>Feta</li>
+<li>Greek</li>
+<li>Sheep</li>
+<li>Salty</li>
+<li>served with salad</li>
+<li>Crottin de Chavignol</li>
+<li>France</li>
+<li>Goat</li>
+<li>Soft</li>
+<li>Blue Cheese</li>
+<li>Blue mold</li>
+</ol>
+<h2 id="Cheese-Knowledge">4. Cheese Knowledge</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3-PfywiJBPI">Ref</a></p>
+<p>Milk: whey + curd</p>
+<p>Whey: use acid, build the Ricotta</p>
+<p>Curd</p>
+<ol>
+<li>Salty water: Feta</li>
+<li>Hot water and stretch: Mozzarella</li>
+<li>Clean and compress: Gouda, Jack</li>
+<li>(Ferment) Blue cheese: Blue, camembert, brie</li>
+<li>(Ferment+compress) Cheddar, comte, parmesan</li>
+</ol>
+<h2 id="Tried">5. Tried</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230625204032_SNc3rR.jpeg" alt="IMG_0617 Large"></p>
+<ul>
+<li>Feta</li>
+<li>Gouda</li>
+<li>Brie</li>
+<li>Blue</li>
+<li>Goat</li>
+<li>Ricotta</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/pi-in-normal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/pi-in-normal/" class="post-title-link" itemprop="url">Why There is a Pi in Normal Distribution</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-09 22:53:00" itemprop="dateCreated datePublished" datetime="2023-06-09T22:53:00-07:00">2023-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><ol>
+<li>Why $e^{-x^2}$ integral is $\sqrt{\pi}$</li>
+<li>Where is the $e^{-x^2}$ come from</li>
+<li>Connect</li>
+</ol>
+<h2 id="How-to-Calculate">2. How to Calculate</h2><p>Add a dimension and solve it</p>
+<p>Subject: Request to Update Address and Adjust Auto Insurance Coverage</p>
+<p>Dear [Insurance Agent’s Name],</p>
+<p>I hope this message finds you well.</p>
+<p>I am writing to inform you that I have recently relocated and would appreciate it if you could update my personal records, specifically for my auto insurance policy. My new address is as follows:</p>
+<p>1455 McCandless Drive, Milpitas, CA, 95035</p>
+<p>In addition to this, as I have recently turned 25, I would appreciate if you could review my current auto insurance rates and see if there is potential for a reduction based on my age.</p>
+<p>Furthermore, I would like to inform you that I will no longer require the existing apartment insurance policy I hold. My new apartment provides a comprehensive insurance cover, thus making the continuation of my current policy unnecessary.</p>
+<p>Please let me know if you require any additional information or documentation to facilitate these changes. I am happy to provide them as needed.</p>
+<p>I look forward to your prompt response confirming these updates.</p>
+<p>Best regards,</p>
+<p>Junhan</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/normal-distribution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/normal-distribution/" class="post-title-link" itemprop="url">Why Normal Distribution? Central Limit Theorem</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-08 23:31:00" itemprop="dateCreated datePublished" datetime="2023-06-08T23:31:00-07:00">2023-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Why is normal distribution so common?</p>
+<p>Since the Central Limit Theorem</p>
+<h2 id="Central-Limit-Theorem">2. Central Limit Theorem</h2><p>Random variable $X$</p>
+<p>Add N samples of this variable</p>
+<ul>
+<li>The distribution would be a bell curve</li>
+</ul>
+<p>How mean and std changes? NX</p>
+<ul>
+<li>$N\times\mu$</li>
+<li>$\sqrt{N}\times\sigma$</li>
+</ul>
+<p>No matter what the <strong>origin</strong> distribution is</p>
+<ul>
+<li>When you normalize it ($\mu&#x3D;0,\sigma&#x3D;1$)</li>
+<li>the <strong>final</strong> result would be a normal distribution</li>
+</ul>
+<h3 id="Why-e">2.1. Why $e$</h3><p>Since the integral of $e^{-x^2}$ is $\pi$</p>
+<h3 id="Standard">2.2. Standard</h3><p>$$<br>\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}<br>$$</p>
+<h3 id="Understanding">2.3. Understanding</h3><p>$$<br>\lim _{N \rightarrow \infty} P(a&lt;\text {  value }&lt;b)&#x3D;\int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 &#x2F; 2} d x<br>$$</p>
+<p>Where value is<br>$$<br>\frac{\left(X_1+\cdots+X_N\right)-N \cdot \mu}{\sigma \cdot \sqrt{N}}<br>$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/borwein/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/borwein/" class="post-title-link" itemprop="url">Borwein 积分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-08 23:11:00" itemprop="dateCreated datePublished" datetime="2023-06-08T23:11:00-07:00">2023-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>$$<br>\begin{aligned}<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} d x&#x3D;(0.99999999998529) \pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} \frac{\sin (x &#x2F; 17)}{x &#x2F; 17} d x&#x3D;(0.99999998807962) \pi<br>\end{aligned}<br>$$</p>
+<p>Why?</p>
+<h2 id="Sliding-Window">2. Sliding Window</h2><p>Moving average</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230608231855_dStpt5.png" alt="image-20230608231854902"></p>
+<p>Same pattern</p>
+<p>Stable for sometime, then change suddenly</p>
+<h2 id="Sinc-function">3. Sinc function</h2><p>$$<br>\int_{-\infty}^{\infty} \frac{\sin (\pi x)}{\pi x} d x&#x3D;1.0<br>$$</p>
+<p>Why</p>
+<p>Since it’s the Fourier tranform of the rect function<br>$$<br>\int_{-\infty}^{\infty} f(t) d t&#x3D;\mathcal{F}<a href="0">f(t)</a><br>$$</p>
+<h2 id="FT">4. FT</h2><p>$$<br>\mathcal{F}\left[\frac{\sin (\pi x)}{\pi x} \cdot \frac{\sin (\pi x &#x2F; 2)}{\pi x &#x2F; 2}\right]&#x3D;\mathcal{F}\left[\frac{\sin (\pi x)}{\pi x}\right] * \mathcal{F}\left[\frac{\sin (\pi x &#x2F; 2)}{\pi x &#x2F; 2}\right]<br>$$</p>
+<p>So just window average</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Localization/gicp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,785 +1514,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/lidar-kidnap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/lidar-kidnap/" class="post-title-link" itemprop="url">Lidar Kidnap Robot Problem</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-27 22:28:00" itemprop="dateCreated datePublished" datetime="2023-05-27T22:28:00-07:00">2023-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Problem:</p>
-<ul>
-<li>have the learned 3D lidar point cloud map</li>
-<li>given a single frame (lidar scan) from lidar</li>
-<li>calculate current robot position and pose (without knowing initial pose)</li>
-</ul>
-<h2 id="Review">2. Review</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.07433">Ref</a></p>
-<p>Map</p>
-<ul>
-<li>Keyframe-based submaps</li>
-<li>Global feature map</li>
-<li>Global metric map</li>
-</ul>
-<p>Single shot localization</p>
-<ul>
-<li>Place Recognition: match the keyu frame</li>
-<li>Place Recognition and Local Pose Estimation</li>
-<li>Pose Estimation coupled Place Recognition</li>
-<li>One stage global estimation</li>
-</ul>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230528013339_anUzXY.png" alt="image-20230528013339621" style="zoom:33%;">
-
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230528013453_bcLnsY.png" alt="image-20230528013453090"></p>
-<h2 id="Scan-Context">3. Scan Context</h2><h2 id="SegMatch">4. SegMatch</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/imu-lidar-calibration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/imu-lidar-calibration/" class="post-title-link" itemprop="url">Calibration Between Lidar and IMU</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-27 16:04:00" itemprop="dateCreated datePublished" datetime="2023-05-27T16:04:00-07:00">2023-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Goal: calibrate between leishen lidar C16 and 6 axis IMU</p>
-<p>Ref: <a target="_blank" rel="noopener" href="https://github.com/unmannedlab/imu_lidar_calibration">unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com)</a></p>
-<h2 id="Theory">2. Theory</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VIc8XxNrymQ">Ref</a></p>
-<p>Goal: estimate the extrinsic<br>$$<br>T_L^I&#x3D;\left[\begin{array}{cc}<br>R_L^I &amp; { }^I \mathrm{P}_{\mathrm{L}} \<br>0 &amp; 1<br>\end{array}\right]<br>$$<br>Step:</p>
-<ul>
-<li>Rotation Estimation</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162339_DjJ4cJ.png" alt="image-20230527162339584"></p>
-<p>Motion of Lidar &#x3D; Motion of IMU</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png" alt="image-20230527162708340" style="zoom:50%;">
-
-<ul>
-<li>Tranlation Estimation</li>
-</ul>
-<p>Refine the rotation and translation</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527163220_Cp8rj9.png" alt="image-20230527163220016"></p>
-<p>the key state is from Lidar data</p>
-<p>Minimize the data in a EKF process</p>
-<p>System design</p>
-<h2 id="Data-Analysis">3. Data Analysis</h2><p>The data sample</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172131_SoemvE.png" alt="image-20230527172131502"></p>
-<p>Ours</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172251_cSXtgc.png" alt="image-20230527172251129"></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527174240_VWkk67.png" alt="image-20230527174240241"></p>
-<p>roll, pitch, azimuth</p>
-<h3 id="difference-between-azimuth-and-yaw">3.1. difference between azimuth and yaw</h3><p>while the yaw is turn from current orientaion</p>
-<p>the azimuth is the absolute heading</p>
-<p><a target="_blank" rel="noopener" href="https://novatel.com/solutions/attitude">Ref</a></p>
-<h2 id>4. </h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/resume-updator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/resume-updator/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-18 22:35:00" itemprop="dateCreated datePublished" datetime="2023-05-18T22:35:00-07:00">2023-05-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal">1. Goal</h2><p>Improve current resume</p>
-<ol>
-<li>Define the guideline and limit</li>
-<li>Transform current resume into markdown format</li>
-<li>Add up-to-date info</li>
-<li>Use ChatGPT to general a new general resume</li>
-<li>Find a good template for exporting PDF</li>
-</ol>
-<p>Later plan (target for specfic role) in the future</p>
-<ol>
-<li>Extract the most important skills needed</li>
-<li>Update accordingly</li>
-</ol>
-<h2 id="Guidelines">2. Guidelines</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Tt08KmFfIYQ">Ref</a></p>
-<ul>
-<li>Include important keywords</li>
-<li>Measurable metrics</li>
-<li>475-600 words</li>
-<li>Remove the buzzwords, cliches</li>
-</ul>
-<h2 id="Reusme">3. Reusme</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/case-study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/case-study/" class="post-title-link" itemprop="url">Case Study for Product Photograph</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-17 23:08:00" itemprop="dateCreated datePublished" datetime="2023-05-17T23:08:00-07:00">2023-05-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Product-Shoot">1. Product Shoot</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230517232401_LZUOSS.png" alt="image-20230517232401844"></p>
-<p>day light</p>
-<p>shadow</p>
-<h2 id="Fruit-Smoothies">2. Fruit Smoothies</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/thinking-2023/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/thinking-2023/" class="post-title-link" itemprop="url">近期思考</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-14 16:19:00" itemprop="dateCreated datePublished" datetime="2023-05-14T16:19:00-07:00">2023-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="改变世界">1. 改变世界</h2><p>如何缩小贫富差距，作为大众</p>
-<ul>
-<li>教育</li>
-<li>投票</li>
-<li>捐赠</li>
-</ul>
-<p>如何实现平等</p>
-<p>什么是平等</p>
-<ul>
-<li>朴素平等</li>
-<li>幸福平等</li>
-<li>资源平等</li>
-<li>机会平等</li>
-<li>能力平等</li>
-</ul>
-<h2 id="职业发展">2. 职业发展</h2><p>是否要跳槽</p>
-<p>身份问题如何解决？</p>
-<ul>
-<li>职业移民EB2&#x2F;3</li>
-<li>PERM</li>
-<li>I-460</li>
-<li>I-485</li>
-<li>在I-140获批之后可以获得PD</li>
-<li>需要多久？一年半左右</li>
-</ul>
-<h2 id="食物摄影">3. 食物摄影</h2><p>要作为赚钱的手段吗</p>
-<h2 id="创业">4. 创业</h2><ul>
-<li>教育</li>
-<li>养老机器人</li>
-<li>食物摄影</li>
-</ul>
-<h2 id="计划">5. 计划</h2><ol>
-<li>Update resume</li>
-<li>Update Linkedin profile</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/light-shaping/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/light-shaping/" class="post-title-link" itemprop="url">Control the Shape of Lighting</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-08 22:37:00" itemprop="dateCreated datePublished" datetime="2023-05-08T22:37:00-07:00">2023-05-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Stand">1. Stand</h2><ul>
-<li>Tranditional Stand</li>
-<li>C Stand</li>
-</ul>
-<p>For C stand, get some stand bag for more steady envrionment</p>
-<h2 id="Adapters">2. Adapters</h2><p>grip, clamp, adapter</p>
-<ul>
-<li>to work with C stand and attach all kinds of light&#x2F;modifiers</li>
-</ul>
-<p>try to avoid very specific usage tool</p>
-<p>Plastic clamps: <a target="_blank" rel="noopener" href="https://amzn.to/3gUd8Ul">https://amzn.to/3gUd8Ul </a></p>
-<p>Metal clamps (with rubber grip): <a target="_blank" rel="noopener" href="https://amzn.to/3p2iAY2">https://amzn.to/3p2iAY2   </a></p>
-<p>C-Stand Grip Head (Neewer): <a target="_blank" rel="noopener" href="https://amzn.to/34llyzc">https://amzn.to/34llyzc</a></p>
-<p>Reflector Disc Holder (set of 3): <a target="_blank" rel="noopener" href="https://amzn.to/3oStwHM">https://amzn.to/3oStwHM</a></p>
-<p>C-clamp Grip: <a target="_blank" rel="noopener" href="https://amzn.to/2Wmfjqn">https://amzn.to/2Wmfjqn</a></p>
-<p>^ Clip to attach: <a target="_blank" rel="noopener" href="https://amzn.to/3mrRTdV">https://amzn.to/3mrRTdV</a></p>
-<p>Supergrip with Adjustable Handle: <a target="_blank" rel="noopener" href="https://amzn.to/3rbGoej">https://amzn.to/3rbGoej</a></p>
-<h2 id="Modifiers">3. Modifiers</h2><p>Softbox mainly make the flash larger</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508230826_x0mELD.png" alt="image-20230508230826709"></p>
-<p>Using grid, snoots, GOBOs</p>
-<p>Looking for the right mount system</p>
-<p>Magbox (with Magmod system): <a target="_blank" rel="noopener" href="https://amzn.to/2WmBNYm">https://amzn.to/2WmBNYm </a></p>
-<p>Pro Studio 4ft Softbox (I have the 3ft version, but could not find it on Amazon): <a target="_blank" rel="noopener" href="https://amzn.to/34jCyWl">https://amzn.to/34jCyWl </a></p>
-<p>Phottek Softlighter (Umbrella): <a target="_blank" rel="noopener" href="https://amzn.to/37otmC4">https://amzn.to/37otmC4</a></p>
-<p>Westcott 7tf Umbrella: <a target="_blank" rel="noopener" href="https://amzn.to/37rBxNS">https://amzn.to/37rBxNS</a></p>
-<p>Magmod Basic Kit: <a target="_blank" rel="noopener" href="https://amzn.to/2KbjDq2">https://amzn.to/2KbjDq2</a></p>
-<p>Magmod Snoot: <a target="_blank" rel="noopener" href="https://amzn.to/2Woayg8">https://amzn.to/2Woayg8</a></p>
-<p>Godox Snoot:  <a target="_blank" rel="noopener" href="https://amzn.to/38eXxe6">https://amzn.to/38eXxe6</a></p>
-<h2 id="Flags-amp-Fill-Cards">4. Flags &amp; Fill Cards</h2><p>Control light is the key skills</p>
-<p>3 main way</p>
-<ul>
-<li><p>cutting or shaping</p>
-</li>
-<li><p>block light</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508231706_sFQiMA.png" alt="image-20230508231706875"></p>
-<ul>
-<li><p>reducing</p>
-</li>
-<li><p>negative fill</p>
-</li>
-<li><p>adding</p>
-</li>
-<li><p>positive fill</p>
-</li>
-<li><p>serve as a new light source</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232348_30jU8Q.png" alt="image-20230508232348849"></p>
-<p>Foam boards: <a target="_blank" rel="noopener" href="https://amzn.to/3r5BW0w">https://amzn.to/3r5BW0w </a></p>
-<p>Tri-fold boards: <a target="_blank" rel="noopener" href="https://amzn.to/3oWKaWQ">https://amzn.to/3oWKaWQ   </a></p>
-<p>Godox SA-17: <a target="_blank" rel="noopener" href="https://amzn.to/3mrVRDl">https://amzn.to/3mrVRDl</a></p>
-<h2 id="Diffusion-amp-Reflector">5. Diffusion &amp; Reflector</h2><p>diffusion roll?</p>
-<ul>
-<li>more smooth, creamy, and natural</li>
-<li>no cross light</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230508232812_v27QcB.png" alt="image-20230508232812878"></p>
-<p>Reflector</p>
-<p>Mirror is a great tool for product photography</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/flash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/flash/" class="post-title-link" itemprop="url">Off Camera Flash</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-07 15:06:00" itemprop="dateCreated datePublished" datetime="2023-05-07T15:06:00-07:00">2023-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What-to-Buy">1. What to Buy?</h2><ul>
-<li>basic fundamentals of lighting</li>
-<li>fundamental of off-camera flash</li>
-<li>lighting for your work</li>
-</ul>
-<h2 id="Flash-Duration">2. Flash Duration</h2><p>With natutal light</p>
-<ul>
-<li>High speed shutter to capture the motion</li>
-<li>for splash, 1&#x2F;1000s is needed</li>
-</ul>
-<p>While with the flash speed</p>
-<ul>
-<li>Maybe 1&#x2F;40s is good enough</li>
-<li>The flash duration capture the motion</li>
-<li>shutter speed is irrelavant</li>
-</ul>
-<p>The higher power, the longer flash duration</p>
-<p>So to capture splash, use low flash output power</p>
-<h2 id="Sync-Speed">3. Sync Speed</h2><p>The max speed camera can set to work properly with flash</p>
-<blockquote>
-<p>Why limit? since In high shutter speed, the shutter should not fully open, so ther would be a dark area</p>
-</blockquote>
-<p>Shoot as max sync speed</p>
-<h2 id="Flash-Power">4. Flash Power</h2><p>The more powerful, the more control you have on the depth of field</p>
-<p>For flash, the power if linear</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230507161501_G0cyyj.png" alt="image-20230507161501491"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1372,7 +1583,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">334</span>
+          <span class="site-state-item-count">342</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1385,7 +1596,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
