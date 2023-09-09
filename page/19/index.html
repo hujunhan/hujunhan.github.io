@@ -188,6 +188,388 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/yolo5face/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/yolo5face/" class="post-title-link" itemprop="url">Yolo5Face</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-20 22:24:00" itemprop="dateCreated datePublished" datetime="2021-12-20T22:24:00-08:00">2021-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What-I-want-to-Know">1. What I want to Know</h2><p>How they add key point landmark detection</p>
+<p>How they design their network due to this change</p>
+<h2 id="Yolo5Face-Contribution">2. Yolo5Face Contribution</h2><ul>
+<li>Redesign the YoloV5</li>
+<li>Design models for different model size</li>
+<li>Evaluate on Widerface</li>
+</ul>
+<h2 id="Key-Modification">3. Key Modification</h2><p><strong>Add a landmark regression head</strong>, this is what I want to know</p>
+<p>In face detection, there are 5 points (simplified from 68 points)</p>
+<ul>
+<li>General loss functions for landmark regression: Wing-loss<br>$$<br>\operatorname{wing}(x)&#x3D; \begin{cases}w \cdot \ln (1+|x| &#x2F; e), &amp; \text { if } x&lt;w \ |x|-C, &amp; \text { otherwise }\end{cases}<br>$$</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-20-22-45-38.png" alt="image-20211220224538479"></p>
+<ul>
+<li>Add landmark loss with object detection loss</li>
+</ul>
+<p>$$<br>loss(s)&#x3D;loss_{obj}+\lambda{L} loss_L<br>$$</p>
+<p>Stem Block</p>
+<ul>
+<li>YOLOv5 has a focus layer, replacing focus layer with stem block</li>
+<li>Adding landmark into the stem block</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/3d-reconstruction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/3d-reconstruction/" class="post-title-link" itemprop="url">3D Reconstruction with Meshroom</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-14 14:38:00" itemprop="dateCreated datePublished" datetime="2021-12-14T14:38:00-08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Meshroom">1. Meshroom</h2><blockquote>
+<p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
+<p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
+</blockquote>
+<h2 id="Pipeline">2. Pipeline</h2><ol>
+<li>Feature extraction</li>
+<li>Goal: extract feature points</li>
+<li>Method: SIFT</li>
+<li>Image matching</li>
+<li>Goal: find images looking to the same area, then we can reduce computation</li>
+<li>Method: Vocabulary tree approach</li>
+<li>Feature matching</li>
+<li>Goal: match feature points between candidate image pairs</li>
+<li>Method: calculate distance and use RANSAC</li>
+<li>Structure from Motion (SFM)</li>
+<li>Goal: compute the pose of each images</li>
+<li>Methods:</li>
+<li>Fuse all matched feature point pairs</li>
+<li>Choose the best initial image pair</li>
+<li>Compute the fundamental matrix</li>
+<li>Using PnP to calculate the pose</li>
+<li>Filter the results using Bundle Adjustment</li>
+<li>Depth Maps Estimation</li>
+<li>Goal: get the depth value of each pixel</li>
+<li>Method: Semi-Global Matching</li>
+<li>Meshing</li>
+<li>Goal: create geometric surface representation of the scene</li>
+<li>Method:</li>
+<li>Fuse all depth maps into global octree</li>
+<li>Perform 3D Delaunay tetrahedralization (四面体化), then voting</li>
+<li>Graph cut Max-Flow, optimally cut the volume</li>
+<li>Texturing</li>
+<li>Goal: texture the generated mesh</li>
+<li>Method:</li>
+<li>Compute UV maps</li>
+<li>For each triangle, use the color of each candidate to estimate</li>
+</ol>
+<h2 id="Data-Acquisition">3. Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<p>Camera setting</p>
+<ul>
+<li>Fixed <strong>low</strong> ISO (low noise)</li>
+<li>Fixed <strong>high</strong> shutter speed (less then 1&#x2F;100s, no blur)</li>
+<li>Fixed <strong>long</strong> focal length (everything is in focus)</li>
+<li>Fixed white balance  (stable image color for feature matching)</li>
+<li>Enough lighting (so that we can keep low iso and high shutter speed)</li>
+</ul>
+<p>Move:</p>
+<ul>
+<li><p>Camera fixed, object move</p>
+</li>
+<li><p>will need a spin base</p>
+</li>
+<li><p>keep the background pure color</p>
+</li>
+<li><p>Camera move, object fixed</p>
+</li>
+<li><p>Shot around the object (360 degree)</p>
+</li>
+<li><p>In each spot, shot from 3 different heights</p>
+</li>
+</ul>
+<p>Illustration:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
+<h2 id="Results">4. Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<p>The final results of Meshroom is pretty unstable</p>
+<ul>
+<li>In many cases, even high quality images dataset can not generate satisfied results</li>
+<li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
+</ul>
+<h2 id="Discussion">5. Discussion</h2><p>Why performs bad?</p>
+<p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
+<ul>
+<li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
+<li>The leaf is semi-transparent, it will look differently from different angle</li>
+<li>The leaf skin is so smooth that would generate reflection</li>
+</ul>
+<p>How to solve the problem? (Possible solution)</p>
+<ul>
+<li>Using laser to generate point cloud (to capture textureless feature)</li>
+<li>Create great lighting system, try to avoid reflection and semi-transparent situation</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Rotation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Rotation/" class="post-title-link" itemprop="url">旋转矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-12 21:11:00" itemprop="dateCreated datePublished" datetime="2021-12-12T21:11:00-08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="旋转矩阵">1. 旋转矩阵</h2><p>旋转方式</p>
+<ul>
+<li>绕自身旋转（右乘变换矩阵）</li>
+<li>绕固定轴旋转（左乘变换矩阵）</li>
+</ul>
+<blockquote>
+<p>比如说RPY，绕XYZ旋转，如果是绕自身，那就是<br>$$<br>R_x()R_y()R_z()<br>$$<br>如果是绕固定轴，那就是<br>$$<br>R_z()R_y()R_x()<br>$$</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/hyperband/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -990,398 +1372,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/" class="post-title-link" itemprop="url">SIFT特征</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-15 15:13:00" itemprop="dateCreated datePublished" datetime="2021-07-15T15:13:00-07:00">2021-07-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>什么是SIFT？Scale Invariant Feature Transform</p>
-<p>对下列变化不敏感</p>
-<ul>
-<li>尺度变换</li>
-<li>旋转</li>
-<li>光照</li>
-<li>视角</li>
-</ul>
-<p>SIFT算法较为复杂，主要分为两个大的部分</p>
-<ol>
-<li>找出特征点</li>
-<li>目的是去掉一些不重要的细节。方法：高斯模糊</li>
-<li>变化大的区域就是边缘、点、角</li>
-<li>描述特征点</li>
-<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
-<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
-<li>一共是4x4x8&#x3D;128维的特征向量</li>
-</ol>
-<h2 id="Details">2. Details</h2><ol>
-<li><p>找出特征点</p>
-</li>
-<li><p>目的是去掉一些不重要的细节。方法：高斯模糊，不同的level</p>
-</li>
-<li><p>不断resize，变成金字塔形状，不同的octaves。每次resize之后都高斯模糊。</p>
-</li>
-</ol>
-<blockquote>
-<p>建议的值octave&#x3D;4，level&#x3D;5</p>
-</blockquote>
-<ol start="3">
-<li>生成Difference of Gaussians (DoG)，变化大的区域就是边缘、点、角</li>
-</ol>
-<p>这是对Laplacian of Gaussian (LoG) 的一个近似</p>
-<ul>
-<li>好处：LoG不具有尺度不变性，而DoG有</li>
-<li>坏处：引入了其他的常量k，但不影响特征点位置，所以无所谓</li>
-</ul>
-<ol start="4">
-<li><p>确定极大点、极小点</p>
-</li>
-<li><p>粗略估计，如果在3层，27个点中是最大或最小的，就作为极值点。注意：最低或者最高层不做，因为没有相邻的三层。得到的点就是<strong>关键点</strong></p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-17-14-39.png" alt="2021-07-15-17-14-39"></p>
-<ol start="2">
-<li><p>利用差分图计算亚像素，可以更精确<br>$$<br>D(\mathbf{x})&#x3D;D+\frac{\partial D^{T}}{\partial \mathbf{x}} \mathbf{x}+\frac{1}{2} \mathbf{x}^{\mathrm{T}} \frac{\partial^{2} D}{\partial \mathbf{x}^{2}} \mathbf{x}<br>$$</p>
-</li>
-<li><p>描述特征点</p>
-</li>
-<li><p>HoG，在1.2中找出的特征点为中心选16x16的区域</p>
-</li>
-<li><p>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</p>
-</li>
-<li><p>一共是4x4x8&#x3D;128维的特征向量</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/" class="post-title-link" itemprop="url">流水线抓取</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-12 13:25:00" itemprop="dateCreated datePublished" datetime="2021-07-12T13:25:00-07:00">2021-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="流程">1. 流程</h2><h3 id="RGB-Image">1.1. RGB Image</h3><ol>
-<li>获取图像</li>
-<li>利用传统的方式得到主体脉络</li>
-<li>提取RGB关键点</li>
-<li>判断抓取位置</li>
-</ol>
-<h3 id="RGB-Image-3D-Model">1.2. RGB Image + 3D Model</h3><ol>
-<li><p>如果有3D模型，则通过RGB关键点匹配模型，得到关键点的3D坐标</p>
-</li>
-<li><p>利用多组点，求解6D位姿</p>
-</li>
-</ol>
-<h3 id="疑惑">1.3. 疑惑</h3><ul>
-<li>什么是主体脉络</li>
-<li>2d特征点的3d坐标</li>
-</ul>
-<h2 id="安排">2. 安排</h2><p>基于模型的位姿估计</p>
-<ul>
-<li>提前在3D模型上选好特征点，确定特征点在模型坐标系下的坐标</li>
-<li>计算RGB图象中的特征点，</li>
-</ul>
-<h2 id="Survey">3. Survey</h2><p>位姿估计方法</p>
-<h3 id="已知三维模型">3.1. 已知三维模型</h3><ul>
-<li><p>PNP，based on marker</p>
-</li>
-<li><p>Markerless.</p>
-</li>
-</ul>
-<p>Search for point correspondences between two frames and distances to be minimized</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-10-51-54.png" alt="2021-07-15-10-51-54"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/" class="post-title-link" itemprop="url">轻量型视觉数据生成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-08 10:01:00" itemprop="dateCreated datePublished" datetime="2021-07-08T10:01:00-07:00">2021-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述">1. 1 问题描述</h2><p>为了给训练模型提供大量不同背景和姿态的训练数据，基于相机模型和Open3D的渲染生成数据，输入模型、背景和相机的姿态（或者模型的姿态），输出RGB图和深度图</p>
-<h2 id="2-方法步骤">2. 2 方法步骤</h2><p>主要依赖两个库</p>
-<ul>
-<li>Open3D：提供读取模型（.obj .mtl .jpg）以及渲染模型的作用，生成具有真实感的模型图片</li>
-<li>虚拟相机模型virtual_camera：提供生成mask的作用，也就是获取模型在图片中的位置</li>
-</ul>
-<p>Pipeline：</p>
-<ol>
-<li>读取模型</li>
-<li>初始化相机模型，计算相机内参、外参</li>
-<li>获取mask（起到抠图的作用）</li>
-<li>读取模型的顶点和mesh信息</li>
-<li>将顶点通过相机模型映射到像素平面</li>
-<li>根据mesh信息将对应的三角形涂上颜色</li>
-<li>最终根据颜色信息获取mask</li>
-<li>渲染模型</li>
-<li>初始化一个Open3D的render</li>
-<li>定义render中的相机位置、模型材质、环境光照信息</li>
-<li>渲染模型的深度图和RGB图</li>
-<li>背景融合</li>
-<li>读取背景图片</li>
-<li>根据3中获取的mask信息读取4中RGB图相应位置的点，赋值给背景图图片，获得融合后的RGB图</li>
-<li>根据4中获取的深度图，重新计算，映射到0-255范围，获得可视化良好的深度图</li>
-</ol>
-<h2 id="3-代码实现">3. 3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">import</span> open3d.visualization.rendering <span class="keyword">as</span> rendering</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> virtual_camera <span class="keyword">import</span> VirtualCamera</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read the Data (From obj file)</span></span><br><span class="line">bpa_mesh = o3d.io.read_triangle_mesh(<span class="string">&#x27;BigConnecter.obj&#x27;</span>,<span class="literal">True</span>)</span><br><span class="line">tri=np.asarray(bpa_mesh.triangles)</span><br><span class="line">points_raw=np.asarray(bpa_mesh.vertices)</span><br><span class="line">center_p=np.<span class="built_in">sum</span>(points_raw,<span class="number">0</span>)/<span class="built_in">len</span>(points_raw)</span><br><span class="line">rx=-np.pi/<span class="number">2</span></span><br><span class="line">ry=<span class="number">0</span></span><br><span class="line">rz=np.pi/<span class="number">2</span></span><br><span class="line">R=o3d.geometry.get_rotation_matrix_from_xyz([rx,ry,rz])</span><br><span class="line">bpa_mesh.rotate(R,center_p)</span><br><span class="line">o3d.visualization.draw_geometries([bpa_mesh])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Setup a camera</span></span><br><span class="line">rx=<span class="number">0</span></span><br><span class="line">ry=np.pi</span><br><span class="line">rz=<span class="number">0</span></span><br><span class="line">x=<span class="number">1</span></span><br><span class="line">y=<span class="number">1</span></span><br><span class="line">z=<span class="number">570</span></span><br><span class="line">W,H=<span class="number">2048</span>,<span class="number">2048</span></span><br><span class="line">focal=<span class="number">1024</span></span><br><span class="line">tic=time.time()</span><br><span class="line">cam = VirtualCamera(rx, ry, rz,x, y, z, focal*<span class="number">3.45e-6</span>, [W, H])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Create Mask</span></span><br><span class="line"><span class="comment">#  Get the triangle relationship</span></span><br><span class="line">points=points_raw</span><br><span class="line"><span class="built_in">print</span>(points)</span><br><span class="line">points=points.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ans,cp = cam.project_world_to_pixel(points)</span><br><span class="line">ans=ans.astype(<span class="built_in">int</span>)</span><br><span class="line">mask_bg=np.zeros((W,H,<span class="number">3</span>))</span><br><span class="line">mask_bg[:,:,:]=<span class="number">0</span></span><br><span class="line">ans=ans[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tri)):</span><br><span class="line">pt1=ans[tri[i][<span class="number">0</span>]]</span><br><span class="line">pt2=ans[tri[i][<span class="number">1</span>]]</span><br><span class="line">pt3=ans[tri[i][<span class="number">2</span>]]</span><br><span class="line">tri_set=np.asarray([pt1,pt2,pt3])</span><br><span class="line">tri_set=tri_set.astype(<span class="built_in">int</span>)</span><br><span class="line">tri_set=tri_set.reshape(-<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">cv2.fillPoly(mask_bg,[tri_set],(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))</span><br><span class="line"><span class="comment">#  Calculate the mask</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">fushi = cv2.erode(mask_bg,kernel,iterations = <span class="number">1</span>)</span><br><span class="line">mask=np.where(fushi[:,:,<span class="number">1</span>]==<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Render model</span></span><br><span class="line">camera_intrinsics=o3d.camera.PinholeCameraIntrinsic()</span><br><span class="line">camera_intrinsics.set_intrinsics(W,H,focal,focal,W/<span class="number">2</span>,H/<span class="number">2</span>)</span><br><span class="line">extrinsics=cam.RT_world_in_camera</span><br><span class="line"></span><br><span class="line">render = rendering.OffscreenRenderer(<span class="number">2048</span>, <span class="number">2048</span>)</span><br><span class="line">material = rendering.Material()</span><br><span class="line">material.base_color = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1.0</span>]</span><br><span class="line">material.shader = <span class="string">&quot;defaultLit&quot;</span></span><br><span class="line">material.albedo_img=o3d.io.read_image(<span class="string">&#x27;BigConnectSilver.jpg&#x27;</span>)</span><br><span class="line">material.base_metallic=<span class="number">1.0</span></span><br><span class="line">render.scene.add_geometry(<span class="string">&quot;pcd&quot;</span>,bpa_mesh,material)</span><br><span class="line">render.setup_camera(camera_intrinsics,extrinsics)</span><br><span class="line">render.scene.scene.set_sun_light([<span class="number">0</span>, <span class="number">0.0</span>, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line"><span class="number">3e6</span>)</span><br><span class="line">render.scene.scene.enable_sun_light(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read RGB and Depth image from open3d</span></span><br><span class="line">img = np.asarray(render.render_to_image())</span><br><span class="line">depth_img=np.asarray(render.render_to_depth_image())</span><br><span class="line">depth_img=<span class="number">1</span>-depth_img</span><br><span class="line">depth_img=depth_img/np.amax(depth_img)*<span class="number">255</span></span><br><span class="line">depth_img=depth_img.astype(<span class="built_in">int</span>)</span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_depth.png&#x27;</span>,<span class="number">255</span>-depth_img)</span><br><span class="line"></span><br><span class="line">img= cv2.cvtColor(img,cv2.COLOR_RGB2BGR)</span><br><span class="line">bg=cv2.imread(<span class="string">&#x27;WechatIMG1313.jpeg&#x27;</span>)</span><br><span class="line">bg=cv2.resize(bg,(<span class="number">2048</span>,<span class="number">2048</span>))</span><br><span class="line">bg[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]=img[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_rgb.jpg&#x27;</span>,bg)</span><br><span class="line">plt.imshow(cv2.cvtColor(bg,cv2.COLOR_BGR2RGB))</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果">4. 4 实验结果</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2008%2010%2057%2022.png" alt="实验结果"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1451,7 +1441,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">342</span>
+          <span class="site-state-item-count">345</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

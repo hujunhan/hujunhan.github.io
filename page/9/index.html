@@ -188,6 +188,363 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/lidar-slam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/lidar-slam/" class="post-title-link" itemprop="url">Lidar SLAM System Review</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-06 00:51:00" itemprop="dateCreated datePublished" datetime="2023-03-06T00:51:00-08:00">2023-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Review Lidar based SLAM algorithm and libraries</p>
+<p>Some of the popular lib:</p>
+<ul>
+<li>LOAM</li>
+<li><strong>LEGO LOAM</strong></li>
+<li>LIO SAM</li>
+</ul>
+<h2 id="LOAM">2. LOAM</h2><p>Year: 2014</p>
+<p>Lidar Odometry and Mapping</p>
+<ul>
+<li>Scan Matching</li>
+<li>Odometry</li>
+<li>Fast and efficient</li>
+</ul>
+<p>Con:</p>
+<ul>
+<li>Require careful parameter tuning</li>
+</ul>
+<h2 id="LEGO-LOAM">3. LEGO LOAM</h2><p>Year: 2018</p>
+<p>Lightweight and Ground-Optimized Lidar Odometry and Mapping</p>
+<ul>
+<li>Use line and point feature extraction to increase the robustness</li>
+<li>More robust to sensor noise and calibration error</li>
+</ul>
+<h2 id="LIO-SAM">4. LIO SAM</h2><p>Year: 2018</p>
+<p>Lidar Inertial Odometry and Mapping via Smoothing and Mapping</p>
+<ul>
+<li>Tightly couple with inertial sensor</li>
+<li>Fuse sensor to estimate</li>
+<li>Computation Intensive</li>
+</ul>
+<h2 id="LOCUS">5. LOCUS</h2><p><a target="_blank" rel="noopener" href="https://github.com/NeBula-Autonomy/LOCUS">Repo</a></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230306214826.gif" alt="locus-demo"></p>
+<h2 id="Ref">6. Ref</h2><p><a target="_blank" rel="noopener" href="https://www.aia-polytech.be/wp-content/uploads/2021/01/EvaluationAndComparisonOf3DLidarBasedSLAMAlgorithms.pdf">Evaluation and comparison of 3D lidar based SLAM algorithms</a></p>
+<h2 id="Question">7. Question</h2><ol>
+<li>从一个开源项目到实际部署到机器人的过程中，有哪些要注意的地方</li>
+<li>大概需要怎样的性能</li>
+</ol>
+<p>室内场景更加复杂</p>
+<p>仓储机器人</p>
+<p>激光雷达，传感器融合，</p>
+<p>IMU: Bosch, ADA</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/liosam_problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/liosam_problem/" class="post-title-link" itemprop="url">Problem Calibrating Lidar and IMU</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-06 00:51:00" itemprop="dateCreated datePublished" datetime="2023-03-06T00:51:00-08:00">2023-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景">1. 背景</h2><p>硬件：</p>
+<ul>
+<li>雷神雷达C16</li>
+<li>16线</li>
+<li>每线2000点</li>
+<li>北斗星通MS-6111 六轴IMU</li>
+<li>xyz加速度</li>
+<li>角速度</li>
+</ul>
+<p>软件</p>
+<ul>
+<li>校准：<a target="_blank" rel="noopener" href="https://github.com/chennuo0125-HIT/lidar_imu_calib">lidar_imu_calib</a></li>
+<li>开启雷达和IMU的ros节点</li>
+<li>rosbag记录，同时移动雷达和IMU</li>
+<li>计算IMU和雷达之间的位姿转换矩阵（只计算旋转）</li>
+<li>SLAM：<a target="_blank" rel="noopener" href="https://github.com/YJZLuckyBoy/liorf">liorf</a></li>
+<li>LIO-SAM的变种，可以接收六轴传感器</li>
+</ul>
+<h2 id="问题">2. 问题</h2><p>SLAM能够正常启动和运行，但是里程计会漂移，有很大的误差</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230329185739.png" alt="image-20230329185739433" style="zoom: 50%;">
+
+<p>观察到的现象</p>
+<ul>
+<li>在平地时，IMU数据的x,y均有值。0.1m&#x2F;s^2左右</li>
+<li>里程计显示速度越来越快</li>
+</ul>
+<h2 id="猜测原因">3. 猜测原因</h2><ul>
+<li>雷达和imu校准不准确，算出来的矩阵有问题</li>
+<li>由于雷达和imu频率不同导致的同步问题</li>
+<li>imu没有调平</li>
+</ul>
+<h2 id="解决办法">4. 解决办法</h2><ol>
+<li>IMU内参标定</li>
+<li>IMU和雷达外参标定</li>
+<li>调平</li>
+<li>时间戳同步</li>
+<li>排查静止时输入到前段的数据，如点云，测距精度，噪声，频率，时间戳</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Optimization/BFGS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Optimization/BFGS/" class="post-title-link" itemprop="url">BFGS in Optimization</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-04 21:39:00" itemprop="dateCreated datePublished" datetime="2023-03-04T21:39:00-08:00">2023-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Optimization/" itemprop="url" rel="index"><span itemprop="name">Optimization</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What">1. What</h2><p>Broyden-Fletcher-Goldfarb-Shanno</p>
+<ul>
+<li>Quasi-Newton optimization algorithm</li>
+<li><strong>Gradient based</strong>: use first derivative of th objective function to improve the solution</li>
+<li>differnce of different algorithm: how to update the parameters</li>
+<li>first derivative</li>
+<li>hessian matrix – BFGS</li>
+<li>Maintain an approximation of the Hessian</li>
+</ul>
+<h2 id="How">2. How</h2><p>Find the minimum, the gradient is known or calculated<br>$$<br>B_{k+1} &#x3D; B_k + \frac{(\Delta \theta_k)(\Delta \theta_k)^T}{(\Delta \theta_k)^T \Delta g_k} - \frac{B_k \Delta g_k (\Delta g_k)^T B_k}{(\Delta g_k)^T B_k \Delta g_k}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bfgs</span>(<span class="params">f, grad_f, x0, epsilon=<span class="number">1e-6</span>, max_iter=<span class="number">1000</span></span>):</span><br><span class="line">n = <span class="built_in">len</span>(x0)</span><br><span class="line">Bk = np.eye(n) <span class="comment"># initialize Hessian approximation</span></span><br><span class="line">xk = x0</span><br><span class="line">gk = grad_f(xk)</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line"><span class="keyword">if</span> np.linalg.norm(gk) &lt; epsilon:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">pk = -np.dot(Bk, gk)</span><br><span class="line">alpha = backtracking_line_search(f, grad_f, xk, pk)</span><br><span class="line">xk_next = xk + alpha*pk</span><br><span class="line">sk = xk_next - xk</span><br><span class="line">yk = grad_f(xk_next) - gk <span class="comment"># update the second order derivative</span></span><br><span class="line">Bk_next = Bk + np.outer(yk, yk)/np.dot(yk, sk) - np.outer(np.dot(Bk, sk), np.dot(Bk, sk))/np.dot(sk, np.dot(Bk, sk))</span><br><span class="line">xk, gk, Bk = xk_next, grad_f(xk_next), Bk_next</span><br><span class="line"><span class="keyword">return</span> xk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref">3. Ref</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">Wiki</a></p>
+<p>ChatGPT</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Action/Kinematics/trac-ik/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1124,408 +1481,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/chatgpt-why/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/chatgpt-why/" class="post-title-link" itemprop="url">Note for Understanding ChatGPT</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-02-19 21:35:00" itemprop="dateCreated datePublished" datetime="2023-02-19T21:35:00-08:00">2023-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="怎么产生有意义的文本">1. 怎么产生有意义的文本</h2><p>核心任务：生成一个合理的延续，生成一个符合人类书写习惯的下一个合理内容，给出每个单词的概率排名</p>
-<ul>
-<li>但不是每次都使用概率最高的那一个单词，这样的话会很平淡。可能会导致重复</li>
-<li>随机性的引入</li>
-</ul>
-<h2 id="概率的计算">2. 概率的计算</h2><p>从训练文本中，统计字母的出现频率</p>
-<p>但如果单纯只是用<strong>单个字母</strong>概率进行生成，最后的结果是非常随机的，但是如果考虑<strong>多个字母</strong>的情况，就可以出现有意义的单词</p>
-<p>但是有意义的单词连接在一起还是没有产生有意义的<strong>句子</strong>。类似的，我们可以考虑<strong>多个单词</strong>的情况，就可以出现有意义的句子</p>
-<p>问题是，如果只是用统计的方式来做这样的统计，所需要的文字样本太多，当前互联网上的信息就不够了，所以我们需要更加高效的方式。</p>
-<h2 id="模型">3. 模型</h2><h3 id="什么是模型">3.1. 什么是模型</h3><p>利用参数达到构建统计学的效果，比如一条二维直线，可以用$y&#x3D;kx+b$，其中k和b两个参数表示，达到了压缩信息的效果</p>
-<h3 id="类人的模型">3.2. 类人的模型</h3><p>神经网络模型：模型自动选择输入的特征，并计算概率。还有以下特点</p>
-<ul>
-<li>通过给定的输入和输出自动调整参数</li>
-<li>计算更复杂的问题比简单的问题更容易，因为有很多梯度下降的方向，而不是局部最优</li>
-<li>神经网络端到端的训练效果往往比人手工选择特征更好，因为人类特征的选择往往很局限</li>
-<li>训练数据集的轻微变化对于模型训练也是非常重要的</li>
-<li><strong>无法保证意外不发生</strong>， Trade off，一个越是稳定的系统，越不容易做复杂的计算</li>
-</ul>
-<h3 id="嵌入的概念">3.3. 嵌入的概念</h3><p>上面所提到的，都是对数字进行计算，那人类的文本要怎么表示呢？</p>
-<p>用数字表示文字，并且</p>
-<ul>
-<li>附近的事物由附近的数字来表示</li>
-<li>比如用3542代表’cat’，</li>
-</ul>
-<p>为了解决2中所提到的问题，GPT对人类语言文本建立了一个模型</p>
-<ul>
-<li>相比于图像，有一点好处：训练样本非常容易获得，只要输入是文本的前一部分，然后给后一部分作为输出就可以了，不需要标注</li>
-</ul>
-<h3 id="ChatGPT">3.4. ChatGPT</h3><p>在处理具有特殊的、已知的特殊结构时，不需要全连接</p>
-<ul>
-<li>对于图像，卷积神经网络是有效的</li>
-<li>对于文本，Transformer引入了Attention的概念，对于文本中值得注意的部分</li>
-</ul>
-<p>输入：单词值和单词位置，只是一个有效的方式</p>
-<p>训练:</p>
-<ol>
-<li>给大量原始数据，进行初始训练</li>
-<li>和ChatGPT聊天，通过人类的反馈让其提高</li>
-</ol>
-<h2 id="Takeaway">4. Takeaway</h2><p>语言在根本层面是简单的（相比于看起来</p>
-<p>我们可以根据ChatGPT的性质去设计更加高效的模型</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/critical-thinking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/critical-thinking/" class="post-title-link" itemprop="url">Note for Asking the Right Questions A Guide to Critical Thinking</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-02-16 21:19:00" itemprop="dateCreated datePublished" datetime="2023-02-16T21:19:00-08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Learn the book Asking the Right Questions: A Guide to Critical Thinking by Neil Browne.</p>
-<p>I would use ChatGPT to assist my reading. All the info is generated from ChatGPT, I would ask more detailed question to ChatGPT and examine the answer quality</p>
-<h2 id="Outline">2. Outline</h2><blockquote>
-<p>ChatGPT first gives the outline of the book and summarize each chapter</p>
-</blockquote>
-<h3 id="Base">2.1. Base</h3><ol>
-<li>Importance of critical thinking and questioning process</li>
-</ol>
-<p>From unknown to known, using current knowledge to get a better answer</p>
-<ol start="2">
-<li>Issue and Conclusion, important step, make the problem more clear</li>
-</ol>
-<p>Issue: the central problem</p>
-<p>Conclusion: assertion being made about the issue</p>
-<ol start="3">
-<li>Reasons: evidence and facts</li>
-</ol>
-<p>Important to evaluate</p>
-<ul>
-<li>Relevance</li>
-<li>Sufficiency</li>
-<li>Accuracy</li>
-</ul>
-<ol start="4">
-<li>Assumption: belief, values and attitude</li>
-</ol>
-<ul>
-<li>often unstated &#x2F; implicit</li>
-<li>casue different conclusion</li>
-<li>We should try to know the assumption made by author</li>
-</ul>
-<ol start="5">
-<li>Fallacies: common errors that weaken the argument</li>
-</ol>
-<ul>
-<li>ad nominem: attack person</li>
-<li>Apeal to authority</li>
-<li>False dilemma: e.g. only show limited options</li>
-<li>Hasty generalization: based on insufficient evidence</li>
-<li>Slippery slope: argue action would lead to negative consequences without providing evidence</li>
-<li>Straw man: misrepresenting to make it easier to attack</li>
-</ul>
-<h3 id="Tips">2.2. Tips</h3><ol>
-<li>How good is evidence: how to evaluate the quality of evidence</li>
-<li>Source credibility</li>
-<li>Relevance</li>
-<li>Sufficiency</li>
-<li>Timelines</li>
-<li>Consistency</li>
-<li>Use of qualifiers</li>
-<li>Alternative intrerpolation: considering alternative interpretations</li>
-<li>Implications</li>
-<li>How to resolve the conflicts</li>
-<li>Further</li>
-</ol>
-<h2 id="Takeaway">3. Takeaway</h2><p>From this books’ perspective</p>
-<ul>
-<li><p>Issue and conclusion should be made by human</p>
-</li>
-<li><p>ChatGPT can&#x2F;can’t provide</p>
-</li>
-<li><p>Highly <strong>relevant</strong> knowledge: better than google</p>
-</li>
-<li><p>Medium <strong>sufficiency</strong> knowledge: less than google</p>
-</li>
-<li><p>LACK OF: <strong>accuracy</strong>(no source provided) <strong>timelines</strong> (when is source made), <strong>consistency</strong> (maybe try multiple times),</p>
-</li>
-<li><p>Common fallacies ChatGPT may occur</p>
-</li>
-<li><p>False dilemma: only show limited options</p>
-</li>
-<li><p>Hasty generalization: make conclusion based on insufficient evidence</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/webots-tea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Project/webots-tea/" class="post-title-link" itemprop="url">Webots Simulation for Tea Robot</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-02-12 14:20:00" itemprop="dateCreated datePublished" datetime="2023-02-12T14:20:00-08:00">2023-02-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Using the Webots to do the simulation of general mobile arm robot</p>
-<p>Current, the simulation have following task to do (in high level)</p>
-<ul>
-<li>Build a simulation world (Place something)</li>
-<li>Obstacles</li>
-<li>Object</li>
-<li>Robot base movement simulation (SLAM)</li>
-<li>Robot arm manipulation simulation (Kinematics and Inverse)</li>
-</ul>
-<h2 id="Roadmap">2. Roadmap</h2><h3 id="Build-the-World">2.1. Build the World</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230212225320.png" alt="image-20230212225320373"></p>
-<ul>
-<li>The big box simulate the tea tree</li>
-<li>The small box simulate the tea leaf</li>
-<li>The YouBot simulate our robot</li>
-</ul>
-<h3 id="Migrate-from-Matlab-to-Python">2.2. Migrate from Matlab to Python</h3><p>Control robot move by control the wheel directly</p>
-<p>step is important to update and sync the robot and world</p>
-<h4 id="Base">2.2.1. Base</h4><p>Movement. Turn. Go through location</p>
-<h4 id="Arm">2.2.2. Arm</h4><p>ik</p>
-<h2 id="Setup">3. Setup</h2><p>Using Python as the controller</p>
-<ul>
-<li><del>Change the preference</del></li>
-<li><del>Recompile the wrapper</del></li>
-</ul>
-<p>No need to recompile the Python binding since in newer version, the python is already in header file format</p>
-<p>Just include the <code>/Applications/Webots.app/Contents/lib/controller/python</code></p>
-<p>in the Python path</p>
-<p>And set the robot controller to extern</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230213225558.png" alt="image-20230213225557838"></p>
-<h2 id="Design">4. Design</h2><p>Learn from the youbot design</p>
-<p>4 Part</p>
-<ul>
-<li>Arm</li>
-<li>Base</li>
-<li>move forward&#x2F;backward&#x2F;left&#x2F;right</li>
-<li>Gripper</li>
-<li>init</li>
-<li>Set gap</li>
-<li>grip&#x2F;release</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1595,7 +1550,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">342</span>
+          <span class="site-state-item-count">345</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

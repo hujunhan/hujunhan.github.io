@@ -188,6 +188,375 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/motor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Actuator/motor/" class="post-title-link" itemprop="url">Motor In Robots</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-07 22:06:00" itemprop="dateCreated datePublished" datetime="2022-11-07T22:06:00-08:00">2022-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Actuator/" itemprop="url" rel="index"><span itemprop="name">Actuator</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why">1. Why</h2><p>Method: test the single motor first and then deploy it to real robot</p>
+<p>Any problem can be solved using a layered abstraction</p>
+<h2 id="Motor-Types">2. Motor Types</h2><p>AC Motor, taken from AC, application in industrial</p>
+<ul>
+<li>Higher power, higher torque</li>
+</ul>
+<p><strong>Brushed and Brushless DC</strong></p>
+<ul>
+<li>Brushed</li>
+<li>Brushless: smooth, no noise, efficient, high speed</li>
+</ul>
+<p>Geared-: Speed reduction</p>
+<p><strong>Stepper&#x2F;Servo</strong>: highest precision</p>
+<h2 id="Control-the-Motor">3. Control the Motor</h2><ol>
+<li>Motor, can’t de anything</li>
+<li>Supply Voltage, the motor can move</li>
+<li>Motor Driver, take low voltage and output high voltage</li>
+<li>Motor Controller, take practical input and output real signal</li>
+<li>Open-loop control, feedback control, encoder, at a precise speed</li>
+<li>Communication layer, serial</li>
+<li>Robot controller</li>
+<li>Driver software,</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-07-22-25-39.png" alt="image-20221107222539340"></p>
+<p>Keep the system more modularity, easier to swap the components</p>
+<hr>
+<h2 id="For-Robot">4. For Robot</h2><p>How to choose?</p>
+<ul>
+<li>Torque, know the load of your robot</li>
+<li>Speed, on mobile robot, trade off between torque and speed</li>
+<li>Accuracy,</li>
+<li>Voltage, check the nominal volt, the mainstream</li>
+</ul>
+<h2 id="How-to-Master-Robotics">5. How to Master Robotics</h2><p>Stage 1</p>
+<ul>
+<li>Programming</li>
+<li>Assembly</li>
+<li>Electronics</li>
+</ul>
+<p>Stage 2</p>
+<ul>
+<li>OO-programming</li>
+<li>Math and Physics</li>
+<li>Linux</li>
+<li>Embedded System</li>
+</ul>
+<p>Stage 3</p>
+<ul>
+<li>Algorithm</li>
+<li>Library</li>
+<li>ROS</li>
+<li>Design：need a mechanical expert</li>
+</ul>
+<p>Stage 4</p>
+<ul>
+<li>Technology that fascinating</li>
+<li>Work on various tool</li>
+<li>Work with as many single board as  possible</li>
+<li>Maintain the project gut hub</li>
+</ul>
+<h2 id="Speed-Torque-Current">6. Speed, Torque, Current</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=STdONYFI2C4&t=266s">Ref</a></p>
+<p>First, there is current, the current in the magefield would generate force</p>
+<p>If there is movement, it would generate a oppose voltage (current)</p>
+<ul>
+<li>Faster, the current would be less</li>
+<li>Stall, the largest current</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-19-21-47-01.png" alt="image-20221119214701264"></p>
+<p>Try to keep in the left half</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Health/office-health/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Health/office-health/" class="post-title-link" itemprop="url">Office Health Tips</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-26 16:40:00" itemprop="dateCreated datePublished" datetime="2022-10-26T16:40:00-07:00">2022-10-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Health/" itemprop="url" rel="index"><span itemprop="name">Health</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Common health problem</p>
+<h2 id="Eye-problem-amp-Migraines">2. Eye problem &amp; Migraines</h2><p>headache, dizziness, computer vision syndrome</p>
+<p>Suggestion:</p>
+<ol>
+<li>20-20-20</li>
+<li>Good lighting</li>
+<li>Blue light blocking glasses</li>
+<li>Adjust monitor</li>
+</ol>
+<h2 id="Back-neck-and-shoulder">3. Back, neck and shoulder</h2><p>pain, stiff, spinal</p>
+<p>Suggestion:</p>
+<ol>
+<li>sit&#x2F;stand</li>
+<li>stretch break</li>
+<li>good posture&#x2F;chair</li>
+</ol>
+<h2 id="Carpal-Tunnel">4. Carpal Tunnel</h2><p>nerves, burning, pain</p>
+<p>Suggestion:</p>
+<ol>
+<li>Stretch wrist regularly</li>
+<li>Ergonomically</li>
+</ol>
+<h2 id="Lack-of-exercise-amp-sleep">5. Lack of exercise &amp; sleep</h2><p>weight, heart, diabetes, lethargic</p>
+<p>Suggestion:</p>
+<ol>
+<li>move around</li>
+<li>walk, jog, run</li>
+<li>aim for 8-hours sleep</li>
+</ol>
+<h2 id="Mental-health">6. Mental health</h2><p>Anxiety, depression, isolation, ADHD</p>
+<p>Suggestion:</p>
+<ol>
+<li>One thing at a time</li>
+<li>Enough sleep</li>
+<li>Relaxation</li>
+<li>Focus on the positive</li>
+<li>Hobby</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/Finance/f1-job/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/Finance/f1-job/" class="post-title-link" itemprop="url">F1 Visa Job</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-25 23:59:00" itemprop="dateCreated datePublished" datetime="2022-10-25T23:59:00-07:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/Finance/" itemprop="url" rel="index"><span itemprop="name">Finance</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Current status:</p>
+<ul>
+<li>F1 Visa</li>
+<li>OPT</li>
+</ul>
+<p>Multiple Job:</p>
+<ul>
+<li>F1 still could do multiple job</li>
+<li>How to add a new employer</li>
+<li>How many jobs can you do? at least 20 hours per week for each employer</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ai-painting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1142,317 +1511,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/photo_post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/photo_post/" class="post-title-link" itemprop="url">图像后期流程优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-15 22:33:00" itemprop="dateCreated datePublished" datetime="2022-09-15T22:33:00-07:00">2022-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>为了更好的节省时间和优化后期的流程，避免重复文件</p>
-<p>Input：一个文件夹，里面包含raw和jpg</p>
-<p>Output: 一个文件夹，里面包含普通照片的heic和优秀照片的raw+heic</p>
-<h2 id="How">2. How</h2><p>之前的后期流程比较随意，现在更好的清理</p>
-<ol>
-<li>将照片分到两个文件夹（代码完成）</li>
-<li>raw</li>
-<li>jpg</li>
-<li>在jpg文件夹将照片分成两类（手动完成）</li>
-<li>good</li>
-<li>normal（全部转成heic）</li>
-<li>将raw文件中找到和good文件中同名的照片复制到good文件夹中（代码完成）</li>
-<li>后期good文件夹中的raw照片</li>
-<li>如果没有good中的jpg好，直接jpg放到final中</li>
-<li>如果比jpg好，输出heic到final中</li>
-<li>将normal和final放到合适的目录</li>
-</ol>
-<h2 id="Code">3. Code</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/travel_methodology/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/travel_methodology/" class="post-title-link" itemprop="url">Travel Methodology</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-15 01:02:00" itemprop="dateCreated datePublished" datetime="2022-09-15T01:02:00-07:00">2022-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>To get more from a trip</p>
-<p>Experience more authentic culture</p>
-<h2 id="Where">2. Where</h2><p>Some places are easier to live like a local</p>
-<h3 id="Budget">2.1. Budget</h3><p>The cheaper, the better</p>
-<p>The most famous cities are usually the most expensive</p>
-<p>Biggest cost: Flight, use the travel reward card</p>
-<p>Figure out a budget</p>
-<p>Right before or after the “busy” season would be helpful</p>
-<h3 id="What-to-do">2.2. What to do</h3><p>City or wilderness? Night or daytime?</p>
-<p>Follow your heart</p>
-<p>Some cities are full of tourist, do some research</p>
-<hr>
-<p>Friendly locals: ignore the stereotype, there are good and bad people everywhere</p>
-<h2 id="Fit-in">3. Fit in</h2><p>There are all kinds of thing you should not do, but in fact, you may not offend anyone.</p>
-<p>Just be conscious of the people around</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/produce_music/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/produce_music/" class="post-title-link" itemprop="url">How to Produce Music</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-13 23:16:00" itemprop="dateCreated datePublished" datetime="2022-09-13T23:16:00-07:00">2022-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>For me, I really not appreciate music that much, and I regard music as a mixture of sound wave.</p>
-<p>But music can do effect our emotion, so I say “why not get hands dirty and produce something?”</p>
-<h2 id="Learn">2. Learn</h2><p>The basics from <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=mYVFF-MTkOM">youtube</a></p>
-<p>Software:</p>
-<ol>
-<li>DAW, digital audio workstation</li>
-<li>FL studio</li>
-<li>Albeton</li>
-<li>Just pick one and use it</li>
-</ol>
-<p>Hardware:</p>
-<ol>
-<li>All in, time is the resource</li>
-<li>Mini controller</li>
-<li>AKAI MK2 MINI</li>
-<li>M Audio</li>
-<li>Studio headphone</li>
-<li>ATH-M50X&#x2F;30X</li>
-</ol>
-<h2 id="Knowledge-Base">3. Knowledge Base</h2><p>Music: complex yet widely recognized expression</p>
-<p>Sound: vibration in the air, music is just a complex form of the vibration</p>
-<p>Why: Human are attracted to <strong>pattern</strong> and <strong>symmetries</strong></p>
-<p>All intervals are combination of <strong>tones</strong> and <strong>semitones</strong></p>
-<p>Most harmonious interval:</p>
-<ul>
-<li>Octave: A set of equally spaced notes</li>
-<li>twice as the one before (frequency)</li>
-<li>Agree to each other (a simple ratio)</li>
-<li>$2^{7&#x2F;12}&#x3D;1.5$ good</li>
-<li>$2^{6&#x2F;12}&#x3D;1.414$ bad</li>
-</ul>
-<p>Wave Shape:</p>
-<ul>
-<li>Sin, simple</li>
-<li>Square</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1522,7 +1580,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">342</span>
+          <span class="site-state-item-count">345</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
