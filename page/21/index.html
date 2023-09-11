@@ -188,6 +188,353 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/circle-ellipse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/circle-ellipse/" class="post-title-link" itemprop="url">基于几何关系的相机位姿估计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-01T00:00:00-07:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-问题描述">1. 1 问题描述</h2><p>根据射影几何，真实世界中的圆在理想相机模型中的投影是一个椭圆。本文就是根据圆的半径和相机拍摄到的椭圆方程推导求解相机相对于圆心的位姿关系。为了简化问题，目前只考虑相机在一个角度的旋转$\beta$和位移$\Delta_l$</p>
+<h2 id="2-关系图">2. 2 关系图</h2><p><img src="/image-20210601102530412.png" alt="关系图"></p>
+<p>如图所示，符号规定：</p>
+<p>$d$: 正圆圆心到相机平面的距离</p>
+<p>$f$: 相机的焦距</p>
+<p>$Δc_2$: 圆心在成像平面的位移距离</p>
+<p>$L_1$: 成像平面的椭圆的半径（与旋转平面垂直）</p>
+<ul>
+<li>成像平面椭圆的半径可以看成是世界中正圆半径的缩放，缩放的比例只和到圆的距离有关。在距离不变的情况下，$L_1$是所对应的半径没有变化的那条半径</li>
+</ul>
+<p>$L_2$: 成像平面的椭圆的半径（另一条）</p>
+<p>$L$: 正圆的半径</p>
+<p>$\beta$: 旋转的角度</p>
+<h3 id="2-1-原点右侧几何关系">2.1. 2.1 原点右侧几何关系</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601121420950.png" alt="带有辅助线的示意图"></p>
+<p>为了方便求解，增加辅助线，分别根据以下几何关系：</p>
+<ul>
+<li>$\Delta OEF\sim \Delta OGH$</li>
+<li>$\Delta OFP\sim \Delta OHQ$</li>
+<li>$AB+BK&#x3D;AS+SK$</li>
+<li>$\Delta OMN\sim \Delta OBK$</li>
+<li>$\Delta OBA \sim \Delta DBC$</li>
+</ul>
+<p>可以得到以下关系<br>$$<br>\frac{f}{d}&#x3D;\frac{L_{1}}{L}<br>$$</p>
+<p>$$<br>\frac{f}{d}&#x3D;\frac{\Delta C_{2}}{\Delta L}<br>$$</p>
+<p>$$<br>m+y&#x3D;\Delta L+L \cos \beta<br>$$</p>
+<p>$$<br>\frac{2 L_{2}}{y}&#x3D;\frac{f}{d-L \sin \beta}<br>$$</p>
+<p>$$<br>\frac{m}{d-L \sin \beta}&#x3D;\frac{y-2 L \cos \beta}{2 L \sin \beta}<br>$$</p>
+<h3 id="2-2-原点左侧几何关系">2.2. 2.2 原点左侧几何关系</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2001%2011%2046%2026.png" alt="原点左侧情况"></p>
+<p>基于和2.1中一样的几何关系，</p>
+<p>可以列出以下等式<br>$$<br>\frac{f}{d}&#x3D;\frac{L_{1}}{L}<br>$$</p>
+<p>$$<br>\frac{f}{d}&#x3D;\frac{\Delta C_{2}}{\Delta L}<br>$$</p>
+<p>$$<br>m+y&#x3D;\Delta L+L \cos \beta<br>$$</p>
+<p>$$<br>\frac{2 L_{2}}{y}&#x3D;\frac{f}{d+L \sin \beta}<br>$$</p>
+<p>$$<br>\frac{m}{d-L \sin \beta}&#x3D;\frac{-(y-2 L \cos \beta)}{2 L \sin \beta}<br>$$</p>
+<p>注意到上图中$\beta$定义的方向与2.1中相反，因此本质上两种情况是一样的</p>
+<h2 id="3-方程求解推">3. 3 方程求解推</h2><h3 id="3-1-化简方程式">3.1. 3.1 化简方程式</h3><p>化简1、2、3、4可得</p>
+<p>$$<br>d&#x3D;\frac{fl}{L_1}<br>$$<br>$$<br>\Delta l&#x3D;\frac{d \Delta C_{2}}{f}<br>$$</p>
+<p>$$<br>m&#x3D;\Delta L+L \cos \beta-y<br>$$<br>$$<br>y&#x3D;\frac{2 L_{2}\left(d_{1}-L \sin \beta\right)}{f}<br>$$</p>
+<p>将13带入5得到<br>$$<br>2 L \sin \beta(\Delta L+L \cos \beta-y)&#x3D;(d-L \sin \beta) （ y-2 L \cos \beta)<br>$$<br>展开移项得到<br>$$<br>2 L \sin \beta(\Delta L+L \cos \beta)+2 L \cos \beta\left(d_{1}-L \sin \beta\right)&#x3D;(d+L\sin \beta) y<br>$$<br>将14带入16得到<br>$$<br>2 L \Delta \sin \beta+2 L d \cos \beta&#x3D;\frac{2 l_{2}}{f}\left(d^{2}-L^{2} \sin ^{2} \beta\right)<br>$$<br>展开移项得到<br>$$<br>f L d \cos \beta&#x3D;L_{2} d^{2}-L_{2} L^{2} \sin ^{2} \beta-f L \Delta L \sin \beta<br>$$</p>
+<p>将12带入18得到</p>
+<p>$$<br>f L d \cos \beta&#x3D;L_{2} d^{2}-L_{2} l^{2} \sin ^{2} \beta-d \Delta c_{2} L \sin \beta<br>$$<br>两边同时除d<br>$$<br>f L \cos \beta&#x3D;L_{2} d-\frac{L_{2} L^{2} \sin \beta}{d}-\Delta c_{2} L \sin \beta<br>$$<br>将11带入20得到<br>$$<br>fL \cos \beta&#x3D;\frac{L_{2} f L}{L_{1}}-\frac{L_{2} L^{2} L_{1} \sin ^{2} \beta}{f L}-\Delta c_{2} L \sin ^{2} \beta<br>$$</p>
+<p>两边同时除$fL$<br>$$<br>\cos \beta&#x3D;\frac{L_{2}}{L_{1}}-\frac{L_{1} L_{2} \sin^{2} \beta}{f^{2}}-\frac{\Delta c_{2} \sin \beta}{f}<br>$$</p>
+<h3 id="3-2-一元四次方程">3.2. 3.2 一元四次方程</h3><p>为了去掉分母，22两边同时乘$f^2L_1$<br>$$<br>f^2L_1\cos\beta&#x3D;f^2L_2-L_1^2L_2\sin^2\beta-fL_1\Delta c_2\sin\beta<br>$$<br>得到17后，为了求解方程，两边同时平方，并设<br>$$<br>x&#x3D;\sin \beta<br>$$<br>则<br>$$<br>x^2&#x3D;\sin^2\beta<br>$$</p>
+<p>$$<br>1-x^2&#x3D;\cos^2\beta<br>$$</p>
+<p>展开得到<br>$$<br>{L_1 }^2 ,f^4 ,({1-x^2)}&#x3D;{\Delta }^2 ,{L_1 }^2 ,f^2 ,x^2 +2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f,x^3 -2,\Delta{c_2} ,L_1 ,L_2 ,f^3 ,x+{L_1 }^4 ,{L_2 }^2 ,x^4 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 ,x^2 +{L_2 }^2 ,f^4<br>$$</p>
+<p>合并同类项，得到<br>$$<br>{\left({L_1 }^4 ,{L_2 }^2 \right)},x^4 +{\left(2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f\right)},x^3 +{\left({\Delta{c_2} }^2 ,{L_1 }^2 ,f^2 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 +{L_1 }^2 ,f^4 \right)},x^2 +{\left(-2,\Delta{c_2} ,L_1 ,L_2 ,f^3 \right)},x+{L_2 }^2 ,f^4 -{L_1 }^2 ,f^4&#x3D;0<br>$$</p>
+<p>28本质上就是一个一元四次方程<br>$$<br>Ax^4+Bx^3+Cx^2+Dx+E&#x3D;0<br>$$<br>其中</p>
+<p>$$<br>A&#x3D;{L_1 }^4 {L_2 }^2<br>$$</p>
+<p>$$<br>B&#x3D;{2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f}<br>$$</p>
+<p>$$<br>C&#x3D;{ { \Delta{c_2} }^2 ,{L_1 }^2 ,f^2 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 +{L_1 }^2 ,f^4 }<br>$$</p>
+<p>$$<br>D&#x3D;{-2,\Delta{c_2} ,L_1 ,L_2 ,f^3 }<br>$$</p>
+<p>$$<br>E&#x3D;{ {L_2 }^2 ,f^4 -{L_1 }^2 ,f^4}<br>$$</p>
+<p>求解四次方程的解析解可以通过<a target="_blank" rel="noopener" href="https://encyclopediaofmath.org/wiki/Ferrari_method">费拉里方法</a>求解</p>
+<h2 id="4-代码">4. 4 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_pitch_deltal</span>(<span class="params">l1,l2,delta_c1, delta_c2, l_meter</span>):</span><br><span class="line"><span class="comment">## Set the parameters</span></span><br><span class="line"><span class="comment"># definition:</span></span><br><span class="line"><span class="comment">#l1, perpendicular to conveyor belt, i.e., along y direction, the measured value of the eclipse,unit is meter and calculated as l1=ly_pixel*mu</span></span><br><span class="line"><span class="comment">#l2, parelled to conveyor belt,i.e., along x direction, the measured value of the eclipse, unit is meter and calculated as l2=lx_pixel*mu</span></span><br><span class="line"><span class="comment">#unit for l1,l2,delta_c1, delta_c2 are all lx_pixel</span></span><br><span class="line"></span><br><span class="line">mu = <span class="number">3.45</span>*<span class="number">1e-6</span></span><br><span class="line">f = <span class="number">1024</span> <span class="comment"># focal length</span></span><br><span class="line">d_meter = f*l_meter/(l1)</span><br><span class="line">delta_lx_meter = d_meter*delta_c2/f</span><br><span class="line">delta_ly_meter = d_meter*delta_c1/f</span><br><span class="line"></span><br><span class="line"><span class="comment">## Calculate the coefficients</span></span><br><span class="line">A = l1**<span class="number">4</span>*l2**<span class="number">2</span></span><br><span class="line">B = <span class="number">2</span>*delta_c2*f*l1**<span class="number">3</span>*l2</span><br><span class="line">C = delta_c2**<span class="number">2</span>*f**<span class="number">2</span>*l1**<span class="number">2</span>+f**<span class="number">4</span>*l1**<span class="number">2</span>-<span class="number">2</span>*f**<span class="number">2</span>*l1**<span class="number">2</span>*l2**<span class="number">2</span></span><br><span class="line">D = -<span class="number">2</span>*delta_c2*f**<span class="number">3</span>*l1*l2</span><br><span class="line">E = f**<span class="number">4</span>*l2**<span class="number">2</span>-f**<span class="number">4</span>*l1**<span class="number">2</span></span><br><span class="line">ans = ferrari(A,B,C,D,E)</span><br><span class="line">potential_ans=[]</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> ans:</span><br><span class="line"><span class="keyword">if</span> a.imag == <span class="number">0</span>:</span><br><span class="line">x = a.real</span><br><span class="line">beta = math.asin(x)/math.pi*<span class="number">180</span></span><br><span class="line">potential_ans.append(beta)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate delta lx that parelled to conveyor belt.</span></span><br><span class="line">potential_move=[]</span><br><span class="line">delta_l=d_meter*delta_c2/f</span><br><span class="line"><span class="keyword">for</span> beta <span class="keyword">in</span> potential_ans:</span><br><span class="line">beta_rad=beta/<span class="number">180</span>*math.pi</span><br><span class="line">delta_l_conveyor=(d_meter*math.tan(beta_rad)-delta_l)*math.cos(beta_rad)</span><br><span class="line">potential_move.append(delta_l_conveyor)</span><br><span class="line"><span class="keyword">return</span> [d_meter,delta_lx_meter,delta_ly_meter, potential_ans]</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-实验验证">5. 5 实验验证</h2><p>为了验证模型效果，在仿真中进行实验，改变相机的倾斜角度，让元件从传送带的远端逐渐接近相机</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601172632250.png" alt="远端的情况"></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601172642743.png" alt="近端的情况"></p>
+<p>测试了3个角度（10度、30度、45度），分别计算了计算值与真值的误差</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/c92XJr.jpg" alt="10度角的情况"></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/XbXxEE.jpg" alt="30度角的情况"></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/4bf6Ox.jpg" alt="45度角的情况"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/Carnegie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/Carnegie/" class="post-title-link" itemprop="url">重读《人性的弱点》</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-30 20:43:00" itemprop="dateCreated datePublished" datetime="2021-05-30T20:43:00-07:00">2021-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>我在初中时第一次阅读了《人性的弱点》一书，给当时的我带来了极为深刻的影响。在读此书之前，我觉得我在人际关系处理是处于一个相当原始的阶段，我应该如何说话，如何评估自己所说的话对别人的影响几乎没有任何常识，完全凭借直觉。虽然说阅读此书之后依然没有太大长进，但起码知道了一些最基本的规则，比如说不要随意批评他人。</p>
+<p>从初中到大学，单纯的人际（同学）关系和『不和别人打好交道也没关系』的社交环境让我凭借原始的社交技能也生活得很不错，但是逐渐步入社会，我发现我所储备的技能逐渐不够用了。如何与同事、上级沟通，如何达成自己想要的目标，我不知道，我需要新的知识。</p>
+<p>重新了解这本书，才发现这本书的英文名是『Win Friends and Influence People』，交朋友与影响他人，或许这就是我想要的，虽然当时第一次读这本书确实是因为『人性的弱点』这个标题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Personal%20Development/Carnegie/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/history/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Humanity/History/history/" class="post-title-link" itemprop="url">为什么要学习历史</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-11 19:57:00" itemprop="dateCreated datePublished" datetime="2021-04-11T19:57:00-07:00">2021-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-什么是历史">1. 1 什么是历史</h2><ul>
+<li>记录了重要人物做了什么</li>
+<li>逐渐的，开始记录日常人的生活</li>
+<li>后来，研究大众是如何推动世界的发展的</li>
+</ul>
+<p>怀疑论：不同时间、不同人的视角下的历史是一样的吗。如何保证我们的历史是客观的</p>
+<h2 id="2-为什么要学习历史">2. 2 为什么要学习历史</h2><p>理论上是客观的</p>
+<p>从国家角度来说，学习历史证明了国家的合理性</p>
+<p>从个人角度，满足我们的好奇心，一切是如何走到目前的情况的</p>
+<p>了解历史来解释我们现在发生了什么</p>
+<p>研究人性。科林伍德有言：”严格说来，没有人性这种东西，这一名词所指称的，确切地说，不是人类的本性而是人类的历史。”</p>
+<p>人类积累着知识和看法，塑造了人的特质</p>
+<p>影响社会</p>
+<h2 id="3-目前有哪些历史">3. 3 目前有哪些历史</h2><h2 id="4-开始学习">4. 4 开始学习</h2><p>如何学习</p>
+<ul>
+<li>掌握求真的技能</li>
+<li>积累贯古通今的智慧</li>
+<li>培养对人类命运的关怀</li>
+</ul>
+<p>Carr：用科学的方法学习历史，cause是概率的，有多种可能性</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/map/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1012,383 +1359,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/" class="post-title-link" itemprop="url">卡尔曼滤波</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-17 15:30:21" itemprop="dateCreated datePublished" datetime="2020-07-17T15:30:21-07:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>为什么用概率来描述？因为机器人的环境是不确定的，所使用的传感器也是有误差的</p>
-<ul>
-<li>某个随机变量的期望：$E [X]&#x3D;\sum_{i&#x3D;1}^{n} p_{i} x_{i}$</li>
-<li>为什么只使用单峰模型？因为机器人在某一时间的位置是固定的，并不会出现在不同位置</li>
-</ul>
-<h2 id="高斯">2. 高斯</h2><p>中心极限定理：样本数够多，就会出现正态分布</p>
-<p>使用单峰分布处理起来非常困难。</p>
-<p>状态的更新（两个正态分布的相乘）可以用贝叶斯来计算<br>$$<br>\begin{array}{c}<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}} \<br>\sigma_{\text {new }}&#x3D;\frac{\sigma_{1}^{2} \sigma_{2}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>\end{array}<br>$$<br>有的时候状态更新只是两个正态分布的相加，那么新的期望和方差就是两个期望和方差的简单相加</p>
-<h2 id="概率生成定理">3. 概率生成定理</h2><p>$z$表示测量，$u$表示指令，$x$表示状态</p>
-<p>第一定理：$p\left(x_{t} \mid x_{0: t-1}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(x_{t} \mid x_{t-1}, u_{t}\right)$</p>
-<ul>
-<li>也就是说，当前状态只和<strong>上一时刻状态</strong>以及<strong>此刻的指令</strong>有关</li>
-</ul>
-<p>第二定理：$p\left(z_{t} \mid x_{0: t}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(z_{t} \mid x_{t}\right)$</p>
-<ul>
-<li>如果$x_t$是完整的，那么当前的测量概率只和<strong>当前的状态</strong>有关</li>
-</ul>
-<h2 id="贝叶斯法则">4. 贝叶斯法则</h2><p>$$<br>后验概率&#x3D;\frac{可能性<em>先验概率}{边界概率}&#x3D;\frac{观测</em>上一时刻概率}{1}<br>$$</p>
-<p>利用贝叶斯法则估算状态：</p>
-<ol>
-<li>预测步骤：计算先验概率，不考虑观测，只考虑指令会带来的变化：利用模型</li>
-</ol>
-<ul>
-<li>这一步会引入误差，包括传感器、执行器上的</li>
-</ul>
-<ol start="2">
-<li>矫正步骤：利用上一步计算出的先验概率，加上观测，计算后验概率（贝叶斯法则）</li>
-</ol>
-<h2 id="卡尔曼滤波">5. 卡尔曼滤波</h2><p>两个重要假设：</p>
-<ul>
-<li>线性</li>
-<li>高斯</li>
-</ul>
-<p>主体框架和贝叶斯估计是一样的，最大的区别是数学表达：</p>
-<ul>
-<li>卡尔曼滤波使用了高斯概率</li>
-</ul>
-<p>也就是说在卡尔曼滤波中，无论是先验还是后验抑或是置信，都是一个高斯分布<br>$$<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>$$<br>回想我们之前是如何计算新的期望的，显然可以拆成两个<br>$$<br>\mu&#x3D;W_1\mu_1+W_2\mu_2<br>$$<br>我们是根据两个的权重线性叠加的。且$W_1+W_2&#x3D;1$，因此我们引入新的变量$K$——<strong>卡尔曼增益</strong></p>
-<p>卡尔曼增益在卡尔曼滤波中起着重要的作用。令$K&#x3D;W_1$</p>
-<p>则有：<br>$$<br>\begin{aligned}<br>\mu &amp;&#x3D;K \mu_{z}+(1-K) \bar{\mu} \<br>&amp;&#x3D;\bar{\mu}+K\left(\mu_{z}-\bar{\mu}\right)<br>\end{aligned}<br>$$<br>和<br>$$<br>\sigma^2&#x3D;K\sigma_{z}^{2}<br>$$</p>
-<h2 id="卡尔曼滤波框架">6. 卡尔曼滤波框架</h2><ol>
-<li><p>预测部分。执行器模型一般是线性的，在目前的状态下直接相加一些变量，期望和方差都是相加<br>$$<br>\bar x&#x3D;Fx+Bu\<br>\bar P&#x3D;FPF^T+Q<br>$$<br>其中x是状态，P也是状态是方差（也可以理解成<strong>误差</strong>），F是状态转移矩阵，Q是过程协方差，也可以理解为在行动过程中引入的<strong>噪声</strong>，B是输入矩阵，u是系统的控制输入</p>
-</li>
-<li><p>矫正部分。利用传感器观测到并使用贝叶斯估计计算新的状态<br>$$<br>y&#x3D;z-H\bar z\<br>K&#x3D;\bar P H^T(H\bar P H^T+R)^{-1}\<br>x&#x3D;\bar x+Ky\<br>P&#x3D;(I-KH)\bar P<br>$$<br>其中y是误差，K是卡尔曼增益，x和P是新的状态</p>
-</li>
-</ol>
-<h2 id="卡尔曼增益">7. 卡尔曼增益</h2><p>卡尔曼增益的更新<br>$$<br>K&#x3D;\bar P H^T(H\bar P H^T+R)^{-1}<br>$$</p>
-<ul>
-<li>R是测量噪声，由传感器的制造商给出</li>
-<li>$(H\bar P H^T+R)$总的噪声，是预测噪声+测量噪声</li>
-<li>为什么K如此复杂？因为矩阵的除法是没有定义的，因此计算总的噪声再取逆</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/" class="post-title-link" itemprop="url">labuladong学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-13 21:30:00" itemprop="dateCreated datePublished" datetime="2020-07-13T21:30:00-07:00">2020-07-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>我从一个礼拜左右前开始刷题，到目前刷了三十几道，感觉逐渐有点上手，但没有一个系统的框架。在刷一道二分法的题目时，看到了labuladong的笔记，感觉思路清晰，值得学习。之后还发现他总结了一系列的算法框架并写了文章，所以在这里记录下阅读时的收获</p>
-<h2 id="动态规划">2. 动态规划</h2><p>目标：<strong>求最值</strong>。动态规划是运筹学中的最优化方法，在CS中应用较多</p>
-<p>核心思想：<strong>穷举</strong>。把所有的可行答案穷举并找最值</p>
-<p>难点：存在“重叠子问题”，直接暴力穷举效率低下。需要记<strong>录下一些中间过程</strong>节省计算量</p>
-<p>方法：找到<strong>最优子结构</strong>，并列出正确的<strong>状态转移方程</strong>。</p>
-<ul>
-<li>技巧：状态压缩，每次只记录必要的数据</li>
-</ul>
-<h2 id="回溯法">3. 回溯法</h2><p>实际上是决策树的遍历过程，要考虑三个问题</p>
-<ol>
-<li>路径</li>
-<li>选择列表</li>
-<li>结束条件</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line">def backtrack(路径, 选择列表):</span><br><span class="line">if 满足结束条件:</span><br><span class="line">result.add(路径)</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">for 选择 in 选择列表:</span><br><span class="line">做选择</span><br><span class="line">backtrack(路径, 选择列表)</span><br><span class="line">撤销选择</span><br></pre></td></tr></table></figure>
-
-<p>在全排列问题中</p>
-<ol>
-<li>路径就是已经用掉的数字</li>
-<li>选择列表就是还剩下的数字</li>
-<li>结束条件就是列表为空</li>
-</ol>
-<h2 id="数组">4. 数组</h2><p>数组主要就是考察插入、删除和搜索</p>
-<p>为了节省内存空间，利用in-place操作可以达到$O(1)$的空间复杂度</p>
-<ul>
-<li>为了实验in-place的操作，往往会使用<strong>双指针</strong></li>
-</ul>
-<h2 id="链表">5. 链表</h2><p>单向链表：遍历、插入、删除</p>
-<p>双向链表：相比于单向链表，在插入和删除时要更加小心。但是在删除时会更加容易，不需要$O(N)$的时间复杂度去找到上一个结点</p>
-<p>在知道<strong>前一个</strong>结点的情况下，链表的插入和删除都是非常快的</p>
-<p>双指针技巧同样非常有用。相比数组更加容易出错</p>
-<ul>
-<li>要多检查是否结点为空</li>
-<li>多检查几遍确保循环能够正确结束</li>
-<li>多尝试一些边界条件</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Justice/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Justice/" class="post-title-link" itemprop="url">自由平等正义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-28 01:35:00" itemprop="dateCreated datePublished" datetime="2020-06-28T01:35:00-07:00">2020-06-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="自由">1. 自由</h2><p>在三种主要的自由形式</p>
-<ul>
-<li>天生的选择自由</li>
-<li>后天的道德自由</li>
-<li>环境制约的行为自由（政治相关）</li>
-</ul>
-<p>只有社会中的<strong>行动自由</strong>是未被实际否认的。（法无禁止即可为）</p>
-<p>自由意志和自由选择是在哲学中被长期讨论的。关键点在于</p>
-<ul>
-<li>人性是否超越自然？</li>
-</ul>
-<h2 id="平等">2. 平等</h2><p>关键点：是否同意<strong>共同人性</strong></p>
-<p>如果肯定人性上人人平等，那么就可以接着考虑</p>
-<ul>
-<li>环境条件平等</li>
-<li>机会平等</li>
-</ul>
-<p>如何评价平等？将平等分级，先要满足种类上的平等（指大家都处于类似的水平上），然后才能考虑程度上的平等（指大家都有相同的量化结果）</p>
-<h2 id="正义">3. 正义</h2><p>自古以来有三种关于正义的争辩</p>
-<ul>
-<li>有权势则有理，权威就是正义</li>
-<li>自然正义先于法律正义</li>
-<li>功利主义</li>
-</ul>
-<p>作者认为这三种正义都是有一定道理的。</p>
-<p>关于正义还有两个难以解决的问题</p>
-<ul>
-<li>我们为什么要做到正义？正义和幸福有关吗，表面上看是否定的。但是如果仔细考虑，为了达到善这个终极目的，为了整个一生过上好日子，我必须以正义待人，以正义处理与我所在社区的关系</li>
-<li>当别人以不正义的行为做事，我们要怎么办？忍受还是同样不正义？如果我的不正义行为会改变我的习惯气质，并使我最终丧失美德，那么就不应该同样不正义，但其实是不太可能的。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1458,7 +1428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">345</span>
+          <span class="site-state-item-count">348</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

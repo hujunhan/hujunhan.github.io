@@ -188,6 +188,381 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/google-2022-beyond/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/google-2022-beyond/" class="post-title-link" itemprop="url">Google Research 2022 and Beyond</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-27 11:38:00" itemprop="dateCreated datePublished" datetime="2023-03-27T11:38:00-07:00">2023-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal">1. Goal</h2><p>Highlight some of the progress in 2022 and vision for 2023</p>
+<h2 id="Language-Vision-and-Generative-models">2. Language Vision and Generative models</h2><h3 id="Language">2.1. Language</h3><p>Language model, although the simple objective is to predict the next word, the results are quite amazing</p>
+<p>Chain of Thought prompting, help the language model follow logical chain of thought</p>
+<p>Trained on multi-language model, it shows translation ability</p>
+<p>Scaling give new power</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215402_qAWY1T.png" alt="img"></p>
+<h3 id="Vision">2.2. Vision</h3><p>Use transformer architecture rather than CNN to utilize both local and non-local information</p>
+<p>Understand 3D structure from one or few 2D images</p>
+<h3 id="Multimodal-Models">2.3. Multimodal Models</h3><p>Key questions:</p>
+<ul>
+<li>How much modality-specific processing should be done before merge?</li>
+<li>A few layer</li>
+<li>How to mix the representation the most effective?</li>
+<li>Through bottleneck</li>
+</ul>
+<h3 id="Generative-Models">2.4. Generative Models</h3><p>GAN developed in 2014, two part</p>
+<ul>
+<li>Generator</li>
+<li>Discriminator</li>
+</ul>
+<p>Diffusion model: slowly destroy structure in a data distribution, then learn a reverse process that can restore the structure</p>
+<ul>
+<li>Can produce image but in a low quality</li>
+</ul>
+<p>Contrstic language-iamge Pre-training and LLM can produce high quality result</p>
+<p>Next challenging:</p>
+<ul>
+<li>video</li>
+<li>audio: larger data, and one-to-many relationship</li>
+</ul>
+<h2 id="ML-and-Computer-System">3. ML and Computer System</h2><h3 id="Software">3.1. Software</h3><p>Distributed systems: Pathway</p>
+<ul>
+<li>AI model</li>
+<li>Sparse and efficient</li>
+</ul>
+<p>TensorStore, partular useful for LLM</p>
+<p>Jax related libraries, Rax, T5X</p>
+<h3 id="Hardware">3.2. Hardware</h3><p>TPU and GPU</p>
+<p>Use ML in hardware design, use a approximation level</p>
+<h2 id="Aglorithm-Advances">4. Aglorithm Advances</h2><p>Scalable algorithm, using graphs, clustering and optimization</p>
+<p>Privacy and federated learning</p>
+<p>Maket algorithm and causal inference:</p>
+<h2 id="Robotics">5. Robotics</h2><p>More helpful?</p>
+<ul>
+<li>Communicate more efficient</li>
+<li>Understand common sense in real world</li>
+<li>Scaling the number of low-level skills</li>
+</ul>
+<p>Using LLM</p>
+<ol>
+<li>Using the LLM to generate instruction (that robot can do)</li>
+<li>Do the job in a given situation</li>
+<li>Value function in RL</li>
+</ol>
+<p>Scalable Data Problem</p>
+<ul>
+<li>physical skills present significant challenge to robot</li>
+<li>Moravec’s Paradox: reasoning require little computation but perception skills require enormous computation</li>
+</ul>
+<p>Simulation:</p>
+<ul>
+<li>still gap between simulation and real world</li>
+<li>collect training data</li>
+</ul>
+<h2 id="Natural-Science">6. Natural Science</h2><p>ML to act on curiosity</p>
+<p>Complexity of biology</p>
+<ul>
+<li>brain</li>
+<li>reconstruction of the neural of a zebrafish brain</li>
+<li>proteins</li>
+<li></li>
+<li>genome</li>
+</ul>
+<p>Quantum computing for new physics discoveries</p>
+<h2 id="TODO">7. TODO</h2><p>Common sense in LLM?</p>
+<p>huam <a target="_blank" rel="noopener" href="https://ai.googleblog.com/2021/06/a-browsable-petascale-reconstruction-of.html">cortex</a></p>
+<p>fruit fly <a target="_blank" rel="noopener" href="https://ai.googleblog.com/2020/01/releasing-drosophila-hemibrain.html">brain</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/chatgpt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/chatgpt/" class="post-title-link" itemprop="url">Power of ChatGPT</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-27 00:15:00" itemprop="dateCreated datePublished" datetime="2023-03-27T00:15:00-07:00">2023-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="GPT3">1. GPT3</h2><p>三个重要能力</p>
+<ul>
+<li>Text Generation, using prompt</li>
+<li>In-Context learning</li>
+<li>World knowledge, factual knowledge and common sense</li>
+</ul>
+<p>来源：大量的数据</p>
+<h2 id="From-GPT3-to-ChatGPT">2. From GPT3 to ChatGPT</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230327001912.png" alt="图片"></p>
+<p>不同的微调指令激发出了不同的能力，这些能力本来就已经有了</p>
+<ul>
+<li>上下文学习</li>
+<li>对话</li>
+<li>代码</li>
+</ul>
+<h2 id="Code-Davinci">3. Code-Davinci</h2><p>通过指令微调，直接产物是能够响应人类指令</p>
+<p>泛化能力：指令数量超过一定范围自动出现</p>
+<ul>
+<li>复杂推理能力是<strong>训练代码</strong>的神奇副产物</li>
+<li>面向对象和面向过程</li>
+</ul>
+<h2 id="Text-Davinci-RLHF">4. Text-Davinci, RLHF</h2><p><strong>人类反馈</strong>（一种训练手段）带来的能力：</p>
+<ul>
+<li>更长的回答</li>
+<li>公正的回应</li>
+<li>拒绝不当问题</li>
+<li>拒绝知识范围之外的问题</li>
+</ul>
+<p>能力是模型本来就有的，RLHF（人类反馈）触发了新的能力</p>
+<h2 id="Can’t-Do">5. Can’t Do</h2><p>非常严谨的数学推导</p>
+<p>纠正错误的事实</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/GNSS-IMU/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Sensor/GNSS-IMU/" class="post-title-link" itemprop="url">GNSS-IMU Calibration</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-03-16 22:04:00" itemprop="dateCreated datePublished" datetime="2023-03-16T22:04:00-07:00">2023-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Sensor/" itemprop="url" rel="index"><span itemprop="name">Sensor</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="测试流程">1. 测试流程</h2><ol>
+<li>Windows上用上位机查看数据，确保能获取IMU数据</li>
+<li>ROS包安装，录制数据</li>
+<li>校准</li>
+</ol>
+<h2 id="ROS">2. ROS</h2><p>Lidar, IMU ROS package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ros-XXX-serial</span><br></pre></td></tr></table></figure>
+
+<p>Fix the port name for IMU</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> KERNEL=E<span class="string">&quot;ttyUSB*&quot;</span>, ATTRSfldVendor&#125;==<span class="string">&quot;10c4&quot;</span>, ATTRStLdProduct)==<span class="string">&quot;ea60&quot;</span>,ATTRS(ser1al)==<span class="string">&quot;0003&quot;</span>, MODE:=<span class="string">&quot;0777&quot;</span>, GROUP:=<span class="string">&quot;dialout&quot;</span>,SYMLINK+=<span class="string">&quot;fd1Link_ahrs&quot;</span><span class="string">&#x27; &gt;/etc/udev/rules.d/fdtLink_ahrs.rules</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">service udey reload</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">sleep 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">service udev restart</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Action/Kinematics/wheel-robot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1189,357 +1564,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/lib/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/lib/" class="post-title-link" itemprop="url">Dynamic? Static?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-03-08 22:32:00" itemprop="dateCreated datePublished" datetime="2023-03-08T22:32:00-08:00">2023-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal">1. Goal</h2><p>Understand the difference between dynamic and static libraries in software</p>
-<ul>
-<li>Static: link at compile time, make the final program larger</li>
-<li>Dynamic: link at runtime, require the system to have the lib</li>
-</ul>
-<p>When to use?</p>
-<ul>
-<li>Static: lib is small, not change, need to be optimized</li>
-<li>Dynamic: lib is large, frequently update</li>
-</ul>
-<h2 id="Compile-Process">2. Compile Process</h2><ul>
-<li>Preprocessing, remove comments, expand macro</li>
-<li>Compilation, translate into assembly</li>
-<li>Assembly, translatie into machine code</li>
-<li>Linking, combine it with other libraries and modules</li>
-</ul>
-<h2 id="Linking">3. Linking?</h2><ul>
-<li>Static linking is usually used for local</li>
-<li>Dynamic linking is usually used for external libraries</li>
-</ul>
-<p>How it works?</p>
-<ul>
-<li>When compiled, it split into object file and combined into a single file</li>
-<li>Header files should be used to make sure the parameter is correct</li>
-</ul>
-<p>References?</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/aloam/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/aloam/" class="post-title-link" itemprop="url">ALOAM Learning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-03-07 21:15:00" itemprop="dateCreated datePublished" datetime="2023-03-07T21:15:00-08:00">2023-03-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Goal">1. Goal</h2><p>Understanding the overall structure of the LOAM project and try to compile it <strong>without</strong> ROS</p>
-<h2 id="Theory">2. Theory</h2><p>Paper: <a target="_blank" rel="noopener" href="http://www.roboticsproceedings.org/rss10/p07.pdf">Lidar Odometry and Mapping in Real-time</a></p>
-<p><a target="_blank" rel="noopener" href="https://lukeyalvin.site/archives/43.html">Explanation</a></p>
-<p>Problem: error in motion estimation cause mis-registration</p>
-<p>Solution: propose 2 odometry</p>
-<ul>
-<li>High frequency, low accuracy</li>
-<li>Low frequency, high accuracy</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230307215625.png" alt="image-20230307215625066"></p>
-<p>Some key point</p>
-<ul>
-<li>feature extraction: based on curvature, only a(A) is considered as a good feature point</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230307220111.png" alt="image-20230307220110995"></p>
-<ul>
-<li><p>Only a few feature point in a location (avoid density in-balance)</p>
-</li>
-<li><p>Can’t on the parallel surface and blocked area</p>
-</li>
-<li><p>Need to deal with the distortion (since the robot is moving)</p>
-</li>
-<li><p>Find the matching</p>
-</li>
-<li><p>Goal: minimize the distance (point to line and point to surface)</p>
-</li>
-<li><p>$d_{\xi}&#x3D;\frac{|(\tilde{X}^L_{(k+1,i)}-\overline{X}^L_{(k,j)})×(\tilde{X}^L_{(k+1,i)}-\overline{X}^L_{(k,l)})|}<br>{|\overline{X}^L_{(k,j)}-\overline{X}^L_{(k,l)}|}. \tag{2}$</p>
-</li>
-<li><p>$d_\mathcal{H}&#x3D;\frac<br>{\begin{vmatrix}<br>(\tilde{X}^L_{(k+1,i)}-\overline{X}^L_{(k,j)})·((\overline{X}^L_{(k,j)}-\overline{X}^L_{(k,l)})×(\overline{X}^L_{(k,j)}-\overline{X}^L_{(k,m)}))<br>\end{vmatrix}<br>}<br>{\begin{vmatrix}<br>(\overline{X}^L_{(k,j)}-\overline{X}^L_{(k,l)})×(\overline{X}^L_{(k,j)}-\overline{X}^L_{(k,m)})<br>\end{vmatrix} }.$</p>
-</li>
-<li><p>Movement: linear interpolation</p>
-</li>
-<li><p>Building the Map: using the existing map to correct the movement estimation</p>
-</li>
-<li><p>Since computation complex, so low frequency (1&#x2F;10 of the odometry)</p>
-</li>
-<li><p>Correct the whole map</p>
-</li>
-</ul>
-<h2 id="Dependencies">3. Dependencies</h2><ul>
-<li><p>PCL</p>
-</li>
-<li><p>VTK</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">brew edit vtk</span><br><span class="line"><span class="comment">#https://stackoverflow.com/questions/3939651/how-do-i-modify-a-homebrew-formula</span></span><br><span class="line"><span class="comment">## Add two line</span></span><br><span class="line">-DVTK_MODULE_ENABLE_VTK_GuiSupportQt:STRING=YES</span><br><span class="line">-DVTK_MODULE_ENABLE_VTK_ViewsQt:STRING=YES</span><br><span class="line">brew reinstall --build-from-source --formula /opt/homebrew/Library/Taps/homebrew/homebrew-core/Formula/vtk.rb</span><br><span class="line"><span class="built_in">export</span> CMAKE_PREFIX_PATH=/opt/homebrew/Cellar/qt@5/5.15.8_2/</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>gtsam</p>
-</li>
-<li><p>Ceres-solver</p>
-</li>
-</ul>
-<h2 id="Structure">4. Structure</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/hair/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/hair/" class="post-title-link" itemprop="url">人类毛发疑惑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-03-07 00:15:00" itemprop="dateCreated datePublished" datetime="2023-03-07T00:15:00-08:00">2023-03-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="问题">1. 问题</h2><ul>
-<li>为什么头发没有在进化过程中减少</li>
-<li>为什么头发会一直生长而其他毛发不会</li>
-</ul>
-<h2 id="头发？">2. 头发？</h2><p>头发比较重要</p>
-<ul>
-<li>保护，吸收紫外线</li>
-<li>维持体温，大脑比较重要，且散热较多</li>
-<li>社交信号</li>
-</ul>
-<h2 id="生长？">3. 生长？</h2><p>生物结构不一样</p>
-<ul>
-<li>头皮的毛囊更大，生长周期较长</li>
-<li>其他部位毛发生长数月，就会停止生长</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1609,7 +1633,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">345</span>
+          <span class="site-state-item-count">348</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
