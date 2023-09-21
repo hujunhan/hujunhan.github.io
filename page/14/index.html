@@ -188,6 +188,932 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Project/mobile-robot-i/" class="post-title-link" itemprop="url">Build A Mobile Robot from Scratch —— Part I</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-12 16:46:00" itemprop="dateCreated datePublished" datetime="2022-11-12T16:46:00-08:00">2022-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Why this project? I wanna build a robot from scratch to fill the gap between theory and reality.</p>
+<p>To build the robot, usually need following knowledge base</p>
+<ul>
+<li>Mechanics, the build the body of robot</li>
+<li>Electronic, the power of the robot</li>
+<li>Computer, the brain of the robot</li>
+</ul>
+<h2 id="Goal">2. Goal</h2><p>For the robot, I would like to focus on the mobile robot platform</p>
+<p>Two level goals:</p>
+<ol>
+<li>Basic level, the robot can move, and use the lidar as a SLAM  sensor, can track something using camera</li>
+<li>More precise control, going from A to B, the error should be less than 1cm</li>
+</ol>
+<p>Consider a layer platform</p>
+<ol>
+<li>Environment sensing, different sensor to be used, a SBC is used. LiDAR, video camera, speaker, microphone</li>
+<li>Intelligence, communication, SBC, control other part</li>
+<li>Navigation, get the high-level command and go to desired position</li>
+</ol>
+<p>Communication Ethernet</p>
+<h2 id="Path">3. Path</h2><p>Motor</p>
+<ul>
+<li>Control how it works</li>
+<li>feedback control</li>
+<li>position control</li>
+<li>speed control</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-15-44-30.png" alt="image-20221113154430236"></p>
+<h2 id="Chassis">4. Chassis</h2><p>Design</p>
+<p>34cm  30cm  23cm</p>
+<p>Front x2</p>
+<p>Rear x2</p>
+<h2 id="New-Thing">5. New Thing</h2><h3 id="Motor-Driver">5.1. Motor Driver</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ygrsIqWOh3Y">Ref</a></p>
+<p>Working with DC motor</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-13-19-40-18.png" alt="image-20221113194018459"></p>
+<ul>
+<li>Direction</li>
+<li>Using the H-bridge could change the direction of voltage and current</li>
+<li>MOSFET would drop a little voltage</li>
+<li>Speed</li>
+<li>PWM</li>
+</ul>
+<p>L298N, simple, classic but too old</p>
+<p>More improved design:</p>
+<ul>
+<li>TB6612FNG, improved version of L298N</li>
+<li>DRV8871, if you only need a SINGLE motor to drive</li>
+<li>MX1508, small, but not soldering friendly</li>
+</ul>
+<p>Driver that can handle large current:</p>
+<ul>
+<li>DBH-12，20A, peak 30A</li>
+<li>IBT2, single channel, 30A, peak 43A</li>
+</ul>
+<h3 id="Micro-Controller">5.2. Micro Controller</h3><p>UNO or raspberry pi PICO</p>
+<p>Pico should be a better choice in 2022 (introduced in 2021)</p>
+<ul>
+<li>Much faster (133MHz vs 16MHz)</li>
+<li>Much larger RAM</li>
+<li>Lower power DC (1.8v-5.5v)</li>
+<li>More port (Analog and Digital)</li>
+</ul>
+<h3 id="Battery">5.3. Battery</h3><p>LIPO battery, high capacity in lightweight</p>
+<p>Con: easily damaged</p>
+<p>Lithium-Ion Polymer (锂离子聚合物电池)</p>
+<ul>
+<li>Application where weight matters</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-14-15-29-46.png" alt="image-20221114152946679"></p>
+<p>Each cell can provide 3.7V</p>
+<ul>
+<li>Fully charged 4.4V</li>
+<li>Minimum safe charge is 3.0V</li>
+</ul>
+<p>Different wire</p>
+<ul>
+<li>S- serial</li>
+<li>P- Parallel</li>
+</ul>
+<p>Capacity</p>
+<ul>
+<li>C rating</li>
+</ul>
+<p>Connection:</p>
+<ul>
+<li>Dean</li>
+<li>XT60</li>
+<li>EC3</li>
+</ul>
+<h3 id="Base-Material">5.4. Base Material</h3><p>Consider: strength to weight</p>
+<p>Aluminum</p>
+<ul>
+<li>lightweight</li>
+</ul>
+<p>Acrylic (亚克力)</p>
+<ul>
+<li>lightweight</li>
+<li>drilled</li>
+</ul>
+<h3 id="Channeling-System">5.5. Channeling System</h3><p>Actobotics system: good availablity</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.gobilda.com/structure/">GoBilda system</a>:</strong> good quality, successor to the Actobotics</p>
+<p>Vex system</p>
+<p>Lynxmotion</p>
+<h3 id="Motor-Selection">5.6. Motor Selection</h3><p>DC Gear motor</p>
+<ul>
+<li>Planetary: a bit expensive, but quiet</li>
+<li>Spur: cheap, but noise</li>
+</ul>
+<p>Things to consider</p>
+<ul>
+<li><p>Nominal voltage, optimal voltage</p>
+</li>
+<li><p>No Load RPM, when nothing connected, what is the RPM</p>
+</li>
+<li><p>Stall torque and current. Newton Meter</p>
+</li>
+<li><p>Stall: no more move</p>
+</li>
+<li><p>&lt;30% stall point</p>
+</li>
+<li><p>Size and shaft</p>
+</li>
+<li><p>Mount</p>
+</li>
+<li><p>Shaft may not in the center</p>
+</li>
+</ul>
+<p>Encoder is important</p>
+<p>We need to first determine the</p>
+<ul>
+<li>Weight (Load)</li>
+<li>Speed</li>
+<li>Longest working area for the robot</li>
+<li>The robot should be slower than human walking (safe to control the robot)</li>
+</ul>
+<p>Calculate the required specification for the motor and battery</p>
+<p><a target="_blank" rel="noopener" href="https://community.robotshop.com/blog/show/drive-motor-sizing-tool">Calculator</a></p>
+<p>Motor, hub, bearing, encoder</p>
+<ul>
+<li><strong>Bearing</strong> is quite important since the whole load is on the wheel</li>
+<li>if there are no bearings, the motor would load all the pressure</li>
+</ul>
+<h3 id="Wheel">5.7. Wheel</h3><p>Parameter for wheel:</p>
+<ul>
+<li>Wheel size, determine the speed</li>
+<li>Wheel width, determine the traction and maximum load</li>
+<li>Wheel traction, determine the surface robot can travel</li>
+<li>Wheel type, determine the degree of movement</li>
+</ul>
+<p>Type</p>
+<ul>
+<li>Standard, most common, wide range size, can be used as driver or idler</li>
+<li>two degree (forward and backward)</li>
+<li>Caster and Ball wheel, orientable, use as idler, most used for indoor design</li>
+<li>Mecanum, different left and right wheels, multi-drirectional, 45 degree roller</li>
+<li>Omni wheels, 90 degree roller, 4 degree of freedom, best for indoor</li>
+</ul>
+<p>Arrangement</p>
+<p>Durometer</p>
+<ul>
+<li>harder or softer？</li>
+<li>30A maybe too soft</li>
+</ul>
+<h3 id="Electronics">5.8. Electronics</h3><p>Motor driving</p>
+<p>Power distribution board</p>
+<p>Motor controller</p>
+<p>Fuses: (保险丝)</p>
+<ul>
+<li>if the current is too big, would case heat, may lead fire</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-15-21-13-17.png" alt="image-20221115211317451"></p>
+<h3 id="Power-Source">5.9. Power Source</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IT19dg73nKU">Ref</a></p>
+<p>Regulator and Convertor</p>
+<p>Logic voltage, 5V(4.7-5.2), 3.3V.</p>
+<p>Motor: 6V, 12V</p>
+<hr>
+<p>AC:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-17-23-29-08.png" alt="image-20221117232907848"></p>
+<hr>
+<p>DC:</p>
+<ul>
+<li>From high to low:</li>
+<li>voltage regulation，AMS1117-5(much lower voltage drop), 1A</li>
+<li>buck converter, high-efficient, mini360</li>
+<li>From low to high</li>
+<li>boost converter, PSM205, to a usb</li>
+<li>From any to any</li>
+<li>Buck boost converter, S9V11F5 (from 2-16 to 5)</li>
+</ul>
+<h3 id="Motor-Controller">5.10. Motor Controller</h3><h3 id="Weight-Consideration">5.11. Weight Consideration</h3><p>If the robot is too lightweight, there would be not enough traction for the robot to move.</p>
+<h3 id="Connector">5.12. Connector</h3><p>JST</p>
+<h2 id="BOM">6. BOM</h2><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Name</th>
+<th>Num</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Front wheel</td>
+<td>Motor</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>120mm Wheel</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm REX bearing</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm Face bearing</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>8mm shim</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>m4 washer</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>Hyper Hub</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>12mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Front wheel</td>
+<td>18mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Omni-wheel">6.1. Omni wheel</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Num</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Omni wheels</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Spacer 4mm</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm D shaft hub</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm D shaft bearing</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6mm Collar</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>30mm M4 screw</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>80mm 6mm D-shaft</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Progress">7. Progress</h2><p>11.21</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-21-23-12-05.png" alt="image-20221121231205713"></p>
+<p>12.5 Test Robot Motor</p>
+<ul>
+<li><input checked disabled type="checkbox"> Full Speed</li>
+<li><input checked disabled type="checkbox"> Arduino PWM</li>
+<li><input checked disabled type="checkbox"> 20%</li>
+<li><input checked disabled type="checkbox"> 50%</li>
+<li><input checked disabled type="checkbox"> 100%</li>
+<li><input checked disabled type="checkbox"> Encoder</li>
+<li><input checked disabled type="checkbox"> Each rotation</li>
+</ul>
+<p>TODO:</p>
+<ul>
+<li>Add a ferrule crimping tool kit</li>
+</ul>
+<hr>
+<p>Motor Driver:</p>
+<p>VCC is connected to 5V power supply of MCU,GND is connected to GND of MCU.</p>
+<p>R_EN AND L_EN short circuit and input PWM signal for speed regulation</p>
+<p>L_PWM,pin input 5V level,motor forward</p>
+<p>R_PWM,pin input 5V level,motor reversal</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">pinMode(<span class="number">8</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">7</span>,OUTPUT);</span><br><span class="line">digitalWrite(<span class="number">8</span>, HIGH);</span><br><span class="line">digitalWrite(<span class="number">7</span>, HIGH);</span><br><span class="line"></span><br><span class="line"><span class="comment">//PWM output</span></span><br><span class="line">pinMode(<span class="number">6</span>,OUTPUT);</span><br><span class="line">pinMode(<span class="number">5</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">()</span> &#123;</span><br><span class="line"><span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">50</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">100</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">150</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">200</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">255</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">analogWrite(<span class="number">6</span>, <span class="number">0</span>);</span><br><span class="line">delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Update-Dec-10">7.1. Update Dec.10</h3><p>Currently the robot works great on open-loop rotate and move forward, backward</p>
+<p>Next</p>
+<ol>
+<li>Close-loop control on the RPM</li>
+</ol>
+<p>Test how linear the motor is. That is the relation between the PWM  duty rate and the RPM</p>
+<h3 id="Update-Dec-13">7.2. Update Dec.13</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-45.png" alt="image-20221213223345245"></p>
+<p>Re-organize the wire and hide the wire in the alumni channel</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-13-22-33-58.png" alt="image-20221213223358163"></p>
+<p>Currently the robot’s speed control is under PID control</p>
+<p>To make the position control closed-loop, still need encoder+IMU</p>
+<p>And localization system should be added (SLAM)</p>
+<h3 id="Update-Dec-15">7.3. Update Dec.15</h3><p>Use DC jack to power the Jetson and Arduino</p>
+<p>Given the hardware and electronic elements I have, followed step</p>
+<ul>
+<li><del>Arduino Remote Control</del></li>
+<li><del>Jetson use</del></li>
+<li><del>Communicate with computer</del></li>
+<li><del>Setup wifi enable remote access</del></li>
+<li><del>Read IMU data</del></li>
+<li><del>Install Lidar and read lidar data</del></li>
+</ul>
+<h3 id="Update-Dec-17">7.4. Update Dec.17</h3><ol>
+<li><del>Rewire the arduino</del></li>
+<li><del>Power Arduino with Jetson Nano</del></li>
+<li><del>Communicate between arduino and jetson nano</del></li>
+</ol>
+<h3 id="Update-Dec-19">7.5. Update Dec.19</h3><p><del>Add IR remote in arduino</del></p>
+<p>TODO:</p>
+<ul>
+<li><del>Remote control move forward&#x2F;reverse&#x2F;rotate</del></li>
+<li>Use the lidar to build the map</li>
+</ul>
+<h3 id="Update-Dec-21">7.6. Update Dec.21</h3><p>Remote speed control and stop done</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-12-21-22-36-18.png" alt="image-20221221223618322" style="zoom: 15%;">
+
+<p>TODO:</p>
+<ul>
+<li>Add IMU</li>
+<li><del>Wire</del></li>
+<li><del>Read data</del></li>
+<li><del>Calibrate</del></li>
+<li><del>Store offset</del></li>
+<li><del>Reload offset</del></li>
+<li>3D print a level for lidar</li>
+<li>SLAM</li>
+</ul>
+<h2 id="Takeout">8. Takeout</h2><p>Low frequency PWM would cause the motor hauling, by increasing the frequency (like 3k) the hauling would disappear. In some MCU, by playing with the register, we might change the default frequency.</p>
+<p>While selecting the MCU, checkout how many interrupt are needed and how many interrupt can the MCU provide.</p>
+<p>By using encoder’s both channel and both rising and falling, we can maximize the accuracy of the motor</p>
+<p>A good motor is almost linear between RPM and PWM</p>
+<p>When the code doesn’t go well, check the setting and setup</p>
+<p>After rewiring, double check the position especially the pin number</p>
+<p>While making the wire, the length or wire should be considered. It’s a system design, so leave some room for wiring but not too much</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/transformer/" class="post-title-link" itemprop="url">What is Transformer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-09 22:09:00" itemprop="dateCreated datePublished" datetime="2022-11-09T22:09:00-08:00">2022-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>A model related to language, model behind GPT, BERT, T5</p>
+<h2 id="What">2. What</h2><p>A general model</p>
+<ul>
+<li>CNN for vision</li>
+<li>RNN for language, sequential</li>
+<li>hard to train</li>
+<li>always forget</li>
+</ul>
+<p>Initially, trained for translation</p>
+<ul>
+<li>good for training</li>
+<li>huge dataset</li>
+</ul>
+<h2 id="How-it-work">3. How it work</h2><ol>
+<li>Positional Encoding</li>
+</ol>
+<p>add a index for the word, easier to train</p>
+<ol start="2">
+<li>Attention</li>
+</ol>
+<p>looking for related word for translation</p>
+<ol start="3">
+<li>Self-Attention</li>
+</ol>
+<p>How to understand the language? by checking around word to determine the real meaning of a word</p>
+<h2 id="Use">4. Use</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/" class="post-title-link" itemprop="url">Google Computational Photography</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-08 14:27:00" itemprop="dateCreated datePublished" datetime="2022-11-08T14:27:00-08:00">2022-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Computation-Photography/" itemprop="url" rel="index"><span itemprop="name">Computation Photography</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Alpha-Matting">1. Alpha Matting</h2><p>Goal: accurate matting for fine details</p>
+<p>Application: background replacement, synthetic bokeh</p>
+<p>Idea: not binary, but estimate a transparency value</p>
+<p>How: Train a CNN</p>
+<ul>
+<li>input: RGB image and coarse alpha matte</li>
+<li>MobileNetV3 and shallow encoder-decoder</li>
+<li>A studio to make high-quality dataset</li>
+</ul>
+<h2 id="Omnimattes">2. Omnimattes</h2><p>Goal: produce mask not only for objects but also their effects (shadow, smoke, reflection..)</p>
+<p>Application: image and video editing</p>
+<p>Idea: create different layer for each object and also the background</p>
+<p>How: Train a CNN</p>
+<ul>
+<li>learn the strong correlation first</li>
+</ul>
+<h2 id="Denoise-and-Sharpen">3. Denoise and Sharpen</h2><p>Goal: denoise for any image without knowing the parameter of the camera. (Computational effective)</p>
+<p>Application: image post-processing</p>
+<p>Idea: assess the noise level and blur type in patch level</p>
+<p>How:</p>
+<ul>
+<li>Pull-push denoising</li>
+<li>first pull(down-sample), in different level(pyramid), use this to find local structure</li>
+<li>Then push(up-scale), pixels fused with coarser level by doing weighted average</li>
+<li>Polyblur: deblurring caused by a blur kernel</li>
+<li>observation: the maximal value of the image gradient across all dir in a sharp image follows a particular distribution. So we can estimate the blur in given direction</li>
+<li>Assumption: mild blur</li>
+<li>How: reblur it serveral time</li>
+</ul>
+<h2 id="HDR">4. HDR+</h2><p>Goal: reduce noise, handle large dynamic range scene</p>
+<p>Application: mobile phone photograph</p>
+<p>Idea: burst of under-exposure</p>
+<p>How:</p>
+<ul>
+<li>for noise, burst, align, average</li>
+<li>for HDR, bracketing(same exposure time), burst, align, combine</li>
+</ul>
+<h2 id="HDR-with-bracketing">5. HDR+ with bracketing</h2><p>HDR+ works for maoderate dynamic range, but fails for High dyanmic range</p>
+<p>HDR+’s problem: noise</p>
+<ul>
+<li>shot noise, if this is the only noise, HDR+ works great</li>
+<li>read noise, depends on the number of frames taken, make HDR+, can not be canceled</li>
+</ul>
+<p>Goal: to capture real high dynamic range</p>
+<p>Idea: before the shutter, use burst; after the shutter, use bracket; merge</p>
+<p>How:</p>
+<ul>
+<li>new spatial merge algorithm</li>
+<li>Deghosting algorithm</li>
+<li>merge raw earlier</li>
+</ul>
+<h2 id="Night-Sight">6. Night Sight</h2><p>Defien the dark level, lux.</p>
+<ul>
+<li>Samrt phone start to struggle at 30lux</li>
+<li>HDR+ make it possible at 3lux</li>
+<li>Goal: between 3lux and 0.3lux with a smartphone and single shutter, no flash</li>
+</ul>
+<p>Idea: capture more photons.</p>
+<ul>
+<li>handheld for longer exposure</li>
+<li>motion blur: use optical flow to minimize the blur</li>
+</ul>
+<p>Problem:</p>
+<ul>
+<li>alignmnet, HDR+, Super Res Zoom (require faster processor)</li>
+<li>AWB in low light: ill-posed problem, develop a learning based algorithm</li>
+<li>Tone mapping: well exposured image just like the daytime. Using the S-curve</li>
+</ul>
+<h2 id="Super-Res-Zoom">7. Super Res Zoom</h2><p>Goal: better digital zoom, merge many frames to a single high-res image</p>
+<p>Idea: sensor shift that can be used to get the detail in Bayer</p>
+<ul>
+<li>take the hand-motion as pixel-shift, OIS to compensate the large motion</li>
+</ul>
+<p>How:</p>
+<ol>
+<li>take burst</li>
+<li>select 1 image as base</li>
+<li>interpolate between two images</li>
+</ol>
+<p>Problem:</p>
+<ul>
+<li>single image is noisy, align along apparent edges (a trade off, balance)</li>
+<li>object has motion too, deal with imperfect alignment (only merge the confident deature)</li>
+<li>the image data is not uniformly distributed</li>
+</ul>
+<h2 id="Motion-Still">8. Motion Still</h2><p>Goal: stablize the image</p>
+<p>Idea: motion estimation and crop</p>
+<p>How:</p>
+<ul>
+<li>Pure software-based: analyze and tracking the feature, then do a affine transformation</li>
+<li>Classify fore and back ground, estimate a optimal path by the metadata</li>
+</ul>
+<h2 id="Video-Stablization">9. Video Stablization</h2><p>Goal: EIS+OIS</p>
+<p>Problem: camera shake, motion blur, rolling shutter, focus breathing,</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215612_k5fJ5i.png" alt="img"></p>
+<h2 id="Image-Quality-Assessment">10. Image Quality Assessment</h2><p><a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/10/musiq-assessing-image-aesthetic-and.html">Ref</a></p>
+<p>Multi-scale Transformer, take image with different aspect ratio</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419203740_HRsNg1.png" alt="image-20221108142717028"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/motor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Actuator/motor/" class="post-title-link" itemprop="url">Motor In Robots</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-07 22:06:00" itemprop="dateCreated datePublished" datetime="2022-11-07T22:06:00-08:00">2022-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Actuator/" itemprop="url" rel="index"><span itemprop="name">Actuator</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why">1. Why</h2><p>Method: test the single motor first and then deploy it to real robot</p>
+<p>Any problem can be solved using a layered abstraction</p>
+<h2 id="Motor-Types">2. Motor Types</h2><p>AC Motor, taken from AC, application in industrial</p>
+<ul>
+<li>Higher power, higher torque</li>
+</ul>
+<p><strong>Brushed and Brushless DC</strong></p>
+<ul>
+<li>Brushed</li>
+<li>Brushless: smooth, no noise, efficient, high speed</li>
+</ul>
+<p>Geared-: Speed reduction</p>
+<p><strong>Stepper&#x2F;Servo</strong>: highest precision</p>
+<h2 id="Control-the-Motor">3. Control the Motor</h2><ol>
+<li>Motor, can’t de anything</li>
+<li>Supply Voltage, the motor can move</li>
+<li>Motor Driver, take low voltage and output high voltage</li>
+<li>Motor Controller, take practical input and output real signal</li>
+<li>Open-loop control, feedback control, encoder, at a precise speed</li>
+<li>Communication layer, serial</li>
+<li>Robot controller</li>
+<li>Driver software,</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-07-22-25-39.png" alt="image-20221107222539340"></p>
+<p>Keep the system more modularity, easier to swap the components</p>
+<hr>
+<h2 id="For-Robot">4. For Robot</h2><p>How to choose?</p>
+<ul>
+<li>Torque, know the load of your robot</li>
+<li>Speed, on mobile robot, trade off between torque and speed</li>
+<li>Accuracy,</li>
+<li>Voltage, check the nominal volt, the mainstream</li>
+</ul>
+<h2 id="How-to-Master-Robotics">5. How to Master Robotics</h2><p>Stage 1</p>
+<ul>
+<li>Programming</li>
+<li>Assembly</li>
+<li>Electronics</li>
+</ul>
+<p>Stage 2</p>
+<ul>
+<li>OO-programming</li>
+<li>Math and Physics</li>
+<li>Linux</li>
+<li>Embedded System</li>
+</ul>
+<p>Stage 3</p>
+<ul>
+<li>Algorithm</li>
+<li>Library</li>
+<li>ROS</li>
+<li>Design：need a mechanical expert</li>
+</ul>
+<p>Stage 4</p>
+<ul>
+<li>Technology that fascinating</li>
+<li>Work on various tool</li>
+<li>Work with as many single board as  possible</li>
+<li>Maintain the project gut hub</li>
+</ul>
+<h2 id="Speed-Torque-Current">6. Speed, Torque, Current</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=STdONYFI2C4&t=266s">Ref</a></p>
+<p>First, there is current, the current in the magefield would generate force</p>
+<p>If there is movement, it would generate a oppose voltage (current)</p>
+<ul>
+<li>Faster, the current would be less</li>
+<li>Stall, the largest current</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-11-19-21-47-01.png" alt="image-20221119214701264"></p>
+<p>Try to keep in the left half</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Health/office-health/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -861,600 +1787,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/luo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Miscellaneous/Business/luo/" class="post-title-link" itemprop="url">罗永浩谈创业</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-10 23:59:00" itemprop="dateCreated datePublished" datetime="2022-10-10T23:59:00-07:00">2022-10-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>适合创业的：</p>
-<ol>
-<li>想要赚大钱，走出第一步</li>
-<li>成就感，胸怀大志</li>
-</ol>
-<p>不适合：</p>
-<ol>
-<li>特别怕累，怕麻烦</li>
-<li>抗压能力差</li>
-<li>不要盲目</li>
-</ol>
-<hr>
-<p>方向</p>
-<ol>
-<li>理想状态下，革命、颠覆性</li>
-<li>发现大蓝海，选择比努力重要</li>
-<li>发现小蓝海，做细分领域</li>
-<li>在增长领域，市场供小于求</li>
-</ol>
-<hr>
-<p>基本常识</p>
-<ol>
-<li>要规模还是要利润，判断总体规模</li>
-<li>时机很重要</li>
-<li>洞察人性，看数据，黄赌毒</li>
-</ol>
-<blockquote>
-<p>养老行业</p>
-</blockquote>
-<h2 id="Talent">2. Talent</h2><ol>
-<li>招工程师，术业有专攻，找一个主管，让专家做专业的事</li>
-<li>招主管，职业管理者，价钱、或者理念的契合。坦诚</li>
-<li>资深的人脉和信任</li>
-<li>技术人员，人脉非常重要</li>
-</ol>
-<hr>
-<p>持续关注</p>
-<ol>
-<li>持续吸纳人才，提前注意</li>
-<li>关注同领域陷入危机的公司</li>
-<li>舍不得流失的优秀员工（保持联系）</li>
-</ol>
-<hr>
-<p>难搞的招聘的人</p>
-<ol>
-<li>对创业无感，到摩天大楼，画大饼</li>
-<li>优柔寡断，刺激他</li>
-<li>长期不表态，需要一些环境、场景（发布会）</li>
-</ol>
-<h2 id="坑">3. 坑</h2><p>掉坑，听一遍掉一遍</p>
-<ol>
-<li>过高的估计自己的能力</li>
-<li>忽视自己的短板，回避短板带来的缺陷</li>
-<li>跨界，盲区，需要有不同方面的人才来做专业的事</li>
-</ol>
-<h2 id="找钱">4. 找钱</h2><p>换位思考</p>
-<p>漂亮的履历、给投资者信心，对未来有理想有追求</p>
-<p>口才不是特别重要</p>
-<p>明白slide里的所有细节</p>
-<p>充分表现出<strong>激情</strong></p>
-<h2 id="QA">5. QA</h2><p>最大的收货：一个战斗力强大的团队</p>
-<p>未来手机市场：高度差异化</p>
-<p>最大的困难：积累清零，给别人画大饼的压力</p>
-<ul>
-<li>早期失败：一干二净</li>
-<li>一定规模：收购</li>
-</ul>
-<p>资金：开源&gt;&gt;节流</p>
-<ul>
-<li>不能省的：最优秀的人才</li>
-</ul>
-<p>技术屏障，不安全感，被大厂抄袭</p>
-<ul>
-<li>不用太考虑</li>
-<li>抄袭还是收购，基于利益的考虑</li>
-</ul>
-<p>人才、人品</p>
-<ul>
-<li>人品过了及格线就行了</li>
-<li>表达欲，不因成为判断的标准</li>
-<li>满脑子阴谋论的人智力不够</li>
-</ul>
-<p>创始人收入设置</p>
-<ul>
-<li>亏损的时候，不要拿得比别人多</li>
-<li>盈利的时候，拿多少都合适</li>
-</ul>
-<p>如何开除员工</p>
-<ul>
-<li>先发泄自己的情绪</li>
-<li>尊重别人的尊严</li>
-<li>不要想着报复别人</li>
-</ul>
-<p>合伙人的关系</p>
-<ul>
-<li>算成本和收益</li>
-<li>看委屈的谁，自己的话就忍，其他人就要严肃处理</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/learn-from-past/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/learn-from-past/" class="post-title-link" itemprop="url">温故而知新</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-26 22:24:00" itemprop="dateCreated datePublished" datetime="2022-09-26T22:24:00-07:00">2022-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-09-26-22-24-42.png" alt="image-20220926222442061"></p>
-<p>最近几年也写了好多博客了，一直没有时间回顾一下。</p>
-<p>回顾的目的：</p>
-<ol>
-<li>看看这几年来思维方式的转变</li>
-<li>看看这几年来兴趣爱好的转变</li>
-<li>看看有哪些知识已经忘记了，重新温习</li>
-</ol>
-<h2 id="Day-1">2. Day 1</h2><p>最早的一些博客是在大三上学期开始写的，那个时候正在学习机器人相关的课程，所以写了大量机器人相关的博客。</p>
-<p>RRT（随机扩展路径），Partical filter（利用标记点不断删除错误的估计）都是课程作业的报告副产物</p>
-<p>轨迹规划（在via point处速度、加速度连续），机器人线性控制（将非线性系统近似成线性系统，然后利用参数把系统屏蔽），力控制（加约束），非线性控制（还是往线性靠），末端执行器（通过<strong>雅可比矩阵</strong>在不同空间中转换）SLAM（本质是一个优化问题），计算机视觉基础（小孔成像和相机模型），图像处理（点、滤波），线性代数重温（Row space、Null space、Column space、Left space）</p>
-<p>51单片机（参数、寄存器、取址方式、计时器、中断、指令），STM32（更复杂的单片机，事件）</p>
-<p>机器学习相关的，基础（学习的是什么，是假设，hypothesis），贝叶斯学习（频率学派，后验概率公式，贝叶斯最优，朴素贝叶斯），决策树（根据信息增益来分节点）</p>
-<p>过程控制（核心课程，学的不咋样；把过程分成一个个环节，通过特性来设计不同的控制器进行控制）</p>
-<p>同时那时候也开始自学数据结构相关的知识，包括堆栈、队列（保持顺序）</p>
-<h2 id="Day-2">3. Day 2</h2><p>大三上结束的寒假就一篇都没写过，比较懈怠。到了大三下学期，除了课程相关，还学习很多机器学习以及数据科学方面的知识</p>
-<p>数据结构：双向链表（栈和队列都有了）</p>
-<p>机器学习：PCA（用SVD将数据降维，去掉用处不大的信息），回归（最小二乘），强化学习（每一步根据之前的信息学一个最优的policy），迁移学习（利用pretrained的model），KNN（根据样本距离投票分类）</p>
-<p>双臂飞行器（自制，失败，主要是不会写飞控），路径规划（很多算法其实在现实中不太容易实现），接收机（发射机、接收机，摇杆控制，没怎么学习），飞控（找了一个开源的飞控，可惜也没空仔细研究），SLAM（数学基础包括旋转矩阵，李代数，相机模型，非线性优化；实践包括PnP，ICP，也会用到SVD，很多都有库实现了，锻炼的更多的是编程能力），直流电机的控制（编码器+转子+减速器）</p>
-<p>竟然还学了一下HTML（知识学了一下基本元素，用element包裹内容），蛙泳（克服恐惧，多练几次，感谢同学陪练），计算机控制系统（另一个track的必修课，后来退了）</p>
-<p>哲学，算是系统开始学习（让自己思考更加清晰，我们想的应该和世界运行的一样），道德（客观？习惯？），政治哲学（benefit， consent，fairness）</p>
-<h2 id="Day-3">4. Day 3</h2><p>大三到大四的暑假似乎兴趣爱好变得更加广泛了，学了许多不同的东西</p>
-<p>Hexo配置（配置文件应该及时保存），比特币工作原理（区块链，去中心化，广播并信任最耗资源的账本），Anki（利用遗忘曲线不断复习；本来对这个软件寄予厚望，可惜使用起来太麻烦，弃之），自由泳（尝试了但失败了，用大腿较多，抽筋了），Apple Face ID（深度相机，深度学习，小样本学习）,EOL（跨平台就用<code>\n</code>），正则表达式（现学现卖），皮肤变黑（紫外线照射，黑色素转移到表皮，保护皮肤），皮肤变白（抑制酪氨酸酶活性，L乳酸+alpha熊果苷），提高打字速度（标准指法+练习）</p>
-<p>统计：显著性检验（了解假设是否符合实际分布），参数估计（最大似然估计）</p>
-<p>算法（其实就是如何解决问题，清楚地定义问题，转换为能够解决的问题，寻找其他重要的假设），计算机的组成原理（抽象，每次只考虑一层的抽象，把低一层作为已知）</p>
-<p>音乐（本质就是被安排的声音序列，影响神经元，会有期待；寻找和谐）</p>
-<p>光路（光走的是最短（快）路径，费马原理），最速下降（利用费马原理）</p>
-<h2 id="Day-4">5. Day 4</h2><p>大四上学期主要就在准备留学申请的事情，相对来说自己的时间安排就比较宽裕了。除了背单词，准备雅思托福，其他的时间基本就是想干嘛就干嘛。也许是没有了课程的压力，所以有更多的时间来思考自己到底要做什么，发散性的思考了自己对什么感兴趣，也是为自己的研究生选校作为一个参考</p>
-<p>控制在CS中的应用（通过反馈来使系统快速达到稳定状态，e.g.计算机网络），认知科学（包括了心理、语言、智能、人类、哲学、神经科学，跨学科，大部分集中在心理学），AI的价值观（由开发者引入，在提出问题、设计系统、实现算法这几个层面引入），人工智能和神经科学的关系（神经科学作为启发和验证，关注系统的goal和process），最优化（在许多可能的解中找到最好的解，重要的是明确目标和约束）</p>
-<p>9-12月基本都没有写博客，在准备托福和GRE考试，就跟考研、高考一样，真是只具有筛选的作用，对个人来说没有意义，在有能力推翻系统之前，只能屈服于系统。</p>
-<p>12月之后基本都投完了（好多学校的申请截止日期都是12月9日，记得很清楚，在那一天之后感觉到relieve了）。学期剩下的时间主要搞了一下毕业设计，没有选择在控制学院找老师做，而是去了生仪学院找丁鼐老师做了脑科学的研究，也许我对科研的失望和丧气也是因为这一次毕业设计。</p>
-<p>毕业设计主要研究了脑电信号EEG和大脑的输入（声音波形）的关系，主要涉及到的知识有信号处理（标准化输入输出）、语言学（分割输入，不同层级的分割）、线性代数（解方程，最小二乘），如何阅读文献（标题、摘要和导论重点读，读标题，读结论，看图，尝试脑中复现），EEG（时间精度高，空间精度低，大脑活动和频率关系很大），声学（和音乐一样，就是不同频率的组合，可以提取出不同的信息，像频谱、音量），实验同步（硬件同步最好，或者通过一个比较明显的来对齐）</p>
-<h2 id="Day-5">6. Day 5</h2><p>2020年2月，疫情开始了，大四下学期基本上都是在家里度过的。一月末的时候也早早收到了gt的录取，所以也不存在什么压力。</p>
-<p>不在学校，自然时间是更加丰富了。由于是大学的最后一学期，我更加主动地去思考我的专业本身和我所学专业知识的体系。</p>
-<p>毕业设计方面，TRF响应函数（算是这个领域的一个非常重要的计算手段，不过也可以看出非常原始，本质就是一个卷积），神经科学的背景（生物的神经元、计算机对大脑的模仿），语音的分析（把语音看成是基本发音单位的集合，音标），时频图计算（短时傅里叶变换，分割，窗函数滤波，FFT），窗函数（减少泄露，在频域分析时减少噪声），ERP（响应函数），计算神经模型（把大脑用计算机实现）。当时真的很关心这一领域，希望理解大脑是如何产生意识的，在计算神经科学这方面，MIT是研究最深的，可惜也没有什么突破的进展。大脑的解码（一种假设，大脑对信号进行了解码，在计算机层面就是做了个卷积（呵呵）），工作方式（通用 or 瑞士军刀？）</p>
-<p>机器人的方向（机械、电气、算法），移动机器人（控制器、传感器、机器人模型），线性系统（将物理模型转换到状态空间，分三步，选择变量，降维，套公式），人工智能（符号主义、连接主义神经网络，行为主义），设计控制器（使特征值在想要的范围内），科学哲学（科学的共性：需要复杂的观察，需要实验，不同的人不同的方法得到相同的结论，慢慢积累），$\lambda$演算（哪些问题可以通过计算解决？），复合机器人系统（根据不同的环境，改变不同的模型），机器人的潮流（工业机器人、无人驾驶、认知），机器人与社会（慢慢演变，不知何去何从）</p>
-<p>线性代数（如何在计算机高速计算，增加一些norm增加稳定性，分解成向量计算，LU分解，都是为了更快的求解；更换表达方式来减少sparse）</p>
-<p>因为长期使用显示器，我还研究了一下灯具的选择（显色度越高，人眼越不容易疲劳，目前最好的选择是LED），</p>
-<p>国家治理（中央和地方的相互制衡），如何学习、说明（是什么，为什么，input，how），MIT EECS导论课（软件+信号系统+电子+规划，本质是用建模来解决问题：承认人的有限，将问题分解，逐步解决；难点在于找到关键因素并建模，PCAP）</p>
-<h2 id="Day-6">7. Day 6</h2><p>本科毕业之后的暑假，可能算是最自由的一段时间，没有任何任务，可以随意选择做什么，在这段时间内，我看了很多哲学相关的书，学习哲学引导我去思考生活中的所有事物，数学与工程让我理解客观世界为何能运转，哲学让我思考主观的概念。书的质量非常重要，一本好书，或者一个好的老师，能够让人坚持学下去。我也给其他人推荐过公开课、书籍，不知道他们是否真的会去学习。</p>
-<p>学哲学，其实还是在学习哲学史，也就是历史上出现过的重要思想。前苏格拉底（记录遗失，通过评注来了解；总体上是先要建立世界观，还原论，熵，毕达哥拉斯，存在），雅典时期（苏格拉底开始关注人；柏拉图更加形而上学，人更愿意相信舒适的幻象，二元论；亚里士多德，更加实际，艺术是模仿），希腊罗马时期（哲学的衰退时期，大部分哲学家关注，我们该如何生活），中世纪和文艺复兴时期（哲学被宗教支配），大陆理性主义（笛卡尔，怀疑一切，建立绝对确定的牢固基础，二元论；莱布尼茨，霍布斯；经验主义：洛克，休谟，康德），康德之后（黑格尔，唯心；叔本华，文明是意志的升华；马克思，哲学是要改造世界而不是解释世界；尼采：一切活动都是权力意志；功利主义：把伦理建立在稳固、客观的经验之上），现象学（关于世界的一切知识都是以意识为基础的；结构主义，结构）。六大观念（真善美，指导我们如何做判断，自由平等正义，知道我们如何生活；真：从大脑到表达，从表达到实际；善：我们所需要的；美：感官+可享用；自由：法无禁止即可为；平等：人性是否平等，先大体平等，再量化；正义：权威？自然？功利）。什么是爱（作为联合，作为稳定关怀，作为价值，作为情绪），什么是平等（再某一方面具有相同的性质，不是所有方面，对象不同，平等概念也不同；形式平等、比例平等、道德平等）</p>
-<p>不知道为什么还学了一下卡尔曼滤波，卡尔曼滤波（用概率描述，单峰模型，本质就是用了高斯分布的贝叶斯后验定律），扩展卡尔曼滤波（解决非线性的问题，用泰勒展开，一阶近似），无迹卡尔曼滤波（再EKF的基础上，用多个点来近似）</p>
-<p>从20年9月到21年3月，一篇文章都没写</p>
-<h2 id="Day-7">8. Day 7</h2><p>21年3月到21年6月，也只是零零散散写了几篇</p>
-<p>为什么要学习历史（人性——人类的历史，一开始记录重要人物，后来研究世界发展），人性的弱点（初中的时候第一次读，可惜一直没怎么运用；如何交朋友和影响他人，关心和帮助他人，避免辩论，不要让自己显得聪明，启发别人帮助你，同意对方）</p>
-<p>六七月在美的实习，博客的内容主要也是和机器人相关。基于几何关系的位姿估计（速度快，计算复杂），相机模型仿真（世界坐标系$\to$相机坐标系$\to$成像平面坐标系$\to$像素坐标系），数据合成（前景+背景），SIFT（pyramid）</p>
-<p>思考人生，人生目标，如何过好一生，人类简史（靠共同的信念），未来简史（人类需要新的宗教：人文主义，自由意志）</p>
-<p>到了美国之后，可能也是因为到了一个新的环境，所以一开始也没怎么写博客。到了学期末有了点时间，开始写一些和课程相关的或者茶叶的内容。茶叶制作（最顶端3-5cm采摘，筛选，晒干，烘烤，氧化），HyperBand（很简单的思想，评价效果，筛选最好的），海报制作（图片最重要，分析听众，简单描述，问题，解决方案，结果），旋转矩阵（绕自身右乘，绕固定轴左乘），三维重建（meshroom，特征提取、匹配，SFM，深度估计，meshing），yolo-face（框+点），创业（人力资源+企业管理），座椅选择（主要是腰的下半部分固定），知识（系统论，工程分解，脑科学：边说边画，复杂性，认知社会，金融学，经济学，人类学，信息论，营销学，历史学，哲学，投资，心理学）</p>
-<h2 id="Day-8">9. Day 8</h2><p>2022年的博客都是今年写的，学生的最后一学期，很多时间还是在课程上，找工作也没花很久。毕业之后，时间也比较多，可以做一些自己感兴趣的东西</p>
-<p>机器人方面。图像模糊（如果知道运动模糊核，可以还原），颜色过滤（不同的色彩空间效果差别很大），视觉跟踪，单目校准，双目校准，双目深度估计，根据距离的降采样，一句话描述，零件设计，目标检测，异常点检测，基于视觉的PID，电机（mechanical advantage），机械臂</p>
-<p>摄影（基本元素、构图、光），创业策略（选择机会、、策略、客户、科技、组织），pytest（更方便的测试），webrtc（实时传输），团队管理（manager的职责：提高团队输出），美国税法（federal，state），好的研究（综述），career（影响力大的工作，design think，make plan），GEB（超越自己是做不到的），夜观星空，心理学基础（大脑左右、弗洛伊德潜意识，三我，五欲；skinner：行为主义；条件反射），发展心理学（思维模型不一样，发展的不同时期，婴儿很聪明，70%做好事；神经元的连接变化），胶片模拟，母系社会，认知（视觉，亮度物体深度，长短期记忆，），自我与他人（大脑有任务，irrational approach；偏见），变种（我们和他人的不同，基因和环境，精神疾病），美好生活（好的结尾，追求快乐）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/conscious/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/conscious/" class="post-title-link" itemprop="url">What is Consciousness</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-20 20:55:00" itemprop="dateCreated datePublished" datetime="2022-09-20T20:55:00-07:00">2022-09-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Question">1. Question</h2><p>Real me? Self?</p>
-<p>How idea create?</p>
-<p>Model of brain? computational, logical (lead to un-logical mind??)</p>
-<p>What I real want to do? Understand how brain works</p>
-<h2 id="Thoughts">2. Thoughts</h2><p>David Edelman, creation of Conscious Artifact</p>
-<ul>
-<li>Reentrant Architecture</li>
-</ul>
-<p>Different than feedback system.</p>
-<p>Bi-directionally linked, physical</p>
-<ul>
-<li>Thalamo-Cortical System</li>
-</ul>
-<p>Dynamic core</p>
-<ul>
-<li>Value system, reinforcement</li>
-</ul>
-<p>For an agent to modify its behavior</p>
-<ul>
-<li>Phenotype</li>
-</ul>
-<p>Shape, morphology of the robot. Touch is important</p>
-<ul>
-<li>Motor control</li>
-</ul>
-<p>Motor command is fed back to nervous system</p>
-<p>Basal Ganglia</p>
-<ul>
-<li><p>Learning and momory. Very complicated model</p>
-</li>
-<li><p>Problem: how to transfer knowledge to other task</p>
-</li>
-<li><p>Communication, not language, but showing a degree of self-awareness</p>
-</li>
-<li><p>Thought</p>
-</li>
-</ul>
-<p>Dynamic core theory</p>
-<ul>
-<li>Language: language is distinctively more sophisticated</li>
-</ul>
-<p>2006, UCI, “Build A Brain” meeting</p>
-<h2 id="Todo">3. Todo</h2><p>Theory of Neuronal Group Selection</p>
-<h2 id="Common-Sense">4. Common Sense</h2><p>Computational model for common sense</p>
-<p>Current AI: just pattern recognition, function approximation</p>
-<p>Gap: model the world, explain, image, plan, build, share</p>
-<p>Self-driving car:</p>
-<ul>
-<li>cost: 100 billion,</li>
-<li>not close to solution</li>
-<li>long-tail problem</li>
-</ul>
-<p>Common sense enable flexiable behavior</p>
-<ul>
-<li>understanding the world</li>
-<li>agents have their goal and plan</li>
-<li>abstract of knowledge about</li>
-<li>Physics, motion, force</li>
-<li>Psychology, belief, plan</li>
-</ul>
-<p>Smart: learn quickly from example</p>
-<ul>
-<li>Understand others’ goal</li>
-<li>Have a plan</li>
-<li>Trying to help</li>
-</ul>
-<p>Starting state: a core cognition, game engine</p>
-<ul>
-<li>learning procedure is very smart</li>
-</ul>
-<hr>
-<p>Reverse Engineering</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-09-25-13-22-42.png" alt="image-20220925132242738" style="zoom:33%;">
-
-<p>How? Build based on DL platform (TF, PyTorch)</p>
-<p>Probabilistic programs</p>
-<ul>
-<li>Symbolic manipulation, enable the auto back prop for super large NN</li>
-<li>Bayesian inference, reasoning in uncertain situation</li>
-<li>Neural network good for pattern recognition and function approximation</li>
-</ul>
-<p>We need a fast and good (not perfect) simulator</p>
-<p>What to learn?</p>
-<p>How to learn?</p>
-<hr>
-<p>Intuitive physics</p>
-<ul>
-<li>train a network to inverse guess from the vision to 3d world</li>
-</ul>
-<p>Intuitive psychology</p>
-<hr>
-<p>What to learn?</p>
-<ul>
-<li>Program to program new</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-09-25-20-18-36.png" alt="image-20220925201835884"></p>
-<h2 id="Build-a-Brain">5. Build a Brain</h2><p>Deep down</p>
-<p><a target="_blank" rel="noopener" href="https://uwaterloo.ca/arts-computing-newsletter/spring-2017/feature/spaun">Spaun</a></p>
-<ul>
-<li>see</li>
-<li>remember</li>
-<li>act</li>
-</ul>
-<p>Understand the neuron (single, multiple)</p>
-<h2 id="Takeaways">6. Takeaways</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/photo_post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/photo_post/" class="post-title-link" itemprop="url">图像后期流程优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-15 22:33:00" itemprop="dateCreated datePublished" datetime="2022-09-15T22:33:00-07:00">2022-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-29 23:22:29" itemprop="dateModified" datetime="2023-08-29T23:22:29-07:00">2023-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>为了更好的节省时间和优化后期的流程，避免重复文件</p>
-<p>Input：一个文件夹，里面包含raw和jpg</p>
-<p>Output: 一个文件夹，里面包含普通照片的heic和优秀照片的raw+heic</p>
-<h2 id="How">2. How</h2><p>之前的后期流程比较随意，现在更好的清理</p>
-<ol>
-<li>将照片分到两个文件夹（代码完成）</li>
-<li>raw</li>
-<li>jpg</li>
-<li>在jpg文件夹将照片分成两类（手动完成）</li>
-<li>good</li>
-<li>normal（全部转成heic）</li>
-<li>将raw文件中找到和good文件中同名的照片复制到good文件夹中（代码完成）</li>
-<li>后期good文件夹中的raw照片</li>
-<li>如果没有good中的jpg好，直接jpg放到final中</li>
-<li>如果比jpg好，输出heic到final中</li>
-<li>将normal和final放到合适的目录</li>
-</ol>
-<h2 id="Code">3. Code</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1524,7 +1856,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-count">358</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1537,7 +1869,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
