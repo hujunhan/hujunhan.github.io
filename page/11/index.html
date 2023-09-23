@@ -265,7 +265,14 @@
 <h2 id="Jacobian-for-Inverse-Kinematics">3. Jacobian for Inverse Kinematics</h2><p>Inverse kinematics is a challenging problem in robotics, as it requires solving a system of <strong>non-linear equations</strong>.</p>
 <p>The Jacobian matrix can be used to solve this problem by providing a linear approximation of the relationship between the joint angles and end-effector position. Specifically, we can use the Jacobian transpose to convert the desired end-effector velocity into joint velocities:</p>
 <p>$$\dot{q} &#x3D; J^T(x) \cdot \dot{x}$$ where $\dot{q}$ is the joint velocity, $\dot{x}$ is the desired end-effector velocity, and $J^T$ is the transpose of the Jacobian matrix. By iteratively updating the joint angles using the calculated joint velocities, we can converge to a solution that achieves the desired end-effector position.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Action/Kinematics/jacobian/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -378,49 +385,14 @@
 <li>optimization based, suited for many degree of freedoms</li>
 <li>How: iteratively optimizing a random trajectories</li>
 </ul>
-<p>SBPL (Search-Based Planning Library )</p>
-<ul>
-<li>search based</li>
-<li>How: reprensent the robot and environment as a grid, then use search algorithm like A*, Dijkstra, to explore</li>
-</ul>
-<p>CHOMP (Covariant Hamiltonian Optimization for Motion Planning )</p>
-<ul>
-<li>optimization based</li>
-<li>How:  based on the Hamiltonian formulation of mechanics and optimizes the Hamiltonian of the system subject to constraints.</li>
-</ul>
-<h2 id="Math-Basis">3. Math Basis</h2><p>RPM, RRT, BIT, Search, Optmization</p>
-<h3 id="Cell-Decomposition">3.1. Cell Decomposition</h3><p>Sample the space into grid, so the problem degrade to a classic search problem</p>
-<ul>
-<li>Bad for high-dimensional situation</li>
-</ul>
-<h3 id="Control-based">3.2. Control based</h3><ul>
-<li>Fast, can be done in online with minimal error</li>
-<li>Difficult to compute with  complex dynamics</li>
-</ul>
-<h3 id="Potential-Fields">3.3. Potential Fields</h3><p>Simple and intuitive</p>
-<ul>
-<li>Real time speed</li>
-<li>Fail in local minima</li>
-</ul>
-<h3 id="Sample-Based">3.4. Sample Based</h3><ul>
-<li>If the solution exist, the method would find it</li>
-</ul>
-<p>Some idea: workspace, state space, free state space, ppath</p>
-<p>Two type</p>
-<ul>
-<li>PRM, Using the knowdege of graph</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181351.png" alt="image-20230226181351316"></p>
-<ul>
-<li>Tree based</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230226181414.png" alt="image-20230226181414617"></p>
-<p>Important tool</p>
-<ul>
-<li>Collision checking</li>
-<li>Nearest neighbor</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/arm-path/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -522,27 +494,15 @@
 <li>Just finish the job before or after deadline</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419220419_coQeQh.png" alt="Real-time constraints in robotics 3/3"></p>
-<h2 id="Coding">2. Coding</h2><p>Low level code:</p>
-<ul>
-<li>almost everything should be in real-time</li>
-</ul>
-<p>Decision algorithm:</p>
-<ul>
-<li>important to implement in some Key decision, like when to stop</li>
-</ul>
-<p>Synchronization between devices</p>
-<ul>
-<li>start the motor at the same time</li>
-</ul>
-<h2 id="Implementation-Consideration">3. Implementation Consideration</h2><ul>
-<li>Using Deterministic algorithm</li>
-<li>fixed-point arithmetic, state machines, and lookup tables.</li>
-<li>Prioritize task</li>
-<li>Tasks with lower priority can be preempted or delayed if necessary to allow high-priority tasks to be executed</li>
-<li>This is typically achieved through the use of priority-based scheduling algorithms.</li>
-<li>Use interrupts</li>
-</ul>
-
+<h2 id="Coding">2. Coding</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/real-time/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -655,84 +615,14 @@
 <li>SDF: Simulation Description Format</li>
 <li>More featured, materials, lighting, camera model, environments</li>
 </ul>
-<h3 id="URDF-Crash-Course">3.2. URDF Crash Course</h3><p><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/sm/ug/urdf-model-import.html">Matlab Ref</a></p>
-<p>XML based</p>
-<p>Nested structure, <robot>, <link>, <joint></joint></robot></p>
-<ul>
-<li><p>Elements, <robot>, <link>, <joint></joint></robot></p>
-</li>
-<li><p>Attributes, <code>name</code> , <code>rgba</code></p>
-</li>
-<li><p>Parent and Child could be indicated by the parent and child elements</p>
-</li>
-<li><p>Model <strong>Topology</strong></p>
-</li>
-<li><p>No closed-loop Chain: A <link> could only be <strong>one</strong> child of <joint></joint></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230221223829.png" alt="image-20230221223829402"></p>
-<p>Green are optional</p>
-<h3 id="URDF-Parser">3.3. URDF Parser</h3><p>XML based file, find the root and iterate over node</p>
-<link>  defines the structure of the robot
-
-<p><joint> defines the transformation of the robot</joint></p>
-<ol>
-<li>Read all the link and joint by their <strong>name</strong></li>
-<li>Iterate over joint</li>
-<li>calculate the translation, orientation</li>
-<li>joint origin descsribe how <strong>two links related</strong>, in default situation</li>
-</ol>
-<p>&#x3D;&#x3D;So <strong>only the joint</strong> matter the kinematics, the link just matters for physics and simulation&#x3D;&#x3D;</p>
-<ul>
-<li><p>In many case, the collision and visual should be the same, however it  should not in the following situation</p>
-</li>
-<li><p>simpler collision for faster processsing</p>
-</li>
-<li><p>Safe zone, make more room in collision</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Visual</th>
-<th>Collision</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230412223503.png" alt="image-20230412223503445"></td>
-<td><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230412223512.png" alt="image-20230412223512348"></td>
-</tr>
-</tbody></table>
-<h3 id="Kinematics">3.4. Kinematics</h3><ol>
-<li><p>Get the translation and rotation from the URDF</p>
-</li>
-<li><p>Apply the forward kinematics</p>
-</li>
-<li><p>Calculate the forward kinematics from code</p>
-</li>
-<li><p><del>Simulate the forward kinematics in Webots</del> Hard to get position of the end arm, use python visual instead</p>
-</li>
-<li><p>Solve the Inverse kinematics</p>
-</li>
-</ol>
-<h2 id="Motion-Planning">4. Motion Planning</h2><h3 id="Inverse-Kinematics">4.1. Inverse Kinematics</h3><p>Problem: many constrains</p>
-<p>For 6 or 7 DOF: IKFast, open source, use a approximation, fast and numerically robust solution</p>
-<ul>
-<li>Fact: the 6D pose constraint on a 6D manipulator has closed form solution</li>
-</ul>
-<p>For less constrained for inequality constrained, became an <strong>optimization</strong> problem</p>
-<ul>
-<li>Differential IK</li>
-<li>Full IK</li>
-</ul>
-<h3 id="Trajectory-Optimization">4.2. Trajectory Optimization</h3><p>Not solving the problem independently, the basic idea is to solve in a optimization form,</p>
-<h3 id="Sampling-Based">4.3. Sampling Based</h3><h2 id="Implementation">5. Implementation</h2><p>workspace calculation, maybe by sampling?</p>
-<ul>
-<li>2D to 3D</li>
-</ul>
-<h2 id="Takeaway">6. Takeaway</h2><p>Make the cost function simple</p>
-<p>Write minimal constraints</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Mechanics/design-process/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -822,39 +712,15 @@
 <p>但如果单纯只是用<strong>单个字母</strong>概率进行生成，最后的结果是非常随机的，但是如果考虑<strong>多个字母</strong>的情况，就可以出现有意义的单词</p>
 <p>但是有意义的单词连接在一起还是没有产生有意义的<strong>句子</strong>。类似的，我们可以考虑<strong>多个单词</strong>的情况，就可以出现有意义的句子</p>
 <p>问题是，如果只是用统计的方式来做这样的统计，所需要的文字样本太多，当前互联网上的信息就不够了，所以我们需要更加高效的方式。</p>
-<h2 id="模型">3. 模型</h2><h3 id="什么是模型">3.1. 什么是模型</h3><p>利用参数达到构建统计学的效果，比如一条二维直线，可以用$y&#x3D;kx+b$，其中k和b两个参数表示，达到了压缩信息的效果</p>
-<h3 id="类人的模型">3.2. 类人的模型</h3><p>神经网络模型：模型自动选择输入的特征，并计算概率。还有以下特点</p>
-<ul>
-<li>通过给定的输入和输出自动调整参数</li>
-<li>计算更复杂的问题比简单的问题更容易，因为有很多梯度下降的方向，而不是局部最优</li>
-<li>神经网络端到端的训练效果往往比人手工选择特征更好，因为人类特征的选择往往很局限</li>
-<li>训练数据集的轻微变化对于模型训练也是非常重要的</li>
-<li><strong>无法保证意外不发生</strong>， Trade off，一个越是稳定的系统，越不容易做复杂的计算</li>
-</ul>
-<h3 id="嵌入的概念">3.3. 嵌入的概念</h3><p>上面所提到的，都是对数字进行计算，那人类的文本要怎么表示呢？</p>
-<p>用数字表示文字，并且</p>
-<ul>
-<li>附近的事物由附近的数字来表示</li>
-<li>比如用3542代表’cat’，</li>
-</ul>
-<p>为了解决2中所提到的问题，GPT对人类语言文本建立了一个模型</p>
-<ul>
-<li>相比于图像，有一点好处：训练样本非常容易获得，只要输入是文本的前一部分，然后给后一部分作为输出就可以了，不需要标注</li>
-</ul>
-<h3 id="ChatGPT">3.4. ChatGPT</h3><p>在处理具有特殊的、已知的特殊结构时，不需要全连接</p>
-<ul>
-<li>对于图像，卷积神经网络是有效的</li>
-<li>对于文本，Transformer引入了Attention的概念，对于文本中值得注意的部分</li>
-</ul>
-<p>输入：单词值和单词位置，只是一个有效的方式</p>
-<p>训练:</p>
-<ol>
-<li>给大量原始数据，进行初始训练</li>
-<li>和ChatGPT聊天，通过人类的反馈让其提高</li>
-</ol>
-<h2 id="Takeaway">4. Takeaway</h2><p>语言在根本层面是简单的（相比于看起来</p>
-<p>我们可以根据ChatGPT的性质去设计更加高效的模型</p>
-
+<h2 id="模型">3. 模型</h2><h3 id="什么是模型">3.1. 什么是模型</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Personal%20Development/chatgpt-why/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -948,68 +814,14 @@
 <li>Issue and Conclusion, important step, make the problem more clear</li>
 </ol>
 <p>Issue: the central problem</p>
-<p>Conclusion: assertion being made about the issue</p>
-<ol start="3">
-<li>Reasons: evidence and facts</li>
-</ol>
-<p>Important to evaluate</p>
-<ul>
-<li>Relevance</li>
-<li>Sufficiency</li>
-<li>Accuracy</li>
-</ul>
-<ol start="4">
-<li>Assumption: belief, values and attitude</li>
-</ol>
-<ul>
-<li>often unstated &#x2F; implicit</li>
-<li>casue different conclusion</li>
-<li>We should try to know the assumption made by author</li>
-</ul>
-<ol start="5">
-<li>Fallacies: common errors that weaken the argument</li>
-</ol>
-<ul>
-<li>ad nominem: attack person</li>
-<li>Apeal to authority</li>
-<li>False dilemma: e.g. only show limited options</li>
-<li>Hasty generalization: based on insufficient evidence</li>
-<li>Slippery slope: argue action would lead to negative consequences without providing evidence</li>
-<li>Straw man: misrepresenting to make it easier to attack</li>
-</ul>
-<h3 id="Tips">2.2. Tips</h3><ol>
-<li>How good is evidence: how to evaluate the quality of evidence</li>
-<li>Source credibility</li>
-<li>Relevance</li>
-<li>Sufficiency</li>
-<li>Timelines</li>
-<li>Consistency</li>
-<li>Use of qualifiers</li>
-<li>Alternative intrerpolation: considering alternative interpretations</li>
-<li>Implications</li>
-<li>How to resolve the conflicts</li>
-<li>Further</li>
-</ol>
-<h2 id="Takeaway">3. Takeaway</h2><p>From this books’ perspective</p>
-<ul>
-<li><p>Issue and conclusion should be made by human</p>
-</li>
-<li><p>ChatGPT can&#x2F;can’t provide</p>
-</li>
-<li><p>Highly <strong>relevant</strong> knowledge: better than google</p>
-</li>
-<li><p>Medium <strong>sufficiency</strong> knowledge: less than google</p>
-</li>
-<li><p>LACK OF: <strong>accuracy</strong>(no source provided) <strong>timelines</strong> (when is source made), <strong>consistency</strong> (maybe try multiple times),</p>
-</li>
-<li><p>Common fallacies ChatGPT may occur</p>
-</li>
-<li><p>False dilemma: only show limited options</p>
-</li>
-<li><p>Hasty generalization: make conclusion based on insufficient evidence</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Personal%20Development/critical-thinking/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1110,31 +922,14 @@
 <li>The YouBot simulate our robot</li>
 </ul>
 <h3 id="Migrate-from-Matlab-to-Python">2.2. Migrate from Matlab to Python</h3><p>Control robot move by control the wheel directly</p>
-<p>step is important to update and sync the robot and world</p>
-<h4 id="Base">2.2.1. Base</h4><p>Movement. Turn. Go through location</p>
-<h4 id="Arm">2.2.2. Arm</h4><p>ik</p>
-<h2 id="Setup">3. Setup</h2><p>Using Python as the controller</p>
-<ul>
-<li><del>Change the preference</del></li>
-<li><del>Recompile the wrapper</del></li>
-</ul>
-<p>No need to recompile the Python binding since in newer version, the python is already in header file format</p>
-<p>Just include the <code>/Applications/Webots.app/Contents/lib/controller/python</code></p>
-<p>in the Python path</p>
-<p>And set the robot controller to extern</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230213225558.png" alt="image-20230213225557838"></p>
-<h2 id="Design">4. Design</h2><p>Learn from the youbot design</p>
-<p>4 Part</p>
-<ul>
-<li>Arm</li>
-<li>Base</li>
-<li>move forward&#x2F;backward&#x2F;left&#x2F;right</li>
-<li>Gripper</li>
-<li>init</li>
-<li>Set gap</li>
-<li>grip&#x2F;release</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/webots-tea/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1236,35 +1031,14 @@
 <p>For my current simulation, I want to try a mobile robot with arm, find a simulation platform that provide the existing robot is a great idea.</p>
 <p>Since the purpose is to verify the algorithm, still a huge gap between Sim and Real, so the simulator could focus on the <strong>vision</strong> and <strong>kinematics</strong> rather than dynamics.</p>
 <p>Kuka YouBot is the kind of robot I would like use,</p>
-<h2 id="Compare">2. Compare</h2><p><strong>Webots</strong></p>
-<ul>
-<li><p>Existing model and sensor to use</p>
-</li>
-<li><p>QT+ODE+OpenGL</p>
-</li>
-</ul>
-<p>Gazebo: too much dependency, huge system, open source</p>
-<p>Nvidia: Rely on Nvidia GPU</p>
-<p>Currently, I think the Webots would be the choice to go</p>
-<h2 id="Test">3. Test</h2><p>A .wbt file contain all the info</p>
-<ul>
-<li>World info</li>
-<li>viewpoint</li>
-<li>Background and lighting</li>
-<li>Object</li>
-</ul>
-<p>To save the world, pause, reset, modify, save</p>
-<p>Use different language to write the controller</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230211235756.png" alt="image-20230211235756159"></p>
-<p>Works great, and not much hassel</p>
-<h2 id="Conclusion">4. Conclusion</h2><p>For current simulation purpose, the Webots is choosed becaused the out-of-box experience</p>
-<ul>
-<li>Pre commercial product, make it a stable simulation</li>
-<li>Offical model like Kuka YouBot make a good out-of-box experience</li>
-<li>Python and multiple language support</li>
-<li>Camera sensor support</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/simulator-compare/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1353,40 +1127,14 @@
 <li>焊接：点焊、弧焊</li>
 <li>装配：轻量型，自动化水平低</li>
 </ul>
-<p>总结：提高效率，降低成本</p>
-<p>硬件</p>
-<ul>
-<li>减速器</li>
-<li>伺服电机</li>
-<li>控制器</li>
-</ul>
-<hr>
-<p>Electrical Control System</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230208225140.png" alt="ccb2-ce70e12967bed408e756ed2c78439cbe"></p>
-<hr>
-<p>Sensor</p>
-<ul>
-<li>内部，用来感知自身状态</li>
-<li>外部，用来感受周围环境</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230208225552.png" alt="6287-8ad72e96150cd04bfe62974cf8293c71"></p>
-<h2 id="国内项目">3. 国内项目</h2><p>6轴：轨迹规划，避障</p>
-<ul>
-<li>运动精度</li>
-<li>算法，以及形式</li>
-</ul>
-<p>采茶机器人</p>
-<ul>
-<li>真实环境demo</li>
-</ul>
-<p>巡检机器人</p>
-<ul>
-<li>室外</li>
-<li>激光雷达</li>
-<li>外部装甲</li>
-</ul>
-<p>视觉导航，仿真，机械臂</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/robotics-2023/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1486,29 +1234,14 @@
 <li><strong>Ouster OS-1 (Gen 1) 64</strong> - a 64 multi-beam 3D LiDAR also with an IMU</li>
 </ul>
 <h2 id="Explore">2. Explore</h2><p>Read the ground truth</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230206213810.png" alt="image-20230206213810188" style="zoom:33%;">
-
-<p>X: from -10 to 20</p>
-<p>Y: from -40 to 10</p>
-<hr>
-<p>Read data, from Ouster OS1</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct_fmt = <span class="string">f&#x27;&lt;<span class="subst">&#123;<span class="number">1024</span>*<span class="number">64</span>*<span class="number">3</span>&#125;</span>H&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>64 in veritical</p>
-<p>1024 in honrizontal</p>
-<p>3 for [x,y,z]</p>
-<hr>
-<p>Test ICP in 2D</p>
-<p>Read PointCloud Data in Python</p>
-<ul>
-<li>Offset defined in fields is important</li>
-<li>Calculate how many byte needed for the info</li>
-<li>ROS’s PointCloud2 data,</li>
-<li>Read the fields, understand how much inforamtion for a point, e.g 48byte and related datatype, e.g float32</li>
-<li>Init a struct to read the data</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230208183313.png" alt="image-20230208183313530"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/lidar-slam/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -264,14 +264,14 @@
 <li>感受两端的差距, 通过正反馈不断放大</li>
 <li>给$V_+$的负反馈是不稳定的</li>
 </ul>
-<h2 id="3-抽象电路">4. 3 抽象电路</h2><p>戴维南定理: 通过计算开路电压和短路电流, 一个电路中两个变量的关系可以用平面上的直线表示, 这意味着我们可以用其他的元件来完成同样的功能</p>
-<ul>
-<li>有一个复杂的电路, 计算开路电压, 短路电路, 画出他的直线图, 找到和坐标轴的交点以及直线的斜率</li>
-<li>用简单的电路实现</li>
-</ul>
-<p>为啥要这么想呢? 因为我们想要知道电路的每个部分是如何<strong>交互</strong>的, 简化计算(当我们改变这个端口的负载时), 简化思维负担(概念)</p>
-<p>叠加性: 因为系统是线性的, 所以在电路有多个电压源\电流源的情况下, 我们可以一个一个源地计算, 计算的时候另其他源都为0</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/EECS-4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -844,14 +844,14 @@
 <li>TF-IDF, normalized frequency</li>
 </ul>
 <h3 id="Solution">1.2. Solution</h3><p>Use an alternate data structure: only store data of non-zero values</p>
-<ul>
-<li><strong>Old</strong> data structure: Row and Column index mapped to a value</li>
-<li><strong>New</strong> data structure: Compressed Sparse Row. Represent matrix using 3 one-dimensional arrays</li>
-<li>row</li>
-<li>colunm</li>
-<li>value</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/practical-algebra-4-Sparse/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -947,9 +947,14 @@
 <p>Using <strong>Gaussian Elimination</strong>, after Gaussian Elimination, we will get a <strong>upper triangular matrix</strong>, so we can regard the <strong>combination of eliminiation operation</strong> is a <strong>lower triangular matrix</strong> that is $L_{m-1} \ldots L_{2} L_{1} A&#x3D;U$<br>$$<br>L U&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>3 &amp; 1 &amp; 0 &amp; 0 \<br>-1 &amp; 0 &amp; 1 &amp; 0 \<br>-3 &amp; 4 &amp; -2 &amp; 1<br>\end{array}\right] \cdot\left[\begin{array}{cccc}<br>1 &amp; -2 &amp; -2 &amp; -3 \<br>0 &amp; -3 &amp; 6 &amp; 0 \<br>0 &amp; 0 &amp; 2 &amp; 4 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
 <h3 id="Partial-Pivoting">2.1. Partial Pivoting</h3><p>Note: LU factorization is stable, but not <em>backward</em> stable<br>$$<br>A&#x3D;\left[\begin{array}{cc}<br>10^{-20} &amp; 1 \<br>1 &amp; 1<br>\end{array}\right]<br>$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">L1, U1 = GaussianElimination(A)</span><br><span class="line">L2, U2 = LU(A)</span><br><span class="line">np.allclose(L1, L2)</span><br><span class="line"><span class="comment">#true</span></span><br><span class="line">np.allclose(U1, U2)</span><br><span class="line"><span class="comment">#true</span></span><br><span class="line">np.allclose(A, L2 @ U2)</span><br><span class="line"><span class="comment">#false...means not backward stable</span></span><br></pre></td></tr></table></figure>
-
-<p>we can get more stable answer by switching the order of the rows<br>$$<br>A&#x3D;\left[\begin{array}{cc}<br>1 &amp; 1 \<br>10^{-20} &amp; 1<br>\end{array}\right]<br>$$<br>How? <strong>Multiplying by a permutation matrix P</strong><br>$$<br>\left[\begin{array}{ll}<br>0 &amp; 1 \<br>1 &amp; 0<br>\end{array}\right] \cdot\left[\begin{array}{cc}<br>10^{-20} &amp; 1 \<br>1 &amp; 1<br>\end{array}\right]&#x3D;\left[\begin{array}{cc}<br>1 &amp; 1 \<br>10^{-20} &amp; 1<br>\end{array}\right]\<br>PA&#x3D;A’<br>$$<br>At each step, choose the largest value in column k, and move that row to be row k.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/practical-algebra-3-LU/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1039,13 +1044,14 @@
 <h2 id="Advantage">2. Advantage</h2><p>We can consider a easy <strong>2D</strong> case, and show why L1 norm is better than L2 norm</p>
 <h3 id="Loss-Function-1">2.1. Loss Function</h3><p><img src="https://qph.fs.quoracdn.net/main-qimg-ed279c02762abdb8c5fa3db3f200b823.webp" alt="img"></p>
 <p>L2 norm would strengthen the <strong>error</strong></p>
-<h3 id="Regularization-1">2.2. Regularization</h3><p><img src="https://qph.fs.quoracdn.net/main-qimg-2c59dd58f22ace702f43499147ed8641.webp" alt="img"></p>
-<p>The minimum is always located at one of the <strong>corners</strong> (<strong>Red</strong>)</p>
-<ul>
-<li>A corner is described as having <strong>1 non-zero</strong> coordinate with the <strong>remaining coordinates being zero</strong></li>
-</ul>
-<p>So L1 norm would lead to better sparisity</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/L1-norm/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1135,14 +1141,15 @@
 </ul>
 <h2 id="算法">2. 算法</h2><h3 id="Phase-Vocoder">2.1. Phase Vocoder</h3><p><strong>频域上的拉伸</strong>, 基本想法就是将音频做时频分析, 分成很多小段, 保留音高Pitch. 经过相位移动之后重建波形算法的主要难点和复杂之处在于如何使重叠加法重建中连续窗口的对齐</p>
 <p><img src="https://www.mathworks.com/help/audio/ref/stretchaudio_vocoder.png" alt="img"></p>
-<h2 id="WSOLA-–-Waveform-Similarity-Overlap-Add">3. WSOLA – Waveform Similarity Overlap-Add</h2><p>时域上的拉伸, 是OLA算法的拓展</p>
-<ul>
-<li>OLA stand for overlap and add, 是一个简单的叠加算法, 对音频进行分帧, 然后进行合成</li>
-<li>存在问题1:  音频不连续</li>
-<li>存在问题2: 会造成部分信号幅值改变</li>
-<li>WSLOLA, 特点是音频分帧之后不直接叠加, 而是在一定范围内找待叠加的音频帧, 找到最相思的去合成</li>
-</ul>
-
+<h2 id="WSOLA-–-Waveform-Similarity-Overlap-Add">3. WSOLA – Waveform Similarity Overlap-Add</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Neuroscience/audio-stretch/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

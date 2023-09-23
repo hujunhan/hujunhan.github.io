@@ -270,17 +270,14 @@
 <li>Coming purchases</li>
 </ul>
 <p>The more data of audience, the better</p>
-<h3 id="How-to-do">2.1. How to do</h3><p>Talking to preferred company</p>
-<p>Markert search thepriority</p>
-<h3 id="Value-of-AUDIENCE">2.2. Value of AUDIENCE</h3><p>The value highly depend on your audience</p>
-<ul>
-<li>Who are they</li>
-<li>What they want</li>
-<li>Fair value</li>
-</ul>
-<h2 id="After-Event">3. After Event</h2><p>Prove you did what you promised</p>
-<p>Get feedback and do better next time</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/sponsorship/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -405,31 +402,14 @@
 <ol start="3">
 <li>生成Difference of Gaussians (DoG)，变化大的区域就是边缘、点、角</li>
 </ol>
-<p>这是对Laplacian of Gaussian (LoG) 的一个近似</p>
-<ul>
-<li>好处：LoG不具有尺度不变性，而DoG有</li>
-<li>坏处：引入了其他的常量k，但不影响特征点位置，所以无所谓</li>
-</ul>
-<ol start="4">
-<li><p>确定极大点、极小点</p>
-</li>
-<li><p>粗略估计，如果在3层，27个点中是最大或最小的，就作为极值点。注意：最低或者最高层不做，因为没有相邻的三层。得到的点就是<strong>关键点</strong></p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-17-14-39.png" alt="2021-07-15-17-14-39"></p>
-<ol start="2">
-<li><p>利用差分图计算亚像素，可以更精确<br>$$<br>D(\mathbf{x})&#x3D;D+\frac{\partial D^{T}}{\partial \mathbf{x}} \mathbf{x}+\frac{1}{2} \mathbf{x}^{\mathrm{T}} \frac{\partial^{2} D}{\partial \mathbf{x}^{2}} \mathbf{x}<br>$$</p>
-</li>
-<li><p>描述特征点</p>
-</li>
-<li><p>HoG，在1.2中找出的特征点为中心选16x16的区域</p>
-</li>
-<li><p>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</p>
-</li>
-<li><p>一共是4x4x8&#x3D;128维的特征向量</p>
-</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -543,16 +523,14 @@
 <li>提前在3D模型上选好特征点，确定特征点在模型坐标系下的坐标</li>
 <li>计算RGB图象中的特征点，</li>
 </ul>
-<h2 id="Survey">3. Survey</h2><p>位姿估计方法</p>
-<h3 id="已知三维模型">3.1. 已知三维模型</h3><ul>
-<li><p>PNP，based on marker</p>
-</li>
-<li><p>Markerless.</p>
-</li>
-</ul>
-<p>Search for point correspondences between two frames and distances to be minimized</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-07-15-10-51-54.png" alt="2021-07-15-10-51-54"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -671,8 +649,15 @@
 </ol>
 <h2 id="3-代码实现">3. 3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">import</span> open3d.visualization.rendering <span class="keyword">as</span> rendering</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> virtual_camera <span class="keyword">import</span> VirtualCamera</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read the Data (From obj file)</span></span><br><span class="line">bpa_mesh = o3d.io.read_triangle_mesh(<span class="string">&#x27;BigConnecter.obj&#x27;</span>,<span class="literal">True</span>)</span><br><span class="line">tri=np.asarray(bpa_mesh.triangles)</span><br><span class="line">points_raw=np.asarray(bpa_mesh.vertices)</span><br><span class="line">center_p=np.<span class="built_in">sum</span>(points_raw,<span class="number">0</span>)/<span class="built_in">len</span>(points_raw)</span><br><span class="line">rx=-np.pi/<span class="number">2</span></span><br><span class="line">ry=<span class="number">0</span></span><br><span class="line">rz=np.pi/<span class="number">2</span></span><br><span class="line">R=o3d.geometry.get_rotation_matrix_from_xyz([rx,ry,rz])</span><br><span class="line">bpa_mesh.rotate(R,center_p)</span><br><span class="line">o3d.visualization.draw_geometries([bpa_mesh])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Setup a camera</span></span><br><span class="line">rx=<span class="number">0</span></span><br><span class="line">ry=np.pi</span><br><span class="line">rz=<span class="number">0</span></span><br><span class="line">x=<span class="number">1</span></span><br><span class="line">y=<span class="number">1</span></span><br><span class="line">z=<span class="number">570</span></span><br><span class="line">W,H=<span class="number">2048</span>,<span class="number">2048</span></span><br><span class="line">focal=<span class="number">1024</span></span><br><span class="line">tic=time.time()</span><br><span class="line">cam = VirtualCamera(rx, ry, rz,x, y, z, focal*<span class="number">3.45e-6</span>, [W, H])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Create Mask</span></span><br><span class="line"><span class="comment">#  Get the triangle relationship</span></span><br><span class="line">points=points_raw</span><br><span class="line"><span class="built_in">print</span>(points)</span><br><span class="line">points=points.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ans,cp = cam.project_world_to_pixel(points)</span><br><span class="line">ans=ans.astype(<span class="built_in">int</span>)</span><br><span class="line">mask_bg=np.zeros((W,H,<span class="number">3</span>))</span><br><span class="line">mask_bg[:,:,:]=<span class="number">0</span></span><br><span class="line">ans=ans[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tri)):</span><br><span class="line">pt1=ans[tri[i][<span class="number">0</span>]]</span><br><span class="line">pt2=ans[tri[i][<span class="number">1</span>]]</span><br><span class="line">pt3=ans[tri[i][<span class="number">2</span>]]</span><br><span class="line">tri_set=np.asarray([pt1,pt2,pt3])</span><br><span class="line">tri_set=tri_set.astype(<span class="built_in">int</span>)</span><br><span class="line">tri_set=tri_set.reshape(-<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">cv2.fillPoly(mask_bg,[tri_set],(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))</span><br><span class="line"><span class="comment">#  Calculate the mask</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">fushi = cv2.erode(mask_bg,kernel,iterations = <span class="number">1</span>)</span><br><span class="line">mask=np.where(fushi[:,:,<span class="number">1</span>]==<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Render model</span></span><br><span class="line">camera_intrinsics=o3d.camera.PinholeCameraIntrinsic()</span><br><span class="line">camera_intrinsics.set_intrinsics(W,H,focal,focal,W/<span class="number">2</span>,H/<span class="number">2</span>)</span><br><span class="line">extrinsics=cam.RT_world_in_camera</span><br><span class="line"></span><br><span class="line">render = rendering.OffscreenRenderer(<span class="number">2048</span>, <span class="number">2048</span>)</span><br><span class="line">material = rendering.Material()</span><br><span class="line">material.base_color = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1.0</span>]</span><br><span class="line">material.shader = <span class="string">&quot;defaultLit&quot;</span></span><br><span class="line">material.albedo_img=o3d.io.read_image(<span class="string">&#x27;BigConnectSilver.jpg&#x27;</span>)</span><br><span class="line">material.base_metallic=<span class="number">1.0</span></span><br><span class="line">render.scene.add_geometry(<span class="string">&quot;pcd&quot;</span>,bpa_mesh,material)</span><br><span class="line">render.setup_camera(camera_intrinsics,extrinsics)</span><br><span class="line">render.scene.scene.set_sun_light([<span class="number">0</span>, <span class="number">0.0</span>, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line"><span class="number">3e6</span>)</span><br><span class="line">render.scene.scene.enable_sun_light(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read RGB and Depth image from open3d</span></span><br><span class="line">img = np.asarray(render.render_to_image())</span><br><span class="line">depth_img=np.asarray(render.render_to_depth_image())</span><br><span class="line">depth_img=<span class="number">1</span>-depth_img</span><br><span class="line">depth_img=depth_img/np.amax(depth_img)*<span class="number">255</span></span><br><span class="line">depth_img=depth_img.astype(<span class="built_in">int</span>)</span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_depth.png&#x27;</span>,<span class="number">255</span>-depth_img)</span><br><span class="line"></span><br><span class="line">img= cv2.cvtColor(img,cv2.COLOR_RGB2BGR)</span><br><span class="line">bg=cv2.imread(<span class="string">&#x27;WechatIMG1313.jpeg&#x27;</span>)</span><br><span class="line">bg=cv2.resize(bg,(<span class="number">2048</span>,<span class="number">2048</span>))</span><br><span class="line">bg[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]=img[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_rgb.jpg&#x27;</span>,bg)</span><br><span class="line">plt.imshow(cv2.cvtColor(bg,cv2.COLOR_BGR2RGB))</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-实验结果">4. 4 实验结果</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2008%2010%2057%2022.png" alt="实验结果"></p>
-
+<h2 id="4-实验结果">4. 4 实验结果</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -771,23 +756,14 @@
 <h3 id="2-1-圆心特征点">2.1. 2.1 圆心特征点</h3><p>考虑世界坐标系圆心坐标 $P(0,0,0)$，像素坐标$p_0$</p>
 <p>对应缩放<br>$$<br>Zc&#x3D;\displaystyle - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_0&#x3D;\left[\begin{array}{l}<br>-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
 <h3 id="2-2-X方向直径端点">2.2. 2.2 X方向直径端点</h3><p>考虑世界坐标系X方向直径端点 $P(L,0,0)$，像素坐标$p_x$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(- 2 w y + 2 x z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_x&#x3D;\left[\begin{array}{c}<br>L\left(-2 y^{2}-2 z^{2}+1\right)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L(2 w z+2 x y)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right.<br>$$</p>
-<p>###2.3 Y方向直径端点</p>
-<p>考虑世界坐标系X方向直径端点$P(0,L,0)$，像素坐标$p_y$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(2 w x + 2 y z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_y&#x3D;\left[\begin{array}{c}<br>L(-2 w z+2 x y)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L\left(-2 x^{2}-2 z^{2}+1\right)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-总结">2.3. 2.4 总结</h3><p>综上，(6)(8)(10)(12)中共有7个方程</p>
-<p>已知的是$L,f,\mu,p_0,p_x,p_y,C_x,C_y$</p>
-<p>未知数$T_x,T_y,T_z,w,x,y,z$</p>
-<p>共有7个方程，7个未知数，因此可以求解</p>
-<h2 id="3-代码实现">3. 3 代码实现</h2><p>主要是用了scipy中的fsolve函数进行数值求解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">xx</span>):</span><br><span class="line">T_x, T_y, T_z,  x, y, z, w = xx</span><br><span class="line">p0x = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y * \</span><br><span class="line">(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z)</span><br><span class="line">p0y = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> -</span><br><span class="line"><span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z)</span><br><span class="line">Z_p0 = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line">pxx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">pxy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) + <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">Z_px = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) - <span class="number">2</span>*w*y + <span class="number">2</span>*x*z</span><br><span class="line">pyx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">pyy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - <span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">Z_py = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) + <span class="number">2</span>*w*x + <span class="number">2</span>*y*z</span><br><span class="line"><span class="keyword">return</span> [p0x/Z_p0-pixels[<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">p0y/Z_p0-pixels[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">pxx/Z_px-pixels[<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">pxy/Z_px-pixels[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">pyx/Z_py-pixels[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">pyy/Z_py-pixels[<span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">w**<span class="number">2</span>+x**<span class="number">2</span>+y**<span class="number">2</span>+z**<span class="number">2</span>-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> fsolve</span><br><span class="line">guess = [<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>]</span><br><span class="line">ans = fsolve(func, guess)</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果">4. 4 实验结果</h2><p>fsolve的参数包括一个函数和一个初始值，因为是数值求解，所以只能求出一个解，但实际上有多组解（其中只有一组解是真的）</p>
-<p>每次计算在2ms左右(个人电脑)</p>
-<p>这里设置多个初始值的（x,y），达到近似遍历的效果，在实际可能的范围内将答案求解</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2001%2011%2023%2021.png" alt="image-20210701112318068"></p>
-<p>可以看到，解中包含了真实答案，但也有许多其他答案，需要后续进行继续分析排除</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -876,109 +852,14 @@
 <li>我们的目的由自己定义</li>
 <li>对于物品来说，先有目的，然后再存在</li>
 </ul>
-<p>Susan Wolf:</p>
-<ul>
-<li>Meaningful lives are lives of active engagement in projects of worth</li>
-<li>Active engagement: 要感兴趣</li>
-<li>Projects of worth：科学研究、政治、与他人建立联系</li>
-<li>我们的价值判断和文化息息相关</li>
-</ul>
-<h2 id="What-should-We-do">3. What should We do</h2><h3 id="Act-consequentialism">3.1. Act consequentialism</h3><ul>
-<li>To do the thing that maximize the aggregate <strong>good</strong></li>
-<li>Act utilitarianism</li>
-<li>To do the thing maximize the aggregate <strong>utility</strong></li>
-</ul>
-<p>Objection：</p>
-<ol>
-<li>对于我们的亲戚朋友，utility有什么特殊吗</li>
-</ol>
-<ul>
-<li>Easy to help</li>
-</ul>
-<h3 id="Rule-consequentialism">3.2. Rule consequentialism</h3><ul>
-<li>The optimific moral code is that system of rules would produces the best <strong>consequences</strong></li>
-<li>Rule utilitarianism</li>
-<li>system of rules that produces the best utility</li>
-</ul>
-<h3 id="Kant">3.3. Kant</h3><p>Kant’s universalization test:</p>
-<ul>
-<li>A maxim that <strong>everyone</strong> can follow, then the action followed the maxim is moral worthy.</li>
-</ul>
-<p>Kant’s humanity formula:</p>
-<ul>
-<li>Human&#x3D;things+humanity</li>
-<li>Humanity&#x3D;The ability to choose a goal and take rational steps to pursuit it.</li>
-</ul>
-<h2 id="如何过好这一生">4. 如何过好这一生</h2><p>What makes a good life? 是什么让人健康和快乐</p>
-<blockquote>
-<p>从哈佛的人生研究</p>
-</blockquote>
-<p>良好的人际关系让人健康和快乐</p>
-<ul>
-<li>社会关系让我们更健康</li>
-<li>良好亲密的婚姻关系</li>
-<li>主动与他人交往</li>
-</ul>
-<h2 id="人类简史">5. 人类简史</h2><p>人类如何从动物到人，我们有什么与众不同之处呢？</p>
-<p>人类和动物的区别不在个体上，而是群体上。群体之间的大型合作</p>
-<p>虽然人之间互相不认识，但是能够进行思想交流</p>
-<p>那么我们是如何做到的呢？<strong>想象力</strong></p>
-<ul>
-<li>我们能创造并相信虚构的故事</li>
-<li>我们遵循着相同的价值观和行事准则</li>
-</ul>
-<p>宗教、法律、人权、上帝、天堂、国家、家族、公司、钱，这些概念都不是客观事实，只是一个故事。只要大家都相信着同样的故事，事情就能开始运作。</p>
-<p>Everyone believe MONEY</p>
-<p>人类生存在双重现实中</p>
-<p>随着电脑和生产力的发展，我们还需要那么多人做什么？</p>
-<h2 id="未来简史">6. 未来简史</h2><p>在数据时代，人的意义到底是什么？</p>
-<p>人类要解决的问题和新的追求</p>
-<ul>
-<li>饥荒、瘟疫、战争</li>
-<li>神性</li>
-</ul>
-<p>随着科技的发展，人文主义成了新的宗教，自由意志是新的神。</p>
-<p>为什么我们需要一种理论来解释发生的一切。</p>
-<p>人的行为&#x3D;想象+现实</p>
-<h2 id="新的问题">7. 新的问题</h2><p>随着技术的发展，新技术对于不同的人来说意味着不同的后果，我们需要新的哲学和伦理来指导</p>
-<h3 id="自由意志">7.1. 自由意志</h3><p>当大数据比我们自己更了解我们自己之后，我们还有自己的欲望吗</p>
-<ul>
-<li>前叶被切除、肿瘤</li>
-<li>毒品</li>
-<li>酒瘾</li>
-<li>吃饭等基本欲望</li>
-<li>人类的基本心理学</li>
-<li>人倾向于做出容易的选择</li>
-</ul>
-<p>我们能控制哪些东西呢？</p>
-<ul>
-<li>Desire？对某些东西的喜好、厌恶。短时间内不能变化，但是能在通过一段时间的训练之后改变</li>
-<li>Emotion？几乎不能控制</li>
-<li>Physiology？激素分泌等，也几乎不能控制。</li>
-<li>Belief？也是一个长期的过程，在短时间内几乎无法改变</li>
-</ul>
-<p>什么是自由意志？</p>
-<ol>
-<li>我们有几个可选的选择</li>
-<li>我们能够选择其中的一项</li>
-<li>我们对其后果负责</li>
-</ol>
-<p>随机性并不能保证我们的自由意志，正因为随机性，所以我们的选择是out of control的，所以2和3就不成立了</p>
-<h3 id="平均水平">7.2. 平均水平</h3><p>有效率本身就是一件符合伦理的事？</p>
-<p>集权国家，效率高，但是符合伦理？</p>
-<p>比如说用AI面试，做一些决策，比人做的更好</p>
-<h2 id="下一阶段的实习做什么">8. 下一阶段的实习做什么</h2><ul>
-<li><input disabled type="checkbox"> 如何首先选取Top30个特征点</li>
-<li><input disabled type="checkbox"> 已知深度图、3d点云、模型，分割出深度图</li>
-<li><input disabled type="checkbox"> 延迟，视觉算法，超前控制，用过去时间的信息来判断后续的算法</li>
-<li><input disabled type="checkbox"> 机械臂末端增加实时传感器，</li>
-</ul>
-<h2 id="道德话题">9. 道德话题</h2><h3 id="贫富差距">9.1. 贫富差距</h3><p>除了维持基本生活需要的金钱之外，是否应该将其他的所有钱捐赠给贫穷的人</p>
-<ul>
-<li>从整个社会的角度来看，只要每个发达国家的人都能捐献出一些钱，每年$170，就可以解决全世界的贫穷问题，但是问题是当大部分人不进行这个捐献的动作，那对少数人就造成了极大的压力</li>
-<li>也阔以是捐献出一部分</li>
-</ul>
-<h3 id="素食主义">9.2. 素食主义</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/thinking-2021/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1091,18 +972,14 @@
 </ol>
 <p>因为是对坐标系的变换，因此按照顺序左乘各个矩阵可以描述为一个总体的变换矩阵<br>$$<br>T&#x3D;T(T_x,T_y,T_z)R_z(\gamma)R_y(\beta)R_x(\alpha)<br>$$<br>假设$P_w:(X_w,Y_w,Z_w)$是世界坐标系下的坐标，$P_c:(X_c,Y_c,Z_c)$是相机坐标系下的坐标</p>
 <p>则<br>$$<br>\begin{array}{}<br>P_1&#x3D;TP_2 \<br>P_2&#x3D;T^{-1}P_1<br>\end{array}<br>$$</p>
-<h3 id="2-2-相机坐标系-成像平面坐标系">2.2. 2.2 相机坐标系-成像平面坐标系</h3><p>相机成像原理是在光在传感器上产生信号，也就是说实际上空间点和传感器上的位置是一一对应的。控制这个对应关系的变量是焦距$f$</p>
-<p>根据相似三角形的几何特征，很容易可以得出<br>$$<br>\left{\begin{array}{l}<br>x&#x3D;f \frac{X_c}{Z_c} \<br>y&#x3D;f \frac{Y_c}{Z_c} \<br>z&#x3D;f<br>\end{array}\right.<br>$$<br>其中$(X_2,Y_2,Z_2)$为相机坐标系中的坐标，$(x,y,z)$为成像平面坐标系中的坐标。为了和之前的齐次坐标相结合，这个变换也可以写成<br>$$<br>\left[\begin{array}{c}<br>x \<br>y \<br>z<br>\end{array}\right]&#x3D;\left[\begin{array}{llll}<br>\frac{f}{Z_c} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{f}{Z_c} &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>X_c \<br>Y_c \<br>Z_c \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-3-成像平面坐标系-像素坐标系">2.3. 2.3 成像平面坐标系-像素坐标系</h3><p>最后一步是转化到像素坐标系，也就是最终图像上的位置</p>
-<p>上面推导中使用的像点坐标$(x,y)$是成像平面坐标系下，以成像平面的中心为原点。而实际像素点的表示方法是以像素来描述，坐标原点通常是图像的左上角，X轴沿着水平方向向左，Y轴竖直向下。像素是一个矩形块，这里假设其在水平和竖直方向的长度分别为：$\mu_x$和$\mu_y$。所以像素坐标和成像平面坐标之间，相差了一个<strong>缩放</strong>和<strong>原点的平移</strong>。</p>
-<p>假设像素坐标的水平方向的轴为$u$，竖直方向的轴为$v$，那么将一个成像平面的坐标$(x,y)$在水平方向上缩放$\mu_x$倍，在竖直方向上缩放$\mu_y$倍，同时平移$(c_x,c_y)$，就可以得到像素坐标系的坐标$(u,v)$，其公式如下：<br>$$<br>\begin{array}{}<br>u&#x3D;\frac{x}{\mu_x}+c_x \<br>v&#x3D;\frac{y}{\mu_y}+c_y<br>\end{array}<br>$$<br>写成齐次坐标的形式为<br>$$<br>\left[\begin{array}{l}<br>\mu \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>y \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-合并">2.4. 2.4 合并</h3><p>将上述变换合成，可以得到<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>f &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; f &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$</p>
-<h2 id="3-代码实现">3. 3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VirtualCamera</span>:</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, alpha, beta, gamma, Tx, Ty, Tz, focal, resolution</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line"><span class="string">&quot;&quot;&quot; Initiate the camera parameter</span></span><br><span class="line"><span class="string">Args:</span></span><br><span class="line"><span class="string">alpha ([float]): [Rotation along X-axis]</span></span><br><span class="line"><span class="string">beta ([float]): [Rotation along Y-axis]</span></span><br><span class="line"><span class="string">gamma ([float]): [Rotation along Z-axis]</span></span><br><span class="line"><span class="string">Tx ([float]): [Position along X-axis]</span></span><br><span class="line"><span class="string">Ty ([float]): [Position along Y-axis]</span></span><br><span class="line"><span class="string">Tz ([float]): [Position along Z-axis]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">self.alpha = alpha</span><br><span class="line">self.beta = beta</span><br><span class="line">self.gamma = gamma</span><br><span class="line">self.Tx = Tx</span><br><span class="line">self.Ty = Ty</span><br><span class="line">self.Tz = Tz</span><br><span class="line">self.focal = focal</span><br><span class="line">self.resolution = np.array(resolution)</span><br><span class="line">self.center = np.array(resolution)/<span class="number">2</span></span><br><span class="line">self.pixel_size_x = <span class="number">3.45e-6</span></span><br><span class="line">self.pixel_size_y = <span class="number">3.45e-6</span></span><br><span class="line">self.RT_camera_in_world = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">self.RT_world_in_camera = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">self.update()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self</span>):</span><br><span class="line">Rx = np.array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, np.cos(</span><br><span class="line">self.alpha), -np.sin(self.alpha)], [<span class="number">0</span>, np.sin(self.alpha), np.cos(self.alpha)]])</span><br><span class="line">Ry = np.array([[np.cos(self.beta), <span class="number">0</span>, -np.sin(self.beta)],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [np.sin(self.beta), <span class="number">0</span>, np.cos(self.beta)]])</span><br><span class="line">Rz = np.array([[np.cos(self.gamma), -np.sin(self.gamma), <span class="number">0</span>],</span><br><span class="line">[np.sin(self.gamma), np.cos(self.gamma), <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">R0 = np.matmul(Rz, np.matmul(Ry, Rx))</span><br><span class="line">R1 = np.column_stack((R0, np.array([self.Tx, self.Ty, self.Tz]).T))</span><br><span class="line">R2 = np.row_stack((R1, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]))</span><br><span class="line">self.RT_camera_in_world = R2</span><br><span class="line">camera_in_image = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">image_in_pixel = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">self.RT_world_in_camera = np.linalg.inv(R2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_world_to_camera</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">points = np.row_stack((points, np.ones((<span class="number">1</span>, n))))</span><br><span class="line"></span><br><span class="line">points = self.RT_world_in_camera@points</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points[:, <span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_camera_to_image</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">z = points[<span class="number">2</span>, :]</span><br><span class="line"><span class="comment"># print(z)</span></span><br><span class="line">trans = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, self.focal, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">points = trans@points</span><br><span class="line">points = points/z</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_image_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">trans = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">points = trans@points</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_world_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">camera_points = self.project_world_to_camera(points)</span><br><span class="line">image_points = self.project_camera_to_image(camera_points)</span><br><span class="line">pixel_points = self.project_image_to_pixel(image_points)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> pixel_points</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果">4. 4 实验结果</h2><p>在gazebo中进行仿真，将参数带入上述代码，进行对比，实验结果支持了模型的正确性</p>
-<p>![一轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 16 42.png)</p>
-<p>![两轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 17 01.png)</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-model/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1214,24 +1091,14 @@
 </li>
 </ol>
 <p>因为是对坐标系的变换，因此按照顺序左乘各个矩阵可以描述为一个总体的变换矩阵</p>
-<p>$$<br>T&#x3D;T(T_x,T_y,T_z)R_z(\gamma)R_y(\beta)R_x(\alpha)<br>$$</p>
-<p>假设$P_w:(X_w,Y_w,Z_w)$是世界坐标系下的坐标，$P_c:(X_c,Y_c,Z_c)$是相机坐标系下的坐标</p>
-<p>则<br>$$<br>\begin{array}{}<br>P_w&#x3D;TP_c \<br>P_c&#x3D;T^{-1}P_w<br>\end{array}<br>$$</p>
-<h3 id="2-1-2-四元数表示">2.3. 2.1.2 四元数表示</h3><p>因为(5)中的运算涉及到大量三角函数的运算，使问题复杂，因此引入四元数的表达方式，用4个变量表示旋转矩阵</p>
-<p>设四元数<br>$$<br>q&#x3D;(w,x,y,z)<br>$$<br>其中<br>$$<br>w^2+x^2+y^2+z^2&#x3D;1<br>$$<br>四元数到旋转矩阵的变化可以描述为（齐次坐标系）<br>$$<br>R&#x3D;\left[\begin{array}{cccc}<br>-2 y^{2}-2 z^{2}+1 &amp; -2 w z+2 x y &amp; 2 w y+2 x z &amp; 0 \<br>2 w z+2 x y &amp; -2 x^{2}-2 z^{2}+1 &amp; -2 w x+2 y z &amp; 0 \<br>-2 w y+2 x z &amp; 2 w x+2 y z &amp; -2 x^{2}-2 y^{2}+1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-<p>平移矩阵的逆可以表达为<br>$$<br>T\left(T_{x}, T_{y}, T_{z}\right)&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; -T_{x} \<br>0 &amp; 1 &amp; 0 &amp; -T_{y} \<br>0 &amp; 0 &amp; 1 &amp; -T_{z} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>总的坐标变换矩阵可以写为<br>$$<br>P_c&#x3D;TP_w<br>$$<br>其中<br>$$<br>T&#x3D;RT(T_x,T_y,T_z)&#x3D;\displaystyle \left[\begin{matrix}- 2 y^{2} - 2 z^{2} + 1 &amp; - 2 w z + 2 x y &amp; 2 w y + 2 x z &amp; - T_{x} \left(- 2 y^{2} - 2 z^{2} + 1\right) - T_{y} \left(- 2 w z + 2 x y\right) - T_{z} \left(2 w y + 2 x z\right)\2 w z + 2 x y &amp; - 2 x^{2} - 2 z^{2} + 1 &amp; - 2 w x + 2 y z &amp; - T_{x} \left(2 w z + 2 x y\right) - T_{y} \left(- 2 x^{2} - 2 z^{2} + 1\right) - T_{z} \left(- 2 w x + 2 y z\right)\- 2 w y + 2 x z &amp; 2 w x + 2 y z &amp; - 2 x^{2} - 2 y^{2} + 1 &amp; - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)\0 &amp; 0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$</p>
-<h3 id="2-2-相机坐标系-成像平面坐标系">2.4. 2.2 相机坐标系-成像平面坐标系</h3><p>相机成像原理是在光在传感器上产生信号，也就是说实际上空间点和传感器上的位置是一一对应的。控制这个对应关系的变量是焦距$f$</p>
-<p>根据相似三角形的几何特征，很容易可以得出<br>$$<br>\left{\begin{array}{l}<br>x&#x3D;f \frac{X_c}{Z_c} \<br>y&#x3D;f \frac{Y_c}{Z_c} \<br>z&#x3D;f<br>\end{array}\right.<br>$$<br>其中$(X_c,Y_c,Z_c)$为相机坐标系中的坐标，$(x,y,z)$为成像平面坐标系中的坐标。为了和之前的齐次坐标相结合，这个变换也可以写成<br>$$<br>\left[\begin{array}{c}<br>x \<br>y \<br>z<br>\end{array}\right]&#x3D;\left[\begin{array}{llll}<br>\frac{f}{Z_c} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{f}{Z_c} &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>X_c \<br>Y_c \<br>Z_c \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-3-成像平面坐标系-像素坐标系">2.5. 2.3 成像平面坐标系-像素坐标系</h3><p>最后一步是转化到像素坐标系，也就是最终图像上的位置</p>
-<p>上面推导中使用的像点坐标$(x,y)$是成像平面坐标系下，以成像平面的中心为原点。而实际像素点的表示方法是以像素来描述，坐标原点通常是图像的左上角，X轴沿着水平方向向左，Y轴竖直向下。像素是一个矩形块，这里假设其在水平和竖直方向的长度分别为：$\mu_x$和$\mu_y$。所以像素坐标和成像平面坐标之间，相差了一个<strong>缩放</strong>和<strong>原点的平移</strong>。</p>
-<p>假设像素坐标的水平方向的轴为$u$，竖直方向的轴为$v$，那么将一个成像平面的坐标$(x,y)$在水平方向上缩放$\mu_x$倍，在竖直方向上缩放$\mu_y$倍，同时平移$(c_x,c_y)$，就可以得到像素坐标系的坐标$(u,v)$，其公式如下：<br>$$<br>\begin{array}{}<br>u&#x3D;\frac{x}{\mu_x}+c_x \<br>v&#x3D;\frac{y}{\mu_y}+c_y<br>\end{array}<br>$$<br>写成齐次坐标的形式为<br>$$<br>\left[\begin{array}{l}<br>\mu \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{l}<br>x \<br>y \<br>1<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-合并">2.6. 2.4 合并</h3><p>将上述变换合成，可以得到<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{1}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{1}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>f &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; f &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$</p>
-<h2 id="3-代码实现">3. 3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VirtualCamera</span>:</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, alpha, beta, gamma, Tx, Ty, Tz, focal, resolution</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line"><span class="string">&quot;&quot;&quot; Initiate the camera parameter</span></span><br><span class="line"><span class="string">Args:</span></span><br><span class="line"><span class="string">alpha ([float]): [Rotation along X-axis]</span></span><br><span class="line"><span class="string">beta ([float]): [Rotation along Y-axis]</span></span><br><span class="line"><span class="string">gamma ([float]): [Rotation along Z-axis]</span></span><br><span class="line"><span class="string">Tx ([float]): [Position along X-axis]</span></span><br><span class="line"><span class="string">Ty ([float]): [Position along Y-axis]</span></span><br><span class="line"><span class="string">Tz ([float]): [Position along Z-axis]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">self.alpha = alpha</span><br><span class="line">self.beta = beta</span><br><span class="line">self.gamma = gamma</span><br><span class="line">self.Tx = Tx</span><br><span class="line">self.Ty = Ty</span><br><span class="line">self.Tz = Tz</span><br><span class="line">self.focal = focal</span><br><span class="line">self.resolution = np.array(resolution)</span><br><span class="line">self.center = np.array(resolution)/<span class="number">2</span></span><br><span class="line">self.pixel_size_x = <span class="number">3.45e-6</span></span><br><span class="line">self.pixel_size_y = <span class="number">3.45e-6</span></span><br><span class="line">self.RT_camera_in_world = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">self.RT_world_in_camera = np.zeros((<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">self.update()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self</span>):</span><br><span class="line">Rx = np.array([[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, np.cos(</span><br><span class="line">self.alpha), -np.sin(self.alpha)], [<span class="number">0</span>, np.sin(self.alpha), np.cos(self.alpha)]])</span><br><span class="line">Ry = np.array([[np.cos(self.beta), <span class="number">0</span>, -np.sin(self.beta)],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [np.sin(self.beta), <span class="number">0</span>, np.cos(self.beta)]])</span><br><span class="line">Rz = np.array([[np.cos(self.gamma), -np.sin(self.gamma), <span class="number">0</span>],</span><br><span class="line">[np.sin(self.gamma), np.cos(self.gamma), <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">R0 = np.matmul(Rz, np.matmul(Ry, Rx))</span><br><span class="line">R1 = np.column_stack((R0, np.array([self.Tx, self.Ty, self.Tz]).T))</span><br><span class="line">R2 = np.row_stack((R1, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]))</span><br><span class="line">self.RT_camera_in_world = R2</span><br><span class="line">camera_in_image = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">image_in_pixel = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">self.RT_world_in_camera = np.linalg.inv(R2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_world_to_camera</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">points = np.row_stack((points, np.ones((<span class="number">1</span>, n))))</span><br><span class="line"></span><br><span class="line">points = self.RT_world_in_camera@points</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points[:, <span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_camera_to_image</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">z = points[<span class="number">2</span>, :]</span><br><span class="line"><span class="comment"># print(z)</span></span><br><span class="line">trans = np.array([[self.focal, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, self.focal, <span class="number">0</span>],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">points = trans@points</span><br><span class="line">points = points/z</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_image_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line"><span class="keyword">assert</span> points.shape[<span class="number">1</span>] == <span class="number">3</span>, <span class="string">&#x27;The n points\&#x27; shape should be (n,3)&#x27;</span></span><br><span class="line">n = points.shape[<span class="number">0</span>]</span><br><span class="line">points = points.T</span><br><span class="line">trans = np.array([[<span class="number">1</span>/self.pixel_size_x, <span class="number">0</span>, self.center[<span class="number">0</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>/self.pixel_size_y, self.center[<span class="number">1</span>]],</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">points = trans@points</span><br><span class="line">points = points.T</span><br><span class="line"><span class="keyword">return</span> points</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">project_world_to_pixel</span>(<span class="params">self, points</span>):</span><br><span class="line">camera_points = self.project_world_to_camera(points)</span><br><span class="line">image_points = self.project_camera_to_image(camera_points)</span><br><span class="line">pixel_points = self.project_image_to_pixel(image_points)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> pixel_points</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果">4. 4 实验结果</h2><p>在gazebo中进行仿真，将参数带入上述代码，进行对比，实验结果支持了模型的正确性</p>
-<p>![一轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 16 42.png)</p>
-<p>![两轴旋转，两方向位移情况](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021">https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021</a> 06 17 15 17 01.png)</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-model-quat/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1334,59 +1201,14 @@
 <ul>
 <li>成像平面椭圆的半径可以看成是世界中正圆半径的缩放，缩放的比例只和到圆的距离有关。在距离不变的情况下，$L_1$是所对应的半径没有变化的那条半径</li>
 </ul>
-<p>$L_2$: 成像平面的椭圆的半径（另一条）</p>
-<p>$L$: 正圆的半径</p>
-<p>$\beta$: 旋转的角度</p>
-<h3 id="2-1-原点右侧几何关系">2.1. 2.1 原点右侧几何关系</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601121420950.png" alt="带有辅助线的示意图"></p>
-<p>为了方便求解，增加辅助线，分别根据以下几何关系：</p>
-<ul>
-<li>$\Delta OEF\sim \Delta OGH$</li>
-<li>$\Delta OFP\sim \Delta OHQ$</li>
-<li>$AB+BK&#x3D;AS+SK$</li>
-<li>$\Delta OMN\sim \Delta OBK$</li>
-<li>$\Delta OBA \sim \Delta DBC$</li>
-</ul>
-<p>可以得到以下关系<br>$$<br>\frac{f}{d}&#x3D;\frac{L_{1}}{L}<br>$$</p>
-<p>$$<br>\frac{f}{d}&#x3D;\frac{\Delta C_{2}}{\Delta L}<br>$$</p>
-<p>$$<br>m+y&#x3D;\Delta L+L \cos \beta<br>$$</p>
-<p>$$<br>\frac{2 L_{2}}{y}&#x3D;\frac{f}{d-L \sin \beta}<br>$$</p>
-<p>$$<br>\frac{m}{d-L \sin \beta}&#x3D;\frac{y-2 L \cos \beta}{2 L \sin \beta}<br>$$</p>
-<h3 id="2-2-原点左侧几何关系">2.2. 2.2 原点左侧几何关系</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2001%2011%2046%2026.png" alt="原点左侧情况"></p>
-<p>基于和2.1中一样的几何关系，</p>
-<p>可以列出以下等式<br>$$<br>\frac{f}{d}&#x3D;\frac{L_{1}}{L}<br>$$</p>
-<p>$$<br>\frac{f}{d}&#x3D;\frac{\Delta C_{2}}{\Delta L}<br>$$</p>
-<p>$$<br>m+y&#x3D;\Delta L+L \cos \beta<br>$$</p>
-<p>$$<br>\frac{2 L_{2}}{y}&#x3D;\frac{f}{d+L \sin \beta}<br>$$</p>
-<p>$$<br>\frac{m}{d-L \sin \beta}&#x3D;\frac{-(y-2 L \cos \beta)}{2 L \sin \beta}<br>$$</p>
-<p>注意到上图中$\beta$定义的方向与2.1中相反，因此本质上两种情况是一样的</p>
-<h2 id="3-方程求解推">3. 3 方程求解推</h2><h3 id="3-1-化简方程式">3.1. 3.1 化简方程式</h3><p>化简1、2、3、4可得</p>
-<p>$$<br>d&#x3D;\frac{fl}{L_1}<br>$$<br>$$<br>\Delta l&#x3D;\frac{d \Delta C_{2}}{f}<br>$$</p>
-<p>$$<br>m&#x3D;\Delta L+L \cos \beta-y<br>$$<br>$$<br>y&#x3D;\frac{2 L_{2}\left(d_{1}-L \sin \beta\right)}{f}<br>$$</p>
-<p>将13带入5得到<br>$$<br>2 L \sin \beta(\Delta L+L \cos \beta-y)&#x3D;(d-L \sin \beta) （ y-2 L \cos \beta)<br>$$<br>展开移项得到<br>$$<br>2 L \sin \beta(\Delta L+L \cos \beta)+2 L \cos \beta\left(d_{1}-L \sin \beta\right)&#x3D;(d+L\sin \beta) y<br>$$<br>将14带入16得到<br>$$<br>2 L \Delta \sin \beta+2 L d \cos \beta&#x3D;\frac{2 l_{2}}{f}\left(d^{2}-L^{2} \sin ^{2} \beta\right)<br>$$<br>展开移项得到<br>$$<br>f L d \cos \beta&#x3D;L_{2} d^{2}-L_{2} L^{2} \sin ^{2} \beta-f L \Delta L \sin \beta<br>$$</p>
-<p>将12带入18得到</p>
-<p>$$<br>f L d \cos \beta&#x3D;L_{2} d^{2}-L_{2} l^{2} \sin ^{2} \beta-d \Delta c_{2} L \sin \beta<br>$$<br>两边同时除d<br>$$<br>f L \cos \beta&#x3D;L_{2} d-\frac{L_{2} L^{2} \sin \beta}{d}-\Delta c_{2} L \sin \beta<br>$$<br>将11带入20得到<br>$$<br>fL \cos \beta&#x3D;\frac{L_{2} f L}{L_{1}}-\frac{L_{2} L^{2} L_{1} \sin ^{2} \beta}{f L}-\Delta c_{2} L \sin ^{2} \beta<br>$$</p>
-<p>两边同时除$fL$<br>$$<br>\cos \beta&#x3D;\frac{L_{2}}{L_{1}}-\frac{L_{1} L_{2} \sin^{2} \beta}{f^{2}}-\frac{\Delta c_{2} \sin \beta}{f}<br>$$</p>
-<h3 id="3-2-一元四次方程">3.2. 3.2 一元四次方程</h3><p>为了去掉分母，22两边同时乘$f^2L_1$<br>$$<br>f^2L_1\cos\beta&#x3D;f^2L_2-L_1^2L_2\sin^2\beta-fL_1\Delta c_2\sin\beta<br>$$<br>得到17后，为了求解方程，两边同时平方，并设<br>$$<br>x&#x3D;\sin \beta<br>$$<br>则<br>$$<br>x^2&#x3D;\sin^2\beta<br>$$</p>
-<p>$$<br>1-x^2&#x3D;\cos^2\beta<br>$$</p>
-<p>展开得到<br>$$<br>{L_1 }^2 ,f^4 ,({1-x^2)}&#x3D;{\Delta }^2 ,{L_1 }^2 ,f^2 ,x^2 +2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f,x^3 -2,\Delta{c_2} ,L_1 ,L_2 ,f^3 ,x+{L_1 }^4 ,{L_2 }^2 ,x^4 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 ,x^2 +{L_2 }^2 ,f^4<br>$$</p>
-<p>合并同类项，得到<br>$$<br>{\left({L_1 }^4 ,{L_2 }^2 \right)},x^4 +{\left(2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f\right)},x^3 +{\left({\Delta{c_2} }^2 ,{L_1 }^2 ,f^2 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 +{L_1 }^2 ,f^4 \right)},x^2 +{\left(-2,\Delta{c_2} ,L_1 ,L_2 ,f^3 \right)},x+{L_2 }^2 ,f^4 -{L_1 }^2 ,f^4&#x3D;0<br>$$</p>
-<p>28本质上就是一个一元四次方程<br>$$<br>Ax^4+Bx^3+Cx^2+Dx+E&#x3D;0<br>$$<br>其中</p>
-<p>$$<br>A&#x3D;{L_1 }^4 {L_2 }^2<br>$$</p>
-<p>$$<br>B&#x3D;{2,\Delta{c_2} ,{L_1 }^3 ,L_2 ,f}<br>$$</p>
-<p>$$<br>C&#x3D;{ { \Delta{c_2} }^2 ,{L_1 }^2 ,f^2 -2,{L_1 }^2 ,{L_2 }^2 ,f^2 +{L_1 }^2 ,f^4 }<br>$$</p>
-<p>$$<br>D&#x3D;{-2,\Delta{c_2} ,L_1 ,L_2 ,f^3 }<br>$$</p>
-<p>$$<br>E&#x3D;{ {L_2 }^2 ,f^4 -{L_1 }^2 ,f^4}<br>$$</p>
-<p>求解四次方程的解析解可以通过<a target="_blank" rel="noopener" href="https://encyclopediaofmath.org/wiki/Ferrari_method">费拉里方法</a>求解</p>
-<h2 id="4-代码">4. 4 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_pitch_deltal</span>(<span class="params">l1,l2,delta_c1, delta_c2, l_meter</span>):</span><br><span class="line"><span class="comment">## Set the parameters</span></span><br><span class="line"><span class="comment"># definition:</span></span><br><span class="line"><span class="comment">#l1, perpendicular to conveyor belt, i.e., along y direction, the measured value of the eclipse,unit is meter and calculated as l1=ly_pixel*mu</span></span><br><span class="line"><span class="comment">#l2, parelled to conveyor belt,i.e., along x direction, the measured value of the eclipse, unit is meter and calculated as l2=lx_pixel*mu</span></span><br><span class="line"><span class="comment">#unit for l1,l2,delta_c1, delta_c2 are all lx_pixel</span></span><br><span class="line"></span><br><span class="line">mu = <span class="number">3.45</span>*<span class="number">1e-6</span></span><br><span class="line">f = <span class="number">1024</span> <span class="comment"># focal length</span></span><br><span class="line">d_meter = f*l_meter/(l1)</span><br><span class="line">delta_lx_meter = d_meter*delta_c2/f</span><br><span class="line">delta_ly_meter = d_meter*delta_c1/f</span><br><span class="line"></span><br><span class="line"><span class="comment">## Calculate the coefficients</span></span><br><span class="line">A = l1**<span class="number">4</span>*l2**<span class="number">2</span></span><br><span class="line">B = <span class="number">2</span>*delta_c2*f*l1**<span class="number">3</span>*l2</span><br><span class="line">C = delta_c2**<span class="number">2</span>*f**<span class="number">2</span>*l1**<span class="number">2</span>+f**<span class="number">4</span>*l1**<span class="number">2</span>-<span class="number">2</span>*f**<span class="number">2</span>*l1**<span class="number">2</span>*l2**<span class="number">2</span></span><br><span class="line">D = -<span class="number">2</span>*delta_c2*f**<span class="number">3</span>*l1*l2</span><br><span class="line">E = f**<span class="number">4</span>*l2**<span class="number">2</span>-f**<span class="number">4</span>*l1**<span class="number">2</span></span><br><span class="line">ans = ferrari(A,B,C,D,E)</span><br><span class="line">potential_ans=[]</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> ans:</span><br><span class="line"><span class="keyword">if</span> a.imag == <span class="number">0</span>:</span><br><span class="line">x = a.real</span><br><span class="line">beta = math.asin(x)/math.pi*<span class="number">180</span></span><br><span class="line">potential_ans.append(beta)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate delta lx that parelled to conveyor belt.</span></span><br><span class="line">potential_move=[]</span><br><span class="line">delta_l=d_meter*delta_c2/f</span><br><span class="line"><span class="keyword">for</span> beta <span class="keyword">in</span> potential_ans:</span><br><span class="line">beta_rad=beta/<span class="number">180</span>*math.pi</span><br><span class="line">delta_l_conveyor=(d_meter*math.tan(beta_rad)-delta_l)*math.cos(beta_rad)</span><br><span class="line">potential_move.append(delta_l_conveyor)</span><br><span class="line"><span class="keyword">return</span> [d_meter,delta_lx_meter,delta_ly_meter, potential_ans]</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-实验验证">5. 5 实验验证</h2><p>为了验证模型效果，在仿真中进行实验，改变相机的倾斜角度，让元件从传送带的远端逐渐接近相机</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601172632250.png" alt="远端的情况"></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/image-20210601172642743.png" alt="近端的情况"></p>
-<p>测试了3个角度（10度、30度、45度），分别计算了计算值与真值的误差</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/c92XJr.jpg" alt="10度角的情况"></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/XbXxEE.jpg" alt="30度角的情况"></p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/4bf6Ox.jpg" alt="45度角的情况"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/circle-ellipse/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
