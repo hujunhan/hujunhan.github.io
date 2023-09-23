@@ -188,6 +188,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/para-esti/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/para-esti/" class="post-title-link" itemprop="url">参数估计简述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-14 20:20:00" itemprop="dateCreated datePublished" datetime="2019-07-14T20:20:00-07:00">2019-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Statistics/" itemprop="url" rel="index"><span itemprop="name">Statistics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本概念">1. 基本概念</h2><ul>
+<li>估计量：用来估计总体参数的统计量</li>
+<li>求法：矩估计、最大似然估计法</li>
+<li>估计值：根据一个样本算出来的统计量的值</li>
+<li>点估计：用样本统计量$\hat{\theta}$的某个取值作为总体参数$\theta$的估计值</li>
+<li>区间估计：在<strong>点估计的基础</strong>上，给出总体参数的一个<strong>区间范围</strong></li>
+<li>置信区间：在区间估计中，由样本统计量构造的总体参数的估计区间</li>
+<li>对参数估计的评价</li>
+<li>无偏，$E(\hat{\theta})&#x3D;\theta$</li>
+<li>更有效，$D(\hat{\theta_1})&lt;D(\hat{\theta_2})$</li>
+<li>一致性，$\hat{\theta}$依概率收敛于$\theta$</li>
+</ul>
+<h2 id="矩估计">2. 矩估计</h2><blockquote>
+<p>矩：所考虑的随机变量的幂的期望值</p>
+<ul>
+<li><p>一阶矩：期望，$E(x)&#x3D;\int_{-\infty}^{\infty} x f(x) d x$</p>
+</li>
+<li><p>二阶矩：方差，$\operatorname{Var}(x)&#x3D;\int_{-\infty}^{\infty}[x-E(x)]^{2} f(x) d x$</p>
+</li>
+<li><p>三阶矩：偏态，$S(x)&#x3D;\int_{-\infty}^{\infty}[x-E(x)]^{3} f(x) d x$</p>
+</li>
+<li><p>样本矩：$\mu_{n}^{\prime} \approx \frac{1}{N} \sum_{i&#x3D;1}^{N} X_{i}^{n}$</p>
+<p>通过这种方法求矩不需要先估计其概率分布</p>
+</li>
+</ul>
+</blockquote>
+<p>用样本矩估计相应的总体矩，用样本矩的函数聚集总体矩相应的函数</p>
+<blockquote>
+<p>e.g. 已知分布函数$f(x;\theta)$，和一些样本$X_i$</p>
+<ol>
+<li>求出$f$的期望\方差，其中有$\theta$</li>
+<li>求出样本的期望\方差，是具体的数字或者$X_i$中的信息</li>
+<li>用那些信息表示$\theta$</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/signifi-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1046,109 +1166,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/how-to-swim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim/" class="post-title-link" itemprop="url">学会游泳--蛙泳</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-14 06:42:00" itemprop="dateCreated datePublished" datetime="2019-06-14T06:42:00-07:00">2019-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="学会之后的总结">1. 学会之后的总结</h2><ul>
-<li>胆子要大，不要怕呛水</li>
-<li>要多模仿他人，有即时的负反馈</li>
-<li>腿部动作和手部动作可以分开来单独做，不一定需要依一定的相位交替进行</li>
-<li>腿部主要就是蹬腿，想象身后有个人，伸腿去蹬他</li>
-<li>手部的动作主要是为了产生向上的力去换气，所以不需要特别用力</li>
-</ul>
-<h2 id="第一步：-熟悉水中环境">2. 第一步： 熟悉水中环境</h2><h3 id="0-克服恐惧">2.1. 0 克服恐惧</h3><p>要想学会游泳，首先要克服的是自己的恐惧，不要害怕溺水，做好以下几步以防溺水</p>
-<ul>
-<li>与他人（会游泳）同行</li>
-<li>不要在流动的水中游泳，比如河流或海洋</li>
-<li>待在安全的深度区</li>
-<li>避免在恶劣天气下游泳</li>
-<li>不要在水温过低的情况下游泳</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1218,7 +1235,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

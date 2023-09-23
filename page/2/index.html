@@ -188,6 +188,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-09-20 21:39:37" itemprop="dateCreated datePublished" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/" itemprop="url" rel="index"><span itemprop="name">MobileRobots</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>title: Design Contrl<br>author: Junhan Hu<br>tags:</p>
+<ul>
+<li>robotics</li>
+<li>control<br>mathjax: true<br>date: 2020-4-27<br>categories:</li>
+<li>Engineering</li>
+<li>Robotics</li>
+<li>Foundation</li>
+<li>MobileRobots</li>
+</ul>
+<p>We need $x$ but we do have is only $y$. What can we do?</p>
+<ul>
+<li>Design $u$ as if we had $x$</li>
+<li>Figure out $x$ from $y$</li>
+</ul>
+<h2 id="Assume-We-Got-x">1. Assume We Got $x$</h2><p>We can design the $k_1$ and $k_2$ to make the <strong>eigenvalue</strong> of the closed-loop system to be <strong>desired</strong> (<strong>negative</strong>)</p>
+<blockquote>
+<p>e.g. If we want to the eigen value of the $-1$, then, $\varphi(\lambda)&#x3D;(\lambda+1)(\lambda+1)&#x3D;\lambda^{2}+2 \lambda+1$</p>
+<p>and we got $\chi_{A-B K}&#x3D;\lambda^{2}+k_{2} \lambda+k_{1}$</p>
+<p>so just let $k_2&#x3D;2$ and $k_1&#x3D;1$, the system would be stable</p>
+</blockquote>
+<p>To say it in another way, we place the <strong>pole</strong> of the system on the desired position</p>
+<p>Still, we have some question about the method?</p>
+<ul>
+<li>This method is not always <strong>possible</strong></li>
+<li>The system needs to be controllable</li>
+<li>It’s a science and art of <strong>picking</strong> the eigenvalue</li>
+<li>No clear-cut answer</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/MPC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1396,7 +1514,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-21 21:24:34" itemprop="dateModified" datetime="2023-09-21T21:24:34-07:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1447,13 +1565,13 @@
 <li>community level</li>
 <li>Societal global level</li>
 </ol>
-<h2 id="Individual">2. Individual</h2><p>Self and identitty</p>
+<h2 id="Individual">2. Individual</h2><p>Self and identity</p>
 <ul>
 <li>Self: reflection about their unique identity</li>
 <li>Always develop during childhood and refined through experience</li>
 <li>Identity: pertain to larger group, gender, racial, occupation</li>
 </ul>
-<p>Sociallization</p>
+<p>Socialization</p>
 <ul>
 <li>Individual learn and internalize the norms&#x2F;values&#x2F;behaviors of their society or group</li>
 <li>Key agents: family, school, peers, media, religion</li>
@@ -1493,145 +1611,86 @@
 <li>Bridge tie: individual act as bridge can access diverse information and resources</li>
 <li>Social Capital: benefit from social relationship</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/2309/0913/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Questions/2309/0913/" class="post-title-link" itemprop="url">0913 Question</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-09-14 11:05:53" itemprop="dateCreated datePublished" datetime="2023-09-14T11:05:53-07:00">2023-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/2309/" itemprop="url" rel="index"><span itemprop="name">2309</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why-Color-check-choose-these-Color">1. Why Color check choose these  Color</h2><p>Chosen to represent natural objects of special interest</p>
-<p>Breakdown</p>
+<h2 id="Organizational-Level">4. Organizational Level</h2><p>More complex system, company level</p>
+<p>Formal and informal</p>
 <ul>
-<li>Primary color, RGB</li>
-<li>Secondary color: cyan, magenta, yellow. Complementary to the primary color</li>
-<li>Grayscale, aids in determining contrast, balance and exposure</li>
-<li>Fleshtone: represent various skin tone</li>
-<li>Chromatic color: challenge camera’s sensor and image processing pipeline, brighter and more vibrant</li>
-<li>Neutral color: consistent color reference</li>
+<li>Formal: official, documented structure</li>
+<li>Informal: unofficial, friendship</li>
+<li>Balance: informal can support and undermine formal one</li>
 </ul>
-<h2 id="Most-Frequently-used-Focal-Length">2. Most Frequently used Focal Length</h2><p>Smartphone: 24-28mm</p>
-<p>Portrait: 85mm</p>
-<p>Street: 35, 50mm</p>
-<h3 id="Physical-Meaning-of-Focal-Length">2.1. Physical Meaning of Focal Length</h3><p>distance between the lens’s optical center or the principal point and the image sensor (or film) when the lens is focused at infinity</p>
-<h2 id="Source-of-Waterfall">3. Source of Waterfall</h2><ul>
-<li>River and streams</li>
-<li>Glacial Melt</li>
-<li>Rainfall</li>
-<li>Spring or underground water</li>
-<li>Lava flow</li>
-</ul>
-<h2 id="General-Properties-of-Attractive-Person">4. General Properties of Attractive Person</h2><p>Subjective, but</p>
+<p>Bureaucracy</p>
 <ul>
-<li>Symmetry: indicator of good health</li>
-<li>Clear skin: smooth clear skin, sign of good health, youth</li>
-<li>Facial Feature: high cheekbone, jawline</li>
-<li>Proportionate feature: Golden ratio</li>
-<li>Bright eyes</li>
-<li>Healthy Hair</li>
-<li>Good posture: standing tall with shoulders back</li>
-<li>Smile</li>
-<li>Confidence</li>
-<li>Kindness</li>
+<li>Model: by Weber, the most efficient and rational form</li>
+<li>Efficiency: can handle large-scale task</li>
+<li>Potential challenge: become overly rigid, lead to innovation and flexibility stiffed</li>
 </ul>
-<h2 id="How-pimple-patch-works">5. How pimple patch works</h2><h3 id="Causes">5.1. Causes</h3><ul>
-<li>Sebum and dead skin cell</li>
-<li>Bacteria</li>
-<li>Hormonal change</li>
-<li>Diet</li>
-<li>Stress</li>
-</ul>
-<h3 id="Pimple-Patch">5.2. Pimple Patch</h3><ul>
-<li>Hydrocolloid Material: 水胶体, absorb pus and oil from the pimple, helping to flatten and heal it</li>
-<li>Protect: physical barrier against external dirt and bacteria</li>
-<li>Microdart tech, penetrate the pimple and deliver  acne-fighting ingredients</li>
-</ul>
-<h3 id="Pimple-Acne">5.3. Pimple? Acne?</h3><p>Acne: medical term</p>
-<p>Pimple: small pustule</p>
-<h2 id="Why-battery-need-special-disposal">6. Why battery need special disposal</h2><p>Safety, environmental protection</p>
+<p>Culture and behavior</p>
 <ul>
-<li>Toxic chemicals and heavy metal</li>
-<li>Environmental impact</li>
-<li>Explosion risk</li>
-<li>Protect wildlife</li>
+<li>Own set of shared belief</li>
+<li>Values</li>
+<li>Behavior</li>
+</ul>
+<p>Technology</p>
+<ul>
+<li>Impact: flatten traditional hierarchies by improving the flow of information</li>
+<li>Remote work and globalization</li>
+<li>Automatization and AI</li>
+<li>Digital communication</li>
+</ul>
+<h2 id="Community-Level">5. Community Level</h2><p>In this scale, it’s more like macro-scale within sociology. Towns, cities, etc</p>
+<p>Social Capital</p>
+<ul>
+<li>Refer to networks of relationship among individuals</li>
+<li>Bonds and bridge, social capital can be broken down into<ul>
+<li>Bonding</li>
+<li>Bridging</li>
+</ul>
+</li>
+<li>Benefit: lead to lower crime rate, better public health</li>
+</ul>
+<p>Community building development</p>
+<ul>
+<li>Formation: based on something in <strong>common</strong></li>
+<li>Evolution: external (tech, econ etc) or internal (leader, demographic)</li>
+<li>Decline&#x2F;Resilience</li>
+</ul>
+<p>Urban and Rural Sociology</p>
+<ul>
+<li>Urban dynamics: examine social structure and uniqueness<ul>
+<li>Urban planning, community organization, crime, mental health</li>
+</ul>
+</li>
+<li>Gentrification: lower-income experience an influx of upper-income resident, lead to increased rent etc problem</li>
+<li>Rural dynamics: agricultural practices, community structures, modernization</li>
+<li>Urbanization: rural area transform into urban areas</li>
+</ul>
+<h2 id="Society-and-Global-level">6. Society and Global level</h2><p>Birds-eye view of how societies function, change and interact</p>
+<p>Society Structure</p>
+<ul>
+<li>Def: refer to organized sets of social relationship. Institution are stable cluster of value, norm, and customs, roles..</li>
+<li>Key institution<ul>
+<li>Family: nuclear family, extended families</li>
+<li>Education: social mobility, social norm</li>
+<li>Religion: shaping moral, social norm</li>
+<li>Economy: capitalism, socialism</li>
+<li>Political system: structure of governments, political behaviors</li>
+</ul>
+</li>
+</ul>
+<p>Social stratification 分层</p>
+<ul>
+<li>Def: classification of people into groups, based on socio-economic conditions</li>
+<li>Dimensions<ul>
+<li>Income&#x2F;wealth</li>
+<li>Status&#x2F;Power</li>
+</ul>
+</li>
+<li>Effects: influence everything from life expectancy to educational attainment</li>
+</ul>
+<p>Social change and movements</p>
+<ul>
+<li>Social change: refer to significant shifts in society norms, values</li>
+<li>Movement: collective efforts by large groups</li>
 </ul>
 
       
@@ -1717,7 +1776,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -188,6 +188,189 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/" class="post-title-link" itemprop="url">Google Computational Photography</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-11-08 14:27:00" itemprop="dateCreated datePublished" datetime="2022-11-08T14:27:00-08:00">2022-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Computation-Photography/" itemprop="url" rel="index"><span itemprop="name">Computation Photography</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Alpha-Matting">1. Alpha Matting</h2><p>Goal: accurate matting for fine details</p>
+<p>Application: background replacement, synthetic bokeh</p>
+<p>Idea: not binary, but estimate a transparency value</p>
+<p>How: Train a CNN</p>
+<ul>
+<li>input: RGB image and coarse alpha matte</li>
+<li>MobileNetV3 and shallow encoder-decoder</li>
+<li>A studio to make high-quality dataset</li>
+</ul>
+<h2 id="Omnimattes">2. Omnimattes</h2><p>Goal: produce mask not only for objects but also their effects (shadow, smoke, reflection..)</p>
+<p>Application: image and video editing</p>
+<p>Idea: create different layer for each object and also the background</p>
+<p>How: Train a CNN</p>
+<ul>
+<li>learn the strong correlation first</li>
+</ul>
+<h2 id="Denoise-and-Sharpen">3. Denoise and Sharpen</h2><p>Goal: denoise for any image without knowing the parameter of the camera. (Computational effective)</p>
+<p>Application: image post-processing</p>
+<p>Idea: assess the noise level and blur type in patch level</p>
+<p>How:</p>
+<ul>
+<li>Pull-push denoising</li>
+<li>first pull(down-sample), in different level(pyramid), use this to find local structure</li>
+<li>Then push(up-scale), pixels fused with coarser level by doing weighted average</li>
+<li>Polyblur: deblurring caused by a blur kernel</li>
+<li>observation: the maximal value of the image gradient across all dir in a sharp image follows a particular distribution. So we can estimate the blur in given direction</li>
+<li>Assumption: mild blur</li>
+<li>How: reblur it serveral time</li>
+</ul>
+<h2 id="HDR">4. HDR+</h2><p>Goal: reduce noise, handle large dynamic range scene</p>
+<p>Application: mobile phone photograph</p>
+<p>Idea: burst of under-exposure</p>
+<p>How:</p>
+<ul>
+<li>for noise, burst, align, average</li>
+<li>for HDR, bracketing(same exposure time), burst, align, combine</li>
+</ul>
+<h2 id="HDR-with-bracketing">5. HDR+ with bracketing</h2><p>HDR+ works for maoderate dynamic range, but fails for High dyanmic range</p>
+<p>HDR+’s problem: noise</p>
+<ul>
+<li>shot noise, if this is the only noise, HDR+ works great</li>
+<li>read noise, depends on the number of frames taken, make HDR+, can not be canceled</li>
+</ul>
+<p>Goal: to capture real high dynamic range</p>
+<p>Idea: before the shutter, use burst; after the shutter, use bracket; merge</p>
+<p>How:</p>
+<ul>
+<li>new spatial merge algorithm</li>
+<li>Deghosting algorithm</li>
+<li>merge raw earlier</li>
+</ul>
+<h2 id="Night-Sight">6. Night Sight</h2><p>Defien the dark level, lux.</p>
+<ul>
+<li>Samrt phone start to struggle at 30lux</li>
+<li>HDR+ make it possible at 3lux</li>
+<li>Goal: between 3lux and 0.3lux with a smartphone and single shutter, no flash</li>
+</ul>
+<p>Idea: capture more photons.</p>
+<ul>
+<li>handheld for longer exposure</li>
+<li>motion blur: use optical flow to minimize the blur</li>
+</ul>
+<p>Problem:</p>
+<ul>
+<li>alignmnet, HDR+, Super Res Zoom (require faster processor)</li>
+<li>AWB in low light: ill-posed problem, develop a learning based algorithm</li>
+<li>Tone mapping: well exposured image just like the daytime. Using the S-curve</li>
+</ul>
+<h2 id="Super-Res-Zoom">7. Super Res Zoom</h2><p>Goal: better digital zoom, merge many frames to a single high-res image</p>
+<p>Idea: sensor shift that can be used to get the detail in Bayer</p>
+<ul>
+<li>take the hand-motion as pixel-shift, OIS to compensate the large motion</li>
+</ul>
+<p>How:</p>
+<ol>
+<li>take burst</li>
+<li>select 1 image as base</li>
+<li>interpolate between two images</li>
+</ol>
+<p>Problem:</p>
+<ul>
+<li>single image is noisy, align along apparent edges (a trade off, balance)</li>
+<li>object has motion too, deal with imperfect alignment (only merge the confident deature)</li>
+<li>the image data is not uniformly distributed</li>
+</ul>
+<h2 id="Motion-Still">8. Motion Still</h2><p>Goal: stablize the image</p>
+<p>Idea: motion estimation and crop</p>
+<p>How:</p>
+<ul>
+<li>Pure software-based: analyze and tracking the feature, then do a affine transformation</li>
+<li>Classify fore and back ground, estimate a optimal path by the metadata</li>
+</ul>
+<h2 id="Video-Stablization">9. Video Stablization</h2><p>Goal: EIS+OIS</p>
+<p>Problem: camera shake, motion blur, rolling shutter, focus breathing,</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215612_k5fJ5i.png" alt="img"></p>
+<h2 id="Image-Quality-Assessment">10. Image Quality Assessment</h2><p><a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/10/musiq-assessing-image-aesthetic-and.html">Ref</a></p>
+<p>Multi-scale Transformer, take image with different aspect ratio</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419203740_HRsNg1.png" alt="image-20221108142717028"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/motor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1326,191 +1509,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/conscious/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/conscious/" class="post-title-link" itemprop="url">What is Consciousness</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-09-20 20:55:00" itemprop="dateCreated datePublished" datetime="2022-09-20T20:55:00-07:00">2022-09-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Question">1. Question</h2><p>Real me? Self?</p>
-<p>How idea create?</p>
-<p>Model of brain? computational, logical (lead to un-logical mind??)</p>
-<p>What I real want to do? Understand how brain works</p>
-<h2 id="Thoughts">2. Thoughts</h2><p>David Edelman, creation of Conscious Artifact</p>
-<ul>
-<li>Reentrant Architecture</li>
-</ul>
-<p>Different than feedback system.</p>
-<p>Bi-directionally linked, physical</p>
-<ul>
-<li>Thalamo-Cortical System</li>
-</ul>
-<p>Dynamic core</p>
-<ul>
-<li>Value system, reinforcement</li>
-</ul>
-<p>For an agent to modify its behavior</p>
-<ul>
-<li>Phenotype</li>
-</ul>
-<p>Shape, morphology of the robot. Touch is important</p>
-<ul>
-<li>Motor control</li>
-</ul>
-<p>Motor command is fed back to nervous system</p>
-<p>Basal Ganglia</p>
-<ul>
-<li><p>Learning and momory. Very complicated model</p>
-</li>
-<li><p>Problem: how to transfer knowledge to other task</p>
-</li>
-<li><p>Communication, not language, but showing a degree of self-awareness</p>
-</li>
-<li><p>Thought</p>
-</li>
-</ul>
-<p>Dynamic core theory</p>
-<ul>
-<li>Language: language is distinctively more sophisticated</li>
-</ul>
-<p>2006, UCI, “Build A Brain” meeting</p>
-<h2 id="Todo">3. Todo</h2><p>Theory of Neuronal Group Selection</p>
-<h2 id="Common-Sense">4. Common Sense</h2><p>Computational model for common sense</p>
-<p>Current AI: just pattern recognition, function approximation</p>
-<p>Gap: model the world, explain, image, plan, build, share</p>
-<p>Self-driving car:</p>
-<ul>
-<li>cost: 100 billion,</li>
-<li>not close to solution</li>
-<li>long-tail problem</li>
-</ul>
-<p>Common sense enable flexiable behavior</p>
-<ul>
-<li>understanding the world</li>
-<li>agents have their goal and plan</li>
-<li>abstract of knowledge about</li>
-<li>Physics, motion, force</li>
-<li>Psychology, belief, plan</li>
-</ul>
-<p>Smart: learn quickly from example</p>
-<ul>
-<li>Understand others’ goal</li>
-<li>Have a plan</li>
-<li>Trying to help</li>
-</ul>
-<p>Starting state: a core cognition, game engine</p>
-<ul>
-<li>learning procedure is very smart</li>
-</ul>
-<hr>
-<p>Reverse Engineering</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-09-25-13-22-42.png" alt="image-20220925132242738" style="zoom:33%;">
-
-<p>How? Build based on DL platform (TF, PyTorch)</p>
-<p>Probabilistic programs</p>
-<ul>
-<li>Symbolic manipulation, enable the auto back prop for super large NN</li>
-<li>Bayesian inference, reasoning in uncertain situation</li>
-<li>Neural network good for pattern recognition and function approximation</li>
-</ul>
-<p>We need a fast and good (not perfect) simulator</p>
-<p>What to learn?</p>
-<p>How to learn?</p>
-<hr>
-<p>Intuitive physics</p>
-<ul>
-<li>train a network to inverse guess from the vision to 3d world</li>
-</ul>
-<p>Intuitive psychology</p>
-<hr>
-<p>What to learn?</p>
-<ul>
-<li>Program to program new</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-09-25-20-18-36.png" alt="image-20220925201835884"></p>
-<h2 id="Build-a-Brain">5. Build a Brain</h2><p>Deep down</p>
-<p><a target="_blank" rel="noopener" href="https://uwaterloo.ca/arts-computing-newsletter/spring-2017/feature/spaun">Spaun</a></p>
-<ul>
-<li>see</li>
-<li>remember</li>
-<li>act</li>
-</ul>
-<p>Understand the neuron (single, multiple)</p>
-<h2 id="Takeaways">6. Takeaways</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1580,7 +1578,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

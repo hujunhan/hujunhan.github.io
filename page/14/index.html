@@ -188,6 +188,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/face_change/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/face_change/" class="post-title-link" itemprop="url">Face Time Lapse</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-29 13:06:00" itemprop="dateCreated datePublished" datetime="2022-12-29T13:06:00-08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal">1. Goal</h2><p>Show how my face and hair style changes from time to time</p>
+<p>Input: a bunch of selfie</p>
+<p>Output: a short clip show the change</p>
+<h2 id="Plan">2. Plan</h2><ol>
+<li>Collect data (image) from camera and phone</li>
+<li>Put into Lightroom in a album for organization and further development</li>
+<li>Output the image with time-tagged prefix</li>
+<li>Remove the background (maybe not)</li>
+<li>Use computer vision to detect the face and crop</li>
+</ol>
+<h2 id="Code">3. Code</h2><p>Eye alignment is the key process</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hujunhan/eyelign">https://github.com/hujunhan/eyelign</a></p>
+<ol>
+<li>main.py use machine learning to do the most job</li>
+<li>gui_manual_align.py use GUI to manual align the corner case</li>
+</ol>
+<hr>
+<p>Generate the timelapse</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg \</span><br><span class="line">-framerate 15 \</span><br><span class="line">-pattern_type glob \</span><br><span class="line">-i <span class="string">&quot;/Users/Hu/Downloads/output/*.jpg&quot;</span> \</span><br><span class="line">-s:v 500x500 \</span><br><span class="line">-c:v libx264 \</span><br><span class="line">-crf 17 \</span><br><span class="line">-pix_fmt yuv420p \</span><br><span class="line">timelapse.mp4</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Sensor/BNO055/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1520,189 +1625,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Computation%20Photography/google_comp_photo/" class="post-title-link" itemprop="url">Google Computational Photography</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-11-08 14:27:00" itemprop="dateCreated datePublished" datetime="2022-11-08T14:27:00-08:00">2022-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Computation-Photography/" itemprop="url" rel="index"><span itemprop="name">Computation Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Alpha-Matting">1. Alpha Matting</h2><p>Goal: accurate matting for fine details</p>
-<p>Application: background replacement, synthetic bokeh</p>
-<p>Idea: not binary, but estimate a transparency value</p>
-<p>How: Train a CNN</p>
-<ul>
-<li>input: RGB image and coarse alpha matte</li>
-<li>MobileNetV3 and shallow encoder-decoder</li>
-<li>A studio to make high-quality dataset</li>
-</ul>
-<h2 id="Omnimattes">2. Omnimattes</h2><p>Goal: produce mask not only for objects but also their effects (shadow, smoke, reflection..)</p>
-<p>Application: image and video editing</p>
-<p>Idea: create different layer for each object and also the background</p>
-<p>How: Train a CNN</p>
-<ul>
-<li>learn the strong correlation first</li>
-</ul>
-<h2 id="Denoise-and-Sharpen">3. Denoise and Sharpen</h2><p>Goal: denoise for any image without knowing the parameter of the camera. (Computational effective)</p>
-<p>Application: image post-processing</p>
-<p>Idea: assess the noise level and blur type in patch level</p>
-<p>How:</p>
-<ul>
-<li>Pull-push denoising</li>
-<li>first pull(down-sample), in different level(pyramid), use this to find local structure</li>
-<li>Then push(up-scale), pixels fused with coarser level by doing weighted average</li>
-<li>Polyblur: deblurring caused by a blur kernel</li>
-<li>observation: the maximal value of the image gradient across all dir in a sharp image follows a particular distribution. So we can estimate the blur in given direction</li>
-<li>Assumption: mild blur</li>
-<li>How: reblur it serveral time</li>
-</ul>
-<h2 id="HDR">4. HDR+</h2><p>Goal: reduce noise, handle large dynamic range scene</p>
-<p>Application: mobile phone photograph</p>
-<p>Idea: burst of under-exposure</p>
-<p>How:</p>
-<ul>
-<li>for noise, burst, align, average</li>
-<li>for HDR, bracketing(same exposure time), burst, align, combine</li>
-</ul>
-<h2 id="HDR-with-bracketing">5. HDR+ with bracketing</h2><p>HDR+ works for maoderate dynamic range, but fails for High dyanmic range</p>
-<p>HDR+’s problem: noise</p>
-<ul>
-<li>shot noise, if this is the only noise, HDR+ works great</li>
-<li>read noise, depends on the number of frames taken, make HDR+, can not be canceled</li>
-</ul>
-<p>Goal: to capture real high dynamic range</p>
-<p>Idea: before the shutter, use burst; after the shutter, use bracket; merge</p>
-<p>How:</p>
-<ul>
-<li>new spatial merge algorithm</li>
-<li>Deghosting algorithm</li>
-<li>merge raw earlier</li>
-</ul>
-<h2 id="Night-Sight">6. Night Sight</h2><p>Defien the dark level, lux.</p>
-<ul>
-<li>Samrt phone start to struggle at 30lux</li>
-<li>HDR+ make it possible at 3lux</li>
-<li>Goal: between 3lux and 0.3lux with a smartphone and single shutter, no flash</li>
-</ul>
-<p>Idea: capture more photons.</p>
-<ul>
-<li>handheld for longer exposure</li>
-<li>motion blur: use optical flow to minimize the blur</li>
-</ul>
-<p>Problem:</p>
-<ul>
-<li>alignmnet, HDR+, Super Res Zoom (require faster processor)</li>
-<li>AWB in low light: ill-posed problem, develop a learning based algorithm</li>
-<li>Tone mapping: well exposured image just like the daytime. Using the S-curve</li>
-</ul>
-<h2 id="Super-Res-Zoom">7. Super Res Zoom</h2><p>Goal: better digital zoom, merge many frames to a single high-res image</p>
-<p>Idea: sensor shift that can be used to get the detail in Bayer</p>
-<ul>
-<li>take the hand-motion as pixel-shift, OIS to compensate the large motion</li>
-</ul>
-<p>How:</p>
-<ol>
-<li>take burst</li>
-<li>select 1 image as base</li>
-<li>interpolate between two images</li>
-</ol>
-<p>Problem:</p>
-<ul>
-<li>single image is noisy, align along apparent edges (a trade off, balance)</li>
-<li>object has motion too, deal with imperfect alignment (only merge the confident deature)</li>
-<li>the image data is not uniformly distributed</li>
-</ul>
-<h2 id="Motion-Still">8. Motion Still</h2><p>Goal: stablize the image</p>
-<p>Idea: motion estimation and crop</p>
-<p>How:</p>
-<ul>
-<li>Pure software-based: analyze and tracking the feature, then do a affine transformation</li>
-<li>Classify fore and back ground, estimate a optimal path by the metadata</li>
-</ul>
-<h2 id="Video-Stablization">9. Video Stablization</h2><p>Goal: EIS+OIS</p>
-<p>Problem: camera shake, motion blur, rolling shutter, focus breathing,</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419215612_k5fJ5i.png" alt="img"></p>
-<h2 id="Image-Quality-Assessment">10. Image Quality Assessment</h2><p><a target="_blank" rel="noopener" href="https://ai.googleblog.com/2022/10/musiq-assessing-image-aesthetic-and.html">Ref</a></p>
-<p>Multi-scale Transformer, take image with different aspect ratio</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230419203740_HRsNg1.png" alt="image-20221108142717028"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1772,7 +1694,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

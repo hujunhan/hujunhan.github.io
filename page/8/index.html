@@ -188,6 +188,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/imu-lidar-calibration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Lidar/imu-lidar-calibration/" class="post-title-link" itemprop="url">Calibration Between Lidar and IMU</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-27 16:04:00" itemprop="dateCreated datePublished" datetime="2023-05-27T16:04:00-07:00">2023-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Lidar/" itemprop="url" rel="index"><span itemprop="name">Lidar</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Goal: calibrate between leishen lidar C16 and 6 axis IMU</p>
+<p>Ref: <a target="_blank" rel="noopener" href="https://github.com/unmannedlab/imu_lidar_calibration">unmannedlab&#x2F;imu_lidar_calibration: Target-free Extrinsic Calibration of a 3D Lidar and an IMU (github.com)</a></p>
+<h2 id="Theory">2. Theory</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VIc8XxNrymQ">Ref</a></p>
+<p>Goal: estimate the extrinsic<br>$$<br>T_L^I&#x3D;\left[\begin{array}{cc}<br>R_L^I &amp; { }^I \mathrm{P}_{\mathrm{L}} \<br>0 &amp; 1<br>\end{array}\right]<br>$$<br>Step:</p>
+<ul>
+<li>Rotation Estimation</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162339_DjJ4cJ.png" alt="image-20230527162339584"></p>
+<p>Motion of Lidar &#x3D; Motion of IMU</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527162708_h52OIr.png" alt="image-20230527162708340" style="zoom:50%;">
+
+<ul>
+<li>Tranlation Estimation</li>
+</ul>
+<p>Refine the rotation and translation</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527163220_Cp8rj9.png" alt="image-20230527163220016"></p>
+<p>the key state is from Lidar data</p>
+<p>Minimize the data in a EKF process</p>
+<p>System design</p>
+<h2 id="Data-Analysis">3. Data Analysis</h2><p>The data sample</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172131_SoemvE.png" alt="image-20230527172131502"></p>
+<p>Ours</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527172251_cSXtgc.png" alt="image-20230527172251129"></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230527174240_VWkk67.png" alt="image-20230527174240241"></p>
+<p>roll, pitch, azimuth</p>
+<h3 id="difference-between-azimuth-and-yaw">3.1. difference between azimuth and yaw</h3><p>while the yaw is turn from current orientaion</p>
+<p>the azimuth is the absolute heading</p>
+<p><a target="_blank" rel="noopener" href="https://novatel.com/solutions/attitude">Ref</a></p>
+<h2 id>4. </h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/resume-updator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1387,129 +1504,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/food/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/food/" class="post-title-link" itemprop="url">Food Photograph Tips</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-04 21:41:00" itemprop="dateCreated datePublished" datetime="2023-05-04T21:41:00-07:00">2023-05-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Light-and-Emotion">1. Light and Emotion</h2><p>Direct light help feel healthier</p>
-<p>Diffuse make people pale even ill</p>
-<p>Light could provoke emotion</p>
-<ol>
-<li>Brightness</li>
-<li>Color</li>
-<li>Contrast</li>
-<li>Direction</li>
-<li>Natural</li>
-<li>Contribute to the mood</li>
-</ol>
-<p>For food: capture more texture</p>
-<ul>
-<li>back light</li>
-<li>side light</li>
-</ul>
-<h2 id="Course">2. Course</h2><p>Focus on</p>
-<ul>
-<li>bringing out the artist in your</li>
-</ul>
-<p>Feel the weight of improvements</p>
-<ol>
-<li>Foundation</li>
-<li>Light</li>
-<li>Idea</li>
-<li>Gear</li>
-</ol>
-<h2 id="Being-a-Artist">3. Being a Artist</h2><p>Thouhgt process to lead the final result</p>
-<p>Sometimes you would feel stress or upset when things goes wrong</p>
-<ul>
-<li>talk to someone</li>
-<li>take a break</li>
-</ul>
-<h2 id="Hidden-Power">4. Hidden Power</h2><p>While shooting, we are also exploring the hidden self</p>
-<p>Apply the principle and make you own</p>
-<h2 id="Four-Mindsets">5. Four Mindsets</h2><p>Both photographer and artist</p>
-<ol>
-<li>Build for self</li>
-<li>Confidence</li>
-<li>Comitment</li>
-<li>Be playful</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1579,7 +1573,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

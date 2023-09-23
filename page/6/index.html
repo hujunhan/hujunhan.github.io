@@ -188,6 +188,145 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/RawShines/hdr-background/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Miscellaneous/RawShines/hdr-background/" class="post-title-link" itemprop="url">Background for HDR Display</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-08 21:11:00" itemprop="dateCreated datePublished" datetime="2023-08-08T21:11:00-07:00">2023-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/RawShines/" itemprop="url" rel="index"><span itemprop="name">RawShines</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Goal">1. Goal</h2><ol>
+<li>Research &amp; Problem Definition</li>
+</ol>
+<ul>
+<li><strong>HDR Display Overview</strong>: Collect comprehensive information about the intricacies of HDR displays, their technical specifications, and benefits.</li>
+<li><strong>Problem Statement</strong>: Clearly define the problem this project aims to address. What challenges in HDR imaging are we trying to overcome? What value does our solution bring?</li>
+<li><strong>Project Scope</strong>: Outline what the project will and won’t cover, helping the team stay focused on core objectives.</li>
+</ul>
+<h2 id="Display-Monitor">2. Display (Monitor)</h2><p>Apple:</p>
+<ul>
+<li>iPhone</li>
+<li>iPad Pro 12.9</li>
+<li>Macbook Pro 14&#x2F;16</li>
+<li>Pro Display XR</li>
+</ul>
+<p>DisplayHDR</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://displayhdr.org/certified-products">https://displayhdr.org/certified-products</a></li>
+</ul>
+<h2 id="HDR-Software-x2F-Standard">3. HDR Software&#x2F;Standard</h2><h3 id="Apple">3.1. Apple</h3><p>Apple SDK <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/metal/hdr_content/displaying_hdr_content_in_a_metal_layer">Displaying HDR Content in a Metal Layer | Apple Developer Documentation</a></p>
+<p>EDR: Use relative brightness</p>
+<blockquote>
+<p>Some Macs can process pixel data with a wider range of pixel values and send those extended values to the display. In macOS, the ability to process larger pixel values and display them is referred to as extended dynamic range (EDR). When you configure a Metal layer to support extended values, you can provide pixel values — and therefore brightness levels — that exceed the normal SDR range in order to display HDR content.</p>
+</blockquote>
+<p>Other HDR standard: use physical brightness</p>
+<h3 id="DisplayHDR">3.2. DisplayHDR</h3><p><a target="_blank" rel="noopener" href="https://displayhdr.org/">Vesa Certified DisplayHDR™</a></p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230808212127_feich7.png" alt="image-20230808212127776"></p>
+<h3 id="Windows">3.3. Windows</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range">Use DirectX with Advanced Color on high&#x2F;standard dynamic range displays - Win32 apps | Microsoft Learn</a></p>
+<h2 id="Format">4. Format</h2><p>HEIC</p>
+<p>JPEG XR</p>
+<p>JPEG 2000</p>
+<h2 id="Problem">5. Problem</h2><p>No open source software to generate HDR photo for display hdr content</p>
+<p>Challenge:</p>
+<ul>
+<li>No public standard from Apple (only SDK), need to dig further to see</li>
+<li>Compatibility, how can we make the photo compatitable with as much monitor and system as possible</li>
+<li>Tone mapping algorithm, not sure how difficult it is or could the tone mapping be generalized</li>
+</ul>
+<h2 id="Project">6. Project</h2><p>Input: Raw image+Config file(Optional, Maybe edited in other software like Lightroom, Rawtherapee)</p>
+<p>Operation: Use GUI manipulate the brightness level, or AUTO mode</p>
+<p>Output: HDR content ready to display on desired platform</p>
+<ul>
+<li>Maybe 10bit HEIC image like iPhone camera did</li>
+</ul>
+<p>Basic Function:</p>
+<ul>
+<li>Image conversion</li>
+<li>Image display</li>
+<li>Color management (wide color gamut display)</li>
+<li>Color space conversion on HDR display</li>
+<li>Bit depth conversion</li>
+<li>Tone mapping</li>
+</ul>
+<h2 id="Question">7. Question</h2><p>How OS render images？</p>
+<h2 id="Summarize">8. Summarize</h2><ul>
+<li><strong>Problem Statement</strong>: Clearly define the problem this project aims to address. What challenges in HDR imaging are we trying to overcome? What value does our solution bring?</li>
+<li><strong>Project Scope</strong>: Outline what the project will and won’t cover, helping the team stay focused on core objectives.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/indus-analy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1589,104 +1728,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/small-claim-court/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/small-claim-court/" class="post-title-link" itemprop="url">File Small Court Claim Against Landlord</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-07-08 12:23:00" itemprop="dateCreated datePublished" datetime="2023-07-08T12:23:00-07:00">2023-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>The apartment charge 2400 for painting</p>
-<p>It’s un-reasonable</p>
-<h2 id="Process">2. Process</h2><ol>
-<li><strong>Determine Who to Sue</strong></li>
-<li><strong>Send a Demand Letter (optional but recommended)</strong></li>
-<li><strong>File Your Case</strong></li>
-<li><strong>Serve the Defendant</strong></li>
-<li><strong>Go to Court</strong></li>
-<li><strong>Collect Your Money</strong></li>
-</ol>
-<p>I hope this email finds you well.</p>
-<p>In accordance with California Civil Code §1950.5, I am formally requesting the return of my security deposit that I believe has been improperly withheld following my vacating the premises at 833 W El Camino Real, Sunnyvale, CA on June 12, 2023.</p>
-<p>Please find attached a letter detailing my concerns regarding an excessive $2400 charge for repainting the apartment, and the lack of an appropriately itemized statement describing the work performed, the time spent, and the reasonable hourly rate charged.</p>
-<p>The letter outlines the steps I am prepared to take if we are unable to resolve this dispute, including pursuing a small claims action.</p>
-<p>I am open to discussion in order to reach a fair resolution to this matter. I kindly ask you to review the attached letter and provide me with your feedback at your earliest convenience.</p>
-<p>I appreciate your prompt attention to this matter.</p>
-<p>Best regards,1</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1756,7 +1797,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

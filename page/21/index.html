@@ -188,6 +188,180 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/3d-reconstruction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/3d-reconstruction/" class="post-title-link" itemprop="url">3D Reconstruction with Meshroom</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-14 14:38:00" itemprop="dateCreated datePublished" datetime="2021-12-14T14:38:00-08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Meshroom">1. Meshroom</h2><blockquote>
+<p>Photogrammetry is the science of making measurements from photographs. It infers the geometry of a scene from a set of unordered photographies or videos. Photography is the projection of a 3D scene onto a 2D plane, losing depth information. The goal of photogrammetry is to reverse this process.</p>
+<p>The dense modeling of the scene is the result yielded by chaining two computer vision-based pipelines:<br>“Structure-from-Motion” (SfM) and “Multi View Stereo” (MVS).</p>
+</blockquote>
+<h2 id="Pipeline">2. Pipeline</h2><ol>
+<li>Feature extraction</li>
+<li>Goal: extract feature points</li>
+<li>Method: SIFT</li>
+<li>Image matching</li>
+<li>Goal: find images looking to the same area, then we can reduce computation</li>
+<li>Method: Vocabulary tree approach</li>
+<li>Feature matching</li>
+<li>Goal: match feature points between candidate image pairs</li>
+<li>Method: calculate distance and use RANSAC</li>
+<li>Structure from Motion (SFM)</li>
+<li>Goal: compute the pose of each images</li>
+<li>Methods:</li>
+<li>Fuse all matched feature point pairs</li>
+<li>Choose the best initial image pair</li>
+<li>Compute the fundamental matrix</li>
+<li>Using PnP to calculate the pose</li>
+<li>Filter the results using Bundle Adjustment</li>
+<li>Depth Maps Estimation</li>
+<li>Goal: get the depth value of each pixel</li>
+<li>Method: Semi-Global Matching</li>
+<li>Meshing</li>
+<li>Goal: create geometric surface representation of the scene</li>
+<li>Method:</li>
+<li>Fuse all depth maps into global octree</li>
+<li>Perform 3D Delaunay tetrahedralization (四面体化), then voting</li>
+<li>Graph cut Max-Flow, optimally cut the volume</li>
+<li>Texturing</li>
+<li>Goal: texture the generated mesh</li>
+<li>Method:</li>
+<li>Compute UV maps</li>
+<li>For each triangle, use the color of each candidate to estimate</li>
+</ol>
+<h2 id="Data-Acquisition">3. Data Acquisition</h2><p>Goal: Clear images from different angles</p>
+<p>Camera setting</p>
+<ul>
+<li>Fixed <strong>low</strong> ISO (low noise)</li>
+<li>Fixed <strong>high</strong> shutter speed (less then 1&#x2F;100s, no blur)</li>
+<li>Fixed <strong>long</strong> focal length (everything is in focus)</li>
+<li>Fixed white balance  (stable image color for feature matching)</li>
+<li>Enough lighting (so that we can keep low iso and high shutter speed)</li>
+</ul>
+<p>Move:</p>
+<ul>
+<li><p>Camera fixed, object move</p>
+</li>
+<li><p>will need a spin base</p>
+</li>
+<li><p>keep the background pure color</p>
+</li>
+<li><p>Camera move, object fixed</p>
+</li>
+<li><p>Shot around the object (360 degree)</p>
+</li>
+<li><p>In each spot, shot from 3 different heights</p>
+</li>
+</ul>
+<p>Illustration:</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-15-17-16.png" alt="Whiteboard_20211214T151703"></p>
+<h2 id="Results">4. Results</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021-12-14-16-39-18.gif" alt="2021-12-14-16-39-18"></p>
+<p>The final results of Meshroom is pretty unstable</p>
+<ul>
+<li>In many cases, even high quality images dataset can not generate satisfied results</li>
+<li>However, when the algorithm works, it can generate detailed mesh and texture.</li>
+</ul>
+<h2 id="Discussion">5. Discussion</h2><p>Why performs bad?</p>
+<p>I think the main reason is the object itself. For the leaf object, it has a few features that make the algorithm doesn’t work</p>
+<ul>
+<li>The leaf is so thin. It’s hard to generate a plane using point cloud</li>
+<li>The leaf is semi-transparent, it will look differently from different angle</li>
+<li>The leaf skin is so smooth that would generate reflection</li>
+</ul>
+<p>How to solve the problem? (Possible solution)</p>
+<ul>
+<li>Using laser to generate point cloud (to capture textureless feature)</li>
+<li>Create great lighting system, try to avoid reflection and semi-transparent situation</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Rotation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1228,121 +1402,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/" class="post-title-link" itemprop="url">相机模型求解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-01 10:22:00" itemprop="dateCreated datePublished" datetime="2021-07-01T10:22:00-07:00">2021-07-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-问题描述">1. 1 问题描述</h2><p>在已经有了相机模型和已知圆的3个特征点的世界坐标及其像素坐标的情况下，我们可以用数值求解的方式求解出相机的位姿。</p>
-<p>假设世界坐标系的圆点为圆心</p>
-<h2 id="2-约束条件">2. 2 约束条件</h2><p>已知相机模型<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>是相机的内参矩阵，是一个固定的矩阵，因此可以放到等式左边，化简方程<br>$$<br>Z_{c}S^{-1}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S^{-1}&#x3D;\displaystyle \left[\begin{matrix}\frac{\mu}{f} &amp; 0 &amp; - \frac{C_{x} \mu}{f}\0 &amp; \frac{\mu}{f} &amp; - \frac{C_{y} \mu}{f}\0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>（4）中的RT矩阵用四元数的表达方式可以写成<br>$$<br>\displaystyle \left[\begin{matrix}- 2 y^{2} - 2 z^{2} + 1 &amp; - 2 w z + 2 x y &amp; 2 w y + 2 x z &amp; - T_{x} \left(- 2 y^{2} - 2 z^{2} + 1\right) - T_{y} \left(- 2 w z + 2 x y\right) - T_{z} \left(2 w y + 2 x z\right)\2 w z + 2 x y &amp; - 2 x^{2} - 2 z^{2} + 1 &amp; - 2 w x + 2 y z &amp; - T_{x} \left(2 w z + 2 x y\right) - T_{y} \left(- 2 x^{2} - 2 z^{2} + 1\right) - T_{z} \left(- 2 w x + 2 y z\right)\- 2 w y + 2 x z &amp; 2 w x + 2 y z &amp; - 2 x^{2} - 2 y^{2} + 1 &amp; - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)\0 &amp; 0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>四元数的各个数值约束为<br>$$<br>w^2+x^2+y^2+z^2&#x3D;1<br>$$</p>
-<h3 id="2-1-圆心特征点">2.1. 2.1 圆心特征点</h3><p>考虑世界坐标系圆心坐标 $P(0,0,0)$，像素坐标$p_0$</p>
-<p>对应缩放<br>$$<br>Zc&#x3D;\displaystyle - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_0&#x3D;\left[\begin{array}{l}<br>-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
-<h3 id="2-2-X方向直径端点">2.2. 2.2 X方向直径端点</h3><p>考虑世界坐标系X方向直径端点 $P(L,0,0)$，像素坐标$p_x$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(- 2 w y + 2 x z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_x&#x3D;\left[\begin{array}{c}<br>L\left(-2 y^{2}-2 z^{2}+1\right)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L(2 w z+2 x y)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right.<br>$$</p>
-<p>###2.3 Y方向直径端点</p>
-<p>考虑世界坐标系X方向直径端点$P(0,L,0)$，像素坐标$p_y$</p>
-<p>对应缩放<br>$$<br>Z_c&#x3D;\displaystyle L \left(2 w x + 2 y z\right) - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_y&#x3D;\left[\begin{array}{c}<br>L(-2 w z+2 x y)-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>L\left(-2 x^{2}-2 z^{2}+1\right)-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
-<h3 id="2-4-总结">2.3. 2.4 总结</h3><p>综上，(6)(8)(10)(12)中共有7个方程</p>
-<p>已知的是$L,f,\mu,p_0,p_x,p_y,C_x,C_y$</p>
-<p>未知数$T_x,T_y,T_z,w,x,y,z$</p>
-<p>共有7个方程，7个未知数，因此可以求解</p>
-<h2 id="3-代码实现">3. 3 代码实现</h2><p>主要是用了scipy中的fsolve函数进行数值求解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">xx</span>):</span><br><span class="line">T_x, T_y, T_z,  x, y, z, w = xx</span><br><span class="line">p0x = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y * \</span><br><span class="line">(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z)</span><br><span class="line">p0y = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> -</span><br><span class="line"><span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z)</span><br><span class="line">Z_p0 = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line">pxx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">pxy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) + <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">Z_px = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) - <span class="number">2</span>*w*y + <span class="number">2</span>*x*z</span><br><span class="line">pyx = -T_x*(-<span class="number">2</span>*y**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - T_y*(-<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - \</span><br><span class="line">T_z*(<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - <span class="number">2</span>*w*z + <span class="number">2</span>*x*y</span><br><span class="line">pyy = -T_x*(<span class="number">2</span>*w*z + <span class="number">2</span>*x*y) - T_y*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span>) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - <span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*z**<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">Z_py = -T_x*(-<span class="number">2</span>*w*y + <span class="number">2</span>*x*z) - T_y*(<span class="number">2</span>*w*x + <span class="number">2</span>*y*z) - \</span><br><span class="line">T_z*(-<span class="number">2</span>*x**<span class="number">2</span> - <span class="number">2</span>*y**<span class="number">2</span> + <span class="number">1</span>) + <span class="number">2</span>*w*x + <span class="number">2</span>*y*z</span><br><span class="line"><span class="keyword">return</span> [p0x/Z_p0-pixels[<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">p0y/Z_p0-pixels[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">pxx/Z_px-pixels[<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">pxy/Z_px-pixels[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">pyx/Z_py-pixels[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">pyy/Z_py-pixels[<span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">w**<span class="number">2</span>+x**<span class="number">2</span>+y**<span class="number">2</span>+z**<span class="number">2</span>-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> fsolve</span><br><span class="line">guess = [<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.1</span>]</span><br><span class="line">ans = fsolve(func, guess)</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-实验结果">4. 4 实验结果</h2><p>fsolve的参数包括一个函数和一个初始值，因为是数值求解，所以只能求出一个解，但实际上有多组解（其中只有一组解是真的）</p>
-<p>每次计算在2ms左右(个人电脑)</p>
-<p>这里设置多个初始值的（x,y），达到近似遍历的效果，在实际可能的范围内将答案求解</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2021%2007%2001%2011%2023%2021.png" alt="image-20210701112318068"></p>
-<p>可以看到，解中包含了真实答案，但也有许多其他答案，需要后续进行继续分析排除</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1412,7 +1471,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">358</span>
+          <span class="site-state-item-count">359</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
