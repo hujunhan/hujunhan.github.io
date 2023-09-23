@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/dropout_compare.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/dropour-neural.png">
 <meta property="article:published_time" content="2018-12-30T08:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-21T04:39:37.078Z">
+<meta property="article:modified_time" content="2023-09-23T17:15:02.486Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="paper">
 <meta property="article:tag" content="notes">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:15:02" itemprop="dateModified" datetime="2023-09-23T10:15:02-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,8 +264,6 @@
 
       
         <h2 id="Abstract">1. Abstract</h2><p>深度神经网络有很多参数因而威力巨大。但是过大的神经网络使得过拟合成为了一个非常严重的问题。Dropout是解决这个问题的一个方法。其主要思想是在训练过程中随机舍弃一些单元，而验证这种方法效果的方式也很简单：通过和不经过Dropout，而大小与经过Dropout的模型相近的神经网络模型进行对比。通过实验，这种方法能够很好地防止过拟合，并且和目前的一些正则化方法相比有了明显的提升。</p>
-<span id="more"></span>
-
 <h2 id="Introduction">2. Introduction</h2><p>深度神经网络包含了许多非线性隐藏层，这使得深度神经网络变得有很强的表达性，也就是说其可以学习输入和输出之间的复杂的关系。</p>
 <p>但是当训练数据有限的时候，可能部分关系是从采样噪声学到的，这些关系在训练集中存在但在实际的测试数据中不存在。这就导致了过拟合。</p>
 <p>减少过拟合的方法包括，验证集上的性能开始下降时尽快停止训练，为权重引入L1&#x2F;L2正则惩罚项。</p>

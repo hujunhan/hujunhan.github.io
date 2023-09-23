@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
+  <meta name="description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩   只有左右两根电机线决定了电机转速 因此控制施加在两边的电压大小和极性就可以实现调试和换向 中间四根线都是编码器测速用的  2. 编码器的使用编码器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="直流电机的控制">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/TB6612motor/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩">
+<meta property="og:description" content="1. 直流电机的结构与原理(编码器)+定子+转子+电刷+(减速器) 在电刷上施加直流电压U，施加洛伦兹力，不断重复 一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。 减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩   只有左右两根电机线决定了电机转速 因此控制施加在两边的电压大小和极性就可以实现调试和换向 中间四根线都是编码器测速用的  2. 编码器的使用编码器">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/motor.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/encoder.png">
 <meta property="article:published_time" content="2019-07-06T22:53:00.000Z">
-<meta property="article:modified_time" content="2023-09-21T04:39:37.088Z">
+<meta property="article:modified_time" content="2023-09-23T17:14:54.409Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="hardware">
 <meta property="article:tag" content="motor">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,8 +269,6 @@
 <p>一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。</p>
 <p>减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/motor.png"></p>
-<span id="more"></span>
-
 <ul>
 <li>只有左右两根电机线决定了电机转速</li>
 <li>因此控制施加在两边的电压大小和极性就可以实现调试和换向</li>

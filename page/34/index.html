@@ -331,7 +331,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -368,6 +368,21 @@
       
           <h2 id="1-Introduction">1. 1 Introduction</h2><h3 id="1-1-What-is-a-Decision-Tree">1.1. 1.1 What is a Decision Tree</h3><p>A tree shaped  supervised learning algorithm</p>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/decision-tree.png" alt="decision-tree"></p>
+<p>Problem setting:</p>
+<ul>
+<li>Set of possible instances $X$</li>
+<li>each instance $x$ in $X$  is a feature vector $x &#x3D; &lt; x _{ 1 } , x_ { 2 } \ldots x _ { n } &gt;$</li>
+<li>Unknown target function $f : X \rightarrow Y$</li>
+<li>Set of function hypotheses $H &#x3D; { h | h : X \rightarrow Y }$</li>
+</ul>
+<p>Input:</p>
+<ul>
+<li>Training examples $\left{ &lt; x ^ { ( i ) } , y ^ { ( i ) } &gt; \right}$</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Hypothesis $h \in H$ that best approximates target function $f$</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-DTree/#more" rel="contents">
@@ -425,7 +440,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,6 +476,32 @@
 
       
           <h2 id="1-Introduction">1. 1 Introduction</h2><p>Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as <em><strong>frequentist statistics</strong></em></p>
+<ul>
+<li>An experiment with an <strong>infinite</strong> number of trials guarantees $p$ with <strong>absolute</strong> accuracy</li>
+<li>It’s <strong>not practial</strong> to conduct an experiment with an <strong>infinite</strong> number of trials</li>
+<li>deciding the value of this sufficient number of trials is a <strong>challenge</strong></li>
+<li>If we can determine the <em><strong>confidence</strong></em> of the estimated $p$ , it will allow us to decide whether to</li>
+<li><strong>accept</strong> the conclusion</li>
+<li><strong>extend</strong> the experiment with more trials until it achieves sufficient confidence</li>
+<li><em><strong>prior beliefs</strong></em>   (for example, coins are usually fair and the coin used is not made biased intentionally, therefore $p≈0.5$)</li>
+<li>play a significant role in shaping the outcome of a hypothesis test</li>
+<li>However, it &#x3D;&#x3D;can’t&#x3D;&#x3D; be used along with <em>frequentist statistics</em></li>
+</ul>
+<h2 id="2-Bayesian-Learning">2. 2 Bayesian Learning</h2><p>Consider the flip coin experiment, if you flip the coin $10$  times, there are 2 case:</p>
+<ul>
+<li><p>5 heads and 5 tails</p>
+</li>
+<li><p>more confidence about that $p&#x3D;0.5​$</p>
+</li>
+<li><p>$x$ head and $10-x$ tails</p>
+</li>
+</ul>
+<p>Now you have 2 options</p>
+<ul>
+<li><em>frequentist statistics</em> :Neglect prior beliefs, just based on data</li>
+<li><em>Bayesian Learning</em> :Adjust your belief according to observation</li>
+</ul>
+<h3 id="2-1-Bayes’-Theorem">2.1. 2.1 Bayes’ Theorem</h3><p>Bayes’ theorem<br>$$<br>P ( \theta | X ) &#x3D; \frac { P ( X | \theta ) P ( \theta ) } { P ( X ) }<br>$$</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-BayesianLearning/#more" rel="contents">
@@ -518,7 +559,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -555,6 +596,20 @@
       
           <h2 id="1-Introduction">1. 1 Introduction</h2><p><strong>How</strong> machine can learn from data?</p>
 <p>First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.</p>
+<p><strong>Most</strong> simple algorithms: <strong>Find-S</strong></p>
+<h2 id="2-What-is-Concept-Learning">2. 2 What is Concept Learning</h2><blockquote>
+<p>“The problem of searching through a predefined space of potential hypotheses for the hypothesis that best fits the training examples.”</p>
+<p>​       — Tom Michell</p>
+</blockquote>
+<p>Human learning: acquiring general concepts from past experiences.</p>
+<p>Machine learning: find a hypothesis that best fits the training example.</p>
+<p>Notaion:</p>
+<ul>
+<li>target concept $c$</li>
+<li>object $X$</li>
+<li>all hypothesis set $H$</li>
+<li>$c : X \to { 0,1 }$</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-ConceptLearning/#more" rel="contents">
@@ -612,7 +667,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -653,11 +708,29 @@
       
           <h2 id="1-命名规则">1. 1 命名规则</h2><p><strong>STM32F103C8T6</strong></p>
 <ul>
-<li>STM：基于ARM®的32位微控制器</li>
-<li>F：通用类型</li>
-<li>103：增强型</li>
-<li>C：48脚</li>
+<li><p>STM：基于ARM®的32位微控制器</p>
+</li>
+<li><p>F：通用类型</p>
+</li>
+<li><p>103：增强型</p>
+</li>
+<li><p>C：48脚</p>
+</li>
+<li><p>8：64K字节的闪存存储器</p>
+</li>
+<li><p>T：LQFP封装</p>
+</li>
+<li><p>6：工业级温度范围，-40°C~85°C</p>
+</li>
 </ul>
+<h2 id="2-RCC">2. 2 RCC</h2><p><strong>R</strong>eset and <strong>C</strong>lock <strong>C</strong>ontrol——复位和时钟控制</p>
+<h3 id="2-1-复位">2.1. 2.1 复位</h3><p>三种不同方式，影响的区域不同</p>
+<ul>
+<li>系统复位：除时钟控制器寄存器中的复位标志位和备份区域</li>
+<li>上电复位：除备份区域</li>
+<li>备份区域复位：只影响备份区域</li>
+</ul>
+<h3 id="2-2-时钟">2.2. 2.2 时钟</h3><p>三种不同的时钟来源，用来驱动系统时钟</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/STM32/STM32-Basics/#more" rel="contents">
@@ -715,7 +788,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -760,6 +833,20 @@
 <li>以<code>A</code>为目的操作数的指令会影响<code>Parity</code></li>
 <li><code>Rn</code>与<code>Rn</code>、<code>Rn</code>与<code>@Ri</code>、<code>@Ri</code>与<code>@Ri</code>不能同时出现在指令的源、目的操作数中。</li>
 </ol>
+<p>操作数的表现形式</p>
+<ul>
+<li><strong>内部RAM：<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code></strong></li>
+<li><strong>外部RAM：<code>@DPTR</code>、<code>@Ri</code></strong></li>
+<li><strong>ROM：<code>@A+DPTR</code>、<code>@A+PC</code></strong></li>
+</ul>
+<h2 id="2-数据传送指令">2. 2 数据传送指令</h2><p>除以累加器<code>A</code>为目的操作数的数据传送指令对P标志位有影响外，其余数据传送指令均不影响标志位。</p>
+<h3 id="2-1-内部RAM">2.1. 2.1 内部RAM</h3><ul>
+<li><strong>MOV</strong></li>
+<li>在<code>A</code>、<code>Rn</code>、<code>@Ri</code>、<code>direct</code>、<code>#data</code>之间互传</li>
+<li>除了*<code>Rn</code>之间<em>、</em><code>Rn</code>与<code>@Ri</code>之间<em>、</em><code>@Ri</code>之间*</li>
+<li><code>direct</code>可以自己传自己</li>
+</ul>
+<h3 id="2-2-外部RAM">2.2. 2.2 外部RAM</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/8051/8051-Instructions/#more" rel="contents">
@@ -817,7 +904,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -859,6 +946,27 @@
           <h2 id="1-Embedded-System-Introduction">1. 1 Embedded System Introduction</h2><blockquote>
 <p>An embedded system is a microcontroller or microprocessor based system which is designed to perform a specific task</p>
 </blockquote>
+<h3 id="1-1-Architecture">1.1. 1.1 Architecture</h3><ul>
+<li><strong>Von Neumann</strong>: data and code lie in the <strong>same</strong> memory blocks</li>
+<li><strong>Harvard</strong>:             data and code lie in <strong>different</strong> memory blocks</li>
+</ul>
+<h3 id="1-2-Instruction-Set">1.2. 1.2 Instruction Set</h3><ul>
+<li>CISC: Easy to use, higher clock cycle</li>
+<li>RISC: Hard to use, lower clock cycle</li>
+</ul>
+<h2 id="2-8051-Introduction">2. 2 8051 Introduction</h2><p>In 1981, Intel introduced an <strong>8-bit</strong> microcontroller called the <strong>8051</strong>.</p>
+<ul>
+<li>128 bytes of <strong>RAM</strong></li>
+<li>4K byte of on-chip <strong>ROM</strong></li>
+<li>Max 64K at all because <code>PC</code> is 16-bit : (0000 to FFFF address)</li>
+<li>two <strong>timers</strong></li>
+<li>4 <strong>ports</strong> (8-bit wide)</li>
+<li>3 internal and 2 external <strong>Interrupts</strong></li>
+<li>Family Member</li>
+<li>8052: 8K ROM, 256 byte RAM, 3 Timer</li>
+<li>8031: 0K ROM, 128 byte RAM, 2 Timer</li>
+</ul>
+<h3 id="2-1-Registers">2.1. 2.1 Registers</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/8051/8051-Basics/#more" rel="contents">
@@ -916,7 +1024,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -956,15 +1064,7 @@
 <h3 id="Null-Space-x3D-N-A">1.2. Null Space &#x3D; $N(A)$</h3><p>$$<br>A v&#x3D;\left[\begin{array}{l}<br>0 \<br>0<br>\end{array}\right]<br>$$</p>
 <p>In this situation<br>$$<br>v&#x3D;\left[\begin{array}{l}<br>1 \<br>-2 \<br>1<br>\end{array}\right]<br>$$<br>is the null vector, prependicular line</p>
 <h3 id="Column-Space-x3D-C-A">1.3. Column Space &#x3D; $C(A)$</h3><p>The column space the whole space</p>
-<h3 id="Left-Space-x3D-N-A-T">1.4. Left Space &#x3D;$N(A^T)$</h3><h2 id="Vectors">2. Vectors</h2><p>$$<br>\boldsymbol { v } &#x3D; \left( v _ { x } , v _ { y } , v _ { z } \right)<br>$$</p>
-<ul>
-<li><p>length of a vector</p>
-</li>
-<li><p>p-norm: $| v | _ { p } &#x3D; \left( \sum _ { i &#x3D; 1 } ^ { n } \left| v _ { i } \right| ^ { p } \right) ^ { 1 &#x2F; p }$</p>
-</li>
-<li><p>Euclidean length: $p&#x3D;2$</p>
-</li>
-</ul>
+<h3 id="Left-Space-x3D-N-A-T">1.4. Left Space &#x3D;$N(A^T)$</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/Math-LinearAlgebra/#more" rel="contents">
@@ -1022,7 +1122,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1061,6 +1161,18 @@
 <p>A process that transforms one or more input images into an output image.</p>
 </blockquote>
 <p>Main purpose: <strong>enhance</strong> an image for <em>human</em> viewing</p>
+<p>A image is just a matrix.</p>
+<ul>
+<li>Value: <code>uint8</code> ,[0-255] (from darkest to brightest)</li>
+<li>if use complex algorithms, may use floating-point numbers</li>
+<li>Descibe: width $\times$ height</li>
+</ul>
+<h2 id="2-Useful-Algorithms">2. 2 Useful Algorithms</h2><blockquote>
+<p>Histogram: the number of times each pixel value occurs.</p>
+</blockquote>
+<p>If a picture was under-exposed, the histogram would shift to the left.</p>
+<p>Find peak in <em>nearby</em> x value:</p>
+<h2 id="3-Monadic-amp-Diadic-Operations">3. 3 Monadic &amp; Diadic Operations</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-Image/#more" rel="contents">
@@ -1118,7 +1230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1156,6 +1268,16 @@
           <h2 id="1-Introduction">1. 1 Introduction</h2><blockquote>
 <p>The light that reaches the eye,or the camera, is a function of the illumination impinging on the scene and the material property known as reflectivity.</p>
 </blockquote>
+<h2 id="2-Light">2. 2 Light</h2><p>Each color is a single frequency or wavelength of electro-magnetic radiation.We perceive the wavelengths between 400 and 700 nm as different colors.</p>
+<p>In general, the light we observe can be represented as a function $E(\lambda)$ ,$\lambda$ is the wavelength. This is a function about **power **related to</p>
+<ul>
+<li>source temperature $T$ (e.g. 4700K)</li>
+<li>Planck’s constant $h$ , Boltzmann’s constant $k$, speed of light $c$</li>
+<li>……</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/black-body-power.png" alt="black-body-power"></p>
+<h3 id="2-1-Absorption">2.1. 2.1 Absorption</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/earth-spectrum.png" alt="earth-spectrum"></p>
+<p>Spectrum will be changed (be absorbed)</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Rootics-Vison%20foundation/#more" rel="contents">

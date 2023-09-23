@@ -462,7 +462,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -578,7 +578,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -629,6 +629,23 @@
 <li>Compositionality</li>
 <li>Traps</li>
 </ul>
+<h2 id="Model-Hybrid-Automata">2. Model: Hybrid Automata</h2><p>This is a finite state machine.</p>
+<ul>
+<li>Dynamics: $\dot x&#x3D;f_q(x,u)$, $q$ stand for discrete state</li>
+<li>when $x$ is in the guard conditions, state $q$ change</li>
+<li>Reset  the state</li>
+</ul>
+<blockquote>
+<p>A Simple 2-Mode System<br>$$<br>\begin{aligned}<br>&amp;\dot{x}&#x3D;A_{1} x&#x3D;\left[\begin{array}{cc}<br>-\epsilon &amp; 1 \<br>-2 &amp; -\epsilon<br>\end{array}\right] x\<br>&amp;\dot{x}&#x3D;A_{2} x&#x3D;\left[\begin{array}{cc}<br>-\epsilon &amp; 2 \<br>-1 &amp; -\epsilon<br>\end{array}\right] x<br>\end{aligned}<br>$$</p>
+<p>$$<br>eig(A_i)&#x3D;-\epsilon+1.41i<br>$$</p>
+<p>Both two system is stable.</p>
+<p>Now we combine them with a hybrid automata</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011603.png" alt="image-20200508011600344" style="zoom: 25%;">
+
+<p>But what if we change the automata</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200508011936.png" alt="image-20200508011934625" style="zoom:25%;">
+</blockquote>
+<p>Punchlines</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/5-hybrid-systems/#more" rel="contents">
@@ -883,7 +900,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 01:19:24" itemprop="dateModified" datetime="2023-09-23T01:19:24-07:00">2023-09-23</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -941,6 +958,7 @@
 <li>It’s a science and art of <strong>picking</strong> the eigenvalue</li>
 <li>No clear-cut answer</li>
 </ul>
+<h2 id="Controllability">2. Controllability</h2><p>The key matter here is the $B$ matrix, how <em>rich</em> is $B$ that we can control the system.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/4-control-design/#more" rel="contents">
@@ -1104,7 +1122,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 01:18:59" itemprop="dateModified" datetime="2023-09-23T01:18:59-07:00">2023-09-23</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1154,6 +1172,7 @@
 <p>$$<br>\dot{x}&#x3D;\left[\begin{array}{c}<br>\dot{x}<em>{1} \<br>\dot{x}</em>{2}<br>\end{array}\right]&#x3D;\left[\begin{array}{c}<br>x_{2} \<br>u<br>\end{array}\right]&#x3D;\left[\begin{array}{cc}<br>0 &amp; 1 \<br>0 &amp; 0<br>\end{array}\right]\left[\begin{array}{c}<br>x_{1} \<br>x_{2}<br>\end{array}\right]+\left[\begin{array}{c}<br>0 \<br>1<br>\end{array}\right] u<br>$$</p>
 <p>$$<br>y&#x3D;p&#x3D;x_1&#x3D;[1 \space0]x<br>$$</p>
 <p>Write in a more <strong>general</strong> form<br>$$<br>\begin{aligned}<br>&amp;\dot{x}&#x3D;A x+B u\<br>&amp;y&#x3D;C x<br>\end{aligned}<br>$$<br>Here, $A$ is given by physics. What we can design is $B$ (how we control the system) and $C$ (how we sensor the system)</p>
+<h2 id="State-Space-Models-amp-Linearization">2. State-Space Models &amp; Linearization</h2><p>We need know how the system works, then we can model it using physics</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/3-linear-system/#more" rel="contents">
@@ -1211,7 +1230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 01:18:43" itemprop="dateModified" datetime="2023-09-23T01:18:43-07:00">2023-09-23</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1265,6 +1284,10 @@
 <li>obstacles-avoid</li>
 <li>line-follow</li>
 </ul>
+<h2 id="Robot-Model-–-Differential-Drive-Robots">2. Robot Model –  Differential Drive Robots</h2><p>This is a very common type</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20200408010709.png" alt="image-20200408010708398"></p>
+<p>we need to know some basic parameter $L$ , $R$, easy to measure</p>
+<p>What we <strong>can</strong> control: $v_r$ and $v_l$</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/MobileRobots/2-mobile-robots/#more" rel="contents">

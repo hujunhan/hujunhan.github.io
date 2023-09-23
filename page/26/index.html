@@ -321,7 +321,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,6 +359,13 @@
           <h1 id="信号与系统">1. 信号与系统</h1><p>上一章主要的目的就是如何构建<strong>复杂</strong>系统, 主要是和编程有关, 已经是抽象过一次了, 不需要了解物理层面的问题. 这种状态机的方式有一个问题就是有时候系统太过于复杂, 以至于我们必须要实际运行系统然后再看看实际发生了什么</p>
 <p>这一章, 主要介绍的是如何对物理系统建模和控制, 也就是比上一级更加low-level的内容, LTI, 通过一个模型, 将一些输出$x(t)$转化成输出$y(t)$, 因为系统是离散的, 所以我们可以用差分方程或者方块图来表示这个系统, 然后教授通过一个简单的例子说明了为什么差分方程可以变成简单的代数形式(因为比如一个右移<strong>算符Operator</strong>就可以表示差分), 这让学生在直观上了解了差分方程表示法的优点(容易转换成简单的计算相比于差分方程, 表达又很简介相比于方块图).</p>
 <p>如果有反馈的话, 会出现算符作为分母的形式, 我们可以用无穷级数来表示, 比如<br>$$<br>\frac{1}{1+2R}&#x3D;1-2R+4R^2-8R^3 \cdots<br>$$<br>这也解释了为什么有反馈的滤波器是无线脉冲响应的(IIR)</p>
+<blockquote>
+<p>现在我能明白这是Top-Down的教学或者学习方式, 我最早接触这种学习方式是在学习计算机网络时使用的教科书: “计算机网络: 自顶向下的方法”, 当时读的时候就觉得非常舒服, 很自然, 先知道目的, 然后逐渐了解一些底层的实现细节. 对我来说这是更加高效的方式(相比于Bottom-Up). 先学电子电路, 物理, 直到大二下才有机器人导论, 到玉泉再学机器人的设计与实践, 在这样的学习过程中我有很长一段时间不知道自己学的东西有什么用, 只是单纯的从理论到实践的过程.</p>
+<p>老师的水平和授课质量就不说了, 差距太大, 对知识的理解完全不在一个层次上.</p>
+</blockquote>
+<h2 id="1-基础知识">2. 1 基础知识</h2><p>LTI, 前馈, 反馈之类的</p>
+<h3 id="助教课-LTI动机与表示">2.1. 助教课 LTI动机与表示</h3><p>主要应用在控制系统中, 是为了通过建模预测系统之后的输出</p>
+<h2 id="2-预测系统行为">3. 2 预测系统行为</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/EECS-3/#more" rel="contents">
@@ -416,7 +423,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -459,6 +466,16 @@
 <li>概率与规划</li>
 </ul>
 <p>整个课程的目的是让学生能够appreciate工程中的抽象和设计, 能够理解数学模型的重要性, 并利用建模来解决问题, 并给学生一些实验课程来体验四个专题中的内容</p>
+<blockquote>
+<p>我觉得对于刚入学的本科生来说这一门非常好的课程, 让学生了解到专业中真正重要的东西和所要解决问题的本质, 可能任何一个工科的学生都可以学习一下. 我大一时没有意识去主动接触这些优秀的, 真正为学生着想的公开课, 真是非常可惜. 虽然其中一些能力也在实践或者课程中慢慢学到了, 但我相信一个优秀的导论课程会让整个大学时期都少点迷茫, 多点实践.</p>
+</blockquote>
+<h2 id="2-模块化-抽象与建模">3. 2 模块化, 抽象与建模</h2><p>为什么要抽象和模块化? 这在数学\工程\计算机中都有很多应用</p>
+<ol>
+<li>因为要处理的东西很复杂</li>
+<li>人处理复杂性的能力较弱</li>
+<li>分而治之</li>
+</ol>
+<p>想象一个例子: 要造一个轮式机器人, 运动到离灯泡一定距离时停止移动. 这其中就会用到光敏电阻来检测到灯泡的距离, 但是课中不会介绍光敏电阻背后的物理原理, 这其实就是一种抽象了. 在抽象和模块化的过程中, 我们要考虑一些其他的问题</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/EECS-1/#more" rel="contents">
@@ -516,7 +533,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -557,6 +574,25 @@
 </blockquote>
 <p>首先介绍了基础的<strong>PCAP框架</strong>, Primitives, Combination, Abstraction, Patterns. 恰好Python可以方便地实现这个框架</p>
 <p>这个基本的框架是我们们在考虑建模时要经常考虑的问题, <strong>它可以帮助我们设计有用的模型</strong></p>
+<h2 id="1-程序和数据-Low-Level">2. 1 程序和数据(Low Level)</h2><p>介绍了一个程序中的基本结构</p>
+<ul>
+<li>数据</li>
+<li>基本数据</li>
+<li>数据结构, 变量更像是一个指针</li>
+<li>过程</li>
+<li>语句的组合, 可以看成是一个函数</li>
+<li>通过定义函数达到抽象的目的</li>
+<li>对象: 面向对象编程</li>
+<li>对象和实例</li>
+<li>继承</li>
+<li>递归: 确保每次调用时, 工作量会变小. 递归程序分成两部分, <strong>在解释器上用到了递归的思想</strong></li>
+<li>基本情况</li>
+<li>递归情况</li>
+</ul>
+<blockquote>
+<p>虽然用的是Python, 但是其中仍然有指针的概念, 一样能将计算机系统介绍的很清楚, 甚至在本章的后半部分还带学生实现了一个简单的解释器, 既兼顾到了广度(程序设计的基本设计模式), 又实现了深度(解释器的设计), 我觉得光这一节课就顶的上我所上过的<em>C程序设计+面向对象+计算机基础+自学的解释器</em>, 效果也更加好</p>
+</blockquote>
+<h3 id="助教课-函数式编程">2.1. 助教课: 函数式编程</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/EECS-2/#more" rel="contents">
@@ -614,7 +650,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -649,6 +685,15 @@
 <p>我觉得问题本质是技术的发展速度超前了人类的发展水平. 理想情况应该是机器完成大部分重复劳动, 包括体力和脑力上的, 而人类则从事更加具有创造性的工作以及追求个人理想.</p>
 <p>然而现实情况是机器人技术发展迅速, 不同种类不同形态不同目的的机器人都在迅速丰富, 从面向生产的工业机器人, 到面向服务的服务机器人, 还有面向简单脑力活动的机器学习,机器视觉等. 各个国家也都有推动机器人发展的规划, 比如中国的2025, 德国的工业4.0, 都是在加快机器人的实际应用. 但目前的人类发展教育水平远远不足, 大部分人依然从事的是简单重复的工作.</p>
 <p>比如说, 自动化的流水线会对普通工人有哪些影响? 如果所有的简单重复劳动都被机器人所取代, 那缺少一技之长的人应该如何应对? 一个人缺少足够的知识去完成更加高层次的工作, 那么他将无法养活自己与家人? 似乎在物质生产极大丰富之前这类人的生活需要就成了一个值得考虑的伦理问题, 那就是提高生产效率以及个人发展之间的矛盾. 在这样的矛盾下, 我们是否应该继续落实机器人技术? 如果要落实, 那么失业者要怎么办呢.</p>
+<h2 id="1-他山之石">2. 1 他山之石</h2><p>以下内容总结于Nils J. Nilson的<a target="_blank" rel="noopener" href="https://www.aaai.org/ojs/index.php/aimagazine/article/view/433/369">Artificial Intelligence, Employment and Income</a></p>
+<h3 id="1-1-常见观点">2.1. 1.1 常见观点</h3><p>一正一反</p>
+<ul>
+<li>机器人技术就像其他的工程学科如电子电力&#x2F;控制工程&#x2F;机械工程一样虽然消灭了一些岗位但同时也了<strong>大量的就业机会</strong>(比如将现有的一些操作自动化), 并且大大提高人类的效率. 但是也要注意由机器人所创造的财富成果要合适地<strong>分配给需要财富的人</strong>(<em>存疑</em>), 这样才能促进消费和市场</li>
+<li>举例: 发达国家用机器更多, 失业率比落后国家更低</li>
+<li>一项研究(Levin and Rumberger) 表明技术发展其实带来的是工作难度的降低, 比如编程的工作难度相较以前是降低的</li>
+<li>作者对这种观点表示悲观, 他认为机器人技术没有那么大的潜力</li>
+<li>机器人技术发展十分迅速, 即使机器人创造了一些岗位, 这些岗位的工作<strong>也能够被机器人所完成</strong>. 除此之外, 历史表明每次技术的革新都会带来失业率曲线的整体上移</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Politics/robot-society/#more" rel="contents">
@@ -706,7 +751,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -738,6 +783,17 @@
 
       
           <h2 id="动机">1. 动机</h2><p>生活中, 学习中, 我经常会碰到新的知识, 但我从来没有思考过我学习一件事的思维过程是怎样的. 最近碰巧在做毕业设计, 需要学习许多新知识, 再加上一些生活中和别人交流过程中由于思维方式不同造成的误解, 催使我进行深入的思考, 我们到底要怎么说明一件事, 表明自己的观点, 更加有条理地学习一件事</p>
+<h2 id="分析">2. 分析</h2><p>当我了解到一件事情(通过感官, 大部分是视觉, 听觉, 暂时只考虑这两种情况), 大脑将这件事转化成一种描述. 为了避免歧义, 将要讨论的<strong>这件事</strong>定义为<strong>A</strong>.</p>
+<p>当我看到A或者听到A时, A可能存在以下几种情况</p>
+<ul>
+<li>图像</li>
+<li>声音(描述)</li>
+<li>文本描述</li>
+</ul>
+<p>为了能够准确地知道A是什么, 我首先要通过搜索资料或者询问他人等方式知道A在语言中的定义是什么(暂时不考虑人类语言中还没定义的事物), 比如看到一种没见过的水果, 通过询问他人或者查询资料得知是<strong>A$\to$西瓜</strong>. 或者我们先在书中看到或者听别人说了西瓜, 然后通过查询资料得知了西瓜的形态<strong>西瓜$\to$A</strong></p>
+<p>在这一步, 实际上已经完成了一种映射, 就是抽象概念和具体事物的映射, <strong>A$\leftrightarrow$西瓜</strong>, 而所谓的具体事物, 也是一些A的基本属性, 我习惯于将A的图像属性作为第一印象.</p>
+<p>无论A是以什么形式被我们所感知到, 我认为首先要知道的是一个<strong>定义</strong>, 因为有了定义我们才能获取更多的资料来了解它.</p>
+<hr>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Life%20Skill/Personal%20Development/how-to-learn/#more" rel="contents">

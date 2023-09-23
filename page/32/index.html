@@ -323,7 +323,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -374,6 +374,20 @@
 <li>经典SLAM中：路标</li>
 <li><strong>视觉SLAM中</strong>：图像特征（features</li>
 </ul>
+<p><strong>特征点</strong>由两部分组成：</p>
+<ul>
+<li><strong>关键点</strong>：特征点在图像里的位置、朝向、大小</li>
+<li><strong>描述子</strong>：通常是一个向量，描述周围像素的信息</li>
+</ul>
+<p>常见图像特征点：</p>
+<ul>
+<li>SIFT（Scale-Invariant Feature Transform）：运算量大</li>
+<li>FAST：计算快</li>
+<li>ORB（Oriented FAST and Rotated BRIEF）：折中</li>
+<li>关键点为 FAST：如果一个<strong>像素</strong>与它领域的像素差别较大，则更可能是<strong>角点</strong></li>
+<li>描述子为 BRIEF：二进制描述子，关键点附近两个像素的大小关系</li>
+</ul>
+<h3 id="1-2-对极几何-2D-2D">1.2. 1.2  对极几何:2D-2D</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/#more" rel="contents">
@@ -431,7 +445,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -479,6 +493,17 @@
 <li>数学基础，涉及到SLAM概述、矩阵知识、李群知识、非线性优化</li>
 <li>SLAM技术，实践视觉里程计（特征点法、直接法），后端优化，回环检测</li>
 </ol>
+<h2 id="2-SLAM概述">2. 2 SLAM概述</h2><h3 id="2-1-SLAM框架各模块及任务">2.1. 2.1 SLAM框架各模块及任务</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/salm-framework.png"></p>
+<ul>
+<li>VO：视觉里程计，和计算机视觉研究领域相关。根据两张图片确定旋转了多少度、平移了多少厘米。通过VO计算两帧之间的移动，再累加。问题是会有<strong>累计漂移</strong>，需要后端优化和回环检测</li>
+<li>后端优化：降噪，估计整个系统的状态。主要是滤波和非线性优化算法，<strong>优化轨迹</strong></li>
+<li>回环检测：解决累计漂移问题，让机器人<strong>具有识别曾经到达过的场景的能力</strong></li>
+<li>建图，现在常用的是<strong>度量地图</strong>，拓扑地图有待研究</li>
+<li>稀疏：仅表达重要物体，即路标，<em><strong>对定位来说，稀疏地图就够了</strong></em></li>
+<li>稠密：建模所有东西，用于导航ls</li>
+</ul>
+<h3 id="2-2-编程环境">2.2. 2.2 编程环境</h3><p>Ubuntu14.04</p>
+<p>CMake</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-math/#more" rel="contents">
@@ -536,7 +561,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -576,6 +601,16 @@
 <li>Every <em>action</em> in a specific <em>state</em> will have a Q value $Q(s,a)$</li>
 <li>For example, if someone in state $s_1$ have 2 optional action $a_1$ and $a_2$, and $Q(s_1,a_1)&gt;Q(s_1,a_2)$, then this agent will do $a_1$ rather than $a_2$</li>
 </ul>
+<p>Main idea:</p>
+<ol>
+<li>Start with a bad Q-table that will guide our action</li>
+<li>Do action based on Q-table</li>
+<li>Calculate <strong>estimated Q-value</strong> before action and <strong>real Q-value</strong> after action</li>
+<li>Update the Q-table based the error between esti-Q-val and real-Q-val, make the Q-table better for action</li>
+</ol>
+<h2 id="2-Simple-Game">2. 2 Simple Game</h2><h3 id="Q-table">2.1. Q-table</h3><p>index matches states, columns matches actions</p>
+<p>start with 0</p>
+<h3 id="Choose-action">2.2. Choose action</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/RL-QLearning/#more" rel="contents">
@@ -633,7 +668,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -678,6 +713,14 @@
 <li>中间结果分析</li>
 <li>结果讨论</li>
 <li>缺点认识</li>
+</ul>
+<h2 id="2-问题描述及数据定义">2. 2. 问题描述及数据定义</h2><h3 id="2-1-问题描述">2.1. 2.1 问题描述</h3><p>利用KNN算法对iris数据集进行分类，并用训练集的训练结果对测试集进行预测，观察预测效果。</p>
+<p>因为数据集是有标签的，所以这是一个典型的有监督分类问题</p>
+<h3 id="2-2-数据定义">2.2. 2.2 数据定义</h3><p>数据来源：<a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a></p>
+<p>iris数据集中共有3个种类的花，每种花各有50个<em>样本</em>：</p>
+<ul>
+<li>其中一个样本与另外两个样本线性可分</li>
+<li>其中另一个样本与另外两个样本线性不可分</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -736,7 +779,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -780,6 +823,13 @@
 <li>分析数据</li>
 <li>分析问题，分析结果</li>
 </ul>
+<h2 id="2-问题分析">2. 2. 问题分析</h2><h3 id="2-1-问题">2.1. 2.1 问题</h3><blockquote>
+<p>A complex modern semi-conductor manufacturing process is normally under consistent surveillance via the monitoring of signals&#x2F;variables collected from sensors and or process measurement points. However, not all of these signals are equally valuable in a specific monitoring system. The measured signals contain a combination of useful information, irrelevant information as well as noise. It is often the case that useful information is buried in the latter two. Engineers typically have a much larger number of signals than are actually required. If we consider each type of signal as a feature, then feature selection may be applied to identify the most relevant signals. The Process Engineers may then use these signals to determine key factors contributing to yield excursions downstream in the process. This will enable an increase in process throughput, decreased time to learning and reduce the per unit production costs.</p>
+</blockquote>
+<p>简单来说，在半导体加工行业中，我们希望通过流水线上各个传感器的信号来预先判断最后产品合格与否。</p>
+<p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析</p>
+<p>数据来源： <a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/secom">SECOM Data Set</a></p>
+<h3 id="2-2-数据格式定义">2.2. 2.2 数据格式定义</h3><p>数据来自半导体加工工厂，数据来自半导体生产线上的传感器，整体数据已经经过了脱敏的处理，因此无法得知每个属性数据来自哪种，哪一个传感器。数据按时间点记录，1567条数据代表着1567个时间点上生产线上传感器所记录的数据。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/#more" rel="contents">
@@ -837,7 +887,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -876,6 +926,13 @@
 <p>Transfer learning is a machine learning technique where a model trained on one task is re-purposed on a second related task.</p>
 </blockquote>
 <p>For example, if I already have a fine trained model for detecting dog and cat, and now I want to train a model can detect different kinds of dogs, I don’t need to train the model from scratch. Just use the pre-trained model and train the last few layers’ neural.</p>
+<h2 id="2-How-to-use-Transfer-Learning">2. 2 How to use Transfer Learning</h2><p>Two common approaches:</p>
+<ul>
+<li>Develop Model : If you have <strong>large dataset</strong> on a similar problem and willing to train the model <strong>yourself</strong>.</li>
+<li>Pre-trained Model : If you don’t have enough data to train your model so you can download some <strong>pre-trained model</strong> released by some <strong>research institutions</strong>.</li>
+</ul>
+<h2 id="3-When-to-use-Transfer-Learning">3. 3 When to use Transfer Learning</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/transfer-learning.png" alt="transfer-learning"></p>
+
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Transfer/#more" rel="contents">
@@ -933,7 +990,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -973,6 +1030,25 @@
 <blockquote>
 <p>In a nutshell, RL is the study of agents and how they learn by trial and error. It formalizes the idea that rewarding or punishing an agent for its behavior makes it more likely to repeat or forego that behavior in the future.</p>
 </blockquote>
+<p>Learning Types：</p>
+<ul>
+<li>supervised：given x and y, find $f()$</li>
+<li>unsupervised：given x, find $cluster$</li>
+<li>reinforcement：given x and z, find decision $f()$ to generate y</li>
+<li>difference from supervised learning: <strong>delayed</strong> reward that is your movement will affect later world. about <strong>time</strong> and <strong>sequence</strong></li>
+</ul>
+<p>Markov decision process (MDP) :</p>
+<ul>
+<li>states: things described the world</li>
+<li>actions: things you can do</li>
+<li>model: rules, physics of the world</li>
+<li>reward: a scaler value to value the <em>state</em></li>
+<li><strong>policy</strong>: what we want to learn, $\pi^{\star}(state)\to action$ ,the action can maximize the cumulative reward.</li>
+<li>when moving in the grid map, agent should avoid $-negative$ reward and get $+positive$ reward</li>
+<li>You need to set the reward carefully</li>
+<li>Even if you are in the same state, your action will be different for different <strong>step(time)</strong> you can take later. E.g. if you have only 3 steps to go, you may take action <strong>risky</strong>, $\pi^{\star}(state,time)\to action$</li>
+</ul>
+<h2 id="2-Key-Concepts">2. 2 Key Concepts</h2><h3 id="2-1-What-can-RL-do">2.1. 2.1 What can RL do</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Reinforcement/#more" rel="contents">
@@ -1030,7 +1106,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1067,6 +1143,17 @@
       
           <h2 id="1-Introduction">1. 1 Introduction</h2><p>This project was brought to make a flight controller from scratch.</p>
 <p>I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32&#x2F;Arduino&#x2F;Linux ) will make the general task more difficult.</p>
+<p>Before the program, I have no experience in flight controller programming. So I would learn from other project shared on Github.com.</p>
+<h2 id="2-Learning-from-Others">2. 2 Learning from Others</h2><h3 id="2-1-HackFlight">2.1. 2.1 HackFlight</h3><p>As a education oriented project, <em><a target="_blank" rel="noopener" href="https://github.com/simondlevy/Hackflight">Hackflight</a> is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators</em></p>
+<h4 id="2-1-1-Unit">2.1.1. 2.1.1 Unit</h4><p>First of all, HackFlight defined some standard units to write simpler code.</p>
+<ul>
+<li>Distance $ m&#x2F;s $</li>
+<li>Time $ s $</li>
+<li>Euler angle $ radians $</li>
+<li>Stick demand interval $ [-1,1 ] $</li>
+<li>Motor demands $ [0,1] $</li>
+<li>Quaternions interval $ [-1,1] $</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/flight-controller/#more" rel="contents">
@@ -1124,7 +1211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1163,6 +1250,11 @@
 <p>In statistical modeling, regression analysis is a set of statistical processes for <strong>estimating the relationships among variables.</strong></p>
 </blockquote>
 <p>$$<br>\left{\begin{array}{l}{y&#x3D;\beta_{0}+\beta_{1} x+\varepsilon} \ {E \varepsilon&#x3D;0, D \varepsilon&#x3D;\sigma^{2}}\end{array}\right.<br>$$</p>
+<h2 id="2-the-Develop-of-Algorithm">2. 2 the Develop of Algorithm</h2><h3 id="Problem-set">2.1. Problem set</h3><p>$$<br>\mathbf{X}&#x3D;\left[ \begin{array}{cccc}{x_{11}} &amp; {x_{12}} &amp; { . .} &amp; {x_{1 m}} \ {x_{21}} &amp; {x_{22}} &amp; {\dots} &amp; {x_{2 m}} \ {\ldots} &amp; {\cdots} &amp; {\cdots} &amp; {\cdots} \ {x_{n 1}} &amp; {x_{n 2}} &amp; {\dots} &amp; {x_{n m}}\end{array}\right]<br>$$</p>
+<p>$$<br>Y&#x3D;\left(y_{1} \quad y_{2}\right)&#x3D;\left[ \begin{array}{cc}{y_{11}} &amp; {y_{12}} \ {y_{12}} &amp; {y_{22}} \ {\cdots} &amp; {\cdots} \ {y_{1 n}} &amp; {y_{2 n}}\end{array}\right]<br>$$</p>
+<p>$$<br>B&#x3D;\left(b_{1} \quad b_{2}\right)&#x3D;\left[ \begin{array}{cc}{b_{11}} &amp; {b_{21}} \ {b_{12}} &amp; {b_{22}} \ {\dots} &amp; {\dots} \ {b_{1 m}} &amp; {b_{2 m}}\end{array}\right]<br>$$</p>
+<p>$$<br>E&#x3D;\left(e_{1} \quad e_{2}\right)&#x3D;\left[ \begin{array}{cc}{e_{11}} &amp; {e_{21}} \ {e_{12}} &amp; {e_{22}} \ {\cdots} &amp; {\cdots} \ {e_{1 n}} &amp; {e_{2 n}}\end{array}\right]<br>$$</p>
+<p>$$<br>\boldsymbol{Y}&#x3D;\boldsymbol{X} \boldsymbol{B}+\boldsymbol{E} ; \quad y_{1}&#x3D;\boldsymbol{X} \boldsymbol{b}<em>{1} ; \quad y</em>{2}&#x3D;\boldsymbol{X} \boldsymbol{b}_{2}<br>$$</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Data-Regression/#more" rel="contents">

@@ -219,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,6 +253,18 @@
           <h2 id="Introduction">1. Introduction</h2><p><a target="_blank" rel="noopener" href="https://sccn.ucsd.edu/~mgrivich/Synchronization.html">https://sccn.ucsd.edu/~mgrivich/Synchronization.html</a></p>
 <p>Goal: properly <strong>synchronize</strong> events in the EEG experiments and <strong>validate</strong> the  sychronization.</p>
 <p>Why? verify that the timing of all data points is known with sufficient precision.  Some key points such as the playing of a sound, the display of an image.</p>
+<p>Error</p>
+<ul>
+<li>constant offset</li>
+<li>drift: as time passes, the difference increase</li>
+<li>jitter:</li>
+</ul>
+<h2 id="General-Principles">2. General Principles</h2><ol>
+<li>When possible, use hardware synchronization</li>
+<li>streaming, in general, 50ms is easily achievable, and 1ms accuracy is achievable with effort</li>
+<li>behavior must be validated</li>
+</ol>
+<h2 id="Audio-Synchronization">3. Audio Synchronization</h2><p>Playing audio is not reliable with respect to timing. Latencies of 100+&#x2F;-50 ms are common.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Nature%20Science/Neuroscience/neusci-funda/#more" rel="contents">
@@ -514,7 +526,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -553,6 +565,17 @@
 </blockquote>
 <h2 id="Spectrums">2. Spectrums</h2><p>The spectrums of a sound plays a center role in determining its <strong>quality</strong></p>
 <img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/ling-spectrums.png" style="zoom:50%;">
+
+
+
+<p>we can represent the sound in frequency plot</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/ling-ai-spectrums.png" style="zoom:50%;">
+
+<ul>
+<li>the quality of a vowel depends on the <strong>shape</strong> of its spectrum</li>
+<li>the peaks are called <strong>formants</strong></li>
+<li>the quality depends primarily on the first three formant</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Miscellaneous/Linguistics/acoustic/#more" rel="contents">
@@ -610,7 +633,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -653,6 +676,14 @@
 <h2 id="2-Why-measure-EEG">2. 2 Why measure EEG</h2><p>Greatest advantage: <strong>temporal resolution</strong>, EEG can determine electrical activity in different brain regions</p>
 <h2 id="3-Physics">3. 3 Physics</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/eeg-dipoles.png"></p>
 <p>Necessary conditions: Aligned neurons and synchronous activity</p>
+<p>Acquisition:</p>
+<ul>
+<li>electrode caps</li>
+<li>conductive jelly</li>
+<li>ruler</li>
+<li>EEG amplifier, laptop</li>
+</ul>
+<h2 id="4-Data-collection">4. 4 Data collection</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Sensor/eeg-intro/#more" rel="contents">
@@ -819,7 +850,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -866,7 +897,19 @@
 </li>
 <li><p>Birds, Pets, the difference between <em>s</em></p>
 </li>
+<li><p>Phonetics: peoperties of sounds</p>
+</li>
+<li><p>Phonogy: patterns of sounds</p>
+</li>
+<li><p>pay&#x2F;bay&#x2F;ebay, bay sounds like pay</p>
+</li>
 </ul>
+<h2 id="Syntax-1">2. Syntax 1</h2><h3 id="Word-order">2.1. Word order</h3><p>English word order is SVO (subject verb object)</p>
+<h3 id="Grammaticality">2.2. Grammaticality</h3><ul>
+<li>prescriptive: what should be said&#x2F;writen</li>
+<li>descriptive: observation about what is said</li>
+</ul>
+
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Miscellaneous/Linguistics/Overview/#more" rel="contents">
@@ -924,7 +967,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -969,6 +1012,7 @@
 <li>bottom level: how to implement the system physically</li>
 </ol>
 <p>What DeepMind do is focusing the top 2 level of the analysis</p>
+<h2 id="Some-History">2. Some History</h2><h3 id="Deep-Learning">2.1. Deep Learning</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/neuro-ai/#more" rel="contents">
@@ -1137,7 +1181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1177,6 +1221,14 @@
 <li>Anthropology</li>
 <li>Philosophy</li>
 <li>Neuroscience</li>
+</ul>
+<p>Cognitive science has a short history if we check out the creation of the flagship journal in this fiel—<em>Cognitive Science</em>—is in1977.</p>
+<p>In the post, author use <strong>bibliometric indicators</strong> and <strong>socio-institutional indicators</strong> to analyze the development of cognitive science</p>
+<h2 id="The-Challenge">2. The Challenge</h2><p>The difficulties from the beginning was achieving <strong>interdisciplinary</strong></p>
+<p>Howard Gardner wrote an influential book <em>Mind‘s New Science</em>. In the book, Howard characterized some essnetial original features of the cognitive science</p>
+<ul>
+<li>it’s necessary to speak about mental representations and separate from biological</li>
+<li>“the faith that central to any understanding of the human mind is the electronic computer.”  — ragard brain as a device like computer</li>
 </ul>
           <!--noindex-->
             <div class="post-button">

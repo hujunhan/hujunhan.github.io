@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. RRT-ROS2. 1 RRT算法简介与实现2.1. 1.1 基本思想​	RRT，即rapidly exploring random tree是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。">
+  <meta name="description" content="1. RRT-ROS2. 1 RRT算法简介与实现2.1. 1.1 基本思想​	RRT，即rapidly exploring random tree是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。 2.2. 1.2 伪代码123456789101112Algorithm BuildRRTInput: I">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RRT ROS implementation">
 <meta property="og:url" content="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/RRT-ROS/index.html">
 <meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:description" content="1. RRT-ROS2. 1 RRT算法简介与实现2.1. 1.1 基本思想​	RRT，即rapidly exploring random tree是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。">
+<meta property="og:description" content="1. RRT-ROS2. 1 RRT算法简介与实现2.1. 1.1 基本思想​	RRT，即rapidly exploring random tree是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。 2.2. 1.2 伪代码123456789101112Algorithm BuildRRTInput: I">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/nav-global-planner.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/rrt-tree.png">
@@ -53,7 +53,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/rrt-compare-rrt.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/rrt-compare-smoothrrt.png">
 <meta property="article:published_time" content="2018-11-26T06:56:00.000Z">
-<meta property="article:modified_time" content="2023-09-21T04:39:37.094Z">
+<meta property="article:modified_time" content="2023-09-23T17:14:54.409Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="robotics">
 <meta property="article:tag" content="navigation">
@@ -252,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -292,8 +292,6 @@
 
       
         <h1 id="RRT-ROS">1. RRT-ROS</h1><h2 id="1-RRT算法简介与实现">2. 1 RRT算法简介与实现</h2><h3 id="1-1-基本思想">2.1. 1.1 基本思想</h3><p>​	RRT，即<strong>rapidly exploring random tree</strong>是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。</p>
-<span id="more"></span>
-
 <h3 id="1-2-伪代码">2.2. 1.2 伪代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Algorithm BuildRRT</span><br><span class="line">Input: Initial configuration qinit, number of vertices in RRT K, incremental distance Δq)</span><br><span class="line">Output: RRT graph G</span><br><span class="line"></span><br><span class="line">G.init(qinit)</span><br><span class="line">for k = 1 to K</span><br><span class="line">qrand ← RAND_CONF()</span><br><span class="line">qnear ← NEAREST_VERTEX(qrand, G)</span><br><span class="line">qnew ← NEW_CONF(qnear, qrand, Δq)</span><br><span class="line">G.add_vertex(qnew)</span><br><span class="line">G.add_edge(qnear, qnew)</span><br><span class="line">return G</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-3-代码实现">2.3. 1.3 代码实现</h3><h4 id="1-3-1-ROS-navigation实现架构">2.3.1. 1.3.1 ROS-navigation实现架构</h4><p>总的来说，navigation导航包的输入是<code>里程计和传感器数据流</code>，输出是<code>速度命令</code>给机器人。</p>

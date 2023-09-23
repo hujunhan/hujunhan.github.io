@@ -219,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,60 @@
 <li>trade off</li>
 <li>sum of 1-n：</li>
 <li>simple add</li>
-<li>gauss formula</li></ul>
+<li>gauss formula</li>
+</ul>
+<h2 id="2-Big-O-Notation">2. 2. Big O Notation</h2><table>
+<thead>
+<tr>
+<th>f(n)</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Constant</td>
+</tr>
+<tr>
+<td>$log n$</td>
+<td>Logarithmic</td>
+</tr>
+<tr>
+<td>$n$</td>
+<td>Linear</td>
+</tr>
+<tr>
+<td>$nlogn$</td>
+<td>Log Linear</td>
+</tr>
+<tr>
+<td>$n^2$</td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td>$n^3$</td>
+<td>Cubic</td>
+</tr>
+<tr>
+<td>$2^n$</td>
+<td>Exponential</td>
+</tr>
+</tbody></table>
+<h2 id="3-Example-Anagram-Detection">3. 3. Example :Anagram Detection</h2><ol>
+<li>Checking off: check one by one ,$O(n^2)$.</li>
+<li>Sort and Compare: $O(nlogn)$</li>
+<li>Brute Force , try all possibilities: $O(n!)$</li>
+<li>Count and Compare: $O(n)$</li>
+</ol>
+<h2 id="4-Performance-of-Python-Types">4. 4. Performance of Python Types</h2><ul>
+<li>Lists</li>
+<li>Indexing &amp; Assigning &amp; Appending $O(1)$</li>
+<li>Poping, Shifting &amp; Deleting, normally $O(n)$ ,beacuse has to shift changed element</li>
+<li>Reversing $O(n)$</li>
+<li>Dictionaries</li>
+<li>“getting” and “setting” : $O(1)$</li>
+<li>Iterating &amp; Copying: $O(n)$</li>
+</ul>
+
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Analysis/#more" rel="contents">
@@ -320,7 +373,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -367,6 +420,82 @@
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/stacks.png" alt="stacks"></p>
+<h3 id="1-2-ADT">1.2. 1.2 ADT</h3><table>
+<thead>
+<tr>
+<th align="center">ADT</th>
+<th align="center">data represents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DS</td>
+<td align="center"><strong>physical</strong> implementation of an ADT</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">Stack operation</th>
+<th align="center">Stack contents</th>
+<th align="center">Return value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">s.is_empty()</td>
+<td align="center">[]</td>
+<td align="center">True</td>
+</tr>
+<tr>
+<td align="center">s.push(4)</td>
+<td align="center">[4]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">s.push(‘dog’)</td>
+<td align="center">[4, ‘dog’]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">s.peek()</td>
+<td align="center">[4, ‘dog’]</td>
+<td align="center">‘dog’</td>
+</tr>
+<tr>
+<td align="center">s.push(True)</td>
+<td align="center">[4, ‘dog’, True]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">s.size()</td>
+<td align="center">[4, ‘dog’, True]</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">s.is_empty()</td>
+<td align="center">[4, ‘dog’, True]</td>
+<td align="center">False</td>
+</tr>
+<tr>
+<td align="center">s.push(8.4)</td>
+<td align="center">[4, ‘dog’, True, 8.4]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">s.pop()</td>
+<td align="center">[4, ‘dog’, True]</td>
+<td align="center">8.4</td>
+</tr>
+<tr>
+<td align="center">s.pop()</td>
+<td align="center">[4, ‘dog’]</td>
+<td align="center">True</td>
+</tr>
+<tr>
+<td align="center">s.size()</td>
+<td align="center">[4, ‘dog’]</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Stacks/#more" rel="contents">
@@ -424,7 +553,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -465,6 +594,24 @@
       
           <h1 id="粒子滤波算法">1. 粒子滤波算法</h1><h2 id="1-粒子滤波算法过程解析">2. 1 粒子滤波算法过程解析</h2><p>粒子滤波定位算法的思想也是贝叶斯规则：</p>
 <p>$$<br>\frac{\text { Likelihood * Prior }}{\text { Marginal }}<br>$$<br>以下的解析是结合Matlab代码所作的说明</p>
+<ol>
+<li>初始化</li>
+<li>初始化一堆粒子，在MatLab中的代码显示NP&#x3D;50，也就是总共有50个<strong>采样粒子</strong>。Estimated State [x y yaw]，可见每个状态有3个数据。px&#x3D;repmat(xEst,1,NP);，</li>
+<li>计算初始权重pw&#x3D;zeros(1,NP)+<strong>1&#x2F;NP</strong>; 可见初始权重是均匀的</li>
+<li>初始化路标，landMarks&#x3D;[10 0; 10 10; 0 15; -5 20]; 可见一共有<strong>4个路标</strong></li>
+<li>预测：根据motion model与物体的控制信息u预测下个时刻粒子群中粒子的位置</li>
+<li>doControl()函数，输入参数time，得到<strong>控制指令u</strong></li>
+<li>doMotion()函数，输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态</li>
+<li>doObservation()函数，输入参数<strong>xGnd（没有噪声</strong>的里程计位置估计）, <strong>xOdom（有噪声</strong>的里程计位置估计）, u（控制指令）, landMarks, MAX_RANGE，输出参数是z,xGnd,xOdom,u</li>
+<li>更新：根据物体的<strong>观测值</strong>z与<strong>地图值</strong>zl计算出每个粒子的权重ww。更新粒子权重的依据是粒子的观测值与地图标志物<strong>相似度的高低</strong>，越高的话该粒子的权重越大</li>
+<li>对每个粒子循环操作</li>
+<li>doMotion()函数，对每个采样粒子输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态，并加入干扰</li>
+<li>计算权重，用各个路标距离的<strong>高斯概率相乘</strong>得到总概率</li>
+<li>重采样：根据粒子的权重w重新采样粒子</li>
+</ol>
+<h2 id="2-重要代码（Tasks）">3. 2 重要代码（Tasks）</h2><h3 id="2-1-观测模型">3.1. 2.1 观测模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Observation model</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[z, xGnd, xOdom, u]</span> = <span class="title">doObservation</span><span class="params">(xGnd, xOdom, u, landMarks, MAX_RANGE)</span></span></span><br><span class="line"><span class="keyword">global</span> Qsigma;</span><br><span class="line"><span class="keyword">global</span> Rsigma;</span><br><span class="line"></span><br><span class="line"><span class="comment">% Gnd Truth and Odometry</span></span><br><span class="line">xGnd=doMotion(xGnd, u);<span class="comment">% Ground Truth 理想状态</span></span><br><span class="line">u=u+<span class="built_in">sqrt</span>(Qsigma)*<span class="built_in">randn</span>(<span class="number">2</span>,<span class="number">1</span>); <span class="comment">% add noise randomly</span></span><br><span class="line">xOdom=doMotion(xOdom, u); <span class="comment">% odometry only</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%Simulate Observation</span></span><br><span class="line">z=[];</span><br><span class="line"><span class="keyword">for</span> iz=<span class="number">1</span>:<span class="built_in">length</span>(landMarks(:,<span class="number">1</span>))</span><br><span class="line">dx = xGnd(<span class="number">1</span>)-landMarks(iz,<span class="number">1</span>);</span><br><span class="line">dy = xGnd(<span class="number">2</span>)-landMarks(iz,<span class="number">2</span>);</span><br><span class="line">d=<span class="built_in">sqrt</span>(dx^<span class="number">2</span>+dy^<span class="number">2</span>);</span><br><span class="line"><span class="keyword">if</span> d&lt;MAX_RANGE</span><br><span class="line">z=[z;[d+<span class="built_in">sqrt</span>(Rsigma)*<span class="built_in">randn</span>(<span class="number">1</span>,<span class="number">1</span>) landMarks(iz,:)]];   <span class="comment">% add observation noise randomly</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-运动模型">3.2. 2.2 运动模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Motion Model</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ x ]</span> = <span class="title">doMotion</span><span class="params">( x, u)</span></span></span><br><span class="line"><span class="keyword">global</span> dt;</span><br><span class="line">Delta = [ [dt*<span class="built_in">cos</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">[dt*<span class="built_in">sin</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">[<span class="number">0</span>,dt]];</span><br><span class="line"></span><br><span class="line">x = x+Delta*u;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Localization/PF/#more" rel="contents">
@@ -522,7 +669,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -562,6 +709,10 @@
 
       
           <h1 id="RRT-ROS">1. RRT-ROS</h1><h2 id="1-RRT算法简介与实现">2. 1 RRT算法简介与实现</h2><h3 id="1-1-基本思想">2.1. 1.1 基本思想</h3><p>​	RRT，即<strong>rapidly exploring random tree</strong>是一种在可以高维空间中有效搜索路径的方法，它的主要思想是通过在空间中随机取点，以取样点为依据增量式扩展路径搜索树直到终点和起点都包含在搜索树中。</p>
+<h3 id="1-2-伪代码">2.2. 1.2 伪代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Algorithm BuildRRT</span><br><span class="line">Input: Initial configuration qinit, number of vertices in RRT K, incremental distance Δq)</span><br><span class="line">Output: RRT graph G</span><br><span class="line"></span><br><span class="line">G.init(qinit)</span><br><span class="line">for k = 1 to K</span><br><span class="line">qrand ← RAND_CONF()</span><br><span class="line">qnear ← NEAREST_VERTEX(qrand, G)</span><br><span class="line">qnew ← NEW_CONF(qnear, qrand, Δq)</span><br><span class="line">G.add_vertex(qnew)</span><br><span class="line">G.add_edge(qnear, qnew)</span><br><span class="line">return G</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-代码实现">2.3. 1.3 代码实现</h3><h4 id="1-3-1-ROS-navigation实现架构">2.3.1. 1.3.1 ROS-navigation实现架构</h4><p>总的来说，navigation导航包的输入是<code>里程计和传感器数据流</code>，输出是<code>速度命令</code>给机器人。</p>
+<p>我们要修改的是其中的路径规划部分，即global_planner，只需要给出一串<strong>从起点到终点的点序列</strong>即可。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Cognition/Path%20Planning/RRT-ROS/#more" rel="contents">
@@ -619,7 +770,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -653,6 +804,11 @@
           <h2 id="1-美的起源">1. 1 美的起源</h2><p>美是一种拯救. 在经历挫折之后, 面对困惑迷茫, 美使人反省, 有思考. 渴望, 向往和悲悯</p>
 <p>花是美吗? 意义丰富, 喜? 哀? 很复杂</p>
 <p>从植物的生长可以看到自己的成长, 这是美的喜悦(看自己)</p>
+<h2 id="2-艺术的起源">2. 2 艺术的起源</h2><p>写诗, 画画, 奏乐, 歌舞统称为<em>艺术</em></p>
+<p><em>艺字</em>, 起源于农业, 在春秋战国变为各种<em>技能</em>, <em>技术</em></p>
+<p>原始的石具, 是技术, 也是<em>艺</em>(起源于劳动)</p>
+<p>后来逐渐转变为休闲, 好玩, 对自然的模仿</p>
+<p>为人生而艺术? 为艺术而艺术?</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Art/art-intro/#more" rel="contents">
@@ -710,7 +866,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -750,6 +906,17 @@
 <li>人际关系: 偏见,协攻击,吸引帮助</li>
 <li>在生活中的应用</li>
 </ol>
+<h2 id="1-社会心理学导论">2. 1 社会心理学导论</h2><h3 id="什么是社会心理学">2.1. 什么是社会心理学:</h3><p>研究周围情境的力量, 如何看待, 影响他人</p>
+<ul>
+<li><p>重要问题:行为与脑,人性。这是为了助人助己?</p>
+</li>
+<li><p>重要观点:构建社会:社会直觉(无意识),态度性格决定行为.</p>
+</li>
+</ul>
+<p>社会行为$\to$生物性行为.信念</p>
+<ul>
+<li>相关学科:社会学(注重团体)人格心理学:关注个体差异</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Psychology/social-psychology/#more" rel="contents">
@@ -807,7 +974,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -841,6 +1008,12 @@
           <h2 id="历史背景">1. 历史背景</h2><p>19世纪三四十年代,无产阶级作为政治力量登上历史舞台,革命实践迫切需要理论指导。马克思考察大量文献,总结自己的研究。序言是在整理手稿时写下,对唯物史观作了说明.</p>
 <h2 id="内容概要">2. 内容概要</h2><h3 id="1-马克斯研究政治经济学的动因">2.1. 1 马克斯研究政治经济学的动因</h3><p>要对利益发表意见,迫使他正视社会现实。</p>
 <p>要批判空想社会主义</p>
+<h3 id="2-研究的经过">2.2. 2 研究的经过</h3><p>唯物史观的确立 $\to$以此来分析政治经济学</p>
+<h3 id="3-唯物史观的概括">2.3. 3 唯物史观的概括</h3><ul>
+<li>人们在自己生活的社会生产中发生一定的,必然的,不以他们的意志为转移的关系,即同他们的物质生产力的一定发展阶段相适应的生产关系。</li>
+<li>生产关系的总和构成社会的经济结构,即有法律和政治的上层建筑竖立其上, 并有一定的社会意识形态与互相适应的现实基础。</li>
+<li>物质生活的生产方式制约着整个社会生活、政治生活和精神生活的过程</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Politics/politics-econo/#more" rel="contents">
@@ -898,7 +1071,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -940,6 +1113,7 @@
 <p>资产阶级来源于早期城市居民、革命生产工具,生产关系</p>
 <p>推动生产カ发展,但由于私有制和社会化生产的矛盾,必然导致经济危机。</p>
 <p>无产阶级会反抗,消灭一切剥削制度,解放全人类</p>
+<h3 id="2-无产者和共产党人">2.2. 2 无产者和共产党人</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/MarkdownNotes/Humanity/Politics/comm-intro/#more" rel="contents">
@@ -997,7 +1171,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1033,6 +1207,27 @@
 <li>表日本面向太平洋， 多雨，多工业区</li>
 <li>里日本风雪较大，被称为“雪国”，多为农业区，人口稀少</li>
 <li>火山多，活火山占全世界$10%$</li>
+</ul>
+<h3 id="中日关系">1.2. 中日关系</h3><ol>
+<li>公元前3世纪-公元3世纪：躲避战乱的中国人到日本农耕，畜牧的<em>弥生文化</em>提到了渔猎、采集的<em>绳文文化</em></li>
+<li>600-894：以华为师，吸收隋唐先进文化</li>
+<li>两宋、元、明：通过僧人传播文化</li>
+<li>甲午战争后：日本文化对中国的逆向输出</li>
+</ol>
+<h2 id="简史">2. 简史</h2><h3 id="1-日本人的起源">2.1. 1 日本人的起源</h3><ul>
+<li><p>旧石器时代：2-3万年前，冲绳出现了“山下町洞人”</p>
+</li>
+<li><p>绳文时代：磨石，陶器，原始部落</p>
+</li>
+<li><p>弥生时代：公元前3世纪，因为发现于弥生町；</p>
+</li>
+</ul>
+<p>水稻农业普及，身高150-160cm，外来人</p>
+<ul>
+<li><p>邪马台国：部落联盟，阶级社会，大陆王朝册封</p>
+</li>
+<li><p>古坟时代：倭国，前方后圆坟。大和政权</p>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">

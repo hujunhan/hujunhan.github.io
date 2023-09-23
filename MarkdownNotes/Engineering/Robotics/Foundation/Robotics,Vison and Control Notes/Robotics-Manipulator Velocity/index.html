@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/jocabian-inv-kine.png">
 <meta property="article:published_time" content="2019-01-05T08:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-21T04:39:37.096Z">
+<meta property="article:modified_time" content="2023-09-23T17:14:54.409Z">
 <meta property="article:author" content="Junhan Hu">
 <meta property="article:tag" content="robotics">
 <meta property="article:tag" content="Jacobian">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,8 +270,6 @@
         <h2 id="1-Introduction">1. 1 Introduction</h2><p>End-effector moves with a spatial velocity, and it’s a consequnece of all individual joint velocities.</p>
 <p>Here, we introduce the relationship between <strong>joint</strong> <strong>velocities</strong> and <strong>end-effector</strong>‘s <strong>velocity</strong></p>
 <p><strong>In kinematics, we care about the pose, now we care about velocity</strong></p>
-<span id="more"></span>
-
 <h2 id="2-Manipulator-Jacobian">2. 2 Manipulator Jacobian</h2><h3 id="2-1-Overview">2.1. 2.1 Overview</h3><p>Jocabian:<br>$$<br>J &#x3D; \frac { \partial f } { \partial x } &#x3D; \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \ { \vdots } &amp; { \ddots } &amp; { \vdots } \ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right)<br>$$<br>In manipulator, $f$ (end-effector pose) and $x$ (joint variables) are all vector:<br>$$<br>\frac { \mathrm { d } p } { \mathrm { d } q } &#x3D; \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } &#x3D; \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q }<br>$$<br>and divide through by $dt$<br>$$<br>\begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } &amp; &#x3D; J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p }  &#x3D; J ( q ) \dot { q } \end{aligned}<br>$$<br>Jocabian is a $J \in R^{6\times N} $ ($6$ for enviroment, $N$ for n joints) matrix</p>
 <h3 id="2-2-Under-and-Over-Actuated-Manipulators">2.2. 2.2 Under- and Over-Actuated Manipulators</h3><ul>
 <li>Under-Actuated: accepting that some Cartesian degrees of freedom are <strong>not controllable</strong></li>
