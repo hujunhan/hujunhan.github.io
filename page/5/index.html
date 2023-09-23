@@ -188,170 +188,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/design-pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/System%20Design/design-pattern/" class="post-title-link" itemprop="url">Design Pattern</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-07-27 00:01:00" itemprop="dateCreated datePublished" datetime="2023-07-27T00:01:00-07:00">2023-07-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/System-Design/" itemprop="url" rel="index"><span itemprop="name">System Design</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p><a target="_blank" rel="noopener" href="https://refactoring.guru/design-patterns/structural-patterns">Ref</a></p>
-<p>What?</p>
-<ul>
-<li>Typical solution to occurring problem in software</li>
-<li>pre-made blueprints</li>
-<li>Intent, Motivation, Structure, Code example</li>
-</ul>
-<p>Why?</p>
-<ul>
-<li>Best practices</li>
-<li>common language</li>
-</ul>
-<p>Classification</p>
-<ul>
-<li>Creational pattern, object creation</li>
-<li>Structural pattern, assemble into larger structure</li>
-<li>Behavioral pattern, take care of effective communication</li>
-<li>Maybe useful in robotics area</li>
-</ul>
-<h2 id="Creational-Pattern">2. Creational Pattern</h2><p>Factory: use general interface, all subclass implement these interface. Good if continue to add object type</p>
-<ul>
-<li>for create new sensor, new actuator</li>
-</ul>
-<p>Builder: build a complex object by director and builder</p>
-<ul>
-<li>could be useful for pipeline design</li>
-</ul>
-<p>Prototype: implement clone() method, the client don’t need to know whats inside the class</p>
-<p>Singleton: a class has only one instance, control the shared resource. make the default contructor private, create a static creation</p>
-<ul>
-<li>for global control</li>
-</ul>
-<h2 id="Structural">3. Structural</h2><p>Adapter: allow object with incompatible interface to collaborate, just add new function take care of the transition</p>
-<ul>
-<li>for different robot object</li>
-</ul>
-<p>Bridge: Abstraction and implementation, divide the problem, make it easier to</p>
-<ul>
-<li>differentiate objects</li>
-</ul>
-<p>Composite: compose objects into <strong>tree</strong> structures, so you can work on like recursive pattern</p>
-<ul>
-<li>robot system</li>
-</ul>
-<p>Decorator: add new behavior to objects</p>
-<ul>
-<li>add new feature to different object</li>
-</ul>
-<p>Facade: build a middleware, deal with details with large 3rd party library</p>
-<ul>
-<li>make the system into layers</li>
-</ul>
-<p>Flyweight: fit more objects into RAM</p>
-<ul>
-<li>apply for optimization</li>
-</ul>
-<p>Proxy: control the access, allow for performing something either before or after the request</p>
-<h2 id="Behavioral">4. Behavioral</h2><p>Chain of Responsibility: pass request along a chain of handlers, each handler decide either process or pass</p>
-<p>Command: turn request into objects, add logic layer</p>
-<ul>
-<li>should be apply to robotics</li>
-</ul>
-<p>Iterator: provide a function to get elements of the collection</p>
-<p>Mediator: restrict direct communication, forces to collaborate</p>
-<ul>
-<li>just like a center controller</li>
-</ul>
-<p>Memento: save and restore previous state of an object</p>
-<ul>
-<li>undo operation</li>
-</ul>
-<p>Observer: event-subscriber, just maintain a subscriber list, and goes over subscriber</p>
-<ul>
-<li>when two objects are closely related</li>
-<li>important in robotics</li>
-</ul>
-<p>State: change behavior when the internal state change. Fi</p>
-<p>Strategy: a class contain different algorithm</p>
-<ul>
-<li>nice for testing new system</li>
-</ul>
-<p>Template: abstract class and make the subclass implement by itself for different type</p>
-<p>Visitor: decouple with the object that working</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/System%20Design/System/ros-revisit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1726,6 +1562,102 @@
 <p>I am open to discussion in order to reach a fair resolution to this matter. I kindly ask you to review the attached letter and provide me with your feedback at your earliest convenience.</p>
 <p>I appreciate your prompt attention to this matter.</p>
 <p>Best regards,1</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/HDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Project/HDL/" class="post-title-link" itemprop="url">HDL Localization</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-26 21:42:00" itemprop="dateCreated datePublished" datetime="2023-06-26T21:42:00-07:00">2023-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Building a SLAM system based mainly on Lidar</p>
+<p>3 main different system</p>
+<ul>
+<li>Building point cloud map</li>
+<li>Global localization</li>
+<li>Relative localization</li>
+</ul>
+<h2 id="Building-Map">2. Building Map</h2><p>Graph optimization + loop closure detection</p>
+<h2 id="Global-Localization">3. Global Localization</h2><p>Bound and refine bound</p>
+<h2 id="Relative-Localization">4. Relative Localization</h2><p>NDT (normal distribution transform)</p>
+<p>Or GICP (generalized ICP)</p>
 
       
     </div>
