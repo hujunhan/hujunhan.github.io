@@ -188,6 +188,433 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/map/" class="post-title-link" itemprop="url">机器人建图技术（位置已知）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-23T00:00:00-07:00">2020-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 01:21:14" itemprop="dateModified" datetime="2023-09-23T01:21:14-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景知识">1. 背景知识</h2><p>为什么要建图：</p>
+<ul>
+<li>学习地图是基本任务</li>
+<li>有了地图可以方便其他任务</li>
+<li>其他任务依赖正确的地图</li>
+</ul>
+<p>基本问题：环境是怎么样的</p>
+<p>已知的：环境数据和状态数据 $d&#x3D;{u_1,z1,u_2,z2,…u_t,z_t}$</p>
+<p>要计算的$m^*&#x3D;argmax_mP(m|d)$</p>
+<h2 id="地图种类">2. 地图种类</h2><ul>
+<li>Grid Maps</li>
+</ul>
+<p>世界离散化，结构是固定的，每个cell可以是被占据或者free的，这个模型是没有参数的，不需要识别特征</p>
+<ul>
+<li>每个cell的状态用概率来描述</li>
+<li>每个cell之间都是相互独立的</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/map/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/" class="post-title-link" itemprop="url">无迹卡尔曼滤波</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-18 14:00:21" itemprop="dateCreated datePublished" datetime="2020-07-18T14:00:21-07:00">2020-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why">1. Why</h2><p>既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？</p>
+<p><strong>性能</strong>：在扩展卡尔曼滤波中，我们只使用了<strong>一个点</strong>展开来线性化，这就导致了这种估计方法的效果不佳</p>
+<p><strong>更好的方法</strong>：用许多点来近似</p>
+<p><strong>Trade-Off</strong>： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度</p>
+<h2 id="How">2. How</h2><p>选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就越精确</p>
+<p>高斯分布在经过一个非线性变换之后就不再是高斯分布了，所以在这里引入一个Unscented Transform来完成这个变换任务</p>
+<ol>
+<li>计算一个Sigma Point的集合</li>
+</ol>
+<p>通常来说，如果系统是N维的，那么Sigma Point的个数选择$2N+1$<br>$$<br>\begin{aligned}<br>X ^{[0]} &amp;&#x3D;\mu \<br>X ^{[i]} &amp;&#x3D;\mu+(\sqrt{(n+\lambda) \Sigma})<em>{i} \text { for } i&#x3D;1, \ldots, n \<br>X ^{[i]} &amp;&#x3D;\mu-(\sqrt{(n+\lambda) \Sigma})</em>{i-n} \quad \text { for } i&#x3D;n+1, \ldots, 2 n<br>\end{aligned}<br>$$<br>其中$\Sigma$是协方差矩阵，$\lambda$是一个扩张系数（一般选择$3-n$），$X$是Sigma Point矩阵，每一行都是Sigma Point的集合。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/" class="post-title-link" itemprop="url">扩展卡尔曼滤波</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-17 16:32:21" itemprop="dateCreated datePublished" datetime="2020-07-17T16:32:21-07:00">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why">1. Why</h2><p>因为卡尔曼滤波有两个重要假设，其中的<strong>线性假设</strong>在现实环境中是不能够满足的。</p>
+<p>大部分现实环境中的问题都包含非线性函数。如果还是使用卡尔曼滤波，那么更新状态之后就不再是高斯分布了。也就不满足卡尔曼滤波的条件了</p>
+<h2 id="How">2. How</h2><p>通过泰勒展开，在均值附近线性近似。保留一阶</p>
+<h2 id="Example：传感器融合">3. Example：传感器融合</h2><p>自动驾驶同时使用激光雷达和雷达两种传感器，其中</p>
+<ul>
+<li>激光雷达：给出px，py两个</li>
+<li>雷达：距离、转向、转向速度</li>
+</ul>
+<p><img src="https://miro.medium.com/max/541/1*EEuBSPnR-JykUz-5patCGg.png" alt="Image for post"></p>
+<p>回忆卡尔曼滤波的两个步骤</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/" class="post-title-link" itemprop="url">卡尔曼滤波</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-17 15:30:21" itemprop="dateCreated datePublished" datetime="2020-07-17T15:30:21-07:00">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why">1. Why</h2><p>为什么用概率来描述？因为机器人的环境是不确定的，所使用的传感器也是有误差的</p>
+<ul>
+<li>某个随机变量的期望：$E [X]&#x3D;\sum_{i&#x3D;1}^{n} p_{i} x_{i}$</li>
+<li>为什么只使用单峰模型？因为机器人在某一时间的位置是固定的，并不会出现在不同位置</li>
+</ul>
+<h2 id="高斯">2. 高斯</h2><p>中心极限定理：样本数够多，就会出现正态分布</p>
+<p>使用单峰分布处理起来非常困难。</p>
+<p>状态的更新（两个正态分布的相乘）可以用贝叶斯来计算<br>$$<br>\begin{array}{c}<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}} \<br>\sigma_{\text {new }}&#x3D;\frac{\sigma_{1}^{2} \sigma_{2}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>\end{array}<br>$$<br>有的时候状态更新只是两个正态分布的相加，那么新的期望和方差就是两个期望和方差的简单相加</p>
+<h2 id="概率生成定理">3. 概率生成定理</h2><p>$z$表示测量，$u$表示指令，$x$表示状态</p>
+<p>第一定理：$p\left(x_{t} \mid x_{0: t-1}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(x_{t} \mid x_{t-1}, u_{t}\right)$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -808,409 +1235,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/" class="post-title-link" itemprop="url">大陆理性主义和英国经验主义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-24 21:02:00" itemprop="dateCreated datePublished" datetime="2020-06-24T21:02:00-07:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="理性主义">1. 理性主义</h1><h2 id="笛卡尔">2. 笛卡尔</h2><p>法国人笛卡尔为了构建自己的客观知识体系，他需要一个<strong>绝对确定</strong>的牢固基础。</p>
-<p>寻找的方式是“<strong>怀疑一切</strong>”笛卡尔将一切可能被怀疑的东西通过怀疑排除，直到找到一种在逻辑上不容置疑的命题。这样的命题就是一切知识的绝对确定的基础</p>
-<ol>
-<li><p>一开始，笛卡尔通过这种方式发现我们全部信息的来源都是<strong>我们的感官</strong></p>
-</li>
-<li><p>然而我们的感官并不是完全可信的，因此笛卡尔发现他的怀疑方法走得太远了</p>
-</li>
-<li><p>笛卡尔意识到我们需要将一些基础的<strong>常识判断</strong>作为我们知识的合法基础</p>
-</li>
-</ol>
-<p>笛卡尔发现我们无法确定自己是否在梦中，甚至是数学，也可能是由一个“邪恶天才”操纵我们所得出的。但是思考本身说明了什么</p>
-<ol start="4">
-<li>最终，笛卡尔得到了“我思故我在”</li>
-</ol>
-<p>笛卡尔相信上帝存在，证明过程可以简单归纳为以下四步</p>
-<ol>
-<li>完满的存在应该知道所有，我有所怀疑，所以我不完满</li>
-<li>除非我理解完满，否则我不知道自己是不完满的</li>
-<li>完满的观念只能通过完满的东西才能在心中产生</li>
-<li>因此，一个完满的存在是存在的</li>
-</ol>
-<p>一些问题：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/4-Middle-Age-Renaissance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/4-Middle-Age-Renaissance/" class="post-title-link" itemprop="url">中世纪和文艺复兴时期哲学</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-24 18:53:00" itemprop="dateCreated datePublished" datetime="2020-06-24T18:53:00-07:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>地中海周围的沙漠地区诞生了西方世界的三大宗教</p>
-<p>最早出现的是犹太教，后来其中一些小团体分离出来建立了基督教并向更多的希腊语、拉丁语地区传播。</p>
-<p>在罗马帝国时期得到了广泛传播，并被罗马皇帝<strong>君士坦丁</strong>设为帝国的官方信仰</p>
-<p>这一段时间的哲学被宗教所支配</p>
-<h1 id="中世纪">1. 中世纪</h1><h2 id="圣奥古斯丁">2. 圣奥古斯丁</h2><p>一开始耽于肉欲，于是信仰摩尼教，把自己违反道德的罪行归因于<strong>外在于自身</strong>的原因</p>
-<p>但是这种思想不够深刻。在经过一次神秘体验之后，奥古斯丁皈依了基督教</p>
-<p>他的思想中有很大一部分关注于人类的自由</p>
-<ul>
-<li>如果上帝是全知的，那么人就没有自由，人就不需要对自己的行为负责</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/4-Middle-Age-Renaissance/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/3-Greece-Roma/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/3-Greece-Roma/" class="post-title-link" itemprop="url">希腊化时期和罗马时期</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-24 13:08:00" itemprop="dateCreated datePublished" datetime="2020-06-24T13:08:00-07:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这个时期的哲学家不够深刻、复杂、敏锐。是一个哲学衰退的时期</p>
-<p>大部分哲学家主要关心苏格拉底的问题：我们应该如何生活</p>
-<h2 id="伊比鸠鲁派">1. 伊比鸠鲁派</h2><p>认为生活的目标是幸福&#x3D;&#x3D;快乐。对快乐可以进行分类</p>
-<ul>
-<li>自然的欲望</li>
-<li>必须的：饮食、睡眠、安宁</li>
-<li>不必须的：性欲</li>
-<li>无意义的欲望：虚荣</li>
-</ul>
-<p>他认为人应该尽量减少不必要的欲望，满足必须的欲望，将时间留给安宁。</p>
-<h2 id="斯多葛主义（廊下派）">2. 斯多葛主义（廊下派）</h2><p>由芝诺创立。对自然科学不感兴趣，更多地关心人类行为问题。</p>
-<p>如何让人生幸福？以合乎实在的神圣安排来生活。应该把欲望放在我们所得到的东西上。</p>
-<p>但是如果在这种情况下还是会有残酷的现实损害人心中的平衡，那么斯多葛派提倡自杀。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/3-Greece-Roma/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/2-Athens/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/2-Athens/" class="post-title-link" itemprop="url">雅典时期</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-22 14:37:00" itemprop="dateCreated datePublished" datetime="2020-06-22T14:37:00-07:00">2020-06-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="智者：智术">1. 智者：智术</h2><p>由于社会转向的问题，一些哲学家并不是真正意义上的哲学家，而是修辞学家或者说演讲者。</p>
-<p>流行的思潮是怀疑主义和犬儒主义</p>
-<h3 id="普罗泰戈拉">1.1. 普罗泰戈拉</h3><p>认为成功之道是理解和运用传统习俗。他认为万事万物都是相对于人的主观性而言的。</p>
-<p>名言：“人是尺度”</p>
-<h3 id="卡里克勒斯和克里提亚">1.2. 卡里克勒斯和克里提亚</h3><p>传统的道德不过是弱势大众束缚强势个体的一种聪明手段。证明：权力是好的，因为权力有助于生存，而生存是好的，因为它能让我们快乐（动物性的快乐）。</p>
-<h2 id="苏格拉底">2. 苏格拉底</h2><p>苏格拉底不认同智者们的观点，但还是受到影响，开始专注于人类本身的事务。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/2-Athens/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1280,14 +1304,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">372</span>
+          <span class="site-state-item-count">376</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

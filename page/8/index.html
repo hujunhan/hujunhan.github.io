@@ -188,6 +188,427 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/borwein/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/borwein/" class="post-title-link" itemprop="url">Borwein 积分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-08 23:11:00" itemprop="dateCreated datePublished" datetime="2023-06-08T23:11:00-07:00">2023-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>$$<br>\begin{aligned}<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} d x&#x3D;\pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} d x&#x3D;(0.99999999998529) \pi \<br>&amp; \int_{-\infty}^{\infty} \frac{\sin (x)}{x} \frac{\sin (x &#x2F; 3)}{x &#x2F; 3} \frac{\sin (x &#x2F; 5)}{x &#x2F; 5} \frac{\sin (x &#x2F; 7)}{x &#x2F; 7} \frac{\sin (x &#x2F; 9)}{x &#x2F; 9} \frac{\sin (x &#x2F; 11)}{x &#x2F; 11} \frac{\sin (x &#x2F; 13)}{x &#x2F; 13} \frac{\sin (x &#x2F; 15)}{x &#x2F; 15} \frac{\sin (x &#x2F; 17)}{x &#x2F; 17} d x&#x3D;(0.99999998807962) \pi<br>\end{aligned}<br>$$</p>
+<p>Why?</p>
+<h2 id="Sliding-Window">2. Sliding Window</h2><p>Moving average</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230608231855_dStpt5.png" alt="image-20230608231854902"></p>
+<p>Same pattern</p>
+<p>Stable for sometime, then change suddenly</p>
+<h2 id="Sinc-function">3. Sinc function</h2><p>$$<br>\int_{-\infty}^{\infty} \frac{\sin (\pi x)}{\pi x} d x&#x3D;1.0<br>$$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/borwein/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Localization/gicp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Localization/gicp/" class="post-title-link" itemprop="url">Generalized ICP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-31 22:46:21" itemprop="dateCreated datePublished" datetime="2023-05-31T22:46:21-07:00">2023-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Combine ICP and point-to-plane ICP into a single probabilistic framework</p>
+<ul>
+<li>More robust to incorrect correspondence</li>
+<li>Easier to tune the maximum match distance</li>
+</ul>
+<h2 id="How-it-works">2. How it works</h2><p>Align two point sets in 3D space</p>
+<ul>
+<li>by minimizing the distance</li>
+<li>Extends ICP by allowing more general types of correspondaences</li>
+</ul>
+<h2 id="Standard-ICP">3. Standard ICP</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230531230521_hcUb4D.png" alt="image-20230531230520928"></p>
+<h2 id="Point-to-Plane">4. Point-to-Plane</h2><p>Update the T calculation process (Line 11)<br>$$<br>T \leftarrow \underset{T}{\operatorname{argmin}}\left{\sum_i w_i\left|\eta_i \cdot\left(T \cdot b_i-m_i\right)\right|^2\right}<br>$$<br>Taking the surface normal information</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Localization/gicp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/lidar-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Project/lidar-system/" class="post-title-link" itemprop="url">Lidar SLAM System Design</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-31 21:03:00" itemprop="dateCreated datePublished" datetime="2023-05-31T21:03:00-07:00">2023-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Overlooked the localization problem earlier.</p>
+<p>So now the system is more clear</p>
+<ul>
+<li>Offline map construction</li>
+<li>Use LOAM series to build graph map and construction</li>
+<li>Online global localization</li>
+<li>Use HDL (GICP) to to the localization in real time</li>
+</ul>
+<h2 id="System">2. System</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230531211522_pwfIDK.png" alt="img"></p>
+<h2 id="Test-Via-Point-Data">3. Test Via Point Data</h2><p>Building Map:</p>
+<ul>
+<li>y&#x3D;5200, x&#x3D;0</li>
+<li>x&#x3D;1920, y&#x3D;5200</li>
+<li>y&#x3D;(745)73*80+100-65*80, x&#x3D;1920</li>
+<li>y&#x3D;-300, x&#x3D;700</li>
+<li>x&#x3D;150, y&#x3D;-56</li>
+</ul>
+<p>Map</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/lidar-system/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Politics/equal-education/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Humanity/Politics/equal-education/" class="post-title-link" itemprop="url">Equality and Education</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-28 15:14:00" itemprop="dateCreated datePublished" datetime="2023-05-28T15:14:00-07:00">2023-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/Politics/" itemprop="url" rel="index"><span itemprop="name">Politics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>Goal: try to understand the relationship betwwen education and equality</p>
+<ul>
+<li>How could education contribute to equality</li>
+<li>What is the most important force for equality</li>
+<li>Which equality should I chase first</li>
+<li>How should I do?</li>
+<li>What can GPT and AI do in the process</li>
+</ul>
+<h2 id="Equality-Fairness-Justice">2. Equality, Fairness, Justice</h2><p>Equality: give everyone the same thing(?) to get the similar result</p>
+<ul>
+<li>same input</li>
+</ul>
+<p>Fairness: About the justice in the way people are treated.</p>
+<ul>
+<li>same output</li>
+</ul>
+<p>Justice: invlove more than equality and fairness</p>
+<ul>
+<li>address past wrongs or systemic disadvantage</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Humanity/Politics/equal-education/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Lidar/lidar-kidnap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -818,463 +1239,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/flash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/flash/" class="post-title-link" itemprop="url">Off Camera Flash</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-07 15:06:00" itemprop="dateCreated datePublished" datetime="2023-05-07T15:06:00-07:00">2023-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What-to-Buy">1. What to Buy?</h2><ul>
-<li>basic fundamentals of lighting</li>
-<li>fundamental of off-camera flash</li>
-<li>lighting for your work</li>
-</ul>
-<h2 id="Flash-Duration">2. Flash Duration</h2><p>With natutal light</p>
-<ul>
-<li>High speed shutter to capture the motion</li>
-<li>for splash, 1&#x2F;1000s is needed</li>
-</ul>
-<p>While with the flash speed</p>
-<ul>
-<li>Maybe 1&#x2F;40s is good enough</li>
-<li>The flash duration capture the motion</li>
-<li>shutter speed is irrelavant</li>
-</ul>
-<p>The higher power, the longer flash duration</p>
-<p>So to capture splash, use low flash output power</p>
-<h2 id="Sync-Speed">3. Sync Speed</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Photography/flash/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Health/supplement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Health/supplement/" class="post-title-link" itemprop="url">Record For daily Supplement</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-06 17:01:00" itemprop="dateCreated datePublished" datetime="2023-05-06T17:01:00-07:00">2023-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Health/" itemprop="url" rel="index"><span itemprop="name">Health</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="What">1. What</h2><table>
-<thead>
-<tr>
-<th>Supplement</th>
-<th>Usage</th>
-<th>Supplement Facts</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CoQ10</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Melatonin</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Magnesium</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>Omega-3 Fish Oil</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-<tr>
-<td>One-Day Multivitamin</td>
-<td>(Fill out usage details)</td>
-<td>(Fill out supplement facts)</td>
-</tr>
-</tbody></table>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Health/supplement/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/idea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/idea/" class="post-title-link" itemprop="url">Photography Idea Generation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-06 15:44:00" itemprop="dateCreated datePublished" datetime="2023-05-06T15:44:00-07:00">2023-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Consistently">1. Consistently</h2><p>Brief: client key words</p>
-<p>Creativity is a skills</p>
-<p>Idea based on individual’s experience</p>
-<p>Steps</p>
-<ol>
-<li>Brainstorm, there are no bad idea</li>
-<li>write down</li>
-<li>give stupid idea a chance</li>
-</ol>
-<h2 id="Light-or-Food">2. Light or Food?</h2><p>Goal: make the food look good</p>
-<ul>
-<li>show the texture?</li>
-<li>show some feeling you want to make the food look</li>
-</ul>
-<p>So: light is work for food</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Photography/idea/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Photography/lighting-foundation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Photography/lighting-foundation/" class="post-title-link" itemprop="url">Lighting Foundation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-05-05 19:51:00" itemprop="dateCreated datePublished" datetime="2023-05-05T19:51:00-07:00">2023-05-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Photography/" itemprop="url" rel="index"><span itemprop="name">Photography</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Definition">1. Definition</h2><p>What light does</p>
-<ul>
-<li><p>Dimension</p>
-</li>
-<li><p>the shadow make it more 3D</p>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505195632_rIFfrM.png" alt="image-20230505195632329"></p>
-</li>
-<li><p>Sepatation: between subject and background</p>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505195548_RyN3Yc.png" alt="image-20230505195548452"></p>
-</li>
-<li><p>Texture: how can we convey the feeling of texture</p>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505200114_6sbLqJ.png" alt="image-20230505200114478"></p>
-</li>
-<li><p>back lit might help</p>
-</li>
-<li><p>Emotion</p>
-</li>
-<li><p>convey motion</p>
-</li>
-<li><p>reminds someone of a certain food, memory,</p>
-</li>
-</ul>
-<h2 id="Why-REACT-strongly-to-Light">2. Why REACT strongly to Light</h2><p>Psychological hard-wiring</p>
-<p>Personal experience</p>
-<ul>
-<li>bright cold for morning</li>
-<li>dim warm for sunset</li>
-<li><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/20230505201218_sZbo9D.png" alt="Color temperature variation throughout a single day | Download Scientific  Diagram"></li>
-</ul>
-<h2 id="Zone-System">3. Zone System</h2><p>What makes a photo stand out?</p>
-<ul>
-<li>A map describe different shades of color gray</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Photography/lighting-foundation/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1344,14 +1308,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">372</span>
+          <span class="site-state-item-count">376</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
