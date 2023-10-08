@@ -188,6 +188,230 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-ORB-SLAM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-ORB-SLAM/" class="post-title-link" itemprop="url">Vision Based SLAM a review</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-06T00:00:00-08:00">2019-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/" itemprop="url" rel="index"><span itemprop="name">SLAM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Introduction">1. 1 Introduction</h2><p>SLAM builds a map and localize the sensor in the map with a strong focus on <strong>real-time operation</strong>.</p>
+<p>Camera: cheap and provide rich information of the environment.</p>
+<ul>
+<li>Monocular camera, cheapest and smallest camera</li>
+<li>depth is not observable</li>
+<li>scale drift and mail fail if performing pure rotations</li>
+<li>RGB-D camera, all these issue can be solved.</li>
+<li>Outdoor performance is not good. Usually used in indoor environment</li>
+</ul>
+<h3 id="1-1-Main-Idea">1.1. 1.1 Main Idea</h3><blockquote>
+<p>At its heart, SLAM is an <strong>optimization problem</strong>, where the goal is to compute the best configuration of camera poses and point positions in order to <strong>minimize reprojection error</strong> (the difference between a point’s tracked location and where it is expected to be given the camera pose estimate, over all points). —from <a target="_blank" rel="noopener" href="https://www.kudan.io/post/an-introduction-to-simultaneous-localisation-and-mapping">Kudan</a></p>
+</blockquote>
+<p>The optimization method: Bundle adjustment, iteratively approaches the minimum error for the whole system.</p>
+<ul>
+<li>Problem: time consuming to find the best solution</li>
+<li>But with the help of multi-core machine, this problem was solved</li>
+</ul>
+<p>Another essential technique: relocalization</p>
+<h3 id="1-2-How-it-Works">1.2. 1.2 How it Works</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-ORB-SLAM/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-Manipulator%20Velocity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-Manipulator%20Velocity/" class="post-title-link" itemprop="url">Robotics-Manipulator Velocity</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-05T00:00:00-08:00">2019-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Robotics-Vison-and-Control-Notes/" itemprop="url" rel="index"><span itemprop="name">Robotics,Vison and Control Notes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Introduction">1. 1 Introduction</h2><p>End-effector moves with a spatial velocity, and it’s a consequnece of all individual joint velocities.</p>
+<p>Here, we introduce the relationship between <strong>joint</strong> <strong>velocities</strong> and <strong>end-effector</strong>‘s <strong>velocity</strong></p>
+<p><strong>In kinematics, we care about the pose, now we care about velocity</strong></p>
+<h2 id="2-Manipulator-Jacobian">2. 2 Manipulator Jacobian</h2><h3 id="2-1-Overview">2.1. 2.1 Overview</h3><p>Jocabian:<br>$$<br>J &#x3D; \frac { \partial f } { \partial x } &#x3D; \left( \begin{array} { c c c } { \frac { \partial y _ { 1 } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { 1 } } { \partial x _ { n } } } \ { \vdots } &amp; { \ddots } &amp; { \vdots } \ { \frac { \partial y _ { m } } { \partial x _ { 1 } } } &amp; { \cdots } &amp; { \frac { \partial y _ { m } } { \partial x _ { n } } } \end{array} \right)<br>$$<br>In manipulator, $f$ (end-effector pose) and $x$ (joint variables) are all vector:<br>$$<br>\frac { \mathrm { d } p } { \mathrm { d } q } &#x3D; \mathrm { J } ( q ) \to \mathrm { d } \boldsymbol { p } &#x3D; \boldsymbol { J } ( \boldsymbol { q } ) \mathrm { d } \boldsymbol { q }<br>$$<br>and divide through by $dt$<br>$$<br>\begin{aligned} \frac { \mathrm { d } p } { \mathrm { d } t } &amp; &#x3D; J ( q ) \frac { \mathrm { d } q } { \mathrm { d } t } \to \dot { p }  &#x3D; J ( q ) \dot { q } \end{aligned}<br>$$<br>Jocabian is a $J \in R^{6\times N} $ ($6$ for enviroment, $N$ for n joints) matrix</p>
+<h3 id="2-2-Under-and-Over-Actuated-Manipulators">2.2. 2.2 Under- and Over-Actuated Manipulators</h3><ul>
+<li>Under-Actuated: accepting that some Cartesian degrees of freedom are <strong>not controllable</strong></li>
+<li>Over-Actuated:  multiple solution, so find a <strong>least-squares</strong> solution</li>
+</ul>
+<h2 id="3-Jocabian-Numerical-Properties">3. 3 Jocabian: Numerical Properties</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-Manipulator%20Velocity/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Queues/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1140,302 +1364,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Stacks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Stacks/" class="post-title-link" itemprop="url">PADS-Stacks</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-12-24 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-24T00:00:00-08:00">2018-12-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction-to-Stacks">1. 1. Introduction to Stacks</h2><p>Stacks is a kind of linear data structures.</p>
-<p>What distinguishes one linear structure from another is where additions and removals may occur</p>
-<h3 id="1-1-Stacks">1.1. 1.1 Stacks</h3><blockquote>
-<p>A <em>stack</em> is an ordered collection of items where the addition of new items and the removal of existing items always takes place at the same end.</p>
-</blockquote>
-<ul>
-<li><p>Example: stack of books\plates, URL back button</p>
-</li>
-<li><p>Usage: <strong>reverse the order</strong></p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/stacks.png" alt="stacks"></p>
-<h3 id="1-2-ADT">1.2. 1.2 ADT</h3><table>
-<thead>
-<tr>
-<th align="center">ADT</th>
-<th align="center">data represents</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">DS</td>
-<td align="center"><strong>physical</strong> implementation of an ADT</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">Stack operation</th>
-<th align="center">Stack contents</th>
-<th align="center">Return value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">s.is_empty()</td>
-<td align="center">[]</td>
-<td align="center">True</td>
-</tr>
-<tr>
-<td align="center">s.push(4)</td>
-<td align="center">[4]</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">s.push(‘dog’)</td>
-<td align="center">[4, ‘dog’]</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">s.peek()</td>
-<td align="center">[4, ‘dog’]</td>
-<td align="center">‘dog’</td>
-</tr>
-<tr>
-<td align="center">s.push(True)</td>
-<td align="center">[4, ‘dog’, True]</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">s.size()</td>
-<td align="center">[4, ‘dog’, True]</td>
-<td align="center">3</td>
-</tr>
-<tr>
-<td align="center">s.is_empty()</td>
-<td align="center">[4, ‘dog’, True]</td>
-<td align="center">False</td>
-</tr>
-<tr>
-<td align="center">s.push(8.4)</td>
-<td align="center">[4, ‘dog’, True, 8.4]</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">s.pop()</td>
-<td align="center">[4, ‘dog’, True]</td>
-<td align="center">8.4</td>
-</tr>
-<tr>
-<td align="center">s.pop()</td>
-<td align="center">[4, ‘dog’]</td>
-<td align="center">True</td>
-</tr>
-<tr>
-<td align="center">s.size()</td>
-<td align="center">[4, ‘dog’]</td>
-<td align="center">2</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Stacks/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Localization/PF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Localization/PF/" class="post-title-link" itemprop="url">Particle Filter</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-12-01 22:56:00" itemprop="dateCreated datePublished" datetime="2018-12-01T22:56:00-08:00">2018-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Localization/" itemprop="url" rel="index"><span itemprop="name">Localization</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="粒子滤波算法">1. 粒子滤波算法</h1><h2 id="1-粒子滤波算法过程解析">2. 1 粒子滤波算法过程解析</h2><p>粒子滤波定位算法的思想也是贝叶斯规则：</p>
-<p>$$<br>\frac{\text { Likelihood * Prior }}{\text { Marginal }}<br>$$<br>以下的解析是结合Matlab代码所作的说明</p>
-<ol>
-<li>初始化</li>
-<li>初始化一堆粒子，在MatLab中的代码显示NP&#x3D;50，也就是总共有50个<strong>采样粒子</strong>。Estimated State [x y yaw]，可见每个状态有3个数据。px&#x3D;repmat(xEst,1,NP);，</li>
-<li>计算初始权重pw&#x3D;zeros(1,NP)+<strong>1&#x2F;NP</strong>; 可见初始权重是均匀的</li>
-<li>初始化路标，landMarks&#x3D;[10 0; 10 10; 0 15; -5 20]; 可见一共有<strong>4个路标</strong></li>
-<li>预测：根据motion model与物体的控制信息u预测下个时刻粒子群中粒子的位置</li>
-<li>doControl()函数，输入参数time，得到<strong>控制指令u</strong></li>
-<li>doMotion()函数，输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态</li>
-<li>doObservation()函数，输入参数<strong>xGnd（没有噪声</strong>的里程计位置估计）, <strong>xOdom（有噪声</strong>的里程计位置估计）, u（控制指令）, landMarks, MAX_RANGE，输出参数是z,xGnd,xOdom,u</li>
-<li>更新：根据物体的<strong>观测值</strong>z与<strong>地图值</strong>zl计算出每个粒子的权重ww。更新粒子权重的依据是粒子的观测值与地图标志物<strong>相似度的高低</strong>，越高的话该粒子的权重越大</li>
-<li>对每个粒子循环操作</li>
-<li>doMotion()函数，对每个采样粒子输入初始状态x和控制指令u，得到<strong>下一时刻</strong>的x状态，并加入干扰</li>
-<li>计算权重，用各个路标距离的<strong>高斯概率相乘</strong>得到总概率</li>
-<li>重采样：根据粒子的权重w重新采样粒子</li>
-</ol>
-<h2 id="2-重要代码（Tasks）">3. 2 重要代码（Tasks）</h2><h3 id="2-1-观测模型">3.1. 2.1 观测模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Observation model</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[z, xGnd, xOdom, u]</span> = <span class="title">doObservation</span><span class="params">(xGnd, xOdom, u, landMarks, MAX_RANGE)</span></span></span><br><span class="line"><span class="keyword">global</span> Qsigma;</span><br><span class="line"><span class="keyword">global</span> Rsigma;</span><br><span class="line"></span><br><span class="line"><span class="comment">% Gnd Truth and Odometry</span></span><br><span class="line">xGnd=doMotion(xGnd, u);<span class="comment">% Ground Truth 理想状态</span></span><br><span class="line">u=u+<span class="built_in">sqrt</span>(Qsigma)*<span class="built_in">randn</span>(<span class="number">2</span>,<span class="number">1</span>); <span class="comment">% add noise randomly</span></span><br><span class="line">xOdom=doMotion(xOdom, u); <span class="comment">% odometry only</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%Simulate Observation</span></span><br><span class="line">z=[];</span><br><span class="line"><span class="keyword">for</span> iz=<span class="number">1</span>:<span class="built_in">length</span>(landMarks(:,<span class="number">1</span>))</span><br><span class="line">dx = xGnd(<span class="number">1</span>)-landMarks(iz,<span class="number">1</span>);</span><br><span class="line">dy = xGnd(<span class="number">2</span>)-landMarks(iz,<span class="number">2</span>);</span><br><span class="line">d=<span class="built_in">sqrt</span>(dx^<span class="number">2</span>+dy^<span class="number">2</span>);</span><br><span class="line"><span class="keyword">if</span> d&lt;MAX_RANGE</span><br><span class="line">z=[z;[d+<span class="built_in">sqrt</span>(Rsigma)*<span class="built_in">randn</span>(<span class="number">1</span>,<span class="number">1</span>) landMarks(iz,:)]];   <span class="comment">% add observation noise randomly</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-运动模型">3.2. 2.2 运动模型</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% do Motion Model</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ x ]</span> = <span class="title">doMotion</span><span class="params">( x, u)</span></span></span><br><span class="line"><span class="keyword">global</span> dt;</span><br><span class="line">Delta = [ [dt*<span class="built_in">cos</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">[dt*<span class="built_in">sin</span>(x(<span class="number">3</span>)),<span class="number">0</span>];</span><br><span class="line">[<span class="number">0</span>,dt]];</span><br><span class="line"></span><br><span class="line">x = x+Delta*u;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Localization/PF/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1505,7 +1433,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">376</span>
+          <span class="site-state-item-count">378</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
