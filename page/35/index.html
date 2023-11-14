@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/newline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">SECOM数据分析与预测</a>
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/newline/" class="post-title-link" itemprop="url">Newline Characters</a>
         </h2>
 
         <div class="post-meta">
@@ -212,7 +212,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-04-26 20:55:00" itemprop="dateCreated datePublished" datetime="2019-04-26T20:55:00-07:00">2019-04-26</time>
+              <time title="Created: 2019-07-30 17:00:00" itemprop="dateCreated datePublished" datetime="2019-07-30T17:00:00-07:00">2019-07-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -239,11 +239,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Analysis/" itemprop="url" rel="index"><span itemprop="name">Data Analysis</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Analysis/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
                 </span>
             </span>
 
@@ -258,21 +254,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-目标">1. 1. 目标</h2><ul>
-<li>选择一个侧重工业领域的数据集</li>
-<li>分析数据</li>
-<li>分析问题，分析结果</li>
+          <h2 id="Difference">1. Difference</h2><p><code>&#39;\n&#39;</code> writes a newline in UNIX</p>
+<p><code>&#39;\r\n&#39;</code>writes a newline in Windows</p>
+<p>Why Windows use extra <code>‘\r’</code> to do this job?</p>
+<h2 id="EOL">2. EOL</h2><p>Newline, also called <code>line ending</code>, <code>end of line</code>, <code>line break</code> is a control character in a specify <strong>encoding</strong> system.</p>
+<p>This control character tell the text editor how to display the text.</p>
+<p>In <strong>ASCII</strong></p>
+<ul>
+<li>CR: Carriage Return <code>\r</code></li>
+<li>LF: Linefeed <code>\n</code></li>
+<li>CRLF: Carriage Return &amp; Linefeed <code>\r\n</code></li>
 </ul>
-<h2 id="2-问题分析">2. 2. 问题分析</h2><h3 id="2-1-问题">2.1. 2.1 问题</h3><blockquote>
-<p>A complex modern semi-conductor manufacturing process is normally under consistent surveillance via the monitoring of signals&#x2F;variables collected from sensors and or process measurement points. However, not all of these signals are equally valuable in a specific monitoring system. The measured signals contain a combination of useful information, irrelevant information as well as noise. It is often the case that useful information is buried in the latter two. Engineers typically have a much larger number of signals than are actually required. If we consider each type of signal as a feature, then feature selection may be applied to identify the most relevant signals. The Process Engineers may then use these signals to determine key factors contributing to yield excursions downstream in the process. This will enable an increase in process throughput, decreased time to learning and reduce the per unit production costs.</p>
-</blockquote>
-<p>简单来说，在半导体加工行业中，我们希望通过流水线上各个传感器的信号来预先判断最后产品合格与否。</p>
-<p>在过去，一般会采用多元统计的分析方法来进行预测，但是现在的生产实际过程中有相当多的传感器收集了过多的信息，因此并不能使用原来的方法。另外，这些信息的重要程度不同，有一些还参杂了许多噪声，因此我们要进行特征提取，选择合适的模型进行分析</p>
-<p>数据来源： <a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/secom">SECOM Data Set</a></p>
-<h3 id="2-2-数据格式定义">2.2. 2.2 数据格式定义</h3><p>数据来自半导体加工工厂，数据来自半导体生产线上的传感器，整体数据已经经过了脱敏的处理，因此无法得知每个属性数据来自哪种，哪一个传感器。数据按时间点记录，1567条数据代表着1567个时间点上生产线上传感器所记录的数据。</p>
+<p>Windows use CRLF to be backward compatible with MS-DOS for historical reason</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Project/SECOM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/newline/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -296,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Transfer/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/regexp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -310,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Transfer/" class="post-title-link" itemprop="url">ML:Transfer Learning</a>
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/regexp/" class="post-title-link" itemprop="url">Regular Expressions</a>
         </h2>
 
         <div class="post-meta">
@@ -320,7 +316,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-04-15 19:47:00" itemprop="dateCreated datePublished" datetime="2019-04-15T19:47:00-07:00">2019-04-15</time>
+              <time title="Created: 2019-07-30 17:00:00" itemprop="dateCreated datePublished" datetime="2019-07-30T17:00:00-07:00">2019-07-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -347,7 +343,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
                 </span>
             </span>
 
@@ -362,563 +358,127 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-What-is-Transfer-Learning">1. 1 What is Transfer Learning</h2><blockquote>
-<p>Transfer learning is a machine learning technique where a model trained on one task is re-purposed on a second related task.</p>
-</blockquote>
-<p>For example, if I already have a fine trained model for detecting dog and cat, and now I want to train a model can detect different kinds of dogs, I don’t need to train the model from scratch. Just use the pre-trained model and train the last few layers’ neural.</p>
-<h2 id="2-How-to-use-Transfer-Learning">2. 2 How to use Transfer Learning</h2><p>Two common approaches:</p>
+          <h2 id="Overview">1. Overview</h2><p>Regular expressions are useful in <strong>text</strong> processing fields to <strong>extract information</strong>.</p>
+<p>The main idea: writting <strong>patterns</strong> to <strong>match</strong> a specific sequence of characters</p>
+<h2 id="Quick-Start">2. Quick Start</h2><ul>
+<li>Letters</li>
+</ul>
+<p><code>a</code> matches <em>a</em></p>
+<p><code>ab</code> matches <em>ab</em></p>
+<p><code>[abc]</code> matches only <em>a &#x2F; b &#x2F; c</em> (1 character)</p>
+<p><code>[^abc]</code> matches only 1 character <strong>except a\b\c</strong></p>
+<p><code>[a-z]</code> matches only 1 character <em>from a to z</em></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Miscellaneous/regexp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/apple-3d-face/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/apple-3d-face/" class="post-title-link" itemprop="url">Apple's 3D Face ID Tech</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-29 21:59:00" itemprop="dateCreated datePublished" datetime="2019-07-29T21:59:00-07:00">2019-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Overview">1. Overview</h2><p>Apple use Face ID as an unlocking method first in iPhone X, it use a bunch of technology to improve its performance.</p>
 <ul>
-<li>Develop Model : If you have <strong>large dataset</strong> on a similar problem and willing to train the model <strong>yourself</strong>.</li>
-<li>Pre-trained Model : If you don’t have enough data to train your model so you can download some <strong>pre-trained model</strong> released by some <strong>research institutions</strong>.</li>
+<li>Front facing <strong>depth-camera</strong></li>
+<li><strong>infrared camera</strong></li>
+<li><strong>Deep learning</strong></li>
 </ul>
-<h2 id="3-When-to-use-Transfer-Learning">3. 3 When to use Transfer Learning</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/transfer-learning.png" alt="transfer-learning"></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Transfer/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Reinforcement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Reinforcement/" class="post-title-link" itemprop="url">ML:Reinforcement Learning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-15 15:54:00" itemprop="dateCreated datePublished" datetime="2019-04-15T15:54:00-07:00">2019-04-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><p><em><a target="_blank" rel="noopener" href="http://spinningup.openai.com/">Spinning Up</a></em> brought by OpenAI is a good resource for learning reinforcement learning.</p>
-<p>The goal of Spinning up is to ensure AI is <strong>safe</strong> developed and help people to learn Deep RL which has a pretty high barrier to entry</p>
-<blockquote>
-<p>In a nutshell, RL is the study of agents and how they learn by trial and error. It formalizes the idea that rewarding or punishing an agent for its behavior makes it more likely to repeat or forego that behavior in the future.</p>
-</blockquote>
-<p>Learning Types：</p>
+<p>I was so interested in this tech especially how can Apple apply deep learning with little data and limited compute resource in mobile phone.</p>
+<h2 id="How-it-Works">2. How it Works?</h2><p>Apple release a whitepaper about Face ID, so we can learn something from it.</p>
+<p>The whole security system is called <strong>TrueDepth camera system</strong></p>
 <ul>
-<li>supervised：given x and y, find $f()$</li>
-<li>unsupervised：given x, find $cluster$</li>
-<li>reinforcement：given x and z, find decision $f()$ to generate y</li>
-<li>difference from supervised learning: <strong>delayed</strong> reward that is your movement will affect later world. about <strong>time</strong> and <strong>sequence</strong></li>
+<li><strong>map the geometry</strong> of your face</li>
+<li><strong>confirms attention</strong> by detecting the direction of your gaze</li>
 </ul>
-<p>Markov decision process (MDP) :</p>
-<ul>
-<li>states: things described the world</li>
-<li>actions: things you can do</li>
-<li>model: rules, physics of the world</li>
-<li>reward: a scaler value to value the <em>state</em></li>
-<li><strong>policy</strong>: what we want to learn, $\pi^{\star}(state)\to action$ ,the action can maximize the cumulative reward.</li>
-<li>when moving in the grid map, agent should avoid $-negative$ reward and get $+positive$ reward</li>
-<li>You need to set the reward carefully</li>
-<li>Even if you are in the same state, your action will be different for different <strong>step(time)</strong> you can take later. E.g. if you have only 3 steps to go, you may take action <strong>risky</strong>, $\pi^{\star}(state,time)\to action$</li>
-</ul>
-<h2 id="2-Key-Concepts">2. 2 Key Concepts</h2><h3 id="2-1-What-can-RL-do">2.1. 2.1 What can RL do</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-Reinforcement/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/flight-controller/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Project/flight-controller/" class="post-title-link" itemprop="url">Flight Controller</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-13 14:56:00" itemprop="dateCreated datePublished" datetime="2019-04-13T14:56:00-07:00">2019-04-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><p>This project was brought to make a flight controller from scratch.</p>
-<p>I want to learn from the process so the flight controller will be more general. However the model of the flight and selection of controller platform(STM32&#x2F;Arduino&#x2F;Linux ) will make the general task more difficult.</p>
-<p>Before the program, I have no experience in flight controller programming. So I would learn from other project shared on Github.com.</p>
-<h2 id="2-Learning-from-Others">2. 2 Learning from Others</h2><h3 id="2-1-HackFlight">2.1. 2.1 HackFlight</h3><p>As a education oriented project, <em><a target="_blank" rel="noopener" href="https://github.com/simondlevy/Hackflight">Hackflight</a> is simple, platform-independent, header-only C++ firmware for multirotor flight controllers and simulators</em></p>
-<h4 id="2-1-1-Unit">2.1.1. 2.1.1 Unit</h4><p>First of all, HackFlight defined some standard units to write simpler code.</p>
-<ul>
-<li>Distance $ m&#x2F;s $</li>
-<li>Time $ s $</li>
-<li>Euler angle $ radians $</li>
-<li>Stick demand interval $ [-1,1 ] $</li>
-<li>Motor demands $ [0,1] $</li>
-<li>Quaternions interval $ [-1,1] $</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/flight-controller/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Data-Regression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Data-Regression/" class="post-title-link" itemprop="url">Data-Regression</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-17 20:18:00" itemprop="dateCreated datePublished" datetime="2019-03-17T20:18:00-07:00">2019-03-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Analysis/" itemprop="url" rel="index"><span itemprop="name">Data Analysis</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><blockquote>
-<p>In statistical modeling, regression analysis is a set of statistical processes for <strong>estimating the relationships among variables.</strong></p>
-</blockquote>
-<p>$$<br>\left{\begin{array}{l}{y&#x3D;\beta_{0}+\beta_{1} x+\varepsilon} \ {E \varepsilon&#x3D;0, D \varepsilon&#x3D;\sigma^{2}}\end{array}\right.<br>$$</p>
-<h2 id="2-the-Develop-of-Algorithm">2. 2 the Develop of Algorithm</h2><h3 id="Problem-set">2.1. Problem set</h3><p>$$<br>\mathbf{X}&#x3D;\left[ \begin{array}{cccc}{x_{11}} &amp; {x_{12}} &amp; { . .} &amp; {x_{1 m}} \ {x_{21}} &amp; {x_{22}} &amp; {\dots} &amp; {x_{2 m}} \ {\ldots} &amp; {\cdots} &amp; {\cdots} &amp; {\cdots} \ {x_{n 1}} &amp; {x_{n 2}} &amp; {\dots} &amp; {x_{n m}}\end{array}\right]<br>$$</p>
-<p>$$<br>Y&#x3D;\left(y_{1} \quad y_{2}\right)&#x3D;\left[ \begin{array}{cc}{y_{11}} &amp; {y_{12}} \ {y_{12}} &amp; {y_{22}} \ {\cdots} &amp; {\cdots} \ {y_{1 n}} &amp; {y_{2 n}}\end{array}\right]<br>$$</p>
-<p>$$<br>B&#x3D;\left(b_{1} \quad b_{2}\right)&#x3D;\left[ \begin{array}{cc}{b_{11}} &amp; {b_{21}} \ {b_{12}} &amp; {b_{22}} \ {\dots} &amp; {\dots} \ {b_{1 m}} &amp; {b_{2 m}}\end{array}\right]<br>$$</p>
-<p>$$<br>E&#x3D;\left(e_{1} \quad e_{2}\right)&#x3D;\left[ \begin{array}{cc}{e_{11}} &amp; {e_{21}} \ {e_{12}} &amp; {e_{22}} \ {\cdots} &amp; {\cdots} \ {e_{1 n}} &amp; {e_{2 n}}\end{array}\right]<br>$$</p>
-<p>$$<br>\boldsymbol{Y}&#x3D;\boldsymbol{X} \boldsymbol{B}+\boldsymbol{E} ; \quad y_{1}&#x3D;\boldsymbol{X} \boldsymbol{b}<em>{1} ; \quad y</em>{2}&#x3D;\boldsymbol{X} \boldsymbol{b}_{2}<br>$$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Data-Regression/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Flight/hardware-omnibusf4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Hardware/Flight/hardware-omnibusf4/" class="post-title-link" itemprop="url">Omnibus F4 pro v3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-15 22:15:00" itemprop="dateCreated datePublished" datetime="2019-03-15T22:15:00-07:00">2019-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Flight/" itemprop="url" rel="index"><span itemprop="name">Flight</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><blockquote>
-<p>Upgrade version of OMNIBUS F4, the OMNIBUS F4 Pro (Some shop call it as OMNIBUS F4 PRO V2) added SD card supports, has 5v3A BEC, LC filter for Camera and VTX, build in Current sensor for high Integration Frame.</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/omnibusf4.png" alt="omnibusf4"></p>
-<h2 id="2-Specifications">2. 2 Specifications</h2><ul>
-<li>Processor</li>
-<li>STM32F405 ARM</li>
-<li>Sensors</li>
-<li>InvenSense MPU6000 IMU (accel, gyro)</li>
-<li>BMP280 barometer</li>
-<li>Voltage and current sensor</li>
-<li>Interfaces</li>
-<li>UARTS</li>
-<li>PWM outputs</li>
-<li>RC input PWM&#x2F;PPM, SBUS</li>
-<li>I2C port for external compass</li>
-<li>USB port</li>
-<li>Built-in OSD</li>
-</ul>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Flight/hardware-omnibusf4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Flight/hardware-transmitter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Hardware/Flight/hardware-transmitter/" class="post-title-link" itemprop="url">Hardware Transmitter</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-15 20:36:00" itemprop="dateCreated datePublished" datetime="2019-03-15T20:36:00-07:00">2019-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Flight/" itemprop="url" rel="index"><span itemprop="name">Flight</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-简介">1. 1 简介</h2><p>针对一个富斯FS-i6发射机及其接收机来学习接收机方面的知识</p>
-<h3 id="1-1-发射机">1.1. 1.1 发射机</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/transmitter.png" alt="flysky-transmitter"></p>
-<h3 id="1-2-接收机">1.2. 1.2 接收机</h3><ul>
-<li>型号：FS-iA6B</li>
-<li>调制方式：GFSK</li>
-<li>数据分辨率：1024级</li>
-<li>电源标准：4.0-6.5V DC</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/receiver.png" alt="receiver"></p>
-<h3 id="1-3-基本操作">1.3. 1.3 基本操作</h3><ul>
-<li>开机：</li>
-</ul>
+<p>As for users, they need to do something similar to Touch ID:</p>
 <ol>
-<li>先开发射机Tx</li>
-<li>再开接收机Rx</li>
-<li>正常情况下接收机红色指示灯常亮</li>
+<li>Register users’ face</li>
+<li>Look at the phone</li>
+<li>slowly rotate the head</li>
+<li>DONE!</li>
 </ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Flight/hardware-transmitter/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/apple-3d-face/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -942,7 +502,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Programming%20Language/Python/python-matplotlib/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/how-to-swim-freestyle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -956,7 +516,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Programming%20Language/Python/python-matplotlib/" class="post-title-link" itemprop="url">Matplotlib</a>
+            <a href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim-freestyle/" class="post-title-link" itemprop="url">游泳进阶--自由泳</a>
         </h2>
 
         <div class="post-meta">
@@ -966,7 +526,112 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-12 10:33:00" itemprop="dateCreated datePublished" datetime="2019-03-12T10:33:00-07:00">2019-03-12</time>
+              <time title="Created: 2019-07-25 16:54:00" itemprop="dateCreated datePublished" datetime="2019-07-25T16:54:00-07:00">2019-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="自由泳简介">1. 自由泳简介</h2><p>6月末开始学习游泳，首先学的是蛙泳。经过6次练习之后，掌握了基本的技巧，能够实现蹬腿换气的连续运作。</p>
+<p>但是蛙泳的速度不快——我以较为平缓的节奏蛙泳大概速度为50分钟每1000米。初次之外，蛙泳还对关节会有损伤，因此我开始学习自由泳。</p>
+<blockquote>
+<p>自由泳（freestyle），严格地来说不是一种游泳姿势，而是竞技游泳的一种比赛项目，它的竞赛规则对游泳姿势几乎没有任何限制，而<strong>爬泳</strong>这种姿势<strong>结构合理，阻力小，速度均匀、快速，是最省力、速度最快</strong>的一种游泳姿势。所以人们在这种对泳姿几乎没有任何限制的比赛项目里往往会使用爬泳这种阻力小、速度快的泳姿，所以在现在，通常把自由泳和爬泳等同看待</p>
+<p>1896年第一届奥运会自由泳被列为正式的比赛项目。20世纪50年代以前，游泳运动员都非常重视两腿打水的作用，一般都是两臂轮流划水1次就打腿6次。后来科研材料证明打腿的能量消耗比划臂大得多，而<strong>推动身体前进的动力主要来自臂部的划水动作</strong>。因此以臂为主的现代自由泳技术重视臂的划水动作和两臂的配合。</p>
+</blockquote>
+<h2 id="首先练习自由泳腿">2. 首先练习自由泳腿</h2><p>主要动作可以称为<strong>鞭腿</strong></p>
+<ul>
+<li>想象甩毛巾的动作，反映在动作上就是<strong>大腿带动小腿</strong></li>
+<li>大腿要有收的动作，是为了更好地甩出去，收回来的时候要有大腿拖着小腿的感觉</li>
+</ul>
+<p>练习的效果应该是每一下打腿都能够起到向前的作用</p>
+<p>练好之后再尝试<strong>侧身打腿</strong></p>
+<ul>
+<li>绷直，身体呈直线–大腿、臀部、脚</li>
+<li>手要对着<strong>前面</strong>和<strong>后面</strong>，不要用手带动转体（手摆在另外一边）</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim-freestyle/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/MindBrainProgram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/MindBrainProgram/" class="post-title-link" itemprop="url">Notes about MINDS, BRAINS, AND PROGRAMS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-21 23:41:00" itemprop="dateCreated datePublished" datetime="2019-07-21T23:41:00-07:00">2019-07-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -993,11 +658,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Programming-Language/" itemprop="url" rel="index"><span itemprop="name">Programming Language</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Programming-Language/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
                 </span>
             </span>
 
@@ -1012,16 +673,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Basics">1. 1. Basics</h2><ul>
-<li>Figure</li>
-<li>Axes</li>
-<li>Axis</li>
-<li>Title</li>
+          <h2 id="Background">1. Background</h2><p>Researchers in AI fields often suggest our human’s mental activity can be just like a computer program. That may means our brain is just a</p>
+<ul>
+<li>information <strong>processo</strong>r like a CPU</li>
+<li>has working and long-term <strong>memory</strong> like ROM\RAM</li>
 </ul>
-
+<p>That’s the <strong>Strong AI</strong>. This paper in intended to prove that Strong AI is <strong>false</strong></p>
+<blockquote>
+<p>The “<strong>Turing Test</strong>”: Anything capable of conducting a conversation well-enough to <strong>fool</strong> a typical human questioner (or “interlocutor”) into thinking that it is conversing with a genuine human ought to be deemed “intelligent.”</p>
+</blockquote>
+<p>The author of this paper, Searle@UCB gave <strong>The Chinese Room thought experiment</strong>, arguing that program can pass the <strong>Turing Test</strong> but still have no intelligence at all because the program can just follow the instruction and make it look like a human from outside.</p>
+<h2 id="Abstract">2. Abstract</h2><p>This article is an attempt to explore the consequences of two propositions</p>
+<ol>
+<li><strong>Intentionality</strong> in human beings (and animals) is a product of <strong>causal features of the brain</strong>.</li>
+</ol>
+<p>I assume this is an <strong>empirical fact</strong> about the actual causal relations between mental processes and brains.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Programming%20Language/Python/python-matplotlib/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/MindBrainProgram/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1045,7 +714,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-pathplaning/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Personal%20Development/use-anki/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1059,7 +728,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-pathplaning/" class="post-title-link" itemprop="url">Robotics-Path Planning</a>
+            <a href="/MarkdownNotes/Life%20Skill/Personal%20Development/use-anki/" class="post-title-link" itemprop="url">利用Anki增强记忆</a>
         </h2>
 
         <div class="post-meta">
@@ -1069,7 +738,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00-07:00">2019-03-12</time>
+              <time title="Created: 2019-07-18 15:45:00" itemprop="dateCreated datePublished" datetime="2019-07-18T15:45:00-07:00">2019-07-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -1088,19 +757,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Robotics-Vison-and-Control-Notes/" itemprop="url" rel="index"><span itemprop="name">Robotics,Vison and Control Notes</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/Personal-Development/" itemprop="url" rel="index"><span itemprop="name">Personal Development</span></a>
                 </span>
             </span>
 
@@ -1115,36 +776,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Compare-Obstacle-Avoidance-Algorithm">1. Compare Obstacle Avoidance Algorithm</h2><h3 id="1-Bug-algorithms">1.1. 1 Bug algorithms</h3><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/bug-algorithm.png" alt="bug-algorithm"></p>
+          <h2 id="简介">1. 简介</h2><p>本文来源于<a target="_blank" rel="noopener" href="http://www.ankichina.net/anki20.html">官方文档</a></p>
+<p>Anki是一个自定义多功能的记忆方式，减少学习时间，提高学习容量。</p>
+<p>基本的方式的“内容-未知”模式。背后用到的概念或者原理是</p>
 <ul>
-<li>Simple</li>
-<li>Non optimal</li>
-<li>May be trapped in maze structures</li>
+<li>主动召回测试：问一个问题并试图记住答案，这样学习更有效率</li>
+<li>大脑的遗忘：大脑会迅速抛弃似乎不太有用的信息，解决方法就是复习</li>
+<li>间隔重复：<strong>分散的复习</strong>比<strong>集中的复习</strong>更有效</li>
 </ul>
-<h3 id="2-Potential-Field">1.2. 2 Potential Field</h3><table>
-<thead>
-<tr>
-<th align="center">Attractive Potential</th>
-<th align="center">Repulsive Potential</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/attractive-potential.png" alt="attractive-potential"></td>
-<td align="center"><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/repulsive-potential.png" alt="repulsive-potential"></td>
-</tr>
-</tbody></table>
-<p>Combine Attractive Potential and Repulsive Potential</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/combine-att-rep.png" alt="combine"></p>
-<ul>
-<li><p>Good for static and completely known environment</p>
+<p>为什么使用Anki：免费、开源、全平台</p>
+<h2 id="基本术语">2. 基本术语</h2><ul>
+<li><p>卡片：<strong>一问一答</strong>配对成卡片</p>
 </li>
-<li><p>Bad: may lead to a <strong>local minimum</strong> point</p>
+<li><p>牌组：一副牌组包含了<strong>一组卡片</strong>，每个牌组可以有不同的设置</p>
+</li>
+<li><p>牌组下可以有分支，形成一个树状结构</p>
+</li>
+<li><p>用来放置<strong>较大门类的卡片</strong>，而不是第一课这样的小主题</p>
+</li>
+<li><p>笔记</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/local-minimum.png" alt="local-minimum"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">法语：Bonjour</span><br><span class="line">中文：你好</span><br><span class="line">页码：12</span><br></pre></td></tr></table></figure>
+
+<p>比如一张<em>卡片</em>如上，这张卡片上有3条信息，法语、中文、页码，Anki中这些相关的信息称为<em><strong>笔记</strong></em>，每条信息称为<em><strong>字段</strong></em></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Robotics,Vison%20and%20Control%20Notes/Robotics-pathplaning/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Personal%20Development/use-anki/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1168,7 +826,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Project/robotics-bicopoter/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/Project/InvertedPendulum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1182,7 +840,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Robotics/Project/robotics-bicopoter/" class="post-title-link" itemprop="url">Robotics-BioCopter</a>
+            <a href="/MarkdownNotes/Engineering/Control%20Theory/Project/InvertedPendulum/" class="post-title-link" itemprop="url">倒立摆的控制设计</a>
         </h2>
 
         <div class="post-meta">
@@ -1192,7 +850,252 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-11 09:42:00" itemprop="dateCreated datePublished" datetime="2019-03-11T09:42:00-07:00">2019-03-11</time>
+              <time title="Created: 2019-07-16 23:34:00" itemprop="dateCreated datePublished" datetime="2019-07-16T23:34:00-07:00">2019-07-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Control-Theory/" itemprop="url" rel="index"><span itemprop="name">Control Theory</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Control-Theory/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题目要求">1. 题目要求</h2><p>设计并制作一套简易的旋转倒立摆及其控制机构</p>
+<ul>
+<li>基本要求</li>
+</ul>
+<ol>
+<li>摆杆从自然下垂状态开始，驱动电机带动旋转臂作往复旋转，使摆角达到或超过<strong>60°</strong></li>
+<li>摆杆从自然下垂状态开始，尽快增大摆杆的摆动幅度，直至完成<strong>圆周运动</strong></li>
+<li>外力拉起摆杆至165°左右，撤除外力，启动控制旋转使摆杆<strong>保持倒立不少于5秒钟</strong></li>
+</ol>
+<ul>
+<li>发挥部分</li>
+</ul>
+<ol>
+<li>摆杆从自然下垂状态开始，驱动电机带动旋转臂作往复旋转，使摆杆倒立并保持10秒钟</li>
+<li>倒立状态下，施加干扰后能继续保持</li>
+<li>倒立状态下，旋转臂做圆周运动</li>
+</ol>
+<h2 id="程序控制">2. 程序控制</h2><h3 id="基本输出输出">2.1. 基本输出输出</h3><p>输入：</p>
+<ul>
+<li>编码器输入</li>
+<li>A相，方波，数字信号</li>
+<li>B相，方波，数字信号</li>
+<li>摆杆传感器</li>
+<li>模拟量直接输出，模拟量，模拟信号</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Control%20Theory/Project/InvertedPendulum/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/para-esti/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/para-esti/" class="post-title-link" itemprop="url">参数估计简述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-14 20:20:00" itemprop="dateCreated datePublished" datetime="2019-07-14T20:20:00-07:00">2019-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Statistics/" itemprop="url" rel="index"><span itemprop="name">Statistics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本概念">1. 基本概念</h2><ul>
+<li>估计量：用来估计总体参数的统计量</li>
+<li>求法：矩估计、最大似然估计法</li>
+<li>估计值：根据一个样本算出来的统计量的值</li>
+<li>点估计：用样本统计量$\hat{\theta}$的某个取值作为总体参数$\theta$的估计值</li>
+<li>区间估计：在<strong>点估计的基础</strong>上，给出总体参数的一个<strong>区间范围</strong></li>
+<li>置信区间：在区间估计中，由样本统计量构造的总体参数的估计区间</li>
+<li>对参数估计的评价</li>
+<li>无偏，$E(\hat{\theta})&#x3D;\theta$</li>
+<li>更有效，$D(\hat{\theta_1})&lt;D(\hat{\theta_2})$</li>
+<li>一致性，$\hat{\theta}$依概率收敛于$\theta$</li>
+</ul>
+<h2 id="矩估计">2. 矩估计</h2><blockquote>
+<p>矩：所考虑的随机变量的幂的期望值</p>
+<ul>
+<li><p>一阶矩：期望，$E(x)&#x3D;\int_{-\infty}^{\infty} x f(x) d x$</p>
+</li>
+<li><p>二阶矩：方差，$\operatorname{Var}(x)&#x3D;\int_{-\infty}^{\infty}[x-E(x)]^{2} f(x) d x$</p>
+</li>
+<li><p>三阶矩：偏态，$S(x)&#x3D;\int_{-\infty}^{\infty}[x-E(x)]^{3} f(x) d x$</p>
+</li>
+<li><p>样本矩：$\mu_{n}^{\prime} \approx \frac{1}{N} \sum_{i&#x3D;1}^{N} X_{i}^{n}$</p>
+<p>通过这种方法求矩不需要先估计其概率分布</p>
+</li>
+</ul>
+</blockquote>
+<p>用样本矩估计相应的总体矩，用样本矩的函数聚集总体矩相应的函数</p>
+<blockquote>
+<p>e.g. 已知分布函数$f(x;\theta)$，和一些样本$X_i$</p>
+<ol>
+<li>求出$f$的期望\方差，其中有$\theta$</li>
+<li>求出样本的期望\方差，是具体的数字或者$X_i$中的信息</li>
+<li>用那些信息表示$\theta$</li>
+</ol>
+</blockquote>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/para-esti/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/signifi-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/signifi-test/" class="post-title-link" itemprop="url">显著性检验简述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-14 15:35:00" itemprop="dateCreated datePublished" datetime="2019-07-14T15:35:00-07:00">2019-07-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -1211,15 +1114,15 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Statistics/" itemprop="url" rel="index"><span itemprop="name">Statistics</span></a>
                 </span>
             </span>
 
@@ -1234,26 +1137,122 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Introduction-Prepare">1. 1 Introduction (Prepare)</h2><h3 id="1-1-Goal">1.1. 1.1 Goal</h3><p>Build a bicopter(a kind of frame) like this</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/biocopter.png" alt="biocopter"></p>
-<h3 id="1-2-Pros-amp-Cons">1.2. 1.2 Pros &amp; Cons</h3><ul>
-<li>Cheap : only 2 servos and 2 motors</li>
-<li>Unstable</li>
-<li>Hard to tune</li>
+          <h2 id="什么是显著性检验">1. 什么是显著性检验</h2><p>显著性检验是“统计假设检验”（Statistical hypothesis testing）的一种，显著性检验是用于检测科学实验中<strong>实验组</strong>与<strong>对照组</strong>之间是否有差异以及差异是否显著的办法。</p>
+<p>这个方法的基本原理：小概率事件在一次试验中实际上是不会发生的。也就是<strong>小概率原理</strong></p>
+<p>一般而言，把要检验的假设称之为原假设（null hypothesis），记为$H_0$；把与$H_0$相对应（相反）的假设称之为备择假设，记为$H_1$。</p>
+<ul>
+<li><strong>原假设为真，结论显示为假，称为弃真错误，概率为</strong>$\alpha$</li>
+<li>通常考察的概率都是$\alpha$，这样的假设检验称为显著性检验，$\alpha$也就称为显著性水平</li>
+<li>原假设为假，结论显示为真，称为纳伪错误，概率为$\beta$</li>
 </ul>
-<h3 id="1-3-Hardware">1.3. 1.3 Hardware</h3><ul>
-<li>Servo $\times$ 2</li>
-<li>Motor $\times$ 2</li>
-<li>Flight Controller Board $\times​$ 1 : SP Racing F4 Pro</li>
-<li>Transmitter $\times$ 1 : FS-i6</li>
-<li>Receiver (Rx) $\times$ 1 : FS-iA6</li>
+<h2 id="为什么要做显著性检验">2. 为什么要做显著性检验</h2><p>因为我们平常所做的统计都是基于<strong>有限数量的样本</strong>，但假设却是对<strong>总体</strong>给出的。为了了解我们的<strong>假设是否符合实际情况</strong>，所以通过做显著性检验</p>
+<ul>
+<li>如果样本的情况和我们对总体的假设的显著性差异大于$p$值，说明假设和样本的情况是一致的</li>
+<li>如果小于$p$值，我们就拒绝原假设</li>
 </ul>
-<h3 id="1-4-Software">1.4. 1.4 Software</h3><ul>
-<li>CleanFlight &#x2F; BeteFlight &#x2F; iNav (based on similar code)</li>
+<h2 id="怎么做显著性检验">3. 怎么做显著性检验</h2><p>显著性检验有两种</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/signifi-test/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/bitcoin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/bitcoin/" class="post-title-link" itemprop="url">比特币工作原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-10 07:56:00" itemprop="dateCreated datePublished" datetime="2019-07-10T07:56:00-07:00">2019-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Overview">1. Overview</h2><p>比特币利用了区块链技术，从发展和技术角度来理解比特币</p>
+<h2 id="发展过程">2. 发展过程</h2><h3 id="1-账本">2.1. 1 账本</h3><p>基本规则</p>
+<ol>
+<li>每个人都能向账本添加信息</li>
+<li>月底统一结算</li>
+</ol>
+<p>问题：添加信息时无法保证信息准确</p>
+<h3 id="2-加密账本">2.2. 2 加密账本</h3><p>使用数字加密技术，利用公钥+密钥，解决信用问题</p>
+<ul>
+<li>产生的256位签名是根据内容和私钥，签名的验证是根据内容、签名和公钥<br>$$<br>Sign (Message, sk) &#x3D; Signature<br>$$</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Project/robotics-bicopoter/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/bitcoin/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1276,7 +1275,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1342,20 +1341,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">384</span>
+          <span class="site-state-item-count">407</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-count">127</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

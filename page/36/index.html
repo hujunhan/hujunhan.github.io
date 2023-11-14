@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Date-PCA/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/install-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Date-PCA/" class="post-title-link" itemprop="url">Data-PCA</a>
+            <a href="/MarkdownNotes/Life%20Skill/Interests/install-blog/" class="post-title-link" itemprop="url">Install Hexo in New Env</a>
         </h2>
 
         <div class="post-meta">
@@ -212,7 +212,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-08 19:41:00" itemprop="dateCreated datePublished" datetime="2019-03-08T19:41:00-08:00">2019-03-08</time>
+              <time title="Created: 2019-07-09 18:26:00" itemprop="dateCreated datePublished" datetime="2019-07-09T18:26:00-07:00">2019-07-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -231,15 +231,11 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Analysis/" itemprop="url" rel="index"><span itemprop="name">Data Analysis</span></a>
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
                 </span>
             </span>
 
@@ -254,29 +250,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Introduction">1. 1 Introduction</h2><p>Principal component analysis (PCA) is a common tool for data analysis</p>
-<ul>
-<li>Goal: reduce complex data set to a <strong>lower dimension</strong></li>
-<li>Math tool: singular value decomposition (<strong>SVD</strong>)</li>
-</ul>
-<h3 id="1-1-intuition">1.1. 1.1 intuition</h3><p>Many problem in real world can be expressed by <strong>a small number of variables</strong>. But we don’t know that, we just collect <strong>so many data</strong> and have no ideal how to deal with <strong>hundreds of variables</strong>. Also, there will be noise in our data, which makes the problem even more complicated.</p>
-<p>PCA is to solve this problem by <em>identify the <strong>most meaningful</strong> basis to re-express the data.</em> Then we can delete the less important basis( variable)</p>
-<h3 id="1-2-A-little-math">1.2. 1.2 A little math</h3><ul>
-<li>$\mathbf{X}$ : the original data set $\rightarrow$ how to re-express $\mathbf{X}$</li>
-<li>row : variable ;</li>
-<li>column : measurements</li>
-<li>$\mathbf{Y}$ : transformed data set $\rightarrow$ how $\mathbf{Y}$ should look like  $\rightarrow$ $\mathrm{C}_{\mathrm{Y}}$</li>
-<li>$\mathbf{P}​$ : transformation</li>
-<li>$\sigma_{\mathrm{ab}}^{2}​$ : covariance o f A and B</li>
-<li>$\sigma_{\mathrm{ab}}^{2} \equiv \frac{1}{n} \mathbf{a b}^{T}$ , $\mathbf{a}&#x3D;\left[a_{1} a_{2} \ldots a_{n}\right]$  ,$\mathbf{b}&#x3D;\left[b_{1} b_{2} \ldots b_{n}\right]$</li>
-<li>$\mathbf{C}_{\mathbf{X}} \equiv \frac{1}{n} \mathbf{X} \mathbf{X}^{T}$ : covariance matrix of $\mathbf{X}$, the covariance value reflect the noise and redundancy in the measurement</li>
-<li>large off-diagonal terms correspond to high redundancy</li>
-</ul>
-<p><strong>Assumption 1</strong>: <em>bigger variance, more information</em><br><strong>Assumption 2</strong>: If the covariance of 2 variable is big, one of them should be deleted.<br><strong>Assumption 3</strong>: the principal components are orthogonal</p>
-<h3 id="1-3-Goal-in-math">1.3. 1.3 Goal in math</h3>
+          <h2 id="Overview">1. Overview</h2><p>每次重装电脑都要重新安装Hexo的环境，步骤比较繁琐，所以记录下来方便之后再利用</p>
+<h2 id="Scripts">2. Scripts</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装Nodejs和npm</span></span><br><span class="line"><span class="comment"># Using Ubuntu</span></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装Hexo-cli</span></span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.建站</span></span><br><span class="line"><span class="comment">#文件夹名称为blog</span></span><br><span class="line"><span class="comment">#hexo 版本为3.9</span></span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.1 拷贝markdown源文件</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/hujunhan/blogsave.git <span class="built_in">source</span>/_posts/.</span><br><span class="line"><span class="comment">##测试</span></span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.2 添加主题Next</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.3 安装数学公式渲染器</span></span><br><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line"><span class="comment">###安装pandoc，在ubuntu下</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb</span><br><span class="line">sudo dpkg -i pandoc-2.7.3-1-amd64.deb</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm i hexo-renderer-pandoc --save</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.4 安装一些其他的包</span></span><br><span class="line">npm uninstall hexo-generator-index --save</span><br><span class="line">npm i hexo-generator-index2 hexo-auto-category hexo-blog-encrypt hexo-deployer-git  hexo-generator-searchdb  --save</span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.5 建立分类、tag页面</span></span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">sed -i <span class="string">&#x27;3a type: tags&#x27;</span> <span class="built_in">source</span>/tags/index.md</span><br><span class="line">sed -i <span class="string">&#x27;3a type: categories&#x27;</span> <span class="built_in">source</span>/categories/index.md</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.设置上传相关</span></span><br><span class="line">git config --global user.email <span class="string">&quot;hujh@zju.edu.cn&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;hujunhan&quot;</span></span><br><span class="line"><span class="comment">#在新环境中设置密钥</span></span><br><span class="line">ssh-keygen <span class="comment">#生成密钥</span></span><br><span class="line"><span class="built_in">cat</span> /home/coding/.ssh/id_rsa.pub  <span class="comment">#读取密钥</span></span><br><span class="line"><span class="comment">#到Github中设置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Deploy">3. Deploy</h2><h2 id="Custom-Domain">4. Custom Domain</h2><p>Prerequisite: A custom domain</p>
+<p>设置步骤:</p>
+<ol>
+<li>在域名购买商处设置一条解析规则, 记录设置为CNAME(用于github.io)或者A(用于IPv4地址)</li>
+<li>在github的项目处设置Custom Domain, 这会在项目根目录下新建一个CNAME文件, 文件内容就是想要的Custom Domain.</li>
+<li>因为每次Hexo deploy之后CNAME文件都会被删除, 所以需要在Hexo项目中加入CNAME文件来解决这个问题. 在blog&#x2F;source&#x2F;目录下新建CNAME文件, 文件内容是想要的Custom Domain.</li>
+</ol>
+<h2 id="Link">5. Link</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Analysis/Date-PCA/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/install-blog/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -300,7 +287,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Lists/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Algebra/algebra-geo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -314,7 +301,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Lists/" class="post-title-link" itemprop="url">PADS-Lists</a>
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/algebra-geo/" class="post-title-link" itemprop="url">线性代数的几何理解</a>
         </h2>
 
         <div class="post-meta">
@@ -324,100 +311,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-03-02 11:11:00" itemprop="dateCreated datePublished" datetime="2019-03-02T11:11:00-08:00">2019-03-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduciton">1. 1 Introduciton</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Lists/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Deques/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Deques/" class="post-title-link" itemprop="url">PADS-Deques</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-02 10:00:00" itemprop="dateCreated datePublished" datetime="2019-03-02T10:00:00-08:00">2019-03-02</time>
+              <time title="Created: 2019-07-07 16:34:00" itemprop="dateCreated datePublished" datetime="2019-07-07T16:34:00-07:00">2019-07-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -425,164 +319,6 @@
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><h3 id="1-1-Deques">1.1. 1.1 Deques</h3><blockquote>
-<p>A <strong>deque</strong>, also known as a <strong>double-ended queue</strong>, is an ordered collection of items similar to the queue. It has two ends, a front and a rear, and the items remain positioned in the collection. In a sense, this hybrid linear structure provides all the capabilities of stacks and queues in a single data structure.</p>
-</blockquote>
-<p>Simply speaking, deques is <strong>stacks + queues</strong></p>
-<h3 id="1-2-ADT">1.2. 1.2 ADT</h3><table>
-<thead>
-<tr>
-<th>Deque Operation</th>
-<th>Deque Contents</th>
-<th>Return Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>d.is_empty()</code></td>
-<td><code>[]</code></td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td><code>d.add_rear(4)</code></td>
-<td><code>[4]</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>d.add_rear(&#39;dog&#39;)</code></td>
-<td><code>[&#39;dog&#39;, 4]</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>d.add_front(&#39;cat&#39;)</code></td>
-<td><code>[&#39;dog&#39;, 4, &#39;cat&#39;]</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>d.add_front(True)</code></td>
-<td><code>[&#39;dog&#39;, 4,&#39;cat&#39;, True]</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>d.size()</code></td>
-<td><code>[&#39;dog&#39;, 4, &#39;cat&#39;, True]</code></td>
-<td><code>4</code></td>
-</tr>
-<tr>
-<td><code>d.is_empty()</code></td>
-<td><code>[&#39;dog&#39;, 4, &#39;cat&#39;, True]</code></td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td><code>d.add_rear(8.4)</code></td>
-<td><code>[8.4, &#39;dog&#39;, 4, &#39;cat&#39;,True]</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>d.remove_rear()</code></td>
-<td><code>[&#39;dog&#39;, 4, &#39;cat&#39;, True]</code></td>
-<td><code>8.4</code></td>
-</tr>
-<tr>
-<td><code>d.remove_front()</code></td>
-<td><code>[&#39;dog&#39;, 4, &#39;cat&#39;]</code></td>
-<td><code>True</code></td>
-</tr>
-</tbody></table>
-<h2 id="2-Implementation">2. 2 Implementation</h2><p>In practice, we just <em>import deque from collections</em> module</p>
-<p>Adding and removing from the <strong>rear</strong> is $O(1)$</p>
-<p>Adding and removing from the <strong>front</strong> is $O(n)​$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/ADS-Deques/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Modeling/2019ICM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Modeling/2019ICM/" class="post-title-link" itemprop="url">2019 ICM D</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-25 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-25T18:00:00-08:00">2019-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -602,7 +338,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Modeling/" itemprop="url" rel="index"><span itemprop="name">Modeling</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Algebra/" itemprop="url" rel="index"><span itemprop="name">Algebra</span></a>
                 </span>
             </span>
 
@@ -617,38 +353,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Problem">1. Problem</h2><p><strong>Goal</strong>: design <strong>evacuation plans</strong> at the Louvre in Paris</p>
-<ul>
-<li>Quic</li>
-<li>Safely</li>
+          <h2 id="几何上理解矩阵：作为一个变换函数">1. 几何上理解矩阵：作为一个变换函数</h2><ul>
+<li>列向量是对空间的<strong>基底</strong>的变换</li>
+<li>有$N$列代表着<strong>输入</strong>是$N$个基向量</li>
+<li>有$M$行代表着<strong>输出</strong>是用$M$个数代表的坐标</li>
 </ul>
-<p><strong>Difficuties</strong>: <strong>Diversity</strong> of visitors</p>
+<h2 id="几何上理解零空间">2. 几何上理解零空间</h2><p>零空间、核，都描述的是一个东西</p>
+<p>经过变换之后都变成零向量$\hat{0}$上的空间</p>
+<p>也可以说是，已知变换矩阵$A$，求下面这个方程的解<br>$$<br>A\hat{x}&#x3D;\hat{0}<br>$$</p>
+<h2 id="几何上理解非方阵：升维或降维">3. 几何上理解非方阵：升维或降维</h2><p>非方阵是<strong>升维</strong>或者<strong>降维</strong></p>
 <ul>
-<li>Language</li>
-<li>Group</li>
-<li>Disabled</li>
+<li>注意：升维后虽然在高维空间，但是<strong>张成的空间</strong>还是<strong>原来的维数</strong></li>
 </ul>
-<p><strong>Basic information</strong>:</p>
-<ul>
-<li>5 floors, 2 of which are underground</li>
-<li>Entrance</li>
-<li>pyramid: main and most used</li>
-<li>Passage Richelieu</li>
-<li>Carrousel du Louvre</li>
-<li>Portes Des Lions</li>
-<li>Some other exit points, but may cause security problem</li>
-</ul>
-<p><strong>What to do</strong>:</p>
-<ul>
-<li>Design a <em>adaptable</em> model</li>
-<li>Indentify potential <em>bottlenecks</em></li>
-<li><em>Validate</em> your model</li>
-<li>How to <em>implement</em> it</li>
-</ul>
-
+<h2 id="几何上理解点积">4. 几何上理解点积</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Modeling/2019ICM/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Algebra/algebra-geo/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -672,7 +392,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/ProcessControl-basics/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Actuator/TB6612motor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -686,7 +406,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/ProcessControl-basics/" class="post-title-link" itemprop="url">Process Control:Basics</a>
+            <a href="/MarkdownNotes/Engineering/Hardware/Actuator/TB6612motor/" class="post-title-link" itemprop="url">直流电机的控制</a>
         </h2>
 
         <div class="post-meta">
@@ -696,7 +416,111 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-01-20 18:44:00" itemprop="dateCreated datePublished" datetime="2019-01-20T18:44:00-08:00">2019-01-20</time>
+              <time title="Created: 2019-07-06 15:53:00" itemprop="dateCreated datePublished" datetime="2019-07-06T15:53:00-07:00">2019-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Actuator/" itemprop="url" rel="index"><span itemprop="name">Actuator</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="直流电机的结构与原理">1. 直流电机的结构与原理</h2><p>(编码器)+定子+转子+电刷+(减速器)</p>
+<p>在电刷上施加直流电压U，施加洛伦兹力，不断重复</p>
+<p>一般直流电机的转速都是一分钟几千上万转的，所以一般需要安装减速器。</p>
+<p>减速器是一种相对精密的机械零件，使用它的目的是降低转速，增加转矩</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/motor.png"></p>
+<ul>
+<li>只有左右两根电机线决定了电机转速</li>
+<li>因此控制施加在两边的电压大小和极性就可以实现调试和换向</li>
+<li>中间四根线都是编码器测速用的</li>
+</ul>
+<h2 id="编码器的使用">2. 编码器的使用</h2><p>编码器是将角位移或者角速度转换成一连串电数字脉冲的<strong>旋转式传感器</strong></p>
+<p>根据输出类型分类</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Actuator/TB6612motor/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/Computer-control-system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/Computer-control-system/" class="post-title-link" itemprop="url">计算机控制系统设计与实践</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-22 21:46:00" itemprop="dateCreated datePublished" datetime="2019-06-22T21:46:00-07:00">2019-06-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -738,16 +562,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-概论">1. 1 概论</h2><p>大多数生产过程的效益取决于控制的好坏，因此控制很重要。</p>
-<p>大多数过程可以分解为一些基本环节，掌握这些环节之后我们就可以进行改造、控制，并预估性能。</p>
-<p><strong>总目标</strong>：对于任意外部干扰$DV$，通过调节操作变量$MV$，使被控变量$CV&#x2F;PV$维持在设定值$SP$</p>
-<h2 id="2-过程动态特性">2. 2 过程动态特性</h2><p>不同的过程动态特性不相同。</p>
-<h3 id="2-1-典型动态特性，机理建模">2.1. 2.1 典型动态特性，机理建模</h3><p>自衡过程–纯滞后、单容、多容</p>
-<p>非自衡–积分、指数</p>
-<p>常用方程</p>
+          <h2 id="1-概述">1. 1 概述</h2><h3 id="1-1-控制的本质">1.1. 1.1 控制的本质</h3><p>过程控制、时序控制、运动控制都是控制，核心在于<strong>闭环反馈</strong></p>
+<h3 id="1-2-课程目的">1.2. 1.2 课程目的</h3><p>掌握控制系统<strong>组成部件设备</strong>的基本原理和特性，能够<strong>选用</strong>合适的设备部件用于构成控制系统</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/ccs-course.png"></p>
+<p>计算机体现在<strong>控制器</strong>的输入输出都是<strong>数字量</strong>的</p>
+<p>FCS相当于DCS多一层级，把机柜下降到传感器的层级</p>
+<h3 id="1-3-数字通信技术">1.3. 1.3 数字通信技术</h3><p>基本概念</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/ProcessControl-basics/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Control%20Theory/Process%20Control/Computer-control-system/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -771,7 +594,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-EvaluatingHypo/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/edi-law/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -785,7 +608,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-EvaluatingHypo/" class="post-title-link" itemprop="url">ML:Evaluating Hypotheses</a>
+            <a href="/MarkdownNotes/Humanity/Philosophy/edi-law/" class="post-title-link" itemprop="url">Political Philosophy</a>
         </h2>
 
         <div class="post-meta">
@@ -795,7 +618,432 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-01-16 20:19:00" itemprop="dateCreated datePublished" datetime="2019-01-16T20:19:00-08:00">2019-01-16</time>
+              <time title="Created: 2019-06-16 14:05:00" itemprop="dateCreated datePublished" datetime="2019-06-16T14:05:00-07:00">2019-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Overview">1. Overview</h2><p>Do we have an obligation to obey laws?</p>
+<p>Political Philosophy is examine philosophical questions about</p>
+<ul>
+<li>the <strong>relationship between states and its citizen</strong></li>
+<li><strong>relations between states</strong></li>
+<li><strong>political obligation</strong></li>
+</ul>
+<h2 id="Problem-of-Political-Obligation">2. Problem of Political Obligation</h2><p>State make demands to us</p>
+<ul>
+<li>Taxes, Army</li>
+</ul>
+<p>The **problem **is Why should we obey the laws</p>
+<blockquote>
+<p>Note: $Obeying \not&#x3D; Complying $</p>
+<ul>
+<li>Comply: do what the law commands, or they will be punished</li>
+<li>Obey: do what the law commands because the law commands it</li>
+</ul>
+</blockquote>
+<h2 id="The-Grounds-of-Political-Obligation">3. The Grounds of Political Obligation</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/edi-law/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/edi-mora/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Humanity/Philosophy/edi-mora/" class="post-title-link" itemprop="url">About Morality</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-16 13:41:00" itemprop="dateCreated datePublished" datetime="2019-06-16T13:41:00-07:00">2019-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Overview">1. Overview</h2><p>We live with some sense of what is good or bad, better or worse.</p>
+<p>So what is all the morality about?</p>
+<p>Focus on the <strong>status</strong> of daily morality. , That is:</p>
+<ul>
+<li>are we talking about objective things?</li>
+<li>or our habbit</li>
+<li>something exist in the universe?</li>
+</ul>
+<p>There are 3 theories :</p>
+<ol>
+<li>objective, we are representing some object</li>
+<li>relative, describe some kind of culture or personal approach</li>
+<li>emotion</li>
+</ol>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/edi-mora/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/edi-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Humanity/Philosophy/edi-intro/" class="post-title-link" itemprop="url">What is Philosophy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-15 21:48:00" itemprop="dateCreated datePublished" datetime="2019-06-15T21:48:00-07:00">2019-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What-is-philosophy">1. What is philosophy</h2><p>This is a course note for the <a target="_blank" rel="noopener" href="https://www.coursera.org/learn/philosophy/home/welcome">Introduction to Philosophy</a>  provided by University of Edinburgh hold on Coursera.</p>
+<p>definition:</p>
+<p>$the\ activity\ of\ working\ out\ the\ right\ way\ of\ thinking\ about\ things.$</p>
+<p>So we need to <strong>stick in and do it</strong> to understand philosophy</p>
+<h3 id="relation-with-other-subject">1.1. relation with other subject</h3><p>we need to do philosophy by the challenges or results that other subjects throw up</p>
+<p>e.g.</p>
+<ul>
+<li>Physics</li>
+<li>Normal physics: getting the way subject move</li>
+<li>philosophy of physics: asking questions to change the way how we think physics, like “What is physical reality”</li>
+<li>Medicine</li>
+<li>Normal medicine: how to heal people according to current best medical theories</li>
+<li>philosophy of medicine: “what health and sickness is”</li>
+</ul>
+<h2 id="Philosophy-is-Difficult-but-Important">2. Philosophy is Difficult but Important</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/edi-intro/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/how-to-swim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim/" class="post-title-link" itemprop="url">学会游泳--蛙泳</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-14 06:42:00" itemprop="dateCreated datePublished" datetime="2019-06-14T06:42:00-07:00">2019-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="学会之后的总结">1. 学会之后的总结</h2><ul>
+<li>胆子要大，不要怕呛水</li>
+<li>要多模仿他人，有即时的负反馈</li>
+<li>腿部动作和手部动作可以分开来单独做，不一定需要依一定的相位交替进行</li>
+<li>腿部主要就是蹬腿，想象身后有个人，伸腿去蹬他</li>
+<li>手部的动作主要是为了产生向上的力去换气，所以不需要特别用力</li>
+</ul>
+<h2 id="第一步：-熟悉水中环境">2. 第一步： 熟悉水中环境</h2><h3 id="0-克服恐惧">2.1. 0 克服恐惧</h3><p>要想学会游泳，首先要克服的是自己的恐惧，不要害怕溺水，做好以下几步以防溺水</p>
+<ul>
+<li>与他人（会游泳）同行</li>
+<li>不要在流动的水中游泳，比如河流或海洋</li>
+<li>待在安全的深度区</li>
+<li>避免在恶劣天气下游泳</li>
+<li>不要在水温过低的情况下游泳</li>
+</ul>
+<h3 id="1-呼气">2.2. 1 呼气</h3><p>练习时要练习两种呼气</p>
+<ul>
+<li>下水时<strong>鼻子呼气</strong></li>
+<li>如果鼻子只是憋着，那么到蛙泳时，头会往水里砸，这时候就算憋着水也会涌进来，所以在<strong>下水的瞬间</strong>呼气可以<strong>保持鼻子不进水</strong></li>
+<li>出水时嘴巴呼气</li>
+<li>出水后通过嘴巴吸气效率较高，所以在出水前开始嘴巴呼气让嘴巴略微张开</li>
+</ul>
+<h3 id="2-掌握漂浮">2.3. 2 掌握漂浮</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/how-to-swim/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Web/html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Web/html/" class="post-title-link" itemprop="url">Basic HTML</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-20 00:54:00" itemprop="dateCreated datePublished" datetime="2019-05-20T00:54:00-07:00">2019-05-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -822,7 +1070,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
                 </span>
             </span>
 
@@ -837,29 +1085,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Error">1. 1 Error</h2><p>There are two types of error:</p>
-<ul>
-<li><em>true error</em>: $\operatorname { error } <em>{ \mathcal { D } } ( h ) \equiv \operatorname { Pr }</em> { x \in \mathcal { D } } [ f ( x ) \neq h ( x ) ]$</li>
-<li>$D$ for distribution</li>
-<li><em>sample error</em>: $error_s( h ) \equiv \frac { 1 } { n } \sum_ { x \in S } \delta ( f ( x ) \neq h ( x ) )$</li>
-<li>$\delta ( f ( x ) \neq h ( x ) )&#x3D;1$ if $f ( x ) \neq h ( x )$</li>
-</ul>
-<p>How well dose <em>sample error</em> <strong>estimate</strong>  <em>true error</em>？</p>
-<p>We can check</p>
-<ul>
-<li>Bias</li>
-<li>Variance</li>
-</ul>
-<h2 id="2-Estimators">2. 2 Estimators</h2><ol>
-<li>Choose sample $S$ of size $n$ according to $D$</li>
-<li>measure $error_s(h)$</li>
-<li>$\to$ <em>sample error</em> is an <strong>unbiased estimator</strong> for <em>true error</em></li>
+          <h2 id="Overview">1. Overview</h2><p>HTML means hyper text markup language</p>
+<p>HTML的作用是定义网页的结构, 比如说哪一段是标题, 哪一段是文章内容, 哪一段是图片等, 就类似于MarkDown中定义了怎么样的是标题, 怎么样的是列表一样. 具体长什么样由CSS决定</p>
+<h2 id="Grammar">2. Grammar</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My cat is very grumpy<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>由部分组成</p>
+<ol>
+<li>opening tag &lt;&gt;</li>
+<li>内容</li>
+<li>closing tag &lt;&#x2F;&gt;</li>
 </ol>
-<p>e.g. with approximately $95%$ probability, <em>true error</em> lie in<br>$$<br>\operatorname { error } <em>{ S } ( h ) \pm 1.96\sqrt \frac { \text { errors } ( h ) \left( 1 - e r r o r</em> { S } ( h ) \right) } { n }<br>$$</p>
-
+<p>3部分组合起来叫做element. element可以有一些属性attribute</p>
+<h2 id="A-Typical-HTML-File">3. A Typical HTML File</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>My test page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;images/firefox-icon.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;My test image&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-EvaluatingHypo/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Web/html/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -883,7 +1123,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-DTree/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -897,7 +1137,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-DTree/" class="post-title-link" itemprop="url">ML:Decision Tree</a>
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/" class="post-title-link" itemprop="url">SLAM-14讲 读书笔记 实践篇</a>
         </h2>
 
         <div class="post-meta">
@@ -907,7 +1147,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-01-16 13:47:00" itemprop="dateCreated datePublished" datetime="2019-01-16T13:47:00-08:00">2019-01-16</time>
+              <time title="Created: 2019-04-29 15:11:00" itemprop="dateCreated datePublished" datetime="2019-04-29T15:11:00-07:00">2019-04-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -930,11 +1170,19 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/" itemprop="url" rel="index"><span itemprop="name">SLAM</span></a>
                 </span>
             </span>
 
@@ -949,374 +1197,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Introduction">1. 1 Introduction</h2><h3 id="1-1-What-is-a-Decision-Tree">1.1. 1.1 What is a Decision Tree</h3><p>A tree shaped  supervised learning algorithm</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/decision-tree.png" alt="decision-tree"></p>
-<p>Problem setting:</p>
-<ul>
-<li>Set of possible instances $X$</li>
-<li>each instance $x$ in $X$  is a feature vector $x &#x3D; &lt; x _{ 1 } , x_ { 2 } \ldots x _ { n } &gt;$</li>
-<li>Unknown target function $f : X \rightarrow Y$</li>
-<li>Set of function hypotheses $H &#x3D; { h | h : X \rightarrow Y }$</li>
-</ul>
-<p>Input:</p>
-<ul>
-<li>Training examples $\left{ &lt; x ^ { ( i ) } , y ^ { ( i ) } &gt; \right}$</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Hypothesis $h \in H$ that best approximates target function $f$</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-DTree/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-BayesianLearning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-BayesianLearning/" class="post-title-link" itemprop="url">ML:Bayesian Learning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-16 13:29:00" itemprop="dateCreated datePublished" datetime="2019-01-16T13:29:00-08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><p>Testing whether a hypothesis is true or false by calculating the probability of an event in a prolonged experiment is known as <em><strong>frequentist statistics</strong></em></p>
-<ul>
-<li>An experiment with an <strong>infinite</strong> number of trials guarantees $p$ with <strong>absolute</strong> accuracy</li>
-<li>It’s <strong>not practial</strong> to conduct an experiment with an <strong>infinite</strong> number of trials</li>
-<li>deciding the value of this sufficient number of trials is a <strong>challenge</strong></li>
-<li>If we can determine the <em><strong>confidence</strong></em> of the estimated $p$ , it will allow us to decide whether to</li>
-<li><strong>accept</strong> the conclusion</li>
-<li><strong>extend</strong> the experiment with more trials until it achieves sufficient confidence</li>
-<li><em><strong>prior beliefs</strong></em>   (for example, coins are usually fair and the coin used is not made biased intentionally, therefore $p≈0.5$)</li>
-<li>play a significant role in shaping the outcome of a hypothesis test</li>
-<li>However, it &#x3D;&#x3D;can’t&#x3D;&#x3D; be used along with <em>frequentist statistics</em></li>
-</ul>
-<h2 id="2-Bayesian-Learning">2. 2 Bayesian Learning</h2><p>Consider the flip coin experiment, if you flip the coin $10$  times, there are 2 case:</p>
-<ul>
-<li><p>5 heads and 5 tails</p>
-</li>
-<li><p>more confidence about that $p&#x3D;0.5​$</p>
-</li>
-<li><p>$x$ head and $10-x$ tails</p>
-</li>
-</ul>
-<p>Now you have 2 options</p>
-<ul>
-<li><em>frequentist statistics</em> :Neglect prior beliefs, just based on data</li>
-<li><em>Bayesian Learning</em> :Adjust your belief according to observation</li>
-</ul>
-<h3 id="2-1-Bayes’-Theorem">2.1. 2.1 Bayes’ Theorem</h3><p>Bayes’ theorem<br>$$<br>P ( \theta | X ) &#x3D; \frac { P ( X | \theta ) P ( \theta ) } { P ( X ) }<br>$$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-BayesianLearning/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/ML-ConceptLearning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-ConceptLearning/" class="post-title-link" itemprop="url">ML:First Step</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-16 11:50:00" itemprop="dateCreated datePublished" datetime="2019-01-16T11:50:00-08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-Introduction">1. 1 Introduction</h2><p><strong>How</strong> machine can learn from data?</p>
-<p>First of all, we need to understand human brain. And we can make the machine learning application work the same way as our brain did.</p>
-<p><strong>Most</strong> simple algorithms: <strong>Find-S</strong></p>
-<h2 id="2-What-is-Concept-Learning">2. 2 What is Concept Learning</h2><blockquote>
-<p>“The problem of searching through a predefined space of potential hypotheses for the hypothesis that best fits the training examples.”</p>
-<p>​       — Tom Michell</p>
+          <h2 id="1-视觉里程计：ICP">1. 1 视觉里程计：ICP</h2><blockquote>
+<p>前端也称为视觉里程计（VO）。它根据相邻图像的信息，估计出粗略的相机运动，给后端提供较好的 初始值</p>
 </blockquote>
-<p>Human learning: acquiring general concepts from past experiences.</p>
-<p>Machine learning: find a hypothesis that best fits the training example.</p>
-<p>Notaion:</p>
+<h3 id="1-1-图像特征点">1.1. 1.1 图像特征点</h3><p><strong>有代表性的点</strong>被称为</p>
 <ul>
-<li>target concept $c$</li>
-<li>object $X$</li>
-<li>all hypothesis set $H$</li>
-<li>$c : X \to { 0,1 }$</li>
+<li>经典SLAM中：路标</li>
+<li><strong>视觉SLAM中</strong>：图像特征（features</li>
 </ul>
+<p><strong>特征点</strong>由两部分组成：</p>
+<ul>
+<li><strong>关键点</strong>：特征点在图像里的位置、朝向、大小</li>
+<li><strong>描述子</strong>：通常是一个向量，描述周围像素的信息</li>
+</ul>
+<p>常见图像特征点：</p>
+<ul>
+<li>SIFT（Scale-Invariant Feature Transform）：运算量大</li>
+<li>FAST：计算快</li>
+<li>ORB（Oriented FAST and Rotated BRIEF）：折中</li>
+<li>关键点为 FAST：如果一个<strong>像素</strong>与它领域的像素差别较大，则更可能是<strong>角点</strong></li>
+<li>描述子为 BRIEF：二进制描述子，关键点附近两个像素的大小关系</li>
+</ul>
+<h3 id="1-2-对极几何-2D-2D">1.2. 1.2  对极几何:2D-2D</h3>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/ML-ConceptLearning/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Embedded%20System/STM32/STM32-Basics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/STM32/STM32-Basics/" class="post-title-link" itemprop="url">STM32 Basics</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-12 15:44:00" itemprop="dateCreated datePublished" datetime="2019-01-12T15:44:00-08:00">2019-01-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-23 10:14:54" itemprop="dateModified" datetime="2023-09-23T10:14:54-07:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Embedded-System/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-命名规则">1. 1 命名规则</h2><p><strong>STM32F103C8T6</strong></p>
-<ul>
-<li><p>STM：基于ARM®的32位微控制器</p>
-</li>
-<li><p>F：通用类型</p>
-</li>
-<li><p>103：增强型</p>
-</li>
-<li><p>C：48脚</p>
-</li>
-<li><p>8：64K字节的闪存存储器</p>
-</li>
-<li><p>T：LQFP封装</p>
-</li>
-<li><p>6：工业级温度范围，-40°C~85°C</p>
-</li>
-</ul>
-<h2 id="2-RCC">2. 2 RCC</h2><p><strong>R</strong>eset and <strong>C</strong>lock <strong>C</strong>ontrol——复位和时钟控制</p>
-<h3 id="2-1-复位">2.1. 2.1 复位</h3><p>三种不同方式，影响的区域不同</p>
-<ul>
-<li>系统复位：除时钟控制器寄存器中的复位标志位和备份区域</li>
-<li>上电复位：除备份区域</li>
-<li>备份区域复位：只影响备份区域</li>
-</ul>
-<h3 id="2-2-时钟">2.2. 2.2 时钟</h3><p>三种不同的时钟来源，用来驱动系统时钟</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/STM32/STM32-Basics/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/SLAM/Robotics-SLAM14-practice/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1339,7 +1244,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1405,20 +1310,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">384</span>
+          <span class="site-state-item-count">407</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">124</span>
+        <span class="site-state-item-count">127</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
