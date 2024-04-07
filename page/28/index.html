@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/AI/hyperband/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/" class="post-title-link" itemprop="url">无迹卡尔曼滤波</a>
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/AI/hyperband/" class="post-title-link" itemprop="url">HyperBand Algorithm</a>
         </h2>
 
         <div class="post-meta">
@@ -212,325 +212,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-18 14:00:21" itemprop="dateCreated datePublished" datetime="2020-07-18T14:00:21-07:00">2020-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>既然扩展卡尔曼滤波可以解决非线性问题，为什么还要提出无迹卡尔曼滤波呢？</p>
-<p><strong>性能</strong>：在扩展卡尔曼滤波中，我们只使用了<strong>一个点</strong>展开来线性化，这就导致了这种估计方法的效果不佳</p>
-<p><strong>更好的方法</strong>：用许多点来近似</p>
-<p><strong>Trade-Off</strong>： 如果使用所有的点来近似，那就又会要求太多的计算资源，因此我们只用少量的计算资源获取大大提高的精度</p>
-<h2 id="How">2. How</h2><p>选择Sigma Points：用少数几个点来表示整个分布，用的点越多，近似就越精确</p>
-<p>高斯分布在经过一个非线性变换之后就不再是高斯分布了，所以在这里引入一个Unscented Transform来完成这个变换任务</p>
-<ol>
-<li>计算一个Sigma Point的集合</li>
-</ol>
-<p>通常来说，如果系统是N维的，那么Sigma Point的个数选择$2N+1$<br>$$<br>\begin{aligned}<br>X ^{[0]} &amp;&#x3D;\mu \<br>X ^{[i]} &amp;&#x3D;\mu+(\sqrt{(n+\lambda) \Sigma})<em>{i} \text { for } i&#x3D;1, \ldots, n \<br>X ^{[i]} &amp;&#x3D;\mu-(\sqrt{(n+\lambda) \Sigma})</em>{i-n} \quad \text { for } i&#x3D;n+1, \ldots, 2 n<br>\end{aligned}<br>$$<br>其中$\Sigma$是协方差矩阵，$\lambda$是一个扩张系数（一般选择$3-n$），$X$是Sigma Point矩阵，每一行都是Sigma Point的集合。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/UKF/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/" class="post-title-link" itemprop="url">扩展卡尔曼滤波</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-17 16:32:21" itemprop="dateCreated datePublished" datetime="2020-07-17T16:32:21-07:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>因为卡尔曼滤波有两个重要假设，其中的<strong>线性假设</strong>在现实环境中是不能够满足的。</p>
-<p>大部分现实环境中的问题都包含非线性函数。如果还是使用卡尔曼滤波，那么更新状态之后就不再是高斯分布了。也就不满足卡尔曼滤波的条件了</p>
-<h2 id="How">2. How</h2><p>通过泰勒展开，在均值附近线性近似。保留一阶</p>
-<h2 id="Example：传感器融合">3. Example：传感器融合</h2><p>自动驾驶同时使用激光雷达和雷达两种传感器，其中</p>
-<ul>
-<li>激光雷达：给出px，py两个</li>
-<li>雷达：距离、转向、转向速度</li>
-</ul>
-<p><img src="https://miro.medium.com/max/541/1*EEuBSPnR-JykUz-5patCGg.png" alt="Image for post"></p>
-<p>回忆卡尔曼滤波的两个步骤</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/EKF/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/" class="post-title-link" itemprop="url">卡尔曼滤波</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-17 15:30:21" itemprop="dateCreated datePublished" datetime="2020-07-17T15:30:21-07:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/" itemprop="url" rel="index"><span itemprop="name">Foundation</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Foundation/Kalman-Filter/" itemprop="url" rel="index"><span itemprop="name">Kalman Filter</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Why">1. Why</h2><p>为什么用概率来描述？因为机器人的环境是不确定的，所使用的传感器也是有误差的</p>
-<ul>
-<li>某个随机变量的期望：$E [X]&#x3D;\sum_{i&#x3D;1}^{n} p_{i} x_{i}$</li>
-<li>为什么只使用单峰模型？因为机器人在某一时间的位置是固定的，并不会出现在不同位置</li>
-</ul>
-<h2 id="高斯">2. 高斯</h2><p>中心极限定理：样本数够多，就会出现正态分布</p>
-<p>使用单峰分布处理起来非常困难。</p>
-<p>状态的更新（两个正态分布的相乘）可以用贝叶斯来计算<br>$$<br>\begin{array}{c}<br>\mu_{\text {new }}&#x3D;\frac{\mu_{1} \sigma_{2}^{2}+\mu_{2} \sigma_{1}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}} \<br>\sigma_{\text {new }}&#x3D;\frac{\sigma_{1}^{2} \sigma_{2}^{2}}{\sigma_{1}^{2}+\sigma_{2}^{2}}<br>\end{array}<br>$$<br>有的时候状态更新只是两个正态分布的相加，那么新的期望和方差就是两个期望和方差的简单相加</p>
-<h2 id="概率生成定理">3. 概率生成定理</h2><p>$z$表示测量，$u$表示指令，$x$表示状态</p>
-<p>第一定理：$p\left(x_{t} \mid x_{0: t-1}, z_{1: t-1}, u_{1: t}\right)&#x3D;p\left(x_{t} \mid x_{t-1}, u_{t}\right)$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Foundation/Kalman%20Filter/Kalmanfilter/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/" class="post-title-link" itemprop="url">labuladong学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-13 21:30:00" itemprop="dateCreated datePublished" datetime="2020-07-13T21:30:00-07:00">2020-07-13</time>
+              <time title="Created: 2021-11-27 14:30:00" itemprop="dateCreated datePublished" datetime="2021-11-27T14:30:00-08:00">2021-11-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -557,7 +239,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
                 </span>
             </span>
 
@@ -572,651 +254,1044 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why">1. Why</h2><p>我从一个礼拜左右前开始刷题，到目前刷了三十几道，感觉逐渐有点上手，但没有一个系统的框架。在刷一道二分法的题目时，看到了labuladong的笔记，感觉思路清晰，值得学习。之后还发现他总结了一系列的算法框架并写了文章，所以在这里记录下阅读时的收获</p>
-<h2 id="动态规划">2. 动态规划</h2><p>目标：<strong>求最值</strong>。动态规划是运筹学中的最优化方法，在CS中应用较多</p>
-<p>核心思想：<strong>穷举</strong>。把所有的可行答案穷举并找最值</p>
-<p>难点：存在“重叠子问题”，直接暴力穷举效率低下。需要记<strong>录下一些中间过程</strong>节省计算量</p>
-<p>方法：找到<strong>最优子结构</strong>，并列出正确的<strong>状态转移方程</strong>。</p>
+          <h2 id="Intro">1. Intro</h2><p>Goal: To tune hyper-parameter in machine learning or deep learning, using bandit algorithm, to minimize the time usag</p>
+<p>Methods used with</p>
 <ul>
-<li>技巧：状态压缩，每次只记录必要的数据</li>
+<li>SGD</li>
+<li>Tree ensembles</li>
 </ul>
-<h2 id="回溯法">3. 回溯法</h2><p>实际上是决策树的遍历过程，要考虑三个问题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/labuladong/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Justice/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Justice/" class="post-title-link" itemprop="url">自由平等正义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-28 01:35:00" itemprop="dateCreated datePublished" datetime="2020-06-28T01:35:00-07:00">2020-06-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="自由">1. 自由</h2><p>在三种主要的自由形式</p>
-<ul>
-<li>天生的选择自由</li>
-<li>后天的道德自由</li>
-<li>环境制约的行为自由（政治相关）</li>
-</ul>
-<p>只有社会中的<strong>行动自由</strong>是未被实际否认的。（法无禁止即可为）</p>
-<p>自由意志和自由选择是在哲学中被长期讨论的。关键点在于</p>
-<ul>
-<li>人性是否超越自然？</li>
-</ul>
-<h2 id="平等">2. 平等</h2><p>关键点：是否同意<strong>共同人性</strong></p>
-<p>如果肯定人性上人人平等，那么就可以接着考虑</p>
-<ul>
-<li>环境条件平等</li>
-<li>机会平等</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Justice/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Real/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Real/" class="post-title-link" itemprop="url">真善美</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 20:56:00" itemprop="dateCreated datePublished" datetime="2020-06-26T20:56:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是真？">1. 什么是真？</h2><blockquote>
-<p>第一遍看书时仔细看过，这里就简单摘一些观点</p>
-</blockquote>
-<p>按照排除法排除那些显然不合理的答案</p>
-<ul>
-<li>极端怀疑论者：我们无法获得任何知识。如果接受这种观点，我们的生活就很难协调</li>
-<li>主观主义怀疑论</li>
-<li>相对主义怀疑论</li>
-<li>说谎者：说的和自己所想的不一样</li>
-</ul>
-<h2 id="善">2. 善</h2><ul>
-<li>实然的善是主观的，喜欢的就是善，憎恨的就是恶，因而对每个人来说善是不同的</li>
-</ul>
-<p>但这种说法并不会给我们任何新的信息，属于文字游戏。亚里士多德的观点是我们可以从本能出发，寻找天生的欲求。</p>
-<p>于是我们将善和追求联系在一起。我们可以沿用伊比鸠鲁的分析观点，将追求分成必须的和非必须的</p>
-<p>我们应该<strong>想要</strong>我们<strong>需要</strong>的，而不应该想要我们不需要的</p>
-<p>善也可以分为不同的善吗？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/Real/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/six-great-ideas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/six-great-ideas/" class="post-title-link" itemprop="url">六大观念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 19:38:00" itemprop="dateCreated datePublished" datetime="2020-06-26T19:38:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/Great-Ideas/" itemprop="url" rel="index"><span itemprop="name">Great Ideas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言">1. 前言</h2><p>第一次读这本书是在大二的时候，我在马原老师提供的参考书目中看到了这本书的名字，图书馆上一查还在架上，下了课马上就去图书馆取了书开始看。一开始看的还是很开心的，把<strong>真</strong>这部分看完了，感觉收获许多。后来其他课程过于繁忙就没继续看下去了。这段时间看了西方哲学史，希望再完整看一遍。</p>
-<p>在阅读西方哲学史的时候我就感觉概念实在太多，不同时期不同的哲学家都会提出自己的一些新概念新想法，对于我这样的入门者来说很容易失去辩论的焦点。艾德勒的这本六大观念属于哲学范畴史的研究范围，他从整个哲学史中归纳了120个观念，浓缩成64个，最后又精简成6个，可以说是最重要的一些点了。</p>
-<h2 id="大观念">2. 大观念</h2><p>真善美、公平正义平等，我们日常生活中都会用到这些词，但是我们真的明白这些词意味着什么吗？不是每个人都能对这些观念进行仔细的思考。我也想搞明白这些观念背后意味着什么，那么这本书可以提供<strong>探索答案这个过程的指导</strong></p>
-<p>读这本书可以获得的结果</p>
-<ul>
-<li>对这些观念的意义有所了解</li>
-<li>了解关于这些观念背后哲学家们已经进行过的讨论</li>
-<li>知道这些观念和其他观念之间的联系</li>
-</ul>
-<p>首先我们需要思考我们所说的<strong>观念到底是什么东西</strong>，在日常语境中，观念的定义有两种</p>
-<ul>
-<li><p>主观的，只有自己能体会到的，比如说某人正在经历的疼痛</p>
-</li>
-<li><p>客观的，同时存在于不同人心中的概念。</p>
-</li>
-</ul>
-<p>比如说正义，虽然我们对正义的概念可能是不同的，但我们思考的是同一对象。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/Great%20Ideas/six-great-ideas/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/6-After-Kant/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/6-After-Kant/" class="post-title-link" itemprop="url">康德之后的英国和大陆哲学</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 16:01:00" itemprop="dateCreated datePublished" datetime="2020-06-26T16:01:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>在阅读到这一章的时候，我已经有点烦躁了，我逐渐无法忍受那时候哲学家们对与语言的运用，各种新创造的词汇却没有精确的定义，对我来说仿佛就是一段段的文字游戏，无法理解。</p>
-</blockquote>
-<h2 id="黑格尔">1. 黑格尔</h2><p>将理性等同于神。</p>
-<p>黑格尔是绝对的唯心主义：世界历史是理念的历史</p>
-<p>辩证法</p>
-<h2 id="叔本华">2. 叔本华</h2><p>目标：回到康德</p>
-<p>两个世界</p>
-<ul>
-<li>作为表象的世界：我们不能直接认识终极实在；</li>
-<li>作为意志的世界：表象世界中的线索表明<strong>终极实在</strong>是非理性力量</li>
-</ul>
-<p>人类文明只不过是意志的升华</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/6-After-Kant/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/7-phenomenolog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/7-phenomenolog/" class="post-title-link" itemprop="url">现象学传统及其余续</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-26 16:01:00" itemprop="dateCreated datePublished" datetime="2020-06-26T16:01:00-07:00">2020-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="现象学">1. 现象学</h2><p>胡塞尔</p>
-<p>假设：关于世界的一切知识都是以意识为基础的</p>
-<p>要求：对意识及其所面对的世界进行研究。</p>
-<p>方式：通过清除一切预设来进行意识研究</p>
-<h2 id="存在主义现象学">2. 存在主义现象学</h2><h3 id="海德格尔">2.1. 海德格尔</h3><p>认为<strong>存在</strong>被语言学和形而上学所遮蔽了</p>
-<p>呼吁回到前苏格拉底的精神</p>
-<h3 id="萨特">2.2. 萨特</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/7-phenomenolog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/" class="post-title-link" itemprop="url">大陆理性主义和英国经验主义</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-24 21:02:00" itemprop="dateCreated datePublished" datetime="2020-06-24T21:02:00-07:00">2020-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/History/" itemprop="url" rel="index"><span itemprop="name">History</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="理性主义">1. 理性主义</h1><h2 id="笛卡尔">2. 笛卡尔</h2><p>法国人笛卡尔为了构建自己的客观知识体系，他需要一个<strong>绝对确定</strong>的牢固基础。</p>
-<p>寻找的方式是“<strong>怀疑一切</strong>”笛卡尔将一切可能被怀疑的东西通过怀疑排除，直到找到一种在逻辑上不容置疑的命题。这样的命题就是一切知识的绝对确定的基础</p>
+<p>Idea: Try a large number of random configurations, but takes a lot of time. So hyperband:</p>
 <ol>
-<li><p>一开始，笛卡尔通过这种方式发现我们全部信息的来源都是<strong>我们的感官</strong></p>
-</li>
-<li><p>然而我们的感官并不是完全可信的，因此笛卡尔发现他的怀疑方法走得太远了</p>
-</li>
-<li><p>笛卡尔意识到我们需要将一些基础的<strong>常识判断</strong>作为我们知识的合法基础</p>
-</li>
+<li>Run just an iteration (random configuration) or two at first</li>
+<li>Evaluate how they perform</li>
+<li>Using earlier results to select candidates for longer runs</li>
 </ol>
-<p>笛卡尔发现我们无法确定自己是否在梦中，甚至是数学，也可能是由一个“邪恶天才”操纵我们所得出的。但是思考本身说明了什么</p>
-<ol start="4">
-<li>最终，笛卡尔得到了“我思故我在”</li>
-</ol>
-<p>笛卡尔相信上帝存在，证明过程可以简单归纳为以下四步</p>
-<ol>
-<li>完满的存在应该知道所有，我有所怀疑，所以我不完满</li>
-<li>除非我理解完满，否则我不知道自己是不完满的</li>
-<li>完满的观念只能通过完满的东西才能在心中产生</li>
-<li>因此，一个完满的存在是存在的</li>
-</ol>
-<p>一些问题：</p>
+<blockquote>
+<p>e.g, following experiments: max iteration:81</p>
+<table>
+<thead>
+<tr>
+<th>Runs</th>
+<th>Iteration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>81</td>
+<td>1</td>
+</tr>
+<tr>
+<td>27</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>27</td>
+</tr>
+</tbody></table>
+<p>It starts with 81 runs, one iteration each. Then the best 27 configurations get three iterations each. Then the best nine get nine, and so on</p>
+</blockquote>
+<h2 id="Learning-Rate-Tune-or-Not">2. Learning Rate: Tune or Not</h2><p>“Low learning rate with many iterations” is good for XGBoost</p>
+<p>If we do not tune learning rate, the hyperband make good sense</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/History/5-Rationalism-Empiricism/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/AI/hyperband/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Hardware/Embedded%20System/Protocol/can-bus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/Protocol/can-bus/" class="post-title-link" itemprop="url">CAN Bus</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-31 13:50:00" itemprop="dateCreated datePublished" datetime="2021-10-31T13:50:00-07:00">2021-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Hardware/Embedded-System/Protocol/" itemprop="url" rel="index"><span itemprop="name">Protocol</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What">1. What</h2><p>Like the nerve system in human body</p>
+<ul>
+<li>ECU like the body parts</li>
+<li>Sensor can broadcast the data and share in the can bus</li>
+</ul>
+<p>Hardware level</p>
+<ul>
+<li>CAN High</li>
+<li>CAN Low</li>
+</ul>
+<h2 id="Why-Main-Benefical">2. Why (Main Benefical)</h2><ol>
+<li>Simple and Low cost</li>
+<li>Fully Centerlized</li>
+<li>Extremely Robust (抗干扰)</li>
+<li>Effcient, with priority ID</li>
+</ol>
+<h2 id="History">3. History</h2><p>BOSCH CAN 1986</p>
+<p>CAN 2.0 1991</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Hardware/Embedded%20System/Protocol/can-bus/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/tea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/tea/" class="post-title-link" itemprop="url">Tea</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-26 23:39:00" itemprop="dateCreated datePublished" datetime="2021-10-26T23:39:00-07:00">2021-10-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="茶是如何做出来的？">1. 茶是如何做出来的？</h2><ol>
+<li>茶叶种植</li>
+<li>茶树是一种常青灌木，喜欢酸性土壤和丰富的灌溉。种植的海拔越高，味道越浓烈</li>
+<li>从种下一棵茶树开始，一般需要3年才能有用于喝的叶片</li>
+<li>虽然茶树可以长得很高，但为了采摘嫩叶，一般会修剪到一定高度。（一般来说，茶树越矮，能产出的叶片越多）</li>
+<li>茶叶采摘</li>
+<li>只有在最顶端3-5cm的叶片会被采摘。在丰收季节，每7-15天会长出新的嫩芽</li>
+<li>目前茶叶一般都是手工采摘</li>
+<li>茶叶被收集起来之后会再筛选一遍，把破损的和品相不好的筛选掉</li>
+<li>处理茶叶</li>
+<li>导致茶叶颜色、风味不同的主要是处理过程不同</li>
+<li>比如绿茶主要是通过晒干、烘烤</li>
+<li>比如红茶主要是被氧化了，让茶叶中的酶和氧气反应，使茶叶颜色变深，风味更浓厚</li>
+</ol>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/tea/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/myjourney/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/myjourney/" class="post-title-link" itemprop="url">My Robot Journey</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-17 23:27:00" itemprop="dateCreated datePublished" datetime="2021-10-17T23:27:00-07:00">2021-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="pdfobject-container" data-target="https://drive.google.com/file/d/1UW0YqjRFxnCMlV31ZnSA0AcuP57dV2ac/preview" data-height="500px"></div>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/myjourney/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/sponsorship/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/Interests/sponsorship/" class="post-title-link" itemprop="url">Get Sponsored</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-18 00:14:00" itemprop="dateCreated datePublished" datetime="2021-07-18T00:14:00-07:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why-Company-Sponsor">1. Why Company Sponsor</h2><p>Make their product known by customers</p>
+<p>Build opportunities between people and sponsor</p>
+<ul>
+<li>In meaningful way</li>
+<li>Interesting</li>
+</ul>
+<h3 id="How-Sponsor">1.1. How Sponsor</h3><p>Type</p>
+<ul>
+<li>Experience, make people feel the product</li>
+<li>Media</li>
+<li>Cash</li>
+<li>…</li>
+</ul>
+<h2 id="Know-the-Audience">2. Know the Audience</h2><ul>
+<li>Demographic</li>
+<li>Psychographic</li>
+<li>Preferred brands</li>
+<li>Coming purchases</li>
+</ul>
+<p>The more data of audience, the better</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/sponsorship/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/" class="post-title-link" itemprop="url">SIFT特征</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-15 15:13:00" itemprop="dateCreated datePublished" datetime="2021-07-15T15:13:00-07:00">2021-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>什么是SIFT？Scale Invariant Feature Transform</p>
+<p>对下列变化不敏感</p>
+<ul>
+<li>尺度变换</li>
+<li>旋转</li>
+<li>光照</li>
+<li>视角</li>
+</ul>
+<p>SIFT算法较为复杂，主要分为两个大的部分</p>
+<ol>
+<li>找出特征点</li>
+<li>目的是去掉一些不重要的细节。方法：高斯模糊</li>
+<li>变化大的区域就是边缘、点、角</li>
+<li>描述特征点</li>
+<li>HoG，在1.2中找出的特征点为中心选16x16的区域</li>
+<li>又可以分为4x4个子区域，每个子区域都可以积算一个梯度，8个bin里</li>
+<li>一共是4x4x8&#x3D;128维的特征向量</li>
+</ol>
+<h2 id="Details">2. Details</h2><ol>
+<li><p>找出特征点</p>
+</li>
+<li><p>目的是去掉一些不重要的细节。方法：高斯模糊，不同的level</p>
+</li>
+<li><p>不断resize，变成金字塔形状，不同的octaves。每次resize之后都高斯模糊。</p>
+</li>
+</ol>
+<blockquote>
+<p>建议的值octave&#x3D;4，level&#x3D;5</p>
+</blockquote>
+<ol start="3">
+<li>生成Difference of Gaussians (DoG)，变化大的区域就是边缘、点、角</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/SIFT/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/" class="post-title-link" itemprop="url">流水线抓取</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-12 13:25:00" itemprop="dateCreated datePublished" datetime="2021-07-12T13:25:00-07:00">2021-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="流程">1. 流程</h2><h3 id="RGB-Image">1.1. RGB Image</h3><ol>
+<li>获取图像</li>
+<li>利用传统的方式得到主体脉络</li>
+<li>提取RGB关键点</li>
+<li>判断抓取位置</li>
+</ol>
+<h3 id="RGB-Image-3D-Model">1.2. RGB Image + 3D Model</h3><ol>
+<li><p>如果有3D模型，则通过RGB关键点匹配模型，得到关键点的3D坐标</p>
+</li>
+<li><p>利用多组点，求解6D位姿</p>
+</li>
+</ol>
+<h3 id="疑惑">1.3. 疑惑</h3><ul>
+<li>什么是主体脉络</li>
+<li>2d特征点的3d坐标</li>
+</ul>
+<h2 id="安排">2. 安排</h2><p>基于模型的位姿估计</p>
+<ul>
+<li>提前在3D模型上选好特征点，确定特征点在模型坐标系下的坐标</li>
+<li>计算RGB图象中的特征点，</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-grasp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/" class="post-title-link" itemprop="url">轻量型视觉数据生成</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-08 10:01:00" itemprop="dateCreated datePublished" datetime="2021-07-08T10:01:00-07:00">2021-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-问题描述">1. 1 问题描述</h2><p>为了给训练模型提供大量不同背景和姿态的训练数据，基于相机模型和Open3D的渲染生成数据，输入模型、背景和相机的姿态（或者模型的姿态），输出RGB图和深度图</p>
+<h2 id="2-方法步骤">2. 2 方法步骤</h2><p>主要依赖两个库</p>
+<ul>
+<li>Open3D：提供读取模型（.obj .mtl .jpg）以及渲染模型的作用，生成具有真实感的模型图片</li>
+<li>虚拟相机模型virtual_camera：提供生成mask的作用，也就是获取模型在图片中的位置</li>
+</ul>
+<p>Pipeline：</p>
+<ol>
+<li>读取模型</li>
+<li>初始化相机模型，计算相机内参、外参</li>
+<li>获取mask（起到抠图的作用）</li>
+<li>读取模型的顶点和mesh信息</li>
+<li>将顶点通过相机模型映射到像素平面</li>
+<li>根据mesh信息将对应的三角形涂上颜色</li>
+<li>最终根据颜色信息获取mask</li>
+<li>渲染模型</li>
+<li>初始化一个Open3D的render</li>
+<li>定义render中的相机位置、模型材质、环境光照信息</li>
+<li>渲染模型的深度图和RGB图</li>
+<li>背景融合</li>
+<li>读取背景图片</li>
+<li>根据3中获取的mask信息读取4中RGB图相应位置的点，赋值给背景图图片，获得融合后的RGB图</li>
+<li>根据4中获取的深度图，重新计算，映射到0-255范围，获得可视化良好的深度图</li>
+</ol>
+<h2 id="3-代码实现">3. 3 代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">import</span> open3d.visualization.rendering <span class="keyword">as</span> rendering</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> virtual_camera <span class="keyword">import</span> VirtualCamera</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read the Data (From obj file)</span></span><br><span class="line">bpa_mesh = o3d.io.read_triangle_mesh(<span class="string">&#x27;BigConnecter.obj&#x27;</span>,<span class="literal">True</span>)</span><br><span class="line">tri=np.asarray(bpa_mesh.triangles)</span><br><span class="line">points_raw=np.asarray(bpa_mesh.vertices)</span><br><span class="line">center_p=np.<span class="built_in">sum</span>(points_raw,<span class="number">0</span>)/<span class="built_in">len</span>(points_raw)</span><br><span class="line">rx=-np.pi/<span class="number">2</span></span><br><span class="line">ry=<span class="number">0</span></span><br><span class="line">rz=np.pi/<span class="number">2</span></span><br><span class="line">R=o3d.geometry.get_rotation_matrix_from_xyz([rx,ry,rz])</span><br><span class="line">bpa_mesh.rotate(R,center_p)</span><br><span class="line">o3d.visualization.draw_geometries([bpa_mesh])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Setup a camera</span></span><br><span class="line">rx=<span class="number">0</span></span><br><span class="line">ry=np.pi</span><br><span class="line">rz=<span class="number">0</span></span><br><span class="line">x=<span class="number">1</span></span><br><span class="line">y=<span class="number">1</span></span><br><span class="line">z=<span class="number">570</span></span><br><span class="line">W,H=<span class="number">2048</span>,<span class="number">2048</span></span><br><span class="line">focal=<span class="number">1024</span></span><br><span class="line">tic=time.time()</span><br><span class="line">cam = VirtualCamera(rx, ry, rz,x, y, z, focal*<span class="number">3.45e-6</span>, [W, H])</span><br><span class="line"></span><br><span class="line"><span class="comment">## Create Mask</span></span><br><span class="line"><span class="comment">#  Get the triangle relationship</span></span><br><span class="line">points=points_raw</span><br><span class="line"><span class="built_in">print</span>(points)</span><br><span class="line">points=points.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">ans,cp = cam.project_world_to_pixel(points)</span><br><span class="line">ans=ans.astype(<span class="built_in">int</span>)</span><br><span class="line">mask_bg=np.zeros((W,H,<span class="number">3</span>))</span><br><span class="line">mask_bg[:,:,:]=<span class="number">0</span></span><br><span class="line">ans=ans[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tri)):</span><br><span class="line">pt1=ans[tri[i][<span class="number">0</span>]]</span><br><span class="line">pt2=ans[tri[i][<span class="number">1</span>]]</span><br><span class="line">pt3=ans[tri[i][<span class="number">2</span>]]</span><br><span class="line">tri_set=np.asarray([pt1,pt2,pt3])</span><br><span class="line">tri_set=tri_set.astype(<span class="built_in">int</span>)</span><br><span class="line">tri_set=tri_set.reshape(-<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">cv2.fillPoly(mask_bg,[tri_set],(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))</span><br><span class="line"><span class="comment">#  Calculate the mask</span></span><br><span class="line">kernel = np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">fushi = cv2.erode(mask_bg,kernel,iterations = <span class="number">1</span>)</span><br><span class="line">mask=np.where(fushi[:,:,<span class="number">1</span>]==<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Render model</span></span><br><span class="line">camera_intrinsics=o3d.camera.PinholeCameraIntrinsic()</span><br><span class="line">camera_intrinsics.set_intrinsics(W,H,focal,focal,W/<span class="number">2</span>,H/<span class="number">2</span>)</span><br><span class="line">extrinsics=cam.RT_world_in_camera</span><br><span class="line"></span><br><span class="line">render = rendering.OffscreenRenderer(<span class="number">2048</span>, <span class="number">2048</span>)</span><br><span class="line">material = rendering.Material()</span><br><span class="line">material.base_color = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1.0</span>]</span><br><span class="line">material.shader = <span class="string">&quot;defaultLit&quot;</span></span><br><span class="line">material.albedo_img=o3d.io.read_image(<span class="string">&#x27;BigConnectSilver.jpg&#x27;</span>)</span><br><span class="line">material.base_metallic=<span class="number">1.0</span></span><br><span class="line">render.scene.add_geometry(<span class="string">&quot;pcd&quot;</span>,bpa_mesh,material)</span><br><span class="line">render.setup_camera(camera_intrinsics,extrinsics)</span><br><span class="line">render.scene.scene.set_sun_light([<span class="number">0</span>, <span class="number">0.0</span>, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line"><span class="number">3e6</span>)</span><br><span class="line">render.scene.scene.enable_sun_light(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Read RGB and Depth image from open3d</span></span><br><span class="line">img = np.asarray(render.render_to_image())</span><br><span class="line">depth_img=np.asarray(render.render_to_depth_image())</span><br><span class="line">depth_img=<span class="number">1</span>-depth_img</span><br><span class="line">depth_img=depth_img/np.amax(depth_img)*<span class="number">255</span></span><br><span class="line">depth_img=depth_img.astype(<span class="built_in">int</span>)</span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_depth.png&#x27;</span>,<span class="number">255</span>-depth_img)</span><br><span class="line"></span><br><span class="line">img= cv2.cvtColor(img,cv2.COLOR_RGB2BGR)</span><br><span class="line">bg=cv2.imread(<span class="string">&#x27;WechatIMG1313.jpeg&#x27;</span>)</span><br><span class="line">bg=cv2.resize(bg,(<span class="number">2048</span>,<span class="number">2048</span>))</span><br><span class="line">bg[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]=img[mask[<span class="number">0</span>],mask[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;render_rgb.jpg&#x27;</span>,bg)</span><br><span class="line">plt.imshow(cv2.cvtColor(bg,cv2.COLOR_BGR2RGB))</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-实验结果">4. 4 实验结果</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-data-generator/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/" class="post-title-link" itemprop="url">相机模型求解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-01 10:22:00" itemprop="dateCreated datePublished" datetime="2021-07-01T10:22:00-07:00">2021-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-问题描述">1. 1 问题描述</h2><p>在已经有了相机模型和已知圆的3个特征点的世界坐标及其像素坐标的情况下，我们可以用数值求解的方式求解出相机的位姿。</p>
+<p>假设世界坐标系的圆点为圆心</p>
+<h2 id="2-约束条件">2. 2 约束条件</h2><p>已知相机模型<br>$$<br>Z_{c}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S&#x3D;\left[\begin{array}{ccc}<br>\frac{f}{\mu_x} &amp; 0 &amp; c_{x} \<br>0 &amp; \frac{f}{\mu_ y} &amp; c_{y} \<br>0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>是相机的内参矩阵，是一个固定的矩阵，因此可以放到等式左边，化简方程<br>$$<br>Z_{c}S^{-1}\left[\begin{array}{l}<br>u \<br>v \<br>1<br>\end{array}\right]&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 1 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]\left[\begin{array}{cc}<br>R &amp; T \<br>\overrightarrow{0} &amp; 1<br>\end{array}\right]\left[\begin{array}{c}<br>X_{w} \<br>Y_{w} \<br>Z_{w} \<br>1<br>\end{array}\right]<br>$$<br>其中<br>$$<br>S^{-1}&#x3D;\displaystyle \left[\begin{matrix}\frac{\mu}{f} &amp; 0 &amp; - \frac{C_{x} \mu}{f}\0 &amp; \frac{\mu}{f} &amp; - \frac{C_{y} \mu}{f}\0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>（4）中的RT矩阵用四元数的表达方式可以写成<br>$$<br>\displaystyle \left[\begin{matrix}- 2 y^{2} - 2 z^{2} + 1 &amp; - 2 w z + 2 x y &amp; 2 w y + 2 x z &amp; - T_{x} \left(- 2 y^{2} - 2 z^{2} + 1\right) - T_{y} \left(- 2 w z + 2 x y\right) - T_{z} \left(2 w y + 2 x z\right)\2 w z + 2 x y &amp; - 2 x^{2} - 2 z^{2} + 1 &amp; - 2 w x + 2 y z &amp; - T_{x} \left(2 w z + 2 x y\right) - T_{y} \left(- 2 x^{2} - 2 z^{2} + 1\right) - T_{z} \left(- 2 w x + 2 y z\right)\- 2 w y + 2 x z &amp; 2 w x + 2 y z &amp; - 2 x^{2} - 2 y^{2} + 1 &amp; - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)\0 &amp; 0 &amp; 0 &amp; 1\end{matrix}\right]<br>$$<br>四元数的各个数值约束为<br>$$<br>w^2+x^2+y^2+z^2&#x3D;1<br>$$</p>
+<h3 id="2-1-圆心特征点">2.1. 2.1 圆心特征点</h3><p>考虑世界坐标系圆心坐标 $P(0,0,0)$，像素坐标$p_0$</p>
+<p>对应缩放<br>$$<br>Zc&#x3D;\displaystyle - T_{x} \left(- 2 w y + 2 x z\right) - T_{y} \left(2 w x + 2 y z\right) - T_{z} \left(- 2 x^{2} - 2 y^{2} + 1\right)<br>$$<br>像素坐标<br>$$<br>Z_cS^{-1}p_0&#x3D;\left[\begin{array}{l}<br>-T_{x}\left(-2 y^{2}-2 z^{2}+1\right)-T_{y}(-2 w z+2 x y)-T_{z}(2 w y+2 x z) \<br>-T_{x}(2 w z+2 x y)-T_{y}\left(-2 x^{2}-2 z^{2}+1\right)-T_{z}(-2 w x+2 y z)<br>\end{array}\right]<br>$$</p>
+<h3 id="2-2-X方向直径端点">2.2. 2.2 X方向直径端点</h3><p>考虑世界坐标系X方向直径端点 $P(L,0,0)$，像素坐标$p_x$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/camera-estimation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/thinking-2021/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Life%20Skill/thinking-2021/" class="post-title-link" itemprop="url">近期思考&读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-27 02:46:00" itemprop="dateCreated datePublished" datetime="2021-06-27T02:46:00-07:00">2021-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="人生目标？">1. 人生目标？</h2><p>人这一生到底要做什么</p>
+<p>为什么</p>
+<p>目前情况怎么样</p>
+<p>怎么做</p>
+<h2 id="What-really-matters">2. What really matters</h2><p>快乐主义：Hedonism</p>
+<p>Pleasure is the only direct good, Pain is the only direct bad</p>
+<p>萨特：</p>
+<ul>
+<li>对人类来说，先有存在，然后再有目的</li>
+<li>我们的目的由自己定义</li>
+<li>对于物品来说，先有目的，然后再存在</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/thinking-2021/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1239,7 +1314,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1305,20 +1380,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">415</span>
+          <span class="site-state-item-count">432</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">94</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">127</span>
+        <span class="site-state-item-count">129</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1353,7 +1428,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
