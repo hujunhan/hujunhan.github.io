@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="PKj41cR7Xcif4DRilUpOK1eRThw9FKoGT6u5P1sNUSQ">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -188,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/mechanics-study-plan/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Mathematics/Statistics/outliers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +203,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Mechanics/mechanics-study-plan/" class="post-title-link" itemprop="url">机械设计学习计划</a>
+            <a href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/outliers/" class="post-title-link" itemprop="url">异常点检测</a>
         </h2>
 
         <div class="post-meta">
@@ -212,14 +213,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-04-08 23:28:00" itemprop="dateCreated datePublished" datetime="2022-04-08T23:28:00-07:00">2022-04-08</time>
+              <time title="Created: 2022-05-17 11:01:00" itemprop="dateCreated datePublished" datetime="2022-05-17T11:01:00-04:00">2022-05-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,11 +232,15 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Nature-Science/Mathematics/Statistics/" itemprop="url" rel="index"><span itemprop="name">Statistics</span></a>
                 </span>
             </span>
 
@@ -250,38 +255,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Goal">1. Goal</h2><p>针对机械领域的复杂工程问题提出解决思路，设计满足特定需求的机械、电子系统或具体解决方法与流程</p>
-<p>基础知识：</p>
+          <h2 id="什么是异常点（outliers）">1. 什么是异常点（outliers）</h2><p>From wikipedia:</p>
+<blockquote>
+<p><em>In statistics, an</em> <strong>outlier</strong> <em>is an observation point that is distant from other observations.</em></p>
+</blockquote>
+<p>关键是observation，或者先验，通过人的知识来去除异常点</p>
+<h2 id="数据分布（先验）">2. 数据分布（先验）</h2><p>茶叶的特征点一般分布在叶片以及枝干上，高度差异在5cm以内</p>
+<p>所以我们的预期是：</p>
 <ul>
-<li><del>工程图学：绘制和阅读机械工程草图</del></li>
-<li>刚体力学：刚体运动的数学建模表达，平动、转动、定轴转动</li>
-<li>机械制图CAD：CAD软件的基本操作，三维设计SolidWorks</li>
-<li>设计、材料和制造：不同材料和制造的基础知识</li>
+<li>大部分点在5cm以内，假设下限low，$low&lt;x&lt;low+5$</li>
+<li>超过范围，$x&lt;low$ or $x&gt;low+5$，判定为outliers</li>
 </ul>
-<p>扩展知识</p>
-<ul>
-<li>电机与拖动：直流电机、伺服电机的结构与工作原理，矩、力的计算</li>
-</ul>
-<p>机械的设计思维，</p>
-<ul>
-<li>功能，设计</li>
-<li>功能性需求：模仿人工怎么采摘，两个手指头往下一揪</li>
-<li>实际问题：相机平面误差，冗余性设计，宽度做宽一点</li>
-<li>改进：做一个机构，根据功能来，</li>
-<li>从概念到实用</li>
-<li>供应链</li>
-<li>知道已经有了哪些东西</li>
-<li>电机，问答机制</li>
-<li>电机</li>
-</ul>
-<p>设计时候的漏洞</p>
-<ul>
-<li>general的经验，可以避免</li>
-<li>spec的经验，很难避免</li>
-</ul>
+<p>问题归结于如何找到low，或者平均值，或者low+5</p>
+<h2 id="编程实现">3. 编程实现</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Mechanics/mechanics-study-plan/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Nature%20Science/Mathematics/Statistics/outliers/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -305,7 +294,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/Management-For-Startup/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/monitor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -319,7 +308,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Miscellaneous/Business/Management-For-Startup/" class="post-title-link" itemprop="url">Management for Startup</a>
+            <a href="/MarkdownNotes/Life%20Skill/Interests/monitor/" class="post-title-link" itemprop="url">选一个屏幕</a>
         </h2>
 
         <div class="post-meta">
@@ -329,658 +318,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-04-06 21:20:00" itemprop="dateCreated datePublished" datetime="2022-04-06T21:20:00-07:00">2022-04-06</time>
+              <time title="Created: 2022-05-06 01:00:00" itemprop="dateCreated datePublished" datetime="2022-05-06T01:00:00-04:00">2022-05-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Goal: manage startup between 2-150 people, responsible for other people’s output</p>
-<p>Limit: time and experience</p>
-<p>Solution:</p>
-<ul>
-<li>find the smallest possible set of techniques to be a manager</li>
-<li>First principle</li>
-</ul>
-<h2 id="What-is-Manager’s-Job">2. What is Manager’s Job</h2><p>Goal: <strong>increase the output of the team</strong>, the single principle</p>
-<p>Limit: the activities of a manager is complicated, and not directly map to <strong>business value</strong></p>
-<p>How to measure the value of a manager? (Rather than an individual contributor)</p>
-<ul>
-<li>increase the output</li>
-<li>maximize the value of employee</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Miscellaneous/Business/Management-For-Startup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-stereo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-stereo/" class="post-title-link" itemprop="url">双目相机校准</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-04 17:34:00" itemprop="dateCreated datePublished" datetime="2022-04-04T17:34:00-07:00">2022-04-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Prerequisite: 将两个单目相机单独标定，得到了两个相机的内参和畸变参数</p>
-<p>Goal: 就像人眼一样，需要知道两个相机的位置关系才能判断深度。两个相机并不是完全水平地放置，需要确定两者之间的R、T关系，修正视角使得两个图像中的位置在y方向一致</p>
-<p>How：</p>
-<ol>
-<li>Calibration for stereo camera set</li>
-<li>Rectification, find R, T to make them aligned in the y-axis</li>
-</ol>
-<h2 id="原理">2. 原理</h2><h3 id="stereoCalibrate">2.1. stereoCalibrate</h3><p>利用之前标定的两个相机的单独的内参，在标定时fix_intrinsic，只估计R，T，E（Essential），F（Fundamental）between two cameras</p>
-<p>minimize re-projection error</p>
-<h3 id="StereoRectify">2.2. StereoRectify</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-stereo/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-single/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-single/" class="post-title-link" itemprop="url">单目相机校准</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-03 18:44:00" itemprop="dateCreated datePublished" datetime="2022-04-03T18:44:00-07:00">2022-04-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>单目相机标定目标：相机的内参（fx,fy,cx,cy）和畸变，建立从世界坐标到像素坐标的映射</p>
-<p>How: 张正友标定法</p>
-<p>原理：</p>
-<ol>
-<li>从世界坐标到像素坐标的映射包含了内参和外参，是一个$3\times 3$矩阵（单应矩阵$H$），有8个自由度（一个特征点的xy包含了两个方程，所以一共需要4个特征点）</li>
-<li>求出单应矩阵之后再分别求内参、外参</li>
-</ol>
-<p>应用：通过棋盘格，棋盘格设为世界坐标系，并且边长也知道，因此世界坐标系的点坐标知道了，因为特征点多于4个，因此可以做优化</p>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-03-19-56-05.png" alt="image-20220403195604856"></p>
-<h2 id="推导">2. 推导</h2><p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-03-20-05-21.png" alt="image-20220403200521667"></p>
-<p>利用单应矩阵的性质</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/calibration-single/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-tracking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-tracking/" class="post-title-link" itemprop="url">视觉目标跟踪</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-27 13:57:00" itemprop="dateCreated datePublished" datetime="2022-03-27T13:57:00-07:00">2022-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/" itemprop="url" rel="index"><span itemprop="name">Robotics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/" itemprop="url" rel="index"><span itemprop="name">Perception</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/" itemprop="url" rel="index"><span itemprop="name">Camera</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer-Vision/" itemprop="url" rel="index"><span itemprop="name">Computer Vision</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>给定目标在某一帧内的状态，估计目标在后续帧中的状态，三个方面</p>
-<ul>
-<li>找到：在某个位置，颜色过滤</li>
-<li>感兴趣物体：定义一些特征，表达、提取特征</li>
-<li>后续帧：找到最像的物体，最重要的子问题</li>
-</ul>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/3c420a95c5f94b22bc188a75ae485bf7.png" alt="image.png"></p>
-<ul>
-<li>运动模型输入的是两帧，输出候选框</li>
-<li>特征模型输出候选框+特征</li>
-<li>观测模型：选择最像的</li>
-</ul>
-<h2 id="运动模型">2. 运动模型</h2><p>如何表达位置？Bounding box</p>
-<p>如何生成候选框？sliding window</p>
-<h2 id="特征模型">3. 特征模型</h2><ul>
-<li>像素值</li>
-<li>统计 hist</li>
-<li>变换 梯度</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/object-tracking/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Web/webrtc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Engineering/Computer%20Science/Web/webrtc/" class="post-title-link" itemprop="url">WebRTC</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-11 15:53:00" itemprop="dateCreated datePublished" datetime="2022-03-11T15:53:00-08:00">2022-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Web realtime trans</p>
-<p>differ from web sockets</p>
-<ul>
-<li>reduce the latency</li>
-</ul>
-<h2 id="How-to-communicate">2. How to communicate</h2><h3 id="Signaling">2.1. Signaling</h3><p>A,B connect to server and exchange informations</p>
-<h3 id="How">2.2. How?</h3><p>API</p>
-<p>Indentity</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Web/webrtc/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/strategy-notes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Miscellaneous/Business/strategy-notes/" class="post-title-link" itemprop="url">Strategy for Startup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-06 21:20:00" itemprop="dateCreated datePublished" datetime="2022-03-06T21:20:00-08:00">2022-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Choosing-Your-Opportunity">1. Choosing Your Opportunity</h2><p>Opportunity is neither a matter of simple luck nor a certain path. Opportunity is the formulation of a hypothesis by an entrepreneur about how to potentially create and capture value by providing something that is “missing” from the marketplace.</p>
-<h3 id="A-Strategic-Approach">1.1. A Strategic Approach</h3><p>3 insight about opportunities</p>
-<ul>
-<li>opportunities are everywhere</li>
-<li>while opportunities are everywhere, not every opportunity is the right opportunity for every individual.</li>
-<li>opportunities are uncertain</li>
-</ul>
-<p>Opportunity is a hypothesis about the potential for creating and capture value that, by its very nature, is uncertain at the moment it is first perceived. Indeed, it is that very uncertainty that creates the opportunity.</p>
-<h3 id="Why-Choose-an-Opportunity">1.2. Why Choose an Opportunity</h3><p>Two questions</p>
-<ul>
-<li>why is there an opportunity in a particular location and moment (here and now) to introduce something novel to the marketplace?</li>
-<li>why are you the entrepreneur or founding team to translate this opportunity into a reality?</li>
-</ul>
-<h3 id="Value-Creation-and-Capture-Why-Here-and-Now">1.3. Value Creation and Capture: Why Here and Now</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Miscellaneous/Business/strategy-notes/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/Photography/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/Photography/" class="post-title-link" itemprop="url">Photograph</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-02-20 21:29:00" itemprop="dateCreated datePublished" datetime="2022-02-20T21:29:00-08:00">2022-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1011,18 +356,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Photography">1. Photography</h1><blockquote>
-<p>Photography means Writing with Lights</p>
-</blockquote>
-<h2 id="Elements">2. Elements</h2><p>Record of people and things. Photo serves as document or symbol?</p>
-<p>Making photo rather than Taking</p>
-<p>Well organized&#x2F;composited photo</p>
-<p>Learning photography is just like learning language&#x2F;writing</p>
-<h3 id="Shape">2.1. Shape</h3><p>Syntax creates meaning, we arrange elements</p>
-<p>Just 2D information</p>
+          <h2 id="Why">1. Why</h2><p>首先，明确为什么要（新）买一个屏幕。</p>
+<ul>
+<li>很简单，因为现在的屏幕不舒服</li>
+<li>怎么不舒服？不清晰。</li>
+<li>原因：分辨率低</li>
+</ul>
+<p>所以目标就是，寻找一把能够支撑高分辨率的显示器</p>
+<h2 id="How">2. How</h2><p>Learn from the best. 没时间学习如何做一个显示器，直接来看最好的显示器制造公司是如何设计产品的</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-05-06-01-02-30.jpg" alt="显示器推荐"></p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/">Fig</a>生产的<a target="_blank" rel="noopener" href="https://www.baidu.com/">Super Monitor</a>，久负盛名。根据其官网的描述，主要是有以下几点特征</p>
+<ul>
+<li><p>可调节角度</p>
+</li>
+<li><p>Why？基于人体动力学，由于显示器的连接结构，当我们看屏幕的时候，盆骨倾向于向后旋转，导致腰椎向外弯曲（不好）。仅仅给人支撑是没有用的，而支撑显示器可以有效避免盆骨向后。 (Kroemer, 1971; Grandjean, 1980; Zacharkow, 1988)</p>
+</li>
+<li><p>可调节的亮度，用来<strong>护眼</strong></p>
+</li>
+<li><p>Why？人眼容易瞎</p>
+</li>
+<li><p>可调节高度和倾斜角度</p>
+</li>
+</ul>
+<p>如上图所示，目标就是让各个部位处于自然的位置，主要是眼睛，应该如下图一样，尽量让眼睛压在屏幕上，而不是只有臀部</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/Photography/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/monitor/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1046,7 +405,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/color-filter/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/patent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1060,7 +419,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/color-filter/" class="post-title-link" itemprop="url">颜色过滤</a>
+            <a href="/MarkdownNotes/Miscellaneous/Business/patent/" class="post-title-link" itemprop="url">发明专利写作</a>
         </h2>
 
         <div class="post-meta">
@@ -1070,14 +429,119 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-03T00:00:00-08:00">2022-02-03</time>
+              <time title="Created: 2022-04-26 13:56:00" itemprop="dateCreated datePublished" datetime="2022-04-26T13:56:00-04:00">2022-04-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-23 04:20:43" itemprop="dateModified" datetime="2023-09-23T04:20:43-04:00">2023-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="创作主要原则">1. 创作主要原则</h2><p>主要是给审查员看，所以从审查员视角看</p>
+<p>重点：<strong>创造性</strong>，与现有技术相比，该发明的</p>
+<ul>
+<li>实质性特点。相对于现有技术领域的人来说，发明并不是显而易见的。（<strong>有独特的见解</strong>）</li>
+<li>显著的进步。能够产生有益的技术效果。（考虑领域、技术问题、产生的效果）</li>
+</ul>
+<p>判断方法</p>
+<ul>
+<li>确定最接近的现有技术</li>
+<li>确定技术的特征、解决的问题</li>
+<li>判断发明对本领域技术人员是否显而易见</li>
+</ul>
+<p>方式</p>
+<ul>
+<li>有不一样的内容</li>
+</ul>
+<h2 id="修复与回复">2. 修复与回复</h2><p>意见主要有两种</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Miscellaneous/Business/patent/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/detection/" class="post-title-link" itemprop="url">目标检测</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-24 17:10:00" itemprop="dateCreated datePublished" datetime="2022-04-24T17:10:00-04:00">2022-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1120,22 +584,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why">1. Why</h2><p>思考路径</p>
-<ol>
-<li>减少计算量，将rgb中的运算空间缩减为bool的空间，大大减少计算</li>
-<li>一种想法就是在图像中筛选出固定颜色的物体</li>
-<li>筛选颜色可以使用RGB或者HSV，使用HSV可以解放亮度的影响，所以优先使用</li>
-<li>重点在于如何寻找HSV的合适范围筛选出想要的物体</li>
-<li>通过一张样片，进行测试，选取合适的上下界</li>
+          <h2 id="背景">1. 背景</h2><p>两个子任务</p>
+<ul>
+<li>分类</li>
+<li>定位</li>
+</ul>
+<h2 id="发展脉络">2. 发展脉络</h2><ol>
+<li>传统：HOG，DPM。速度慢、准确率不高</li>
+<li>Anchor based，计算Anchor比较耗时，且固定anchor降低了普适性</li>
+<li>two stage：RCNN，选框、resize、CNN、SVM $\to$ SPPNET提高了速度$\to$ faster RCNN 提取一个ROI来做处理，再选择候选框 $\to$ FPN，在不同尺度上效果更好</li>
+<li>one stage：YOLO，速度快精度低；SSD加入不同的检测分支</li>
+<li>Anchor free：</li>
+<li>CornerNet，将网络对边界框的检测转化为左上角、右上角的检测 $\to$ CenterNet, 检测目标中心点</li>
+<li>FCOS，不训练Anchor、不提Proposal</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-02-03-01-11-51.png" alt="enter image description here"></p>
-<h2 id="Code">2. Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nothing</span>(<span class="params">x</span>):</span><br><span class="line"><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load image</span></span><br><span class="line">image = cv2.imread(<span class="string">&#x27;1.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a window</span></span><br><span class="line">cv2.namedWindow(<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create trackbars for color change</span></span><br><span class="line"><span class="comment"># Hue is from 0-179 for Opencv</span></span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;HMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">140</span>, <span class="number">179</span>, nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;SMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">0</span>, <span class="number">255</span>, nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;VMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">0</span>, <span class="number">255</span>, nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;HMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">160</span>, <span class="number">179</span>, nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;SMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">0</span>, <span class="number">255</span>, nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;VMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">0</span>, <span class="number">255</span>, nothing)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set default value for Max HSV trackbars</span></span><br><span class="line">cv2.setTrackbarPos(<span class="string">&#x27;HMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">179</span>)</span><br><span class="line">cv2.setTrackbarPos(<span class="string">&#x27;SMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">255</span>)</span><br><span class="line">cv2.setTrackbarPos(<span class="string">&#x27;VMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>, <span class="number">255</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize HSV min/max values</span></span><br><span class="line">hMin = sMin = vMin = hMax = sMax = vMax = <span class="number">0</span></span><br><span class="line">phMin = psMin = pvMin = phMax = psMax = pvMax = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line"><span class="comment"># Get current positions of all trackbars</span></span><br><span class="line">hMin = cv2.getTrackbarPos(<span class="string">&#x27;HMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">sMin = cv2.getTrackbarPos(<span class="string">&#x27;SMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">vMin = cv2.getTrackbarPos(<span class="string">&#x27;VMin&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">hMax = cv2.getTrackbarPos(<span class="string">&#x27;HMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">sMax = cv2.getTrackbarPos(<span class="string">&#x27;SMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">vMax = cv2.getTrackbarPos(<span class="string">&#x27;VMax&#x27;</span>, <span class="string">&#x27;image&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set minimum and maximum HSV values to display</span></span><br><span class="line">lower = np.array([hMin, sMin, vMin])</span><br><span class="line">upper = np.array([hMax, sMax, vMax])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to HSV format and color threshold</span></span><br><span class="line">hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)</span><br><span class="line">mask = cv2.inRange(hsv, lower, upper)</span><br><span class="line">result = cv2.bitwise_and(image, image, mask=mask)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print if there is a change in HSV value</span></span><br><span class="line"><span class="keyword">if</span>((phMin != hMin) | (psMin != sMin) | (pvMin != vMin) | (phMax != hMax) | (psMax != sMax) | (pvMax != vMax) ):</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;(hMin = %d , sMin = %d, vMin = %d), (hMax = %d , sMax = %d, vMax = %d)&quot;</span> % (hMin , sMin , vMin, hMax, sMax , vMax))</span><br><span class="line">phMin = hMin</span><br><span class="line">psMin = sMin</span><br><span class="line">pvMin = vMin</span><br><span class="line">phMax = hMax</span><br><span class="line">psMax = sMax</span><br><span class="line">pvMax = vMax</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display result image</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;image&#x27;</span>, result)</span><br><span class="line"><span class="keyword">if</span> cv2.waitKey(<span class="number">10</span>) &amp; <span class="number">0xFF</span> == <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>):</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h2 id="评价方法">3. 评价方法</h2><p>IOU</p>
+<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-25-50.png" alt="image-20220424172550611" style="zoom:25%;">
 
-<h2 id="Ref">3. Ref</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv">https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv</a></p>
-
+<p>Precision-Recall曲线</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-24-17-26-49.png" alt="image-20220424172649320"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/color-filter/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/detection/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1159,7 +629,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/deblur/">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/us-tax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1173,7 +643,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/deblur/" class="post-title-link" itemprop="url">Image Deblur</a>
+            <a href="/MarkdownNotes/Life%20Skill/Interests/us-tax/" class="post-title-link" itemprop="url">美国税法</a>
         </h2>
 
         <div class="post-meta">
@@ -1183,14 +653,531 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-19T00:00:00-08:00">2022-01-19</time>
+              <time title="Created: 2022-04-15 14:47:00" itemprop="dateCreated datePublished" datetime="2022-04-15T14:47:00-04:00">2022-04-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-20 21:39:37" itemprop="dateModified" datetime="2023-09-20T21:39:37-07:00">2023-09-20</time>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>IRS——internal revenue service， tax collection agency</p>
+<p>Tax return——tax form sent to IRS</p>
+<p>W-2——tax form from employer</p>
+<p>1042-s——tax from unversity</p>
+<h2 id="Tax-Residency">2. Tax Residency</h2><p>different residency determines which form you need</p>
+<p>F1-Non-resident alien (within 5 calendar year)</p>
+<h2 id="Tax-Forms">3. Tax Forms</h2><p>May receive if you have income</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/us-tax/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Mechanics/design-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Mechanics/design-problem/" class="post-title-link" itemprop="url">零件设计疑惑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-14 22:08:00" itemprop="dateCreated datePublished" datetime="2022-04-14T22:08:00-04:00">2022-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>最近开始学习机械画图，但画图不是目的，目的是做出能够工作的机械零部件</p>
+<p>练习项目：相机外壳</p>
+<p>已经有的：PCB和相机</p>
+<p>目标：相机的外壳，分别对PCB和相机，也就是说两个壳体</p>
+<h2 id="Problem">2. Problem</h2><p>由于不是机械出身，对于一些设计时候需要经验的地方就无从下手</p>
+<p>相机外壳设计遇到的问题</p>
+<ul>
+<li>设计冗余量怎么确定：</li>
+<li>专业术语叫公差、配合</li>
+<li>壳体厚度怎么确定：</li>
+<li>看设计，和大小有关。这里设计的相机比较小，厚度1.5mm或者2mm就够了</li>
+<li>排线能否在相机段插拔，</li>
+<li>设计时要考虑加工的难易程度，尽量设计简单易加工的。比如说，我本来的想法是给排线设计一个孔，但是加工孔的难度较大，那么应该设计一个槽，加工就容易很多</li>
+<li>什么时候用倒角圆角，0.5</li>
+<li>从安全、美观角度来说应该多使用。比如说直角容易划破排线、对于人来说也很危险，因此要使用倒角。倒角的半径设计：不能太大（大于厚度不行），不能太小（小了没用）</li>
+<li>稳定的连接，一般需要螺丝多长</li>
+<li>看壳体厚度</li>
+</ul>
+<h2 id="Fit-and-Tolerance">3. Fit and Tolerance</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Mechanics/design-problem/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/bp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Miscellaneous/Business/bp/" class="post-title-link" itemprop="url">Business Proposal</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-14 15:19:00" itemprop="dateCreated datePublished" datetime="2022-04-14T15:19:00-04:00">2022-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>What: A document outlines ideas and strategies for launching and managing</p>
+<h2 id="Structure">2. Structure</h2><ol>
+<li>What is the company</li>
+<li>slogan</li>
+<li>Team</li>
+<li>experience</li>
+<li>unique</li>
+<li>Operation</li>
+<li>What is user gonna use</li>
+<li>technology</li>
+<li>Marketplace</li>
+<li>facts, numbers</li>
+<li>Strategy</li>
+<li>When will you make money</li>
+<li>Competition</li>
+<li>Why hasn’t been done</li>
+<li>Revenue</li>
+<li>How are you going to make money</li>
+<li>The cost</li>
+<li>How much do you need</li>
+</ol>
+<h2 id="Ref">3. Ref</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=zlrb_X6fYZ0">Business Plan Writing 101: Wharton Entrepreneurship Series</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Miscellaneous/Business/bp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Miscellaneous/Business/one-line-desc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Miscellaneous/Business/one-line-desc/" class="post-title-link" itemprop="url">一句话描述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-14 15:07:00" itemprop="dateCreated datePublished" datetime="2022-04-14T15:07:00-04:00">2022-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/" itemprop="url" rel="index"><span itemprop="name">Miscellaneous</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Miscellaneous/Business/" itemprop="url" rel="index"><span itemprop="name">Business</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro">1. Intro</h2><p>为什么需要一句话描述？</p>
+<p>项目创业有很多，想要引起别人的注意，我们需要给别人留下深刻的印象，通过一句话描述可以在短时间内将自己的公司说明清楚</p>
+<p>具体怎么做？</p>
+<h2 id="How">2. How</h2><p><a target="_blank" rel="noopener" href="https://fi.co/insight/can-you-explain-your-startup-idea-in-one-sentence">https://fi.co/insight/can-you-explain-your-startup-idea-in-one-sentence</a></p>
+<p><strong>(公司名称)提供的 (产品或服务) 利用 (特色功能的突出) 帮助 (目标用户) 解决 (问题描述)</strong></p>
+<p>几个原则</p>
+<ul>
+<li>避免使用主观性描述</li>
+<li>准确定义目标市场和客户</li>
+<li>保持简单</li>
+</ul>
+<h2 id="Practice">3. Practice</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Miscellaneous/Business/one-line-desc/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/Furthest-Point-Sampling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/Furthest-Point-Sampling/" class="post-title-link" itemprop="url">根据距离的降采样</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-13 16:18:00" itemprop="dateCreated datePublished" datetime="2022-04-13T16:18:00-04:00">2022-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkdownNotes/Engineering/Computer-Science/Data-Structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structure & Algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Furthest-Point-Sampling">1. Furthest Point Sampling</h2><p>用处：给点云或者密集点降采样，使点云达到空间中的均匀分布</p>
+<p>Above：从正态分布到均匀分布</p>
+<p>输入：N个点，想要的最终点数M(&lt;N)</p>
+<p>输出：index</p>
+<p>思想：不停迭代离其他点最远的，直到选出M个点。</p>
+<p>算法：</p>
+<ol>
+<li>维护两个set，sampled和remain</li>
+<li>对于每个remain中的点，在sampled找最近的，保存距离</li>
+<li>找到remain中最近距离最远的，移动到sampled中</li>
+</ol>
+<h2 id="Python">2. Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fps</span>(<span class="params">points, n_samples</span>):</span><br><span class="line">points = np.array(points)</span><br><span class="line"><span class="comment"># Represent the points by their indices in points</span></span><br><span class="line">points_left = np.arange(<span class="built_in">len</span>(points)) <span class="comment"># [P]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialise an array for the sampled indices</span></span><br><span class="line">sample_inds = np.zeros(n_samples, dtype=<span class="string">&#x27;int&#x27;</span>) <span class="comment"># [S]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialise distances to inf</span></span><br><span class="line">dists = np.ones_like(points_left) * <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>) <span class="comment"># [P]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Select a point from points by its index, save it</span></span><br><span class="line">selected = <span class="number">0</span></span><br><span class="line">sample_inds[<span class="number">0</span>] = points_left[selected]</span><br><span class="line"><span class="comment"># Delete selected</span></span><br><span class="line">points_left = np.delete(points_left, selected) <span class="comment"># [P - 1]</span></span><br><span class="line"><span class="comment"># Iteratively select points for a maximum of n_samples</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_samples):</span><br><span class="line"><span class="comment"># Find the distance to the last added point in selected</span></span><br><span class="line"><span class="comment"># and all the others</span></span><br><span class="line">last_added = sample_inds[i-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">dist_to_last_added_point = (</span><br><span class="line">(points[last_added] - points[points_left])**<span class="number">2</span>).<span class="built_in">sum</span>(-<span class="number">1</span>) <span class="comment"># [P - i]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If closer, updated distances</span></span><br><span class="line">dists[points_left] = np.minimum(dist_to_last_added_point,</span><br><span class="line">dists[points_left]) <span class="comment"># [P - i]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We want to pick the one that has the largest nearest neighbour</span></span><br><span class="line"><span class="comment"># distance to the sampled points</span></span><br><span class="line">selected = np.argmax(dists[points_left])</span><br><span class="line">sample_inds[i] = points_left[selected]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update points_left</span></span><br><span class="line">points_left = np.delete(points_left, selected)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> points[sample_inds]</span><br><span class="line"></span><br><span class="line">num,dim = <span class="number">300</span>,<span class="number">2</span></span><br><span class="line">x=np.random.randn(num,dim)</span><br><span class="line">ds=fps(x,<span class="number">30</span>)</span><br><span class="line"><span class="built_in">print</span>(x.shape)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">plt.scatter(x[:,<span class="number">0</span>],x[:,<span class="number">1</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;Normal Dist&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">plt.scatter(ds[:,<span class="number">0</span>],ds[:,<span class="number">1</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;FPS Dist&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/MarkdownNotes/Engineering/Computer%20Science/Data%20Structure%20&%20Algorithm/Furthest-Point-Sampling/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/depth-estimation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Junhan Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Only Truth Matters">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/depth-estimation/" class="post-title-link" itemprop="url">双目深度估计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-13 14:17:00" itemprop="dateCreated datePublished" datetime="2022-04-13T14:17:00-04:00">2022-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-21 00:39:37" itemprop="dateModified" datetime="2023-09-21T00:39:37-04:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1233,25 +1220,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="图片模糊">1. 图片模糊</h2><p>有多种原因会造成图片的模糊，主要有以下两种</p>
+          <h2 id="Intro">1. Intro</h2><p>深度估计的方式有很多种，通过双目来进行深度估计是成本较低、精度较高的一种方式</p>
+<h2 id="Principe">2. Principe</h2><p>和人眼类似，双目深度估计的原理是同一个点在左右两个相机中的位置偏差决定了深度。直觉上来说，一个点离相机越近（深度越小），那么左右两张图片中的位置差别就越大；反之越远，那么在两张图片中趋向于同一位置</p>
+<p><img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-04-13-14-21-52.png" alt="image-20220413142151851"></p>
+<p>利用三角关系求出真实深度</p>
+<h2 id="Requirement">3. Requirement</h2><p>需要对左右两侧相机进行校准</p>
 <ul>
-<li>运动模糊，因为在曝光时间内相机或者被摄对象运动造成</li>
-<li>失焦模糊，因为对焦失败，被摄物体不在景深范围内造成</li>
+<li>单目校准，估计内参和畸变</li>
+<li>双目校准，估计两个相机的相对位置，rectify之后确保同一基线</li>
 </ul>
-<h2 id="运动模糊">2. 运动模糊</h2><p>首先考虑运动模糊</p>
-<img src="https://raw.githubusercontent.com/hujunhan/cloudimage/master/img/2022-01-19-16-31-01.png" alt="2022-01-19-16-31-01" style="zoom:33%;">
-
-<p>本质就是一个运动模糊核（Box filter）和清晰图像的卷积，频域上是一个sinc函数</p>
-<p>难点</p>
-<ul>
-<li>卷积核难以获取，和远近、运动速度和方向都有关</li>
-<li>背景分割</li>
-<li>卷积核丢失了高频信息，恢复之后信噪比低</li>
-</ul>
-<p>做一些假设，降低问题的难度</p>
+<h2 id="ROI">4. ROI</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/deblur/#more" rel="contents">
+              <a class="btn" href="/MarkdownNotes/Engineering/Robotics/Perception/Camera/Computer%20Vision/depth-estimation/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1274,7 +1255,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1340,20 +1321,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">468</span>
+          <span class="site-state-item-count">478</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">138</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
