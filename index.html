@@ -1,1517 +1,491 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-  <meta name="google-site-verification" content="PKj41cR7Xcif4DRilUpOK1eRThw9FKoGT6u5P1sNUSQ">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hujunhan.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Only Truth Matters">
-<meta property="og:url" content="https://hujunhan.github.io/index.html">
-<meta property="og:site_name" content="Only Truth Matters">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Junhan Hu">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://hujunhan.github.io/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
-  <title>Only Truth Matters</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Junhan Hu</title>
+<meta name="description" content="Junhan Hu: Senior ISP algorithm engineer at OmniVision with a robotics background, researching how camera pipelines affect robot policies.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Junhan Hu: camera ISP × robotics">
+<meta property="og:description" content="Senior ISP algorithm engineer at OmniVision with a robotics background, researching how camera pipelines affect robot policies.">
+<meta property="og:url" content="https://hujunhan.github.io/">
+<meta property="og:image" content="https://hujunhan.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-2: #555;
+  --text-3: #888;
+  --line: #e5e5e5;
+  --link: #1f5fbf;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --bad: #b5470f;
+  --band: rgba(235, 104, 52, 0.07);
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #151515; --text: #e8e8e6; --text-2: #b0b0ab; --text-3: #85847f;
+    --line: #2c2c2a; --link: #6aa5f0;
+    --series-1: #3987e5; --series-2: #d95926; --bad: #f0844f;
+    --band: rgba(217, 89, 38, 0.12);
   }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #151515; --text: #e8e8e6; --text-2: #b0b0ab; --text-3: #85847f;
+  --line: #2c2c2a; --link: #6aa5f0;
+  --series-1: #3987e5; --series-2: #d95926; --bad: #f0844f;
+  --band: rgba(217, 89, 38, 0.12);
+}
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); }
+main { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img, video { display: block; max-width: 100%; height: auto; }
+code { font-family: var(--mono); font-size: 0.9em; }
 
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+h1 { font-size: 26px; margin: 0; font-weight: 600; }
+.role { color: var(--text-2); margin: 2px 0 0; }
+#theme { background: none; border: 1px solid var(--line); color: var(--text-3); border-radius: 4px; padding: 2px 8px; font: 13px var(--mono); cursor: pointer; }
+.intro { margin: 20px 0 0; max-width: 700px; }
+.intro p { margin: 0 0 6px; }
+.contact { font: 15px var(--mono); margin-top: 16px; }
+.contact a { margin-right: 2px; }
+.contact a.cv { font-weight: 600; }
+
+.selected { margin: 32px 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0 6px; }
+.selected .k { font: 12px var(--mono); color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.selected ul { margin: 0 0 8px; padding-left: 20px; }
+
+h2 { font-size: 20px; font-weight: 600; margin: 56px 0 4px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+h3 { font-size: 16px; font-weight: 600; margin: 32px 0 2px; }
+.when { font-family: var(--mono); font-size: 13px; color: var(--text-3); margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 12px; padding-left: 20px; }
+li { margin-bottom: 4px; }
+
+figure { margin: 16px 0; }
+figcaption { font-size: 13px; color: var(--text-3); margin-top: 6px; }
+.row { display: grid; gap: 8px; }
+.row.c2 { grid-template-columns: 1fr 1fr; }
+.row.c3 { grid-template-columns: repeat(3, 1fr); }
+.row figure { margin: 0; }
+.row img, .row video, .framed { width: 100%; border: 1px solid var(--line); background: #fff; }
+.sq img { aspect-ratio: 1 / 1; object-fit: cover; }
+.sfr { align-items: start; }
+.sfr img { width: 100%; border: 1px solid var(--line); background: #fff; }
+
+/* before/after slider */
+.compare { max-width: 600px; position: relative; overflow: hidden; user-select: none; aspect-ratio: 286 / 146; background: #000; touch-action: pan-y; border: 1px solid var(--line); }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; pointer-events: none; }
+.compare .lab { position: absolute; top: 6px; font: 12px var(--mono); padding: 2px 6px; background: rgba(0,0,0,.7); color: #fff; pointer-events: none; }
+.compare .lab.l { left: 6px; } .compare .lab.r { right: 6px; }
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.compare:has(input:focus-visible) { outline: 2px solid var(--link); outline-offset: 2px; }
+.opts { font: 13px var(--mono); color: var(--text-3); margin-top: 8px; }
+.opts button { font: inherit; background: none; border: 1px solid var(--line); color: var(--text-2); padding: 2px 8px; border-radius: 3px; cursor: pointer; margin: 0 2px 4px 0; }
+.opts button[aria-pressed="true"] { border-color: var(--text-2); color: var(--text); }
+
+/* chart */
+.legend { font: 12px var(--mono); color: var(--text-2); }
+.legend i { display: inline-block; width: 9px; height: 9px; margin: 0 5px 0 12px; }
+.legend i:first-child { margin-left: 0; }
+#bars { display: block; width: 100%; margin-top: 8px; overflow: visible; }
+#bars .tick { fill: var(--text-3); font: 11px var(--mono); }
+#bars .grid { stroke: var(--line); }
+#bars .val { fill: #fff; font: 600 12px var(--mono); }
+#bars .cat { fill: var(--text-2); font: 12px var(--sans); }
+#bars .bandlab { fill: var(--bad); font: 11px var(--mono); }
+#bars .ci { stroke: var(--text); stroke-width: 1.2; }
+#bars rect.hit { fill: transparent; }
+#bars .dim .bar { opacity: .35; }
+.tip { position: fixed; pointer-events: none; display: none; z-index: 5; background: var(--text); color: var(--bg); font: 12px/1.5 var(--mono); padding: 6px 8px; border-radius: 3px; }
+details { font-size: 13px; color: var(--text-3); margin-top: 6px; }
+details summary { cursor: pointer; }
+table.results { border-collapse: collapse; font: 13px var(--mono); margin: 8px 0 0; color: var(--text); }
+table.results td, table.results th { padding: 3px 14px 3px 0; text-align: left; border-bottom: 1px solid var(--line); font-weight: normal; }
+table.results th { color: var(--text-3); }
+
+/* diagram */
+.diag { display: grid; grid-template-columns: 2.3fr 1fr; gap: 16px; align-items: start; }
+svg.diagram { width: 100%; height: auto; display: block; }
+.diagram text { font-family: var(--mono); }
+.diagram .hd { font-size: 12px; fill: var(--text-3); text-transform: uppercase; letter-spacing: .06em; }
+.diagram .lb { font-size: 13px; fill: var(--text); }
+.diagram .lb3 { font-size: 11px; fill: var(--text-3); }
+.diagram .acc { fill: var(--series-1); }
+.diagram .axis { stroke: var(--text-3); stroke-dasharray: 4 4; stroke-width: 1; }
+.diagram .plane { stroke: var(--text); stroke-width: 1.5; }
+.diagram .ray { stroke: var(--text-2); stroke-width: 1; }
+.diagram .ray.thin { stroke-dasharray: 2 3; }
+.diagram .proj { stroke: var(--series-1); stroke-width: 4; }
+.diagram .obj { stroke: var(--text); stroke-width: 4; stroke-linecap: round; }
+.diagram .dot { fill: var(--text); }
+.diagram .guide { stroke: var(--text-3); stroke-width: 1; stroke-dasharray: 2 3; }
+.diagram .arc { fill: none; stroke: var(--text); stroke-width: 1.2; }
+.diagram .dim { stroke: var(--text-2); stroke-width: 1; }
+.diagram .fill-2 { fill: var(--text-2); }
+.diagram .sensor { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.diagram .ell { fill: none; stroke: var(--series-1); stroke-width: 2; }
+
+ul.earlier { list-style: none; padding: 0; }
+ul.earlier li { margin-bottom: 6px; }
+ul.earlier .y { font: 13px var(--mono); color: var(--text-3); display: inline-block; min-width: 3.5em; }
+
+footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--text-3); }
+
+@media (max-width: 600px) {
+  main { padding: 32px 16px 64px; }
+  .row.c3 { grid-template-columns: 1fr 1fr; }
+  .row.c2.stack, .diag { grid-template-columns: 1fr; }
+  .diag .img-view { max-width: 200px; }
+  #bars .cat { font-size: 11px; }
+}
+</style>
 </head>
+<body>
+<main>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
+<header>
+  <div>
+    <h1>Junhan Hu</h1>
+    <p class="role">Camera ISP × robotics · San Francisco Bay Area</p>
   </div>
+  <button id="theme" aria-label="Toggle dark mode">dark/light</button>
+</header>
 
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Only Truth Matters</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
+<div class="intro">
+  <p>I'm a Senior Software Algorithm Engineer at OmniVision, developing hardware-efficient ISP algorithms for RAW denoise and HDR.</p>
+  <p>My robotics background (Zhejiang University, Georgia Tech, two robotics internships) drives my independent research into how camera pipelines affect robot policies.</p>
+  <p>I'm looking for roles in camera algorithms, robotics, or robotic vision.</p>
+</div>
+<div class="contact">
+  <a class="cv" href="assets/Junhan-Hu-Resume.pdf">resume (pdf)</a> ·
+  <a href="mailto:hujunhan98@outlook.com">email</a> ·
+  <a href="https://github.com/hujunhan">github</a> ·
+  <a href="https://linkedin.com/in/junhan-hu">linkedin</a>
 </div>
 
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
+<div class="selected">
+  <div class="k">Selected</div>
+  <ul>
+    <li><a href="#isp">ISP at OmniVision</a>: RAW denoise, highlight reconstruction and HDR for image sensors; ~20% gate-count reduction across the RAW and UV denoise stages.</li>
+    <li><a href="#research">VLA × ISP research</a>: un-tuned ISP noise reduction cost a LIBERO-trained robot policy ~16 percentage points of task success; gain-tuned noise reduction did not.</li>
+    <li><a href="#robotics">Robotics</a>: kinematics, BIT* planning and vision-servo simulation for an agricultural robot; camera pose estimation and synthetic RGB-D data at Midea.</li>
   </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
 </div>
 
-    </div>
+<!-- ================= RESEARCH ================= -->
+<h2 id="research">Research: does the ISP matter for a robot policy?</h2>
+<p class="when">2026 · <a href="https://github.com/hujunhan/vla-isp-probe">vla-isp-probe</a> · <a href="https://github.com/hujunhan/vla-isp-probe/blob/main/REPORT.md">full report</a></p>
+<p>The policy I evaluated, OpenVLA-OFT fine-tuned on LIBERO, was trained on clean simulator renders; a real robot would see the scene through a sensor and an ISP. I added a RAW sensor model and two ISPs to closed-loop LIBERO evaluation, pre-registered the hypotheses, and ran ~14k episodes on one 16 GB laptop GPU.</p>
+
+<figure>
+  <div class="compare" id="cmp">
+    <img src="assets/vla_tuned.png" alt="Scene through Infinite-ISP with tuned noise reduction">
+    <img src="assets/vla_nroff.png" alt="Scene through Infinite-ISP with noise reduction off" id="cmpL">
+    <div class="handle" id="cmpH"></div>
+    <span class="lab l" id="cmpLL">NR off</span>
+    <span class="lab r">tuned NR</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Drag to compare NR off with tuned NR">
   </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+  <div class="opts">left:
+    <button data-l="nroff" aria-pressed="true">NR off</button><button data-l="repo" aria-pressed="false">repo-default NR</button><button data-l="strong" aria-pressed="false">strong NR</button><button data-l="render" aria-pressed="false">rendered (training)</button>
   </div>
+  <figcaption>What the third-person camera sees at high sensor gain (λ = 0.012) through Infinite-ISP. Crop of a 256 px LIBERO frame.</figcaption>
+</figure>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Botany/botany-intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Nature%20Science/Botany/botany-intro/" class="post-title-link" itemprop="url">植物学入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-11-13 22:40:00" itemprop="dateCreated datePublished" datetime="2024-11-13T22:40:00-05:00">2024-11-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-11-14 02:25:03" itemprop="dateModified" datetime="2024-11-14T02:25:03-05:00">2024-11-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/Botany/" itemprop="url" rel="index"><span itemprop="name">Botany</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Goal: understanding the basic learning structure of botany</p>
-<h2 id="Key-Branches">2. Key Branches</h2><p>形态学：多个层次</p>
 <ul>
-<li>细胞<ul>
-<li>细胞壁：纤维素、木质素、果胶，是多糖。多糖可以转化为氨基酸</li>
-<li>细胞膜：脂质和蛋白质</li>
-<li>细胞质<ul>
-<li>内质网：膜结构，附着大量核糖体<ul>
-<li>粗糙，核糖体附着，蛋白质分泌</li>
-<li>光滑，脂质，类固醇，钙离子的存储和调节</li>
+  <li>With noise reduction (NR) tuned to the gain, no significant drop in task success was detected (all within 3.3 percentage points) for the tested tasks, noise levels, ISPs and policies.</li>
+  <li>Un-tuned NR at high gain cost the third-person-only policy ~16 percentage points, meeting the pre-registered replication rule. With a wrist camera added, the main run showed 13 points, but an independent replication on fresh episodes measured ~8, below the pre-registered 10-point bar: not confirmed.</li>
+  <li>Image-space Gaussian noise at matched PSNR caused no significant drop, so image-space robustness benchmarks would miss this failure.</li>
 </ul>
-</li>
-<li>高尔基体：蛋白质修饰，囊泡，处理、包装、分发蛋白质</li>
-<li>过氧化物酶：产生并清楚氧化剂</li>
-<li>线粒体：独特的双模<ul>
-<li>单独DNA</li>
-<li>能量产生：氧化还原反应</li>
+
+<figure>
+  <div class="legend"><i style="background:var(--series-1)"></i>OFT (wrist + third-person)<i style="background:var(--series-2)"></i>OFT_w (third-person only)</div>
+  <svg id="bars" role="img" aria-label="Task success by noise-reduction setting for two policies, with 95% confidence intervals"></svg>
+  <figcaption>Task success (%) at high gain through Infinite-ISP; whiskers are 95% Wilson intervals; 9 LIBERO tasks × 20 episodes per bar. NR off is compared in the report with a clean camera without sharpening (OFT 99.4, OFT_w 97.2).</figcaption>
+  <details><summary>Data table</summary>
+    <table class="results" id="bartable"><thead><tr><th>condition</th><th>OFT</th><th>95% CI</th><th>OFT_w</th><th>95% CI</th></tr></thead><tbody></tbody></table>
+  </details>
+</figure>
+<p>Also in the report: a reproduction of the LIBERO-Plus robustness numbers with a 4-bit model, and a file-name suffix in its instructions that alone costs 13 percentage points.</p>
+
+<!-- ================= ISP ================= -->
+<h2 id="isp">Camera ISP</h2>
+
+<h3>OmniVision Technologies</h3>
+<p class="when">2022 – now · Senior Software Algorithm Engineer (promoted 2024)</p>
+<ul>
+  <li><b>Highlight reconstruction &amp; HDR</b>: algorithms across multiple ISP pipelines and sensor architectures that recover color and detail in clipped regions, for single- and 4-exposure HDR.</li>
+  <li><b>RAW-domain denoise</b>: DNLM-based Bayer denoise with 4-pipe tiled, bit-exact processing; now architecting RAW denoise for next-gen quad-Bayer (4C) sensors.</li>
+  <li><b>Hardware cost-down</b>: drove denoise cost-down work that reduced gate count ~20% across the RAW and UV denoise stages; led cross-stage trade-off studies.</li>
+  <li>Maintain ISP blocks and standardized objective image-quality metrics across sensors and releases.</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>细胞核<ul>
-<li>DNA&#x2F;RNA</li>
-<li>核糖体</li>
-</ul>
-</li>
-<li>叶绿体</li>
-</ul>
-</li>
-<li>组织</li>
-<li>器官</li>
-<li>植株</li>
-<li>变异</li>
-</ul>
-<p>生理学</p>
-<p>分类学</p>
-<p>生态学</p>
-<h2 id="Question">3. Question</h2><p>钙离子：第二信使，信号传递</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Nature%20Science/Botany/botany-intro/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+
+<h3>ISO 12233 charts and slanted-edge MTF</h3>
+<p class="when">2026 · <a href="https://github.com/hujunhan/ISO12233">ISO12233</a> · <a href="https://github.com/hujunhan/ISO12233/blob/main/docs/sfr.md">method &amp; validation</a></p>
+<p>Reconstructions of the ISO 12233:2000, CIPA, e-SFR and s-SFR charts, exported as SVG and linear-reflectance arrays for ISP simulation, plus a slanted-edge MTF tool (a NumPy port of sfrmat5) validated against closed-form edges: MTF50 within 1% for Gaussian blur and unsharp-mask edges.</p>
+<p>Below, one edge from the e-SFR chart and one photo go through the same sharpening or blur. The MTF hump from sharpening is the halo you see on the edge and around the rails.</p>
+<figure>
+  <div class="opts" id="sfrOpts" style="margin:0 0 8px">
+    <button data-c="reference" aria-pressed="true">reference</button><button data-c="usm-r1" aria-pressed="false">USM r=1</button><button data-c="usm-r2" aria-pressed="false">USM r=2</button><button data-c="blur-r1" aria-pressed="false">blur r=1</button><button data-c="blur-r2" aria-pressed="false">blur r=2</button><button data-c="blur-r2-usm-r2" aria-pressed="false">blur r=2 + USM r=2</button>
+  </div>
+  <div class="row c2 stack sfr">
+    <div>
+      <img id="sfrPhoto" src="assets/sfr/photo_reference.jpg" alt="Photo crop, reference" width="640" height="420">
+      <img id="sfrEdge" src="assets/sfr/edge_reference.png" alt="Slanted-edge ROI, reference" width="316" height="288" style="width:50%;margin-top:8px;image-rendering:pixelated">
+      <div class="when" style="margin-top:4px">edge ROI from the e-SFR chart, 4× nearest-neighbour</div>
     </div>
+    <img id="sfrReport" src="assets/sfr/report_reference.png" alt="Edge profile and MTF, reference" width="720" height="792">
+  </div>
+  <figcaption>Filters applied to sRGB values, as in a photo editor; the edge is decoded to linear before measurement. Photo: crop of “Stone building facade… Quebec City” by Wilfredor, CC0, Wikimedia Commons.</figcaption>
+</figure>
+<figure style="max-width:420px"><img class="framed" src="assets/iso_chart.jpg" alt="Reconstructed ISO 12233:2000 chart" loading="lazy"><figcaption>Reconstructed ISO 12233:2000 chart</figcaption></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<!-- ================= ROBOTICS ================= -->
+<h2 id="robotics">Robotics</h2>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/2411/1102/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Questions/2411/1102/" class="post-title-link" itemprop="url">1102 Question</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-11-02 21:50:52" itemprop="dateCreated datePublished" datetime="2024-11-02T21:50:52-04:00">2024-11-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-11-03 01:02:46" itemprop="dateModified" datetime="2024-11-03T01:02:46-05:00">2024-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/2411/" itemprop="url" rel="index"><span itemprop="name">2411</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="会计的工作">1. 会计的工作</h2><ul>
-<li>记账</li>
-<li>报表编制</li>
-<li>审计和合规</li>
-<li>税务筹划</li>
-<li>财务分析</li>
-<li>预算管理</li>
-</ul>
-<h2 id="烟草、酵母、拟南芥">2. 烟草、酵母、拟南芥</h2><p>烟草：生长周期短，容易吸收外来DNA</p>
-<p>酵母：基因组较小，每90分钟进行一次分裂</p>
-<p>拟南芥：是第一个完成基因组测序的植物</p>
-<h3 id="Question">2.1. Question</h3><p>烟草和拟南芥为什么需要让他成熟才能做实验？如何吸收外来DNA，如何导入</p>
+<h3>Darkblue Technology: agricultural robot</h3>
+<p class="when">2021 – 2022 · Robotics Engineer Intern (remote)</p>
 <ul>
-<li>成熟，需要成熟植株的特定部分来进行基因表达分析</li>
-<li>吸收导入<ul>
-<li>农杆菌介导转化，将Ti质粒的DNA整合到植物细胞基因组中</li>
-<li>基因枪和电穿孔</li>
-</ul>
-</li>
-</ul>
-<p>酵母如何敲除和敲入基因</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Questions/2411/1102/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/BetterWorld/education/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/BetterWorld/education/" class="post-title-link" itemprop="url">Quality Education</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-09-18 19:59:00 / Modified: 23:02:48" itemprop="dateCreated datePublished" datetime="2024-09-18T19:59:00-04:00">2024-09-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/BetterWorld/" itemprop="url" rel="index"><span itemprop="name">BetterWorld</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Why? I am considering make the world a better place. I realize that my individual effort would hardly make a difference, its better to gather more power, the education is a good way to do that.</p>
-<p>Problem</p>
-<ul>
-<li>Target group</li>
-<li>Determine the focus area</li>
-<li>Decide the approach</li>
+  <li>D-H kinematic model of the arm, integrated with control and perception.</li>
+  <li>Replaced RRT with BIT* for motion planning: shorter paths with fewer nodes.</li>
+  <li>Software sync of two cameras (~0.1 s); edge detector at ~98% accuracy, ~10 FPS.</li>
+  <li>Vision-servo Gazebo simulation that cut on-field iteration time by ~80%.</li>
 </ul>
 
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/BetterWorld/education/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Questions/2409/0910/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Questions/2409/0910/" class="post-title-link" itemprop="url">0910 Question</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-09-10 22:38:52" itemprop="dateCreated datePublished" datetime="2024-09-10T22:38:52-04:00">2024-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-11 02:02:47" itemprop="dateModified" datetime="2024-09-11T02:02:47-04:00">2024-09-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/" itemprop="url" rel="index"><span itemprop="name">Questions</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Questions/2409/" itemprop="url" rel="index"><span itemprop="name">2409</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="环岛">1. 环岛</h2><p>哪些情况</p>
-<ul>
-<li>流量高但是非极端拥堵</li>
-<li>需要改善安全性</li>
-<li>美观</li>
-</ul>
-<p>优点：减少了冲突点</p>
-<ul>
-<li>十字路口有32个冲突点</li>
-</ul>
-<h2 id="EBT">2. EBT</h2><p>Electronic Benefit Transfer</p>
-<p>Eligibility: apply through different programs</p>
-<p>Issuance: loaded each month</p>
-<p>Using: make purchase at participating grocery stores</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Questions/2409/0910/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Nature%20Science/Physics/Optics/microscope/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Nature%20Science/Physics/Optics/microscope/" class="post-title-link" itemprop="url">Microscope Introduction</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-09-08 17:04:00 / Modified: 20:36:32" itemprop="dateCreated datePublished" datetime="2024-09-08T17:04:00-04:00">2024-09-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/" itemprop="url" rel="index"><span itemprop="name">Nature Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Nature-Science/Physics/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Learn more about microscope</p>
-<h2 id="Basics">2. Basics</h2><p>What: Tool for magnifying small objects, visible to the human eye</p>
-<p>Type:</p>
-<ul>
-<li>Optical: most common, use visible light and a system of lenses to magnify images. Eyepiece, objective lens, light source. Max 1000x due to wavelength of light, limiting the resolution to about 200 nm</li>
-<li>Stereo: provide 3D view of the specimen. Two eyepieces and lower magnification. For which 3d visualization is beneficial. Not suitable for viewing very small specimen</li>
-<li>Electron: TEM and SEM</li>
-<li>Confocal: use laser light to scan sample sequentially</li>
-<li>Fluorescence: exploit fluorescence and phosphorescence to study properties of organic substances</li>
-</ul>
-<h2 id="Components">3. Components</h2><p>Objective lens: primary lenses, ranging from 4x to 100x</p>
-<p>Eyepiece: lens you look through at the top, magnifies the image again, ranging from 10x or 15x</p>
-<p>Stage: platform where slides holding specimen are placed</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Nature%20Science/Physics/Optics/microscope/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/Interests/beer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/Interests/beer/" class="post-title-link" itemprop="url">Beer</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-09-06 18:36:00" itemprop="dateCreated datePublished" datetime="2024-09-06T18:36:00-04:00">2024-09-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-08 16:16:23" itemprop="dateModified" datetime="2024-09-08T16:16:23-04:00">2024-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/Interests/" itemprop="url" rel="index"><span itemprop="name">Interests</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Want to know more about the beer, especially what to buy in grocery store</p>
-<h2 id="Classification">2. Classification</h2><p>Ale: fuller bodied with hints of fruit</p>
-<ul>
-<li>Pale ale, moderate achohol</li>
-<li>India Pale Ale, strong hop flavor</li>
-<li>Stout: dark, thick, with coffee or chocolate flavor</li>
-</ul>
-<p>Lager: smooth, crisp, clean taste</p>
-<ul>
-<li>Pilsner: light flavor</li>
-<li>Amber lager: medium body</li>
-<li>Dark lager: smooth, caramel sweetness</li>
-</ul>
-<p>Wheat beer: light and easy to drink, often hazy or cloudy from wheat</p>
-<ul>
-<li>Hefeweizen: German style, usually unfiltered</li>
-<li>Witbier: Belgian style, spiced with coriander and orange peel</li>
-</ul>
-<h2 id="Spec">3. Spec</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/Interests/beer/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Social%20Science/Sociology/voting-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Social%20Science/Sociology/voting-problem/" class="post-title-link" itemprop="url">Voting Problem</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-08-20 01:33:00" itemprop="dateCreated datePublished" datetime="2024-08-20T01:33:00-04:00">2024-08-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-08-21 04:45:58" itemprop="dateModified" datetime="2024-08-21T04:45:58-04:00">2024-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Social-Science/" itemprop="url" rel="index"><span itemprop="name">Social Science</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Social-Science/Sociology/" itemprop="url" rel="index"><span itemprop="name">Sociology</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>Arrow’s impossibility theorem:</p>
-<ul>
-<li>No voting system can perfectly translate individual preference into a collective decision that seems reasonable</li>
-</ul>
-<p>Properties</p>
-<ul>
-<li>No matter how rank, the system should process</li>
-<li>No one could dictate the entire group result</li>
-<li>If an option is universally preferred, it wins</li>
-<li>Ranking between any two options depend only on the these two</li>
-</ul>
-<h2 id="Solution">2. Solution</h2><ol>
-<li>Relaxing Criteria</li>
-<li>Different voting system<ol>
-<li>Ranked choice voting</li>
-<li>Borda count</li>
-<li>Approval voting</li>
-</ol>
-</li>
-</ol>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Social%20Science/Sociology/voting-problem/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Psychology/happiness/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Psychology/happiness/" class="post-title-link" itemprop="url">What Leads to Happiness</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-08-18 15:35:00 / Modified: 19:33:13" itemprop="dateCreated datePublished" datetime="2024-08-18T15:35:00-04:00">2024-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Psychology/" itemprop="url" rel="index"><span itemprop="name">Psychology</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Study-of-Happiness-x2F-Adult-Development">1. Study of Happiness&#x2F;Adult Development</h2><p>Around 3000 people in the study</p>
-<p>Two huge takeaways</p>
-<ul>
-<li>Physical health is very important<ul>
-<li>Exercise is very important, Help cognitive health and mortal</li>
-</ul>
-</li>
-<li>Relationship keep us mental healthy and physical healthy</li>
-</ul>
-<p>Being lonely is dangerous like obsessed and smoking</p>
-<ul>
-<li>But one can be alone but content</li>
-<li>Quality over quantity</li>
-</ul>
-<h3 id="What-Relationship-Do">1.1. What Relationship Do</h3><p>Emotion regulator, help relax the stress emotion</p>
-<p>Talk to someone to calm down</p>
-<h2 id="Income">2. Income</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/Psychology/happiness/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Life%20Skill/better-world-2024/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Life%20Skill/better-world-2024/" class="post-title-link" itemprop="url">Vision for a Better World (2024)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-07-28 00:12:00" itemprop="dateCreated datePublished" datetime="2024-07-28T00:12:00-04:00">2024-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-18 01:14:22" itemprop="dateModified" datetime="2024-09-18T01:14:22-04:00">2024-09-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Life-Skill/" itemprop="url" rel="index"><span itemprop="name">Life Skill</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>After a year, let’s see how my mind set changes.</p>
-<h2 id="Plan">2. Plan</h2><p>I am considering make the world a better place. By “better” I mean a world more like the world in my ideal living condition. To do this, I need to first imagine and design the future ideal world in my mind</p>
+<h3>Midea Group: camera pose from a circle, and synthetic data</h3>
+<p class="when">2021 · Computer Vision Intern · <a href="https://github.com/hujunhan/camera-pose-estimation">camera-pose-estimation</a></p>
+<p>Camera pose from a single circular feature, with algebraic and geometric solutions, and a virtual camera in OpenCV / Open3D that fuses textured object models into real backgrounds to synthesize labeled RGB-D training data.</p>
+<figure>
+  <div class="diag">
+    <svg class="diagram" viewBox="10 0 450 320" role="img" aria-label="Side view: a circle of radius L, tilted by beta, at distance d and offset delta L from the optical axis, projects through the optical center O onto the image plane as a segment of length 2 L2.">
+      <defs>
+        <marker id="ar" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 z" class="fill-2"/></marker>
+      </defs>
+      <!-- O=(60,150), f=140, d=300, L=60, beta=55deg, circle center 55 below axis -->
+      <text x="20" y="22" class="hd">side view</text>
+      <line x1="60" y1="150" x2="450" y2="150" class="axis"/>
+      <text x="450" y="142" class="lb3" text-anchor="end">optical axis</text>
+      <line x1="200" y1="88" x2="200" y2="252" class="plane"/>
+      <text x="200" y="80" class="lb3" text-anchor="middle">image plane</text>
+      <line x1="60" y1="150" x2="409" y2="170.6" class="ray"/>
+      <line x1="60" y1="150" x2="311" y2="239.4" class="ray"/>
+      <line x1="60" y1="150" x2="360" y2="205" class="ray thin"/>
+      <line x1="200" y1="158.3" x2="200" y2="199.9" class="proj"/>
+      <text x="190" y="184" class="lb acc" text-anchor="end">2L₂</text>
+      <line x1="311" y1="239.4" x2="409" y2="170.6" class="obj"/>
+      <circle cx="360" cy="205" r="3" class="dot"/>
+      <text x="330" y="266" class="lb" text-anchor="middle">circle, radius L</text>
+      <text x="330" y="280" class="lb3" text-anchor="middle">(seen edge-on)</text>
+      <line x1="360" y1="205" x2="360" y2="160" class="guide"/>
+      <path d="M360,183 A22,22 0 0,1 378,192.4" class="arc"/>
+      <text x="368" y="177" class="lb">β</text>
+      <line x1="430" y1="153" x2="430" y2="202" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <line x1="364" y1="205" x2="438" y2="205" class="guide"/>
+      <text x="438" y="182" class="lb">ΔL</text>
+      <circle cx="60" cy="150" r="4" class="dot"/>
+      <text x="52" y="140" class="lb" text-anchor="end">O</text>
+      <line x1="60" y1="294" x2="200" y2="294" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <text x="130" y="288" class="lb" text-anchor="middle">f</text>
+      <line x1="60" y1="312" x2="360" y2="312" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <text x="250" y="306" class="lb" text-anchor="middle">d</text>
+    </svg>
+    <svg class="diagram img-view" viewBox="484 0 192 290" role="img" aria-label="Image: the circle appears as an ellipse with semi-axes L1 and L2, its center offset by delta c from the principal point.">
+      <defs>
+        <marker id="ar2" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 z" class="fill-2"/></marker>
+      </defs>
+      <text x="490" y="22" class="hd">image</text>
+      <rect x="490" y="50" width="180" height="230" class="sensor"/>
+      <line x1="582" y1="110" x2="598" y2="110" class="axis"/>
+      <line x1="590" y1="102" x2="590" y2="118" class="axis"/>
+      <text x="590" y="94" class="lb3" text-anchor="middle">principal point</text>
+      <ellipse cx="590" cy="170" rx="66" ry="49" class="ell"/>
+      <line x1="524" y1="170" x2="656" y2="170" class="ray thin"/>
+      <line x1="590" y1="121" x2="590" y2="219" class="ray thin"/>
+      <text x="620" y="164" class="lb">L₁</text>
+      <text x="596" y="200" class="lb acc">L₂</text>
+      <line x1="506" y1="113" x2="506" y2="167" class="dim" marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      <line x1="500" y1="110" x2="582" y2="110" class="guide"/>
+      <line x1="500" y1="170" x2="524" y2="170" class="guide"/>
+      <text x="511" y="145" class="lb">Δc</text>
+    </svg>
+  </div>
+  <figcaption>A circle tilted by β projects to an ellipse; its three measurements give the three unknowns:</figcaption>
+</figure>
 <ol>
-<li>Define core values<ol>
-<li>Assess my philosophy idea</li>
+  <li><b>Distance</b>: the axis perpendicular to the tilt is not foreshortened, so <code>d = f·L / L₁</code>.</li>
+  <li><b>Lateral offset</b>: the ellipse's shift from the principal point scales back to <code>ΔL = d·Δc / f</code>.</li>
+  <li><b>Tilt</b>: the foreshortened axis L₂ gives a quartic in <code>sin β</code>, solved in closed form with Ferrari's method.</li>
 </ol>
-</li>
-<li>Envision key aspects<ol>
-<li>envrionment</li>
-<li>society: freedom and collective decision-making</li>
-<li>economy: maximize overall happiness, relation between happy and money</li>
-<li>technology: improve living standard and accessible to all</li>
-<li>health</li>
-</ol>
-</li>
-<li>Research </li>
-<li>Create scenarios</li>
-<li>Sketch, get feed-back</li>
-<li>Plan small-scale</li>
-<li>Iterate</li>
-</ol>
-<h2 id="Core-Value">3. Core Value</h2><p>Metaphysics: everything can be explained through physical process</p>
-<ul>
-<li>Science and technology</li>
+<figure style="max-width:360px"><img class="framed" src="assets/midea_fusion.jpg" alt="Background, mask, fused RGB and fused depth" loading="lazy"><figcaption>Synthetic RGB-D: an object model fused into a real background, with mask and depth</figcaption></figure>
+
+<h3>Mobile robot and arm library</h3>
+<p class="when">2022 – 2023 · personal · <a href="https://github.com/hujunhan/arm_control">arm_control</a></p>
+<p>A differential-drive robot built from parts (chassis, motor drivers, power, Arduino + SBC), and a Python arm library: forward/inverse kinematics, trajectory following, collision checking.</p>
+<div class="row c3">
+  <figure class="sq"><img src="assets/robot_top.jpg" alt="Assembled mobile robot, top view" loading="lazy"><figcaption>Assembled robot</figcaption></figure>
+  <figure class="sq"><img src="assets/robot_chassis.jpg" alt="Mobile robot chassis with drive motors and wheels" loading="lazy"><figcaption>Chassis and drive train</figcaption></figure>
+  <figure><video id="armvid" src="assets/arm_ik_transpose.mp4" poster="assets/arm_ik_transpose.jpg" muted loop playsinline controls preload="metadata" aria-label="Arm tracking a curve with Jacobian-transpose IK"></video><figcaption>IK via Jacobian transpose</figcaption></figure>
+</div>
+
+<h3>Earlier projects</h3>
+<ul class="earlier">
+  <li><span class="y">2023</span><a href="https://github.com/hujunhan/ndt_python">ndt_python</a>: NDT scan matching in Python · <a href="https://github.com/hujunhan/carlike_control">carlike_control</a>: control for a car-like robot</li>
+  <li><span class="y">2021</span><a href="https://github.com/hujunhan/GT_IMG_Project_Denosing">BM3D denoising</a>, Georgia Tech image-processing project</li>
+  <li><span class="y">2020</span><a href="https://github.com/hujunhan/RGBD-SLAM">RGBD-SLAM</a>: a beginner's RGB-D SLAM in C++</li>
+  <li><span class="y">2019</span><a href="https://github.com/hujunhan/ROS-RRT">ROS-RRT</a>: A*, Dijkstra, RRT and smoothed RRT compared as ROS global planners</li>
+  <li><span class="y">ZJU</span><a href="https://github.com/hujunhan/Particle-Filter-Localization">particle-filter localization</a> (MATLAB)</li>
 </ul>
-<p>Epistemology: trust logic, reasoning, scientific facts. Meaningful discourse based on empirical evidence and rational thought</p>
-<p>Ethics and political: utilitarianism and direct democracy</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Life%20Skill/better-world-2024/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<!-- ================= SIDE ================= -->
+<h2 id="side">Side projects</h2>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hujunhan.github.io/MarkdownNotes/Humanity/Philosophy/reflection-my-view/">
+<h3><a href="https://github.com/hujunhan/hamster-wheel-tracker">hamster-wheel-tracker</a></h3>
+<p class="when">2026 · Kotlin, CameraX, OpenCV</p>
+<p>A dedicated Android phone tracks one colored marker on my hamster's wheel, converts angular motion to distance and speed, and serves a dashboard over Wi-Fi. Validated overnight with the screen off.</p>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Junhan Hu">
-      <meta itemprop="description" content="">
-    </span>
+<h3><a href="https://github.com/hujunhan/StayInk">StayInk</a></h3>
+<p class="when">2026 · C · research stage</p>
+<p>Keeps a jailbroken Kindle Scribe's E-Ink page visible while the device genuinely suspends. Evidence-first: every claim about Kindle internals is labeled fact, inference or unknown.</p>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Only Truth Matters">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/MarkdownNotes/Humanity/Philosophy/reflection-my-view/" class="post-title-link" itemprop="url">Review of My View</a>
-        </h2>
+<footer>
+  M.S. ECE, Georgia Tech (2022) · B.Eng. Control Science, Zhejiang University (2020)
+</footer>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-07-28 00:02:00" itemprop="dateCreated datePublished" datetime="2024-07-28T00:02:00-04:00">2024-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-08-01 21:55:24" itemprop="dateModified" datetime="2024-08-01T21:55:24-04:00">2024-08-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/" itemprop="url" rel="index"><span itemprop="name">MarkdownNotes</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/" itemprop="url" rel="index"><span itemprop="name">Humanity</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MarkdownNotes/Humanity/Philosophy/" itemprop="url" rel="index"><span itemprop="name">Philosophy</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Intro">1. Intro</h2><p>I am trying to make the world a better place, by “better” I mean a world  more like my ideal living condition. First I need to know what’s my view of the world.</p>
-<p>I plan to list some important philosophy question and then reflect my personal view on them.</p>
-<p><strong>What is the nature of reality?</strong> (Metaphysics)</p>
-<ul>
-<li>This question is arguably the most foundational, as it underlies all of philosophical inquiry into existence and the universe.</li>
-</ul>
-<p><strong>How do we come to know what we know?</strong> (Epistemology)</p>
-<ul>
-<li>Central to understanding all knowledge, this question impacts how we interpret and validate every other philosophical and scientific inquiry.</li>
-</ul>
-<p><strong>What does it mean to live a good life?</strong> (Ethics)</p>
-<ul>
-<li>This is fundamental to personal and societal decisions, addressing moral values and how individuals should act.</li>
-</ul>
-<p><strong>What is consciousness?</strong> (Philosophy of Mind)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/MarkdownNotes/Humanity/Philosophy/reflection-my-view/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
+</main>
+<div class="tip" id="tip"></div>
 
 <script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
+// theme toggle
+(function () {
+  var root = document.documentElement;
+  try { var t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
   });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+})();
+
+// video: autoplay only when the viewer has not asked for reduced motion
+(function () {
+  var v = document.getElementById("armvid");
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { v.autoplay = true; v.play().catch(function () {}); }
+})();
+
+// before/after slider
+(function () {
+  var box = document.getElementById("cmp"), input = box.querySelector("input"),
+      L = document.getElementById("cmpL"), H = document.getElementById("cmpH"), LL = document.getElementById("cmpLL");
+  var names = { nroff: "NR off", repo: "repo-default NR", strong: "strong NR", render: "rendered" };
+  function set(v) { L.style.clipPath = "inset(0 " + (100 - v) + "% 0 0)"; H.style.left = v + "%"; }
+  input.addEventListener("input", function () { set(input.value); });
+  set(50);
+  document.querySelectorAll(".opts button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".opts button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      L.src = "assets/vla_" + b.dataset.l + ".png"; LL.textContent = names[b.dataset.l];
+      input.setAttribute("aria-label", "Drag to compare " + names[b.dataset.l] + " with tuned NR");
     });
+  });
+})();
+
+// sharpening / blur condition switcher for the MTF study
+(function () {
+  var photo = document.getElementById("sfrPhoto"), rep = document.getElementById("sfrReport"), edge = document.getElementById("sfrEdge"),
+      btns = document.querySelectorAll("#sfrOpts button");
+  ["reference", "usm-r1", "usm-r2", "blur-r1", "blur-r2", "blur-r2-usm-r2"].forEach(function (c) {
+    ["photo_" + c + ".jpg", "report_" + c + ".png", "edge_" + c + ".png"].forEach(function (f) { new Image().src = "assets/sfr/" + f; });
+  });
+  btns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      var c = b.dataset.c, label = b.textContent;
+      photo.src = "assets/sfr/photo_" + c + ".jpg"; photo.alt = "Photo crop, " + label;
+      rep.src = "assets/sfr/report_" + c + ".png"; rep.alt = "Edge profile and MTF, " + label;
+      edge.src = "assets/sfr/edge_" + c + ".png"; edge.alt = "Slanted-edge ROI, " + label;
+    });
+  });
+})();
+
+// grouped bar chart with 95% Wilson intervals: E005, recomputed from vla-isp-probe results/e005/*.csv
+(function () {
+  var data = [
+    { c: "clean", full: "clean camera", oft: [97.8, 94.4, 99.1], oftw: [98.9, 96.0, 99.7] },
+    { c: "NR off", full: "NR off", oft: [86.1, 80.3, 90.4], oftw: [81.1, 74.8, 86.2] },
+    { c: "repo NR", full: "repo-default NR", oft: [91.7, 86.7, 94.9], oftw: [82.8, 76.6, 87.6] },
+    { c: "tuned NR", full: "tuned NR", oft: [96.7, 92.9, 98.5], oftw: [98.3, 95.2, 99.4] },
+    { c: "strong NR", full: "strong NR", oft: [95.0, 90.8, 97.3], oftw: [90.6, 85.4, 94.0] }
+  ];
+  var series = [["oft", "var(--series-1)", "OFT"], ["oftw", "var(--series-2)", "OFT_w"]];
+  var svg = document.getElementById("bars"), NS = "http://www.w3.org/2000/svg", tip = document.getElementById("tip");
+  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; }
+
+  function draw() {
+    var W = Math.max(300, svg.parentNode.clientWidth), Hh = W < 500 ? 240 : 280;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + Hh); svg.setAttribute("height", Hh);
+    var m = { l: 30, r: 2, t: 24, b: 26 }, pw = W - m.l - m.r, ph = Hh - m.t - m.b;
+    var y = function (v) { return m.t + ph - (v / 100) * ph; };
+    var gw = pw / data.length, bw = Math.min(44, gw * 0.34), gap = 2;
+    el("rect", { x: m.l + gw, y: m.t - 16, width: gw * 2, height: ph + 16, fill: "var(--band)" });
+    el("text", { x: m.l + gw * 2, y: m.t - 4, "text-anchor": "middle", class: "bandlab" }).textContent = "un-tuned NR";
+    [0, 20, 40, 60, 80, 100].forEach(function (t) {
+      el("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), class: "grid" });
+      el("text", { x: m.l - 6, y: y(t) + 4, "text-anchor": "end", class: "tick" }).textContent = t;
+    });
+    var groups = [];
+    data.forEach(function (d, i) {
+      var cx = m.l + gw * i + gw / 2, g = el("g", {});
+      groups.push(g);
+      series.forEach(function (s, j) {
+        var v = d[s[0]], x = j === 0 ? cx - bw - gap / 2 : cx + gap / 2, r = 3, mid = x + bw / 2;
+        el("path", { class: "bar", fill: s[1], d: "M" + x + "," + y(0) + "V" + (y(v[0]) + r) + "q0,-" + r + " " + r + ",-" + r +
+          "H" + (x + bw - r) + "q" + r + ",0 " + r + "," + r + "V" + y(0) + "Z" }, g);
+        el("line", { x1: mid, x2: mid, y1: y(v[1]), y2: y(v[2]), class: "ci" }, g);
+        el("line", { x1: mid - 4, x2: mid + 4, y1: y(v[1]), y2: y(v[1]), class: "ci" }, g);
+        el("line", { x1: mid - 4, x2: mid + 4, y1: y(v[2]), y2: y(v[2]), class: "ci" }, g);
+        if (bw >= 18) el("text", { x: mid, y: y(v[1]) + 15, "text-anchor": "middle", class: "val" }, g).textContent = Math.round(v[0]);
+        var hit = el("rect", { x: x - 2, y: m.t, width: bw + 4, height: ph, class: "hit" }, g);
+        hit.addEventListener("pointerenter", function () {
+          groups.forEach(function (o) { if (o !== g) o.classList.add("dim"); });
+          tip.innerHTML = d.full + " · " + s[2] + "<br>" + v[0].toFixed(1) + "% [" + v[1] + ", " + v[2] + "]";
+          tip.style.display = "block";
+        });
+        hit.addEventListener("pointermove", function (e) {
+          tip.style.left = Math.min(e.clientX + 12, innerWidth - 220) + "px"; tip.style.top = (e.clientY + 12) + "px";
+        });
+        hit.addEventListener("pointerleave", function () {
+          groups.forEach(function (o) { o.classList.remove("dim"); }); tip.style.display = "none";
+        });
+      });
+      el("text", { x: cx, y: Hh - 8, "text-anchor": "middle", class: "cat" }).textContent = d.c;
+    });
+    el("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: "var(--text-3)" });
   }
+  draw();
+  var rt; addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 100); });
+
+  var tb = document.querySelector("#bartable tbody");
+  data.forEach(function (d) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + d.full + "</td><td>" + d.oft[0].toFixed(1) + "</td><td>" + d.oft[1] + "–" + d.oft[2] +
+      "</td><td>" + d.oftw[0].toFixed(1) + "</td><td>" + d.oftw[1] + "–" + d.oftw[2] + "</td>";
+    tb.appendChild(tr);
+  });
+})();
 </script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Junhan Hu</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">478</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">105</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">138</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/hujunhan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hujunhan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:hujunhan98@outlook.com" title="E-Mail → mailto:hujunhan98@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Junhan Hu</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-<script>
-document.querySelectorAll('.pdfobject-container').forEach(element => {
-  let url = element.dataset.target;
-  let pdfOpenParams = {
-    navpanes : 0,
-    toolbar  : 0,
-    statusbar: 0,
-    pagemode : 'thumbs',
-    view     : 'FitH'
-  };
-  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
-
-  if (NexT.utils.supportsPDFs()) {
-    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
-  } else {
-    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
-  }
-});
-</script>
-
-
-
-
-<script src="https://utteranc.es/client.js"
-        repo="hujunhan/hujunhan.github.io"
-        issue-term="title"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-
 </body>
 </html>
