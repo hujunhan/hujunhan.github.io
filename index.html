@@ -181,6 +181,7 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   <ul>
     <li><a href="#isp">ISP at OmniVision</a>: RAW denoise, highlight reconstruction and HDR for image sensors; ~20% gate-count reduction across the RAW and UV denoise stages.</li>
     <li><a href="#research">VLA × ISP research</a>: un-tuned ISP noise reduction cost a LIBERO-trained robot policy ~16 percentage points of task success; gain-tuned noise reduction did not.</li>
+    <li><a href="#so101">SO-101 arm series</a> (in progress): safety layer, joint-limited IK, servo and hand-eye calibration (tracking error cut 3–5×), and imitation-learned policies on a real low-cost arm.</li>
     <li><a href="#robotics">Robotics</a>: kinematics, BIT* planning and vision-servo simulation for an agricultural robot; camera pose estimation and synthetic RGB-D data at Midea.</li>
   </ul>
 </div>
@@ -255,6 +256,18 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
 
 <!-- ================= ROBOTICS ================= -->
 <h2 id="robotics">Robotics</h2>
+
+<h3 id="so101">SO-101 arm series: from kinematics to learned policies</h3>
+<p class="when">2026 · in progress · <a href="https://github.com/hujunhan/so101-core">so101-core</a> · <a href="https://github.com/hujunhan/so101-kinematics">kinematics</a> · <a href="https://github.com/hujunhan/so101-calib">calib</a> · <a href="https://github.com/hujunhan/so101-policy">policy</a></p>
+<p>A series of projects on one low-cost SO-101 arm (Feetech servos, ZED 2 scene camera, wrist camera), one repo each, building toward the same question as my ISP research on a real robot. Each step is measured on the hardware, with its decisions logged.</p>
+<ul>
+  <li><b>Safety layer and digital twin</b>: joint-limit clipping, step and rate limits, stall detection, and a MuJoCo twin driven by the real joint state; works around two LeRobot pitfalls that could make the arm jump at power-up.</li>
+  <li><b>Kinematics</b>: my 2023 <a href="https://github.com/hujunhan/arm_control">arm_control</a> FK matches Pinocchio to 1e-16 m, but 31% of its IK solutions break joint limits. A new joint-limited IK for position + approach angle solves in ~1 ms (0.1 ms warm), and the real arm draws a square and a circle at 2 and 5 cm/s.</li>
+  <li><b>Calibration and servo model</b>: each servo modeled as a spring with a friction band; feed-forward from it cuts tracking error 3–5× (to ~0.6–0.7 mm median). Hand-eye calibration (wrist and ZED) found the elbow's zero 7.3° off; clicking a point in the ZED image sends the gripper there.</li>
+  <li><b>Learned policy</b> (under way): one pick-and-place task with a pre-registered evaluation protocol written before any data. A pilot ACT policy trained on 20 teleoperated demonstrations already picks and places the box in part of the workspace; ACT and SmolVLA evaluations are next, then the camera/ISP robustness test on the real arm.</li>
+</ul>
+<figure><video class="framed" src="assets/so101_act_pilot.mp4" poster="assets/so101_act_pilot.jpg" muted loop playsinline controls preload="metadata" aria-label="Pilot ACT policy picking up a blue box and placing it in a bowl, scene and wrist camera views"></video><figcaption>Pilot ACT policy (20 demos), scene and wrist views</figcaption></figure>
+<figure><img class="framed" src="assets/so101_feedforward.png" alt="Tool error over time while drawing a circle at 2 and 5 cm/s, without compensation and with spring, band and full servo feed-forward" loading="lazy"><figcaption>Tool error drawing a circle: no compensation (blue) vs full servo feed-forward (red)</figcaption></figure>
 
 <h3>Darkblue Technology: agricultural robot</h3>
 <p class="when">2021 – 2022 · Robotics Engineer Intern (remote)</p>
