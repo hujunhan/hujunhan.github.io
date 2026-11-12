@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photography · Junhan Hu</title>
+<meta name="description" content="Photographs by Junhan Hu.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Photography · Junhan Hu">
+<meta property="og:description" content="Photographs by Junhan Hu.">
+<meta property="og:url" content="https://hujunhan.github.io/photos/">
+<meta property="og:image" content="https://hujunhan.github.io/assets/photos/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #ffffff; --text: #1a1a1a; --text-2: #555; --text-3: #888; --line: #e5e5e5; --link: #1f5fbf;
+  --ph-bg: #ececea;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --row: 300px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #151515; --text: #e8e8e6; --text-2: #b0b0ab; --text-3: #85847f; --line: #2c2c2a; --link: #6aa5f0;
+    --ph-bg: #222220;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #151515; --text: #e8e8e6; --text-2: #b0b0ab; --text-3: #85847f; --line: #2c2c2a; --link: #6aa5f0;
+  --ph-bg: #222220;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); }
+main { max-width: 1600px; margin: 0 auto; padding: 48px 24px 80px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; max-width: 820px; margin-bottom: 28px; }
+h1 { font-size: 26px; margin: 0; font-weight: 600; }
+.role { color: var(--text-2); margin: 2px 0 0; }
+.role a { font: 14px var(--mono); }
+#theme { background: none; border: 1px solid var(--line); color: var(--text-3); border-radius: 4px; padding: 2px 8px; font: 13px var(--mono); cursor: pointer; }
+
+/* Justified rows: each tile grows in proportion to its aspect ratio, so every
+   tile in a row ends up the same height. No JS layout, no reflow. */
+.gallery { display: flex; flex-wrap: wrap; gap: 8px; }
+.gallery::after { content: ""; flex-grow: 1e4; }          /* keep last row from stretching */
+.gallery a {
+  position: relative; display: block; overflow: hidden;
+  flex: var(--r) 1 calc(var(--r) * var(--row));
+  aspect-ratio: var(--r);
+  background: var(--ph-bg); cursor: zoom-in;
+}
+/* blur-up placeholder: a 24px thumbnail inlined in the HTML, blurred */
+.gallery a::before {
+  content: ""; position: absolute; inset: -16px;
+  background: var(--ph) center / cover no-repeat; filter: blur(14px);
+}
+.gallery img {
+  position: relative; display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: opacity .5s ease, transform .4s ease;
+}
+.js .gallery img { opacity: 0; }
+.js .gallery img.in { opacity: 1; }
+.gallery a:hover img.in { transform: scale(1.015); }
+.gallery a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* lightbox */
+dialog#lb { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #0b0b0b; color: #ddd; overscroll-behavior: contain; }
+dialog#lb::backdrop { background: transparent; }
+#lb figure { margin: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 56px 16px; }
+#lb .stage { position: relative; flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; }
+#lb img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .25s ease; background: var(--lb-ph) center / contain no-repeat; }
+#lb figcaption { font: 12px var(--mono); color: #888; padding-top: 10px; min-height: 28px; }
+#lb button { position: absolute; background: none; border: 0; color: #bbb; font: 28px/1 var(--sans); cursor: pointer; padding: 12px 14px; }
+#lb button:hover, #lb button:focus-visible { color: #fff; }
+#lb .x { top: 4px; right: 8px; }
+#lb .prev { left: 4px; top: 50%; transform: translateY(-50%); }
+#lb .next { right: 4px; top: 50%; transform: translateY(-50%); }
+#lb .count { position: absolute; top: 16px; left: 20px; font: 12px var(--mono); color: #777; }
+
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--text-3); max-width: 820px; }
+@media (max-width: 600px) {
+  :root { --row: 180px; }
+  main { padding: 32px 16px 64px; }
+  .gallery { gap: 4px; }
+  #lb figure { padding: 48px 0 12px; }
+  #lb .prev, #lb .next { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery img, #lb img { transition: none; }
+  .gallery a:hover img.in { transform: none; }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div>
+    <h1>Photography</h1>
+    <p class="role"><a href="../">← Junhan Hu</a></p>
+  </div>
+  <button id="theme" aria-label="Toggle dark mode">dark/light</button>
+</header>
+
+<div class="gallery" id="gallery">
+<!-- GALLERY:START -->
+<a href="../assets/photos/01-2048.webp" style="--r:1.3368;--ph:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADwBACdASoYABIAPsVQoEunpKMhsAwA8BiJZgCdMxx8P7oyv8B4/fTBITIGrxR2vgAA/ru+Lmtbpzm7t7nn0b6XtkZb4VTRr3FKoNL3/N4MdKRMnlWXuzWb/8K6O8Fdz5w/MoX8P177iXheJMfU1pczE2qZAFHP2L1OFw2z8DKbSz+Zm+zIEQWU7m2Or8FDtT9dYgAA)" data-cap="2017"><img src="../assets/photos/01-1280.webp" srcset="../assets/photos/01-640.webp 640w, ../assets/photos/01-1280.webp 1280w, ../assets/photos/01-2048.webp 2048w" sizes="(max-width: 600px) 96vw, 561px" width="2048" height="1532" fetchpriority="high" decoding="async" alt="Photo 1"></a>
+<a href="../assets/photos/02-2048.webp" style="--r:1.7793;--ph:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoYAA0APtFUo0uoJKMhsAgBABoJZACsACHiD5gm2+Wb34AA/uFrKvW5htL7XBqB63PahM3Xfa7ey0zqu7Q4ma1woCuRUK6+g5CnHYKCYmMbqEm9ND4DIzi107WAAA==)" data-cap="2021 · Sony NEX-5T"><img src="../assets/photos/02-1280.webp" srcset="../assets/photos/02-640.webp 640w, ../assets/photos/02-1280.webp 1280w, ../assets/photos/02-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 747px" width="2048" height="1151" fetchpriority="high" decoding="async" alt="Photo 2"></a>
+<a href="../assets/photos/03-2048.webp" style="--r:1.7793;--ph:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAQBACdASoYAA0APtFUo0uoJKMhsAgBABoJYwCdAB7G9OiAHKKXvOeEAAD+aPmw2/f5GrO3NAIXTFlXvmEL8S72sTqYW9FNqAV0pyJFc81Ahxy9/mUzU8EYL/10tUMzNE51r+no92pexIEfCDAuIXIeGshtAKPZrefd8JZEb+agG9shXAAAAA==)" data-cap="2021 · Sony NEX-5T"><img src="../assets/photos/03-1280.webp" srcset="../assets/photos/03-640.webp 640w, ../assets/photos/03-1280.webp 1280w, ../assets/photos/03-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 747px" width="2048" height="1151" fetchpriority="high" decoding="async" alt="Photo 3"></a>
+<a href="../assets/photos/04-2048.webp" style="--r:1.0000;--ph:url(data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAACQBQCdASoYABgAPtFapE0oJSMiKA1RABoJZQC06d5liLNyRZjbf4tC3SRdBLRAifT9/kdgKAD+wz1jEveE8HKk64YcVVJlsj733FZC3wh+eSRHt0yp5NWM0c6ZhuxNP7JI9viQlTbuTC7IcGcQn28WEVzBETV2De+W1tyqgLWHpZfP9ATQqYurMqJ5yEtPTgG0I0sQcKfAmm437xAeT8miUg52D3ifKaHZl9Y6E80O8UXNteFXZ+NtQQllHSmmxXCihLdIxMeC+B99/LzRnz8JWeg8NViwvOFpX2AA)" data-cap="2021 · Sony NEX-5T"><img src="../assets/photos/04-1280.webp" srcset="../assets/photos/04-640.webp 640w, ../assets/photos/04-1280.webp 1280w, ../assets/photos/04-2048.webp 2048w" sizes="(max-width: 600px) 72vw, 420px" width="2048" height="2048" fetchpriority="high" decoding="async" alt="Photo 4"></a>
+<a href="../assets/photos/05-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBACdASoYABAAPtFUo0uoJKMhsAgBABoJYgCdACKV+HPjM/YYIjdajkXgANvdOPTQZYbytVmCUY3/VYkj7e04njt+OWFjxvbbB4WtOfAksQU/qGH2zyD1XQB6K0+cYAVLXvP3hBXbvUFjdwda5iyerIynBHXE2UexzYS1mSvg35oMa59IonI360n/YpWNbYjuA0y/yR9ua71XDxdOe3ES0rjIAA==)" data-cap="2022 · Fujifilm X-S10"><img src="../assets/photos/05-1280.webp" srcset="../assets/photos/05-640.webp 640w, ../assets/photos/05-1280.webp 1280w, ../assets/photos/05-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" fetchpriority="high" decoding="async" alt="Photo 5"></a>
+<a href="../assets/photos/06-2048.webp" style="--r:0.8115;--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQBACdASoTABgAPtFapE0oJSOiMBgIAQAaCWUAttn/4BjbkbaRsW0I5XjJ3VR2QADKc90DZPgHUY0AGf/srY9a+fIuN978IiJrcUoNTj2QnnMtdcAeB1JJ8EZ+oyB8Anjg1cW3Fbx6qY9DW+OaiVbXQkMMR0toV5oWs2QA)" data-cap="2022 · Lumix GX9"><img src="../assets/photos/06-1280.webp" srcset="../assets/photos/06-640.webp 519w, ../assets/photos/06-1280.webp 1039w, ../assets/photos/06-2048.webp 1662w" sizes="(max-width: 600px) 58vw, 341px" width="1662" height="2048" fetchpriority="high" decoding="async" alt="Photo 6"></a>
+<a href="../assets/photos/07-2048.webp" style="--r:1.4982;--ph:url(data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABQBACdASoYABAAPtFUo0uoJKMhsAgBABoJZwAD5hmALSOBrLflOa3PzzbgAP71eczoYVn25AjyPIKM0PnN2dLn7Ru8HD/QF/Z2MY/lYYTpTg5zfWefqsV1TyeIsDRnCE37Bf4m/r6VsNBPx+yPcy4NW6+BFQLx7Nz/DeeF3hMtUVtXFhmu10wZVnoA8vIJJXlwAA==)" data-cap="2022 · Nikon Z5"><img src="../assets/photos/07-1280.webp" srcset="../assets/photos/07-640.webp 640w, ../assets/photos/07-1280.webp 1280w, ../assets/photos/07-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 629px" width="2048" height="1367" loading="lazy" decoding="async" alt="Photo 7"></a>
+<a href="../assets/photos/08-2048.webp" style="--r:1.4982;--ph:url(data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBACdASoYABAAPtFUo0uoJKMhsAgBABoJZgCdMoR3ABw+9g8+73koS9AA/Ub+0hdZnb3UXWYwYzKfRdUsmUzfTWw0s81Kgv4IKBW7sCuo513v6HVE7OKKtSwgZYZnn2qx/NXmEAA=)" data-cap="2022 · Nikon Z5"><img src="../assets/photos/08-1280.webp" srcset="../assets/photos/08-640.webp 640w, ../assets/photos/08-1280.webp 1280w, ../assets/photos/08-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 629px" width="2048" height="1367" loading="lazy" decoding="async" alt="Photo 8"></a>
+<a href="../assets/photos/09-2048.webp" style="--r:0.6641;--ph:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoQABgAPtFWpkuoJKOhsAgBABoJZQCdACHWQFSxRBAiKbosAPKY6Uve+t9Btk+ExLMREbRnzEIuuehTsfNAblNcYmwtuJnPIyzr6eGmdHlgT3QT+OiTlguCRVAAAA==)" data-cap="2022 · Nikon Z5"><img src="../assets/photos/09-1280.webp" srcset="../assets/photos/09-640.webp 425w, ../assets/photos/09-1280.webp 850w, ../assets/photos/09-2048.webp 1360w" sizes="(max-width: 600px) 48vw, 279px" width="1360" height="2048" loading="lazy" decoding="async" alt="Photo 9"></a>
+<a href="../assets/photos/10-2048.webp" style="--r:1.4819;--ph:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYABAAPtFUo0uoJKMhsAgBABoJYwCsINiqQA8eWk/+AUcwFfPSAAD+uYuar8N4cZUbPmxiLcEkFoa+i+fCtbLRYPCMeYL4XmmnmYgePE5PduFAKWeRVptmZj8Eha6NH2dO7ahFCXNPx1wNdX2glX8Mmi28Kk1RnJkcFJwKb2UA9ie1PrGfE4ZXPQEzVlpaOKn6NCh1fWstxcAA)" data-cap="2023 · Olympus E-M5 III"><img src="../assets/photos/10-1280.webp" srcset="../assets/photos/10-640.webp 640w, ../assets/photos/10-1280.webp 1280w, ../assets/photos/10-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 622px" width="2048" height="1382" loading="lazy" decoding="async" alt="Photo 10"></a>
+<a href="../assets/photos/11-2048.webp" style="--r:1.0481;--ph:url(data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAACwBQCdASoYABcAPtFWpUyoJKOiKA1RABoJbACdMoRwJoM7CgdiiUDahAgevb/430UDnB5IQkAA+dZzcA7K+QCkZgup46xqNv/7Cfdd69vASzSGP09Kt/SN4qF4CU+ozso/UqsM7r4bVZ6G5m9IIA9GD9E/E6pEhls7hMxIKjyTVBYkG/D/+2h7+vxYulXwp2iUvcicawhQc2eQHPsyJ67PqUMzY8xR4CJKS/9bN26zkAX+ailkYI/DqHJFIhrUKqlj5gARlVrUyuE9qAw3buq3LIth2uXonvwKF3IAAAA=)" data-cap="2023 · Olympus E-M5 III"><img src="../assets/photos/11-1280.webp" srcset="../assets/photos/11-640.webp 640w, ../assets/photos/11-1280.webp 1280w, ../assets/photos/11-2048.webp 2048w" sizes="(max-width: 600px) 75vw, 440px" width="2048" height="1954" loading="lazy" decoding="async" alt="Photo 11"></a>
+<a href="../assets/photos/12-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAAAwBQCdASoSABgAPtFcpU6oJSMiKAqpABoJaQAFEsb2B3aNaUwCTNXaIRvRP+QqN/OkAAD+5DruhRC1aQr8d7sBGZ8U80PjlUDqtFfzB9dmI6/sfp7LYFvNoDC63IdEsjJblbj12OuzfBHk4Dhap1VMH4bpHtQR5tfvH0Qw0Gjku8EDqK6D6W10tD2eu4cp6PmZZgLLbzlZ9cb9rbnS0Zs5iAK7JnkhJmOREqKrq0MY5NZEdQ7J/VpQUuseyAAA)" data-cap="2023 · iPhone 14 Pro"><img src="../assets/photos/12-1280.webp" srcset="../assets/photos/12-640.webp 480w, ../assets/photos/12-1280.webp 960w, ../assets/photos/12-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 12"></a>
+<a href="../assets/photos/13-2048.webp" style="--r:1.4047;--ph:url(data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADwBACdASoYABEAPtFUpk2oJCOiMBgIAQAaCWMAtsmMTnJl5H+q82mL2f8uQ0QDHAAA/eO5JVNyRzeCD+cIDmjBvwY7R6pdk+vg4qZk7bYDV8cE+hvxKfKVBgpR0t24LkG5oYGLP/uvhW8VuOEBwZO0mF7nV4AVQs/Awf93pWpPHqLsYW09DTBcCOlThZnKm5K9YiLy8U4YLZWtZmXyKB35qR+xB+UAAAA=)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/13-1280.webp" srcset="../assets/photos/13-640.webp 640w, ../assets/photos/13-1280.webp 1280w, ../assets/photos/13-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 590px" width="2048" height="1458" loading="lazy" decoding="async" alt="Photo 13"></a>
+<a href="../assets/photos/14-2048.webp" style="--r:1.3333;--ph:url(data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAwBQCdASoYABIAPtFgqE+oJSOiKAgBABoJQBYg6mbQAA2c3xVs/1+Pw1ihIux8QeH1gAD+cKTjhFSmbeiGCUBeJ0NQC8I1Ft78b4NHpeYvSuOzKaZ0r5qJuAvx57dXGYfNC9kBZf5SDfsltTcPSNU9Iry6xL/R3FJZHrkcw0boBPcrmZaLiuK4hNVkP1v6dxv253kCYjmmzQH60jKqYW+tpKU93XBpcQgY6g9xV+9wLr9CfZAAAA==)" data-cap="2023 · Olympus E-M5 III"><img src="../assets/photos/14-1280.webp" srcset="../assets/photos/14-640.webp 640w, ../assets/photos/14-1280.webp 1280w, ../assets/photos/14-2048.webp 2048w" sizes="(max-width: 600px) 96vw, 560px" width="2048" height="1536" loading="lazy" decoding="async" alt="Photo 14"></a>
+<a href="../assets/photos/15-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADwBQCdASoSABgAPtFYpk0oJSOiMBgIAQAaCWgAnTLjemq20vATn4NbjVZSyGNwPbqRf4TdVS9AjAD+3PsfCxq+rXotCQFnGuJ19JT/hTpkRRjRZf+xDYmm/+Pd33tX2j8oCwws1xme0aaHmy8FsBA7ozuEqyEbu3v6SaJkJqc4SXhx+3Rc7L1VHt7Km5wZ5dJCbIjf/hFhNFwOcNJ7fh+hMECHAAAA)" data-cap="2023 · Olympus E-M5 III"><img src="../assets/photos/15-1280.webp" srcset="../assets/photos/15-640.webp 480w, ../assets/photos/15-1280.webp 960w, ../assets/photos/15-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 15"></a>
+<a href="../assets/photos/16-2048.webp" style="--r:0.5625;--ph:url(data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAwCdASoNABgAPtFWpEuoJKOhsAgBABoJQBOmUAAvLvNZhtjxgBWAAOhQjK8I1wKKYpJLH6Munu2exIBlETk7cW6d1s256nB9jNR3kK85bLEKFipr1tonhPRq4AAA)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/16-1280.webp" srcset="../assets/photos/16-640.webp 360w, ../assets/photos/16-1280.webp 720w, ../assets/photos/16-2048.webp 1152w" sizes="(max-width: 600px) 40vw, 236px" width="1152" height="2048" loading="lazy" decoding="async" alt="Photo 16"></a>
+<a href="../assets/photos/17-2048.webp" style="--r:1.3333;--ph:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAADQBACdASoYABIAPtFiqk+oJaOiKAgBABoJYgCdMt8BqY6h8uA5YdRbRV5Kf6jjgAD+78htMWfqLYHRjUHlxlVkCrtNr0cwEmHBeN35WHaqL8lb8IknmHtlJ8/BaK3Q34vKT9CqyQ4/MXH9k9AJiL0VDFBGAXTWkaOy8yM4ixIs2PAWDOSDOWUKH9DGUVI2ugHFEUxsQRAfj2fgAAA=)" data-cap="2023 · Olympus E-M5 III"><img src="../assets/photos/17-1280.webp" srcset="../assets/photos/17-640.webp 640w, ../assets/photos/17-1280.webp 1280w, ../assets/photos/17-2048.webp 2048w" sizes="(max-width: 600px) 96vw, 560px" width="2048" height="1536" loading="lazy" decoding="async" alt="Photo 17"></a>
+<a href="../assets/photos/18-2048.webp" style="--r:1.4982;--ph:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABwBACdASoYABAAPtFWpEuoJKOhsAgBABoJQBOkCbk/wHkiQyJh74P/ryow4AD+0wSQL4qAlBMwckm7RetjlKKMHLN27JLGqluksOJIshs97wL6e3cjQlg9nbi1+zDyz6GVVLQifnpSHNbah6zsXlA+deUM2irZUBICeJ7rrFORBAAA)" data-cap="2023 · Nikon Z5"><img src="../assets/photos/18-1280.webp" srcset="../assets/photos/18-640.webp 640w, ../assets/photos/18-1280.webp 1280w, ../assets/photos/18-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 629px" width="2048" height="1367" loading="lazy" decoding="async" alt="Photo 18"></a>
+<a href="../assets/photos/19-2048.webp" style="--r:1.3316;--ph:url(data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAACwBACdASoYABIAPtFcpk6oJSMiKAqpABoJYwCuHBEPmuSWB1P+nhamkUsPK4cAAP7oUCMfTVxpaeOWGS51wThCU984bBRrVc4egi64lCCmDd0S7Qs28gqz8AW3/s4HQ+K+ZwPLPa7y+wdxW8qhQbSPTQGv6ELFwBFQAmcSE9mIBzSyZH6adcjDvtbkFUQIU/Axj7UAEIUBr48N4AA=)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/19-1280.webp" srcset="../assets/photos/19-640.webp 640w, ../assets/photos/19-1280.webp 1280w, ../assets/photos/19-2048.webp 2048w" sizes="(max-width: 600px) 96vw, 559px" width="2048" height="1538" loading="lazy" decoding="async" alt="Photo 19"></a>
+<a href="../assets/photos/20-2048.webp" style="--r:0.7510;--ph:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABwBQCdASoSABgAPtFaoEuoJSMhsBgMAQAaCWYAnTLT5Yxq3Rqz5TSxkz9wiuQG6D0gm9gAAPGxyBQNfR9337Gxt4mq+8Q8oz32ceixSART03hW9K0GNLHeiJk97yG32xlYUumrSWl/Ubg8AZ+8DVBPon0mHjQjeygxIvEJ4VGDLGqrdgAAAA==)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/20-1280.webp" srcset="../assets/photos/20-640.webp 481w, ../assets/photos/20-1280.webp 961w, ../assets/photos/20-2048.webp 1538w" sizes="(max-width: 600px) 54vw, 315px" width="1538" height="2048" loading="lazy" decoding="async" alt="Photo 20"></a>
+<a href="../assets/photos/21-2048.webp" style="--r:1.3316;--ph:url(data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAADQBACdASoYABIAPtFcqE4oJSQiKAqpABoJQBOmargwCbItDhtbRIAugKuJ0q1ZgAD+71B4LmKLzuCyoeNdMxvC9HrbRbBLSe7Y1LDcYMcoIupZK0H8TJdG8bpFv3OZ15scOL52UuvrfV+8Ef2ZHzL5YsObWGSOjrlh5OsDSmgQec3xqJwqaw8FcO+rnV19dc6eTPqqdv0BUzr0OvwoxzTtQFu78n9/ab0vmsyZOKqCAAAA)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/21-1280.webp" srcset="../assets/photos/21-640.webp 640w, ../assets/photos/21-1280.webp 1280w, ../assets/photos/21-2048.webp 2048w" sizes="(max-width: 600px) 96vw, 559px" width="2048" height="1538" loading="lazy" decoding="async" alt="Photo 21"></a>
+<a href="../assets/photos/22-2048.webp" style="--r:0.7510;--ph:url(data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAQBQCdASoSABgAPtFap04oJKOiKAqpABoJZACsMy/luAvzDQAQU9tv3pdAEYEzq/AAAP7a0PfE0uFts5M4Zkhk/iNBRhYIX7LVV4C9HN3Re57hGOXfcXL8YUqYw5Y8m7eABp9FUkeCHWjHHf7IDpquesoto/eklflmCoaqdtmy6BMcMwe/JHxcktBIYZ8bMg7BTIFnq//hgj+/QQnpz/ryTRZj6VUOvMtgtB3RSgjiMbtMqoYRxcd+rWLihl+NaA9sI+s3fSGJUAioARsAAA==)" data-cap="2023 · Lumix GM1"><img src="../assets/photos/22-1280.webp" srcset="../assets/photos/22-640.webp 481w, ../assets/photos/22-1280.webp 961w, ../assets/photos/22-2048.webp 1538w" sizes="(max-width: 600px) 54vw, 315px" width="1538" height="2048" loading="lazy" decoding="async" alt="Photo 22"></a>
+<a href="../assets/photos/23-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAACwBACdASoSABgAPtFQo0uoJCMhsBgMAQAaCUATplA1/8A8/1vO7E3aukHomxLAAP7F3MfAKr1ks4PNJt6z3FEav+VAYyXf4FVPe6LkXXhgetQh4mR35Bwu3x/ySy718b3gZA+YQkFhA3DG6vGI8dolmlKHa2lnDcruWkaaqmmvppblDVsuDn+KYtAAAA==)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/23-1280.webp" srcset="../assets/photos/23-640.webp 480w, ../assets/photos/23-1280.webp 960w, ../assets/photos/23-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 23"></a>
+<a href="../assets/photos/24-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoYABAAPtFUo0uoJKMhsAgBABoJbACdMoRwHvVAUJUG3tTCviG4WgAA/FyF6pavgqztd4aXa7LR+2iReWmo80o+4jiN60lkLNqLJo3fiDOHU4Q2igg8xnt2sVV/oj5ydJmkD22n9rU+3hNA+hSI/AJCpoNWHXXBNt+zPUWqJiFj1KFtHvrOHXAEUyiKA9DDJOQAAA==)" data-cap="2023 · Lumix ZS200"><img src="../assets/photos/24-1280.webp" srcset="../assets/photos/24-640.webp 640w, ../assets/photos/24-1280.webp 1280w, ../assets/photos/24-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 24"></a>
+<a href="../assets/photos/25-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAwBACdASoYABAAPtFWo0uoJKMhsAgBABoJQBOiP/wHj/CVPYvpbcpJ/MAA/os+0lBkSkQf2hXk7Bvn98amkxNK6Rw44ss5k0PG5iK1JBqiLGmFQhcIKN51dj9l0NpdYaVBA2Cy/TqTepALAAA=)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/og.jpg" srcset="../assets/photos/25-640.webp 640w, ../assets/photos/25-1280.webp 1280w, ../assets/photos/25-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 25"></a>
+<a href="../assets/photos/26-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABQBACdASoYABAAPtFUo0uoJKMhsAgBABoJZwDKAYxE30DhLnAbjlH/dnsAAP73eWQYXVzo5esbfh4QSV0Gp3kJURAJtzKOw4WRzp4Kj8xy2KCifcyjJVL1H0zTOH48+NWiOHcRve3bzp2T8Hg6+WXeZ+p6jPLp6zJ8QyALrf4wFUxj65Llgje9W/wwwDmTAYgAAA==)" data-cap="2023 · Canon EOS R6"><img src="../assets/photos/26-1280.webp" srcset="../assets/photos/26-640.webp 640w, ../assets/photos/26-1280.webp 1280w, ../assets/photos/26-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 26"></a>
+<a href="../assets/photos/27-2048.webp" style="--r:0.6665;--ph:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADQBACdASoQABgAPtFUo0uoJKMhsAgBABoJQBOg7UrdAG+nQQZb6/yi/GxXAb3JmAD+C3/wradr6SJK1Bb7Q+ufX9TRW7V6oLnk96/F1NzDZbG/8Tx4e2/DBO0e6+X005Kgf3E/Nsh/OQPfhfYnjy5elEu98zLNw5TRH4ZOo9UQgr31I+ITQyMREa0AFEKjfmN97f0GRDf18l+JRC9pj6PVUAA=)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/27-1280.webp" srcset="../assets/photos/27-640.webp 427w, ../assets/photos/27-1280.webp 853w, ../assets/photos/27-2048.webp 1365w" sizes="(max-width: 600px) 48vw, 280px" width="1365" height="2048" loading="lazy" decoding="async" alt="Photo 27"></a>
+<a href="../assets/photos/28-2048.webp" style="--r:0.6665;--ph:url(data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAADwBACdASoQABgAPtFUo0uoJKMhsAgBABoJZACdBAgdgK4Ec5y3Rj2S/gLlNdirVYAA/q0laptm/NaEXqZDq2CnUWVoQTp0vAjCgZK0nj1oa00kz7NGkLsFc/lNPe8ejR6bahLEFYEgu2xlLj0RtqM7mptJs50i61asMCu+LDB9PkVTPJ7/PTKP5IKXNMbxXXj8RraF/FWouZSJxlsJXHbi/YxAsweoPxAAAA==)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/28-1280.webp" srcset="../assets/photos/28-640.webp 427w, ../assets/photos/28-1280.webp 853w, ../assets/photos/28-2048.webp 1365w" sizes="(max-width: 600px) 48vw, 280px" width="1365" height="2048" loading="lazy" decoding="async" alt="Photo 28"></a>
+<a href="../assets/photos/29-2048.webp" style="--r:0.6665;--ph:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAABQBACdASoQABgAPtFUo0uoJKMhsAgBABoJZQAD5IIOE2Xu5i7JFMGYtR6AAP7vwcmdps8va9hR5tnICUZC5jYcQ5rM/0TXghkOfWP1lk+Oav2AVKqco83+bz+6De8NV34O0w6bMebKoYjWz3w62nVs9ZBIM6HjIQjHdbDtIoePiRuxYmkSug8r4to8M7Ei7AdjgXphUB0A9fk1wZwAAA==)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/29-1280.webp" srcset="../assets/photos/29-640.webp 427w, ../assets/photos/29-1280.webp 853w, ../assets/photos/29-2048.webp 1365w" sizes="(max-width: 600px) 48vw, 280px" width="1365" height="2048" loading="lazy" decoding="async" alt="Photo 29"></a>
+<a href="../assets/photos/30-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBACdASoYABAAPtFWo0uoJKMhsAgBABoJZQDImCHgVmMVSjDH1dXXsgAA/vVub9aKBuC1GWH2RFfEFrYqHS0VS+m7Wr1pgYujMXCnliLWG2uPL0GGBtwTehDARXEylm3rn+JwfNeLkhVBF8ATHNhnJ2QevTfxCX2GsU2Z4km5/Udv+QAAAA==)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/30-1280.webp" srcset="../assets/photos/30-640.webp 640w, ../assets/photos/30-1280.webp 1280w, ../assets/photos/30-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 30"></a>
+<a href="../assets/photos/31-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABQBACdASoYABAAPtFWpEwoJKOiMAgBABoJZACdMoADVSs+1hW0CFe3hFYAAPjSMB64H4E7keYnUyQOoUjRSQGbvQZ4QApEuAk+ifTb6w5+cDhDWvHrUM4RsP7f6BGglZye7RAYpFeD5EzLY1sn7vv/uwkWZ13z3+zkyy7oiE0LI9PukfJg2uQ1gAAAAA==)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/31-1280.webp" srcset="../assets/photos/31-640.webp 640w, ../assets/photos/31-1280.webp 1280w, ../assets/photos/31-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 31"></a>
+<a href="../assets/photos/32-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAAAwBQCdASoSABgAPtFYpUyoJSOiKA1RABoJYwCw/f/gHz/Z52lZefpOEsA1oKnWXcqCAAD90VHlA1Az0vtWWyQ+JaFbU/lQwFKRNUSkTOg69oe52Q5OA/NQKjnkdDIlhkGISI+KOPswxIy51qo4fXo/XaqPm2AdI+tAz3Y4jYruMtouS/eYLFl/naFUV3B0Xu+VVKQyr2OHr53JdnR56EDiaBkUkKjtOHgUGRfDRTMGAAAA)" data-cap="2023 · iPhone 14 Pro"><img src="../assets/photos/32-1280.webp" srcset="../assets/photos/32-640.webp 480w, ../assets/photos/32-1280.webp 960w, ../assets/photos/32-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 32"></a>
+<a href="../assets/photos/33-2048.webp" style="--r:0.6919;--ph:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwBACdASoRABgAPtFaqU2oJSQiKAqpABoJZSzAAxIASrkTDv2UxyMZ9meqAAD+6QMx0GnG+A4R1MocGTtXcsDJVL7KSIVIfnEQrRnoJPr+MNuoIX0J9VryzyAQWyHFBRvUk6uFXBM3ddwmGYkypQsa17VK27CFSP0p6EAAAAA=)" data-cap="2023 · Sony A7C II"><img src="../assets/photos/33-1280.webp" srcset="../assets/photos/33-640.webp 443w, ../assets/photos/33-1280.webp 885w, ../assets/photos/33-2048.webp 1417w" sizes="(max-width: 600px) 50vw, 291px" width="1417" height="2048" loading="lazy" decoding="async" alt="Photo 33"></a>
+<a href="../assets/photos/34-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAAAwBgCdASoSABgAPtFaqE4oJSQiKAqpABoJbACdMoRwMKsxClQIR6MXoL5/5w+T59KOnm0n1aCAzfLwAP6+cz7IaUNiWJE2yiz89WZASWbzt8lLZuI9SLU/E5+U6jYszrxjZ4jxOGEauXGzY81YnxZCpg9rXM1dRqyNGGy4R6xi1CojBrXaAqOk1HkwfAdeXSTCf5xhlMkJ9avjGSlm+I9Zfq6DJ36fl099ZyFB2tnMA04OoMTP2/dWJUdLEd/lmRWx3gXGr8a9ewVgX53lAAAA)" data-cap="2024 · iPhone 14 Pro"><img src="../assets/photos/34-1280.webp" srcset="../assets/photos/34-640.webp 480w, ../assets/photos/34-1280.webp 960w, ../assets/photos/34-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 34"></a>
+<a href="../assets/photos/35-2048.webp" style="--r:1.1216;--ph:url(data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAABwBQCdASoYABUAPtFapU0oJSOiMBgIAQAaCWgAqPQQ77gCru7S/ZmXY5wbT2H/CtHWnjsQAP7ertCf43nDIdmaqG3O2CwzhoTQO73LGJ2yGXvRd3MO9mv7o/W1iTDAEP2rKlXuZnR8hf8Gf9bjxv/eCvVTzfvEo5eiPDAi30h8Hka3DZ7EDvovVTw095AajN+X7oN5pypKhtGYOmyQ2pxzM33D78WLehpwi6dUYAA=)" data-cap="2024 · Sony A7C II"><img src="../assets/photos/35-1280.webp" srcset="../assets/photos/35-640.webp 640w, ../assets/photos/35-1280.webp 1280w, ../assets/photos/35-2048.webp 2048w" sizes="(max-width: 600px) 81vw, 471px" width="2048" height="1826" loading="lazy" decoding="async" alt="Photo 35"></a>
+<a href="../assets/photos/36-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoYABAALplotFoiqCgoCACYS0AE6ZQANTEp0LxsymUKgAD++nIW27lsHPXo7h68KaWe8kMVM1p/y2Sd0UojSTZvaMOZtXqk52ddxiwH/6oVzhl74dUNUjxdxTy2PVHyHUAAAA==)" data-cap="2024 · Sony A7C II"><img src="../assets/photos/36-1280.webp" srcset="../assets/photos/36-640.webp 640w, ../assets/photos/36-1280.webp 1280w, ../assets/photos/36-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 36"></a>
+<a href="../assets/photos/37-2048.webp" style="--r:0.7500;--ph:url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAACQBQCdASoSABgAPtFcpU6oJKMiKAqpABoJZgC7FKAAFTrpvF1O9AMnhJ22mWDJ3pxogzNXwAD54yLoX8Z+ufHJw+UAfav0zb4yFpQEN0Zq7Ng+9gBCqvPyGjvKw2wPQ9yP4tlw+9A0QNBvxX6yNq05jpENpFvrqy8TKFMyKD2FEaDuKhGqe836Ff7lxglufWBY37/pZPFV1Qo+aFcKShie+g65G2The55ZqGK8p1Vfol8OCFw2EtQ7YhS+HgTi+vfJPqFrCjBwAwivG9AmAAAA)" data-cap="2024 · iPhone 14 Pro"><img src="../assets/photos/37-1280.webp" srcset="../assets/photos/37-640.webp 480w, ../assets/photos/37-1280.webp 960w, ../assets/photos/37-2048.webp 1536w" sizes="(max-width: 600px) 54vw, 315px" width="1536" height="2048" loading="lazy" decoding="async" alt="Photo 37"></a>
+<a href="../assets/photos/38-2048.webp" style="--r:1.5004;--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwBACdASoYABAAPtFUpEuoJKOhsAgBABoJagCdMoR3JoArb5vvSAvc3+xBThhCQEAA/d7s4rcrzIwlc1XDqCtlguHXn63UZcrEeT7OLLXuXK+Kya9h85xp+Of2feioKC9wvHQFOQ5QEOJGW5QqnuNdGbhVDvFXQzAxodFp6jIbDZcBVnAI5WjUF4AAAA==)" data-cap="2024 · Sony A7C II"><img src="../assets/photos/38-1280.webp" srcset="../assets/photos/38-640.webp 640w, ../assets/photos/38-1280.webp 1280w, ../assets/photos/38-2048.webp 2048w" sizes="(max-width: 600px) 100vw, 630px" width="2048" height="1365" loading="lazy" decoding="async" alt="Photo 38"></a>
+<a href="../assets/photos/39-2048.webp" style="--r:0.6665;--ph:url(data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAADQBACdASoQABgAPtFUo0uoJKMhsAgBABoJagC7AywYYJm8RjJMNLbCrwt9MUYEAAD+44LMNIRLvtLnb9fyEd628TdsB7NeP2SQwl8kNsFBVDfTHgxyOV+oUrLKX+L7brRRgl2F+DEm++hquk0pkwBoSS7GX7hnCl4f0TzzppbPo1pKHO4IIvLFovtKuyrIlQyoDx7NM6f9BuZDQZDE3lbpZAq+7JyUahJ8HkeG0bakSWBX891GiDc2AsAAAA==)" data-cap="2024 · Sony A7C II"><img src="../assets/photos/39-1280.webp" srcset="../assets/photos/39-640.webp 427w, ../assets/photos/39-1280.webp 853w, ../assets/photos/39-2048.webp 1365w" sizes="(max-width: 600px) 48vw, 280px" width="1365" height="2048" loading="lazy" decoding="async" alt="Photo 39"></a>
+<a href="../assets/photos/40-2048.webp" style="--r:0.6665;--ph:url(data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAACwBACdASoQABgAPtFUo0uoJKMhsAgBABoJYwDE5iAByeDDM+ux6DkbhpHHpqZAAP7qJD3kH5OCTdPybZgwmnja+VV5w8Ne1fE+sfqZrNJGlyRxV9kWwopHv/6SC/pU8xtvxYmp/ZSYvIRdut3cc9JSBHwjfUek2vEstszdHA/BA7OebPvP7k1pe07dD9zle+TOD0ElXfNRHAKQXcvGkwTudw4T7ht1AbD+BcCYdiysle6k5yPVqW0DmTHVQ+dd5WHznQqaWqh3pGvIWYOEAA==)" data-cap="2024 · Sony A7C II"><img src="../assets/photos/40-1280.webp" srcset="../assets/photos/40-640.webp 427w, ../assets/photos/40-1280.webp 853w, ../assets/photos/40-2048.webp 1365w" sizes="(max-width: 600px) 48vw, 280px" width="1365" height="2048" loading="lazy" decoding="async" alt="Photo 40"></a>
+<!-- GALLERY:END -->
+</div>
+
+<footer>All photographs © Junhan Hu. Please ask before reuse.</footer>
+</main>
+
+<dialog id="lb" aria-label="Photo viewer">
+  <span class="count" id="lbCount"></span>
+  <figure>
+    <div class="stage"><img id="lbImg" alt=""></div>
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="prev" aria-label="Previous photo">‹</button>
+  <button class="next" aria-label="Next photo">›</button>
+  <button class="x" aria-label="Close">×</button>
+</dialog>
+
+<script>
+// theme toggle (same behaviour and storage key as the homepage)
+(function () {
+  var root = document.documentElement;
+  document.getElementById("theme").addEventListener("click", function () {
+    var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+  });
+})();
+
+// Justified rows. CSS alone (flex-grow by aspect ratio) lets a photo that is alone
+// in its row stretch to full width; here we pack rows so each is close to the
+// target height, then size tiles explicitly. CSS layout stays as the no-JS fallback.
+(function () {
+  var g = document.getElementById("gallery"), tiles = Array.prototype.slice.call(g.children);
+  var ratios = tiles.map(function (a) { return parseFloat(a.style.getPropertyValue("--r")); });
+  var lastW = 0;
+  function layout() {
+    var W = g.clientWidth; if (!W || W === lastW) return; lastW = W;
+    var cs = getComputedStyle(g), gap = parseFloat(cs.columnGap) || 0,
+        H = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--row")) || 300;
+    function rowH(a, b) { var s = 0; for (var k = a; k < b; k++) s += ratios[k]; return (W - gap * (b - a - 1)) / s; }
+    var start = 0;
+    while (start < tiles.length) {
+      var end = start + 1;
+      while (end < tiles.length && rowH(start, end) > H) end++;
+      var h = rowH(start, end), last = end === tiles.length && h > H;
+      // compare with the row one photo shorter, keep whichever is nearer the target
+      if (!last && end - start > 1) {
+        var h2 = rowH(start, end - 1);
+        if (Math.abs(Math.log(h2 / H)) < Math.abs(Math.log(h / H))) { end--; h = h2; }
+      }
+      if (last) h = H;
+      for (var k = start; k < end; k++) {
+        var s = tiles[k].style;
+        s.flex = "none"; s.width = (ratios[k] * h).toFixed(2) + "px"; s.height = h.toFixed(2) + "px";
+      }
+      // absorb sub-pixel rounding on the last tile so rows end flush
+      if (!last) tiles[end - 1].style.width = "calc(" + tiles[end - 1].style.width + " - 0.5px)";
+      start = end;
+    }
+  }
+  layout();
+  if (window.ResizeObserver) new ResizeObserver(layout).observe(g);
+  else addEventListener("resize", layout);
+})();
+
+// fade each photo in over its blurred placeholder once it has decoded
+(function () {
+  document.querySelectorAll(".gallery img").forEach(function (img) {
+    function show() { img.classList.add("in"); }
+    if (img.complete && img.naturalWidth) show();
+    else { img.addEventListener("load", show); img.addEventListener("error", show); }
+  });
+})();
+
+// lightbox
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll(".gallery a"));
+  var dlg = document.getElementById("lb"), img = document.getElementById("lbImg"),
+      cap = document.getElementById("lbCap"), count = document.getElementById("lbCount");
+  if (!dlg.showModal) return;                  // very old browsers: links open the full image
+  var cur = 0;
+
+  function sizesFor(a) {                       // displayed width when fit to the viewport
+    var r = parseFloat(a.style.getPropertyValue("--r"));
+    return "min(100vw, " + Math.round(r * 90) + "vh)";
+  }
+  function preload(i) {
+    var a = links[(i + links.length) % links.length], t = a.querySelector("img"), p = new Image();
+    p.sizes = sizesFor(a); p.srcset = t.srcset; p.src = a.href;
+  }
+  function show(i) {
+    cur = (i + links.length) % links.length;
+    var a = links[cur], t = a.querySelector("img");
+    // show the already-loaded thumbnail immediately, then swap in the sharp version
+    img.style.setProperty("--lb-ph", "url(" + (t.currentSrc || t.src) + ")");
+    img.removeAttribute("srcset"); img.src = "";
+    img.sizes = sizesFor(a); img.srcset = t.srcset; img.src = a.href;
+    img.alt = t.alt;
+    cap.textContent = a.dataset.cap || "";
+    count.textContent = (cur + 1) + " / " + links.length;
+    preload(cur + 1); preload(cur - 1);
+  }
+  links.forEach(function (a, i) {
+    a.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault(); show(i); dlg.showModal();
+    });
+  });
+  dlg.querySelector(".prev").onclick = function () { show(cur - 1); };
+  dlg.querySelector(".next").onclick = function () { show(cur + 1); };
+  dlg.querySelector(".x").onclick = function () { dlg.close(); };
+  dlg.addEventListener("close", function () { links[cur].focus({ preventScroll: true }); links[cur].scrollIntoView({ block: "nearest" }); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.classList.contains("stage") || e.target.tagName === "FIGURE") dlg.close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!dlg.open) return;
+    if (e.key === "ArrowRight") show(cur + 1);
+    else if (e.key === "ArrowLeft") show(cur - 1);
+  });
+  // swipe
+  var x0 = null, y0 = null;
+  dlg.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  dlg.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1));
+    else if (dy > 80 && Math.abs(dy) > Math.abs(dx)) dlg.close();
+    x0 = null;
+  });
+})();
+</script>
+</body>
+</html>
